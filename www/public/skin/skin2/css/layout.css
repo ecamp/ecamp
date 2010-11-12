@@ -1,0 +1,65 @@
+div.body
+{
+	position:absolute;
+	left:0;
+	top:0;
+	width:100%;
+	height:100%;
+	
+	margin:0;
+	padding:0;
+}
+
+div.logout
+{
+	width:72px;
+	position:absolute;
+	top:10px;
+	left:1050px;
+	
+	text-align:right;
+}
+
+div.main_menu
+{	
+	position:absolute;
+	left:65px;
+	top:10px;
+	bottom:0;
+	width:140px;
+	padding-top:5px;
+}
+
+div.header
+{
+	position:absolute;
+	top:20px;
+	left:220px;
+}
+
+div.main_content
+{	
+	position:absolute;
+	
+	top:50px;
+	left:220px;
+	bottom:25px;
+	
+	width:900px;
+	
+	padding:0;
+	margin:0;
+	
+	overflow:visible;
+	text-align:left;
+}
+
+
+div.main_info
+{
+	position:absolute;
+	left:65px;
+	width:140px;
+	bottom:10px;
+	
+}

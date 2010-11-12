@@ -1,0 +1,10 @@
+AuthUserFile /dev/null
+AuthGroupFile /dev/null
+
+AuthName "Geschützter Bereich"
+
+AuthType Basic
+
+require valid-user
+
+Options +Indexes

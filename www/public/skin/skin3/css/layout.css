@@ -1,0 +1,128 @@
+div.body
+{
+	position:absolute;
+	left:0;
+	top:0;
+	width:100%;
+	height:100%;
+	
+	margin:0;
+	padding:0;
+}
+
+div.logout
+{
+	width:72px;
+	position:absolute;
+	top:10px;
+	right:20px;
+	
+	text-align:right;
+}
+
+div.impressum
+{
+	width:80px;
+	position:absolute;
+	top:20px;
+	right:150px;
+	
+	text-align:right;
+}
+
+div.faq
+{
+	width:40px;
+	position:absolute;
+	top:20px;
+	right:230px;
+	
+	text-align:right;
+}
+
+div.main_menu
+{	
+	position:absolute;
+	left:10px;
+	top:10px;
+	bottom:0;
+	width:150px;
+	padding-top:5px;
+}
+
+div.main_bottom_menu
+{
+	position: absolute;
+	bottom: -55px;
+	left: 20px;
+	right: 20px;
+	height: 60px;
+	
+	background-color: red;
+	
+	margin: 0px;
+	padding: 0px;
+	
+	z-index: 100000;
+}
+
+div.main_bottom_menu:hover
+{
+	bottom: -5px;
+}
+
+
+div.main_bottom_menu table
+{
+	border: none;
+	margin: 2px;
+	padding: 2px;
+}
+
+
+div.main_bottom_menu div
+{
+	top: 2px;
+	width: 200px;
+	
+	background-color: blue;
+}
+
+div.main_bottom_menu div:hover
+{
+	top: -299px;
+}
+
+div.header
+{
+	position:absolute;
+	top:20px;
+	left:170px;
+	right: 260px;
+}
+
+div.main_content
+{	
+	position:absolute;
+	
+	top:50px;
+	left:170px;
+	bottom:12px;
+	right:10px;
+	
+	padding:0;
+	margin:0;
+	
+	overflow:visible;
+	text-align:left;
+}
+
+
+div.main_info
+{
+	position:absolute;
+	left:10px;
+	width:150px;
+	bottom:0px;
+	
+}

@@ -1,0 +1,11 @@
+table.info_display
+{
+	position:absolute;
+	bottom:0px;
+	left:0px;
+	
+	border: 1px #000000 solid;
+	
+	-moz-border-radius:5px;
+	-khtml-border-radius:5px;
+}

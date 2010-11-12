@@ -1,0 +1,14 @@
+
+div#list_container
+{	
+	overflow-y: auto;
+	
+	position: absolute;
+	left: 0px;
+	top: 260px;
+	bottom: 0px;	
+	right: 1px;
+	
+	
+	border-top: 1px solid rgb(51, 85, 136);
+}

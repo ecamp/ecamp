@@ -1,0 +1,20 @@
+input.askedit
+{
+	border-style: solid;
+	border-color: #000000;
+	border-width: 1px;
+}
+input.askeditbutton
+{
+	border-style: solid;
+	border-color: #000000;
+	border-width: 1px;
+}
+input.showtext
+{
+	border-style: dotted;
+	border-color: #000000;
+	border-width: 1px;
+	width: 100%;
+	cursor: pointer;
+}

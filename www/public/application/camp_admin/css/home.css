@@ -1,0 +1,82 @@
+input.askedit
+{
+	border-style: solid;
+	border-color: #000000;
+	border-width: 1px;
+	background-color: 0066ff;
+}
+input.askeditbutton
+{
+	border-style: solid;
+	border-color: #000000;
+	border-width: 1px;
+	background-color: 0066ff;
+}
+input.showtext
+{
+	border-style: dotted;
+	border-color: #000000;
+	border-width: 1px;
+	background-color: 2288ff;
+	width: 100%;
+	cursor: pointer;
+}
+div.invention
+{
+	-moz-border-radius:5px;
+	-khtml-border-radius:5px;
+}
+
+ul.camp_list
+{
+	display: inline-table;
+}
+li.camp_frame
+{
+	display: inline-table;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-bottom: 10px;
+}
+table.camp
+{
+	width: 300px;
+	padding: 1px;
+	border: 1px black solid;
+	-moz-border-radius:5px;
+	-khtml-border-radius:5px;
+}
+table.camp:hover
+{
+	border: 2px black solid;
+	margin: 0px;
+	padding: 0px;
+}
+table.camp td
+{
+	padding-bottom: 2px;
+	padding-left: 10px;
+}
+td.seperator
+{
+	padding-left: 5px;
+	padding-right: 10px;
+}
+td.seperator p
+{
+	border-bottom: 1px black dashed;
+	height: 2px;
+	margin: 5px;	
+}
+td.camp_option
+{
+	padding-right: 20px;
+}
+p.camp_slogan
+{
+	text-align: center;
+	font-weight: bold;
+	font-size: 13px;
+	padding: 4px;
+	margin: 0px;
+}
