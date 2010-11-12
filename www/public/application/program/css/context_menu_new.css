@@ -1,0 +1,59 @@
+  ul, li{margin:0;padding:0; text-align:left;}
+
+  ul.pmenu {
+    position:fixed;
+    margin: 0;
+    padding: 1px;
+    list-style: none;
+    width: 130px; /* Width of Menu Items */
+    border: 1px solid #ccc;
+    background:white;
+    display:none;
+    z-index:301;
+	
+	-moz-border-radius:5px;
+	-khtml-border-radius:5px;
+  }
+
+  ul.pmenu li {position: relative;}
+  
+  ul.pmenu li img {	margin-right: 5px; }
+
+  ul.pmenu li ul {
+    position: absolute;
+    left: 130px; /* Set 1px less than menu width */
+    top: 0;
+    display: none;
+    z-index:200;
+  }
+
+  /* Styles for Menu Items */
+  ul.pmenu li {
+    display: block;
+    text-decoration: none;
+    color: black;
+    padding: 2px 5px 2px 10px;
+    font-size: 12px;
+    font-family: "Arial";
+  }
+
+  ul.pmenu li:hover {
+    background:#335EA8;
+    color:white;
+  }
+
+  ul.pmenu li.parent {
+    background:url('../img/next.png') no-repeat 120px 6px;
+  }
+  ul.pmenu li.parent:hover {
+    background:#335EA8 url('../img/next.png') no-repeat 120px 6px;
+  }
+
+  /* IE */
+  * html ul.pmenu li { float: left; height: 1%; }
+  * html ul.pmenu li a { height: 1%; }
+  * html ul.pmenu li ul {left:147px;}
+  /* End */
+
+  ul.pmenu li:hover ul, ul.pmenu li.over ul { display: block; }
+  ul.pmenu li ul{left:130px;}

@@ -1,0 +1,34 @@
+div.menu
+{
+	padding:5px;
+	
+	margin-top: 0px;
+	margin-bottom:10px;
+}
+
+div.menu_title{
+	height:15px;
+	margin:0px;
+}
+
+div.menu a
+{
+	line-height: 15px;
+}
+
+div.menu a:hover
+{
+	
+	font-weight: bold;
+	font-style: italic;
+}
+
+div.menu a.actual_menu
+{
+	font-weight: bold;
+}
+
+div.menu_group
+{
+	margin-bottom: 8px;
+}

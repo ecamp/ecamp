@@ -1,0 +1,11 @@
+BODY,font,p,input,td{ font-family: Verdana, Arial, Sans-serif; font-size:11px; font-weight:normal; font-style:normal; text-decoration:none; font-variant:normal; letter-spacing:1px; }
+.CODE { font-family: Courier New, Monospace; font-size:12px; font-weight:500; font-style:normal; text-decoration:none; font-variant:normal; color: #006F37; background: #FFFFF0; border: 1px dashed #008000; padding: 8px;}
+BODY{margin:40px;margin-top:0;}
+p{line-height:160%;color:#666;}
+h1{display:inline;font-size:16px;}
+p.imp{color:crimson;font-weight:bold;}
+ol,ul{color:#666;line-height:180%;}
+input{font-size:10px;padding:0;letter-spacing:0;}
+tr.rola{background-color:white;}
+td.rolb{cursor:pointer;text-align:center;border:dashed 1px white;background-color:white;}
+

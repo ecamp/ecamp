@@ -1,0 +1,26 @@
+/*
+img.profile_image
+{
+	position: absolute;
+	right: 20px;
+	top: 37px;
+	
+}
+*/
+
+h1.detail_title
+{
+	
+	margin-left: 20px;
+	
+}
+
+table.detail_table
+{
+	margin-bottom: 50px;
+}
+
+h1.detail_title, table.detail_table
+{
+	padding-left: 40px;
+}

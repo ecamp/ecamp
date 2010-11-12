@@ -1,0 +1,28 @@
+input.askedit
+{
+	border-style: solid;
+	border-color: #000000;
+	border-width: 1px;
+	background-color: #0066ff;
+}
+input.askeditbutton
+{
+	border-style: solid;
+	border-color: #000000;
+	border-width: 1px;
+	background-color: #0066ff;
+}
+input.showtext
+{
+	border-style: dotted;
+	border-color: #000000;
+	border-width: 1px;
+	background-color: #2288ff;
+	width: 100%;
+	cursor: pointer;
+}
+
+table.align_left > tr > td
+{
+	text-align:left;
+}
