@@ -196,7 +196,7 @@
 				
 				$pdf->Link( $base_left, 22, $row_width, 4, $day->get_linker( $pdf ) );
 				
-				$date->setDay2000( $day->subcamp->start + $day->day_nr - 1 );
+				$date->setDay2000( $day->subcamp->start + $day->day_offset );
 				$pdf->SetXY( $base_left, 22 );
 				$pdf->SetFontSize( 8 );
 				$pdf->drawTextBox( strtr( $date->getString( 'D, d.m.Y' ), $GLOBALS[en_to_de] ), $row_width, 4, 'C', 'M', 0 );
