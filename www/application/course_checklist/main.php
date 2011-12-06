@@ -26,6 +26,41 @@
 	///////////////////////////
 	$type = $_camp->type;
 	
+	/* alle Events des Camps laden */
+	// Events suchen, die die Chechliste erfüllen
+	$campevents = array();
+	mysql_query("SET SESSION group_concat_max_len = 512");
+	$query =   	"SELECT
+								  i.id AS instance,
+								  e.id,
+								  e.name,
+								  CONCAT(v.day_nr,'.',v.event_nr) AS nr,
+								  i.starttime AS start,
+								  i.starttime + i.length AS end,
+								  s.start + d.day_offset AS day,
+								  c.short_name
+								FROM
+								  event e,
+								  event_instance i,
+								  v_event_nr v,
+								  day d,
+								  subcamp s,
+								  category c
+								WHERE 
+								    e.camp_id=$_camp->id
+								AND i.event_id = e.id
+								AND v.event_instance_id = i.id
+								AND i.day_id = d.id
+								AND d.subcamp_id = s.id
+								AND e.category_id = c.id
+								ORDER BY v.day_nr, v.event_nr";
+	
+	$result = mysql_query($query);
+	while( $this_event = @mysql_fetch_assoc($result) )
+	{
+		$campevents[$this_event['instance']] = $this_event;
+	}
+	
 	// PBS=0 // J+S=1  //
 	for( $i=0; $i<=1; $i++ )
 	{
@@ -41,40 +76,27 @@
 			
 			while( $this_level2 = @mysql_fetch_assoc($result2) )
 			{
-				// Events suchen, die die Chechliste erfüllen
+				// Events suchen, die die Checkliste erfüllen
 				$events = array();
-				mysql_query("SET SESSION group_concat_max_len = 512");
 				$query =   	"SELECT 
-							  e.id,
-							  e.name,
-							  CONCAT(v.day_nr,'.',v.event_nr) AS nr,
-							  i.starttime AS start,
-							  i.starttime + i.length AS end,
-							  s.start + d.day_offset AS day,
-							  c.short_name
+							  i.id
 							FROM
 							  event_checklist ch,
 							  event e,
-							  event_instance i,
-							  v_event_nr v,
-							  day d,
-							  subcamp s,
-							  category c
+							  event_instance i
 							WHERE 
 							    ch.checklist_id = $this_level2[id]
 							AND e.camp_id=$_camp->id
 							AND e.id = ch.event_id
 							AND i.event_id = e.id
-							AND v.event_instance_id = i.id
-							AND i.day_id = d.id
-							AND d.subcamp_id = s.id
-							AND e.category_id = c.id
-							ORDER BY v.day_nr, v.event_nr";
-							
+							ORDER BY i.day_id, i.starttime";
+					
 				$result3 = mysql_query($query);
 				$no_events = true;
-				while( $this_level3 = @mysql_fetch_assoc($result3) )
+				while( $this_level3_instance = @mysql_fetch_assoc($result3) )
 				{
+					$this_level3 = $campevents[$this_level3_instance["id"]];
+					
 					$no_events = false;
 					
 					$start = new c_time();
@@ -104,5 +126,10 @@
 	// PHPTAL Variablen setzen
     $_page->html->set("pbs_list", $list[0]);
 	$_page->html->set("js_list", $list[1]);
-		
+	
+	/* Wechsel zu neuen Checklisten zulassen */
+	if( $_camp->type>0 && $_camp->type<=4 )
+		$_page->html->set("new_checklist", 1);
+	else
+		$_page->html->set("new_checklist", 0);
 ?>

@@ -19,25 +19,15 @@
  */
 
 
-# Sichheitslevel der einzelnen Aktionen/Dateien
-# --> Kommandos/Files die nicht aufgeührt sind, können nicht aufgerufen werden
-$security_level = array( 
-				"main" => 10,
-				"action_new_checklist" => 10);
-
-$css = array(
-			);
-
-$js  = array(
-				"mootools1.2.js"	=> "global",
-				"dynamic_input.js"	=> "global",
-				"popup.js"			=> "global",
-				"other.js"			=> "global",
-				"event.js" 			=> "module"
-			);
-
-# Standardkommando
-if( $_page->cmd == "" ) {	$_page->cmd = "main";	}
-
-
+	if( $_camp->type>0 && $_camp->type<=4 ){
+		/* Verknüpfungen zur aktuellen Checkliste wechseln */
+		$query = "DELETE event_checklist.* FROM event_checklist INNER JOIN event ON event.id=event_checklist.event_id WHERE event.camp_id=".$_camp->id;
+		mysql_query($query);
+		
+		$query = "UPDATE camp SET type=".($_camp->type+10)." WHERE id=".$_camp->id." LIMIT 1";
+		mysql_query($query);
+	
+	}
+	header("Location: index.php?app=course_checklist");
+	die();
 ?>

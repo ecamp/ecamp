@@ -16,6 +16,19 @@
 				               Hier werden die vorgegebenen Checklisten von PBS und J+S übersichtlich dargestellt.
 				               <br />
 				               Du siehst zu jedem Punkt gleich, ob dieser durch einen deiner Blöcke abgedeckt ist.
+				               
+				               <br/><br/>
+				               <div tal:condition="new_checklist">
+				               		Für die Kurssaison 2012 sind von der PBS neue Checklisten veröffentlicht worden. Du kannst die neuen Checklisten übernehmen. Die Verknüpfungen mit der alten Checkliste werden dabei gelöscht.
+				               		
+				               		<form action="index.php">
+										<input type="submit" value="Neue Checkliste übernehmen" id="new_checklist" />
+										<input type="hidden" name="app" value="course_checklist" />
+										<input type="hidden" name="cmd" value="action_new_checklist" />
+									</form>
+				       
+				               </div>
+				               
 				            </span>
 				        </span>
 			        </div>

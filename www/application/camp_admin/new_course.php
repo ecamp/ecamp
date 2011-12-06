@@ -36,7 +36,7 @@
 	
 	$query = "	SELECT *
 				FROM dropdown
-				WHERE list = 'coursetype'";
+				WHERE list = 'coursetype' AND item_nr>=5 ORDER BY item_nr";
 	$result = mysql_query( $query );
 	$coursetypes = array();
 	
