@@ -1421,7 +1421,7 @@ var DI_TABLE = new Class({
 	{
 		//e = entry.retrieve( 'e' );
 		
-		e.del.addEvent( 'click', this.save_remove_entry.bind(this, [entry, e]) );
+		e.del.addEvent( 'click', this.save_remove_entry.bind(this, entry, e) );
 		e.edit.addEvent( 'click', this.start_edit_entry.bind(this, e) );
 	},
 	
