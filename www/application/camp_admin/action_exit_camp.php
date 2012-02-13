@@ -83,14 +83,25 @@
 	
 	
 	
-	
+	// Delete UserCamp-Instance:
 	$query = "	DELETE FROM 
 					user_camp 
 				WHERE 
 					id = '$user_camp_id' LIMIT 1";
 	mysql_query( $query );
 
-    
+	// Extra Delete EventResponsibles  (Due To Design-Error :/ )
+	$query = "DELETE FROM 	event_responsible 
+		  WHERE id IN (
+			SELECT 	event_responsible.id 
+			FROM 	event_responsible, event 
+			WHERE
+				event_responsible.event_id = event.id AND
+				event_responsible.user_id = $_user->id AND
+				event.camp_id = $camp_id
+			)";
+    	mysql_query( $query );
+
     $_news->add2camp( "Lager verlassen", $_user->display_name . " hat das Lager '$short_name' verlassen.", time(), $camp_id );
 	$_news->add2user( "Lager verlassen", "Du hast das Lager '$short_name' verlassen.", time(), $_user->id );
 	
