@@ -95,16 +95,10 @@
 						category.camp_id = $_camp->id
 					LIMIT 1";
 		
-		//echo $query;
 		$result = mysql_query( $query );
 		
-		
 		$i = 0;
-		//do{	
-		$category_id = mysql_result( $result, $i++, 'id' );//	}
-		//while( !$category_id );
-			
-		
+		$category_id = mysql_result( $result, 0, 'id' );
 		
 		$query = "	INSERT INTO
 						event
