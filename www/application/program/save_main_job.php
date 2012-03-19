@@ -51,10 +51,11 @@
 						job.id = job_day.job_id
 					";
 		$result = mysql_query( $query );
-		
+		echo $query;
 		if( mysql_num_rows( $result ) )
 		{
-			$job_day_id = mysql_result( $result, 'job_day_id' );
+			$job_day_id = mysql_result( $result, 0, 'job_day_id' );
+			die($job_day_id);
 			
 			$query = "	UPDATE job_day
 						SET user_camp_id = $user_camp_id
@@ -69,7 +70,7 @@
 							job.camp_id = $_camp->id AND
 							job.show_gp = 1";
 			$result = mysql_query( $query );
-			$job_id = mysql_result( $result, 'job_id' );
+			$job_id = mysql_result( $result, 0, 'job_id' );
 			
 			$query = "	INSERT INTO job_day
 						( `job_id`, `day_id`, `user_camp_id` )
@@ -86,7 +87,7 @@
 						job.camp_id = $_camp->id AND
 						job.show_gp = 1";
 		$result = mysql_query( $query );
-		$job_id = mysql_result( $result, 'job_id' );
+		$job_id = mysql_result( $result, 0, 'job_id' );
 		
 		$query = "	DELETE FROM job_day WHERE job_id = $job_id AND day_id = $day_id";
 		mysql_query( $query );
