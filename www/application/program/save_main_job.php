@@ -51,11 +51,10 @@
 						job.id = job_day.job_id
 					";
 		$result = mysql_query( $query );
-		echo $query;
+
 		if( mysql_num_rows( $result ) )
 		{
 			$job_day_id = mysql_result( $result, 0, 'job_day_id' );
-			die($job_day_id);
 			
 			$query = "	UPDATE job_day
 						SET user_camp_id = $user_camp_id
