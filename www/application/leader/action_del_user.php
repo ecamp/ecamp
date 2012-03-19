@@ -54,12 +54,24 @@
 	}
 	
 	
+	$query = "SELECT user_id FROM user_camp  WHERE id = '$user_camp_id'";
+	$result = mysql_query($query);
+	$user_id = mysql_result( $result, 0, 'user_id' );
 	
 	$query = "DELETE FROM user_camp WHERE id = '$user_camp_id' AND NOT user_id='$_camp->creator_userid' AND camp_id = '$_camp->id'";
+	
 	mysql_query($query);
 	
 	if( mysql_affected_rows() )
 	{
+		
+		// Extra Delete EventResponsibles  (Due To Design-Error :/ )
+		$query = "DELETE FROM event_responsible 
+		WHERE user_id=$user_id AND event_id IN 
+		( SELECT event.id FROM event WHERE event.camp_id = $_camp->id )";
+		
+		mysql_query( $query );
+		
 		$ans = array( "error" => false );
 		echo json_encode( $ans );
 		die();
