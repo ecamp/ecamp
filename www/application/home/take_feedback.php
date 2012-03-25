@@ -45,7 +45,7 @@
 	$mailto = $GLOBALS[feedback_mail];
 	
 	$headers = "From: ".$name." <".$mail.">";
-	
+	$feedback = preg_replace("/\\\\r/","",$feedback);
 
 	if( $type == "feedback" )
 		mail($mailto, "Feedback von: " . $name, $feedback, $headers);
