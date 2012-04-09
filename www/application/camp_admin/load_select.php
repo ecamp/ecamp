@@ -27,13 +27,13 @@
 	{
 		$query = "	SELECT *
 					FROM groups
-					WHERE ISNULL( pid )";
+					WHERE ISNULL( pid ) AND active=1";
 	}
 	else
 	{
 		$query = "	SELECT *
 					FROM groups
-					WHERE pid = $pid";
+					WHERE pid = $pid AND active=1";
 	}
 	
 	$result = mysql_query( $query );
