@@ -144,11 +144,11 @@
 			
 			$date = new c_date();
 			$date->SetDay2000( $event_instance->day->subcamp->start + $event_instance->day->day_nr - 1 );
-			
-			$timestart = new c_time();
+
+            $timestart = new c_time();
 			$timestart->SetValue( $event_instance->starttime );
-			$timeend = new c_time();
-			$timeend->SetValue( $event_instance->endtime );
+            $timeend = new c_time();
+            $timeend->SetValue( $event_instance->starttime + $event_instance->length );
 			
 			
 			$pdf->SetXY( 155, $this->y + 1 );
