@@ -145,8 +145,10 @@
 			$date = new c_date();
 			$date->SetDay2000( $event_instance->day->subcamp->start + $event_instance->day->day_nr - 1 );
 			
-			$time = new c_time();
-			$time->SetValue( $event_instance->starttime );
+			$timestart = new c_time();
+			$timestart->SetValue( $event_instance->starttime );
+			$timeend = new c_time();
+			$timeend->SetValue( $event_instance->endtime );
 			
 			
 			$pdf->SetXY( 155, $this->y + 1 );
@@ -159,7 +161,7 @@
 			$pdf->SetXY( 155, $this->y + 6 );
 			$pdf->drawTextBox( 'Zeit:', 15, 5, 'L', 'M', 0 );
 			$pdf->SetXY( 170, $this->y + 6 );
-			$pdf->drawTextBox( $time->getString( 'H:i' ) . " Uhr", 30, 5, 'L', 'M', 0 );
+			$pdf->drawTextBox( $timestart->getString( 'H:i' ) . " - ". $timeend->getString( 'H:i' ), 30, 5, 'L', 'M', 0 );
 			
 			
 			$pdf->SetXY( 155, $this->y + 11 );
