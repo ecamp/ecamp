@@ -49,6 +49,7 @@ div.d_program
 	left:50px;
 	right:50px;
 	bottom:0px;
+	z-index: 1000;
 }
 
 /*
