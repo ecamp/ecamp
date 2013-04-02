@@ -42,6 +42,9 @@
 		else
 			$this_typ = $form[$category[form_type]];
 			
+		if( ! ctype_xdigit($category[color]) )
+			$category[color] = "ffffff";
+		
 		$category_list[] = array(
 								"id" 			=> $category[id],
 								"name" 			=> $category[name],

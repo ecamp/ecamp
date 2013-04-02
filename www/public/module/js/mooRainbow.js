@@ -1,24 +1,23 @@
-/** eCampConfig
+/*
+---
 
-	<depend on="public/global/js/mootools1.2.js" type="js" />
+script: mooRainbow.js
+version: 1.3
+description: MooRainbow is a ColorPicker for MooTools 1.3 and higher
+license: MIT-Style
+authors:
+  - Djamil Legato (w00fz)
+  - Christopher Beloch
 
-**/
+requires:
+  core:1.3: [*]
+  more:1.3: [Slider, Drag, Color]
 
+provides: [mooRainbow]
 
-/***
- * MooRainbow
- *
- * @version		1.2b2
- * @license		MIT-style license
- * @author		Djamil Legato - < djamil [at] djamil.it >
- * @infos		http://moorainbow.woolly-sheep.net
- * @copyright	Author
- * 
- *
- */
-
-var Rainbows = [];
-
+...
+*/
+ 
 var MooRainbow = new Class({
 	options: {
 		id: 'mooRainbow',
@@ -26,12 +25,12 @@ var MooRainbow = new Class({
 		imgPath: 'images/',
 		startColor: [255, 0, 0],
 		wheel: false,
-		onComplete: $empty,
-		onChange: $empty
+		onComplete: Class.empty,
+		onChange: Class.empty
 	},
 	
 	initialize: function(el, options) {
-		this.element = $(el); if (!this.element) return;
+		this.element = document.id(el); if (!this.element) return;
 		this.setOptions(options);
 		
 		this.sliderPos = 0;
@@ -49,7 +48,7 @@ var MooRainbow = new Class({
 		this.sliderEvents();
 		this.backupEvent();
 		if (this.options.wheel) this.wheelEvents();
-		this.element.addEvent('click', function(e) { this.closeAll().toggle(e); }.bind(this));
+		this.element.addEvent('click', function(e) { this.toggle(e); }.bind(this));
 				
 		this.layout.overlay.setStyle('background-color', this.options.startColor.rgbToHex());
 		this.layout.backup.setStyle('background-color', this.backupColor.rgbToHex());
@@ -67,24 +66,20 @@ var MooRainbow = new Class({
 	},
 	
 	toggle: function() {
-		this[this.visible ? 'hide' : 'show']();
+		this[this.visible ? 'hide' : 'show']()
 	},
 	
 	show: function() {
 		this.rePosition();
 		this.layout.setStyle('display', 'block');
+		this.layout.set('aria-hidden', 'false');
 		this.visible = true;
 	},
 	
 	hide: function() {
 		this.layout.setStyles({'display': 'none'});
+		this.layout.set('aria-hidden', 'true');
 		this.visible = false;
-	},
-	
-	closeAll: function() {
-		Rainbows.each(function(obj) { obj.hide(); });
-		
-		return this;
 	},
 	
 	manualSet: function(color, type) {
@@ -137,7 +132,7 @@ var MooRainbow = new Class({
 			hex: hex
 		};
 
-		if (!$chk(this.pickerPos.x))
+		if (!this.pickerPos.x)
 			this.autoSet(hsb);		
 
 		this.RedInput.value = rgb[0];
@@ -151,6 +146,8 @@ var MooRainbow = new Class({
 		this.currentColor = rgb;
 
 		this.chooseColor.setStyle('background-color', rgb.rgbToHex());
+		
+		this.fireEvent('onChange', [this.sets, this]);
 	},
 	
 	parseColors: function(x, y, z) {
@@ -169,21 +166,20 @@ var MooRainbow = new Class({
 		var lim, curH, curW, inputs;
 		curH = this.snippet('curSize', 'int').h;
 		curW = this.snippet('curSize', 'int').w;
-		inputs = $A(this.arrRGB).concat(this.arrHSB, this.hexInput);
+		inputs = this.arrRGB.concat(this.arrHSB, this.hexInput);
 
 		document.addEvent('click', function() { 
 			if(this.visible) this.hide(this.layout); 
 		}.bind(this));
 
 		inputs.each(function(el) {
-			el.addEvent('keydown', this.eventKeydown.bindWithEvent(this, el));
-			el.addEvent('keyup', this.eventKeyup.bindWithEvent(this, el));
+			el.addEvent('keydown', this.eventKeydown.bind(this, el));
+			el.addEvent('keyup', this.eventKeyup.bind(this, el));
 		}, this);
 		[this.element, this.layout].each(function(el) {
 			el.addEvents({
-				'click': function(e) { new Event(e).stop(); },
+				'click': function(e) { e.stop(); },
 				'keyup': function(e) {
-					e = new Event(e);
 					if(e.key == 'esc' && this.visible) this.hide(this.layout);
 				}.bind(this)
 			}, this);
@@ -195,24 +191,22 @@ var MooRainbow = new Class({
 		};
 
 		this.layout.drag = new Drag(this.layout.cursor, {
-			limit: lim,
-			onBeforeStart: this.overlayDrag.bind(this),
 			onStart: this.overlayDrag.bind(this),
 			onDrag: this.overlayDrag.bind(this),
 			snap: 0
 		});	
 		
 		this.layout.overlay2.addEvent('mousedown', function(e){
-			e = new Event(e);
 			this.layout.cursor.setStyles({
 				'top': e.page.y - this.layout.overlay.getTop() - curH,
 				'left': e.page.x - this.layout.overlay.getLeft() - curW
 			});
+                        this.overlayDrag.call(this);
 			this.layout.drag.start(e);
 		}.bind(this));
 		
 		this.okButton.addEvent('click', function() {
-			if (this.currentColor == this.options.startColor) {
+			if(this.currentColor == this.options.startColor) {
 				this.hide();
 				this.fireEvent('onComplete', [this.sets, this]);
 			}
@@ -222,11 +216,6 @@ var MooRainbow = new Class({
 				this.hide();
 				this.fireEvent('onComplete', [this.sets, this]);
 			}
-		}.bind(this));
-		
-		this.transp.addEvent('click', function () {
-			this.hide();
-			this.fireEvent('onComplete', ['transparent', this]);
 		}.bind(this));
 	},
 	
@@ -247,18 +236,16 @@ var MooRainbow = new Class({
 		this.layout.sliderDrag = new Drag(this.layout.arrows, {
 			limit: {y: lim},
 			modifiers: {x: false},
-			onBeforeStart: this.sliderDrag.bind(this),
 			onStart: this.sliderDrag.bind(this),
 			onDrag: this.sliderDrag.bind(this),
 			snap: 0
 		});	
 	
 		this.layout.slider.addEvent('mousedown', function(e){
-			e = new Event(e);
-
 			this.layout.arrows.setStyle(
 				'top', e.page.y - this.layout.slider.getTop() + this.snippet('slider') - arwH
 			);
+                        this.sliderDrag.call(this);
 			this.layout.sliderDrag.start(e);
 		}.bind(this));
 	},
@@ -281,40 +268,49 @@ var MooRainbow = new Class({
 	},
 	
 	wheelEvents: function() {
-		var arrColors = $A(this.arrRGB).extend(this.arrHSB);
+		var arrColors = this.arrRGB.copy().extend(this.arrHSB);
 
 		arrColors.each(function(el) {
 			el.addEvents({
-				'mousewheel': this.eventKeys.bindWithEvent(this, el),
-				'keydown': this.eventKeys.bindWithEvent(this, el)
+				'mousewheel': function(e) {
+					this.eventKeys(e, el);
+				}.bind(this),
+				'keydown': function(e) {
+					this.eventKeys(e, el);
+				}.bind(this),
+
 			});
 		}, this);
 		
 		[this.layout.arrows, this.layout.slider].each(function(el) {
 			el.addEvents({
-				'mousewheel': this.eventKeys.bindWithEvent(this, [this.arrHSB[0], 'slider']),
-				'keydown': this.eventKeys.bindWithEvent(this, [this.arrHSB[0], 'slider'])
+				'mousewheel': function(e) {
+					this.eventKeys(e, this.arrHSB[0], 'slider');
+				}.bind(this),
+				'keydown': function(e) {
+					this.eventKeys(e, this.arrHSB[0], 'slider');
+				}.bind(this)
 			});
 		}, this);
 	},
 	
 	eventKeys: function(e, el, id) {
-		var wheel, type;
+		var wheel, type;		
 		id = (!id) ? el.id : this.arrHSB[0];
 
 		if (e.type == 'keydown') {
 			if (e.key == 'up') wheel = 1;
 			else if (e.key == 'down') wheel = -1;
 			else return;
-		} else if (e.type == Element.Events.mousewheel.base) wheel = (e.wheel > 0) ? 1 : -1;
-		
-		if (this.arrRGB.contains(el)) type = 'rgb';
-		else if (this.arrHSB.contains(el)) type = 'hsb';
+		} else if (e.type == Element.Events.mousewheel.type) wheel = (e.wheel > 0) ? 1 : -1;
+
+		if (this.arrRGB.test(el)) type = 'rgb';
+		else if (this.arrHSB.test(el)) type = 'hsb';
 		else type = 'hsb';
 
 		if (type == 'rgb') {
 			var rgb = this.sets.rgb, hsb = this.sets.hsb, prefix = this.options.prefix, pass;
-			var value = (el.value.toInt() || 0) + wheel;
+			var value = el.value.toInt() + wheel;
 			value = (value > 255) ? 255 : (value < 0) ? 0 : value;
 
 			switch(el.className) {
@@ -327,25 +323,24 @@ var MooRainbow = new Class({
 			this.fireEvent('onChange', [this.sets, this]);
 		} else {
 			var rgb = this.sets.rgb, hsb = this.sets.hsb, prefix = this.options.prefix, pass;
-			var value = (el.value.toInt() || 0) + wheel;
+			var value = el.value.toInt() + wheel;
 
 			if (el.className.test(/(HueInput)/)) value = (value > 359) ? 0 : (value < 0) ? 0 : value;
 			else value = (value > 100) ? 100 : (value < 0) ? 0 : value;
-			
+
 			switch(el.className) {
 				case prefix + 'HueInput': pass = [value, hsb[1], hsb[2]]; break;
 				case prefix + 'SatuInput': pass = [hsb[0], value, hsb[2]]; break;
 				case prefix + 'BrighInput':	pass = [hsb[0], hsb[1], value]; break;
 				default : pass = hsb;
 			}
-			
 			this.manualSet(pass, 'hsb');
 			this.fireEvent('onChange', [this.sets, this]);
 		}
 		e.stop();
 	},
 	
-	eventKeydown: function(e, el) {
+	eventKeydown: function(el, e) {
 		var n = e.code, k = e.key;
 
 		if 	((!el.className.test(/hexInput/) && !(n >= 48 && n <= 57)) &&
@@ -353,15 +348,15 @@ var MooRainbow = new Class({
 		e.stop();
 	},
 	
-	eventKeyup: function(e, el) {
+	eventKeyup: function(el, e) {
 		var n = e.code, k = e.key, pass, prefix, chr = el.value.charAt(0);
 
-		if (!$chk(el.value)) return;
+		if (!(el.value || el.value === 0)) return;
 		if (el.className.test(/hexInput/)) {
 			if (chr != "#" && el.value.length != 6) return;
 			if (chr == '#' && el.value.length != 7) return;
 		} else {
-			if (!(n >= 48 && n <= 57) && (!['backspace', 'tab', 'delete', 'left', 'right'].contains(k)) && el.value.length > 3) return;
+			if (!(n >= 48 && n <= 57) && (!['backspace', 'tab', 'delete', 'left', 'right'].test(k)) && el.value.length > 3) return;
 		}
 		
 		prefix = this.options.prefix;
@@ -393,7 +388,7 @@ var MooRainbow = new Class({
 			pass = el.value.hexToRgb(true);
 			if (isNaN(pass[0])||isNaN(pass[1])||isNaN(pass[2])) return;
 
-			if ($chk(pass)) {
+			if (pass || pass === 0) {
 				this.manualSet(pass);
 				this.fireEvent('onChange', [this.sets, this]);
 			}
@@ -409,8 +404,6 @@ var MooRainbow = new Class({
 			'styles': {'display': 'block', 'position': 'absolute'},
 			'id': id
 		}).inject(document.body);
-		
-		Rainbows.push(this);
 
 		var box = new Element('div', {
 			'styles':  {'position': 'relative'},
@@ -465,7 +458,7 @@ var MooRainbow = new Class({
 			'src': this.options.imgPath + 'moor_slider.png',
 			'class': prefix + 'slider'
 		}).inject(box);
-		this.layout.slider = document.getElement('#' + idPrefix + 'slider');
+		this.layout.slider = Slick.find(document, '#' + idPrefix + 'slider');
 		sl.width = sl.getStyle('width').toInt();
 		sl.height = sl.getStyle('height').toInt();
 
@@ -504,7 +497,7 @@ var MooRainbow = new Class({
 		var inputBR = inputHU.clone().inject(BR).addClass(prefix + 'BrighInput');
 		inputHU.inject(HU).addClass(prefix + 'HueInput');
 		SA.appendText(' %'); BR.appendText(' %');
-		new Element('span', {'styles': {'position': 'absolute'}, 'class': prefix + 'ballino'}).set('html', " &deg;").injectAfter(HU);
+		(new Element('span', {'styles': {'position': 'absolute'}, 'class': prefix + 'ballino'}).set('html', " &deg;").inject(HU, 'after'));
 
 		var hex = new Element('label').inject(box).setStyle('position', 'absolute').addClass(prefix + 'hexLabel').appendText('#hex: ').adopt(new Element('input').addClass(prefix + 'hexInput'));
 		
@@ -515,29 +508,28 @@ var MooRainbow = new Class({
 			'class': prefix + 'okButton'
 		}).inject(box);
 		
-		var transp = new Element('a', {'style': {'position': 'absolute'}, 'href': '#', 'class': prefix + 'transp'}).inject(box);
-		
 		this.rePosition();
 
 		var overlays = $$('#' + idPrefix + 'overlay');
 		this.layout.overlay = overlays[0];
 		this.layout.overlay2 = overlays[1];
-		this.layout.cursor = document.getElement('#' + idPrefix + 'cursor');
-		this.layout.arrows = document.getElement('#' + idPrefix + 'arrows');
-		this.chooseColor = document.getElement('#' + idPrefix + 'chooseColor');
-		this.layout.backup = document.getElement('#' + idPrefix + 'currentColor');
-		this.RedInput = document.getElement('#' + idPrefix + 'rInput');
-		this.GreenInput = document.getElement('#' + idPrefix + 'gInput');
-		this.BlueInput = document.getElement('#' + idPrefix + 'bInput');
-		this.HueInput = document.getElement('#' + idPrefix + 'HueInput');
-		this.SatuInput = document.getElement('#' + idPrefix + 'SatuInput');
-		this.BrighInput = document.getElement('#' + idPrefix + 'BrighInput');
-		this.hexInput = document.getElement('#' + idPrefix + 'hexInput');
+		this.layout.cursor = Slick.find(document, '#' + idPrefix + 'cursor');
+		this.layout.arrows = Slick.find(document, '#' + idPrefix + 'arrows');
+		this.chooseColor = Slick.find(document, '#' + idPrefix + 'chooseColor');
+		this.layout.backup = Slick.find(document, '#' + idPrefix + 'currentColor');
+		this.RedInput = Slick.find(document, '#' + idPrefix + 'rInput');
+		this.GreenInput = Slick.find(document, '#' + idPrefix + 'gInput');
+		this.BlueInput = Slick.find(document, '#' + idPrefix + 'bInput');
+		this.HueInput = Slick.find(document, '#' + idPrefix + 'HueInput');
+		this.SatuInput = Slick.find(document, '#' + idPrefix + 'SatuInput');
+		this.BrighInput = Slick.find(document, '#' + idPrefix + 'BrighInput');
+		this.hexInput = Slick.find(document, '#' + idPrefix + 'hexInput');
 
 		this.arrRGB = [this.RedInput, this.GreenInput, this.BlueInput];
 		this.arrHSB = [this.HueInput, this.SatuInput, this.BrighInput];
-		this.okButton = document.getElement('#' + idPrefix + 'okButton');
-		this.transp = box.getElement('.' + prefix + 'transp');
+		this.okButton = Slick.find(document, '#' + idPrefix + 'okButton');
+		
+		this.layout.cursor.setStyle('background-image', 'url(' + this.options.imgPath + 'moor_cursor.gif)');
 		
 		if (!window.khtml) this.hide();
 	},

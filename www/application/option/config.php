@@ -55,7 +55,8 @@ $css = array(
 			);
 
 $js  = array(
-				"mootools1.2.js" 			=> "global",
+				"mootools-core-1.4.js" 		=> "global",
+				"mootools-more-1.4.js" 		=> "global",
 				"other.js"					=> "global",
 				"popup.js"					=> "global",
 				"home.js" 					=> "app",
