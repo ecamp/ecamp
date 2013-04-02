@@ -1420,8 +1420,8 @@ var DI_TABLE = new Class({
 	setup_function_entry: function( entry, e )
 	{
 		//e = entry.retrieve( 'e' );
-		
-		e.del.addEvent( 'click', this.save_remove_entry.bind(this, entry, e) );
+	
+		e.del.addEvent( 'click', this.save_remove_entry.bind(this, [entry, e]) );
 		e.edit.addEvent( 'click', this.start_edit_entry.bind(this, e) );
 	},
 	
@@ -1475,7 +1475,7 @@ var DI_TABLE = new Class({
 	},
 	
 	save_remove_entry: function( entry, e )
-	{
+	{		
 		url = this.options.args.set( 'todo', 'del' ).set( 'id', e.id );
 		url = this.options.save_url + url.toQueryString();
 		
