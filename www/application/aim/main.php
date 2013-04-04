@@ -19,7 +19,41 @@
  */
 
 	$_page->html->set('main_macro', $GLOBALS[tpl_dir].'/application/aim/border.tpl/border');
-		
+	
+	/* alle Events des Camps laden */
+	$campevents = array();
+	mysql_query("SET SESSION group_concat_max_len = 512");
+	$query =   	"SELECT
+								  i.id AS instance,
+								  e.id,
+								  e.name,
+								  CONCAT(v.day_nr,'.',v.event_nr) AS nr,
+								  i.starttime AS start,
+								  i.starttime + i.length AS end,
+								  s.start + d.day_offset AS day,
+								  c.short_name
+								FROM
+								  event e,
+								  event_instance i,
+								  v_event_nr v,
+								  day d,
+								  subcamp s,
+								  category c
+								WHERE 
+								    e.camp_id=$_camp->id
+								AND i.event_id = e.id
+								AND v.event_instance_id = i.id
+								AND i.day_id = d.id
+								AND d.subcamp_id = s.id
+								AND e.category_id = c.id
+								ORDER BY v.day_nr, v.event_nr";
+	
+	$result = mysql_query($query);
+	while( $this_event = @mysql_fetch_assoc($result) )
+	{
+		$campevents[$this_event['instance']] = $this_event;
+	}
+	
 	// Leitziele laden
 	$query = "SELECT * FROM course_aim WHERE IsNull(pid) AND camp_id = $_camp->id";
 	$result1 = mysql_query( $query );
@@ -35,27 +69,20 @@
 		while( $this_aim2 = mysql_fetch_assoc($result2) )
 		{
 			// Programmblöcke laden
-			$query = "SELECT CONCAT('(',v.day_nr,'.' ,v.event_nr,') ') AS nr, 
-							e.name as name,
-							e.id AS id,
-							i.starttime AS start,
-							i.starttime + i.length AS end,
-							s.start + d.day_offset AS day,
-							c.short_name as short_name
-						FROM event_aim a, event e, event_instance i, v_event_nr v, day d, subcamp s, category c
-						WHERE   a.aim_id=".$this_aim2[id]." AND a.event_id=e.id
+			$query = "SELECT i.id
+						FROM event_aim a, event e, event_instance i
+						WHERE   a.aim_id=".$this_aim2[id]." 
+							AND a.event_id=e.id
 							AND e.id = i.event_id
-							AND v.event_instance_id = i.id
-							AND i.day_id = d.id
-							AND d.subcamp_id = s.id
-							AND e.category_id = c.id
-						ORDER BY v.day_nr, v.event_nr";
+						ORDER BY i.day_id, i.starttime";
 							
 		    $result3 = mysql_query( $query );
 			
 			$event = array();
-			while( $this_event = mysql_fetch_assoc($result3) )
+			while( $this_event_instance = mysql_fetch_assoc($result3) )
 			{
+				$this_event = $campevents[$this_event_instance["id"]];
+				
 			    $start = new c_time();
 				$start->setValue($this_event[start]);
 				
