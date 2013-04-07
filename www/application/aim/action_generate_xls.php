@@ -33,7 +33,7 @@
 				event e, 
 				event_instance i, 
 				category c,
-				v_event_nr v, 
+				(".getQueryEventNr($_camp->id).") v, 
 				day d, 
 				subcamp s 
 			WHERE   

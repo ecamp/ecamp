@@ -49,6 +49,7 @@
   # Libraries einbinden
   include($lib_dir . "/mysql.php"); 			// erstellt die MySQL-Verbindung
   include($lib_dir . "/validation.php");		// Funktionen zum Überprüfen von User-Eingaben
+  include($lib_dir . "/sqlqueries.php");		// gepeicherte SQL-Queries
   //	include($lib_dir . "/template.php");			// Funktionen zum Laden von templates
   include($lib_dir . "/functions/error.php");	// Error-Handling
   include($lib_dir . "/functions/date.php");
