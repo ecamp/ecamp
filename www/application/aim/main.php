@@ -35,7 +35,7 @@
 								FROM
 								  event e,
 								  event_instance i,
-								  v_event_nr v,
+								  (".getQueryEventNr($_camp->id).") v,
 								  day d,
 								  subcamp s,
 								  category c
