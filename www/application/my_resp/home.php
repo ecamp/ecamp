@@ -89,12 +89,12 @@
     				category.short_name,
     				category.color,
     				(day.day_offset + subcamp.start) as date,
-    				v_event_nr.day_nr as day_offset,
-    				v_event_nr.event_nr,
+    				v.day_nr as day_offset,
+    				v.event_nr,
 					category.form_type,
 					event_instance.starttime
     			FROM
-    				v_event_nr,
+    				(".getQueryEventNr($_camp->id).") v,
     				event,
     				event_responsible,
     				category,
@@ -102,7 +102,7 @@
     				day,
     				subcamp
     			WHERE
-    				v_event_nr.event_instance_id = event_instance.id AND
+    				v.event_instance_id = event_instance.id AND
     				event_responsible.user_id = " . $_user->id . " AND
     				event.camp_id = " . $_camp->id . " AND
     				event_responsible.event_id = event.id AND

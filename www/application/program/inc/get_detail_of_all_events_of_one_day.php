@@ -43,37 +43,14 @@
 							category.short_name,
 							category.form_type,
 							category.id as cat_id,
-							((
-								SELECT 
-									count(*) 
-								FROM 
-									event_instance as subevent_instance,
-									event as subevent, 
-									category as subcat
-								WHERE 
-									(
-										subevent_instance.starttime < event_instance.starttime OR
-										(
-											subevent_instance.starttime = event_instance.starttime AND
-											(
-												subevent_instance.length < event_instance.length OR
-												(
-													subevent_instance.length = event_instance.length AND
-													subevent_instance.id > event_instance.id
-												)
-											)
-										)
-									) AND 
-									subevent_instance.event_id = subevent.id AND
-									subevent_instance.day_id = event_instance.day_id AND
-									subevent.category_id=subcat.id AND
-									subcat.form_type > 0
-							) + 1) as eventnr
-						FROM 
+							v.event_nr as eventnr
+						FROM 	
 							event,
 							event_instance,
-							category 
+							category,
+							(".getQueryEventNr($_camp->id).") v	
 						WHERE 
+							v.event_instance_id = event_instance.id AND
 							event.category_id = category.id AND
 							event_instance.day_id = $this_day_id AND
 							event_instance.event_id = event.id
