@@ -152,23 +152,27 @@
 			while( $mat_event = mysql_fetch_assoc( $result ) ){	$this->mat_event[ $mat_event[ 'id' ] ] = new print_data_mat_event( $mat_event, $this );	}
 			
 			$query = "
-						SELECT job_day.day_id,  job.id as job_id, job.job_name, job_day_user.id as user_id
-						FROM subcamp, job, day,
+				SELECT 
+					day.id as day_id,  
+					job.id as job_id, 
+					job.job_name, 
+					user_camp.user_id
+				FROM 
+					
+					(
+						(
 							(
-								SELECT day.id as day_id, job.id as job_id, job.camp_id as camp_id
-								FROM day, job
-							) as job_day
-						LEFT JOIN
-							(
-								Select job_day.job_id, job_day.day_id, user.*
-								FROM job_day, user_camp, user
-								WHERE job_day.user_camp_id = user_camp.id AND user_camp.user_id = user.id
-							) as job_day_user
-						ON 
-							job_day.job_id = job_day_user.job_id AND job_day.day_id = job_day_user.day_id
-						WHERE 
-							job_day.job_id = job.id AND job_day.day_id = day.id AND day.subcamp_id = subcamp.id AND 
-							job.camp_id = subcamp.camp_id AND subcamp.camp_id = " . $this->camp_id;
+								subcamp JOIN job ON job.camp_id = subcamp.camp_id
+							) 
+							JOIN day ON day.subcamp_id = subcamp.id
+						)
+						LEFT JOIN job_day ON job.id = job_day.job_id  AND day.id = job_day.day_id
+					)
+					LEFT JOIN user_camp ON user_camp.id=job_day.user_camp_id
+					
+				WHERE
+					subcamp.camp_id = " . $this->camp_id;
+					
 			$result = mysql_query( $query );
 			while( $job_day = mysql_fetch_assoc( $result ) ){	$this->day[ $job_day[ 'day_id' ] ]->add_job( $job_day );	}
 		}
