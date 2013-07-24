@@ -143,7 +143,7 @@
 			
 			
 			$date = new c_date();
-			$date->SetDay2000( $event_instance->day->subcamp->start + $event_instance->day->day_nr - 1 );
+			$date->SetDay2000( $event_instance->day->date );
 
             $timestart = new c_time();
 			$timestart->SetValue( $event_instance->starttime );
