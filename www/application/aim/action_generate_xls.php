@@ -63,10 +63,10 @@
   $workbook->setVersion(8); 
 	
 	// sending HTTP headers
-	$workbook->send('Blockübersicht.xls');
+	$workbook->send('Blockuebersicht.xls');
 	
 	// Creating a worksheet
-	$worksheet =& $workbook->addWorksheet(utf8_decode("Blockübersicht"));
+	$worksheet =& $workbook->addWorksheet(utf8_decode("Blockuebersicht"));
   $worksheet->setInputEncoding ("UTF-8");
 	
   $format_content = & $workbook->addFormat(array( "Size" => 8,
