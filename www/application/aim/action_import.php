@@ -24,7 +24,7 @@
 	
 	
 	
-	if( ($type>=1) && ($type<=4) )
+	if( ($type>=1) && ($type<=5) )
 	{
 		$sql = implode("",file("./template/application/aim/sql/course_aim_".$type.".sql"));
 		
