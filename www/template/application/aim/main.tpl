@@ -45,6 +45,7 @@
                         <option value="2">Basiskurs Pfadistufe</option>
                         <option value="3">Aufbaukurs Wolfsstufe</option>
                         <option value="4">Aufbaukurs Pfadistufe</option>
+                        <option value="5">Panoramakurs</option>
                     </select>
                     <input type="submit" value="Jetzt importieren" />
                     <input type="hidden" name="app" value="aim" />
