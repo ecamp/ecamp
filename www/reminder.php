@@ -39,7 +39,7 @@
 		$html->set( 'MSG', mysql_escape_string( $_REQUEST[ 'msg' ] ) );
 	}
 	
-	$html->set( 'captcha' ,recaptcha_get_html( $GLOBALS[captcha_pub] ) );
+	$html->set( 'captcha' ,recaptcha_get_html( $GLOBALS[captcha_pub],null,true ) );
 
 
 	echo $html->execute();
