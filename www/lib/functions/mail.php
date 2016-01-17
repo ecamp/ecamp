@@ -19,6 +19,7 @@
  */
 
 
+require_once $GLOBALS[pear_dir]."Mail.php";
 
 function ecamp_send_mail($to, $subject, $body){
 	$from = 'eCamp <ecamp@pfadiluzern.ch>';
