@@ -48,9 +48,11 @@
 	$feedback = preg_replace("/\\\\r/","",$feedback);
 
 	if( $type == "feedback" )
-		mail($mailto, "Feedback von: " . $name, $feedback, $headers);
+		ecamp_send_mail($mailto, "Feedback von: " . $name, $feedback);
+		// mail($mailto, "Feedback von: " . $name, $feedback, $headers);
 	else if( $type == "help" )
-		mail($mailto, "Supportanfrage von: " . $name, $feedback, $headers);
+		ecamp_send_mail($mailto, "Supportanfrage von: " . $name, $feedback);
+		// mail($mailto, "Supportanfrage von: " . $name, $feedback, $headers);
 	
 	
 	

@@ -54,6 +54,8 @@
   include($lib_dir . "/functions/error.php");	// Error-Handling
   include($lib_dir . "/functions/date.php");
   include($lib_dir . "/functions/other.php");
+
+  include($lib_dir . "/functions/mail.php");
   
   // Datenbank verbinden
   db_connect();
