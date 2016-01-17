@@ -75,7 +75,8 @@ Zu diesem Zweck musst du nachfolgendem Link folgen:
 \n\n
  ";
  	
- 	mail( $login, "eCamp - Willkommen", $text, "From: eCamp Pfadi Luzern <ecamp@pfadiluzern.ch>" ); 
+ 	ecamp_send_mail($login, "eCamp - Willkommen", $text);
+	//mail( $login, "eCamp - Willkommen", $text, "From: eCamp Pfadi Luzern <ecamp@pfadiluzern.ch>" );
 	
 	/*
 	$text = urlencode( $text );

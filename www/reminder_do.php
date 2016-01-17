@@ -83,8 +83,9 @@ Um das Passwort zu ändern, musst du dem nachfolgendem Link folgen:
 \n\n
 " . $GLOBALS[base_uri] . "pwreset.php?user_id=$user_id&login=$login&acode=$acode
 \n\n";
- 	
- 	mail( $login, "eCamp - Passwort ändern", $text, "From: eCamp Pfadi Luzern <ecamp@pfadiluzern.ch>" ); 
+
+	ecamp_send_mail($login, "eCamp - Passwort ändern", $text);
+	//mail( $login, "eCamp - Passwort ändern", $text, "From: eCamp Pfadi Luzern <ecamp@pfadiluzern.ch>" );
 	
 	/*
 	$text = urlencode( $text );
