@@ -20,6 +20,7 @@
 
 	include("./config.php");
 	include($lib_dir . "/mysql.php");
+	include($lib_dir . "/functions/mail.php");
 	db_connect();
 	
 	require_once( "./lib/recaptchalib.php" );
