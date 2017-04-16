@@ -1,5 +1,5 @@
 --
--- Daten für Tabelle `course_aim` (Basiskurs 2. Stufe)
+-- Daten für Tabelle `course_aim` (Basiskurs Pfadistufe)
 --
 
 INSERT INTO `course_aim` VALUES
@@ -18,7 +18,7 @@ INSERT INTO `course_aim` VALUES
 INSERT INTO `course_aim` VALUES
 (NULL, LAST_INSERT_ID(), $camp_id, 'Die TN kennen Methoden zur Planung, Durchführung und Auswertung von Programmen und wissen, was sie bei den einzelnen Schritten besonders beachten müssen.', NULL),
 (NULL, LAST_INSERT_ID(), $camp_id, 'Die TN können Aktivitäten und Quartalsprogramme der Pfadistufe stufengerecht einkleiden.', NULL),
-(NULL, LAST_INSERT_ID(), $camp_id, 'Die TN können ein Quartalsprogramm für die Pfadistufe planen.', NULL),
+(NULL, LAST_INSERT_ID(), $camp_id, 'Die TN können ein Quartalsprogramm für die Pfadistufe planen, welches eine Fähnliaktivität in geeigneter Weise enthält.', NULL),
 (NULL, LAST_INSERT_ID(), $camp_id, 'Die TN wissen, worauf sie bei der Planung eines Weekends für die Pfadistufe achten müssen.', NULL),
 (NULL, LAST_INSERT_ID(), $camp_id, 'Die TN kennen das Projekt als Form der Mitbestimmung auf der Pfadistufe sowie Möglichkeiten, dieses ins Programm zu integrieren.', NULL),
 (NULL, LAST_INSERT_ID(), $camp_id, 'Die TN können sportliche Aktivitäten für die Pfadistufe planen, durchführen und auswerten.', NULL),
@@ -26,15 +26,15 @@ INSERT INTO `course_aim` VALUES
 (NULL, LAST_INSERT_ID(), $camp_id, 'Die TN können zu einem Programmteil für die Pfadistufe eine relevante und konstruktive Rückmeldung geben.', NULL);
 
 INSERT INTO `course_aim` VALUES
-(NULL, NULL, $camp_id, 'Der Kurs bildet die TN zu verantwortungsbewussten Mitgliedern eines Leitungsteams aus.', NULL);
+(NULL, NULL, $camp_id, 'Der Kurs bildet die TN zu verantwortungsbewussten Mitgliedern eines Leitungsteams und zur Betreuenden von Leitpfadis aus', NULL);
 
 INSERT INTO `course_aim` VALUES
 (NULL, LAST_INSERT_ID(), $camp_id, 'Die TN kennen ihre Funktion sowie ihre Rechte und Pflichten als Mitglieder eines Leitungsteams der Pfadistufe.', NULL),
-(NULL, LAST_INSERT_ID(), $camp_id, 'Die TN kennen die Rolle der Leitpfadis und wissen, wie sie diese betreuen müssen.', NULL),
+(NULL, LAST_INSERT_ID(), $camp_id, 'Die TN kennen die Rolle der Leitpfadis und wissen, wie sie diese betreuen müssen, insbesondere bei Fähnliaktivitäten.', NULL),
 (NULL, LAST_INSERT_ID(), $camp_id, 'Die TN kennen Strategien zum Umgang mit Pfadis mit herausforderndem Verhalten.', NULL),
 (NULL, LAST_INSERT_ID(), $camp_id, 'Die TN kennen den Begriff der sexuellen Ausbeutung und wissen, wo in ihrer Pfadiarbeit heikle Situationen entstehen können.', NULL),
 (NULL, LAST_INSERT_ID(), $camp_id, 'Die TN kennen die Grundgedanken der Gesundheitsförderung und wissen, wie sie das psychische, physische und soziale Wohlbefinden ihrer Pfadis positiv beeinflussen können.', NULL),
-(NULL, LAST_INSERT_ID(), $camp_id, 'Die TN können für sicherheitsrelevante Aktivitäten auf der Pfadistufe ein Sicherheitskonzept erstellen und wissen, wie sie sich bei Notfällen verhalten müssen.', NULL),
+(NULL, LAST_INSERT_ID(), $camp_id, 'Die TN können für sicherheitsrelevante Aktivitäten auf der Pfadistufe (inklusive herausfordernden Fähnliaktivitäten) ein Sicherheitskonzept erstellen und wissen, wie sie dieses während der Aktivitäten umsetzen und situativ anpassen müssen.', NULL),
 (NULL, LAST_INSERT_ID(), $camp_id, 'Die TN kennen Anlaufstellen und Angebote ihres Kantonalverbandes / ihrer Region, sowie das kantonale Krisenkonzept.', NULL),
 (NULL, LAST_INSERT_ID(), $camp_id, 'Die TN setzen sich mit ihrer Leitungspersönlichkeit und ihrer Rolle im Team auseinander.', NULL),
 (NULL, LAST_INSERT_ID(), $camp_id, 'Die TN kennen Regeln für ein konstruktives Gespräch und können diese anwenden.', NULL),

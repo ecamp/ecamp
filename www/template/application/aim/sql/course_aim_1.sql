@@ -1,5 +1,5 @@
 --
--- Daten für Tabelle `course_aim` (Vorlage Basiskurs 1. Stufe)
+-- Daten für Tabelle `course_aim` (Vorlage Basiskurs Wolfsstufe)
 --
 
 INSERT INTO course_aim VALUES 
@@ -35,7 +35,7 @@ INSERT INTO course_aim VALUES
 (NULL, LAST_INSERT_ID(), $camp_id, 'Die TN kennen Strategien zum Umgang mit Wölfen mit herausforderndem Verhalten.', NULL),
 (NULL, LAST_INSERT_ID(), $camp_id, 'Die TN kennen den Begriff der sexuellen Ausbeutung und wissen, wo in ihrer Pfadiarbeit heikle Situationen entstehen können.', NULL),
 (NULL, LAST_INSERT_ID(), $camp_id, 'Die TN kennen die Grundgedanken der Gesundheitsförderung und wissen, wie sie das psychische, physische und soziale Wohlbefinden ihrer Wölfe positiv beeinflussen können.', NULL),
-(NULL, LAST_INSERT_ID(), $camp_id, 'Die TN können für sicherheitsrelevante Aktivitäten auf der Wolfsstufe ein Sicherheitskonzept erstellen und wissen, wie sie sich bei Notfällen verhalten müssen.', NULL),
+(NULL, LAST_INSERT_ID(), $camp_id, 'Die TN können für sicherheitsrelevante Aktivitäten auf der Wolfsstufe ein Sicherheitskonzept erstellen und wissen, wie sie dieses während der Aktivitäten umsetzen und situativ anpassen müssen.', NULL),
 (NULL, LAST_INSERT_ID(), $camp_id, 'Die TN kennen Anlaufstellen und Angebote ihres Kantonalverbands / ihrer Region sowie das kantonale Krisenkonzept.', NULL),
 (NULL, LAST_INSERT_ID(), $camp_id, 'Die TN setzen sich mit ihrer Leitungspersönlichkeit und ihrer Rolle im Team auseinander.', NULL),
 (NULL, LAST_INSERT_ID(), $camp_id, 'Die TN kennen Regeln für ein konstruktives Gespräch und können diese anwenden.', NULL),
@@ -46,6 +46,6 @@ INSERT INTO course_aim VALUES
 
 INSERT INTO course_aim VALUES 
 (NULL, LAST_INSERT_ID(), $camp_id, 'Die TN kennen die Pfadimethode „Persönlichen Fortschritt fördern“ sowie Möglichkeiten, diese in ihren Aktivitäten umzusetzen.', NULL),
-(NULL, LAST_INSERT_ID(), $camp_id, 'kennen das Wolfsgesetz sowie Möglichkeiten zur Arbeit mit Gesetz und Versprechen auf der Wolfsstufe.', NULL),
-(NULL, LAST_INSERT_ID(), $camp_id, 'kennen verschiedene Formen von Lagerfeuern auf der Wolfsstufe und wissen, worauf sie bei deren Gestaltung achten müssen.', NULL),
-(NULL, LAST_INSERT_ID(), $camp_id, 'verfügen über vertiefte Kenntnisse der Wolfsstufentechnik und können diese stufengerecht vermitteln.', NULL);
+(NULL, LAST_INSERT_ID(), $camp_id, 'Die TN kennen das Wolfsgesetz sowie Möglichkeiten zur Arbeit mit Gesetz und Versprechen auf der Wolfsstufe.', NULL),
+(NULL, LAST_INSERT_ID(), $camp_id, 'Die TN kennen verschiedene Formen von Lagerfeuern auf der Wolfsstufe und wissen, worauf sie bei deren Gestaltung achten müssen.', NULL),
+(NULL, LAST_INSERT_ID(), $camp_id, 'Die TN verfügen über vertiefte Kenntnisse der Wolfsstufentechnik und können diese stufengerecht vermitteln.', NULL);

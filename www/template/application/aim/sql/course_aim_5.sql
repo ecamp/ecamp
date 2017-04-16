@@ -6,10 +6,10 @@ INSERT INTO course_aim VALUES
 (NULL, NULL, $camp_id, 'Der Kurs gibt den TN die Möglichkeit, sich mit der Pfadibewegung und ihren Grundlagen auseinanderzusetzen.', NULL);
 
 INSERT INTO course_aim VALUES 
-(NULL, LAST_INSERT_ID(), $camp_id, 'Die TN wissenkennen das Pfadiprofil und setzen sich vertieft mit der ganzheitlichen Entwicklung von Kindern und Jugendlichen in der Pfadi auseinander.', NULL),
+(NULL, LAST_INSERT_ID(), $camp_id, 'Die TN kennen das Pfadiprofil und setzen sich vertieft mit der ganzheitlichen Entwicklung von Kindern und Jugendlichen in der Pfadi auseinander.', NULL),
 (NULL, LAST_INSERT_ID(), $camp_id, 'Die TN kennen die Bedürfnisse der Kinder und Jugendlichen der verschiedenen Stufen.', NULL),
-(NULL, LAST_INSERT_ID(), $camp_id, 'verstehen die im Pfadiprofil festgelegten Ziele der Stufen zu den fünf Pfadibeziehungen, und wissen, wie die sieben Pfadimethoden auf den verschiedenen Stufen umgesetzt werden.', NULL),
-(NULL, LAST_INSERT_ID(), $camp_id, 'Die TN wissenkennen Symbolik, Methodik und Organisationsformen der verschiedenen Stufen.', NULL),
+(NULL, LAST_INSERT_ID(), $camp_id, 'Die TN verstehen die im Pfadiprofil festgelegten Ziele der Stufen zu den fünf Pfadibeziehungen, und wissen, wie die sieben Pfadimethoden auf den verschiedenen Stufen umgesetzt werden.', NULL),
+(NULL, LAST_INSERT_ID(), $camp_id, 'Die TN kennen Symbolik, Methodik und Organisationsformen der verschiedenen Stufen.', NULL),
 (NULL, LAST_INSERT_ID(), $camp_id, 'Die TN können Aktivitäten auf ihre Stufengerechtigkeit hin beurteilen.', NULL),
 (NULL, LAST_INSERT_ID(), $camp_id, 'Die TN setzen sich mit der Chancengleichheit der Geschlechter und der Integration von Menschen mit Behinderungen bzw. Menschen mit anderem kulturellen oder sozialen Hintergrund auseinander und kennen die darin begründeten unterschiedlichen Anforderungen an das Pfadiprogramm.', NULL),
 (NULL, LAST_INSERT_ID(), $camp_id, 'Die TN können die Ideen und Ziele der Pfadi nach aussen kommunizieren.', NULL),
@@ -38,7 +38,7 @@ INSERT INTO course_aim VALUES
 (NULL, NULL, $camp_id, 'Der Kurs gibt den TN die Möglichkeit, ihre Persönlichkeit weiter zu entwickeln.', NULL);
 
 INSERT INTO course_aim VALUES 
-(NULL, LAST_INSERT_ID(), $camp_id, 'Die TN setzen sich in einer persönlichen Standortbestimmung mit ihren eigenen Fähigkeiten und Grenzen sowie Stärken und Schwächen auseinander', NULL),
+(NULL, LAST_INSERT_ID(), $camp_id, 'Die TN setzen sich in einer persönlichen Standortbestimmung mit ihren eigenen Fähigkeiten und Grenzen sowie Stärken und Schwächen auseinander.', NULL),
 (NULL, LAST_INSERT_ID(), $camp_id, 'Die TN setzen sich mit Neuem auseinander und lassen sich auf fremde Sichtweisen ein.', NULL),
 (NULL, LAST_INSERT_ID(), $camp_id, 'Die TN sind sich ihrer Rollen in Familie, Beruf und Pfadi bewusst.', NULL);
 
