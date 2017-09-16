@@ -24,7 +24,7 @@
 		public $data;
 		public $y;
 		
-		function print_build_event_class( $data )
+		function __construct($data )
 		{
 			$this->data = $data;
 		}

@@ -18,16 +18,12 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	
 	$type = mysql_real_escape_string($_REQUEST[type]);
 	$camp_id = $_camp->id;
-	
-	
-	
+
 	if( ($type>=1) && ($type<=5) )
 	{
 		$sql = implode("",file("./template/application/aim/sql/course_aim_".$type.".sql"));
-		
 
 		eval ("\$sql = \"$sql\";");
 		$queries = explode(";",$sql);
@@ -42,5 +38,4 @@
 
 	header("Location:index.php?app=aim");
 	die();
-
 ?>

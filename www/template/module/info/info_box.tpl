@@ -2,7 +2,7 @@
 	
 	<div class="menu_title">
 		<tal:block content="info_box_title" />
-		<div style="position:absolute; right:4px; top:0px">
+		<div style="position:absolute; right:4px; top:0">
 			<img id="info_box_button_down" src="public/module/img/down.png" />
 			<img id="info_box_button_up" src="public/module/img/up.png" class="hidden" />
 		</div>

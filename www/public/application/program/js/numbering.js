@@ -72,7 +72,7 @@ function dectorom ( int )
 {
   var decinput = int.toString().replace(/^ */,"");
   decinput = decinput.replace(/ *$/,"");
-  decinput = decinput.replace(/^0*/,"")
+  decinput = decinput.replace(/^0*/,"");
 
   for (var i = 0; i < decinput.length; i++) {
     if (decnumerals.indexOf(decinput.charAt(i)) == -1) {

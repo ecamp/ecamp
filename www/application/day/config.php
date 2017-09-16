@@ -18,41 +18,35 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 # Sichheitslevel der einzelnen Aktionen/Dateien
 # --> Kommandos/Files die nicht aufgeührt sind, können nicht aufgerufen werden
 $security_level = array( 
-							'home' => 20,
-							'action_change_story' => 40,
-							'action_change_notes' => 40,
-							'action_delete_event_instance' => 40,
-							'action_change_job_resp' => 40,
-							'save_edit_event' => 40,
-							'save_add_event' => 40
-							
-						);
+	'home' => 20,
+	'action_change_story' => 40,
+	'action_change_notes' => 40,
+	'action_delete_event_instance' => 40,
+	'action_change_job_resp' => 40,
+	'save_edit_event' => 40,
+	'save_add_event' => 40
+);
 
 $css = array(
-				"home.css" => "app"
-			);
+	"home.css" => "app"
+);
 
 
 $js  = array(
-				"mootools-core-1.4.js" 		=> "global",
-				"mootools-more-1.4.js" 		=> "global",
-				"dynamic_input.js"	=> "global",
-				"popup.js"			=> "global",
-				"other.js" 			=> "global",
-				"event.js" 			=> "module",
-				"new_event.js"		=> "app",
-				"edit_event.js"		=> "app",
-				"home.js" 			=> "app"
-			);
-
-
+	"mootools-core-1.4.js" 		=> "global",
+	"mootools-more-1.4.js" 		=> "global",
+	"dynamic_input.js"	=> "global",
+	"popup.js"			=> "global",
+	"other.js" 			=> "global",
+	"event.js" 			=> "module",
+	"new_event.js"		=> "app",
+	"edit_event.js"		=> "app",
+	"home.js" 			=> "app"
+);
 
 # Standardkommando
 if( $_page->cmd == "" ) $_page->cmd = "home";
-
-
 ?>

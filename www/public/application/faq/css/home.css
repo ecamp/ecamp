@@ -9,7 +9,7 @@ h3.question {
 	background: #335588;
 	color: #FFF;
 	
-	margin: 5px 0px 0px 0px;
+	margin: 5px 0 0 0;
 	padding: 3px 5px 1px;
 }
 
@@ -19,7 +19,7 @@ div.answer p, div.answer h4 {
 	
 	border: 2px solid #335588;
 	
-	margin:0px;
+	margin:0;
 	padding:5px;
 }
 

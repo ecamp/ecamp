@@ -25,6 +25,7 @@
   #
   # ToDo:  - 
   #
+
   	include("./config.php");
 	include("lib/mysql.php");
 	include("./class.php");
@@ -51,8 +52,7 @@
 	
 	# zum Login weiterleiten
 	if(isset($_REQUEST[msg]))
-	{	header("Location: login.php?msg=".$_REQUEST[msg]);	}
+	{header("Location: login.php?msg=".$_REQUEST[msg]);}
 	else
-	{	header("Location: login.php");	}
+	{header("Location: login.php");}
 ?>
-

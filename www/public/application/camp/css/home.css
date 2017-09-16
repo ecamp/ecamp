@@ -1,19 +1,16 @@
-input.askedit
-{
+input.askedit {
 	border-style: solid;
 	border-color: #000000;
 	border-width: 1px;
 	background-color: #0066ff;
 }
-input.askeditbutton
-{
+input.askeditbutton {
 	border-style: solid;
 	border-color: #000000;
 	border-width: 1px;
 	background-color: #0066ff;
 }
-input.showtext
-{
+input.showtext {
 	border-style: dotted;
 	border-color: #000000;
 	border-width: 1px;
@@ -22,7 +19,6 @@ input.showtext
 	cursor: pointer;
 }
 
-table.align_left > tr > td
-{
+table.align_left > tr > td {
 	text-align:left;
 }

@@ -1,15 +1,15 @@
 div.day
 {
 	position:absolute;
-	top:0px;
-	bottom:0px;
+	top:0;
+	bottom:0;
 }
 
 div.scroll_div
 {
 	position:absolute;
-	left:0px;
-	top:0px;
+	left:0;
+	top:0;
 	bottom:30px;
 	min-height:450px;
 }

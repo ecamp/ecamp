@@ -112,8 +112,6 @@ function new_aim1_save( $data )
 	select_aim1($id);
 }
 
-
-
 function new_aim2()
 {
 	// Popup aufrufen
@@ -235,7 +233,6 @@ function edit_aim2_save( $data )
 	// Wert zurückschreiben
 	$$('#aim2_' + $aim2 + '_value').set('html', $new_value );
 }
-
 
 function delete_aim1($id)
 {

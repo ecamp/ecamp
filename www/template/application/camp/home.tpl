@@ -20,7 +20,7 @@
 											<a href="index.php?app=option" style="font-size:14px;">[Zu den Einstellungen]</a>
 											
 											<br />
-											<div style="position: absolute; right: 5px; top:0px;">
+											<div style="position: absolute; right: 5px; top:0;">
 												<a href="index.php?app=camp" style="color:white">Warnung ausblenden</a>
 											</div>
 										</p>

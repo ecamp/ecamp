@@ -18,48 +18,45 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 # Sichheitslevel der einzelnen Aktionen/Dateien
 # --> Kommandos/Files die nicht aufge�hrt sind, k�nnen nicht aufgerufen werden
 $security_level = array( 
-							'home' => 10,
-							'new_camp' => 10,
-							'new_course' => 10,
-							'action_new_camp' => 10,
-							'action_del_camp' => 10,
-							"action_save_camp" => 10,
-							"action_inventation" => 10,
-							"action_exit_camp" => 10,
-							"load_dropdown" => 10,
-							"load_select" => 10
-						);
+	'home' => 10,
+	'new_camp' => 10,
+	'new_course' => 10,
+	'action_new_camp' => 10,
+	'action_del_camp' => 10,
+	"action_save_camp" => 10,
+	"action_inventation" => 10,
+	"action_exit_camp" => 10,
+	"load_dropdown" => 10,
+	"load_select" => 10
+);
 
 $css = array(
-				"home.css" => "app",
-				"calendar.css" => "module",
-				"content_template_fit.css" => "global",
-				"tips.css" => "global"
-			);
+	"home.css" => "app",
+	"calendar.css" => "module",
+	"content_template_fit.css" => "global",
+	"tips.css" => "global"
+);
 
 $js  = array(
-				"mootools-core-1.4.js" 		=> "global",
-				"mootools-more-1.4.js" 		=> "global",
-				"popup.js" => "global",
-				"calendar.js" => "module",
-				"calendar-setup.js" => "module",
-				"calendar-de.js" => "module",
-				"home.js" => "app",
-				"new_camp.js" => "app"
-			);
+	"mootools-core-1.4.js" 		=> "global",
+	"mootools-more-1.4.js" 		=> "global",
+	"popup.js" => "global",
+	"calendar.js" => "module",
+	"calendar-setup.js" => "module",
+	"calendar-de.js" => "module",
+	"home.js" => "app",
+	"new_camp.js" => "app"
+);
 
 $div = array(
-				"lock.tpl" => "global",
-				//"./public_folder/div/message.tpl",
-				"busy.tpl" => "global"
-			);
+	"lock.tpl" => "global",
+	//"./public_folder/div/message.tpl",
+	"busy.tpl" => "global"
+);
 
 # Standardkommando
 if( $_page->cmd == "" ) {	$_page->cmd = "home";	}
-
-
 ?>

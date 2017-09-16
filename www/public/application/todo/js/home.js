@@ -328,4 +328,4 @@ show_todo = function()
 			{	month.getElements('.todo_month_title_row').removeClass('hidden');	}
 		});
 	});
-}
+};

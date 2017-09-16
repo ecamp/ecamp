@@ -18,33 +18,25 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 	include("./config.php");
 	include($lib_dir . "/mysql.php");
 	include($lib_dir . "/functions/error.php");
 	require_once("./lib/PHPTAL.php");
 	db_connect();
-	
-	
+
 	$user_id 	= mysql_escape_string( $_REQUEST[ 'user_id' ] );
 	$login 		= mysql_escape_string( $_REQUEST[ 'login' ] );
 	$acode		= mysql_escape_string( $_REQUEST[ 'acode' ] );
-	
-	
-	$query = "	SELECT user.id FROM user WHERE id = $user_id AND mail = '$login' AND acode = '$acode'";
+
+	$query = "SELECT user.id FROM user WHERE id = $user_id AND mail = '$login' AND acode = '$acode';";
 	$result = mysql_query( $query );
 	
 	if( mysql_error() || !mysql_num_rows( $result ) )
 	{	die("FEHLER; Support anfragen" ); }
-	
-	
-	
-	
+
 	if( $_SESSION[skin] == "" ) $_SESSION[skin] = $GLOBALS[skin];
 	$html = new PHPTAL("public/skin/".$_SESSION[skin]."/pwreset.tpl");
-	
 	$html->setEncoding('UTF-8');
-	
 	$html->set('SHOW_MSG', false);
 	
 	if( isset( $_REQUEST[ 'msg' ] ) )
@@ -52,14 +44,10 @@
 		$html->set( 'SHOW_MSG', true );
 		$html->set( 'MSG', mysql_escape_string( $_REQUEST[ 'msg' ] ) );
 	}
-	
-	
+
 	$html->set( 'user_id', $user_id );
 	$html->set( 'login', $login );
 	$html->set( 'acode', $acode );
-	
-	
+
 	echo $html->execute();
-	
-	
 ?>

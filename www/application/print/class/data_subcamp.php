@@ -34,7 +34,7 @@
 		public $day = array();
 		
 		
-		function print_data_subcamp_class( $data, $pid )
+		function __construct($data,$pid )
 		{
 			$this->pid 			= $pid;
 			$this->id 			= $data['id'];

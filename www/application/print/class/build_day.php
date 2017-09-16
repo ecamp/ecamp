@@ -25,7 +25,7 @@
 		public $y;
 		
 		
-		function print_build_day_class( $data )
+		function __construct($data )
 		{
 			$this->data = $data;
 		}

@@ -277,7 +277,7 @@ function new_camp_check()
 function new_check(isCourse)
 {
 	if( isCourse == 1 )
-		return new_course_check()
+		return new_course_check();
 	else
 		return new_camp_check();
 }

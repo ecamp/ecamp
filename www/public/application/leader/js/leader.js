@@ -60,7 +60,7 @@ window.addEvent('load', function()
 							{	alert(ans.msg);		}
 						}
 					}).send();
-				}
+				};
 				
 				$popup.popup_yes_no("Leiter entfernen", "Leiter wirklich entfernen?", yes_function, function(){}, "popup_no_button");
 			});
@@ -186,7 +186,7 @@ window.addEvent('load', function()
 		
 		$popup.popup_HTML("Leiter suchen", content, events, keyevents, true, 500, 160);
 		content['form'].getElement( 'input[name=scoutname]' ).focus();
-	}
+	};
 	
 	result_form = function( function_id, user_list )
 	{

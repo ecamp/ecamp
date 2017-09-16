@@ -34,7 +34,7 @@ var subcamp_class = new Class({
 	{
 		this.id = id;
 		this.subcamp_nr = subcamp_nr;
-		this.length = length
+		this.length = length;
 		this.camp_id = camp_id;
 	},
 	

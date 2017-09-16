@@ -250,7 +250,7 @@ var event_instance_class = new Class({
 	
 	save_zoom: function( w, h )
 	{
-		this.wait()
+		this.wait();
 		
 		w = w.toInt();	h = h.toInt();
 		

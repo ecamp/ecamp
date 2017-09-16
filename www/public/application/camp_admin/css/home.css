@@ -49,8 +49,8 @@ table.camp
 table.camp:hover
 {
 	border: 2px black solid;
-	margin: 0px;
-	padding: 0px;
+	margin: 0;
+	padding: 0;
 }
 table.camp td
 {
@@ -78,5 +78,5 @@ p.camp_slogan
 	font-weight: bold;
 	font-size: 13px;
 	padding: 4px;
-	margin: 0px;
+	margin: 0;
 }

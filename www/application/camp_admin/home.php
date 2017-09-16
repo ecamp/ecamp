@@ -18,12 +18,10 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	
 	$_page->html->set('main_macro', $GLOBALS[tpl_dir].'/application/camp_admin/border.tpl/border');
 	$_page->html->set('box_content', $GLOBALS[tpl_dir].'/application/camp_admin/home.tpl/home');
 	$_page->html->set('box_title', 'Lager-Admin');
-	
-	
+
 	//if( $_camp->is_course )
 	//	$query = "SELECT * FROM dropdown WHERE list = 'function_course'";
 	//else
@@ -38,8 +36,7 @@
 	
 	$active_camp_list = array();
 	$request_camp_list = array();
-	
-	
+
 	$query = "	SELECT 
 					camp.*,
 					user_camp.function_id,
@@ -106,10 +103,7 @@
 	
 	if( is_array( $active_camp_sort ) )
 	{	array_multisort( $active_camp_sort, SORT_DESC, $active_camp_list );	}
-	
-	
-	
-	
+
 	$query = 
 		"SELECT camp.*,
 			user.mail,
@@ -165,13 +159,11 @@
 		
 		$request_camp_list[] = $camp_detail;
 	}
-	
-	
+
 	$show_list = ( $_REQUEST['show_list'] == 1 ) ? true : false;
 	
 	$_page->html->set('show_list', 			$show_list );
 	$_page->html->set('active_camp_list', 	$active_camp_list );
 	$_page->html->set('request_camp_list', 	$request_camp_list );
 	$_page->html->set('request_camp_show', 	$request_camp_show );
-	
 ?>

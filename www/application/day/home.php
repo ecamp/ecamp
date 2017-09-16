@@ -18,18 +18,15 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	
 	$_page->html->set('main_macro', $GLOBALS[tpl_dir].'/application/day/border.tpl/border');
 	
 	$day_id = mysql_real_escape_string( $_REQUEST['day_id'] );
 	
 	if( is_numeric( $day_id ) )
 	{	$_camp->day( $day_id ) || die( "error" );	}
-	
-	
+
 	include( 'load_day_list.php' );
-	
-	
+
 	if( is_numeric( $day_id ) )
 	{
 		$_page->html->set( 'day_selected', true );
@@ -61,8 +58,6 @@
 		$_page->html->set( 'day_selected', false );
 	}
 	
-	
-	
 	$query = "	SELECT category.*
 				FROM category
 				WHERE category.camp_id = $_camp->id";
@@ -73,8 +68,7 @@
 	{	$categories[] = $category;	}
 	
 	$_js_env->add( 'categories', $categories );
-	
-	
+
 	$day = array(
 			"list_border" 	=> array( "title" => "Liste aller Tage", "macro" => $GLOBALS[tpl_dir]."/application/day/list.tpl/list" ),
 			"day_border"	=> array( "title" => "Tagesübersicht", "macro" => $GLOBALS[tpl_dir]."/application/day/day.tpl/day" ),
@@ -92,9 +86,6 @@
 	$_page->html->set( 'day', $day );
 	$_js_env->add( 'event_list', $event_list );
 
-	
-	
-	
 	//	INFOBOX:
 	// ==========
 	

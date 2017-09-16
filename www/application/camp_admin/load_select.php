@@ -19,8 +19,7 @@
  */
 
 	$pid = mysql_real_escape_string( $_REQUEST['pid'] );
-	
-	
+
 	$ans = array();
 	
 	if( $pid == 0 )

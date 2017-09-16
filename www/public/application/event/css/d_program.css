@@ -6,19 +6,19 @@ div.d_program_wait
 	background-repeat:no-repeat; 
 	
 	position:absolute; 
-	left:0px; 
-	right:0px; 
-	top:0px; 
-	bottom:0px
+	left:0;
+	right:0;
+	top:0;
+	bottom:0
 }
 
 div.d_program_transp
 {
 	position:fixed;
-	top:0px;
-	bottom:0px;
-	left:0px;
-	right:0px;
+	top:0;
+	bottom:0;
+	left:0;
+	right:0;
 	
 	background-image:url(../../../global/img/transparent.png);
 	z-index:99;
@@ -30,7 +30,7 @@ div.d_program
 	top:40px;
 	left:100px;
 	right:100px;
-	bottom:0px;
+	bottom:0;
 }
 /*
 *.input_show, *.input_edit
@@ -42,8 +42,8 @@ div.d_program_border
 {
 	position:absolute;
 	top:18px;
-	left:0px;
-	right:0px;
+	left:0;
+	right:0;
 	bottom:-6px;
 	
 	border-top: 2px #000000 solid;
@@ -60,7 +60,7 @@ div.d_program_border
 div.d_program_content
 {
 	position:absolute;
-	top:0px;
+	top:0;
 	left:5px;
 	right:5px;
 	bottom:6px;
@@ -107,7 +107,7 @@ div.d_program_close
 div.d_program_title
 {
 	position:absolute;
-	top:0px;
+	top:0;
 	left:100px;
 	height:32px;
 	width:300px;
@@ -135,9 +135,9 @@ div.d_program_title
 div.d_program_tag_title
 {
 	
-	left:0px;
-	right:0px;
-	top:0px;
+	left:0;
+	right:0;
+	top:0;
 	height:15px;
 	
 	padding-left:4px;

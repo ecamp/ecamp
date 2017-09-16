@@ -22,16 +22,9 @@
 	include($lib_dir . "/mysql.php");
 	include($lib_dir . "/functions/mail.php");
 	db_connect();
-	
-	
-	
-	
-	
-	
-	
+
 	$login = mysql_escape_string( $_REQUEST[ 'Login' ] );
-	
-	
+
 	$query = "	SELECT id, active, acode FROM user WHERE mail = '$login'";
 	$result = mysql_query( $query );
 	
@@ -56,18 +49,9 @@
 		$query = "UPDATE user SET acode = '$acode' WHERE id = ". $user_id;
 		mysql_query( $query );
 	}
-	
-	
-	
-	
-	
-	
-	
-	
+
 	//	SEND MAIL FOR ACTIVATION:
 	// ===========================
-	
-	
  	$text = "eCamp - Willkommen \n\n
 Um dich bie eCamp einloggen zu können, musst du deinen Account aktivieren.
 Zu diesem Zweck musst du nachfolgendem Link folgen:
@@ -84,12 +68,6 @@ Zu diesem Zweck musst du nachfolgendem Link folgen:
  	$subject = urlencode( "eCamp - Passwort ändern" );
 	fopen( "http://ecamp2.pfadiluzern.ch/mail.php?to=$login&subject=$subject&message=$text", "r" );
 	*/
-	
-	
-	
 	header( 'location: login.php?msg=Überprüfe nun bitte deine Mailbox.' );
 	die();
-	
-	
-	
 ?>

@@ -99,4 +99,4 @@ var edit_event = function( event_instance )
 	$popup.popup_HTML( "Neuer Block:", content, events, keyevents, lock, width, height );
 	
 	content['popup_input_name'].focus();
-}
+};

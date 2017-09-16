@@ -135,13 +135,13 @@ window.addEvent('load', function()
 				
 				keyevents = {	"enter": events['popup_save_button'], "esc": events['popup_abort_button'] };
 				
-				"Neue Aufgabe", content, events, keyevents, true, 400, 140);
+				"Neue Aufgabe", content, events, keyevents, true, 400, 140;);
 				
 				new Calendar({ 'input_todo_date': 'd.m.Y'  }, { navigation: 2 , offset: 1 });
 				
 				
 			});
-		}
+		};
 		
 		item.getElements('.todo_resp .resp_user').each(function(resp_user)
 		{
@@ -386,4 +386,4 @@ show_todo = function()
 			{	month.getElements('.todo_month_title_row').removeClass('hidden');	}
 		});
 	});
-}
+};

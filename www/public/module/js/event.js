@@ -634,7 +634,7 @@ $event = new Hash(
 				inputs.include( input );
 			}.bind(this))
 			
-		}.bind(this))
+		}.bind(this));
 		
 		
 		save_button = new Element( 'button' ).setStyles({'position': 'absolute', 'right': '10px', 'width': '100px', 'bottom': '5px' }).set('text', 'Sichern');
@@ -642,7 +642,7 @@ $event = new Hash(
 		
 		var content = { "outer_div" : outer_div, "save_button": save_button, "cancel_button": cancel_button };
 		
-		var events = { "cancel_button": function(){	$popup.hide_popup();	}, "save_button": this.save_aim.pass( [ inputs ], this ) }
+		var events = { "cancel_button": function(){	$popup.hide_popup();	}, "save_button": this.save_aim.pass( [ inputs ], this ) };
 		
 		keyevents = {	"enter": events['save_button'], "esc": events['cancel_button'] };
 		
@@ -676,7 +676,7 @@ $event = new Hash(
 				inputs.include( input );
 			}.bind(this))
 			
-		}.bind(this))
+		}.bind(this));
 				
 		save_button = new Element( 'button' ).setStyles({'position': 'absolute', 'right': '10px', 'width': '100px', 'bottom': '5px' }).set('text', 'Sichern');
 		cancel_button = new Element( 'button' ).setStyles({'position': 'absolute', 'right': '120px', 'width': '100px', 'bottom': '5px' }).set('text', 'Abbrechen');

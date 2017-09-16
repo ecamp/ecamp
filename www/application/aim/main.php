@@ -18,7 +18,7 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	$_page->html->set('main_macro', $GLOBALS[tpl_dir].'/application/aim/border.tpl/border');
+	$_page->html->set('main_macro', $GLOBALS['tpl_dir'].'/application/aim/border.tpl/border');
 	
 	/* alle Events des Camps laden */
 	$campevents = array();
@@ -75,7 +75,7 @@
 							AND a.event_id=e.id
 							AND e.id = i.event_id
 						ORDER BY i.day_id, i.starttime";
-							
+
 		    $result3 = mysql_query( $query );
 			
 			$event = array();
@@ -84,15 +84,15 @@
 				$this_event = $campevents[$this_event_instance["id"]];
 				
 			    $start = new c_time();
-				$start->setValue($this_event[start]);
+				$start->setValue($this_event['start']);
 				
 				$end = new c_time();
-				$end->setValue($this_event[end]);
+				$end->setValue($this_event['end']);
 				
 				$date = new c_date();
-				$date->setDay2000($this_event[day]);
+				$date->setDay2000($this_event['day']);
 				
-				$this_date = $GLOBALS[en_to_de][$date->getString("D")].", ".$date->getString("j.n.")." ".$start->getString("G:i")."-".$end->getString("G:i");//"Fr, 5.10. 17:15-18:00";
+				$this_date = $GLOBALS['en_to_de'][$date->getString("D")].", ".$date->getString("j.n.")." ".$start->getString("G:i")."-".$end->getString("G:i");//"Fr, 5.10. 17:15-18:00";
 				
 				if( $this_event['short_name'] )
 				{	$this_event['short_name'] .= ": ";	}
@@ -119,15 +119,14 @@
 	
 	
 	$aim = array( 
-					"intro" => array( 
-										"title" => "Kursziele",
-										"macro" => $GLOBALS[tpl_dir] . "/application/aim/main.tpl/home"
-									),
-					"level1"=> array( 
-										"title" => "Leitziele",
-										"macro" => $GLOBALS[tpl_dir] . "/application/aim/main.tpl/level1"
-									)
-				);
+		"intro" => array(
+			"title" => "Kursziele",
+			"macro" => $GLOBALS['tpl_dir'] . "/application/aim/main.tpl/home"
+		),
+		"level1"=> array(
+			"title" => "Leitziele",
+			"macro" => $GLOBALS['tpl_dir'] . "/application/aim/main.tpl/level1"
+		)
+	);
 	$_page->html->set( 'aim' , $aim );
-	
 ?>

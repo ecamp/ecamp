@@ -4,9 +4,9 @@ div#list_container
 	overflow-y: auto;
 	
 	position: absolute;
-	left: 0px;
+	left: 0;
 	top: 260px;
-	bottom: 0px;	
+	bottom: 0;
 	right: 1px;
 	
 	

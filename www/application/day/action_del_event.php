@@ -44,9 +44,7 @@
 	// Event löschen
 	$query = "DELETE FROM event WHERE id = '$event_id'";
 	mysql_query($query);
-	
-	
+
 	header( "Location: index.php?app=day&dayid=".$day_id );
 	die();
-	
 ?>

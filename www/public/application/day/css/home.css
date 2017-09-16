@@ -1,17 +1,17 @@
 div.day_left
 {
 	position:absolute;
-	top:0px;
-	left:0px;
+	top:0;
+	left:0;
 	width:200px;
 }
 
 div.day_right
 {
 	position:absolute;
-	top:0px;
+	top:0;
 	left:205px;
-	right:0px;
+	right:0;
 }
 
 tbody#day_event_list tr:hover

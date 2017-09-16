@@ -20,20 +20,11 @@
 
 	require_once( "./config.php" );
 	require_once( "./lib/PHPTAL.php" );
-	
-	
 
-	
-	
-	if( $_SESSION[skin] == "" ) $_SESSION[skin] = $GLOBALS[skin];
-	$html = new PHPTAL("public/skin/".$_SESSION[skin]."/resendacode.tpl");
-	
+	if( $_SESSION['skin'] == "" ) $_SESSION['skin'] = $GLOBALS['skin'];
+	$html = new PHPTAL("public/skin/".$_SESSION['skin']."/resendacode.tpl");
 	$html->setEncoding('UTF-8');
-	
 	$html->set('SHOW_MSG', false);
-	
-	
+
 	echo $html->execute();
-	
-	
 ?>

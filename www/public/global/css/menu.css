@@ -2,13 +2,13 @@ div.menu
 {
 	padding:5px;
 	
-	margin-top: 0px;
+	margin-top: 0;
 	margin-bottom:10px;
 }
 
 div.menu_title{
 	height:15px;
-	margin:0px;
+	margin:0;
 }
 
 div.menu a

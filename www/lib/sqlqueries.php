@@ -18,11 +18,9 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
   function getQueryEventNr( $camp_id )
   {
 	$query = "
-
 	select 
 		`event`.`id` AS `event_id`,
 		`event_instance`.`id` AS `event_instance_id`,
@@ -78,8 +76,7 @@
 		and subcamp.camp_id=$camp_id
 	)
 	";
+
   	return $query;
   }
-
-
 ?>

@@ -71,7 +71,7 @@
 								if(ans.exit)	{	item.destroy();	}
 							}
 						}).send();
-					}
+					};
 					$popup.popup_yes_no("Lager verlassen", "Willst du dieses Lager wirklich verlassen?", yes_function, function(){}, 'popup_yes_button');
 				});
 			}			

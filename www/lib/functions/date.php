@@ -140,141 +140,140 @@ class c_date
 
 class c_time
 {
-  var $m_min;   // Anzahl vergangene Minuten seit Mitternacht 00:00 (Maximalwert: 1439)
-  
-  # function setManual( $hour, $min ) 
-  # function setUnix( $timestamp )  
-  # function setString( $string )
-  
-  # function getUnix()
-  # function getString( $format )
-  # function getValue()
-  # function getHour()
-  # function getMin()
-  
-  // Uhrzeit manuell setzen
-  function setManual( $hour, $min )
-  {
-    $this->m_min = $hour*60 + $min;
-    return $this;
-  }
-  
-  // Uhrzeit mittels eines Unix-TImestamps setzen
-  function setUnix( $timestamp )     
-  {
-  	$this->m_min = floor( $timestamp / 60) % 1440;
-    return $this;
-  }
-  
-  // Uhrzeit mittels eines Strings im Format 12:54/12.54/12 54/1254 setzen
-  function setString( $string )
-  {  
-	if(!ereg("([0-9]{1,2})[.: ]+([0-9]{1,2})", $string, $regs) && strlen($string) == 4)
-	{	ereg("([0-9]{1,2})([0-9]{1,2})", $string, $regs);	}
-	
-	$this->setManual( $regs[1], $regs[2] );
-    return $this;
-  }      
-  
-  function setValue($min)
-  {
-  	$this->m_min = $min;
-    return $this;
-  }
-  
-  
-  // Unix-Offset für Zeit zurückgeben
-  function getUnix()                 
-  {
-  	return $this->m_min*60;
-  }
-  
-  function getString( $format )
-  {
-  	return gmdate( $format, $this->getUnix() );
-  }
-  
-  function getValue(){ return $this->m_min; }
-  
-  function getMin()
-  {
-  	return $this->m_min % 60;
-  }
-  
-  function getHour()
-  {
-  	return floor( $this->m_min/60 );
-  }
+	var $m_min;   // Anzahl vergangene Minuten seit Mitternacht 00:00 (Maximalwert: 1439)
+
+	# function setManual( $hour, $min )
+	# function setUnix( $timestamp )
+	# function setString( $string )
+
+	# function getUnix()
+	# function getString( $format )
+	# function getValue()
+	# function getHour()
+	# function getMin()
+
+	  // Uhrzeit manuell setzen
+	  function setManual( $hour, $min )
+	  {
+	    $this->m_min = $hour*60 + $min;
+	    return $this;
+	  }
+
+	  // Uhrzeit mittels eines Unix-TImestamps setzen
+	  function setUnix( $timestamp )
+	  {
+	    $this->m_min = floor( $timestamp / 60) % 1440;
+	    return $this;
+	  }
+
+	  // Uhrzeit mittels eines Strings im Format 12:54/12.54/12 54/1254 setzen
+	  function setString( $string )
+	  {
+		if(!ereg("([0-9]{1,2})[.: ]+([0-9]{1,2})", $string, $regs) && strlen($string) == 4)
+		{	ereg("([0-9]{1,2})([0-9]{1,2})", $string, $regs);	}
+
+		$this->setManual( $regs[1], $regs[2] );
+	    return $this;
+	  }
+
+	  function setValue($min)
+	  {
+	    $this->m_min = $min;
+	    return $this;
+	  }
+
+
+	  // Unix-Offset für Zeit zurückgeben
+	  function getUnix()
+	  {
+	    return $this->m_min*60;
+	  }
+
+	  function getString( $format )
+	  {
+	    return gmdate( $format, $this->getUnix() );
+	  }
+
+	  function getValue(){ return $this->m_min; }
+
+	  function getMin()
+	  {
+	    return $this->m_min % 60;
+	  }
+
+	  function getHour()
+	  {
+	    return floor( $this->m_min/60 );
+	  }
 }
 
 class c_datetime
 {
-  var $m_time;
-  var $m_date;
-  
-  # function setManual( $day, $month, $year, $hour, $min ) 
-  # function setUnix( $timestamp )  
-  # function setString( $string )
-  
-  # function getUnix()
-  # function getString( $format )
-  # function getValue()
-  # function getDay()
-  # function getMonth()
-  # function getYear()
-  # function getHour()
-  # function getMin()
-  
-  function c_datetime()
-  {
-  	$this->m_time = new c_time;
-  	$this->m_date = new c_date;
-  }
-  
-  function setManual( $day, $month, $year, $hour, $min )
-  {
-  	$this->m_date->setManual( $day, $month, $year );
-	$this->m_time->setManual( $hour, $min );
-  }
-  
-  function setUnix( $timestamp )
-  {
-  	$this->m_date->setUnix( $timestamp );
-	$this->m_time->setUnix( $timestamp );
-  }
-  
-  function setString( $string ) // Interpretiert einen String im Format "1.11.2007 12:54"
-  {
-  	# Todo: String aufbrechen
-	$this->m_date->setString( $str1 );
-	$this->m_time->setString( $str2 );
-  }
-  
-  function getUnix()
-  {
-  	return $this->m_date->getUnix() + $this->m_time->getUnix();
-  }
-  
-  function getString( $format )  // String im Format $format zurückgeben
-  {
-  	return gmdate( $format, $this->getUnix() );
-  }
+	  var $m_time;
+	  var $m_date;
 
-  function getDay(){ $this->m_date->getDay(); }
-  function getMonth(){ $this->m_date->getMonth(); }
-  function getYear(){ $this->m_date->getYear(); }
-  function getHour(){ $this->m_time->getHour(); }
-  function getMin(){ $this->m_time->getMin(); }
-  
-  function getDayName()
-  {
-  	return $this->m_date->getDayName();
-  }
-  
-  function getDayShortName()
-  {
-  	return $this->m_date->getDayShortName();
-  }
+	  # function setManual( $day, $month, $year, $hour, $min )
+	  # function setUnix( $timestamp )
+	  # function setString( $string )
+
+	  # function getUnix()
+	  # function getString( $format )
+	  # function getValue()
+	  # function getDay()
+	  # function getMonth()
+	  # function getYear()
+	  # function getHour()
+	  # function getMin()
+
+	  function __construct()
+	  {
+	    $this->m_time = new c_time;
+	    $this->m_date = new c_date;
+	  }
+
+	  function setManual( $day, $month, $year, $hour, $min )
+	  {
+	    $this->m_date->setManual( $day, $month, $year );
+		$this->m_time->setManual( $hour, $min );
+	  }
+
+	  function setUnix( $timestamp )
+	  {
+	    $this->m_date->setUnix( $timestamp );
+		$this->m_time->setUnix( $timestamp );
+	  }
+
+	  function setString( $string ) // Interpretiert einen String im Format "1.11.2007 12:54"
+	  {
+	    # Todo: String aufbrechen
+		$this->m_date->setString( $str1 );
+		$this->m_time->setString( $str2 );
+	  }
+
+	  function getUnix()
+	  {
+	    return $this->m_date->getUnix() + $this->m_time->getUnix();
+	  }
+
+	  function getString( $format )  // String im Format $format zurückgeben
+	  {
+	    return gmdate( $format, $this->getUnix() );
+	  }
+
+	  function getDay(){ $this->m_date->getDay(); }
+	  function getMonth(){ $this->m_date->getMonth(); }
+	  function getYear(){ $this->m_date->getYear(); }
+	  function getHour(){ $this->m_time->getHour(); }
+	  function getMin(){ $this->m_time->getMin(); }
+
+	  function getDayName()
+	  {
+	    return $this->m_date->getDayName();
+	  }
+
+	  function getDayShortName()
+	  {
+	    return $this->m_date->getDayShortName();
+	  }
 }
-
 ?>

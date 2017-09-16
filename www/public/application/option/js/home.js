@@ -132,7 +132,7 @@ window.addEvent('load', function()
 					{	alert(ans.msg);	}
 				}
 			}).send();
-		}
+		};
 		
 		item.addEvent('click', function()
 		{	$popup.popup_yes_no("Job l&ouml;schen", "Diesen Job wirklick l&ouml;schen?", yes_function, function(){}, "popup_no_button");	});
@@ -162,8 +162,7 @@ window.addEvent('load', function()
 						$$('#group_gp option').inject( $('group_normal') );
 						$$('#group_normal option').filter( function(item)
 								{	
-									if(	item.get('value') == ans.job_id )	{ return true;		}
-									else									{ return false;	}
+									return item.get('value') == ans.job_id;
 								}).inject( $('group_gp') );
 					}
 					else
@@ -210,8 +209,7 @@ window.addEvent('load', function()
 												{
 													$$('option').filter( function(item)
 													{	
-														if(	item.get('value') == ans.job_id )	{ return true;		}
-														else									{ return false;	}
+														return item.get('value') == ans.job_id;
 													}).set('html', ans.job_name);
 												}
 												else

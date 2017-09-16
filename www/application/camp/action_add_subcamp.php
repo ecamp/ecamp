@@ -21,8 +21,7 @@
 	// Authentifizierung überprüfen
 	$start = mysql_real_escape_string($_REQUEST['subcamp_start']);
 	$end = mysql_real_escape_string($_REQUEST['subcamp_end']);
-	
-	
+
 	$start = ereg("([0-9]{1,2})[\/\. -]+([0-9]{1,2})[\/\. -]+([0-9]{1,4})", $start, $regs);
 	$start = gmmktime(0, 0, 0, $regs[2], $regs[1], $regs[3]);
 	
@@ -34,8 +33,7 @@
 	
 	//$end = preg_replace("/^\s*([0-9]{1,2})[\/\. -]+([0-9]{1,2})[\/\. -]+([0-9]{1,4})/", "\\2/\\1/\\3", $end);
 	//$end = strtotime($end);
-	
-	
+
 	$c_start = new c_date();
 	$c_end = new c_date();
 	
@@ -44,15 +42,13 @@
 	
 	$start = $c_start->getValue();
 	$length = $c_end->getValue() - $c_start->getValue() + 1;
-	
+
 	if($length <= 0 )
 	{
 		$ans = array("error" => true, "msg" => "Das Enddatum darf nicht vor dem Startdatum liegen!");
 		echo json_encode($ans);
 		die();
-	}
-	else if( $length > 40 )
-	{
+	}else if($length > 40){
 		$ans = array("error" => true, "msg" => "Die maximale Länge eines Lagerabschnitts beträgt 40 Tage. Verwende bitte mehrere Lagerabschnitt für überlange Lager!");
 		echo json_encode($ans);
 		die();
@@ -62,20 +58,17 @@
 	$query = "SELECT * FROM `subcamp` WHERE camp_id=".$_camp->id." AND (`start` BETWEEN -10000 AND ".$c_end->getValue().") AND ((`start`+`length`-1) BETWEEN ".$c_start->getValue()." AND 32000)";
 	$result = mysql_query( $query );
 	
-	if( mysql_num_rows( $result ) >= 1 )
-	{
+	if( mysql_num_rows( $result ) >= 1 ){
 		$ans = array("error" => true, "msg" => "Der ausgewählte Zeitabschnitt überschneidet sich mit einem anderen Lagerabschnitt. Wähle einen freien Lagerabschnitt aus!");
 		echo json_encode($ans);
 		die();
 	}
-	
-	
+
 	$query = "INSERT INTO subcamp 	( camp_id, start, length)
 				VALUES 				( '$_camp->id', '$start', '$length')";
 	mysql_query($query);
 	$last_subcamp_id = mysql_insert_id();
-	
-	
+
 	// day: Datensätze einfügen
 	for( $i=0; $i < $length; $i++ )
 	{
@@ -83,16 +76,13 @@
 				 VALUES 				( '$last_subcamp_id', '$i')";
 		mysql_query($query);
 	}
-	
-	
-	
+
 /*	$query = "SELECT LAST_INSERT_ID() FROM subcamp";
 	$result = mysql_query($query);
 	$last_subcamp_id = implode(mysql_fetch_assoc($result));*/
 	
 //	$start 	= date("d.m.Y",	$c_start->getUnix());
 //	$end	= date("d.m.Y", $c_end ->getUnix());
-	
 	$ans = array("error" => false );
 	echo json_encode($ans);
 	die();

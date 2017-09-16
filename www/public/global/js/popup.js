@@ -285,7 +285,7 @@ var popup_class = new Class({
 														'font-size': '13px',
 														'padding' : '20px'
 													  }).set('html', item.content )
-					}
+					};
 			keyevents 	= item.keyevents;
 		}
 		

@@ -18,14 +18,12 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 	include("./config.php");
 	include($lib_dir . "/functions/error.php");
 	require_once("./lib/PHPTAL.php");
 
 	require_once( "./lib/recaptchalib.php" );
-	
-	
+
 	if( $_SESSION[skin] == "" ) $_SESSION[skin] = $GLOBALS[skin];
 	$html = new PHPTAL("public/skin/".$_SESSION[skin]."/reminder.tpl");
 	
@@ -41,8 +39,5 @@
 	
 	$html->set( 'captcha' ,recaptcha_get_html( $GLOBALS[captcha_pub],null,true ) );
 
-
 	echo $html->execute();
-	
-	
 ?>

@@ -88,5 +88,5 @@ $JSOS =
 {
 	KeyHandler: new LIFOKeyHandler(),
 	PostLoader: new PostLoader()
-}
+};
 

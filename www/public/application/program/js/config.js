@@ -92,7 +92,7 @@
 		
 		
 		// if Firefox, Grobprogramm-Verzerrung vermeiden
-		if( Browser.Engine.gecko & Browser.Engine.version == 19 )
+		if( Browser.Engine.gecko && Browser.Engine.version == 19 )
 		{
 			$('g_program_div').setStyle("padding-bottom", $('g_program_outer_div').clientHeight - $('g_program_div').clientHeight );
 		}

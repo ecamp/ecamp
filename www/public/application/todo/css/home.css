@@ -1,17 +1,17 @@
 div.todo_left
 {
 	position: absolute;
-	left: 0px;
+	left: 0;
 	right: 255px;
-	top: 0px;
+	top: 0;
 }
 
 div.todo_right
 {
 	position: absolute;
-	right: 0px;
+	right: 0;
 	width: 250px;
-	top: 0px;
+	top: 0;
 }
 
 table.todo_table

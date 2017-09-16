@@ -18,7 +18,6 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	
 	// Authentifizierung überprüfen
 	// write --> Ab Lagerleiter (level: 50)
 	if( $_user_camp->auth_level < 50 )
@@ -33,8 +32,7 @@
     $field = mysql_real_escape_string($_REQUEST['field']);	
 	$value = $_REQUEST['value'];
 	$value_save = mysql_real_escape_string($_REQUEST['value']);
-	
-	
+
 	if( !in_array($field, $valid_fields) )
 	{
 		$ans = array("error" => true, "error_msg" => "Das Feld existiert nicht!");
@@ -68,8 +66,7 @@
 			$value2 = substr( "000" . $value2, -3 );
 			$value3 = substr( "000" . $value3, -3 );
 			$value4 = substr( "000" . $value4, -3 );
-			
-			
+
 			$value = $value1.".".$value2."/".$value3.".".$value4;
 			$value_save = $value;
 		}
@@ -86,12 +83,9 @@
 		$value_save = $value;
 	}
 
-	
 	$query = "UPDATE camp SET $field = '$value_save' WHERE id = '$_camp->id'";
 	mysql_query($query);
-	
-	
-	
+
 	$ans = array();
 	$ans[error] = false;
 	$ans[value] = $value;
@@ -103,8 +97,7 @@
 		$ans[value3] = $value3;
 		$ans[value4] = $value4;
 	}
-	
+
 	echo json_encode($ans);
-	
 	die();
 ?>

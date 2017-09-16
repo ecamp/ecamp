@@ -1,7 +1,7 @@
 <span metal:define-macro="border" tal:omit-tag="">
 
 
-<table style="position:absolute; left:0px; width:100%;" border="0">
+<table style="position:absolute; left:0; width:100%;" border="0">
 	<colgroup>
 		<col width="50%" />
 		<col width="50px" />

@@ -87,5 +87,4 @@
 	}
 	
 	//print_r( $event_list );
-	
 ?>

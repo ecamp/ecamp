@@ -18,7 +18,6 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 	// Daten auslesen
 	$pid  = mysql_real_escape_string($_REQUEST['pid']);
 	$text = mysql_real_escape_string($_REQUEST['text']);
@@ -29,8 +28,7 @@
 	$del   = mysql_real_escape_string($_REQUEST['del']);
 	$new  = mysql_real_escape_string($_REQUEST['new']);
 	$edit  = mysql_real_escape_string($_REQUEST['edit']);
-	
-	
+
 	// Neues Ziel
 	if( $new == 1  )
 	{

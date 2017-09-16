@@ -24,9 +24,9 @@
                     <table width="100%">
                     	<tr>
                     		<td>
-			                	<div style="font-size:20px; font-weight:bold; margin:0px; display:inline" id="dp_nr" tal:content="event_nr"></div>
-			                    <div style="font-size:20px; font-weight:bold; margin:0px; display:inline" id="dp_nr" tal:content="category_short"></div>
-			                    <div style="font-size:20px; font-weight:bold; margin:0px; display:inline" id="dp_name" tal:content="name"></div>
+			                	<div style="font-size:20px; font-weight:bold; margin:0; display:inline" id="dp_nr" tal:content="event_nr"></div>
+			                    <div style="font-size:20px; font-weight:bold; margin:0; display:inline" id="dp_nr" tal:content="category_short"></div>
+			                    <div style="font-size:20px; font-weight:bold; margin:0; display:inline" id="dp_name" tal:content="name"></div>
 			                </td>
                     		<td>
                     			<div style="font-size:15px; font-weight:bold; text-align: right">Fortschritt:</div>

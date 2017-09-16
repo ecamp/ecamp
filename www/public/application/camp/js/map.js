@@ -20,25 +20,22 @@
 // $Id: it.js 26083 2008-11-11 12:10:56Z tbruederli $
 function CED(txt)
 {
-var element = document.getElementById('jsdebug');
-if (element)
-element.innerHTML = txt ? txt : "";
+    var element = document.getElementById('jsdebug');
+    if (element)
+    element.innerHTML = txt ? txt : "";
 }
 function ED()
 {
-var element = document.getElementById('jsdebug');
-if (element)
-{
-var text = "";
-for (var i = 0; i < arguments.length; i++)
-{
-var variable = arguments[i];
-if (typeof variable == "string")
-variable = variable.replace(/&/g, '&amp;').replace(/</g, '&lt;');
-text += (typeof variable) + " " + variable;
-if (typeof variable == "object")
-{
-text += ":";
+    var element = document.getElementById('jsdebug');
+    if (element){
+        var text = "";
+        for (var i = 0; i < arguments.length; i++){
+            var variable = arguments[i];
+            if (typeof variable == "string")
+                variable = variable.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+            text += (typeof variable) + " " + variable;
+            if (typeof variable == "object"){
+                text += ":";
 for (field in variable)
 {
 text += field + "=";
@@ -63,7 +60,7 @@ var result = this;
 for (key in values)
 result = result.replace(new RegExp("{" + key + "}", "g"), values[key]);
 return result;
-}
+};
 function it_event(p)
 {
 var oldhandler = p.element["on" + p.event];
@@ -75,7 +72,7 @@ var result = pp.object[pp.method](ev ? ev : window.event, pp);
 if (result && oo)
 result = oo(ev);
 return result;
-}
+};
 p.element["on" + p.event].p = p;
 p.element["on" + p.event].oldhandler = oldhandler;
 }
@@ -228,7 +225,7 @@ try
 {
 this.req.open(method, url);
 var me = this;
-this.req.onreadystatechange = function() { me.ready_state_changed(); }
+this.req.onreadystatechange = function() { me.ready_state_changed(); };
 var workingxmlhttp = this.req.onreadystatechange;
 if (!workingxmlhttp)
 this.req = null;
@@ -330,7 +327,7 @@ this.scrpt[callid] = null;
 }
 this.busy = false;
 }
-}
+};
 it_http.instances = 0;
 it_http.get_instance = function()
 {
@@ -341,19 +338,19 @@ return inst;
 inst = new it_http();
 inst.pub = true;
 return inst;
-}
+};
 it_http.get = function(url, callback)
 {
 var inst = it_http.get_instance();
 inst.callback = callback;
 inst.get(url);
-}
+};
 it_http.post = function(url, postdata, callback)
 {
 var inst = it_http.get_instance();
 inst.callback = callback;
 inst.post(url, postdata);
-}
+};
 function it_loader(handler)
 {
 this.http = null;
@@ -454,7 +451,7 @@ stop: function()
 if (this.http)
 this.http.stop();
 }
-}
+};
 it_loader.sequence = "";
 var it_state =
 {
@@ -523,7 +520,7 @@ ser[ser.length] = key + ':' + ((type == 'string') ? "'" + value.replace(/([\\'])
 }
 this.it_history_field.value = ser.join(',');
 }
-}
+};
 function it_state_restore_history()
 {
 it_state.restore_history();
@@ -543,7 +540,7 @@ window["clear" + this.func](this.timer);
 this.timer = null;
 }
 }
-}
+};
 function it_timerlog(label, print)
 {
 if (window.it_timerlog_active)
@@ -747,7 +744,7 @@ if (ev.srcElement && typeof ev.srcElement != "undefined")
 elem = ev.srcElement;
 else if (ev.target && typeof ev.target != "undefined")
 elem = ev.target;
-return (elem.id && elem.id == elemId) ? true : false;
+return (elem.id && elem.id == elemId);
 }
 function search_get_target(e)
 {
@@ -844,10 +841,10 @@ this.win2k = ua.match(/NT 5\.0/);
 this.mac = (platform.indexOf('mac') >= 0);
 this.x11 = (ua.indexOf('X11') > 0 || platform.indexOf('linux') >= 0 || platform.indexOf('unix') >= 0);
 this.lang = (this.ie ? navigator.browserLanguage : navigator.language).substring(0,2);
-this.dom = (document.createElement && document.documentElement) ? true : false;
-this.dom2 = (document.addEventListener && document.removeEventListener) ? true : false;
+this.dom = !!(document.createElement && document.documentElement);
+this.dom2 = !!(document.addEventListener && document.removeEventListener);
 this.vectors = (this.gecko >= 1.8 || this.safari >= 412 || this.opera >= 9 || (this.ie && window.G_vmlCanvasManager));
-this.pngalpha = (this.gecko || this.opera >= 6 || this.ie >= 5.5 || this.safari) ? true : false;
+this.pngalpha = !!(this.gecko || this.opera >= 6 || this.ie >= 5.5 || this.safari);
 this.it_state = !this.opera && !this.iemac;
 }
 function SearchChEvent()
@@ -897,7 +894,7 @@ break;
 this._event_exec = false;
 return ret || typeof ret == 'undefined';
 }
-}
+};
 function SearchChMap(p)
 {
 this.mapcontainer = "mapcontainer";
@@ -1495,7 +1492,7 @@ q += this.p.route ? "&route=" + it_url_encode(this.p.route) : "";
 q += this.centerx ? "&x="+Math.round(this.p2m(this.centerx) + (this.p.route_offset ? this.p.route_offset[0] : 0))+'m' : "";
 q += this.centery ? "&y=" + Math.round(this.p2m(-this.centery) + (this.p.route_offset ? this.p.route_offset[1] : 0))+'m' : "";
 q += this.env.publictelparams ? ("&" + this.env.publictelparams) : "";
-q += (z != this.default_z) ? "&z=" + z : ""
+q += (z != this.default_z) ? "&z=" + z : "";
 q += this.poi_sticky ? "&poi=" + poi : "";
 q += this.bandwidth != this.default_bandwidth ? "&b="+this.bandwidth : "";
 q += append ? "&"+append : "";
@@ -1580,7 +1577,7 @@ if (p.message)
 this.display_message(p.message);
 if (p.dx || p.dy) {
 p.dx = this.p2p(p.dx, p.zi, this.env.zoommax);
-p.dy = this.p2p(p.dy, p.zi, this.env.zoommax)
+p.dy = this.p2p(p.dy, p.zi, this.env.zoommax);
 for (var i in this.dynpois) 
 if (this.dynpois[i] && this.dynpois[i].p) {
 this.dynpois[i].px += p.dx;
@@ -2493,7 +2490,7 @@ if (this.controls.ruler) {
 if (!this.ruler_box)
 this.ruler_box = it_create_element(this.mapcontainer, 'div',
 { style:{ position:'absolute', zIndex:905, bottom:'0px', right:'0px', height:'20px' },
-innerHTML:this.env.unittempl.replace(/%s/g, this.dom_id_prefix) })
+innerHTML:this.env.unittempl.replace(/%s/g, this.dom_id_prefix) });
 var unit = this.env.unitlevels[this.zi];
 var rwidth = Math.round(unit / this.env.rect[this.zi]);
 try {
@@ -2516,7 +2513,7 @@ printlink:"p="+this.mapw+"x"+this.maph,
 emaillink:"e=1",
 bookmarklink:"",
 embedlink:"embed=1"
-}
+};
 for (var link in links) 
 it_element(link).href = this.get_perm_url(links[link]);
 }
@@ -2527,7 +2524,7 @@ update_copyright: function()
 {
 if (!this.copyright_box) {
 this.copyright_box = it_create_element(this.mapcontainer, 'div',
-{ style:{ position:'absolute', zIndex:904, left:'0px', bottom:'0px', height:'15px' }, innerHTML:this.env.copyright.replace(/%s/g, this.dom_id_prefix) })
+{ style:{ position:'absolute', zIndex:904, left:'0px', bottom:'0px', height:'15px' }, innerHTML:this.env.copyright.replace(/%s/g, this.dom_id_prefix) });
 it_element(this.dom_id_prefix + 'copyright').src = this.service_url(this.p.internal ? "/images/copyright.gif" : "/images/copyright2.gif");
 }
 },
@@ -2966,7 +2963,7 @@ alert: function(msg)
 {
 alert(msg);
 } 
-}
+};
 SearchChMap.prototype.addEventListener = SearchChEvent.prototype.addEventListener;
 SearchChMap.prototype.removeEventListener = SearchChEvent.prototype.removeEventListener;
 SearchChMap.prototype._triggerEvent = SearchChEvent.prototype.triggerEvent;
@@ -2976,7 +2973,7 @@ for (var id in SearchChMap.instances)
 if (SearchChMap.instances[id] && (typeof SearchChMap.instances[id] == 'object') && SearchChMap.instances[id].p && SearchChMap.instances[id].p.autoload)
 SearchChMap.instances[id].init();
 SearchChMap.pageloaded = true;
-}
+};
 it_add_event({ element:window, event:"load", object:SearchChMap, method:"_onload" });
 if (!window.SearchChMap)
 window.SearchChMap = {};
@@ -3342,7 +3339,7 @@ this.icon.src = this.map.service_url('/images/0.gif');
 else if (this.icon && old_IE)
 it_dom.set_style(this.icon, 'filter', 'none');
 }
-}
+};
 SearchChPOI.instances = [];
 SearchChPOI.prototype.addEventListener = SearchChEvent.prototype.addEventListener;
 SearchChPOI.prototype.removeEventListener = SearchChEvent.prototype.removeEventListener;
@@ -3356,7 +3353,7 @@ this.data = "";
 this.parts = [];
 this.here = "";
 this.timebase = 0;
-this.with_arrows = p.arrows ? true : false;
+this.with_arrows = !!p.arrows;
 this.display = p.disp ? p.disp : 0;
 this.timeoffset = p.offset ? p.offset : 0;
 this.laterlines = typeof(p.laterlines) != 'undefined' ? p.laterlines : true;

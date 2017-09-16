@@ -18,7 +18,6 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	
 	require_once $GLOBALS[pear_dir]."Spreadsheet/Excel/Writer.php";
 	
 	// load data

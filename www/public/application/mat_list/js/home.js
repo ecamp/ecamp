@@ -101,14 +101,14 @@ window.addEvent('load', function()
 							{	alert(ans.msg);	}
 						}
 					}).send();
-				}
+				};
 				
 				item.addEvent('click', function()
 				{	$popup.popup_yes_no("Einkaufsliste l&ouml;schen", "Diese Einkaufsliste wirklick l&ouml;schen?", yes_function, function(){}, "popup_no_button");	});
 	
 			});
 		}
-	}
+	};
 	
 	
 	$$('.mat_list li').each( function( item ){	mat_list_setup( item );	} );

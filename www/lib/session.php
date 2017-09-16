@@ -18,45 +18,37 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	
-	function session_setup( $user_id )
+	function session_setup($user_id)
 	{
-		$query = "SELECT camp.id FROM camp, user WHERE user.last_camp = camp.id AND user.id = $user_id";
+		$query = "SELECT camp.id FROM camp, user WHERE user.last_camp = camp.id AND user.id = $user_id;";
 		$result = mysql_query( $query );
 		
-		if( mysql_num_rows( $result ) )
-		{	$camp_id = mysql_result( $result, 0, 'id' );	}
-		else
-		{	$camp_id = 0;	}
-		
-		
-		
+		if(mysql_num_rows($result)){
+			$camp_id = mysql_result($result,0,'id');
+		}else{
+			$camp_id = 0;
+		}
+
 		session_unset();
 		
 		$_SESSION['user_id'] = $user_id;
 		$_SESSION['user_ip'] = $_SERVER['REMOTE_ADDR'];
 		$_SESSION['camp_id'] = $camp_id;
-	
 	}
-	
-	
-	function autologin_setup( $user_id )
+
+	function autologin_setup($user_id)
 	{
-		if( !is_numeric( $user_id ) )
-		{	return;	}
+		if(!is_numeric($user_id))
+		{return;}
+
+		$auth_key = md5(microtime());
+		$auth_key_db = md5($auth_key);
 		
+		$query = "UPDATE user SET auth_key = '$auth_key_db' WHERE id = $user_id LIMIT 1;";
+		mysql_query($query);
 		
-		
-		$auth_key = md5( microtime() );
-		$auth_key_db = md5( $auth_key );
-		
-		$query = "UPDATE user SET auth_key = '$auth_key_db' WHERE id = $user_id LIMIT 1";
-		mysql_query( $query );
-		
-		setcookie( 'autologin', true, time() + 14*24*60*60, '/' );
-		setcookie( 'user_id', $user_id, time() + 14*24*60*60, '/' );
-		setcookie( 'auth_key', $auth_key, time() + 14*24*60*60, '/' );
+		setcookie('autologin',true,time() + 14*24*60*60,'/');
+		setcookie('user_id',$user_id,time() + 14*24*60*60,'/');
+		setcookie('auth_key',$auth_key,time() + 14*24*60*60,'/');
 	}
-	
-	
 ?>

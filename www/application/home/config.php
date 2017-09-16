@@ -18,35 +18,30 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 # Sichheitslevel der einzelnen Aktionen/Dateien
 # --> Kommandos/Files die nicht aufgeührt sind, können nicht aufgerufen werden
-$security_level = array( 'home' => 10,
-                         'feedback' => 10,
-						 'help' =>10,
-						 "take_feedback" => 10,
-						 "action_change_skin" => 100,
-						 "action_del_news" => 10
-						 
-						 );
+$security_level = array(
+	'home' => 10,
+	'feedback' => 10,
+	'help' =>10,
+	"take_feedback" => 10,
+	"action_change_skin" => 100,
+	"action_del_news" => 10
+);
 
 $css = array(
-				"home.css" => "app"
-				
-			);
+	"home.css" => "app"
+);
 
 $js  = array(
-				"mootools-core-1.4.js" 		=> "global",
-				"mootools-more-1.4.js" 		=> "global"
-				//"jsos.js"			=> "global",
-				//"event.js" 			=> "module",
-				//"postit.js"         => "module"
-				//"home.js" => "app"
-				
-			);
+	"mootools-core-1.4.js" 		=> "global",
+	"mootools-more-1.4.js" 		=> "global"
+	//"jsos.js"			=> "global",
+	//"event.js" 			=> "module",
+	//"postit.js"         => "module"
+	//"home.js" => "app"
+);
 
 # Standardkommando
 if( $_page->cmd == "" ) {	$_page->cmd = "home";	}
-
-
 ?>

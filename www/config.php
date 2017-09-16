@@ -37,8 +37,8 @@
 	$GLOBALS['pear_dir'] = "/home/pfadiluz/www/pear/PEAR/";
 	ini_set("include_path", ".:/usr/local/lib/php:/home/pfadiluz/www/pear/PEAR/");
 	
-	$GLOBALS['captcha_pub'] = "";
-	$GLOBALS['captcha_prv'] = "";
+	$GLOBALS['captcha_pub'] = "6LfUYiYUAAAAACv-13KycB69tFVUDOL0UWsfH0KM";
+	$GLOBALS['captcha_prv'] = "6LfUYiYUAAAAAMme0ircNs6eiQd2fqpwcrVmHKzS";
 	
 	
 	$GLOBALS['time_shift'] = 300; // Minuten;
@@ -61,7 +61,7 @@
 		$GLOBALS['host']	= "localhost";
 		$GLOBALS['db']	= "ecamp";
 		$GLOBALS['us'] 	= "root";
-		$GLOBALS['pw'] 	= "root";
+		$GLOBALS['pw'] 	= "";
 	}
 	
 	$GLOBALS['en_to_de'] = array(

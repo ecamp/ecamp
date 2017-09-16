@@ -36,7 +36,7 @@
 		public $type;
 		public $resp;
 		
-		function print_data_mat_event( $data, $pid )
+		function __construct($data,$pid )
 		{
 			$this->pid			= $pid;
 			$this->id			= $data['id'];

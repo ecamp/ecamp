@@ -30,7 +30,7 @@
 		public $name;
 		
 		
-		function print_data_event_checklist_class( $data, $pid )
+		function __construct($data,$pid )
 		{
 			$this->pid			= $pid;
 			$this->id 			= $data['id'];

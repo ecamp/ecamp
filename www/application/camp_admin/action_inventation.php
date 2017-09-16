@@ -18,7 +18,6 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
   $user_camp_id = mysql_real_escape_string($_REQUEST[user_camp_id]);
   $accept       = mysql_real_escape_string($_REQUEST[accept]);
 	
@@ -53,20 +52,14 @@
     
     $_news->add2camp( "Neuer Leiter im Team", "$leader hat der Mitarbeit im Lager '" . $camp['short_name'] . "' zugestimmt.", time(), $camp['id'] );
 	$_news->add2user( "Teilnahme an einem Lager zugestimmt", "Du hast der Mitarbeit am Lager '" . $camp['short_name'] . "' zugestimmt.", time(), $_user->id );
-    
-    
-    
-    
+
     mysql_query("UPDATE user_camp SET active='1' WHERE id='$user_camp_id'");
-   
   }
   else if( $accept == 0 )
   {
   	mysql_query("DELETE FROM user_camp WHERE id='$user_camp_id'");
   }
-  
-  
+
   header("Location: index.php?app=camp_admin");
   die();
-
 ?>

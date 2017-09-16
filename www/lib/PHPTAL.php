@@ -50,7 +50,6 @@ require_once PHPTAL_DIR.'PHPTAL/Context.php';
 require_once PHPTAL_DIR.'PHPTAL/Exception.php';
 require_once PHPTAL_DIR.'PHPTAL/TalesRegistry.php';
 
-
 /**
  * PHPTAL template entry point.
  *
