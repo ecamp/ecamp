@@ -18,22 +18,18 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+	function ecamp_send_mail($to, $subject, $body){
+		$from = 'eCamp <ecamp@pfadiluzern.ch>';
+		$to = '<' . $to . '>';
 
-require_once $GLOBALS[pear_dir]."Mail.php";
+		$headers = array(
+			'From' => $from,
+			'To' => $to,
+			'Subject' => $subject
+		);
 
-function ecamp_send_mail($to, $subject, $body){
-	$from = 'eCamp <ecamp@pfadiluzern.ch>';
-	$to = '<' . $to . '>';
+		$smtp = Mail::factory('smtp', $GLOBALS['smtp-config']);
 
-	$headers = array(
-	    'From' => $from,
-	    'To' => $to,
-	    'Subject' => $subject
-	);
-
-	$smtp = Mail::factory('smtp', $GLOBALS['smtp-config']);
-
-	return $smtp->send($to, $headers, $body);
-}
-
+		return $smtp->send($to, $headers, $body);
+	}
 ?>

@@ -18,9 +18,6 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	
-	
-	
 	class page
 	{
 		public $cssFiles = array();
@@ -123,17 +120,12 @@
 					if( $type == "js" )	{	$this->addJsFile( $path );	continue;	}
 					if( $type == "css")	{	$this->addCssFile( $path );	continue;	}				
 				}
-				
 			}
 			
 			fclose( $fh );
 		}
-		
-		
 	}
-	
-	
-	
+
 	class user
 	{
 		public $id;
@@ -192,8 +184,7 @@
 			if( isset( $data[is_course] ) )			{	$this->is_course = $data[is_course];	}
 			if( isset( $data[creator_user_id] ) )	{	$this->creator_user_id = $data[creator_user_id];	}
 		}
-		
-		
+
 		function category( $id )
 		{	return $this->check( "SELECT id FROM category WHERE id = $id AND camp_id = $this->id" );	}
 		
@@ -258,8 +249,7 @@
 		
 		function user( $id )
 		{	return $this->check( "SELECT user_id FROM user_camp WHERE user_id = $id AND camp_id = $this->id AND active = 1" );	}
-		
-		
+
 		function check( $query )
 		{
 			$result = mysql_query( $query );
@@ -268,7 +258,6 @@
 			else
 			{	return mysql_num_rows( $result );	}
 		}
-		
 	}
 	
 	class js_env
@@ -311,8 +300,7 @@
 			
 			if( !$date )		{	$date = time();	}
 			if( $camp_id == 0 )	{	$camp_id = $_camp->id;	}
-			
-			
+
 			$query ="	SELECT user.id, user.news 
 						FROM user, user_camp 
 						WHERE 
@@ -320,21 +308,17 @@
 							user_camp.camp_id = $camp_id AND
 							user.id = user_camp.user_id";
 			$result = mysql_query( $query );
-			
-			
+
 			while( $user = mysql_fetch_assoc( $result ) )
 			{	$this->add2user( $title, $text, $date, $user['id'] );	}
-			
 		}
 		
 		function add2user( $title, $text, $date = 0, $user_id = 0 )
 		{
 			if( !$date )	{	$date = time();	}
 			if( !$user_id )	{	$_user->id;		}
-			
-			
+
 			$news = $this->load( $user_id );
-			
 			
 			while( array_key_exists( $date, $news ) )	{	$date ++;	}
 			$news[$date] = array( "key" => $date, "date" => date( "d.m.Y H:i", $date ), "title" => $title, "text" => $text );
@@ -343,8 +327,7 @@
 			
 			if( count( $news ) > $GLOBALS[news_num] )
 			{	$news = array_slice( $news, count( $news ) - $GLOBALS[news_num], $GLOBALS[news_num], true );	}
-			
-			
+
 			$this->save( $news, $user_id );
 		}
 		
@@ -354,12 +337,10 @@
 			if( !$user_id )	{	$user_id = $_user->id;	}
 			
 			$news = $this->load( $user_id );
-			
-			
+
 			$news[$key] = null;
 			$news = array_filter( $news );
-			
-			
+
 			$this->save( $news, $user_id );
 		}
 		
@@ -375,5 +356,4 @@
 			mysql_query( $query );
 		}
 	}
-	
 ?>

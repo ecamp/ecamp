@@ -32,117 +32,110 @@
 
 class c_date
 {
-  var $m_days = 0;	// Anzahl vergangene Tage seit dem 1.1.2000  (1.1.2000 => 0)
-  
-  # function setManual( $day, $month, $year ) 
-  # function setUnix( $timestamp )  
-  # function setString( $string )
-  
-  # function getUnix()
-  # function getString( $format )
-  # function getValue()
-  # function getDay()
-  # function getMonth()
-  # function getYear()
-  
-  // Datum manuell setzen 
-  function setDay2000($day)
-  {
-  	$this->m_days = $day;
-  	return $this;
-  }
-  
-  function setManual( $day, $month, $year )    
-  {
-  	$this->setUnix( gmmktime( 0,0,0,$month,$day,$year) );
-  	return $this;
-  }
-  
-  // Datum mittels eines Unix-Timestamp setzen
-  function setUnix( $timestamp )  
-  {
-    $tmp = $timestamp -  gmmktime( 0,0,0,1,1,2000);
-	$this->m_days = floor($tmp/60/60/24);
-  	return $this;
-  }             
-  
-  // Datum mittels eines Strings im Format 01.11.2007 setzen
-  function setString( $string )
-  {
-  	ereg("([0-9]{1,2})[\/\. -]+([0-9]{1,2})[\/\. -]+([0-9]{1,4})", $string, $regs);
-	$this->setUnix( gmmktime(0, 0, 0, $regs[2], $regs[1], $regs[3]) );
-  	return $this;
-  }
-  
-  // Unix-Timestamp zurückgeben
-  function getUnix()
-  {
-  	 return $this->m_days*24*60*60 + gmmktime( 0,0,0,1,1,2000); 
-  }                         
-  
-  // String im Format $format zurückgeben
-  function getString( $format )
-  {
-  	 return gmdate( $format, $this->getUnix() );
-  }			   
-  
-  // Wert $m_days zurückgeben
-  function getValue(){ return $this->m_days; }	   
+	var $m_days = 0;	// Anzahl vergangene Tage seit dem 1.1.2000  (1.1.2000 => 0)
+	
+	# function setManual( $day, $month, $year ) 
+	# function setUnix( $timestamp )  
+	# function setString( $string )
+	  
+	# function getUnix()
+	# function getString( $format )
+	# function getValue()
+	# function getDay()
+	# function getMonth()
+	# function getYear()
+	
+	// Datum manuell setzen 
+	function setDay2000($day)
+	{
+		$this->m_days = $day;
+		return $this;
+	}
+	  
+	function setManual( $day, $month, $year )    
+	{
+		$this->setUnix( gmmktime( 0,0,0,$month,$day,$year) );
+		return $this;
+	}
+	  
+	// Datum mittels eines Unix-Timestamp setzen
+	function setUnix( $timestamp )  
+	{
+		$tmp = $timestamp -  gmmktime( 0,0,0,1,1,2000);
+		$this->m_days = floor($tmp/60/60/24);
+		return $this;
+	}             
+	  
+	// Datum mittels eines Strings im Format 01.11.2007 setzen
+	function setString( $string )
+	{
+		ereg("([0-9]{1,2})[\/\. -]+([0-9]{1,2})[\/\. -]+([0-9]{1,4})", $string, $regs);
+		$this->setUnix( gmmktime(0, 0, 0, $regs[2], $regs[1], $regs[3]) );
+		return $this;
+	}
+	  
+	// Unix-Timestamp zurückgeben
+	function getUnix()
+	{
+		return $this->m_days*24*60*60 + gmmktime( 0,0,0,1,1,2000); 
+	}                         
+	  
+	// String im Format $format zurückgeben
+	function getString( $format )
+	{
+		return gmdate( $format, $this->getUnix() );
+	}			   
+	  
+	// Wert $m_days zurückgeben
+	function getValue(){ return $this->m_days; }	   
 
-  // Montatstag zurückgeben
-  function getDay()
-  {
-     return gmdate( "j", $this->getUnix() );
-  }	
-  
-  function getDayName()
-  {
-  	 $change = array(
-	 			
-				"Mon" => "Montag",
-				"Tue" => "Dienstag",
-				"Wed" => "Mittowch",
-				"Thu" => "Donnerstag",
-				"Fri" => "Freitag",
-				"Sat" => "Samstag",
-				"Sun" => "Sonntag"
-				);
+	// Montatstag zurückgeben
+	function getDay()
+	{
+		return gmdate( "j", $this->getUnix() );
+	}	
 	 
-	 
-	 return $change[gmdate("D", $this->getUnix())];
-	 
-  }
-  
-  function getDayShortName()
-  {
-  	 $change = array(
-	 			
-				"Mon" => "Mo",
-				"Tue" => "Di",
-				"Wed" => "Mi",
-				"Thu" => "Do",
-				"Fri" => "Fr",
-				"Sat" => "Sa",
-				"Sun" => "So"
-				);
-	 
-	 
-	 return $change[gmdate("D", $this->getUnix())];
-	 
-  }
-  		
-  			       
-  // Monat zurückgeben
-  function getMonth()
-  {
-     return gmdate( "n", $this->getUnix() );
-  }						  
-  
-  // Jahr zurückgeben 
-  function getYear()
-  {
-  	 return gmdate( "Y", $this->getUnix() );
-  }						   
+	function getDayName()
+	{
+		$change = array(
+			"Mon" => "Montag",
+			"Tue" => "Dienstag",
+			"Wed" => "Mittowch",
+			"Thu" => "Donnerstag",
+			"Fri" => "Freitag",
+			"Sat" => "Samstag",
+			"Sun" => "Sonntag"
+		);
+		 
+		return $change[gmdate("D", $this->getUnix())];
+	}
+	  
+	function getDayShortName()
+	{
+		$change = array(
+			"Mon" => "Mo",
+			"Tue" => "Di",
+			"Wed" => "Mi",
+			"Thu" => "Do",
+			"Fri" => "Fr",
+			"Sat" => "Sa",
+			"Sun" => "So"
+		);
+		
+		return $change[gmdate("D", $this->getUnix())]; 
+	}
+	
+	// Monat zurückgeben
+	function getMonth()
+	{
+		return gmdate( "n", $this->getUnix() );
+	}						  
+	  
+	// Jahr zurückgeben 
+	function getYear()
+	{
+		return gmdate( "Y", $this->getUnix() );
+	}
 }
 
 class c_time

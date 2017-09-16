@@ -47,10 +47,10 @@
    
   #############################################################################
   # Libraries einbinden
-  include($lib_dir . "/mysql.php"); 			// erstellt die MySQL-Verbindung
+  include($lib_dir . "/mysql.php");				// erstellt die MySQL-Verbindung
   include($lib_dir . "/validation.php");		// Funktionen zum Überprüfen von User-Eingaben
   include($lib_dir . "/sqlqueries.php");		// gepeicherte SQL-Queries
-  //	include($lib_dir . "/template.php");			// Funktionen zum Laden von templates
+  //	include($lib_dir . "/template.php");	// Funktionen zum Laden von templates
   include($lib_dir . "/functions/error.php");	// Error-Handling
   include($lib_dir . "/functions/date.php");
   include($lib_dir . "/functions/other.php");
@@ -75,9 +75,9 @@
   # Template-Engine einbinden
   require_once("./lib/PHPTAL.php");
   
-  if( $_SESSION[skin] == "" ) {	$_SESSION[skin] = $GLOBALS[skin];	}
+  if( $_SESSION['skin'] == "" ) {	$_SESSION['skin'] = $GLOBALS['skin'];	}
   
-  $_page->html = new PHPTAL("public/skin/".$_SESSION[skin]."/main.tpl");
+  $_page->html = new PHPTAL("public/skin/".$_SESSION['skin']."/main.tpl");
   //$_page->html = new PHPTAL("template/global/main.tpl");
   $_page->html->setEncoding('UTF-8');
   $_page->html->set( 'show_info_box', 0 );
@@ -260,5 +260,4 @@
 	  $tidy->cleanRepair();
 	  echo tidy_get_output($tidy);
   }
- 
 ?>

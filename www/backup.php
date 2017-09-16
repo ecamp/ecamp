@@ -18,10 +18,8 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+	echo "MySQL-Dump saved in: /home/pfadiluz/tmp/ecamp2/".shell_exec("date +%s_backup_%Y-%m-%d_%H:%M:%S.sql");
+	//echo shell_exec("man date");
 
-echo "MySQL-Dump saved in: /home/pfadiluz/tmp/ecamp2/".shell_exec("date +%s_backup_%Y-%m-%d_%H:%M:%S.sql");
-//echo shell_exec("man date");
-
-shell_exec("/usr/local/bin/mysqldump -h pfadiluz.mysql.db.internal -u root -p root pfadiluz_ecamp2 > /home/pfadiluz/tmp/ecamp2/$(date +%s_mysqldump_%Y-%m-%d_%H:%M:%S.sql)");
-
+	shell_exec("/usr/local/bin/mysqldump -h pfadiluz.mysql.db.internal -u root -p root pfadiluz_ecamp2 > /home/pfadiluz/tmp/ecamp2/$(date +%s_mysqldump_%Y-%m-%d_%H:%M:%S.sql)");
 ?>
