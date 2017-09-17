@@ -7,7 +7,6 @@
 var HD = new Class(
 {
 	Extends: Hash,
-	
 	read: function( path )
 	{
 		var file = this;
@@ -142,7 +141,6 @@ var DB = new Class(
 			
 			data.each( function( item, index )
 			{	this.insert( table, row, index, item );	}.bind(this) );
-			
 		}
 
 		if( arguments.length == 4 )
@@ -155,7 +153,6 @@ var DB = new Class(
 			if( $type( data ) == 'object' )	{	data = new Hash( data );	}
 			
 			$OS.$HD.write( [ '$DB', table, row ], index, data );
-			
 		}
 		
 		return this;

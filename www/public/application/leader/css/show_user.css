@@ -7,20 +7,12 @@ img.profile_image
 	
 }
 */
-
-h1.detail_title
-{
-	
+h1.detail_title{
 	margin-left: 20px;
-	
 }
-
-table.detail_table
-{
+table.detail_table{
 	margin-bottom: 50px;
 }
-
-h1.detail_title, table.detail_table
-{
+h1.detail_title, table.detail_table{
 	padding-left: 40px;
 }

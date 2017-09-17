@@ -34,7 +34,6 @@ alert( $$('ul.autocompleter-choices') );
 
 $$('ul.autocompleter-choices').setStyle( 'z-index', 1100 );
 
-
 alert( "TEST" );
 
 $$('.dp_mat_buy_add').addEvent('click', function()
@@ -77,6 +76,4 @@ $$('.dp_mat_buy_add').addEvent('click', function()
 			
 		}.bind(this)
 	}).send();
-	
-	
 });

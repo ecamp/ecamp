@@ -16,9 +16,7 @@
  */
 
 var FancyUpload2 = new Class({
-
 	Extends: Swiff.Uploader,
-
 	options: {
 		limitSize: false,
 		limitFiles: 5,
@@ -51,7 +49,6 @@ var FancyUpload2 = new Class({
 		this.parent(options);
 		this.render();
 	},
-
 
 	render: function() {
 		this.overallTitle = this.status.getElement('.overall-title');
@@ -266,7 +263,6 @@ var FancyUpload2 = new Class({
 	log: function(text, args) {
 		if (window.console) console.log(text.substitute(args || {}));
 	}
-
 });
 
 /**

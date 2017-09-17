@@ -118,41 +118,38 @@ var event_class = new Class({
 	{
 		
 		var content = {
-					'popup_image': new Element('img').setStyles({'position': 'absolute', 'left': '25px', 'top': '35px', 	'width': '100px', 'height': '100px'}).set('src', 'public/global/img/question.png'),
-					'popup_div_oldname': new Element('div').setStyles({'position': 'absolute', 'left': '150px', 'top': '50px', 'width': '150px', 'font-size': '11px'}).set('html', "Alter Blockname:"),
-					'popup_div_newname': new Element('div').setStyles({'position': 'absolute', 'left': '150px', 'top': '80px', 'width': '150px', 'font-size': '11px'}).set('html', "Neuer Blockname:"),
-					'popup_div_oldname_display': new Element('div').setStyles({'position': 'absolute', 'left': '270px', 'top': '50px', 'width': '200px', 'font-size': '11px'}).set('html', escapeHTML(this.name) ),
-					'popup_input_newname': new Element('input').setStyles({'position': 'absolute', 'left': '270px', 'top': '75px', 'width': '200px', 'font-size': '11px'}).set('type', 'text').set('value', this.name),
-					'popup_save_button': new Element('input').setStyles({'position': 'absolute', 'right': '180px', 'top': '130px', 'width': '100px'}).set('type', 'button').set('value', 'Sichern'),
-					'popup_abort_button': new Element('input').setStyles({'position': 'absolute', 'right': '50px', 'top': '130px', 'width': '100px'}).set('type', 'button').set('value', 'Abbrechen')
-					};
+			'popup_image': new Element('img').setStyles({'position': 'absolute', 'left': '25px', 'top': '35px', 	'width': '100px', 'height': '100px'}).set('src', 'public/global/img/question.png'),
+			'popup_div_oldname': new Element('div').setStyles({'position': 'absolute', 'left': '150px', 'top': '50px', 'width': '150px', 'font-size': '11px'}).set('html', "Alter Blockname:"),
+			'popup_div_newname': new Element('div').setStyles({'position': 'absolute', 'left': '150px', 'top': '80px', 'width': '150px', 'font-size': '11px'}).set('html', "Neuer Blockname:"),
+			'popup_div_oldname_display': new Element('div').setStyles({'position': 'absolute', 'left': '270px', 'top': '50px', 'width': '200px', 'font-size': '11px'}).set('html', escapeHTML(this.name) ),
+			'popup_input_newname': new Element('input').setStyles({'position': 'absolute', 'left': '270px', 'top': '75px', 'width': '200px', 'font-size': '11px'}).set('type', 'text').set('value', this.name),
+			'popup_save_button': new Element('input').setStyles({'position': 'absolute', 'right': '180px', 'top': '130px', 'width': '100px'}).set('type', 'button').set('value', 'Sichern'),
+			'popup_abort_button': new Element('input').setStyles({'position': 'absolute', 'right': '50px', 'top': '130px', 'width': '100px'}).set('type', 'button').set('value', 'Abbrechen')
+		};
 		var events 	= { 
-					'popup_abort_button': 	function(){	$popup.hide_popup();	},
-					'popup_save_button': 	function()
-						{
-							args = new Hash({
-												"event_id": this.id,
-												"name": 	$('popup_input_newname').get('value'),
-												"time":		$program.last_update_time
-											});
-							load_url = "index.php?app=program&cmd=change_name&" + args.toQueryString();
+			'popup_abort_button': 	function(){	$popup.hide_popup();	},
+			'popup_save_button': 	function(){
+				args = new Hash({
+					"event_id": this.id,
+					"name": 	$('popup_input_newname').get('value'),
+					"time":		$program.last_update_time
+				});
+				load_url = "index.php?app=program&cmd=change_name&" + args.toQueryString();
 							
-							this.wait();
-							$popup.hide_popup();
+				this.wait();
+				$popup.hide_popup();
 							
-							new Request.JSON(
-							{
-								url: load_url, 
-								onComplete: function(ans)
-								{
-									$program.run_update( ans ); //.bind( $program );
+				new Request.JSON({
+					url: load_url,
+					onComplete: function(ans){
+						$program.run_update( ans ); //.bind( $program );
 																		
-									//this.change_name(ans.name);
-									this.unwait();
-								}.bind(this)
-							}).send();
-						}.bind(this)
-					};
+						//this.change_name(ans.name);
+						this.unwait();
+					}.bind(this)
+				}).send();
+			}.bind(this)
+		};
 		
 		keyevents = {	"enter": events['popup_save_button'], "esc": events['popup_abort_button'] };
 		
@@ -187,40 +184,37 @@ var event_class = new Class({
 		}.bind(this) );
 		
 		var content = {
-					'popup_image': new Element('img').setStyles({'position': 'absolute', 'left': '25px', 'top': '35px', 	'width': '100px', 'height': '100px'}).set('src', 'public/global/img/question.png'),
-					'popup_div_oldname': new Element('div').setStyles({'position': 'absolute', 'left': '150px', 'top': '50px', 'width': '150px', 'font-size': '11px'}).set('html', "Alte Blockkategorie:"),
-					'popup_div_newname': new Element('div').setStyles({'position': 'absolute', 'left': '150px', 'top': '80px', 'width': '150px', 'font-size': '11px'}).set('html', "Neue Blockkategorie:"),
-					'popup_div_oldname_display': new Element('div').setStyles({'position': 'absolute', 'left': '290px', 'top': '50px', 'width': '180px', 'font-size': '11px'}).set('html', escapeHTML(this.category.short + this.category.name) ),
-					'popup_select_category': popup_select,
-					'popup_save_button': new Element('input').setStyles({'position': 'absolute', 'right': '180px', 'top': '130px', 'width': '100px'}).set('type', 'button').set('value', 'Sichern'),
-					'popup_abort_button': new Element('input').setStyles({'position': 'absolute', 'right': '50px', 'top': '130px', 'width': '100px'}).set('type', 'button').set('value', 'Abbrechen')
-					};
+			'popup_image': new Element('img').setStyles({'position': 'absolute', 'left': '25px', 'top': '35px', 	'width': '100px', 'height': '100px'}).set('src', 'public/global/img/question.png'),
+			'popup_div_oldname': new Element('div').setStyles({'position': 'absolute', 'left': '150px', 'top': '50px', 'width': '150px', 'font-size': '11px'}).set('html', "Alte Blockkategorie:"),
+			'popup_div_newname': new Element('div').setStyles({'position': 'absolute', 'left': '150px', 'top': '80px', 'width': '150px', 'font-size': '11px'}).set('html', "Neue Blockkategorie:"),
+			'popup_div_oldname_display': new Element('div').setStyles({'position': 'absolute', 'left': '290px', 'top': '50px', 'width': '180px', 'font-size': '11px'}).set('html', escapeHTML(this.category.short + this.category.name) ),
+			'popup_select_category': popup_select,
+			'popup_save_button': new Element('input').setStyles({'position': 'absolute', 'right': '180px', 'top': '130px', 'width': '100px'}).set('type', 'button').set('value', 'Sichern'),
+			'popup_abort_button': new Element('input').setStyles({'position': 'absolute', 'right': '50px', 'top': '130px', 'width': '100px'}).set('type', 'button').set('value', 'Abbrechen')
+		};
 		var events 	= { 
-					'popup_abort_button': 	function(){	$popup.hide_popup();	},
-					'popup_save_button': 	function()
-						{
-							args = new Hash({
-												"app": "program",
-												"cmd": "change_category",
-												"event_id": this.id,
-												"category_id": 	$('popup_select_category').get('value'),
-												"time": $program.last_update_time
-											});
-							load_url = "index.php?" + args.toQueryString();
-							this.wait();
-							$popup.hide_popup();
+			'popup_abort_button': 	function(){	$popup.hide_popup();	},
+			'popup_save_button': 	function(){
+				args = new Hash({
+					"app": "program",
+					"cmd": "change_category",
+					"event_id": this.id,
+					"category_id": 	$('popup_select_category').get('value'),
+					"time": $program.last_update_time
+				});
+				load_url = "index.php?" + args.toQueryString();
+				this.wait();
+				$popup.hide_popup();
 							
-							new Request.JSON(
-							{
-								url: load_url, 
-								onComplete: function( ans )
-								{
-									$program.run_update( ans );
-									this.unwait();
-								}.bind(this)
-							}).send();
-						}.bind(this)
-					};
+				new Request.JSON({
+					url: load_url,
+					onComplete: function( ans ){
+						$program.run_update( ans );
+						this.unwait();
+					}.bind(this)
+				}).send();
+			}.bind(this)
+		};
 					
 		keyevents = {	"enter": events['popup_save_button'], "esc": events['popup_abort_button'] };
 					
@@ -270,48 +264,46 @@ var event_class = new Class({
 		new Sortables([resp_user, user_pool], { 'clone': true } );
 		
 		var content = {
-					'popup_image': new Element('img').setStyles({'position': 'absolute', 'left': '25px', 'top': '35px', 	'width': '100px', 'height': '100px'}).set('src', 'public/global/img/question.png'),
-					'popup_div_leader': new Element('div').setStyles({'position': 'absolute', 'left': '160px', 'top': '30px', 'width': '150px', 'font-size': '11px'}).set('html', "Leiter:"),
-					'popup_div_resp': new Element('div').setStyles({'position': 'absolute', 'left': '320px', 'top': '30px', 'width': '150px', 'font-size': '11px'}).set('html', "Verantwortliche:"),
-					'popup_user_pool': user_pool.setStyles({'position': 'absolute', 'left': '160px', 'top': '45px', 'width': '150px', 'height': '75px', 'font-size': '11px', 'list-style-type': 'none', 'border': '1px solid black'}),
-					'popup_resp_user': resp_user.setStyles({'position': 'absolute', 'left': '320px', 'top': '45px', 'width': '150px', 'height': '75px', 'font-size': '11px', 'list-style-type': 'none', 'border': '1px solid black'}),
-					'popup_save_button': new Element('input').setStyles({'position': 'absolute', 'right': '180px', 'top': '130px', 'width': '100px'}).set('type', 'button').set('value', 'Sichern'),
-					'popup_abort_button': new Element('input').setStyles({'position': 'absolute', 'right': '50px', 'top': '130px', 'width': '100px'}).set('type', 'button').set('value', 'Abbrechen')
-					};
+			'popup_image': new Element('img').setStyles({'position': 'absolute', 'left': '25px', 'top': '35px', 	'width': '100px', 'height': '100px'}).set('src', 'public/global/img/question.png'),
+			'popup_div_leader': new Element('div').setStyles({'position': 'absolute', 'left': '160px', 'top': '30px', 'width': '150px', 'font-size': '11px'}).set('html', "Leiter:"),
+			'popup_div_resp': new Element('div').setStyles({'position': 'absolute', 'left': '320px', 'top': '30px', 'width': '150px', 'font-size': '11px'}).set('html', "Verantwortliche:"),
+			'popup_user_pool': user_pool.setStyles({'position': 'absolute', 'left': '160px', 'top': '45px', 'width': '150px', 'height': '75px', 'font-size': '11px', 'list-style-type': 'none', 'border': '1px solid black'}),
+			'popup_resp_user': resp_user.setStyles({'position': 'absolute', 'left': '320px', 'top': '45px', 'width': '150px', 'height': '75px', 'font-size': '11px', 'list-style-type': 'none', 'border': '1px solid black'}),
+			'popup_save_button': new Element('input').setStyles({'position': 'absolute', 'right': '180px', 'top': '130px', 'width': '100px'}).set('type', 'button').set('value', 'Sichern'),
+			'popup_abort_button': new Element('input').setStyles({'position': 'absolute', 'right': '50px', 'top': '130px', 'width': '100px'}).set('type', 'button').set('value', 'Abbrechen')
+		};
 		var events 	= { 
-					'popup_abort_button': 	function(){	$popup.hide_popup();	},
-					'popup_save_button': 	function()
-						{
-							resp_user = new Array();
-							user_pool = new Array();
+			'popup_abort_button': 	function(){	$popup.hide_popup();	},
+			'popup_save_button': 	function() {
+				resp_user = new Array();
+				user_pool = new Array();
 							
-							$$('#popup_resp_user li').each(function(item){	resp_user.include( item.id ); });
-							$$('#popup_user_pool li').each(function(item){	user_pool.include( item.id ); });
+				$$('#popup_resp_user li').each(function(item){	resp_user.include( item.id ); });
+				$$('#popup_user_pool li').each(function(item){	user_pool.include( item.id ); });
 							
-							args = new Hash({ 
-												"app":			"program",
-												"cmd":			"change_responsible_user",
-												"event_id": 	this.id,
-												"resp_user": 	resp_user,
-												"user_pool": 	user_pool,
-												"time": 		$program.last_update_time
-											});
-							load_url = "index.php?" + args.toQueryString();
+				args = new Hash({
+					"app":			"program",
+					"cmd":			"change_responsible_user",
+					"event_id": 	this.id,
+					"resp_user": 	resp_user,
+					"user_pool": 	user_pool,
+					"time": 		$program.last_update_time
+				});
+				load_url = "index.php?" + args.toQueryString();
 							
-							this.wait();
-							$popup.hide_popup();
+				this.wait();
+				$popup.hide_popup();
 							
-							new Request.JSON(
-							{
-								url: load_url, 
-								onComplete: function(ans)
-								{
-									$program.run_update( ans );
-									this.unwait();
-								}.bind(this)
-							}).send(); 
-						}.bind(this)
-					};
+				new Request.JSON({
+					url: load_url,
+					onComplete: function(ans)
+					{
+						$program.run_update( ans );
+						this.unwait();
+					}.bind(this)
+				}).send();
+			}.bind(this)
+		};
 					
 		keyevents = {	"enter": events['popup_save_button'], "esc": events['popup_abort_button'] };
 					
@@ -353,9 +345,9 @@ var event_class = new Class({
 			{	
 				load_url = "index.php?app=program&cmd=unlock_event&event_id=" + this.id;
 				new Request({ 
-								url: load_url,
-								onSuccess: function(){		this.change_in_edition(0, "0");	}.bind(this)
-							}).send();
+					url: load_url,
+					onSuccess: function(){		this.change_in_edition(0, "0");	}.bind(this)
+				}).send();
 			}.bind(this), 
 			$empty, 
 			'popup_no_button');

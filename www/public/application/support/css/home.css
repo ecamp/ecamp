@@ -1,6 +1,4 @@
-
-div#list_container
-{	
+div#list_container{
 	overflow-y: auto;
 	
 	position: absolute;
@@ -8,7 +6,6 @@ div#list_container
 	top: 260px;
 	bottom: 0;
 	right: 1px;
-	
-	
+
 	border-top: 1px solid rgb(51, 85, 136);
 }

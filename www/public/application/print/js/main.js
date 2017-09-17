@@ -19,7 +19,6 @@
 
 window.addEvent( 'domready', function()
 {
-
 	var view = $('view');
 	var libary = $('libary');
 	var trash = $('trash');
@@ -37,8 +36,7 @@ window.addEvent( 'domready', function()
 			{	element.destroy();	}
 		}
 	});
-	
-	
+
 	$$('li.libary').each( function( item ){		
 		item.addEvent( 'mousedown', function( e )
 		{
@@ -56,14 +54,9 @@ window.addEvent( 'domready', function()
 			
 		});
 	});
-	
-	
+
 	//new Sortable( 'libary' );
 	//$('libary').makeSortable();
-	
-	
-	
-	
 	$('print').addEvent('click', function()
 	{		
 		var order = new Hash();
@@ -110,7 +103,5 @@ window.addEvent( 'domready', function()
 		
 		$( 'form_view' ).set('action', 'index.php?' + order.toQueryString() );
 		$('form_view').submit();
-		
-		
 	});
 });

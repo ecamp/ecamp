@@ -16,11 +16,8 @@
  */
 
 Swiff.Uploader = new Class({
-
 	Extends: Swiff,
-
 	Implements: Events,
-
 	options: {
 		path: 'Swiff.Uploader.swf',
 		multiple: true,
@@ -71,7 +68,6 @@ Swiff.Uploader = new Class({
 	Method: browse
 		Open the file browser.
 	*/
-
 	browse: function(typeFilter){
 		return this.remote('browse', $pick(typeFilter, this.options.typeFilter));
 	},
@@ -80,7 +76,6 @@ Swiff.Uploader = new Class({
 	Method: upload
 		Starts the upload of all selected files.
 	*/
-
 	upload: function(options){
 		var current = this.options;
 		options = $extend({data: current.data, url: current.url, method: current.method, fieldName: current.fieldName}, options);
@@ -96,7 +91,6 @@ Swiff.Uploader = new Class({
 		name - (string) Filename
 		name - (string) Filesize in byte
 	*/
-
 	removeFile: function(file){
 		if (file) file = {name: file.name, size: file.size};
 		return this.remote('removeFile', file);
@@ -109,9 +103,7 @@ Swiff.Uploader = new Class({
 	Returns:
 		(array) An array with files
 	*/
-
 	getFileList: function(){
 		return this.remote('getFileList');
 	}
-
 });

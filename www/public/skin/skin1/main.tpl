@@ -14,9 +14,6 @@
         <link rel="stylesheet" type="text/css" href="./public/skin/skin1/css/main.css" />
         <link rel="stylesheet" type="text/css" href="./public/skin/skin1/css/color.css" />
         <link rel="stylesheet" type="text/css" href="./public/skin/skin1/css/layout.css" />
-    	
-    	
-        
     </head>
     
     <script tal:repeat="js includes/js" type="text/javascript" language="javascript" tal:attributes="src js"></script>
@@ -25,10 +22,7 @@
     
     <script tal:condition="user/admin" type="text/javascript" language="javascript" src="public/module/js/admin.js"></script>
     
-    
     <body id="body" marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" class="bgcolor">
-	
-    
     	<!-- div_includes -->
     
     	<div class="body">
@@ -64,8 +58,5 @@
             	<img src="./public/global/img/postit.png" class="hidden" />
             </div>
         </div>
-    
-    
     </body>
-    
 </html>

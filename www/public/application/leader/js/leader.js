@@ -29,16 +29,13 @@ window.addEvent('load', function()
 		onComplete: function( ans )
 		{	dropdown = ans;	}
 	}).send();
-	
-	
+
 	$$('.user_data').each( function(item)
 	{
 		if( item.getElement('.exit') )
 		{
 			item.getElement('.exit').addEvent('click', function()
 			{
-				
-				
 				yes_function = function()
 				{
 					data = new Hash( {	
@@ -94,20 +91,19 @@ window.addEvent('load', function()
 					new Element('input').set('type', 'hidden').set('name', 'cmd').set('value', 'action_change_user_function').inject(form);
 					new Element('input').set('type', 'hidden').set('name', 'user_camp_id').set('value', user_camp_id ).inject(form);
 					
-					
 					content	= {	
-								"form": 			form,
-								"search_button":	new Element('input').setStyles({'position': 'absolute', 'right': '30px', 'top': '60px', 'width': '90px'}).set('type', 'submit').set('value', 'Ändern'),
-								"cancel_button":	new Element('button').setStyles({'position': 'absolute', 'right': '130px', 'top': '60px', 'width': '90px'}).set('html', 'Abbrechen')
-							};
+						"form": 			form,
+						"search_button":	new Element('input').setStyles({'position': 'absolute', 'right': '30px', 'top': '60px', 'width': '90px'}).set('type', 'submit').set('value', 'Ändern'),
+						"cancel_button":	new Element('button').setStyles({'position': 'absolute', 'right': '130px', 'top': '60px', 'width': '90px'}).set('html', 'Abbrechen')
+					};
 					events	= {
-								"cancel_button":	function(){	$popup.hide_popup(); },
-								"search_button":	function(){	form.submit();	}
-							};
+						"cancel_button":	function(){	$popup.hide_popup(); },
+						"search_button":	function(){	form.submit();	}
+					};
 					keyevents	= {
-								"esc":		function(){	$popup.hide_popup(); },
-								"enter":	function(){	form.submit();	}
-							};
+						"esc":		function(){	$popup.hide_popup(); },
+						"enter":	function(){	form.submit();	}
+					};
 					
 					$popup.popup_HTML("Leiter editieren", content, events, keyevents, true, 280, 90);
 				});
@@ -116,8 +112,7 @@ window.addEvent('load', function()
 		else
 		{	$$('.edit').addClass('hidden');	}
 	});
-	
-	
+
 	if( auth.access( 40 ) )
 	{
 		$$('.function_title').each( function(item)
@@ -134,8 +129,7 @@ window.addEvent('load', function()
 	{
 		$$('.add_leader').addClass('hidden');
 	}
-	
-	
+
 	search_form = function( function_id )
 	{
 		user = [];
@@ -156,34 +150,29 @@ window.addEvent('load', function()
 		new Element('input').set('type', 'hidden').set('name', 'cmd').set('value', 'action_search_user').inject(form);
 		
 		content	= {	
-					"form": 			form,
-					"search_button":	new Element('button').setStyles({'position': 'absolute', 'right': '30px', 'top': '130px', 'width': '90px'}).set('html', 'Suchen'),
-					"cancel_button":	new Element('button').setStyles({'position': 'absolute', 'right': '130px', 'top': '130px', 'width': '90px'}).set('html', 'Abbrechen'),
-				};
+			"form": 			form,
+			"search_button":	new Element('button').setStyles({'position': 'absolute', 'right': '30px', 'top': '130px', 'width': '90px'}).set('html', 'Suchen'),
+			"cancel_button":	new Element('button').setStyles({'position': 'absolute', 'right': '130px', 'top': '130px', 'width': '90px'}).set('html', 'Abbrechen'),
+		};
 		events	= {
-					"cancel_button":	function(){	$popup.hide_popup();	},
-					"search_button":	function()
-					{
-						data = form.toQueryString();
+			"cancel_button":	function(){	$popup.hide_popup();	},
+			"search_button":	function(){
+				data = form.toQueryString();
 
-						$popup.hide_popup();
+				$popup.hide_popup();
 
-						new Request.JSON(
-						{
-							method: 'get',
-							url: 'index.php',
-							data: data,
-							onComplete: function(ans)
-							{
-								result_form( function_id, ans );
-							}
-						}).send();
-						
+				new Request.JSON({
+					method: 'get',
+					url: 'index.php',
+					data: data,
+					onComplete: function(ans){
+						result_form( function_id, ans );
 					}
-				};
+				}).send();
+			}
+		};
 		keyevents = {	"enter": events['search_button'], "esc": events['cancel_button']	};
-		
-		
+
 		$popup.popup_HTML("Leiter suchen", content, events, keyevents, true, 500, 160);
 		content['form'].getElement( 'input[name=scoutname]' ).focus();
 	};
@@ -234,22 +223,21 @@ window.addEvent('load', function()
 		top = top.toInt() + 40 + "px";
 		
 		content	= {
-					"form": 			form,
-					"search_button":	new Element('button').setStyles({'position': 'absolute', 'left': '270px', 'width': '100px', 'top': top}).set('html', 'Neue Suche'),
-					"cancel_button":	new Element('button').setStyles({'position': 'absolute', 'left': '390px', 'width': '100px', 'top': top}).set('html', 'Abbrechen')
-				};
+			"form": 			form,
+			"search_button":	new Element('button').setStyles({'position': 'absolute', 'left': '270px', 'width': '100px', 'top': top}).set('html', 'Neue Suche'),
+			"cancel_button":	new Element('button').setStyles({'position': 'absolute', 'left': '390px', 'width': '100px', 'top': top}).set('html', 'Abbrechen')
+		};
 		events	= {
-					"search_button":	function(){	$popup.hide_popup();	search_form( function_id );	},
-					"cancel_button":	function(){	$popup.hide_popup();	}
-				};
+			"search_button":	function(){	$popup.hide_popup();	search_form( function_id );	},
+			"cancel_button":	function(){	$popup.hide_popup();	}
+		};
 		keyevents	= {
-					"enter":	function(){	$popup.hide_popup();	search_form( function_id );	},
-					"esc":		function(){	$popup.hide_popup();	}
-				};
+			"enter":	function(){	$popup.hide_popup();	search_form( function_id );	},
+			"esc":		function(){	$popup.hide_popup();	}
+		};
 		
 		top = top.toInt() + 30;
 		
 		$popup.popup_HTML("Leiter finden", content, events, keyevents, true, 500, top);
 	}
-	
 });

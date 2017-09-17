@@ -1,19 +1,13 @@
-li.top
-{
+li.top{
 	margin-top: 10px;
 }
-
-li.bottom
-{
+li.bottom{
 	margin-top: 2px;
 	margin-bottom: 4px;
 }
-
-b.short_name
-{
+b.short_name{
 	display: inline;
 	
 	padding: 1px;
 	margin: 1px;
-	
 }

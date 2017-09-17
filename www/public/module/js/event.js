@@ -18,15 +18,12 @@
  */
 
 /** eCampConfig
-
 	<depend on="public/global/js/mootools-core-1.4.js" type="js" /> <depend on="public/global/js/mootools-more-1.4.js" type="js" />
-
 **/
 
 Asset.css( "public/application/event/css/home.css" );
 Asset.css( "public/application/event/css/autocompliter.css" );
 Asset.css( "public/global/css/tips.css" );
-		
 
 $event = new Hash(
 {
@@ -39,15 +36,13 @@ $event = new Hash(
 	aim_checked: new Hash(),
 	checklist_checked: new Hash(),
 	
-	edit: function( event_id )
-	{		
-		if( $(this.div) )	{	this.div.destroy();	}
+	edit: function( event_id ){
+		if($(this.div)){this.div.destroy();}
 		this.div = new Element('div').inject('body');
 		
 		this.show_loading();
 		
-		new Request.HTML(
-		{
+		new Request.HTML({
 			url:		'index.php?app=event&event_id=' + event_id,
 			onSuccess: 	function( responseTree, responseElements, responseHTML, responseJavaScript )
 			{
@@ -58,19 +53,16 @@ $event = new Hash(
 				
 				this.hide_loading();
 				this.setup_function();
-				
 			}.bind(this)
 		}).send();
 	},
 	
-	close: function()
-	{
+	close: function(){
 		this.id = 0;
 		this.div.destroy();
 	},
 	
-	show_loading: function()
-	{
+	show_loading: function(){
 		this.loading = new Element( 'div').inject('body');
 		
 		this.loading.setStyle( 'position', 'absolute' );
@@ -88,19 +80,15 @@ $event = new Hash(
 		
 		this.loading.setStyle( 'text-align', 'center' );
 		
-		
 		this.loading.set('html', '<h1 style="font-size:20px">Laden...</h1>');
 		this.loading.set( 'z-index', 10000)
 	},
 	
-	hide_loading: function()
-	{
+	hide_loading: function(){
 		if( $( this.loading ) )		{	this.loading.destroy();	}
 	},
 	
-	keydown: function( event )
-	{
-	
+	keydown: function( event ) {
 		if( !this.id ){	return;	}
 		
 		if( event.key == "q" && event.meta )
@@ -120,25 +108,17 @@ $event = new Hash(
 			new Event(event).stop();
 			this.close();
 		}
-	
 	},
 	
-	setup_function: function()
-	{
-		
+	setup_function: function() {
 		//	Fortschritt:
 		// ==============
-		this.event_progress = new DI_SELECT( 'event_progress', {	'args': { 'app': 		'event', 'cmd':		'action_change_progress', 'event_id': this.id },
-																	'changed': this.update_background, 'min_level': 40 } );
-		if( auth.access( 40 ) )
-		{	this.event_progress.show_input.focus();	}
+		this.event_progress = new DI_SELECT('event_progress',{'args':{'app':'event','cmd':'action_change_progress','event_id':this.id},'changed':this.update_background,'min_level':40});
+		if( auth.access( 40 )){this.event_progress.show_input.focus();}
 		
-		new DI_MSELECT( $('event_dp_header_resp'), { 	'args': { 'app': 'event', 'cmd': 'action_change_resp', 'event_id': this.id },
-													 	'changed': this.update_background, 'min_level': 40 } );
+		new DI_MSELECT($('event_dp_header_resp'),{'args':{'app':'event','cmd':'action_change_resp','event_id':this.id},'changed':this.update_background,'min_level':40});
 		
-		
-		if( $('edit_aim') )
-		{
+		if( $('edit_aim') ) {
 			this.aim_checked.empty();
 			
 			$each( $_var_from_php.course_aim, function( item )
@@ -187,44 +167,36 @@ $event = new Hash(
 		
 		new DI_TEXTAREA( 'event_dp_siko_siko',	 { 'args': { 'app': 'event', 'cmd': 'action_change_siko', 	'event_id': this.id }, "button_pos": "bottom", min_level: 40 } );
 		new DI_TEXTAREA( 'event_dp_siko_note', 	 { 'args': { 'app': 'event', 'cmd': 'action_change_notes', 	'event_id': this.id }, "button_pos": "bottom", min_level: 40 } );
-		
-		
+
 		$$('#d_program_sort .dp_event_detail').each( this.event_detail_setup.bind(this) );
 		
 		if( auth.access( 40 ) )
 		{	$$( 'input.dp_add_detail' ).addEvent( 'click', this.event_detail_add.bind(this) );	}
 		else
 		{	$$( 'input.dp_add_detail' ).addClass('hidden');	}
-		
-		
-		
+
 		//	Material:
 		// ===========
-		
-		this.mat_available_di 	= new DI_TABLE( $( 'mat_available_table' ), 
-									{ 
-										args:	{ 'app': 'event', 'cmd': 'action_change_mat_available', 'event_id': this.id },
-										inputs:	{	1: {	'width': 0.1	},	2: {	'width': 0.8	},	3: {	'width': 0.1	}	},
-										min_level: 40
-									});
+		this.mat_available_di 	= new DI_TABLE( $( 'mat_available_table' ),{
+			args:	{ 'app': 'event', 'cmd': 'action_change_mat_available', 'event_id': this.id },
+			inputs:	{	1: {	'width': 0.1	},	2: {	'width': 0.8	},	3: {	'width': 0.1	}	},
+			min_level: 40
+		});
 									
-		this.mat_organize_di	= new DI_TABLE( $( 'mat_organize_table' ), 
-									{
-										args:	{ 'app': 'event', 'cmd': 'action_change_mat_organize', 'event_id': this.id },
-										inputs: {	
-													1:	{	'width': 0.1, 'type': 'text', 'value': ''	},
-													2:	{	'width': 0.6, 'type': 'text', 'value': ''	},
-													3:	{	'width': 0.2, 'type': 'select', 'options': $_var_from_php.mat_organize_resp },
+		this.mat_organize_di	= new DI_TABLE( $( 'mat_organize_table' ),{
+			args:	{ 'app': 'event', 'cmd': 'action_change_mat_organize', 'event_id': this.id },
+			inputs: {
+				1:	{	'width': 0.1, 'type': 'text', 'value': ''	},
+				2:	{	'width': 0.6, 'type': 'text', 'value': ''	},
+				3:	{	'width': 0.2, 'type': 'select', 'options': $_var_from_php.mat_organize_resp },
 														
-													4:	{	'width': 0.1	} 
-												},
-										min_level: 40
-									});
+				4:	{	'width': 0.1	}
+			},
+			min_level: 40
+		});
 		
-		if( auth.access( 40 ) )
-		{
-			new Autocompleter.Local( this.mat_organize_di.inputs.get(2), $_var_from_php.mat_article_list, 
-									 { 'minLength': 1, 'selectMode': 'type-ahead', 'multiple': false });
+		if(auth.access( 40 )){
+			new Autocompleter.Local(this.mat_organize_di.inputs.get(2),$_var_from_php.mat_article_list,{'minLength':1,'selectMode':'type-ahead','multiple':false});
 			$$('ul.autocompleter-choices').setStyle( 'z-index', 1100 );
 			
 			this.mat_organize_di.inputs.get(1).set('maxlength',10);
@@ -233,12 +205,9 @@ $event = new Hash(
 		
 		//	File-Upload:
 		// ==============
-		
 		$$( '#dp_pdf_button input' ).addEvent( 'click', function(){	this.$file_upload.open_uploader();	}.bind(this) );
 		$$( 'tbody.event_document_list tr' ).each( this.file_setup.bind(this) );
-		
-		
-		
+
 		//	Comments:
 		// ===========
 		$('comment_save').addEvent('click', function()
@@ -288,11 +257,9 @@ $event = new Hash(
 				
 		$('comment_tbody').getElements( 'tr td input.comment_id' ).each( function( comment )
 		{	if( comment.get('value') ){	this.comment_setup( comment.get('value' ) );	}	}.bind( this ));
-		
-		
+
 		//	Tool-Tip:
 		//============
-		
 		$$('.tooltip').each(function(element,index)
 		{
 			var content = element.get('title').split('::');
@@ -301,8 +268,7 @@ $event = new Hash(
 		});
 		new Tips('.tooltip').addEvent('show', function(tip){	tip.setStyle('z-index', 5000);	});
 	},
-	
-	
+
 	setup_course: function()
 	{
 		$('course_aim_list').empty();
@@ -324,17 +290,16 @@ $event = new Hash(
 			}.bind(this) );
 		}.bind(this) );
 	},
-	
-	
+
 	event_detail_setup: function( detail )
 	{
 		new DI_MULTIPLE([
-							{ "type": "text", 		"element": detail.getElement('.d_program_cell_time    input'), 	  "options": { "args": {}, "buttons": false } },
-							{ "type": "textarea", 	"element": detail.getElement('.d_program_cell_content textarea'), "options": { "args": {}, "buttons": false } },
-							{ "type": "textarea", 	"element": detail.getElement('.d_program_cell_resp    textarea'), "options": { "args": {}, "button_pos": "bottom" } },
-							{ "type": "hidden",		"element": detail.getElement('.detail_id'), 					  "options": { "args": {} } }
-						],
-						{ 'args': { 'app': 'event', 'cmd': 'action_change_detail' }, 'uni_height': false, "single_save": true });
+			{ "type": "text", 		"element": detail.getElement('.d_program_cell_time    input'), 	  "options": { "args": {}, "buttons": false } },
+			{ "type": "textarea", 	"element": detail.getElement('.d_program_cell_content textarea'), "options": { "args": {}, "buttons": false } },
+			{ "type": "textarea", 	"element": detail.getElement('.d_program_cell_resp    textarea'), "options": { "args": {}, "button_pos": "bottom" } },
+			{ "type": "hidden",		"element": detail.getElement('.detail_id'), 					  "options": { "args": {} } }
+		],
+		{ 'args': { 'app': 'event', 'cmd': 'action_change_detail' }, 'uni_height': false, "single_save": true });
 		
 		detail.getElement('.d_program_cell_option .delete').addEvent( 'click', this.event_detail_delete.pass( detail ) );
 		
@@ -472,13 +437,12 @@ $event = new Hash(
 		item.getElement('td input.file_print').addEvent('click', function()
 		{
 			this.file_print(
-							item.getElement('td input.file_print').get('value'),
-							item.getElement('td input.file_id').get('value')
-							);
+				item.getElement('td input.file_print').get('value'),
+				item.getElement('td input.file_id').get('value')
+			);
 		}.bind(this));
 	},
-	
-	
+
 	file_delete: function( item )
 	{
 		args = new Hash(
@@ -528,7 +492,6 @@ $event = new Hash(
 	
 	$file_upload: new Hash(
 	{
-		
 		open_uploader: function()
 		{
 			args = new Hash(
@@ -540,8 +503,8 @@ $event = new Hash(
 			
 			load_url = "index.php?" + args.toQueryString();
 			var content = {
-						'iframe':	new IFrame({ src: load_url}).setStyles({'position': 'absolute', 'left': '0px', 'width': '400px', 'top': '20px', 'height': '180px', 'border': 'none' })
-					};
+				'iframe':	new IFrame({ src: load_url}).setStyles({'position': 'absolute', 'left': '0px', 'width': '400px', 'top': '20px', 'height': '180px', 'border': 'none' })
+			};
 			var events 	= {};
 			var keyevents = {};
 			
@@ -564,8 +527,7 @@ $event = new Hash(
 			
 			new_file.removeClass( 'event_document_sample' );
 			new_file.removeClass( 'hidden' );
-			
-			
+
 			$event.file_setup( new_file );
 		}
 	}),
@@ -605,8 +567,7 @@ $event = new Hash(
 			//$('comment_tbody').getElements( 'tr.' + comment_id ).destroy();
 		});
 	},
-	
-	
+
 	edit_aim: function()
 	{
 		inputs = new Array();
@@ -635,8 +596,7 @@ $event = new Hash(
 			}.bind(this))
 			
 		}.bind(this));
-		
-		
+
 		save_button = new Element( 'button' ).setStyles({'position': 'absolute', 'right': '10px', 'width': '100px', 'bottom': '5px' }).set('text', 'Sichern');
 		cancel_button = new Element( 'button' ).setStyles({'position': 'absolute', 'right': '120px', 'width': '100px', 'bottom': '5px' }).set('text', 'Abbrechen');
 		
@@ -675,7 +635,6 @@ $event = new Hash(
 				
 				inputs.include( input );
 			}.bind(this))
-			
 		}.bind(this));
 				
 		save_button = new Element( 'button' ).setStyles({'position': 'absolute', 'right': '10px', 'width': '100px', 'bottom': '5px' }).set('text', 'Sichern');
@@ -688,7 +647,6 @@ $event = new Hash(
 		var keyevents = {	"enter": events['save_button'], "esc": events['cancel_button'] };
 		
 		$popup.popup_HTML( "Checkliste ausfüllen", content, events, keyevents, true, 500, 400 );
-
 	},
 	
 	save_aim: function( inputs )
@@ -714,7 +672,6 @@ $event = new Hash(
 				else			{	$popup.hide_popup();	}
 			}
 		}).send();
-		
 	},
 	
 	save_checklist: function( inputs )
@@ -740,12 +697,7 @@ $event = new Hash(
 				else			{	$popup.hide_popup();	}
 			}
 		}).send();
-		
 	}
-	
 });
 
-
-
 window.addEvent( 'keydown', $event.keydown.bind($event) );
-

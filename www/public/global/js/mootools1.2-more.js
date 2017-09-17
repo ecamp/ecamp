@@ -62,7 +62,6 @@ Class.Mutators.initialize = function(initialize){
 	};
 };
 
-
 /*
 ---
 

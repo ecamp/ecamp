@@ -24,7 +24,6 @@
 **/
 
 var auth_class = new Class({
-	
 	level: 0,
 	
 	initialize: function( level )
@@ -35,8 +34,6 @@ var auth_class = new Class({
 	access: function( min_level )
 	{	return this.level >= min_level;	}
 });
-
-
 
 if( !$_var_from_php.auth_level )
 {	$_var_from_php.auth_level = 0;	}

@@ -20,16 +20,13 @@
 window.addEvent('load', function()
 {
 	//var todo_resp_ms = new Hash();
-	
-	
+
 	$$('.todo_entry').each( function(item)
 	{
 		if( item.hasClass('todo_today') ){	return;	}
-		
-		
+
 		todo_id = item.getElement( 'td.todo_option input.todo_id' ).get( 'value' );
 
-		
 		//	RESP:
 		// =======		
 		ms = new DI_MSELECT( item.getElement( 'td.todo_resp select' ), 
@@ -50,30 +47,24 @@ window.addEvent('load', function()
 		}.bind(ms);
 		
 		//todo_resp_ms.set( todo_id, ms );
-		
-		
-		
-		
+
 		//	DONE:
 		// =======
 		if( auth.access( 40 ) )
 		{
 			item.getElement( 'td.todo_done input' ).addEvent( 'click', function()
 			{
-				
 				if( item.getElement( 'td.todo_done input' ).get('checked') )
 				{	done = 1;	}
 				else
 				{	done = 0;	}
-				
-				
+
 				data = new Hash({
-									'app':		'todo',
-									'cmd':		'action_done',
-									'todo_id':	item.getElement('.todo_id').get('value'),
-									'done':		done
-								});
-				
+					'app':		'todo',
+					'cmd':		'action_done',
+					'todo_id':	item.getElement('.todo_id').get('value'),
+					'done':		done
+				});
 				
 				new Request.JSON(
 				{
@@ -106,10 +97,7 @@ window.addEvent('load', function()
 					}
 				}).send();
 			});
-		
-		
-		
-		
+
 			//	EDIT:
 			// =======
 			item.getElement( 'td.todo_option a.todo_edit' ).addEvent( 'click', function()
@@ -118,7 +106,6 @@ window.addEvent('load', function()
 				text 	= unescapeHTML(item.getElement('td.todo_short').get('html'));
 				date	= item.getElement('input.todo_date_value').get('value');
 				id		= item.getElement('input.todo_id').get('value');
-				
 				
 				form = new Element('form');
 				new Element('div').setStyles({'position': 'absolute', 'left': '30px', 'top': '30px'}).set('html', 'Titel:').inject(form);
@@ -134,18 +121,17 @@ window.addEvent('load', function()
 				new Element('input').set('type', 'hidden').set('name', 'id').set('value', id).inject(form);
 				
 				content	= {	
-							"form":				form,
-							"search_button":	new Element('button').setStyles({'position': 'absolute', 'right': '30px', 'top': '110px', 'width': '90px'}).set('html', 'Sichern'),
-							"cancel_button":	new Element('button').setStyles({'position': 'absolute', 'right': '130px', 'top': '110px', 'width': '90px'}).set('html', 'Abbrechen'),
-						};
+					"form":				form,
+					"search_button":	new Element('button').setStyles({'position': 'absolute', 'right': '30px', 'top': '110px', 'width': '90px'}).set('html', 'Sichern'),
+					"cancel_button":	new Element('button').setStyles({'position': 'absolute', 'right': '130px', 'top': '110px', 'width': '90px'}).set('html', 'Abbrechen'),
+				};
 				events	= {
-							"cancel_button":	function(){	$popup.hide_popup();	},
-							"search_button":	function()
-							{
-								form.submit();
-								$popup.hide_popup();
-							},
-						};
+					"cancel_button":	function(){	$popup.hide_popup();	},
+					"search_button":	function(){
+						form.submit();
+						$popup.hide_popup();
+					},
+				};
 				
 				keyevents = {	"enter": events['search_button'], "esc": events['cancel_button'] };
 				
@@ -155,9 +141,7 @@ window.addEvent('load', function()
 				
 				form.getElement('input[name=title]').focus();
 			});
-			
-			
-			
+
 			//	DEL:
 			// ======
 			item.getElement( 'td.todo_option a.todo_del' ).addEvent('click', function()
@@ -165,13 +149,12 @@ window.addEvent('load', function()
 				yes_function = function()
 				{
 					data = new Hash({
-										'app':		'todo',
-										'cmd':		'action_del_todo',
-										'todo_id':	item.getElement('input.todo_id').get('value')
-									});
+						'app':		'todo',
+						'cmd':		'action_del_todo',
+						'todo_id':	item.getElement('input.todo_id').get('value')
+					});
 					
-					new Request.JSON(
-					{
+					new Request.JSON({
 						method: 'get',
 						url: 'index.php',
 						data: data.toQueryString(),
@@ -184,8 +167,7 @@ window.addEvent('load', function()
 						}
 					}).send();
 				};
-				
-				
+
 				$popup.popup_yes_no( "Aufgabe l&ouml;schen", "Willst du diese Aufgabe wirklich l&ouml;schen?", yes_function, function(){}, 'popup_no_button');
 			});
 		}
@@ -197,9 +179,7 @@ window.addEvent('load', function()
 		}
 		
 	});
-	
-	
-	
+
 	if( auth.access( 40 ) )
 	{
 		$$('.todo_new_todo').each(function(item)
@@ -219,18 +199,17 @@ window.addEvent('load', function()
 				new Element('input').set('type', 'hidden').set('name', 'cmd').set('value', 'action_add_todo').inject(form);
 				
 				content	= {	
-							"form":				form,
-							"search_button":	new Element('button').setStyles({'position': 'absolute', 'right': '30px', 'top': '110px', 'width': '90px'}).set('html', 'Sichern'),
-							"cancel_button":	new Element('button').setStyles({'position': 'absolute', 'right': '130px', 'top': '110px', 'width': '90px'}).set('html', 'Abbrechen')
-						};
+					"form":				form,
+					"search_button":	new Element('button').setStyles({'position': 'absolute', 'right': '30px', 'top': '110px', 'width': '90px'}).set('html', 'Sichern'),
+					"cancel_button":	new Element('button').setStyles({'position': 'absolute', 'right': '130px', 'top': '110px', 'width': '90px'}).set('html', 'Abbrechen')
+				};
 				events	= {
-							"cancel_button":	function(){	$popup.hide_popup();	},
-							"search_button":	function()
-							{
-								form.submit();
-								$popup.hide_popup();
-							}
-						};
+					"cancel_button":	function(){	$popup.hide_popup();	},
+					"search_button":	function(){
+						form.submit();
+						$popup.hide_popup();
+					}
+				};
 				
 				keyevents = {	"enter": events['search_button'], "esc": events['cancel_button'] };
 				
@@ -244,11 +223,7 @@ window.addEvent('load', function()
 	}
 	else
 	{	$$('.todo_new_todo').addClass('hidden');	}
-	
-	
-	
-	
-	
+
 	$$('.all_todo').addEvent('click',function()
 	{
 		$$('.user_list_item .user').set('checked', 'checked');
@@ -281,8 +256,6 @@ window.addEvent('load', function()
 	
 });
 
-
-
 show_todo = function()
 {
 	$$('.todo_entry').addClass('hidden');
@@ -298,7 +271,6 @@ show_todo = function()
 				{	todo_entry.removeClass('hidden');	}
 			});
 		}
-		
 	});
 	
 	$$('.no_user_todo_checkbox').each(function(no_user_todo)
@@ -315,7 +287,6 @@ show_todo = function()
 			});
 		}
 	});
-	
 	
 	$$('.todo_today').removeClass('hidden');
 	

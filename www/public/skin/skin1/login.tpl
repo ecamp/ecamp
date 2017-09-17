@@ -6,13 +6,10 @@
         <link rel="stylesheet" type="text/css" href="./public/global/css/global.css" />
         
 		<style>
-			
-			table
-			{ 	font-size:13px;}	
-			font.title
-			{	font-size: 25px;	}
-			div.menu
-			{	width: 180px;
+			table{font-size:13px;}
+			font.title{font-size: 25px;}
+			div.menu {
+				width: 180px;
 				background-color: #2288ff;
 				border-width: 1px;
 				border-color: #000000;
@@ -21,11 +18,10 @@
 				top: 30px;
 				text-align: left;
 			}
-			a.menu
-			{	color: #000000;	
+			a.menu {
+                color: #000000;
 				text-decoration: none;	}
-			table.Login
-			{
+			table.Login{
 				border-width: 1px;
 				border-color: #000000;
 				border-style: solid;	
@@ -117,7 +113,5 @@
                 </tr>
             </table>
         </center>
-        
-        
 	</body>
 </html>

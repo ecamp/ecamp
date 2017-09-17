@@ -19,7 +19,6 @@
 var Autocompleter = {};
 
 Autocompleter.Base = new Class({
-
 	options: {
 		minLength: 1,
 		markQuery: true,
