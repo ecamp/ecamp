@@ -1,0 +1,23 @@
+div.aim1, div.aim2{
+	margin-bottom:10px;
+	padding:4px;
+	cursor:pointer;
+}
+
+.aim2_box ul{padding-left:15px;}
+.aim2_box li{padding-bottom:8px;}
+
+div.aim1_default, div.aim2_default
+{}
+
+div.aim1_default:hover, div.aim2_default:hover{
+ 	background-color:white;
+}
+
+div.aim1_selected, div.aim2_selected{
+	background-color:orange;}
+
+img.del, img.edit{
+	position:relative;
+	top:5px;
+}

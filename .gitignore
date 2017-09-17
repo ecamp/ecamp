@@ -1,2 +1,4 @@
-www/config.php
 .idea
+*.iml
+out
+gen

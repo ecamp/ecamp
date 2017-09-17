@@ -1,0 +1,64 @@
+*{
+	font-family: Verdana, Arial;
+	font-size:11px;
+}
+
+a{
+	text-decoration:none;
+	border-bottom-width:1px;
+	border-bottom-style:dotted;
+/*	font-style:italic;	*/
+}
+
+
+/* Menü */
+
+div.menu_box a
+{
+	border:none;
+	color:navy;
+}
+
+
+/*******************************/
+/*  BOX                        */
+/*******************************/
+
+div.content_box_head
+{
+	height:16px;
+	padding-left: 5px;
+	font-weight:bold;
+}
+
+div.content_border_fit, div.content_border_full
+{
+	border:1px #335588 solid;
+}
+
+div.content_border_full
+{  height:100%; }
+
+div.content_box_fit, div.content_box_full
+{
+	padding:5px;
+	padding-top:10px;
+}
+
+/* Sonstiges */
+.action-button-text, .action-button-text-gray
+{
+    padding-top:5px;
+    float:left;
+	height:20px;
+	color:brown;
+}
+
+.action-button-text-gray{ color:#444444}
+
+.action-button-left, .action-button-right{
+    float:left;
+	width: 5px;
+	height: 25px;
+}
+

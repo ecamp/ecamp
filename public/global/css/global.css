@@ -1,0 +1,15 @@
+form{margin:0;}
+.hidden{display:none;}
+.round_corner{
+	-moz-border-radius:5px;
+	-khtml-border-radius:5px;
+}
+td{vertical-align:top;}
+a img{
+	border:none;
+	text-decoration:none;
+}
+a.img{
+	border:none;
+	text-decoration:none;
+}
