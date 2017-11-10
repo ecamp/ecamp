@@ -27,8 +27,11 @@ var day_class = new Class({
 		this.day_offset				= day_offset;
 		this.global_subcamp_offset 	= global_subcamp_offset || 0;
 		
+		
+		
 		this.event_instance 	= new Array();
-
+		
+		
 		this.subcamp = $program.subcamp.get( this.subcamp_id );
 		this.subcamp.add_day( this );
 		
@@ -36,16 +39,21 @@ var day_class = new Class({
 		{	this.global_day_offset = this.day_offset.toInt();	}
 		else
 		{	this.global_day_offset = this.global_subcamp_offset.toInt() + this.day_offset.toInt();	}
-
+		
+		
 		this.day_div			= $( 'day_id_' + this.id );
 		this.day_body_div		= this.day_div.getElement('.day_body');
 		this.left_offset		= this.global_day_offset * day_width; //this.day_div.getStyle('left').toInt();
 		
 		this.day_div.addEvent('contextmenu', function(e)	{	ee = new Event(e).stop();	this.menu(ee);	}.bind(this) );
 		this.day_body_div.addEvent('mousedown', function(e)	{	ee = new Event(e).stop();	this.new_event_size(ee);	}.bind(this) );
-
+		
+		
+		
 		//	var args = new Hash({ "app": "program", "cmd": "action_change_resp_main_job" });
 		//	new DI_SELECT( this.day_div.getElement('.select_main_job_resp'), { 'args': args } );
+		
+		
 		if( $_var_from_php.EnableMainJobResp )
 		{	new DI_SELECT( this.day_div.getElement( '.select_main_job_resp' ), { args: { 'app': 'program', 'cmd':'save_main_job', 'day_id': this.id }, 'min_level':40 } );	}
 		else
@@ -99,7 +107,8 @@ var day_class = new Class({
 	{
 		if( !auth.access( 40 ) )
 		{	return;	}
-
+		
+		
 		dy = this.day_body_div.getPosition().y;
 		sy = ee.page.y;
 		
@@ -133,7 +142,8 @@ var day_class = new Class({
 			
 			s.set('html', start_h + ':' + start_m + " - " + end_h + ":" + end_m);
 		}.bind(this) );
-
+		
+		
 		this.day_div.addEvent('mouseup', function(e)
 		{	
 			var start = 	$h.px2min( b.getPosition(this.day_body_div).y, 15, true );
@@ -181,6 +191,8 @@ var day_class = new Class({
 	
 	renummber_event_instances: function()
 	{
+	
+		
 		count = 1;
 		zindex = 1;
 		this.event_instance.sort( function(a, b)
@@ -245,56 +257,60 @@ var day_class = new Class({
 		{	new Element('li').inject(user_pool).set('html', escapeHTML(user.get_name()) ).set('id', user.id).setStyles( {'cursor': 'move', 'display': 'inline', 'margin': '2px'} );	} );
 		
 		new Sortables([resp_user, user_pool], { 'clone': true } );
-
+		
+		
 		var content = {
-			'popup_image': new Element('img').setStyles({'position': 'absolute', 'left': '25px', 'top': '35px', 	'width': '100px', 'height': '100px'}).set('src', 'public/global/img/question.png'),
-			'popup_div_name': new Element('div').setStyles({'position': 'absolute', 'left': '150px', 'top': '30px', 'width': '150px',  'font-size': '11px'}).set('html', "Blockname:"),
-			'popup_input_name': new Element('input').setStyles({'position': 'absolute', 'left': '270px', 'top': '30px', 'width': '200px',  'font-size': '11px'}).set('type', 'text').set('value', this.name),
-			'popup_div_cat': new Element('div').setStyles({'position': 'absolute', 'left': '150px', 'top': '55px', 'width': '150px',  'font-size': '11px'}).set('html', "Kategorie:"),
-			'popup_input_cat': popup_input_cat,
-			'popup_div_start_h':  new Element('div').setStyles({'position': 'absolute', 'left': '150px', 'top': '80px', 'width': '150px',  'font-size': '11px'}).set('html', "Startzeit: (h:min)"),
-			'popup_input_start_h': popup_input_start_h,
-			'popup_input_start_min': popup_input_start_min,
-			'popup_div_length_h':  new Element('div').setStyles({'position': 'absolute', 'left': '150px', 'top': '105px', 'width': '150px',  'font-size': '11px'}).set('html', "Zeitdauer: (h:min)"),
-			'popup_input_length_h': popup_input_length_h,
-			'popup_input_length_min': popup_input_length_min,
+					'popup_image': new Element('img').setStyles({'position': 'absolute', 'left': '25px', 'top': '35px', 	'width': '100px', 'height': '100px'}).set('src', 'public/global/img/question.png'),
+					'popup_div_name': new Element('div').setStyles({'position': 'absolute', 'left': '150px', 'top': '30px', 'width': '150px',  'font-size': '11px'}).set('html', "Blockname:"),
+					'popup_input_name': new Element('input').setStyles({'position': 'absolute', 'left': '270px', 'top': '30px', 'width': '200px',  'font-size': '11px'}).set('type', 'text').set('value', this.name),
+					'popup_div_cat': new Element('div').setStyles({'position': 'absolute', 'left': '150px', 'top': '55px', 'width': '150px',  'font-size': '11px'}).set('html', "Kategorie:"),
+					'popup_input_cat': popup_input_cat,
+					'popup_div_start_h':  new Element('div').setStyles({'position': 'absolute', 'left': '150px', 'top': '80px', 'width': '150px',  'font-size': '11px'}).set('html', "Startzeit: (h:min)"),
+					'popup_input_start_h': popup_input_start_h,
+					'popup_input_start_min': popup_input_start_min,
+					'popup_div_length_h':  new Element('div').setStyles({'position': 'absolute', 'left': '150px', 'top': '105px', 'width': '150px',  'font-size': '11px'}).set('html', "Zeitdauer: (h:min)"),
+					'popup_input_length_h': popup_input_length_h,
+					'popup_input_length_min': popup_input_length_min,
 					
-			'popup_div_user_pool': new Element('div').setStyles({'position': 'absolute', 'left': '150px', 'top': '130px', 'width': '150px',  'font-size': '11px'}).set('html', "Leiter:"),
-			'popup_div_resp_user': new Element('div').setStyles({'position': 'absolute', 'left': '150px', 'top': '185px', 'width': '150px',  'font-size': '11px'}).set('html', "Verantwortliche:"),
+					'popup_div_user_pool': new Element('div').setStyles({'position': 'absolute', 'left': '150px', 'top': '130px', 'width': '150px',  'font-size': '11px'}).set('html', "Leiter:"),
+					'popup_div_resp_user': new Element('div').setStyles({'position': 'absolute', 'left': '150px', 'top': '185px', 'width': '150px',  'font-size': '11px'}).set('html', "Verantwortliche:"),
 					
-			'popup_user_pool': user_pool.setStyles({'position': 'absolute', 'left': '270px', 'top': '130px', 'width': '200px', 'height': '50px', 'font-size': '11px', 'list-style-type': 'none', 'border': '1px solid black'}),
-			'popup_resp_user': resp_user.setStyles({'position': 'absolute', 'left': '270px', 'top': '185px', 'width': '200px', 'height': '50px', 'font-size': '11px', 'list-style-type': 'none', 'border': '1px solid black'}),
+					'popup_user_pool': user_pool.setStyles({'position': 'absolute', 'left': '270px', 'top': '130px', 'width': '200px', 'height': '50px', 'font-size': '11px', 'list-style-type': 'none', 'border': '1px solid black'}),
+					'popup_resp_user': resp_user.setStyles({'position': 'absolute', 'left': '270px', 'top': '185px', 'width': '200px', 'height': '50px', 'font-size': '11px', 'list-style-type': 'none', 'border': '1px solid black'}),
 					
-			'popup_save_button': new Element('input').setStyles({'position': 'absolute', 'right': '180px', 'bottom': '10px', 'width': '100px'}).set('type', 'button').set('value', 'Sichern'),
-			'popup_abort_button': new Element('input').setStyles({'position': 'absolute', 'right': '50px', 'bottom': '10px', 'width': '100px'}).set('type', 'button').set('value', 'Abbrechen')
-		};
+					
+					'popup_save_button': new Element('input').setStyles({'position': 'absolute', 'right': '180px', 'bottom': '10px', 'width': '100px'}).set('type', 'button').set('value', 'Sichern'),
+					'popup_abort_button': new Element('input').setStyles({'position': 'absolute', 'right': '50px', 'bottom': '10px', 'width': '100px'}).set('type', 'button').set('value', 'Abbrechen')
+					};
 		var events 	= { 
-			'popup_abort_button': 	function(){	$popup.hide_popup();	},
-			'popup_save_button': 	function(){
-				resp_user = "";
-				$$('#popup_resp_user li').each(function(item){	resp_user = resp_user + item.id + "_";	});
+					'popup_abort_button': 	function(){	$popup.hide_popup();	},
+					'popup_save_button': 	function()
+						{
+							resp_user = "";
+							$$('#popup_resp_user li').each(function(item){	resp_user = resp_user + item.id + "_";	});
 							
-				args = new Hash({
-					"day_id":		this.id,
-					"name": 		$('popup_input_name').get('value'),
-					"category":		$('popup_input_cat').get('value'),
-					"starttime_h":	$('popup_input_start_h').get('value'),
-					"starttime_min":$('popup_input_start_min').get('value'),
-					"length_h":		$('popup_input_length_h').get('value'),
-					"length_min":	$('popup_input_length_min').get('value'),
-					"resp_user":	resp_user,
-					"time":			$program.last_update_time
-				});
-				load_url = "index.php?app=program&cmd=save_add_event&" + args.toQueryString();
+							args = new Hash({
+												"day_id":		this.id,
+												"name": 		$('popup_input_name').get('value'),
+												"category":		$('popup_input_cat').get('value'),
+												"starttime_h":	$('popup_input_start_h').get('value'),
+												"starttime_min":$('popup_input_start_min').get('value'),
+												"length_h":		$('popup_input_length_h').get('value'),
+												"length_min":	$('popup_input_length_min').get('value'),
+												"resp_user":	resp_user,
+												"time":			$program.last_update_time
+											});
+							load_url = "index.php?app=program&cmd=save_add_event&" + args.toQueryString();
 							
-				$popup.hide_popup();
+							$popup.hide_popup();
 							
-				new Request.JSON({
-					url: load_url,
-					onComplete: $program.run_update.bind($program)
-				}).send();
-			}.bind(this)
-		};
+							new Request.JSON(
+							{
+								url: load_url, 
+								onComplete: $program.run_update.bind($program)
+							}).send();
+						}.bind(this)
+					};
 		
 		keyevents = {	"enter": events['popup_save_button'], "esc": events['popup_abort_button'] };
 		
@@ -324,11 +340,14 @@ var day_class = new Class({
 			"time":		$program.last_update_time
 		});
 		load_url = "index.php?" + args.toQueryString();
-
-		new Request.JSON({
+		
+		
+		new Request.JSON(
+		{
 			url: load_url,
 			onComplete: function( ans )
 			{	$program.run_update( ans );	}
 		}).send();
 	}
+	
 });

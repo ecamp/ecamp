@@ -22,7 +22,8 @@ window.addEvent('load', function()
 	var dorpdown;
 	
 	formtype_select = new Element('select').setStyles({'position': 'absolute', 'left': '150px', 'top': '100px', 'width': '230px'});
-
+	
+	
 	new Request.JSON(
 	{
 		method: 'get',
@@ -36,7 +37,8 @@ window.addEvent('load', function()
 			{	new Element('option').set('value', item.value).set('html', item.entry).inject(formtype_select);	});
 		}
 	}).send();
-
+	
+	
 	category_content = 
 	{
 		"name_lable":		new Element('div').setStyles({'position': 'absolute', 'left': '20px', 'top': '30px'}).set('html', 'Kategoryname:'),
@@ -53,7 +55,8 @@ window.addEvent('load', function()
 		"save_button":		new Element('button').setStyles({'position': 'absolute', 'left': '290px', 'top': '140px', 'width': '90px'}).set('html', 'Hinzuf&uuml;gen'),
 		"cancel_button":	new Element('button').setStyles({'position': 'absolute', 'left': '190px', 'top': '140px', 'width': '90px'}).set('html', 'Abbrechen'),
 	};
-
+	
+	
 	var ColorPicker = new MooRainbow( category_content['color_picker'], 
 	{
 		'onChange': function(color) {
@@ -62,9 +65,14 @@ window.addEvent('load', function()
 		},
 		imgPath: 'public/module/img/'
 	});
-
+	
+	
+	
+	
+	
 	$$('.new_job_form').each( function(item)
 	{
+		
 		item.getElement('.job_ok').addEvent( 'click', function()
 		{
 			data = new Hash({
@@ -99,7 +107,8 @@ window.addEvent('load', function()
 			item.getElement('.job_name').addClass('hidden');
 		});
 	});
-
+	
+	
 	$$('.job_delete').each( function(item)
 	{
 		yes_function = function()
@@ -123,12 +132,13 @@ window.addEvent('load', function()
 					{	alert(ans.msg);	}
 				}
 			}).send();
-		};
+		}
 		
 		item.addEvent('click', function()
 		{	$popup.popup_yes_no("Job l&ouml;schen", "Diesen Job wirklick l&ouml;schen?", yes_function, function(){}, "popup_no_button");	});
 	});
-
+	
+	
 	$$('.job_picasso').each( function(item)
 	{
 		item.addEvent('click', function()
@@ -152,18 +162,23 @@ window.addEvent('load', function()
 						$$('#group_gp option').inject( $('group_normal') );
 						$$('#group_normal option').filter( function(item)
 								{	
-									return item.get('value') == ans.job_id;
+									if(	item.get('value') == ans.job_id )	{ return true;		}
+									else									{ return false;	}
 								}).inject( $('group_gp') );
 					}
 					else
 					{	alert(ans.msg);	}
 				}
 			}).send();
+			
 		});
 	});
 	
-	$$('.job_change').each( function(item){
-		item.addEvent('click', function(){
+	
+	$$('.job_change').each( function(item)
+	{
+		item.addEvent('click', function()
+		{
 			content = {
 				"name_lable":		new Element('div').setStyles({'position': 'absolute', 'left': '20px', 'top': '30px'}).set('html', 'Neuer Name:'),
 				"name_input":		new Element('input').setStyles({'position': 'absolute', 'left': '110px','top': '25px'}).set('value', unescapeHTML($('job_list').getSelected().get('html')) ),
@@ -173,30 +188,38 @@ window.addEvent('load', function()
 			};
 			
 			events = {
-				"save_button":		function(){
-					var str = content["name_input"].get('value');
-					alert(str);
+				"save_button":		function()
+									{
+										var str = content["name_input"].get('value');
+										alert(str);
 										
-					data = new Hash({
-						"job_id": $('job_list').getSelected().getLast().get('value'),
-						"job_name": content["name_input"].get('value'),
-						"app": "option",
-						"cmd": "action_change_job"
-					});
-					new Request.JSON({
-						method: 'get',
-						url: 'index.php',
-						data: data.toQueryString(),
-						onComplete: function(ans){
-							if(!ans.error){
-								$$('option').filter( function(item){
-									return item.get('value') == ans.job_id;
-								}).set('html', ans.job_name);
-							}else{	alert(ans.msg);	}
-							$popup.hide_popup();
-						}
-					}).send();
-				},
+										data = new Hash({
+															"job_id": $('job_list').getSelected().getLast().get('value'),
+															"job_name": content["name_input"].get('value'),
+															"app": "option",
+															"cmd": "action_change_job"
+														});
+										new Request.JSON(
+										{
+											method: 'get',
+											url: 'index.php',
+											data: data.toQueryString(),
+											onComplete: function(ans)
+											{
+												if(!ans.error)
+												{
+													$$('option').filter( function(item)
+													{	
+														if(	item.get('value') == ans.job_id )	{ return true;		}
+														else									{ return false;	}
+													}).set('html', ans.job_name);
+												}
+												else
+												{	alert(ans.msg);	}
+												$popup.hide_popup();
+											}
+										}).send();
+									},
 				"cancel_button":	function()	{	$popup.hide_popup();	}
 			};
 			
@@ -207,9 +230,11 @@ window.addEvent('load', function()
 		});
 	});
 	
-	$('new_category').addEvent('click', function(){
+	$('new_category').addEvent('click', function()
+	{
 		category_content["save_button"].removeEvents('click');
 		category_content["cancel_button"].removeEvents('click');
+		
 		
 		category_content["name_input"].set('value', '');
 		category_content["short_input"].set('value', '');
@@ -222,17 +247,19 @@ window.addEvent('load', function()
 		events = {
 			"cancel_button":	function(){	$popup.hide_popup();	},
 			
-			"save_button":		function(){
+			"save_button":		function()
+			{
 				data = new Hash({
-					"name": 	$("name_input").get('value'),
-					"short":	$("short_input").get('value'),
-					"color":	$("color_input").get('value'),
-					"type":		$("formtype_select").get('value'),
-					"app":		"option",
-					"cmd":		"action_add_cat"
-				});
+								"name": 	$("name_input").get('value'),
+								"short":	$("short_input").get('value'),
+								"color":	$("color_input").get('value'),
+								"type":		$("formtype_select").get('value'),
+								"app":		"option",
+								"cmd":		"action_add_cat"
+							});
 				
-				new Request.JSON({
+				new Request.JSON(
+				{
 					method: 'get',
 					url: 'index.php',
 					data: data.toQueryString(),
@@ -254,6 +281,7 @@ window.addEvent('load', function()
 		
 		category_content['name_input'].focus();
 	});
+	
 	
 	$$('.category').each(function(item)
 	{
@@ -277,34 +305,42 @@ window.addEvent('load', function()
 			category_content["save_button"].set('text', 'Speichern');
 			ColorPicker.manualSet( item.get('bgcolor'), "hex" );
 			
+			
 			events = {
-				"cancel_button":	function(){	$popup.hide_popup();	},
-				"save_button":		function(){
-					data = new Hash({
-						"cat_id":	item.getElement('.category_id').get('value'),
-						"name": 	$("name_input").get('value'),
-						"short":	$("short_input").get('value'),
-						"color":	$("color_input").get('value'),
-						"type":		$("formtype_select").get('value'),
-						"app":		"option",
-						"cmd":		"action_change_cat"
-					});
-					new Request.JSON({
-						method: 'get',
-						url: 'index.php',
-						data: data.toQueryString(),
-						onComplete: function(ans){
-							if(!ans.error){
-								item.getElement('.name').set('html', escapeHTML($("name_input").get('value')) );
-								item.getElement('.short').set('html', escapeHTML($("short_input").get('value')) );
-								item.getElement('.type').set('html', $("formtype_select").getSelected().get('html') );
-								item.set('bgcolor', $("color_input").get('value') );
-							}else{	alert(ans.msg);	}
-							$popup.hide_popup();
-						}
-					}).send();
-				}
-			};
+						"cancel_button":	function(){	$popup.hide_popup();	},
+						"save_button":		function()
+											{
+							                 
+												data = new Hash({
+																	"cat_id":	item.getElement('.category_id').get('value'),
+																	"name": 	$("name_input").get('value'),
+																	"short":	$("short_input").get('value'),
+																	"color":	$("color_input").get('value'),
+																	"type":		$("formtype_select").get('value'),
+																	"app":		"option",
+																	"cmd":		"action_change_cat"
+																});
+												new Request.JSON(
+												{
+													method: 'get',
+													url: 'index.php',
+													data: data.toQueryString(),
+													onComplete: function(ans)
+													{
+														if(!ans.error)
+														{
+															item.getElement('.name').set('html', escapeHTML($("name_input").get('value')) );
+															item.getElement('.short').set('html', escapeHTML($("short_input").get('value')) );
+															item.getElement('.type').set('html', $("formtype_select").getSelected().get('html') );
+															item.set('bgcolor', $("color_input").get('value') );
+														}
+														else
+														{	alert(ans.msg);	}
+														$popup.hide_popup();
+													}
+												}).send();
+											}
+					};
 
 			keyevents = {	"enter": events['save_button'], "esc": events['cancel_button'] };
 			
@@ -313,13 +349,14 @@ window.addEvent('load', function()
 			category_content['name_input'].focus();
 		});
 		
+		
 		item.getElement('.del').addEvent('click', function()
 		{
 			data = new Hash({
-				"category_id": 	item.getElement('.category_id').get('value'),
-				"app":		"option",
-				"cmd":		"is_del_possible"
-			});
+								"category_id": 	item.getElement('.category_id').get('value'),
+								"app":		"option",
+								"cmd":		"is_del_possible"
+							});
 			
 			new Request.JSON(
 			{
@@ -331,30 +368,34 @@ window.addEvent('load', function()
 					if(!ans.error && ans.del)
 					{
 						$popup.popup_yes_no( 
-							"Kategorie loeschen",
-							"Willst du diese Kategorie wirklich löschen?",
-							function(){
-								data = new Hash({
-									"category_id": 	item.getElement('.category_id').get('value'),
-									"app":		"option",
-									"cmd":		"action_del_cat"
-								});
+											"Kategorie loeschen", 
+											"Willst du diese Kategorie wirklich löschen?", 
+											function()
+											{
+												data = new Hash({
+																	"category_id": 	item.getElement('.category_id').get('value'),
+																	"app":		"option",
+																	"cmd":		"action_del_cat"
+																});
 												
-								new Request.JSON({
-									method: 'get',
-									url: 'index.php',
-									data: data.toQueryString(),
-									onComplete: function(ans){
-										if(!ans.error)
-										{	item.destroy();	}
-										else{	alert(ans.msg);	}
-										$popup.hide_popup();
-									}
-								}).send();
-							},
-							function(){},
-							"popup_no_button"
-						);
+												new Request.JSON(
+												{
+													method: 'get',
+													url: 'index.php',
+													data: data.toQueryString(),
+													onComplete: function(ans)
+													{
+														if(!ans.error)
+														{	item.destroy();	}
+														else
+														{	alert(ans.msg);	}
+														$popup.hide_popup();
+													}
+												}).send();
+											},
+											function(){},
+											"popup_no_button"
+										);
 					}
 					else
 					{	alert(ans.msg);	}
@@ -362,7 +403,9 @@ window.addEvent('load', function()
 			}).send();
 		});
 	});
-
+	
+	
+	
 	//	Materialliste:
 	// ================
 	/*

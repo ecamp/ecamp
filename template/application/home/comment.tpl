@@ -1,7 +1,6 @@
 <span metal:define-macro="main" tal:omit-tag="">
-
 	<span tal:condition="no_notes">
-    <i>[Keine neuen Kommentare]</i>
+        <i>[Keine neuen Kommentare]</i>
     </span>
 
 	<span tal:repeat="note notes" >
@@ -20,5 +19,4 @@
           <hr />
         </span>
     </span>
-
 </span>

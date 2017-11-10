@@ -1,6 +1,5 @@
 <span metal:define-macro="menu" tal:omit-tag="">
-    
-    <form action="index.php" style="margin-bottom:4px;" class="admin_menu hidden">
+    <form action="index.php" class="admin_menu hidden">
         <select onChange="this.form.submit()" name="skin">
             <option></option>
 			<option value="skin1">skin1</option>
@@ -10,10 +9,9 @@
         <input type="hidden" name="app" value="home" />
         <input type="hidden" name="cmd" value="action_change_skin" />
     </form>
-    
-    <form action="index.php" style="margin-bottom:4px;">
-        <select onChange="this.form.submit()" name="camp">
-			<option tal:condition="php: camp.id == 0" value="0" selected="selected" >Lager w&auml;hlen</option>
+    <form action="index.php">
+        <select onChange="this.form.submit()" name="camp" class="form-control">
+			<option tal:condition="php: camp.id == 0" value="0" selected="selected" class="dropdown" >Lager w&auml;hlen</option>
 	        <tal:block repeat="optgroup menu_dropdown">
 	            <optgroup tal:attributes="label optgroup/group_name" tal:condition="optgroup/child_num">
 	            	<tal:block repeat="option optgroup/camp_list">

@@ -24,7 +24,8 @@ var subcamp_class = new Class({
 		this.subcamp_nr = subcamp_nr;
 		this.length = length;
 		this.camp_id = camp_id;
-
+		
+		
 		this.day = new Hash();
 		this.offset = new Hash();
 	},
@@ -33,7 +34,7 @@ var subcamp_class = new Class({
 	{
 		this.id = id;
 		this.subcamp_nr = subcamp_nr;
-		this.length = length;
+		this.length = length
 		this.camp_id = camp_id;
 	},
 	
@@ -48,4 +49,5 @@ var subcamp_class = new Class({
 		this.day.erase( day.id );
 		this.offset.erase( day.day_nr );
 	}
+		
 });

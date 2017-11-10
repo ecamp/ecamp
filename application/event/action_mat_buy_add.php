@@ -54,7 +54,7 @@
 		$result = mysql_query( $query );
 		
 		if( mysql_num_rows( $result ) )
-		{	$id = mysql_result( $result, 0, 'id' );	}
+		{	$id = mysql_result( $result, 'id' );	}
 		else
 		{	$id = "NULL";	}
 		

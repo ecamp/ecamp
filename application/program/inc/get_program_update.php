@@ -47,7 +47,7 @@
 						);";
 		$users = mysql_query($query);
 		
-		while( $user = mysql_fetch_assoc( $users ) )
+		while($user = mysql_fetch_assoc($users))
 		{	$data['users'][] = $user;	}
 		
 		

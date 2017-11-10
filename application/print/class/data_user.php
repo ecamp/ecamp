@@ -41,7 +41,7 @@
 		public $image;
 		
 		
-		function __construct($data,$pid )
+		function print_data_user_class( $data, $pid )
 		{
 			$this->pid			= $pid;
 			$this->id			= $data['id'];

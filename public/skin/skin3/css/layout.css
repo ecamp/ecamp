@@ -60,8 +60,8 @@ div.main_bottom_menu
 	
 	background-color: red;
 	
-	margin: 0;
-	padding: 0;
+	margin: 0px;
+	padding: 0px;
 	
 	z-index: 100000;
 }
@@ -123,6 +123,6 @@ div.main_info
 	position:absolute;
 	left:10px;
 	width:150px;
-	bottom:0;
+	bottom:0px;
 	
 }

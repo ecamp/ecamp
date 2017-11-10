@@ -24,4 +24,5 @@
 	
 	$_page->html->set( 'info_box_content', $leader );
 	$_page->html->set( 'info_box_title', "Legende:" );
+
 ?>

@@ -48,9 +48,6 @@
 	elseif( substr($color, 0, 1) == "#" )
 		$color = substr($color,1,strlen($color)-1);
 		
-	if( ! ctype_xdigit($color) )
-			$color = "ffffff";
-		
 	$form_type = intval($form_type);
 	
 	// Überprüfen, ob Kategorie gefunden

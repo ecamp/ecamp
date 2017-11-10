@@ -18,6 +18,7 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+
   function secure_input_nr( $value )
   {
   	return $value;
@@ -27,6 +28,8 @@
   {
     return $value;
   }
+  
+  
 
   function txt2html( $textfield )
   {
@@ -136,15 +139,22 @@
           return $textfield;
   }
 
-  function securehtml2html( $textfield ){}
+  function securehtml2html( $textfield )
+  {
+
+  }
 
   // Erlaubt spezielle HTML-Tags
   function allowTag( $tag, $textfield )
   {
-	  $textfield = eregi_replace("(&lt;)(".$tag.")([^<>/&]*)(&gt;)", "<\\2\\3>", $textfield );
-	  $textfield = eregi_replace("(&lt;)(/".$tag.")([^<>/&]*)(&gt;)", "<\\2\\3>", $textfield );
+          $textfield = eregi_replace("(&lt;)(".$tag.")([^<>/&]*)(&gt;)", "<\\2\\3>", $textfield );
+          $textfield = eregi_replace("(&lt;)(/".$tag.")([^<>/&]*)(&gt;)", "<\\2\\3>", $textfield );
 
-	  # evtl. Anzahl Tag's zählen
-	  return $textfield;
+          # evtl. Anzahl Tag's zählen
+
+          return $textfield;
   }
+
+
+
 ?>

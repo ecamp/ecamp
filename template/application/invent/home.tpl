@@ -1,18 +1,9 @@
 <span metal:define-macro="home" tal:omit-tag="" >
-	
-	<h1>Einladung verschicken</h1>
-	
-	<p style="margin-bottom:30px;">
+	<p>
 		Um einen Kollegen auf diese Homepage aufmerksam zu machen, kannst du ihm eine Einladung schicken.
 	</p>
-	
-	<p>
-		Als Text für die Einladung werden folgende Zeilen vorgeschlagen:
-	</p>
-	
 	<form accept="index.php">
-	
-		<textarea style="width:90%" rows="20" name="text">
+		<textarea class="col-sm-12 form-control" rows="20" name="text">
 Hallo ...
 
 Ich habe eine Homepage entdeckt, welche für dich von interesse sein könnte. 
@@ -31,37 +22,31 @@ Viel Spass!
 
 Gruss	
 		</textarea>
-		
-		<p>
-			<table width="90%">
-				<tr>
-					<td width="200px">E-Mail Adresse des Absenders:</td>
-					<td>
-						<select name="from" style="width:100%">
-							<option value="user" tal:content="user/mail" selected="selected"></option>
-							<option value="support">ecamp@pfadiluzern.ch</option>
-						</select>
-					</td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>E-Mail Adresse des Empfängers:</td>
-					<td><input type="text" name="email" style="width:100%" /></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td></td>
-					<td align="right">
-						<input type="submit" value="Abschicken" />
-					</td>
-				</tr>
-			</table>
-				
-			
-		
-		</p>
-		
+		<div class="clearfix"></div>
+		<div class="space-top"></div>
+		<div class="form-group">
+			<label for="inputEmailSent" class="col-sm-2 control-label">E-Mail Adresse des Absenders:</label>
+			<div class="col-sm-10">
+				<select name="from" class="form-control">
+					<option value="user" tal:content="user/mail" selected="selected"></option>
+					<option value="support">ecamp@pfadiluzern.ch</option>
+				</select>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+		<div class="space-top"></div>
+		<div class="form-group">
+			<label for="inputEmailReceave" class="col-sm-2 control-label">E-Mail Adresse des Empfängers:</label>
+			<div class="col-sm-10">
+			  	<input type="email" class="form-control" id="inputEmailReceave" placeholder="Empfänger" />
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<button type="submit" class="btn btn-default" tabindex="3">Abschicken</button>
+			</div>
+		</div>
+
 		<input type="hidden" name="app" value="invent" />
 		<input type="hidden" name="cmd" value="send" />
 	</form>

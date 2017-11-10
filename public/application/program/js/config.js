@@ -20,7 +20,8 @@
  	var day_width = 150;
 	var time_shift = 300;
 	var update_time = 5000; //msec
-
+	
+	
 	event_cm_struct = 
 	[
 		{ "id": "edit_event", 	"img": "public/application/program/img/dp.png", 	"text": "Block editieren",	"click": function(){	$event.edit( this.event.id );	}, "min_level": 0, 	"content": [] },
@@ -50,10 +51,15 @@
 			{ "id":	"show_progress",	"img":	"public/application/program/img/progress.gif", 	"text": "Fortschritt",	"click": function(){	$program.show_progress();	}, "min_level": 0, "content": [] }
 		]}
 	];
-
+	
+	
 	document.oncontextmenu = function()	{	return	false; 	};
-
-	window.addEvent('load', function(){
+	
+	
+	
+	window.addEvent('load', function()
+	{
+		
 		$program.picasso_border = $('events');
 		$program.picasso_scroll_div = $('g_program_scroll_div');
 		$program.menu.event_cm 	= new menu_class( event_cm_struct );
@@ -61,14 +67,18 @@
 		
 		$program.get_update();
 		$program.get_update.periodical(update_time, $program);	//clearInterval();
-
+		
+		
+		
 		$('program_update_button').addEvent( 'click', function( event )
 		{
 			new Event( event ).stop();
 			if( $program.is_shown == "cat" )	{	$program.show_progress();	}
 			else								{	$program.show_cat();		}
 		});
-
+		
+		
+		
 		$program.picasso_border_scroller = new Fx.Scroll( 'g_program_div'  );
 		$program.picasso_scroll_div.addEvent( 'mousewheel', function(e)
 		{
@@ -76,14 +86,17 @@
 			x = $('g_program_div').getScroll().x.toInt();
 			$program.picasso_border_scroller.set(x - e.wheel * 25, 0);
 		});
-
+		
+		
 		$event.update_background = $program.get_update.bind( $program );
-
+		
+		
 		// if Firefox, Grobprogramm-Verzerrung vermeiden
-		if( Browser.Engine.gecko && Browser.Engine.version == 19 )
+		if( Browser.Engine.gecko & Browser.Engine.version == 19 )
 		{
 			$('g_program_div').setStyle("padding-bottom", $('g_program_outer_div').clientHeight - $('g_program_div').clientHeight );
 		}
+		
 	});
 	
 	window.addEvent( 'resize', function()

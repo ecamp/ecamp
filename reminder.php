@@ -24,8 +24,8 @@
 
 	require_once( "./lib/recaptchalib.php" );
 
-	if( $_SESSION[skin] == "" ) $_SESSION[skin] = $GLOBALS[skin];
-	$html = new PHPTAL("public/skin/".$_SESSION[skin]."/reminder.tpl");
+	if( $_SESSION['skin'] == "" ) $_SESSION['skin'] = $GLOBALS['skin'];
+	$html = new PHPTAL("public/skin/".$_SESSION['skin']."/reminder.tpl");
 	
 	$html->setEncoding('UTF-8');
 	
@@ -37,7 +37,6 @@
 		$html->set( 'MSG', mysql_escape_string( $_REQUEST[ 'msg' ] ) );
 	}
 	
-	$html->set( 'captcha' ,recaptcha_get_html( $GLOBALS[captcha_pub],null,true ) );
+	$html->set( 'captcha' ,recaptcha_get_html( $GLOBALS['captcha_pub'] ) );
 
 	echo $html->execute();
-?>

@@ -24,7 +24,7 @@
 		public $data;
 		public $y;
 		
-		function __construct($data )
+		function print_build_event_class( $data )
 		{
 			$this->data = $data;
 		}
@@ -143,12 +143,10 @@
 			
 			
 			$date = new c_date();
-			$date->SetDay2000( $event_instance->day->date );
-
-            $timestart = new c_time();
-			$timestart->SetValue( $event_instance->starttime );
-            $timeend = new c_time();
-            $timeend->SetValue( $event_instance->starttime + $event_instance->length );
+			$date->SetDay2000( $event_instance->day->subcamp->start + $event_instance->day->day_nr - 1 );
+			
+			$time = new c_time();
+			$time->SetValue( $event_instance->starttime );
 			
 			
 			$pdf->SetXY( 155, $this->y + 1 );
@@ -161,7 +159,7 @@
 			$pdf->SetXY( 155, $this->y + 6 );
 			$pdf->drawTextBox( 'Zeit:', 15, 5, 'L', 'M', 0 );
 			$pdf->SetXY( 170, $this->y + 6 );
-			$pdf->drawTextBox( $timestart->getString( 'H:i' ) . " - ". $timeend->getString( 'H:i' ), 30, 5, 'L', 'M', 0 );
+			$pdf->drawTextBox( $time->getString( 'H:i' ) . " Uhr", 30, 5, 'L', 'M', 0 );
 			
 			
 			$pdf->SetXY( 155, $this->y + 11 );
@@ -632,38 +630,14 @@
 		
 		function material_h( $pdf, $event_instance )
 		{
-			$lines1 = 0;
+			$return = max( 
+							count( $event_instance->event->mat_article ),
+							count( $event_instance->event->mat_stuff_stocked ),
+							count( $event_instance->event->mat_stuff_nonstocked ),
+							1
+						) * 4;
 			
-			foreach( $event_instance->event->mat_available as $mat_available )
-			{
-				$a = $pdf->getNumLines( $mat_available->quantity, 15);
-				$b = $pdf->getNumLines( $mat_available->article_name, 59);
-			
-				$lines1 += max($a,$b);
-			}
-				
-				
-			$lines2 = 0;
-			foreach( $event_instance->event->mat_organize as $mat_organize )
-			{
-				$a = $pdf->getNumLines( $mat_organize->quantity, 15);
-				$b = $pdf->getNumLines( $mat_organize->article_name, 60);
-					
-				if( $mat_organize->resp == "user" )
-				{
-					$c = $pdf->getNumLines( $mat_organize->user->get_name(), 39);
-				}
-				if( $mat_organize->resp == "mat_list" )
-				{
-					$c = $pdf->getNumLines( $mat_organize->mat_list->name, 39);
-				}
-				
-				$lines2 += max($a,$b,$c);
-			}
-			
-			$lines = max( $lines1, $lines2, 1);
-			
-			return $lines * 5 + 7;
+			return $return + 5;
 		}
 		
 		function material( $pdf, $event_instance )
@@ -673,17 +647,16 @@
 			$pdf->SetFillColor( 200, 200, 200 );
 			$pdf->SetFont( '', 'B', 10 );
 			
-			$w1 = 75;
-			$w2 = 115; 
+			$w = 190 / 2;
 			
-			$pdf->RoundedRect( 10, $this->y, $w1, 5, 2, '0000', 'DF' );
-			$pdf->RoundedRect( 10 + $w1, $this->y, $w2, 5, 2, '0000', 'DF' );
+			$pdf->RoundedRect( 10, $this->y, $w, 5, 2, '0000', 'DF' );
+			$pdf->RoundedRect( 10 + $w, $this->y, $w, 5, 2, '0000', 'DF' );
 			
 			$pdf->SetXY( 10, $this->y );
-			$pdf->drawTextBox( 'Vorhandenes Material:', $w1, 5, 'L', 'M', 0 );
+			$pdf->drawTextBox( 'Vorhandenes Material:', $w, 5, 'L', 'M', 0 );
 			
-			$pdf->SetXY( 10 + $w1, $this->y );
-			$pdf->drawTextBox( 'Zu organisierendes Material:', $w2, 5, 'L', 'M', 0 );
+			$pdf->SetXY( 10 + $w, $this->y );
+			$pdf->drawTextBox( 'Zu organisierendes Material:', $w, 5, 'L', 'M', 0 );
 			
 			$this->y += 5;
 			
@@ -695,14 +668,12 @@
 			foreach( $event_instance->event->mat_available as $mat_available )
 			{
 				$pdf->SetXY( 11, $this->y + $h );
-				$pdf->MultiCell( 15, 4, $mat_available->quantity, 0, 'L' );
-				$quantity_h = $pdf->GetY() - $this->y - $h;
+				$pdf->drawTextBox( $mat_available->quantity, 10, 4, 'L', 'M', 0 );
 				
-				$pdf->SetXY( 26, $this->y + $h );
-				$pdf->MultiCell( 59, 4, $mat_available->article_name, 0, 'L' );
-				$article_h = $pdf->GetY() - $this->y - $h;
+				$pdf->SetXY( 21, $this->y + $h );
+				$pdf->drawTextBox( $mat_available->article_name, 50, 4, 'L', 'M', 0 );
 				
-				$h += max(5,$quantity_h, $article_h);
+				$h += 5;
 			}
 			$max_h = max( $max_h, $h );
 			
@@ -710,29 +681,27 @@
 			$h = 0;
 			foreach( $event_instance->event->mat_organize as $mat_organize )
 			{
-				$pdf->SetXY( 11 + $w1, $this->y + $h );
-				$pdf->MultiCell( 15, 4, $mat_organize->quantity, 0, 'L' );
-				$quantity_h = $pdf->GetY() - $this->y - $h;
+				$pdf->SetXY( 11 + $w, $this->y + $h );
+				$pdf->drawTextBox( $mat_organize->quantity, 10, 4, 'L', 'M', 0 );
 				
-				$pdf->SetXY( 26 + $w1, $this->y + $h );
-				$pdf->MultiCell( 60, 4, $mat_organize->article_name, 0, 'L' );
-				$article_h = $pdf->GetY() - $this->y - $h;
+				$pdf->SetXY( 21 + $w, $this->y + $h );
+				$pdf->drawTextBox( $mat_organize->article_name, 30, 4, 'L', 'M', 0 );
 				
-				$pdf->SetXY( 86 + $w1, $this->y + $h );
+				
+				$pdf->SetXY( 66 + $w, $this->y + $h );
 				
 				if( $mat_organize->resp == "user" )
-				{  $pdf->MultiCell( 39, 4, $mat_organize->user->get_name(), 0, 'L' ); }
+				{	$pdf->drawTextBox( $mat_organize->user->get_name(), 20, 4, 'L', 'M', 0 );	}
 				if( $mat_organize->resp == "mat_list" )
-				{ $pdf->MultiCell( 39, 4, $mat_organize->mat_list->name, 0, 'L' ); }
-				$resp_h = $pdf->GetY() - $this->y - $h;
+				{	$pdf->drawTextBox( $mat_organize->mat_list->name, 20, 4, 'L', 'M', 0 );		}
 				
-				$h += max(5,$quantity_h, $article_h,$resp_h);
+				$h += 5;
 			}
 			$max_h = max( $max_h, $h );
 			
 			
-			$pdf->RoundedRect( 10, $this->y, $w1, $max_h, 2, '0000', 'D' );
-			$pdf->RoundedRect( 10 + $w1, $this->y, $w2, $max_h, 2, '0000', 'D' );
+			$pdf->RoundedRect( 10, $this->y, $w, $max_h, 2, '0000', 'D' );
+			$pdf->RoundedRect( 10 + $w, $this->y, $w, $max_h, 2, '0000', 'D' );
 			
 			
 			

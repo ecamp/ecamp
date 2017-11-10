@@ -38,7 +38,7 @@
 	
 	$html->setEncoding('UTF-8');
 	$html->set('SHOW_MSG', false);
-
+	
 	session_start();
 	
 	if(isset( $_REQUEST['msg'] ) )
@@ -86,7 +86,8 @@
 			else
 			{
 				$html->set('SHOW_MSG', true);
-				$html->set('MSG', "	Du musst deinen Account zuerst aktivieren. <br /><br /><a href='resendacode.php'>Wie aktiviere ich meinen Account?</a>");
+				$html->set('MSG', "	Du musst deinen Account zuerst aktivieren. 
+									<br /><br /><a href='resendacode.php'>Wie aktiviere ich meinen Account?</a>");
 			}
 		}
 		else
@@ -95,7 +96,9 @@
 			$html->set('MSG', "Login ist fehlgeschlagen.");
 		}
 	}
-
+	
+	
+	
 	if( isset( $_COOKIE['autologin'] ) && $_COOKIE['autologin'] && isset( $_COOKIE['auth_key'] ) && is_numeric( $_COOKIE['user_id'] ) )
 	{
 	    include($lib_dir . "/mysql.php");
@@ -103,7 +106,8 @@
 		
 		$user_id 	= $_COOKIE['user_id'];
 		$auth_key 	= md5( $_COOKIE['auth_key'] );
-
+		
+		
 		$query = "SELECT id FROM user WHERE id = $user_id AND auth_key = '" . $auth_key . "'";
 		$result = mysql_query( $query );
 		
@@ -121,6 +125,5 @@
 			setcookie( 'auth_key', '' );
 		}
 	}
-
+	
 	echo $html->execute();
-?>

@@ -30,16 +30,19 @@ $event_detail = Hash(
 	{
 		$$('.toggle_border').each(function(item)
 		{
+			
 			item.getElement('.toggle_content').set('slide', { duration: 400 ,transition: 'quint:in:out' });
-			item.getElement('.toggle_button').addEvent('click', function(e){
-				new Event(e).stop();
-				item.getElement('.toggle_content').slide('toggle');
-				item.toggleClass('toggle_open');
-				if( item.getElement('.d_program_tag_title').getElement('.d_program_tag_title_close') ){
-					item.getElement('.d_program_tag_title').getElement('.d_program_tag_title_close').toggleClass('hidden');
-					item.getElement('.d_program_tag_title').getElement('.d_program_tag_title_open').toggleClass('hidden');
-				}
-			});
+			item.getElement('.toggle_button').addEvent('click', function(e)
+				{	
+					new Event(e).stop();
+					item.getElement('.toggle_content').slide('toggle');
+					item.toggleClass('toggle_open');
+					if( item.getElement('.d_program_tag_title').getElement('.d_program_tag_title_close') )
+					{
+						item.getElement('.d_program_tag_title').getElement('.d_program_tag_title_close').toggleClass('hidden');
+						item.getElement('.d_program_tag_title').getElement('.d_program_tag_title_open').toggleClass('hidden');
+					}
+				});
 		});
 	},
 	
@@ -85,7 +88,8 @@ $event_detail = Hash(
 				
 				item.getElement('.input_edit_border .input_edit').set( 'value', item.getElement('.input_show_border .input_show').get('value') );
 			});
-
+			
+			
 			item.getElement('.input_edit_save').addEvent('click', function()
 			{
 				item.getElement('.input_edit_border').addClass('hidden');
@@ -115,6 +119,10 @@ $event_detail = Hash(
 			
 		});
 	}
+	
+	
+	
 });
+
 
 $event_detail.load();

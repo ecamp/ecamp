@@ -33,7 +33,9 @@ var event_instance_class = new Class({
 		
 		if( $type(this.event) == "number" || $type(this.event) == "string" )	{	this.event	= $program.event.get( this.event.toInt() );	}
 		if( $type( this.day ) == "number" || $type( this.day ) == "string" )	{	this.day	= $program.day.get( this.day.toInt() );		}
-
+		
+		
+		
 		this.frame_div	= new Element('div').setStyle( 'position', 'absolute');
 		this.frame_div_fx = new Fx.Elements( this.frame_div, { duration: 500 } );
 		
@@ -151,6 +153,7 @@ var event_instance_class = new Class({
 	{
 		//	Position:
 		// ===========
+		
 			this.left	= this.left.limit( 0, 0.7 );
 			this.time	= this.time.limit( 0, 24 * 60 + time_shift );
 			this.width 	= this.width.limit( 0.3, 1 - this.left );
@@ -180,6 +183,7 @@ var event_instance_class = new Class({
 				}		});
 			}
 
+		
 		//	Display Text:
 		// ===============
 			resp_text = "[";
@@ -246,7 +250,7 @@ var event_instance_class = new Class({
 	
 	save_zoom: function( w, h )
 	{
-		this.wait();
+		this.wait()
 		
 		w = w.toInt();	h = h.toInt();
 		
@@ -508,4 +512,5 @@ var event_instance_class = new Class({
 		this.day.remove_event_instance(this);
 		$program.event_instance.erase(this.id);
 	}
+	
 });

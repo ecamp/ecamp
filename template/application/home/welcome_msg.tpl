@@ -1,4 +1,4 @@
-<span metal:define-macro="welcome" tal:omit-tag="">
+<p metal:define-macro="welcome" tal:omit-tag="">
     Diese Webapplikation soll dazu dienen, ein Lagerprogramm einfach und gem&auml;ss J&amp;S - Vorschriften zu erstellen. Es erm&ouml;glicht das gemeinsame Erarbeiten des Programms auf grosse Distanzen. So eignet es sich unter anderem speziell f&uuml;r Leitungsteams, die nicht jedes Wochenende zusammen im Ausgang sind, auch wenn sie dies gerne so pflegen w&uuml;rden.
     <br /><br />
     
@@ -8,4 +8,4 @@
         <br />
         <br />
     </tal:block>
-</span>
+</p>

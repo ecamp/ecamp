@@ -29,6 +29,7 @@
 	return $return;
   }
 
+
   # Template-Datei auslesen
   function gettemplate( $template, $replace, $endung, $folder )
   {
@@ -46,6 +47,7 @@
 		
 	 return $templatecontent;
   }
+
 
   function gettemplate_main( $template, $replace=array(), $endung="tpl" )
   {
@@ -66,4 +68,6 @@
   {
       return gettemplate( $template, $replace, $endung, $folder );
   }
+   
+  
 ?>

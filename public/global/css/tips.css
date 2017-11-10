@@ -1,32 +1,37 @@
-.tip{
+.tip {
 	z-index: 5000;
 	width: 200px; 
 	color: #FFFFFF;
 }
-.tip-top{
+
+.tip-top
+{
 	height:10px;
 	width:200px;
 	BACKGROUND: url(../img/tip_head.gif) left top;
 	background-repeat:no-repeat;
 }
-.tip-title{
+
+.tip-title {
 	PADDING-RIGHT: 8px;
 	PADDING-LEFT: 8px; 
-	PADDING-TOP: 0;
+	PADDING-TOP: 0px;
 	PADDING-BOTTOM: 4px; 
 	FONT-WEIGHT: bold;
 	FONT-SIZE: 11px;
 	background-color:#000000;
 }
-.tip-text{
+.tip-text {
 	PADDING-RIGHT: 8px; 
 	PADDING-LEFT: 8px;  
-	PADDING-BOTTOM: 0;
-	PADDING-TOP: 0;
+	PADDING-BOTTOM: 0px; 
+	PADDING-TOP: 0px;
 	FONT-SIZE: 11px; 
 	BACKGROUND: #000000;
 }
-.tip-bottom{
+
+.tip-bottom
+{
 	height:10px;
 	width:200px;
 	background-image:url(../img/tip_bottom.gif);

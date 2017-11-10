@@ -18,11 +18,11 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	$pw1 	= mysql_real_escape_string($_REQUEST[pw1]);
-	$pw2 	= mysql_real_escape_string($_REQUEST[pw2]);
-	$old_pw	= mysql_real_escape_string($_REQUEST[old_pw]);
+	$pw1 	= mysql_real_escape_string($_REQUEST['pw1']);
+	$pw2 	= mysql_real_escape_string($_REQUEST['pw2']);
+	$old_pw	= mysql_real_escape_string($_REQUEST['old_pw']);
 	
-	if( $pw1 != $_REQUEST[pw1] )
+	if( $pw1 != $_REQUEST['pw1'] )
 	{	$ans = "Das Passwort enhält unerlaubte Zeichen!";	}
 	elseif($pw1 == $pw2)
 	{
@@ -43,13 +43,11 @@
 	}
 	else
 	{	$ans = "Passwort konnte nicht geändert werden. Du musst beide Mal das selbe Passwort eingeben...";	}
-	
-	
+
 	// XML-Response senden
 	header("Content-type: application/json");
 	
 	echo json_encode(array("ans" => $ans));
 	
 	die();
-	
 ?>

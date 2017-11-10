@@ -60,7 +60,9 @@ var $h = new Hash(
 		
 		return border_h / ( 24*60 ) * minute;
 	}
+	
 });
+
 
 var $program = new Hash(
 {
@@ -71,7 +73,9 @@ var $program = new Hash(
 	event: 			new Hash(),
 	event_instance:	new Hash(),
 	menu:			new Hash(),
-
+	
+	
+	
 	last_update_time: 0,
 	picasso_border: $empty,
 	picasso_scroll_div: $empty,
@@ -106,7 +110,8 @@ var $program = new Hash(
 	
 	add_event_instance: function( id, event_id, day_id, starttime, length, dleft, width )
 	{	this.event_instance.include( id, new event_instance_class( id, event_id, day_id, starttime, length, dleft, width ) );	},
-
+	
+	
 	update_user: function( id, scoutname, firstname, surname )
 	{
 		if( this.user.has( id ) )
@@ -194,6 +199,7 @@ var $program = new Hash(
 				this.run_update( loads );
 			}.bind(this)
 		}).send();
+		
 	},
 	
 	run_update: function( update )
@@ -248,7 +254,11 @@ var $program = new Hash(
 			update.days.each(function( day )
 			{	$program.day.get( day.id ).renummber_event_instances();	}.bind(this) );
 		}
-
+		
+		
 		this.last_update_time = update.time;
+		
 	}
+	
+	
 });	

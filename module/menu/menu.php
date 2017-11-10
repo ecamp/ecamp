@@ -18,14 +18,19 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+	
+	
 	# Search for all camps, the user is working
 	#
 	#########################################################
+	
 	$c_date = new c_date;
 	$c_date->setUnix( time() );
-
+	
+	
 	$dropdown = array();
-
+	
+	
 	$query = "	SELECT
 					camp.*,
 					groups.id as groups_id,
@@ -45,7 +50,7 @@
 	
 	$result = mysql_query( $query );
 	
-	while( $camp = mysql_fetch_assoc( $result ) )
+	while($camp = mysql_fetch_assoc($result))
 	{
 		$subquery = "	SELECT	MAX( subcamp.start + subcamp.length - 1 ) as camp_end
 						FROM	subcamp
@@ -78,8 +83,9 @@
 													!$dropdown[$camp[groups_id]][camp_list][$camp[id]][past] ||
 													$dropdown[$camp[groups_id]][camp_list][$camp[id]][selected];
 	}
-
-
+	
+	
+	/*
 	if($_user_camp->auth_level == 100)
 	{	$query = "SELECT * FROM dropdown WHERE list = 'function'";	}
 	else
@@ -122,6 +128,8 @@
 			
 		}
 	}
-
+	*/
 	$_page->html->set('menu_dropdown', $dropdown);
+		
+	
 ?>

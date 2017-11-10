@@ -38,7 +38,7 @@
 		public $event;
 		public $toc;
 		
-		function __construct($data )
+		function print_build_class( $data )
 		{
 			$this->data 	= $data;
 			

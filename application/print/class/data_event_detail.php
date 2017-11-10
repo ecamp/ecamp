@@ -31,7 +31,7 @@
 		public $sorting;
 		
 		
-		function __construct($data,$pid )
+		function print_data_event_detail_class( $data, $pid )
 		{
 			$this->pid 		= $pid;
 			$this->id		= $data['id'];

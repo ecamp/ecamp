@@ -20,7 +20,6 @@
 
 	include("./config.php");
 	include($lib_dir . "/mysql.php");
-	include($lib_dir . "/functions/mail.php");
 	db_connect();
 
 	$login = mysql_escape_string( $_REQUEST[ 'Login' ] );
@@ -56,18 +55,15 @@
 Um dich bie eCamp einloggen zu können, musst du deinen Account aktivieren.
 Zu diesem Zweck musst du nachfolgendem Link folgen:
 \n\n
-" . $GLOBALS[base_uri] . "activate.php?user_id=$user_id&login=$login&acode=$acode
+" . $GLOBALS['base_uri'] . "activate.php?user_id=$user_id&login=$login&acode=$acode
 \n\n
  ";
- 	
- 	ecamp_send_mail($login, "eCamp - Willkommen", $text);
-	//mail( $login, "eCamp - Willkommen", $text, "From: eCamp Pfadi Luzern <ecamp@pfadiluzern.ch>" );
-	
+ 	mail( $login, "eCamp - Willkommen", $text, "From: eCamp Pfadi Luzern <ecamp@pfadiluzern.ch>" );
 	/*
 	$text = urlencode( $text );
  	$subject = urlencode( "eCamp - Passwort ändern" );
 	fopen( "http://ecamp2.pfadiluzern.ch/mail.php?to=$login&subject=$subject&message=$text", "r" );
 	*/
+
 	header( 'location: login.php?msg=Überprüfe nun bitte deine Mailbox.' );
 	die();
-?>

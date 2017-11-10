@@ -34,7 +34,7 @@
 				FROM event_instance
 				WHERE id = $event_instance_id";
 	$result = mysql_query( $query );
-	$old_day_id = mysql_result( $result, 0, 'day_id' );
+	$old_day_id = mysql_result( $result, 'day_id' );
 	
 	$query = "UPDATE  `day` SET t_edited = CURRENT_TIMESTAMP WHERE id = " . $old_day_id;
 	mysql_query( $query );

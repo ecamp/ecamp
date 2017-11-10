@@ -1,4 +1,5 @@
-ul.autocompleter-choices{
+ul.autocompleter-choices
+{
 	position:				absolute;
 	margin:					0;
 	padding:				0;
@@ -13,7 +14,9 @@ ul.autocompleter-choices{
 	z-index:				1100;
 	background-color:		#fff;
 }
-ul.autocompleter-choices li{
+
+ul.autocompleter-choices li
+{
 	position:				relative;
 	margin:					-2px 0 0 0;
 	padding:				0.2em 1.5em 0.2em 1em;
@@ -25,17 +28,23 @@ ul.autocompleter-choices li{
 	font-size:				1em;
 	line-height:			1.5em;
 }
-ul.autocompleter-choices li.autocompleter-selected{
+
+ul.autocompleter-choices li.autocompleter-selected
+{
 	background-color:		#444;
 	color:					#fff;
 }
-ul.autocompleter-choices span.autocompleter-queried{
+
+ul.autocompleter-choices span.autocompleter-queried
+{
 	display:				inline;
 	float:					none;
 	font-weight:			bold;
 	margin:					0;
 	padding:				0;
 }
-ul.autocompleter-choices li.autocompleter-selected span.autocompleter-queried{
+
+ul.autocompleter-choices li.autocompleter-selected span.autocompleter-queried
+{
 	color:					#9FCFFF;
 }

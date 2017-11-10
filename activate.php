@@ -19,40 +19,57 @@
  */
 
 	include("./config.php");
-	include($lib_dir."/mysql.php");
+	include($lib_dir . "/mysql.php");
 	db_connect();
-
-	$user_id    = mysql_real_escape_string($_REQUEST['user_id']);
-	$login      = mysql_real_escape_string($_REQUEST['login']);
-	$acode      = mysql_real_escape_string($_REQUEST['acode']);
+	
+	
+	
+	
+		
+	$user_id 	= mysql_real_escape_string( $_REQUEST[ 'user_id' ] );
+	$login 		= mysql_real_escape_string( $_REQUEST[ 'login' ] );
+	$acode		= mysql_real_escape_string( $_REQUEST[ 'acode' ] );
 	
 	
 	$query = "SELECT user.active, user.acode FROM user WHERE user.id = $user_id AND mail = '$login'";
 	$result = mysql_query( $query );
 	
-	if(!mysql_num_rows($result))
+	if( !mysql_num_rows( $result ) )
 	{
-		header("location: login.php?msg=Aktivierung ist fehlgeschlagen. Bitte Support kontaktieren.");
+		header( "location: login.php?msg=Aktivierung ist fehlgeschlagen. Bitte Support kontaktieren." );
 		die();
 	}
-
-	if( mysql_result($result,0,'active'))
+	
+	
+	if( mysql_result( $result, 0, 'active' ) )
 	{
-		header("location: login.php?msg=Account ist bereits aktiviert");
+		header( "location: login.php?msg=Account ist bereits aktiviert" );
 		die();
 	}
-
-	if($acode != mysql_result($result,0,'acode'))
+	
+	
+	
+	
+	if( $acode != mysql_result( $result, 0, 'acode' ) )
 	{
-		header("location: login.php?msg=Aktivierung ist fehlgeschlagen. Bitte Support kontaktieren.");
+		header( "location: login.php?msg=Aktivierung ist fehlgeschlagen. Bitte Support kontaktieren." );
 		die();
 	}
-
-	$query = "UPDATE  user 
+	
+	
+	
+	
+	$query = "	UPDATE  user 
 				SET  `active` =  '1', `acode` =  '' 
-				WHERE  `user`.`id` = $user_id LIMIT 1;";
-	mysql_query($query);
-
+				WHERE  `user`.`id` = $user_id LIMIT 1 ;";
+	mysql_query( $query );
+	
+	
+	
 	header( "location: login.php?msg=Account wurde erfolgreich aktiviert" );
+
 	die();
+	
+	
+	
 ?>

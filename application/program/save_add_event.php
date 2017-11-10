@@ -105,7 +105,7 @@
 			)
 		)
 	{
-		$day2_id = mysql_result( $result, 0, 'id' );
+		$day2_id = mysql_result( $result, 'id', 0 );
 		
 		$starttime1 = $starttime;
 		$starttime2 = $GLOBALS[time_shift];

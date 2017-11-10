@@ -18,34 +18,36 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	$GLOBALS['base_uri']			= "http://localhost/ecamp";
 	
-	$GLOBALS['lib_dir'] 			= "./lib";
+	
+	$GLOBALS['base_uri']				= "http://ecamps.ch/";
+	
+	$GLOBALS['lib_dir'] 				= "./lib";
 	$GLOBALS['module_dir'] 			= "./module";
-	$GLOBALS['app_dir'] 			= "./application";
+	$GLOBALS['app_dir'] 				= "./application";
 	
 	$GLOBALS['public_app_dir']		= "./public/application";
-	$GLOBALS['public_global_dir']	= "./public/global";
-	$GLOBALS['public_module_dir']	= "./public/module";
+	$GLOBALS['public_global_dir']		= "./public/global";
+	$GLOBALS['public_module_dir']		= "./public/module";
 	
-	$GLOBALS['template_app_dir'] 	= "./template/application";
-	$GLOBALS['template_global_dir'] = "./template/global";
-	$GLOBALS['template_module_dir'] = "./template/module";
+	$GLOBALS['template_app_dir'] 		= "./template/application";
+	$GLOBALS['template_global_dir'] 	= "./template/global";
+	$GLOBALS['template_module_dir'] 	= "./template/module";
 	
-	$GLOBALS['tpl_dir']     = "../../../template";
+	$GLOBALS['tpl_dir'] = "../../../template";
 
-	$GLOBALS['pear_dir']    = "/home/pfadiluz/www/pear/PEAR/";
+	$GLOBALS['pear_dir'] = "/home/pfadiluz/www/pear/PEAR/";
 	ini_set("include_path", ".:/usr/local/lib/php:/home/pfadiluz/www/pear/PEAR/");
 	
-	$GLOBALS['captcha_pub'] = "6LfUYiYUAAAAACv-13KycB69tFVUDOL0UWsfH0KM";
-	$GLOBALS['captcha_prv'] = "6LfUYiYUAAAAAMme0ircNs6eiQd2fqpwcrVmHKzS";
+	$GLOBALS['captcha_pub'] = "6LehoTMUAAAAAJ2XCzbBfduFd5uzppTU0wgm0y-_";
+	$GLOBALS['captcha_prv'] = "6LehoTMUAAAAAJVQOascfLNH-Wi9FPPGoAsMYtX5";
 	
 	
-	$GLOBALS['time_shift']  = 300; // Minuten;
-	$GLOBALS['news_num']    = 5;
+	$GLOBALS['time_shift'] = 300; // Minuten;
+	$GLOBALS['news_num'] = 5;
 
 	// Layout wählen
-	$GLOBALS['skin'] = "skin3";
+	$GLOBALS['skin'] = "skin4";
 	
 	$GLOBALS['debug'] = 1;
 	$GLOBALS['register'] = 0;
@@ -53,17 +55,14 @@
 	// Seite mit HTML-Tidy parsen
 	$GLOBALS['parse_tidy'] = false;
 	
-	$GLOBALS['feedback_mail'] = "ecamp@pfadiluzern.ch";
-	$GLOBALS['support_mail']  = "ecamp@pfadiluzern.ch";	
+	$GLOBALS['feedback_mail'] = "ecamp@ecamps.ch";
+	$GLOBALS['support_mail']  = "ecamp@ecamps.ch";	
 	
-	if( $_SERVER['HTTP_HOST'] == "localhost" )
-	{
-		$GLOBALS['host']	= "localhost";
-		$GLOBALS['db']	= "ecamp";
-		$GLOBALS['us'] 	= "root";
-		$GLOBALS['pw'] 	= "";
-	}
-	
+	$GLOBALS['host']	= "localhost";
+	$GLOBALS['db']	= "ecamp";
+	$GLOBALS['us'] 	= "root";
+	$GLOBALS['pw'] 	= "";
+		
 	$GLOBALS['en_to_de'] = array(
 		"Monday" 	=> "Montag",
 		"Tuesday"	=> "Dienstag",

@@ -18,6 +18,8 @@
  */
 
 var menu_class = new Class({
+	
+	
 	initialize: function( structure )
 	{
 		this.menu_structure = structure;	// Array mit Struktur des Array's

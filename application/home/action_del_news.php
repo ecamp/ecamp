@@ -18,10 +18,12 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+	
 	$date = mysql_real_escape_string( $_REQUEST['date'] );
 	
 	$_news->remove( $date );
 	
 	header( 'location: index.php?app=home' );
 	die();
+	
 ?>

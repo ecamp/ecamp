@@ -6,45 +6,41 @@ INSERT INTO `course_aim` VALUES
 (NULL, NULL, $camp_id, 'Der Kurs vermittelt den TN die Pfadigrundlagen.', NULL);
 
 INSERT INTO `course_aim` VALUES
-(NULL, LAST_INSERT_ID(), $camp_id, 'Die TN wissen, was die Pfadigrundlagen sind und erkennen deren Bezug zu ihrem Pfadialltag.', NULL),
-(NULL, LAST_INSERT_ID(), $camp_id, 'Die TN kennen das Stufenmodell der Pfadibewegung und können die Pfadistufe von der Wolfs- und der Piostufe abgrenzen.', NULL),
-(NULL, LAST_INSERT_ID(), $camp_id, 'Die TN kennen den Entwicklungsstand und die Bedürfnisse der Kinder und Jugendlichen der Pfadistufe.', NULL),
-(NULL, LAST_INSERT_ID(), $camp_id, 'Die TN wissen, wie die sieben Pfadimethoden auf der Pfadistufe gelebt werden.', NULL),
-(NULL, LAST_INSERT_ID(), $camp_id, 'Die TN setzen sich persönlich mit dem Gesetz und dem Versprechen der Roverstufe auseinander.', NULL);
+(NULL, LAST_INSERT_ID(), $camp_id, 'Die TN lernen die Grundlagen der Pfadibewegung kennen und setzen sich persönlich mit ihnen auseinander.', NULL),
+(NULL, LAST_INSERT_ID(), $camp_id, 'Die TN können das Stufenprofil der Zweiten Stufe bewusst anwenden. ', NULL),
+(NULL, LAST_INSERT_ID(), $camp_id, 'Die TN erleben Pfaditraditionen und lernen neue kennen.', NULL),
+(NULL, LAST_INSERT_ID(), $camp_id, 'Die TN setzen sich persönlich mit Gesetz & Versprechen und dem Wahlspruch auseinander.', NULL);
 
 INSERT INTO `course_aim` VALUES
-(NULL, NULL, $camp_id, 'Der Kurs bildet die TN aus, ein Programm für die Pfadistufe zu planen, durchzuführen und auszuwerten.', NULL);
+(NULL, NULL, $camp_id, 'Der Kurs bildet die TN aus, ein zweitstufengerechtes Programm zu planen, durchzuführen und auszuwerten.', NULL);
 
 INSERT INTO `course_aim` VALUES
-(NULL, LAST_INSERT_ID(), $camp_id, 'Die TN kennen Methoden zur Planung, Durchführung und Auswertung von Programmen und wissen, was sie bei den einzelnen Schritten besonders beachten müssen.', NULL),
-(NULL, LAST_INSERT_ID(), $camp_id, 'Die TN können Aktivitäten und Quartalsprogramme der Pfadistufe stufengerecht einkleiden.', NULL),
-(NULL, LAST_INSERT_ID(), $camp_id, 'Die TN können ein Quartalsprogramm für die Pfadistufe planen.', NULL),
-(NULL, LAST_INSERT_ID(), $camp_id, 'Die TN wissen, worauf sie bei der Planung eines Weekends für die Pfadistufe achten müssen.', NULL),
-(NULL, LAST_INSERT_ID(), $camp_id, 'Die TN kennen das Projekt als Form der Mitbestimmung auf der Pfadistufe sowie Möglichkeiten, dieses ins Programm zu integrieren.', NULL),
-(NULL, LAST_INSERT_ID(), $camp_id, 'Die TN können sportliche Aktivitäten für die Pfadistufe planen, durchführen und auswerten.', NULL),
-(NULL, LAST_INSERT_ID(), $camp_id, 'Die TN können Wanderungen für die Pfadistufe planen, durchführen und auswerten.', NULL),
-(NULL, LAST_INSERT_ID(), $camp_id, 'Die TN können zu einem Programmteil für die Pfadistufe eine relevante und konstruktive Rückmeldung geben.', NULL);
+(NULL, LAST_INSERT_ID(), $camp_id, 'Die TN entwickeln ein Bewusstsein fur zielorientiertes Arbeiten.', NULL),
+(NULL, LAST_INSERT_ID(), $camp_id, 'Die TN können Quartalsprogramme planen, durchführen und auswerten. ', NULL),
+(NULL, LAST_INSERT_ID(), $camp_id, 'Die TN können ein Projekt planen, durchführen und auswerten.', NULL),
+(NULL, LAST_INSERT_ID(), $camp_id, 'Die TN können Spiele leiten, Spielideen weitergeben, neue Spiele erfinden und kennen Möglichkeiten, ein bekanntes Spiel anzupassen.', NULL),
+(NULL, LAST_INSERT_ID(), $camp_id, 'Die TN können Wanderungen und Unternehmungen planen, durchführen und auswerten.', NULL),
+(NULL, LAST_INSERT_ID(), $camp_id, 'Die TN pflegen einen bewussten Umgang mit Material.', NULL);
 
 INSERT INTO `course_aim` VALUES
 (NULL, NULL, $camp_id, 'Der Kurs bildet die TN zu verantwortungsbewussten Mitgliedern eines Leitungsteams aus.', NULL);
 
 INSERT INTO `course_aim` VALUES
-(NULL, LAST_INSERT_ID(), $camp_id, 'Die TN kennen ihre Funktion sowie ihre Rechte und Pflichten als Mitglieder eines Leitungsteams der Pfadistufe.', NULL),
-(NULL, LAST_INSERT_ID(), $camp_id, 'Die TN kennen die Rolle der Leitpfadis und wissen, wie sie diese betreuen müssen.', NULL),
-(NULL, LAST_INSERT_ID(), $camp_id, 'Die TN kennen Strategien zum Umgang mit Pfadis mit herausforderndem Verhalten.', NULL),
-(NULL, LAST_INSERT_ID(), $camp_id, 'Die TN kennen den Begriff der sexuellen Ausbeutung und wissen, wo in ihrer Pfadiarbeit heikle Situationen entstehen können.', NULL),
-(NULL, LAST_INSERT_ID(), $camp_id, 'Die TN kennen die Grundgedanken der Gesundheitsförderung und wissen, wie sie das psychische, physische und soziale Wohlbefinden ihrer Pfadis positiv beeinflussen können.', NULL),
-(NULL, LAST_INSERT_ID(), $camp_id, 'Die TN können für sicherheitsrelevante Aktivitäten auf der Pfadistufe ein Sicherheitskonzept erstellen und wissen, wie sie sich bei Notfällen verhalten müssen.', NULL),
-(NULL, LAST_INSERT_ID(), $camp_id, 'Die TN kennen Anlaufstellen und Angebote ihres Kantonalverbandes / ihrer Region, sowie das kantonale Krisenkonzept.', NULL),
-(NULL, LAST_INSERT_ID(), $camp_id, 'Die TN setzen sich mit ihrer Leitungspersönlichkeit und ihrer Rolle im Team auseinander.', NULL),
-(NULL, LAST_INSERT_ID(), $camp_id, 'Die TN kennen Regeln für ein konstruktives Gespräch und können diese anwenden.', NULL),
+(NULL, LAST_INSERT_ID(), $camp_id, 'Die TN kennen ihre Funktion und sind sich ihrer Verantwortung bewusst.', NULL),
+(NULL, LAST_INSERT_ID(), $camp_id, 'Die TN können einen Stamm / Trupp gut organisieren (bspw. Strukturieren der Einheit, sinnvolle Delegation von Aufgaben, Sicherstellen des Informationsflusses).', NULL),
+(NULL, LAST_INSERT_ID(), $camp_id, 'Die TN können Gruppen- / Fahnliübungen betreuen.', NULL),
+(NULL, LAST_INSERT_ID(), $camp_id, 'Die TN kennen Möglichkeiten und Chancen der Teamführung.', NULL),
+(NULL, LAST_INSERT_ID(), $camp_id, 'Die TN erhalten Anregungen zum Umgang mit schwierigen Kindern und Jugendlichen, kennen die Sicherheitsregeln und das Verhalten bei Notfällen.', NULL),
+(NULL, LAST_INSERT_ID(), $camp_id, 'Die TN kennen die Strukturen der Abteilung und des KV.', NULL),
 (NULL, LAST_INSERT_ID(), $camp_id, 'Die TN kennen Möglichkeiten der Aus- und Weiterbildung.', NULL);
 
 INSERT INTO `course_aim` VALUES
-(NULL, NULL, $camp_id, 'Der Kurs befähigt die TN, Aktivitäten pfadistufengerecht zu gestalten.', NULL);
+(NULL, NULL, $camp_id, 'Der Kurs gibt den TN Impulse fur ihre Tätigkeit, damit sie stufengerechte und methodisch gute Aktivitäten anbieten können.', NULL);
 
 INSERT INTO `course_aim` VALUES
-(NULL, LAST_INSERT_ID(), $camp_id, 'Die TN kennen die Pfadimethode „Persönlichen Fortschritt fördern“ sowie Möglichkeiten, diese in ihren Aktivitäten umzusetzen.', NULL),
-(NULL, LAST_INSERT_ID(), $camp_id, 'Die TN kennen das Pfadigesetz und Möglichkeiten zur Arbeit mit Gesetz und Versprechen auf der Pfadistufe.', NULL),
-(NULL, LAST_INSERT_ID(), $camp_id, 'Die TN kennen verschiedene Formen von Lagerfeuern auf der Pfadistufe und wissen, worauf sie bei deren Gestaltung achten müssen.', NULL),
-(NULL, LAST_INSERT_ID(), $camp_id, 'Die TN verfügen über vertiefte Kenntnisse der Pfaditechnik und können diese stufengerecht vermitteln.', NULL);
+(NULL, LAST_INSERT_ID(), $camp_id, 'Die TN setzen sich mit den Bedürfnissen der Kinder der Zweiten Stufe auseinander und erkennen die unterschiedlichen Bedürfnisse von Mädchen und Knaben.', NULL),
+(NULL, LAST_INSERT_ID(), $camp_id, 'Die TN kennen und vertiefen die Methodik der Zweiten Stufe.', NULL),
+(NULL, LAST_INSERT_ID(), $camp_id, 'Die TN kennen die Methode des persönlichen Fortschritts und können sie ins Programm einbauen.', NULL),
+(NULL, LAST_INSERT_ID(), $camp_id, 'Die TN können die Grundlagen der Zweiten Stufe ins Programm einbauen.', NULL),
+(NULL, LAST_INSERT_ID(), $camp_id, 'Die TN können Lagerfeuer, stille Momente und ähnliche Aktivitäten mitgestalten.', NULL),
+(NULL, LAST_INSERT_ID(), $camp_id, 'Die TN können ein Pfaditechnikprojekt (Pioniertechnik, Orientieren, Natur und Umwelt) stufengerecht durchführen.', NULL);

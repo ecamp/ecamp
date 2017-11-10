@@ -20,12 +20,11 @@
 
 	include("./config.php");
 	include($lib_dir . "/mysql.php");
-	include($lib_dir . "/functions/mail.php");
 	db_connect();
 	
 	require_once( "./lib/recaptchalib.php" );
 
-	$resp = recaptcha_check_answer ($GLOBALS[captcha_prv], $_SERVER["REMOTE_ADDR"], 
+	$resp = recaptcha_check_answer ($GLOBALS['captcha_prv'], $_SERVER["REMOTE_ADDR"],
 									$_REQUEST["recaptcha_challenge_field"],
 									$_REQUEST["recaptcha_response_field"]	);
 	
@@ -33,8 +32,7 @@
 	{	header( 'location: reminder.php?msg=Bitte CAPTCHA richtig abschreiben!' );	die();	}
 
 	$login = mysql_escape_string( $_REQUEST[ 'Login' ] );
-	
-	
+
 	$query = "	SELECT id, pw, active FROM user WHERE mail = '$login'";
 	$result = mysql_query( $query );
 	
@@ -59,7 +57,7 @@
 
 	$query = "	UPDATE  user SET  `acode` =  '$acode' WHERE id = $user_id";
 	$result = mysql_query( $query );
-	
+
 	//	SEND MAIL FOR REMINDER:
 	// =========================
  	$text = "eCamp - Passwort ändern \n\n
@@ -67,15 +65,14 @@ Um das Passwort zu ändern, musst du dem nachfolgendem Link folgen:
 \n\n
 " . $GLOBALS[base_uri] . "pwreset.php?user_id=$user_id&login=$login&acode=$acode
 \n\n";
-
-	ecamp_send_mail($login, "eCamp - Passwort ändern", $text);
-	//mail( $login, "eCamp - Passwort ändern", $text, "From: eCamp Pfadi Luzern <ecamp@pfadiluzern.ch>" );
+ 	
+ 	mail( $login, "eCamp - Passwort ändern", $text, "From: eCamp Pfadi Luzern <ecamp@pfadiluzern.ch>" ); 
 	
 	/*
 	$text = urlencode( $text );
  	$subject = urlencode( "eCamp - Passwort ändern" );
 	fopen( "http://ecamp2.pfadiluzern.ch/mail.php?to=$login&subject=$subject&message=$text", "r" );
 	*/
+
 	header( 'location: login.php?msg=Überprüfe deine Mailbox. Mit dem Link im Mail kann das Passwort neu gesetzt werden.' );
 	die();
-?>

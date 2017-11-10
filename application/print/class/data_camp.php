@@ -41,7 +41,7 @@
 		
 		public $job_name;
 		
-		function __construct($data,$pid )
+		function print_data_camp_class( $data, $pid )
 		{
 			$this->pid 			= $pid;
 			$this->id 			= $data['id'];

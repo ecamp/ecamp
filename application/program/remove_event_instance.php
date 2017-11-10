@@ -37,7 +37,7 @@
 		echo json_encode( $ans );
 		die();
 	}
-	$event_id = mysql_result( $result, 0, 'event_id' );
+	$event_id = mysql_result( $result, 'event_id' );
 	
 	
 	
@@ -49,7 +49,7 @@
 	
 	$query = "SELECT COUNT(id) as count FROM event_instance WHERE event_id = $event_id";
 	$result = mysql_query($query);
-	$count = mysql_result( $result, 0, 'count' );
+	$count = mysql_result( $result, 'count' );
 	
 	if($count == 0)
 	{

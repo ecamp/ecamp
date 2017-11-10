@@ -18,6 +18,7 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+
 ////////////////////////////////
 	// Wandelt einen Binärstring in Hex um
 	function string2hex($str)
@@ -34,6 +35,7 @@
 		}
 	}
 ///////////////////////////////
+
 
  include("../../config.php");
  include("../../lib/mysql.php");
@@ -52,6 +54,7 @@ $camp_id = 12;
 // Tabellen spezifizieren
 // Die Reihenfolge der Tabellen ist wichtig, da sie genau so bei einem Restore wieder zurückgeschrieben werden.
 // Eine falsche Reihenfolge führt zur Verletzung von Fremdschlüssel-Bedingungen.
+
 $tables = array(
    // Verknüpfung direkt über camp_id
   "camp"    		=> "SELECT * FROM camp WHERE id=$camp_id",
@@ -157,5 +160,8 @@ foreach( $tables as $table => $qry)
 		$sql .= "INSERT INTO `$table` ($cols) VALUES\n$data;\n\n";
 }
 
+
+
 echo $sql;
+
 ?>

@@ -1,11 +1,15 @@
-ul#view{
+ul#view
+{
+	
 	min-height: 100px;
 	
 	padding: 3px;
-	margin: 0;
+	margin: 0px;
+	
 }
 
-li.view{
+li.view
+{
 	display: inline-table;
 	text-align: center;
 	background-color: white;
@@ -18,14 +22,21 @@ li.view{
 	width: 150px;
 	height: 210px;
 }
-li.view h1{
+
+li.view h1
+{
 	cursor: move;
 }
-ul#libary{
+
+
+ul#libary
+{
 	padding: 3px;
-	margin: 0;
+	margin: 0px;
 }
-li.libary{
+
+li.libary
+{
 	display: inline-table;
 	text-align: center;
 	background-color: white;
@@ -40,31 +51,41 @@ li.libary{
 	
 	cursor: pointer;
 }
-li.libary p{
+
+li.libary p
+{
 	display: none;
 }
-li h1{
+
+li h1
+{
 	padding-top: 8px;
-	margin: 0;
+	margin: 0px;
 	
 	width: 100%;
 	height: 20px;
 	
 	background-color: #ddd;
 }
-ul#trash{
+
+ul#trash
+{
 	vertical-align: baseline;
 	
-	padding: 0;
-	margin: 0;
+	padding: 0px;
+	margin: 0px;
 	width: 150px;
 	height: 150px;
-
+	
+	
 	background-image: url('../img/trash.png');
 	background-position: center;
 	background-repeat: no-repeat;
+	
 }
-p.libary{
+
+p.libary
+{
 	width: 150px;
 	text-align: left;
 }

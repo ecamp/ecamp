@@ -80,7 +80,6 @@
 					user_camp.user_id,
 					IF( ISNULL( todo_user_camp.todo_id ), 0, 1) as resp
 				FROM
-					dropdown,
 					user_camp
 				LEFT JOIN
 					(
@@ -95,10 +94,7 @@
 				ON
 					todo_user_camp.user_camp_id = user_camp.id
 				WHERE
-					user_camp.function_id = dropdown.id AND
-					dropdown.entry != 'Support' AND
 					user_camp.camp_id = $_camp->id";
-
 
 	$result = mysql_query( $query );
 	while( $row = mysql_fetch_assoc( $result ) )

@@ -21,10 +21,12 @@
 	$cat_content = "";
 	$query = "SELECT * FROM category WHERE camp_id = $_camp->id";
 	$result = mysql_query($query);
-	while($row = mysql_fetch_assoc($result)){
-		$cat_content .= "<tr bgcolor='#$row[color]'><td align='center'>". htmlentities_utf8($row['name']) ."</td></tr>";
+	while($row = mysql_fetch_assoc($result))
+	{
+		$cat_content .= "<tr bgcolor='#$row[color]'><td align='center'>". htmlentities_utf8($row[name]) ."</td></tr>";
 	}
 	
 	$_page->html->set( 'info_box_content', $cat_content );
 	$_page->html->set( 'info_box_title', "Blocktypen:" );
+	
 ?>

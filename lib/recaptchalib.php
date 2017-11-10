@@ -35,8 +35,8 @@
 /**
  * The reCAPTCHA server URL's
  */
-define("RECAPTCHA_API_SERVER", "http://www.google.com/recaptcha/api");
-define("RECAPTCHA_API_SECURE_SERVER", "https://www.google.com/recaptcha/api");
+define("RECAPTCHA_API_SERVER", "http://api.recaptcha.net");
+define("RECAPTCHA_API_SECURE_SERVER", "https://api-secure.recaptcha.net");
 define("RECAPTCHA_VERIFY_SERVER", "api-verify.recaptcha.net");
 
 /**
@@ -53,6 +53,8 @@ function _recaptcha_qsencode ($data) {
         $req=substr($req,0,strlen($req)-1);
         return $req;
 }
+
+
 
 /**
  * Submits an HTTP POST to a reCAPTCHA server
@@ -89,6 +91,8 @@ function _recaptcha_http_post($host, $path, $data, $port = 80) {
         return $response;
 }
 
+
+
 /**
  * Gets the challenge HTML (javascript and non-javascript version).
  * This is called from the browser, and the resulting reCAPTCHA HTML widget
@@ -124,6 +128,9 @@ function recaptcha_get_html ($pubkey, $error = null, $use_ssl = false)
 	</noscript>';
 }
 
+
+
+
 /**
  * A ReCaptchaResponse is returned from recaptcha_check_answer()
  */
@@ -131,6 +138,7 @@ class ReCaptchaResponse {
         var $is_valid;
         var $error;
 }
+
 
 /**
   * Calls an HTTP POST function to verify if the user's guess was correct
@@ -151,6 +159,8 @@ function recaptcha_check_answer ($privkey, $remoteip, $challenge, $response, $ex
 		die ("For security reasons, you must pass the remote ip to reCAPTCHA");
 	}
 
+	
+	
         //discard spam submissions
         if ($challenge == null || strlen($challenge) == 0 || $response == null || strlen($response) == 0) {
                 $recaptcha_response = new ReCaptchaResponse();
@@ -160,13 +170,13 @@ function recaptcha_check_answer ($privkey, $remoteip, $challenge, $response, $ex
         }
 
         $response = _recaptcha_http_post (RECAPTCHA_VERIFY_SERVER, "/verify",
-	        array (
-		        'privatekey' => $privkey,
-		        'remoteip' => $remoteip,
-		        'challenge' => $challenge,
-		        'response' => $response
-	        ) + $extra_params
-        );
+                                          array (
+                                                 'privatekey' => $privkey,
+                                                 'remoteip' => $remoteip,
+                                                 'challenge' => $challenge,
+                                                 'response' => $response
+                                                 ) + $extra_params
+                                          );
 
         $answers = explode ("\n", $response [1]);
         $recaptcha_response = new ReCaptchaResponse();
@@ -179,6 +189,7 @@ function recaptcha_check_answer ($privkey, $remoteip, $challenge, $response, $ex
                 $recaptcha_response->error = $answers [1];
         }
         return $recaptcha_response;
+
 }
 
 /**
@@ -199,6 +210,7 @@ function _recaptcha_aes_pad($val) {
 }
 
 /* Mailhide related code */
+
 function _recaptcha_aes_encrypt($val,$ky) {
 	if (! function_exists ("mcrypt_encrypt")) {
 		die ("To use reCAPTCHA Mailhide, you need to have the mcrypt php module installed.");
@@ -208,6 +220,7 @@ function _recaptcha_aes_encrypt($val,$ky) {
 	$val=_recaptcha_aes_pad($val);
 	return mcrypt_encrypt($enc, $ky, $val, $mode, "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0");
 }
+
 
 function _recaptcha_mailhide_urlbase64 ($x) {
 	return strtr(base64_encode ($x), '+/', '-_');
@@ -219,6 +232,7 @@ function recaptcha_mailhide_url($pubkey, $privkey, $email) {
 		die ("To use reCAPTCHA Mailhide, you have to sign up for a public and private key, " .
 		     "you can do so at <a href='http://mailhide.recaptcha.net/apikey'>http://mailhide.recaptcha.net/apikey</a>");
 	}
+	
 
 	$ky = pack('H*', $privkey);
 	$cryptmail = _recaptcha_aes_encrypt ($email, $ky);
@@ -258,4 +272,6 @@ function recaptcha_mailhide_html($pubkey, $privkey, $email) {
 		"' onclick=\"window.open('" . htmlentities ($url) . "', '', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=500,height=300'); return false;\" title=\"Reveal this e-mail address\">...</a>@" . htmlentities ($emailparts [1]);
 
 }
+
+
 ?>

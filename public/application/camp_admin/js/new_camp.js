@@ -20,8 +20,12 @@
 window.addEvent('load', function()
 {
 	path = new select_class( 0, null,-1 );
-
+	
+	
 	new Calendar({ 'camp_start': 'd.m.Y' , 'camp_end': 'd.m.Y'  }, { navigation: 2 , offset: 1 });
+	
+		
+		
 });
 
 var global_counter = 0;
@@ -56,7 +60,8 @@ select_class = new Class(
 		
 		this.wait = new Element('option').set( 'text', 'laden...' );
 		this.wait.inject( this.select_element );
-
+		
+		
 		args = new Hash(
 		{
 			"app": "camp_admin",
@@ -71,6 +76,7 @@ select_class = new Class(
 			data: args.toQueryString(),
 			onComplete: this.build_options.bind(this)
 		}).send();
+		
 	},
 	
 	keyhandler: function( event )
@@ -139,9 +145,11 @@ select_class = new Class(
 				this.right_select.select_element.getSelected().removeProperty( 'selected' );
 				this.right_select.value = 0;
 			}
-
+			
+			
 			pid = this.select_element.getSelected().getLast().get('value');
 		}
+		
 		
 		$('new_camp_path').set('html', this.get_path() );
 		$('camp_groups').set('value', pid );
@@ -167,6 +175,8 @@ select_class = new Class(
 		o = this.select_element.getSelected().getLast().retrieve( 'o' );
 		return left + o.short_prefix + " " + o.name;
 	}
+	
+	
 });
 
 function new_course_check()
@@ -215,6 +225,7 @@ function new_course_check()
 		text = text + "\n" + "- kein Kantonalverband gewählt";
 	}
 
+	
 	if( success )
 		return true;
 	else
@@ -256,6 +267,7 @@ function new_camp_check()
 		text = text + "\n" + "- keine Abteilung gewählt";
 	}
 
+	
 	if( success )
 		return true;
 	else
@@ -265,7 +277,8 @@ function new_camp_check()
 function new_check(isCourse)
 {
 	if( isCourse == 1 )
-		return new_course_check();
+		return new_course_check()
 	else
 		return new_camp_check();
 }
+

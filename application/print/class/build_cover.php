@@ -23,7 +23,7 @@
 	{
 		public $data;
 		
-		function __construct($data )
+		function print_build_cover_class( $data )
 		{	$this->data = $data;	}
 		
 		function build( $pdf )

@@ -27,7 +27,7 @@
 		public $ph;
 		public $pw;
 		
-		function __construct($data )
+		function print_build_picasso_class( $data )
 		{
 			$this->data = $data;
 			$this->orientation = 'L';

@@ -60,7 +60,7 @@
 		$leader_result = mysql_query( $leader_query );
 		
 		if( mysql_num_rows( $leader_result ) )
-		{	$leader = mysql_result( $leader_result, 0, 'user_id' );	}
+		{	$leader = mysql_result( $leader_result, 'user_id', 0 );	}
 		else
 		{	$leader = "0";	}
 		
@@ -121,7 +121,7 @@
 	
 	if( mysql_num_rows( $result ) )
 	{
-		$main_job = mysql_result( $result, 0, 'job_name' );
+		$main_job = mysql_result( $result, 'job_name', 0 );
 		$_js_env->add( 'EnableMainJobResp', true );
 	}
 	else

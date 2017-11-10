@@ -1,22 +1,29 @@
-div.day{
+div.day
+{
 	position:absolute;
-	top:0;
-	bottom:0;
+	top:0px;
+	bottom:0px;
 }
-div.scroll_div{
+
+div.scroll_div
+{
 	position:absolute;
-	left:0;
-	top:0;
+	left:0px;
+	top:0px;
 	bottom:30px;
 	min-height:450px;
 }
-div.new_event_size{
+
+div.new_event_size
+{
 	-moz-border-radius:5px;
 	-khtml-border-radius:5px;
 	
 	z-index:5000;
 }
-div.bg1{
+
+div.bg1
+{
 	background-image: url(../../../global/img/high_transparent.png);
 	background-repeat: repeat;
 }

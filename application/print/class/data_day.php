@@ -41,7 +41,7 @@
 		public $linker;
 		public $marker = 0;
 		
-		function __construct($data,$pid )
+		function print_data_day_class( $data, $pid )
 		{
 			$this->pid			= $pid;
 			$this->id 			= $data['id'];

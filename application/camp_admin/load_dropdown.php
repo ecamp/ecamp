@@ -18,6 +18,7 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+	
 	if( $_camp->is_course )
 		$query_function = "SELECT * FROM dropdown WHERE list = 'function_course' AND value > '0'";
 	else

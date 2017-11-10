@@ -31,7 +31,7 @@
 		public $form_type;
 		
 		
-		function __construct($data,$pid )
+		function print_data_category_class( $data, $pid )
 		{
 			$this->pid			= $pid;
 			$this->id 			= $data['id'];

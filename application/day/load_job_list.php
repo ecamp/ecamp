@@ -18,6 +18,7 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+	
 	$job_list = array();
 	
 	$query = "	SELECT
@@ -38,7 +39,8 @@
 	
 	while( $user = mysql_fetch_assoc( $result ) )
 	{	$job_list['users'][ $user['id'] ] = $user;	}
-
+	
+	
 	$query = "	SELECT
 					job.id,
 					job.job_name,
@@ -67,4 +69,5 @@
 	
 	while( $job = mysql_fetch_assoc( $result ) )
 	{	$job_list['jobs'][ $job['id'] ] = $job;	}
+	
 ?>

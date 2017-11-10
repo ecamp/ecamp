@@ -28,6 +28,7 @@
 		
 		var ttip = new Tips('.tooltip');
 
+		
 		$$('.camp_frame').each(function(item)
 		{
 			if( item.getElement('.camp_option .delete') )
@@ -70,9 +71,11 @@
 								if(ans.exit)	{	item.destroy();	}
 							}
 						}).send();
-					};
+					}
 					$popup.popup_yes_no("Lager verlassen", "Willst du dieses Lager wirklich verlassen?", yes_function, function(){}, 'popup_yes_button');
 				});
 			}			
 		});
 	});
+
+	

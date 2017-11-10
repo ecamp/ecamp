@@ -18,15 +18,16 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	function get_username($id)
+	function get_username( $id )
 	{
 		$query = "SELECT user.scoutname, user.firstname, user.surname, user.mail FROM user WHERE id='$id' LIMIT 1";
 		$result = mysql_query( $query );
 		
 		if( mysql_num_rows($result) == 0)
 			return "<unbekannt>";
+			
 		
-		$this_user = mysql_fetch_assoc($result);
+	 	$this_user = mysql_fetch_assoc($result);
 		if( trim($this_user[scoutname]) != "" )
 			return $this_user[scoutname];
 			
@@ -37,4 +38,6 @@
 	{
 		return htmlentities( $str, ENT_QUOTES, "UTF-8" );
 	}
+
+
 ?>

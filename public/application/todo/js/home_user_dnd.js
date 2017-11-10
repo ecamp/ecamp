@@ -21,6 +21,7 @@ window.addEvent('load', function()
 {
 	$$('.todo_entry').each(function(item)
 	{
+		
 		if( item.getElement('.todo_done input') )
 		{
 			item.getElement('.todo_done input').addEvent('click', function()
@@ -31,13 +32,14 @@ window.addEvent('load', function()
 				{	done = 0;	}
 				
 				data = new Hash({
-					'app':		'todo',
-					'cmd':		'action_done',
-					'todo_id':	item.getElement('.todo_id').get('value'),
-					'done':		done
-				});
+									'app':		'todo',
+									'cmd':		'action_done',
+									'todo_id':	item.getElement('.todo_id').get('value'),
+									'done':		done
+								});
 				
-				new Request.JSON({
+				new Request.JSON(
+				{
 					method: 'get',
 					url: 'index.php',
 					data: data.toQueryString(),
@@ -64,6 +66,7 @@ window.addEvent('load', function()
 						}
 					}
 				}).send();
+				
 			});
 			
 			item.getElement('.todo_del').addEvent('click', function()
@@ -71,16 +74,18 @@ window.addEvent('load', function()
 				yes_function = function()
 				{
 					data = new Hash({
-						'app':		'todo',
-						'cmd':		'action_del_todo',
-						'todo_id':	item.getElement('.todo_id').get('value')
-					});
+										'app':		'todo',
+										'cmd':		'action_del_todo',
+										'todo_id':	item.getElement('.todo_id').get('value')
+									});
 					
-					new Request.JSON({
+					new Request.JSON(
+					{
 						method: 'get',
 						url: 'index.php',
 						data: data.toQueryString(),
-						onComplete: function(ans){
+						onComplete: function(ans)
+						{
 							if(ans.error)
 							{	alert(ans.msg);	 }
 							if(!ans.error)
@@ -115,37 +120,39 @@ window.addEvent('load', function()
 				new Element('input').set('type', 'hidden').set('name', 'id').set('value', id).inject(form);
 				
 				content	= {	
-					"form":				form,
-					"search_button":	new Element('button').setStyles({'position': 'absolute', 'right': '30px', 'top': '110px', 'width': '90px'}).set('html', 'Sichern'),
-					"cancel_button":	new Element('button').setStyles({'position': 'absolute', 'right': '130px', 'top': '110px', 'width': '90px'}).set('html', 'Abbrechen'),
-				};
+							"form":				form,
+							"search_button":	new Element('button').setStyles({'position': 'absolute', 'right': '30px', 'top': '110px', 'width': '90px'}).set('html', 'Sichern'),
+							"cancel_button":	new Element('button').setStyles({'position': 'absolute', 'right': '130px', 'top': '110px', 'width': '90px'}).set('html', 'Abbrechen'),
+						};
 				events	= {
-					"cancel_button":	function(){	$popup.hide_popup();	},
-					"search_button":	function()
-					{
-						form.submit();
-						$popup.hide_popup();
-					},
-				};
+							"cancel_button":	function(){	$popup.hide_popup();	},
+							"search_button":	function()
+							{
+								form.submit();
+								$popup.hide_popup();
+							},
+						};
 				
 				keyevents = {	"enter": events['popup_save_button'], "esc": events['popup_abort_button'] };
 				
-				"Neue Aufgabe", content, events, keyevents, true, 400, 140;);
+				"Neue Aufgabe", content, events, keyevents, true, 400, 140);
 				
 				new Calendar({ 'input_todo_date': 'd.m.Y'  }, { navigation: 2 , offset: 1 });
+				
+				
 			});
-		};
+		}
 		
 		item.getElements('.todo_resp .resp_user').each(function(resp_user)
 		{
 			resp_user.getElement('.del_user').addEvent('click', function()
 			{
 				data = new Hash({
-					'app':		'todo',
-					'cmd':		'action_del_user',
-					'user_id':	resp_user.getElement('.user_id').get('value'),
-					'todo_id':	item.getElement('.todo_id').get('value')
-				});
+									'app':		'todo',
+									'cmd':		'action_del_user',
+									'user_id':	resp_user.getElement('.user_id').get('value'),
+									'todo_id':	item.getElement('.todo_id').get('value')
+								});
 				
 				new Request.JSON(
 				{
@@ -166,6 +173,7 @@ window.addEvent('load', function()
 		});
 	});
 	
+	
 	$$('.drag_user').each(function(item){
 
 		item.addEvent('mousedown', function(e) {
@@ -179,67 +187,75 @@ window.addEvent('load', function()
 			var drag = clone.makeDraggable({
 				droppables: $$('.user_droppable'),
 				
-				onDrop: function(element, droppable){
-					if( droppable )
-					{
-						droppable.setStyle('background-color', '');
+				onDrop: function(element, droppable)
+						{
+							if( droppable )
+							{
+								droppable.setStyle('background-color', '');
 								
-						todo_id = droppable.getElement('.todo_id').get('value');
-						user_id = element.getElement('.user_id').get('value');
-						user_name = element.getElement('.user_name').get('value');
+								todo_id = droppable.getElement('.todo_id').get('value');
+								user_id = element.getElement('.user_id').get('value');
+								user_name = element.getElement('.user_name').get('value');
 								
-						data = new Hash({
-							'app': 'todo',
-							'cmd': 'action_add_user',
-							'todo_id': todo_id,
-							'user_id': user_id
-						});
-								
-						new Request.JSON({
-							method: 'get',
-							url: 'index.php',
-							data: data.toQueryString(),
-							onComplete: function(ans){
-								if(ans.error)
-								{	alert(ans.msg);	}
-								if(!ans.error)
-								{
-									if( !droppable.getElement('.todo_resp .user_' + user_id) )
-									{
-										div = new Element('div').addClass('user_' + user_id).addClass('resp_user');
-										div.set('html', user_name + ' ').setStyle('display', 'inline');
-										div.inject( droppable.getElement('.todo_resp') );
-
-										input = new Element('input').set('type', 'hidden').addClass('user_id').set('value', user_id).inject(div);
-										img = new Element('img').set('src', 'public/global/img/del.png').addClass('del_user').inject(div);
-												
-										img.addEvent('click', function(){
-											data = new Hash({
-												'app':		'todo'	,
-												'cmd':		'action_del_user',
-												'user_id':	user_id,
-												'todo_id':	droppable.getElement('.todo_id').get('value')
+								data = new Hash({
+												'app': 'todo',
+												'cmd': 'action_add_user',
+												'todo_id': todo_id,
+												'user_id': user_id
 											});
+								
+								new Request.JSON(
+								{
+									method: 'get',
+									url: 'index.php',
+									data: data.toQueryString(),
+									onComplete: function(ans)
+									{
+										if(ans.error)
+										{	alert(ans.msg);	}
+										if(!ans.error)
+										{
+											if( !droppable.getElement('.todo_resp .user_' + user_id) )
+											{
+												div = new Element('div').addClass('user_' + user_id).addClass('resp_user');
+												div.set('html', user_name + ' ').setStyle('display', 'inline');
+												div.inject( droppable.getElement('.todo_resp') );
+												
+												input = new Element('input').set('type', 'hidden').addClass('user_id').set('value', user_id).inject(div);
+												img = new Element('img').set('src', 'public/global/img/del.png').addClass('del_user').inject(div);
+												
+												img.addEvent('click', function()
+												{
+													data = new Hash({
+																		'app':		'todo'	,
+																		'cmd':		'action_del_user',
+																		'user_id':	user_id,
+																		'todo_id':	droppable.getElement('.todo_id').get('value')
+																	});
 													
-											new Request.JSON({
-												method: 'get',
-												url: 'index.php',
-												data: data.toQueryString(),
-												onComplete: function(ans){
-													if(ans.error)
-													{	alert(ans.msg);	}
-													if(!ans.error)
-													{	div.destroy();	}
-												}
-											}).send();
-										});
+													new Request.JSON(
+													{
+														method: 'get',
+														url: 'index.php',
+														data: data.toQueryString(),
+														onComplete: function(ans)
+														{
+															if(ans.error)
+															{	alert(ans.msg);	}
+															if(!ans.error)
+															{	div.destroy();	}
+														}
+													}).send();						
+												});
+											}
+										}
 									}
-								}
+								}).send();
+								element.destroy();
 							}
-						}).send();
-						element.destroy();
-					} else {	element.destroy();	}
-				},
+							else
+							{	element.destroy();	}
+						},
 				onEnter: function(element, droppable)
 				{
 					droppable.setStyle('background-color', '#ffffff');
@@ -274,23 +290,25 @@ window.addEvent('load', function()
 			new Element('input').set('type', 'hidden').set('name', 'cmd').set('value', 'action_add_todo').inject(form);
 			
 			content	= {	
-				"form":				form,
-				"search_button":	new Element('button').setStyles({'position': 'absolute', 'right': '30px', 'top': '110px', 'width': '90px'}).set('html', 'Sichern'),
-				"cancel_button":	new Element('button').setStyles({'position': 'absolute', 'right': '130px', 'top': '110px', 'width': '90px'}).set('html', 'Abbrechen')
-			};
+						"form":				form,
+						"search_button":	new Element('button').setStyles({'position': 'absolute', 'right': '30px', 'top': '110px', 'width': '90px'}).set('html', 'Sichern'),
+						"cancel_button":	new Element('button').setStyles({'position': 'absolute', 'right': '130px', 'top': '110px', 'width': '90px'}).set('html', 'Abbrechen')
+					};
 			events	= {
-				"cancel_button":	function(){	$popup.hide_popup();	},
-				"search_button":	function(){
-					form.submit();
-					$popup.hide_popup();
-				}
-			};
+						"cancel_button":	function(){	$popup.hide_popup();	},
+						"search_button":	function()
+						{
+							form.submit();
+							$popup.hide_popup();
+						}
+					};
 			
 			keyevents = {	"enter": events['search_button'], "esc": events['cancel_button'] };
 			
 			$popup.popup_HTML("Neue Aufgabe", content, events, keyevents, true, 400, 140);
 			
 			new Calendar({ 'input_todo_date': 'd.m.Y'  }, { navigation: 2 , offset: 1 });
+			
 		});
 	});
 	
@@ -323,7 +341,9 @@ window.addEvent('load', function()
 		$$('.selectiv_todo .user').set('checked');
 		show_todo();
 	});
+	
 });
+
 
 show_todo = function()
 {
@@ -340,6 +360,7 @@ show_todo = function()
 				{	todo_entry.removeClass('hidden');	}
 			});
 		}
+		
 	});
 	
 	$$('.no_user_todo_checkbox').each(function(no_user_todo)
@@ -365,4 +386,4 @@ show_todo = function()
 			{	month.getElements('.todo_month_title_row').removeClass('hidden');	}
 		});
 	});
-};
+}

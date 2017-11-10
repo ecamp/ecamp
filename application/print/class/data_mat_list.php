@@ -29,7 +29,7 @@
 		public $name;
 		
 		
-		function __construct($data,$pid )
+		function print_data_mat_list( $data, $pid )
 		{
 			$this->pid			= $pid;
 			$this->id			= $data['id'];

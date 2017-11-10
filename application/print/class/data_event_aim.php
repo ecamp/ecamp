@@ -29,7 +29,7 @@
 		public $aim;
 		
 		
-		function __construct($data,$pid )
+		function print_data_event_aim_class( $data, $pid )
 		{
 			$this->pid			= $pid;
 			$this->id 			= $data['id'];

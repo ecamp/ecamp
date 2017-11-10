@@ -41,7 +41,12 @@
 	$query = "SELECT short_name FROM camp WHERE id = $camp_id";
 	$result = mysql_query( $query );
 	$short_name = mysql_result( $result, 0, 'short_name' );
-
+	
+	
+	
+	
+	
+	
 	$query = "SELECT mat_event.id FROM mat_event WHERE user_camp_id = $user_camp_id";
 	$result = mysql_query( $query );
 	
@@ -71,28 +76,29 @@
 					WHERE user_camp_id = $user_camp_id";
 		mysql_query( $query ); 
 	}
-
-	// Delete UserCamp-Instance:
+	
+	
+	
+	
+	
+	
+	
+	
 	$query = "	DELETE FROM 
 					user_camp 
 				WHERE 
 					id = '$user_camp_id' LIMIT 1";
 	mysql_query( $query );
 
-	// Extra Delete EventResponsibles  (Due To Design-Error :/ )
-	$query = "DELETE FROM event_responsible
-	WHERE user_id=$_user->id AND event_id IN
-	( SELECT event.id FROM event WHERE event.camp_id = $camp_id )";
-	
-    mysql_query( $query );
-
+    
     $_news->add2camp( "Lager verlassen", $_user->display_name . " hat das Lager '$short_name' verlassen.", time(), $camp_id );
 	$_news->add2user( "Lager verlassen", "Du hast das Lager '$short_name' verlassen.", time(), $_user->id );
 	
 	
 	if($_SESSION[camp_id] == $user_camp[camp_id])
 	{	$_SESSION[camp_id] = "";	}
-
+	
+	
 	//$uri = "&msg_title=".urlencode("Lager verlassen")."&msg_text=".urlencode("Lager wurde verlassen.");
 	//header("Location: index.php?app=camp_admin".$uri);
 	//die();
@@ -100,4 +106,5 @@
 	$ans = array("ans" => "Lager wurde verlassen!", "exit" => true);
 	echo json_encode($ans);
 	die();
+	
 ?>

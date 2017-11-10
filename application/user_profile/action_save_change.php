@@ -20,14 +20,13 @@
 
 	$valid_fields = array("scoutname","firstname","surname","street","zipcode","city","homenr","mobilnr","birthday","ahv","sex","jspersnr","jsedu","pbsedu");
 	
-	$field = mysql_real_escape_string($_REQUEST[field]);
-	$value = $_REQUEST[value];
+	$field = mysql_real_escape_string($_REQUEST['field']);
+	$value = $_REQUEST['value'];
 	$value_save = mysql_real_escape_string($value);
 	
 	if( !in_array($field,$valid_fields) )
 	{	die();	}	
-	
-	
+
 	if($field == "birthday")
 	{
 		$birthday = new c_date;
@@ -36,21 +35,15 @@
 		$value_save = $birthday->getValue();
 	}
 	
-	
 	$query = "UPDATE user SET $field = '$value_save' WHERE id = '$_user->id'";	
 	mysql_query($query);
-	
-	
+
 	if($field == "birthday")	{	$value_save = $birthday->getString("d.m.Y");	}
-	
-	
+
 	// XML-Response senden
-	
 	header("Content-type: application/json");
 	
 	$ans_array= array("field" => $field, "value" => $value);
 	echo json_encode($ans_array);
 	die();
-	
-	
 ?>

@@ -25,7 +25,7 @@
 		public $y;
 		
 		
-		function __construct($data )
+		function print_build_daylist_class( $data )
 		{
 			$this->data = $data;
 		}

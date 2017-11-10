@@ -19,6 +19,7 @@
 
 	function lock_screen()
 	{
+
 	   	$('transparent_div').removeClass('hidden');
 	   
 	   	//$('transparent').width  = document.body.clientWidth;

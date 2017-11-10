@@ -23,7 +23,7 @@ class FilterLZW_FPDI extends FilterLZW {
 
     var $fpdi;
 
-    function __construct(&$fpdi) {
+    function FilterLZW_FPDI(&$fpdi) {
         $this->fpdi =& $fpdi;
     }
     

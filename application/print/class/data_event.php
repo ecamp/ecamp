@@ -47,7 +47,7 @@
 		public $event_aim = array();
 
 		
-		function __construct($data,$pid )
+		function print_data_event_class( $data, $pid )
 		{
 			$this->pid			= $pid;
 			$this->id 			= $data['id'];

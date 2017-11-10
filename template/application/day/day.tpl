@@ -77,7 +77,7 @@
 					
 					<td class="progress"><tal:block content="event_instance/progress" /></td>
 					
-					<td width="40px" class="opt" align="center" style="padding:0; margin:0">
+					<td width="40px" class="opt" align="center" style="padding:0px; margin:0px">
 						<img class="edit" src="./public/global/img/edit.png" height="14" />
 						<img class="del"  src="./public/global/img/del.png"  height="14" />
 						<input type="hidden" name="event_instance_id" tal:attributes="value event_instance/id" />
@@ -87,7 +87,7 @@
 			
 		</table>
 		
-		<div align="right" style="width:90%; padding:0; margin:0">
+		<div align="right" style="width:90%; padding:0px; margin:0px">
 			<input type="button" value="Neuer Block" id="day_new_event" />
 		</div>
 		<br />

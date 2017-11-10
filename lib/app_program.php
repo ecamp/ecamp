@@ -18,10 +18,13 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+	
 	$filename = "application/program/del_protocol/" . $_user->id . ".log";
 	
-	if( $_page->app != "program" && $_page->app != "event" ){
-		touch($filename);
-		unlink($filename);
+	if( $_page->app != "program" && $_page->app != "event" )
+	{
+		touch( 	$filename );
+		unlink( $filename );
 	}
+	
 ?>

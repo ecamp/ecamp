@@ -18,10 +18,12 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+
 function get_progress_color( $prog )
 {
 	if( $prog == 100 ){	return "0000ff";	}
 	else
 	{	return dechex( 2.55 * ( 100 - $prog ) ) . dechex( 2.55 * $prog ) . "00";	}
 }
+
 ?>

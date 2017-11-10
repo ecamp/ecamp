@@ -21,10 +21,11 @@ function ajax_request( xml_url, data )
 {
   	var ans_func = (arguments[2]) ? arguments[2] : "ajax_response" ;
 	
-	var myRequest = new Request({
-		url: xml_url,
-		method: 'post',
-		onSuccess: function(text,xml)
-		{	ans_func(xml);	}
-	}).send(data);
+	var myRequest = new Request(
+		{
+			url: xml_url, 
+			method: 'post',
+			onSuccess: function(text,xml)
+				{	ans_func(xml);	}
+		}).send(data);
 }

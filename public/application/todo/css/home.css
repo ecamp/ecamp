@@ -1,58 +1,90 @@
-div.todo_left{
+div.todo_left
+{
 	position: absolute;
-	left: 0;
+	left: 0px;
 	right: 255px;
-	top: 0;
-}
-div.todo_right{
-	position: absolute;
-	right: 0;
-	width: 250px;
-	top: 0;
+	top: 0px;
 }
 
-table.todo_table{
+div.todo_right
+{
+	position: absolute;
+	right: 0px;
+	width: 250px;
+	top: 0px;
+}
+
+table.todo_table
+{
 	width:90%;
 }
-tr.todo_month_title_row{
+
+tr.todo_month_title_row
+{
 	/* height:40px; */
 	vertical-align:bottom;
 }
-td.todo_month_title{
+
+td.todo_month_title
+{
 	font-weight:bold;
 	font-size:14px;
 	border-bottom: 1px solid black;
 	padding-left:10px;
 }
-tr.todo_entry{height:22px;}
-tr.todo_entry:hover{background-color:#FFFFFF;}
-td.todo_done{
+
+tr.todo_entry
+{	height:22px;	}
+
+tr.todo_entry:hover
+{	background-color:#FFFFFF;	}
+
+td.todo_done
+{
 	width: 50px;
 	text-align:center;
 	vertical-align:middle;
 }
-td.todo_date{width: 10%;}
-td.todo_title{
+
+td.todo_date
+{	width: 10%;	}
+
+td.todo_title
+{
 	width: 20%;
 	font-weight:bold;
 }
-td.todo_short{}
-td.todo_resp{width: 15%;}
-td.todo_option{
+
+td.todo_short
+{		}
+
+td.todo_resp
+{	width: 15%;	}
+
+td.todo_option
+{
 	width: 5%;
 	text-align:center;
 }
-td.new_todo{
+
+td.new_todo
+{
 	border-top:1px solid black;
 }
-div.resp_user{
+
+div.resp_user
+{
 	display:inline;
 	position:relative;
 }
-div.resp_user img.del_user{
+
+div.resp_user img.del_user
+{
 	display:none;
 }
-div.resp_user:hover img.del_user{
+
+div.resp_user:hover img.del_user
+{
 	display:block;
 	position:absolute;
 	left:-4px;

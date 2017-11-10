@@ -104,15 +104,55 @@
 					event_instance.starttime,
 					event_instance.length,
 					day.day_offset + subcamp.start as startdate,
-					v.event_nr,
-					v.day_nr
+					(	SELECT
+							count(event_instance_down.id)
+						FROM
+							event_instance as event_instance_up,
+							event_instance as event_instance_down,
+							event,
+							category
+						WHERE
+							event_instance_up.id = event_instance.id AND
+							event_instance_up.day_id = event_instance_down.day_id AND
+							event_instance_down.event_id = event.id AND
+							event.category_id = category.id AND
+							category.form_type > 0 AND
+							(
+								event_instance_down.starttime < event_instance_up.starttime OR
+								(
+									event_instance_down.starttime = event_instance_up.starttime AND
+									(
+										event_instance_down.dleft < event_instance_up.dleft OR
+										(
+											event_instance_down.dleft = event_instance_up.dleft AND
+											event_instance_down.id <= event_instance_up.id
+							)	)	)	)
+					) as event_nr,
+					day.day_offset + 1 as day_nr
 				FROM
-					(".getQueryEventNr($_camp->id).") v,
 					event_instance,
 					day,
 					subcamp
 				WHERE
-					v.event_instance_id = event_instance.id AND
+					event_instance.event_id = $event_id AND
+					event_instance.day_id = day.id AND
+					day.subcamp_id = subcamp.id
+				ORDER BY
+					startdate, event_nr";
+	
+	$query = "	SELECT
+					event_instance.starttime,
+					event_instance.length,
+					day.day_offset + subcamp.start as startdate,
+					v_event_nr.event_nr,
+					v_event_nr.day_nr
+				FROM
+					v_event_nr,
+					event_instance,
+					day,
+					subcamp
+				WHERE
+					v_event_nr.event_instance_id = event_instance.id AND
 					event_instance.event_id = $event_id AND
 					event_instance.day_id = day.id AND
 					day.subcamp_id = subcamp.id

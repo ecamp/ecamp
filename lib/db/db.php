@@ -38,7 +38,7 @@
 	{
 		public $_meta;
 		
-		function __construct($config )
+		function db( $config )
 		{
 			$this->_meta = new o();
 			$this->_meta->config = $config;
@@ -70,7 +70,7 @@
 		public $_meta;
 		public $_data = array();
 		
-		function __construct($table,$config,$db )
+		function db_table( $table, $config, $db )
 		{
 			$this->_meta = new o();
 			$this->_meta->config = $config;
@@ -122,7 +122,7 @@
 	{
 		public $_meta;
 		
-		function __construct($row,$config,$db_table )
+		function db_row( $row, $config, $db_table )
 		{
 			$this->_meta = new o();
 			$this->_meta->config = $config;

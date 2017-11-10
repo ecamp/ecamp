@@ -19,22 +19,21 @@
  */
 
 	$pid = mysql_real_escape_string( $_REQUEST['pid'] );
-
+	
+	
 	$ans = array();
 	
 	if( $pid == 0 )
 	{
 		$query = "	SELECT *
 					FROM groups
-					WHERE ISNULL( pid ) AND active=1
-					ORDER BY name";
+					WHERE ISNULL( pid )";
 	}
 	else
 	{
 		$query = "	SELECT *
 					FROM groups
-					WHERE pid = $pid AND active=1
-					ORDER BY name";
+					WHERE pid = $pid";
 	}
 	
 	$result = mysql_query( $query );

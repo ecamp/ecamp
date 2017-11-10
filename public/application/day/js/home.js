@@ -22,7 +22,8 @@ window.addEvent( 'load', function()
 	var event_list = new Hash( $_var_from_php.event_list );
 	
 	var day_id = $('day_job_list').getElement( 'input[name=day_id]' ).get('value');
-
+	
+	
 	args = new Hash();
 	
 	$('day_job_list').getElements('li').each( function( item )
@@ -36,11 +37,15 @@ window.addEvent( 'load', function()
 		
 		new DI_SELECT( item.getElement('select[name=user_id]'), { 'args': args, 'min_level': 40 } );
 	});
-
+	
+	
+	
+	
 	$('day_event_list').getElements( 'tr' ).each( function( tr )
 	{
 		//	EDIT EVENT_INSTANCE:
 		// ======================
+		
 		if( auth.access( 40 ) )
 		{
 			tr.getElement( 'td.opt img.edit' ).setStyle( 'cursor', 'pointer' );
@@ -75,7 +80,8 @@ window.addEvent( 'load', function()
 			$$('td.opt img.del').addClass( 'hidden' );
 			
 		}
-
+		
+		
 		//	EDIT EVENT
 		// ============
 		tr.getElement( 'td.event_name b' ).setStyle( 'cursor', 'pointer' );
@@ -89,7 +95,9 @@ window.addEvent( 'load', function()
 			
 		});
 	});
-
+	
+	
+	
 	if( auth.access(40) )
 	{
 		$('day_new_event').addEvent('click', function()
@@ -100,4 +108,7 @@ window.addEvent( 'load', function()
 	
 	new DI_TEXTAREA( 'day_story', { 'args': { 'app': 'day', 'cmd': 'action_change_story', 'day_id': day_id }, 'button_pos': 'bottom', 'min_level': 40 } );
 	new DI_TEXTAREA( 'day_notes', { 'args': { 'app': 'day', 'cmd': 'action_change_notes', 'day_id': day_id }, 'button_pos': 'bottom', 'min_level': 40 } );
+	
+	
 });
+

@@ -24,7 +24,7 @@
 		public $page = array();
 		public $countoffset = 1;
 		
-		function __construct()
+		function print_build_toc()
 		{}
 		
 		function addTOC( $pdf )

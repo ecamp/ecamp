@@ -18,10 +18,12 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	$_page->html->set('main_macro', $GLOBALS[tpl_dir].'/global/content_box_fit.tpl/predefine');
-	$_page->html->set('box_content', $GLOBALS[tpl_dir].'/application/user_profile/home.tpl/home');
+	$_page->html->set('main_macro', $GLOBALS['tpl_dir'].'/global/content_box_fit.tpl/predefine');
+	$_page->html->set('box_content', $GLOBALS['tpl_dir'].'/application/user_profile/home.tpl/home');
 	$_page->html->set('box_title', 'Mein Profil');
-
+	
+	
+	
 	//  Geschlecht
 	// ============
 	$sex_content = array();
@@ -49,12 +51,12 @@
 	{
 		$sex_content[] = array
 		(
-			"value" 		=> $row[item_nr],
-			"content"		=> $row[entry],
-			"selected"		=> $row[selected]
+			"value" 		=> $row['item_nr'],
+			"content"		=> $row['entry'],
+			"selected"		=> $row['selected']
 		);
 		
-		if( $row['selected'] ){	$sex_selected = $row[item_nr];	}
+		if( $row['selected'] ){	$sex_selected = $row['item_nr'];	}
 	}
 
 	//  JS-Ausbildung
@@ -83,12 +85,12 @@
 	{	
 		$jsedu_content[] = array
 		(
-			"value"		=> $row[item_nr],
-			"content"	=> $row[entry],
-			"selected"	=> $row[selected]
+			"value"		=> $row['item_nr'],
+			"content"	=> $row['entry'],
+			"selected"	=> $row['selected']
 		);
 		
-		if( $row['selected'] )	{	$jsedu_selected = $row[item_nr];	}
+		if( $row['selected'] )	{	$jsedu_selected = $row['item_nr'];	}
 	}
 
 	//  PBS-Ausbildung
@@ -118,12 +120,12 @@
 	{	
 		$pbsedu_content[] = array
 		(
-			"value"		=> $row[item_nr],
-			"content"	=> $row[entry],
-			"selected"	=> $row[selected]
+			"value"		=> $row['item_nr'],
+			"content"	=> $row['entry'],
+			"selected"	=> $row['selected']
 		);
 		
-		if( $row['selected'] )	{	$pbsedu_selected = $row[item_nr];	}
+		if( $row['selected'] )	{	$pbsedu_selected = $row['item_nr'];	}
 	}
 
 	$query = "SELECT * FROM user WHERE id = '$_user->id'";
@@ -131,8 +133,8 @@
 	$row = mysql_fetch_assoc($result);
 	
 	$birthday = new c_date;
-	$birthday->setDay2000($row[birthday]);
-	
+	$birthday->setDay2000($row['birthday']);
+
 	$profile = array(
 		"img_src" 	=> "index.php?app=user_profile&cmd=show_avatar&show_user_id=" . $_user->id,
 		"scoutname" => array(	"name" => "scoutname", 	"value" => $row['scoutname']),
@@ -152,8 +154,8 @@
 		"pw_change"	=> "",
 		"avatar"	=> ""
 	);
-	
+
 	$_page->html->set( 'profile', $profile );
 	
-	print_r($profile);
+	//print_r($profile);
 ?>
