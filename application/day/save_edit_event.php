@@ -18,7 +18,6 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	
 	$day_id = 				mysql_real_escape_string( $_REQUEST['day_id'] );
 	$event_id = 			mysql_real_escape_string( $_REQUEST['event_id'] );
 	$event_instance_id = 	mysql_real_escape_string( $_REQUEST['event_instance_id'] );
@@ -31,21 +30,17 @@
 	
 	$length_h = 			mysql_real_escape_string( $_REQUEST['length_h'] );
 	$length_min = 			mysql_real_escape_string( $_REQUEST['length_min'] );
-	
-	
+
 	$_camp->day( $day_id ) || 						die( "error" );
 	$_camp->event( $event_id ) || 					die( "error" );
 	$_camp->event_instance( $event_instance_id ) || die( "error" );
 	$_camp->category( $category_id ) || 			die( "error" );
-	
-	
-	
+
 	if( $start_h < 5 )
 	{	$start_h += 24;	}
 	
 	$start 	= $start_h  * 60 + $start_min;
 	$length = $length_h * 60 + $length_min;
-	
 	
 	$query = "	SELECT
 					event.*
@@ -61,10 +56,7 @@
 		echo json_encode( $ans );
 		die();
 	}
-	
-	
-	
-	
+
 	$query = "	UPDATE 
 					event
 				SET 
@@ -73,8 +65,7 @@
 				WHERE 
 					id = $event_id";
 	mysql_query( $query );
-	
-	
+
 	$query = "	UPDATE
 					event_instance
 				SET
@@ -83,16 +74,12 @@
 				WHERE
 					id = $event_instance_id";
 	mysql_query( $query );
-	
-	
-	
+
 	if( mysql_error() )
 	{	$ans = array( "error" => true, "error_msg" => "Fehler" );	}
 	else
 	{	$ans = array( "error" => false, "error_msg" => "" );	}
-	
-	
+
 	echo json_encode( $ans );
 	die();
-	
 ?>

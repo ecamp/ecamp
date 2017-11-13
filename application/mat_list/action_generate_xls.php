@@ -18,10 +18,8 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	
-	require_once $GLOBALS[pear_dir]."Spreadsheet/Excel/Writer.php";
-	
-	
+	require_once $GLOBALS['pear_dir']."Spreadsheet/Excel/Writer.php";
+
 	/* load mat_list */
 	$list_id = $_REQUEST['list'];
 	
@@ -47,7 +45,7 @@
 		$query = "SELECT user.scoutname FROM user_camp, user WHERE user.id=user_camp.user_id AND user_camp.id=".$list_id;
 		$res = mysql_query($query);
 		$res = mysql_fetch_assoc($res);
-		$title = "Materialliste für ".$res[scoutname];
+		$title = "Materialliste für ".$res['scoutname'];
 	}
 	elseif( $_REQUEST['listtype'] == "mat_list" )
 	{
@@ -71,12 +69,9 @@
 		$query = "SELECT name FROM mat_list WHERE id=".$list_id;
 		$res = mysql_query($query);
 		$res = mysql_fetch_assoc($res);
-		$title = "Einkaufsliste ".$res[name];
+		$title = "Einkaufsliste ".$res['name'];
 	}
-	
-	
-	
-	
+
 	// Creating a workbook
 	$workbook = new Spreadsheet_Excel_Writer();
 	
@@ -124,7 +119,7 @@
 	$worksheet->hideGridlines();
 	$worksheet->setInputEncoding ("UTF-8");
 	
-	$worksheet->setHeader("&L&8".$_camp->short_name." &C &R&8 ".$course_type[entry],"0.4"); 
+	$worksheet->setHeader("&L&8".$_camp->short_name." &C &R&8 ".$course_type['entry'],"0.4");
 	$worksheet->setFooter("&C&8&P/&N","0.4"); 
 
 	// Column width
@@ -147,11 +142,10 @@
 	{
 		$row++;
 		
-		$worksheet->write($row, 0,utf8_decode($item[organized] ? "ok" : "" ), $format_content);
-		$worksheet->write($row, 1,utf8_decode($item[quantity]), $format_content);
-		$worksheet->write($row, 2,utf8_decode($item[article_name]), $format_content);
-		$worksheet->write($row, 3,utf8_decode($item[event_name]), $format_content);
-		
+		$worksheet->write($row, 0,utf8_decode($item['organized'] ? "ok" : "" ), $format_content);
+		$worksheet->write($row, 1,utf8_decode($item['quantity']), $format_content);
+		$worksheet->write($row, 2,utf8_decode($item['article_name']), $format_content);
+		$worksheet->write($row, 3,utf8_decode($item['event_name']), $format_content);
 	}
 		
 	// Let's send the file

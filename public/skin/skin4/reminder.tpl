@@ -12,9 +12,12 @@
 		<link rel="stylesheet" type="text/css" href="./public/skin/skin4/css/layout.css" />
 		<link rel="stylesheet" type="text/css" href="./public/skin/skin4/css/bootstrap.min.css" />
 
-		<script type="text/javascript" language="javascript" src="./public/global/js/mootools1.2.js"></script>
+		<script type="text/javascript" language="javascript" src="./public/global/js/mootools-core-1.4.js"></script>
 		<script type="text/javascript" language="javascript" src="./public/skin/skin4/js/jquery-3.2.1.min.js"></script>
 		<script type="text/javascript" language="javascript" src="./public/skin/skin4/js/bootstrap.min.js"></script>
+		<script type="text/javascript" language="javascript">
+			jQuery.noConflict();
+		</script>
 	</head>
 	<body>
 		<div class="space-top"></div>

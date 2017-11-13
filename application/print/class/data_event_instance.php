@@ -17,11 +17,9 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 	
 	class print_data_event_instance_class
 	{
-		
 		public $pid;
 		public $id;
 		public $event_id;
@@ -47,10 +45,9 @@
 			$this->dleft 		= $data['dleft'];
 			$this->width 		= $data['width'];
 			
-			$this->starttime 	= ( ( $data['starttime'] + 24*60 - $GLOBALS[time_shift] ) % ( 24*60 ) ) + $GLOBALS[time_shift];
-			$this->length 		= min( $this->length, 24*60 + $GLOBALS[time_shift] - $this->starttime );
-			
-			
+			$this->starttime 	= ( ( $data['starttime'] + 24*60 - $GLOBALS['time_shift'] ) % ( 24*60 ) ) + $GLOBALS['time_shift'];
+			$this->length 		= min( $this->length, 24*60 + $GLOBALS['time_shift'] - $this->starttime );
+
 			$this->event 		= $pid->event[ $this->event_id ];
 			$this->day			= $pid->day[ $this->day_id ];
 			
@@ -65,7 +62,5 @@
 			
 			return $this->linker;
 		}
-		
 	}
-	
 ?>

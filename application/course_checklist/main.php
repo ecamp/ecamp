@@ -18,7 +18,7 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	$_page->html->set('main_macro', $GLOBALS[tpl_dir].'/application/course_checklist/border.tpl/border');
+	$_page->html->set('main_macro', $GLOBALS['tpl_dir'].'/application/course_checklist/border.tpl/border');
 		
     ////////////////////////////
 	// Todo: Kurstyp von den Einstellungen lsen
@@ -116,10 +116,10 @@
 					$events[] = $this_level3;
 				}
 				
-				$level2[] = array("short" => $this_level2[short], "name" => $this_level2[name], "no_events" => $no_events, "events" => $events);
+				$level2[] = array("short" => $this_level2['short'], "name" => $this_level2['name'], "no_events" => $no_events, "events" => $events);
 			}
 			
-			$list[$i][] = array("level2" => $level2, "short" => $this_level1[short], "name" => $this_level1[name] );
+			$list[$i][] = array("level2" => $level2, "short" => $this_level1['short'], "name" => $this_level1['name'] );
 		}
 	}
 	

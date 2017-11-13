@@ -30,13 +30,11 @@
 	
 	$todo_date = new c_date();
 	$todo_date->setUnix( $date );
-	
-	
+
 	$query = "INSERT INTO todo 	(camp_id, title, short, date, done) VALUES 
 								($_camp->id, '$title', '$text', " . $todo_date->getValue() . ", 0)";
 	mysql_query( $query );
 	
 	header ("Location: index.php?app=todo");
 	die();
-	
 ?> 

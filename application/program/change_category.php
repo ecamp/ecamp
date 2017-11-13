@@ -26,18 +26,14 @@
 	
 	$_camp->event( $event_id ) || die( "error" );
 	$_camp->category( $category_id ) || die( "error" );
-	
-	
-	
+
 	$query = "UPDATE event SET category_id = '$category_id' WHERE id = $event_id";
 	mysql_query($query);
-	
-	
+
 	header("Content-type: application/json");
 	
 	$ans = get_program_update( $time );
 	echo json_encode( $ans );
 	
 	die();
-	
 ?>

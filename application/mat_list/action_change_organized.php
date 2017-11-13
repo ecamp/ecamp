@@ -18,7 +18,6 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	
 	$mat_event_id 	= mysql_real_escape_string( $_REQUEST['mat_event_id'] );
 	$organized		= ( $_REQUEST['organized'] == "true" );
 	
@@ -32,5 +31,4 @@
 	$ans = array( "error" => false );
 	echo json_encode( $ans );
 	die();
-	
 ?>

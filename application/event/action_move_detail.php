@@ -18,20 +18,17 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 	$direction = mysql_real_escape_string( $_REQUEST['direction'] );
 	$base_id = mysql_real_escape_string( $_REQUEST['detail_id'] );
 	
 	$_camp->event_detail( $base_id ) || die( "error" );
-	
-	
+
 	$query = "SELECT event_id, sorting FROM event_detail WHERE id = $base_id";
 	$result = mysql_query( $query );
 	
 	$event_id = mysql_result( $result, 0, 'event_id' );
 	$base_sorting = mysql_result( $result, 0, 'sorting' );
-	
-	
+
 	if( $direction == "up" )
 	{
 		$query = "SELECT id FROM event_detail WHERE event_id = $event_id AND sorting = " . ( $base_sorting - 1 );
@@ -81,5 +78,4 @@
 	$ans = array( "error" => false );
 	echo json_encode( $ans );
 	die();
-	
 ?>

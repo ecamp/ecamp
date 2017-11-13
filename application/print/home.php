@@ -18,19 +18,14 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	
 	include_once( 'include/load_all_events.php' );
-	
-	
-	
+
 	$print = array(
-		"view" 			=> array(	"title" => "Zusammenstellung",	"macro" => $GLOBALS[tpl_dir]."/application/print/view.tpl/view" ),
-		"libary" 		=> array(	"title" => "Auswahl",			"macro" => $GLOBALS[tpl_dir]."/application/print/libary.tpl/libary" ),
-		"bin"			=> array(	"title" => "Abfalleimer", 		"macro" => $GLOBALS[tpl_dir]."/application/print/bin.tpl/bin" )
+		"view" 			=> array(	"title" => "Zusammenstellung",	"macro" => $GLOBALS['tpl_dir']."/application/print/view.tpl/view" ),
+		"libary" 		=> array(	"title" => "Auswahl",			"macro" => $GLOBALS['tpl_dir']."/application/print/libary.tpl/libary" ),
+		"bin"			=> array(	"title" => "Abfalleimer", 		"macro" => $GLOBALS['tpl_dir']."/application/print/bin.tpl/bin" )
 	);
 	
 	$_page->html->set( 'print', $print );
-	$_page->html->set( 'main_macro', $GLOBALS[tpl_dir].'/application/print/border.tpl/border' );
-
-	
+	$_page->html->set( 'main_macro', $GLOBALS['tpl_dir'].'/application/print/border.tpl/border' );
 ?>

@@ -19,8 +19,7 @@
  */
 
 	$todo = mysql_real_escape_string( $_REQUEST['todo'] );
-		
-	
+
 	if( $todo == "add" )
 	{
 		$inputs = $_REQUEST['inputs'];

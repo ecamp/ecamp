@@ -2,7 +2,6 @@
 	<span tal:condition="no_notes">
         <i>[Keine neuen Kommentare]</i>
     </span>
-
 	<span tal:repeat="note notes" >
         <img width="40px" style="float:left; margin:5px;" src="http://localhost/ecamp/www/index.php?app=user_profile&cmd=show_avatar&user_id=${user/id}" />
         <b>Betrifft</b>: ${note/camp} / <a href="#" onclick="$event.edit(${note/event_id});">${note/event} (Programm öffnen)</a><br />

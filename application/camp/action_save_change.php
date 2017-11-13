@@ -18,7 +18,6 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	
 	// Authentifizierung überprüfen
 	// write --> Ab Lagerleiter (level: 50)
 	if( $_user_camp->auth_level < 50 )
@@ -69,7 +68,6 @@
 			$value3 = substr( "000" . $value3, -3 );
 			$value4 = substr( "000" . $value4, -3 );
 			
-			
 			$value = $value1.".".$value2."/".$value3.".".$value4;
 			$value_save = $value;
 		}
@@ -85,23 +83,20 @@
 		{	$value = "";	}
 		$value_save = $value;
 	}
-
 	
 	$query = "UPDATE camp SET $field = '$value_save' WHERE id = '$_camp->id'";
 	mysql_query($query);
-	
-	
-	
+
 	$ans = array();
-	$ans[error] = false;
-	$ans[value] = $value;
+	$ans['error'] = false;
+	$ans['value'] = $value;
 	
 	if( $field == "ca_coor" )
 	{
-		$ans[value1] = $value1;
-		$ans[value2] = $value2;
-		$ans[value3] = $value3;
-		$ans[value4] = $value4;
+		$ans['value1'] = $value1;
+		$ans['value2'] = $value2;
+		$ans['value3'] = $value3;
+		$ans['value4'] = $value4;
 	}
 	
 	echo json_encode($ans);

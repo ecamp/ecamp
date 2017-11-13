@@ -28,8 +28,7 @@
 	
 	$_camp->event_instance( $event_instance_id ) || die( "error" );
 	$_camp->day( $day_id ) || die( "error" );
-	
-	
+
 	$query = "	SELECT day_id
 				FROM event_instance
 				WHERE id = $event_instance_id";
@@ -41,9 +40,6 @@
 	$query = "UPDATE  `day` SET t_edited = CURRENT_TIMESTAMP WHERE id = " . $day_id;
 	mysql_query( $quey );
 
-	
-	
-	
 	$query = "	UPDATE 
 					event_instance 
 				SET 
@@ -53,16 +49,11 @@
 				WHERE 
 					`id` = '$event_instance_id';";
 	$result = mysql_query($query);
-	
-	
-	
-	
+
 	header("Content-type: application/json");
 	
 	$ans = get_program_update( $time );
 	echo json_encode( $ans );
 	
 	die();
-	
-	
 ?>

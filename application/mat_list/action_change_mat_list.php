@@ -18,19 +18,16 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	
 	$mat_list_id = mysql_real_escape_string( $_REQUEST['mat_list_id'] );
 	$mat_list_name = mysql_real_escape_string( $_REQUEST['mat_list_name'] );
-	
-	
+
 	$_camp->mat_list( $mat_list_id ) || die( "error" );
 	
 	$query = "	UPDATE mat_list 
 				SET `name` = '$mat_list_name'
 				WHERE id = $mat_list_id";
 	mysql_query( $query );
-	
-	
+
 	if( mysql_error() )
 	{	$ans = array( "error" => true, "error_msg" => "Liste konne nicht unbenannt werden!" );	}
 	else
@@ -38,5 +35,4 @@
 	
 	echo json_encode( $ans );
 	die();
-	
 ?>

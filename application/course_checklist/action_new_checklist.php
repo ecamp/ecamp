@@ -18,7 +18,6 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 	if( $_camp->type>0 && $_camp->type<=4 ){
 		/* Verknüpfungen zur aktuellen Checkliste wechseln */
 		$query = "DELETE event_checklist.* FROM event_checklist INNER JOIN event ON event.id=event_checklist.event_id WHERE event.camp_id=".$_camp->id;
@@ -28,6 +27,7 @@
 		mysql_query($query);
 	
 	}
+
 	header("Location: index.php?app=course_checklist");
 	die();
 ?>

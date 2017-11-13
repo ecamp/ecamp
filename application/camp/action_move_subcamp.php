@@ -18,7 +18,6 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	
 	// Input validieren & interpretieren
 	$move_to = mysql_real_escape_string($_REQUEST['subcamp_start']);
     $subcamp_move_id = mysql_real_escape_string($_REQUEST['subcamp_id']);
@@ -27,9 +26,7 @@
 	$move_to = gmmktime(0, 0, 0, $regs[2], $regs[1], $regs[3]);
 	
 	$_camp->subcamp( $subcamp_move_id ) || die( "error" );
-	
-	
-	
+
 	// Subcamp suchen
 	$query = "SELECT * FROM subcamp WHERE id=$subcamp_move_id AND camp_id=$_camp->id";
 	$result = mysql_query( $query );
@@ -42,13 +39,12 @@
 		echo json_encode( $ans );
 		die();
 	}
-	
-	
+
 	// Überschneidungen prüfen
 	$start = new c_date(); $start->setUnix( $move_to );
-	$end   = new c_date(); $end->setDay2000( $start->getValue() + $subcamp[length] - 1 );
+	$end   = new c_date(); $end->setDay2000( $start->getValue() + $subcamp['length'] - 1 );
 	
-	$query = "SELECT * FROM `subcamp` WHERE camp_id=".$_camp->id." AND NOT id=".$subcamp[id]." AND(`start` BETWEEN -10000 AND ".($start->getValue()+$subcamp[length]-1).") AND ((`start`+`length`-1) BETWEEN ".$start->getValue()." AND 32000)";
+	$query = "SELECT * FROM `subcamp` WHERE camp_id=".$_camp->id." AND NOT id=".$subcamp['id']." AND(`start` BETWEEN -10000 AND ".($start->getValue()+$subcamp['length']-1).") AND ((`start`+`length`-1) BETWEEN ".$start->getValue()." AND 32000)";
 	$result = mysql_query( $query );
 	
 	if( mysql_num_rows( $result ) >= 1 )
@@ -57,8 +53,7 @@
 		echo json_encode( $ans );
 		die();
 	}
-	
-	
+
 	// Verschiebung durchführen
 	$query = "UPDATE subcamp SET start=".$start->getValue()." WHERE id=".$subcamp[id];
 	mysql_query( $query );

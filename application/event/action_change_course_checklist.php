@@ -18,13 +18,11 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	
 	$event_id = mysql_real_escape_string( $_REQUEST[ 'event_id' ] );
 	$checklist = $_REQUEST[ 'checklist' ];
 	
 	$_camp->event( $event_id ) || die( "error" );
 
-	
 	foreach( $checklist as $checklist_id => $checked )
 	{
 		$checklist_id = mysql_real_escape_string( $checklist_id );

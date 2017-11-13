@@ -18,7 +18,6 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	
 	$date = new c_date();
 	$day_list = array();
 	
@@ -67,8 +66,6 @@
 			
 			$day_list[ $subcamp['id'] ]['days'][$day['day_offset']] = $day;
 		}
-	
 		ksort( $day_list[ $subcamp['id'] ]['days'] );
 	}
-	
 ?>

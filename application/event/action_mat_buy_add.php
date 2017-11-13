@@ -18,13 +18,11 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	
 		$article = mysql_real_escape_string( $_REQUEST['article'] );
 		$quantity = mysql_real_escape_string( $_REQUEST['quantity'] );
 		$event_id = mysql_real_escape_string( $_REQUEST['event_id'] );
 		
 		$_camp->event( $event_id ) || die( "error" );
-		
 		
 		$query = "	SELECT
 						id
@@ -57,11 +55,6 @@
 		{	$id = mysql_result( $result, 'id' );	}
 		else
 		{	$id = "NULL";	}
-		
-		
-		
-		
-		
 		
 		$query = "	SELECT
 						*

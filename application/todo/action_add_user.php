@@ -22,8 +22,7 @@
 	$user_id	= mysql_real_escape_string($_REQUEST['user_id']);
 	
 	$_camp->todo( $todo_id ) || die( "error" );
-	
-	
+
 	$query = "SELECT user_camp.id FROM user_camp WHERE user_camp.camp_id = $_camp->id AND user_camp.user_id = $user_id";
 	$result = mysql_query($query);
 	
@@ -35,7 +34,7 @@
 	}
 	
 	$row = mysql_fetch_assoc($result);
-	$user_camp_id = $row[id];
+	$user_camp_id = $row['id'];
 	
 	$query = "SELECT * FROM todo WHERE id = $todo_id AND camp_id = $_camp->id";
 	$result = mysql_query($query);
@@ -46,8 +45,7 @@
 		echo json_encode( $ans );
 		die();
 	}
-	
-	
+
 	$query = "SELECT * FROM todo_user_camp WHERE user_camp_id = $user_camp_id AND todo_id = $todo_id";
 	$result = mysql_query($query);
 	if( mysql_num_rows($result) > 0 )
@@ -56,13 +54,11 @@
 		echo json_encode( $ans );
 		die();
 	}
-	
-	
+
 	$query = "INSERT INTO todo_user_camp (todo_id, user_camp_id) VALUES ( $todo_id, $user_camp_id )";
 	$result = mysql_query($query);
 	
 	$ans = array( "error" => false );
 	echo json_encode( $ans );
 	die();
-	
 ?>

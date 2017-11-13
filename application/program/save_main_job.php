@@ -22,8 +22,7 @@
 	$day_id  = mysql_real_escape_string( $_REQUEST['day_id'] );
 	
 	$_camp->day( $day_id ) || die( "error" );
-	
-	
+
 	if( $user_id )
 	{
 		$query = "	SELECT
@@ -35,7 +34,6 @@
 						user_camp.user_id = $user_id";
 		$result = mysql_query( $query );
 		$user_camp_id = mysql_result( $result, 0, 'id' );
-		
 	
 		$query = "
 					SELECT
@@ -91,12 +89,10 @@
 		$query = "	DELETE FROM job_day WHERE job_id = $job_id AND day_id = $day_id";
 		mysql_query( $query );
 	}
-	
-	
+
 	header("Content-type: application/json");
 	
 	$ans_array= array( "error" => false, "value" => $user_id );
 	echo json_encode($ans_array);
 	die();
-
 ?>

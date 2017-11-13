@@ -23,10 +23,9 @@
 	$result = mysql_query($query);
 	while($row = mysql_fetch_assoc($result))
 	{
-		$cat_content .= "<tr bgcolor='#$row[color]'><td align='center'>". htmlentities_utf8($row[name]) ."</td></tr>";
+		$cat_content .= "<tr bgcolor='#$row[color]'><td align='center'>". htmlentities_utf8($row['name']) ."</td></tr>";
 	}
 	
 	$_page->html->set( 'info_box_content', $cat_content );
 	$_page->html->set( 'info_box_title', "Blocktypen:" );
-	
 ?>

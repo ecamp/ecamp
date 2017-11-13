@@ -18,16 +18,13 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	
-	$_page->html->set('main_macro', $GLOBALS[tpl_dir].'/application/todo/border.tpl/border');
+	$_page->html->set('main_macro', $GLOBALS['tpl_dir'].'/application/todo/border.tpl/border');
 	
 	$todo_list = array();
 	$date = new c_date();
-	
-	
+
 	//	SUBCAMPS:
 	// ===========
-	
 	$query = "	SELECT camp.id, subcamp.start , subcamp.start + subcamp.length as end
 				FROM camp, subcamp
 				WHERE camp.id = subcamp.camp_id AND camp_id = " . $_camp->id;
@@ -41,7 +38,7 @@
 		$date->setDay2000( $subcamp['start'] );
 		$start = $date->getString( 'd.m.Y' );
 		
-		$todo_list[$date->getString('Ym')]['name'] = strtr( $date->getString("F Y"), $GLOBALS[en_to_de] );
+		$todo_list[$date->getString('Ym')]['name'] = strtr( $date->getString("F Y"), $GLOBALS['en_to_de'] );
 		$todo_list[$date->getString('Ym')]['todos'][$date->getString('d')][] = array( 
 			"date" => $start,
 			"camptime" => true,
@@ -51,15 +48,12 @@
 			
 		ksort( $todo_list[$date->getString("Ym")]['todos'] );
 	}
-
 	
 	//  TODAY:
 	// ========
-	
-	$todo_list[date("Ym")]['name'] = strtr( date("F Y"), $GLOBALS[en_to_de] );
-	$todo_list[date("Ym")]['todos'][date("d")][] = array( "date" => strtr( date("D d. M"), $GLOBALS[en_to_de] ), "camptime" => false, "entry" => false, "today" => true );
+	$todo_list[date("Ym")]['name'] = strtr( date("F Y"), $GLOBALS['en_to_de'] );
+	$todo_list[date("Ym")]['todos'][date("d")][] = array( "date" => strtr( date("D d. M"), $GLOBALS['en_to_de'] ), "camptime" => false, "entry" => false, "today" => true );
 	ksort( $todo_list[date("Ym")]['todos'] );
-	
 	
 	$query = "	SELECT
 					todo.*
@@ -91,7 +85,7 @@
 		$todo['entry'] = true;
 		$todo['resp'] = array();
 		
-		$todo['date'] = strtr( $date->getString("D d. M"), $GLOBALS[en_to_de] );
+		$todo['date'] = strtr( $date->getString("D d. M"), $GLOBALS['en_to_de'] );
 		$todo['date_value'] = $date->getString("d.m.Y");
 		
 		$todo['disabled'] = ( $todo['done'] ) ? 'disabled' : '';
@@ -123,27 +117,22 @@
 							dropdown.entry != 'Support' AND
 							user.id = user_camp.user_id AND
 							user_camp.camp_id = $_camp->id";
-		
-		
-		
+
 		$todo['resp_class'] = "";
 		
 		$subresult = mysql_query($subquery);
 		while( $todo_user = mysql_fetch_assoc($subresult) )
 		{
-			if( $todo_user[scoutname] )
-			{	$todo['resp'][] = array( "id" => $todo_user[id], "resp" => $todo_user[resp], "class" => "resp_user", "name" => $todo_user[scoutname] );	}
+			if( $todo_user['scoutname'] )
+			{	$todo['resp'][] = array( "id" => $todo_user['id'], "resp" => $todo_user['resp'], "class" => "resp_user", "name" => $todo_user['scoutname'] );	}
 			else
-			{	$todo['resp'][] = array( "id" => $todo_user[id], "resp" => $todo_user[resp], "class" => "resp_user", "name" => $todo_user[firstname] . " " . $todo_user[surname] );	}
+			{	$todo['resp'][] = array( "id" => $todo_user['id'], "resp" => $todo_user['resp'], "class" => "resp_user", "name" => $todo_user['firstname'] . " " . $todo_user['surname'] );	}
 			
 			if( $todo_user['resp'] == 1 )
-			{	$todo['resp_class'] .= "user_" . $todo_user[id] . " ";	}
+			{	$todo['resp_class'] .= "user_" . $todo_user['id'] . " ";	}
 		}
 		
-		
-		
-		
-		$todo_list[$date->getString("Ym")]['name'] = strtr( $date->getString("F Y"), $GLOBALS[en_to_de] );
+		$todo_list[$date->getString("Ym")]['name'] = strtr( $date->getString("F Y"), $GLOBALS['en_to_de'] );
 		$todo_list[$date->getString("Ym")]['todos'][$date->getString('d')][] = $todo;
 		
 		ksort( $todo_list[$date->getString("Ym")]['todos'] );
@@ -158,8 +147,7 @@
 	ksort( $todo_list );
 	
 	$_page->html->set('todo_list', $todo_list);
-	
-	
+
 	$user_list = array();
 	$query = "	SELECT
 					user.id,
@@ -180,14 +168,13 @@
 	$result = mysql_query($query);
 	while( $user = mysql_fetch_assoc($result) )
 	{
-		if( $user[scoutname] )
-		{	$user[name] = $user[scoutname];	}
+		if( $user['scoutname'] )
+		{	$user['name'] = $user['scoutname'];	}
 		else
-		{	$user[name] = $user[firstname] . " " . $user[surname];	}
+		{	$user['name'] = $user['firstname'] . " " . $user['surname'];	}
 		
 		$user_list[] = $user;
 	}
-	
 	
 	$_page->html->set( 'user_list', $user_list );
 ?>

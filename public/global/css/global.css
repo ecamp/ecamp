@@ -1,18 +1,2 @@
 .hidden
 {	display:none;	}
-
-.round_corner
-{
-	-moz-border-radius:5px;
-	-khtml-border-radius:5px;
-}
-
-a img {
-	border:none;
-	text-decoration:none;
-}
-
-a.img {
-	border:none;
-	text-decoration:none;
-}

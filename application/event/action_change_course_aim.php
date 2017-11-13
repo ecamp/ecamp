@@ -17,14 +17,12 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 	
 	$event_id = mysql_real_escape_string( $_REQUEST[ 'event_id' ] );
 	$aim = $_REQUEST[ 'aim' ];
 	
 	$_camp->event( $event_id ) || die( "error" );
-	
-	
+
 	foreach( $aim as $aim_id => $checked )
 	{
 		$aim_id = mysql_real_escape_string( $aim_id );

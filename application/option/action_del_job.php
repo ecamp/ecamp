@@ -21,8 +21,7 @@
 	$job_id   = mysql_real_escape_string($_REQUEST['job_id']);	
 	
 	$_camp->job( $job_id ) || die( "error" );
-	
-	
+
 	// Authentifizierung überprüfen
 	// write --> Ab Lagerleiter (level: 50)
 	if( $_user_camp->auth_level < 50 || $job_id == "")

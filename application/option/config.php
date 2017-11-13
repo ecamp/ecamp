@@ -18,7 +18,6 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 # Sichheitslevel der einzelnen Aktionen/Dateien
 # --> Kommandos/Files die nicht aufgeührt sind, können nicht aufgerufen werden
 $security_level = array( 
@@ -42,7 +41,6 @@ $security_level = array(
 							'action_del_mat_list' => 50,
 							
 							'load_dropdown' => 50
-							
 						);
 
 $css = array(
@@ -69,9 +67,6 @@ $div = array(
 				"busy.tpl" => "global"
 			);
 
-
 # Standardkommando
 if( $_page->cmd == "" ) $_page->cmd = "home";
-
-
 ?>

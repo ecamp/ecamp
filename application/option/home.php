@@ -18,8 +18,7 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
-	$_page->html->set('main_macro', $GLOBALS[tpl_dir].'/application/option/border.tpl/border');
+	$_page->html->set('main_macro', $GLOBALS['tpl_dir'].'/application/option/border.tpl/border');
 	
 	// Formular-Typen auslesen
 	$query = "SELECT * FROM dropdown WHERE list='form'";
@@ -29,31 +28,28 @@
 		$form[$typ['value']] = $typ['entry'];
 	}
 
-	
-	
 	// Kategorien auslesen
 	$query = "SELECT * FROM category WHERE camp_id = '$_camp->id'";
 	$result = mysql_query($query);
 	$category_list = array();
 	while($category = mysql_fetch_assoc($result))
 	{
-		if( $form[$category[form_type]] == "" )
+		if( $form[$category['form_type']] == "" )
 			$this_typ = htmlspecialchars("<unbekannt>");
 		else
-			$this_typ = $form[$category[form_type]];
+			$this_typ = $form[$category['form_type']];
 			
 		$category_list[] = array(
-								"id" 			=> $category[id],
-								"name" 			=> $category[name],
-								"short_name" 	=> $category[short_name],
-								"color" 		=> $category[color],
+								"id" 			=> $category['id'],
+								"name" 			=> $category['name'],
+								"short_name" 	=> $category['short_name'],
+								"color" 		=> $category['color'],
 								"form_type" 	=> $this_typ,
-								"form_type_id"  => $category[form_type] );
+								"form_type_id"  => $category['form_type'] );
 	}
 	
 	// Jobs auslesen
 	// Jobs laden
-	
 	$job_list = array();
 	$job_list["master"] = array();
 	$job_list["slave"] = array();
@@ -62,15 +58,11 @@
 	$result = mysql_query( $query );
 	while( $job = mysql_fetch_assoc($result) )
 	{
-		if( $job[show_gp] )
-			$job_list["master"][] = array( "id" => $job[id], "name" => $job[job_name] );
+		if( $job['show_gp'] )
+			$job_list["master"][] = array( "id" => $job['id'], "name" => $job['job_name'] );
 		else
-			$job_list["slave"][] = array( "id" => $job[id], "name" => $job[job_name] );
+			$job_list["slave"][] = array( "id" => $job['id'], "name" => $job['job_name'] );
 	}
-	
-	
-	
-	
 	
 	$mat_lists = array();
 	
@@ -78,16 +70,11 @@
 	$result = mysql_query( $query );
 	while( $mat_list = mysql_fetch_assoc( $result ) )
 	{	$mat_lists[] = $mat_list;	}
-	
-	
-	
-	
-	
-	
+
 	$option = array(
-			"jobs" 			=> array( "title" => "Tagesjobs", "macro" => $GLOBALS[tpl_dir]."/application/option/jobs.tpl/jobs" ),
-			"category"		=> array( "title" => "Block - Kategorien", "macro" => $GLOBALS[tpl_dir]."/application/option/category.tpl/category" ),
-			"mat_list" 		=> array( "title" => "Einkaufslisten", "macro" => $GLOBALS[tpl_dir]."/application/option/mat_list.tpl/mat_list" ),
+			"jobs" 			=> array( "title" => "Tagesjobs", "macro" => $GLOBALS['tpl_dir']."/application/option/jobs.tpl/jobs" ),
+			"category"		=> array( "title" => "Block - Kategorien", "macro" => $GLOBALS['tpl_dir']."/application/option/category.tpl/category" ),
+			"mat_list" 		=> array( "title" => "Einkaufslisten", "macro" => $GLOBALS['tpl_dir']."/application/option/mat_list.tpl/mat_list" ),
 			"job_list"		=> $job_list,
 			"category_list" => $category_list,
 			"mat_lists"		=> $mat_lists

@@ -18,7 +18,6 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 # Sichheitslevel der einzelnen Aktionen/Dateien
 # --> Kommandos/Files die nicht aufgeührt sind, können nicht aufgerufen werden
 $security_level = array(
@@ -48,10 +47,6 @@ $js  = array(
 				"home.js"					=> "app"
 			);
 
-
 # Standardkommando
 if( $_page->cmd == "" ) {	$_page->cmd = "home";	}
-
-
-
 ?>

@@ -19,35 +19,24 @@
  */
 
 	$file_id = mysql_real_escape_string( $_REQUEST['file_id'] );
-	
-	
-	
+
 	$query = "	SELECT *
 				FROM event_document
 				WHERE id = " . $file_id;
 	$result = mysql_query( $query );
 	$file = mysql_fetch_array( $result );
-	
-	
-	
+
 	$query = "	DELETE FROM event_document
 				WHERE id = " . $file['id'];
 	mysql_query( $query );
-	
-	
-	
+
 	unlink( $file['name'] );
-	
-	
-	
+
 	if( mysql_num_rows( $result ) )
 	{	$ans = array( "error" => false );	}
 	else
 	{	$ans = array( "error" => true );	}
-	
-	
-	
+
 	echo json_encode( $ans );
 	die();
-	
 ?>

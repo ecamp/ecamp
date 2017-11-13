@@ -1,9 +1,6 @@
 /** eCampConfig
-
 	<depend on="public/global/js/mootools1.2.js" type="js" />
-
 **/
-
 
 /***
  * MooRainbow

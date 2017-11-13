@@ -18,7 +18,6 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	
 	if( $_camp->is_course )
 		$query_function = "SELECT * FROM dropdown WHERE list = 'function_course' AND value > '0'";
 	else
@@ -37,8 +36,7 @@
 	
 	while( $row = mysql_fetch_assoc($result_camptype) )
 	{	$ans_camptype[] = $row;	}
-	
-	
+
 	$ans = array("function_list" => $ans_function, "camptype_list" => $ans_camptype);
 	echo json_encode($ans);
 	die();

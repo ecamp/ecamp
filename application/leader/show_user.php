@@ -18,16 +18,14 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	$_page->html->set('main_macro', $GLOBALS[tpl_dir].'/global/content_box_fit.tpl/predefine');
-	$_page->html->set('box_content', $GLOBALS[tpl_dir].'/application/leader/show_user.tpl/show_user');
+	$_page->html->set('main_macro', $GLOBALS['tpl_dir'].'/global/content_box_fit.tpl/predefine');
+	$_page->html->set('box_content', $GLOBALS['tpl_dir'].'/application/leader/show_user.tpl/show_user');
 	$_page->html->set('box_title', 'Leiterliste');
 	
-	$id	= mysql_real_escape_string( $_REQUEST[ id ] );
+	$id	= mysql_real_escape_string( $_REQUEST['id'] );
 	
 	$_camp->user( $id ) || die( "error" );
-	
-	
-	
+
 	$query = "	SELECT 
 					mail,
 					scoutname, 
@@ -53,11 +51,7 @@
 	
 	$user = mysql_fetch_assoc( $result );
 	
-	
-	
-	
 	// Sex:
-	
 	$query = "	SELECT	entry
 				FROM	dropdown
 				WHERE	list = 'sex'
@@ -76,12 +70,8 @@
 		$user['sex_str'] = "";
 		$user['sex_symbol'] = "";
 	}
-	
-	
-	
-	
+
 	// J+S Edu:
-	
 	$query = "	SELECT 	entry
 				FROM 	dropdown
 				WHERE	list = 'jsedu'
@@ -95,14 +85,8 @@
 	}
 	else
 	{	$user['jsedu_str'] = "";	}
-	
-	
-	
-	
-	
-	
+
 	// PBS Edu:
-	
 	$query = "	SELECT 	entry
 				FROM 	dropdown
 				WHERE	list = 'pbsedu'
@@ -116,14 +100,8 @@
 	}
 	else
 	{	$user['pbsedu_str'] = "";	}
-	
-	
-	
-	
-	
-	
+
 	// birthday:
-	
 	$user['birthday_str'] = "";
 	
 	if( is_numeric( $user['birthday'] ) )
@@ -133,19 +111,9 @@
 		$date->setDay2000( $user[ 'birthday' ] );
 		$user['birthday_str'] = $date->getString( "d.m.Y" );
 	}
-	
-	
-	
+
 	// Profile Pic:
 	$user[ 'avatar' ] = "index.php?app=user_profile&cmd=show_avatar&show_user_id=" . $id;
-	
-	
-	
-	
+
 	$_page->html->set( 'user_detail', $user );
-	
-	
-	
-	
-	
 ?>

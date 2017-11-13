@@ -25,12 +25,10 @@
 	$time		= mysql_real_escape_string($_REQUEST['time']);
 	
 	$_camp->event( $event_id ) || die( "error" );
-	
-	
+
 	$query = "UPDATE event SET name = '$name' WHERE id = $event_id";
 	mysql_query($query);
-	
-	
+
 	header("Content-type: application/json");
 	
 	$ans = get_program_update( $time );

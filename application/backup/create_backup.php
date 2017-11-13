@@ -18,7 +18,6 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 ////////////////////////////////
 	// Wandelt einen Binärstring in Hex um
 	function string2hex($str)
@@ -36,7 +35,6 @@
 	}
 ///////////////////////////////
 
-
  include("../../config.php");
  include("../../lib/mysql.php");
  db_connect();
@@ -48,7 +46,6 @@
 // 
 // - pro Lager wird ein SQL-File gespeichert. Dateien werden in ein Unterverzeichnis kopiert.
 // - wenn ein Lager die maximal zulässige Anzahl Backups überschritten hat, wird das älteste Backup gelöscht
-
 $camp_id = 12;
 
 // Tabellen spezifizieren
@@ -160,8 +157,5 @@ foreach( $tables as $table => $qry)
 		$sql .= "INSERT INTO `$table` ($cols) VALUES\n$data;\n\n";
 }
 
-
-
 echo $sql;
-
 ?>

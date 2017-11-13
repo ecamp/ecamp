@@ -1,4 +1,4 @@
-<table width="100%" class="info_display bgcolor_content" cellspacing="3">
+<table class="info_display bgcolor_content">
 	<tr align="center">
 		<td valign="top" width="100%" >
 			<b><!-- title --></b>

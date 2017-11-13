@@ -18,12 +18,10 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	
 	$event_id 		= mysql_real_escape_string( $_REQUEST['event_id'] );
 	$event_progress	= mysql_real_escape_string( $_REQUEST['event_progress'] );
 	
 	$_camp->event( $event_id ) || die( "error" );
-	
 	
 	$query = "
 				UPDATE
@@ -46,5 +44,4 @@
 		echo json_encode( $ans );
 		die();
 	}
-	
 ?>

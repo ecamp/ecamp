@@ -65,14 +65,12 @@
 			
 			//	Header:
 			// =========
-			
 				$this->pdf->Line(10, 18, 200, 18);
 			
 			//	Footer:
 			// =========
 				$this->pdf->Line(10, 280, 200, 280);
-			
-			
+
 			$this->pdf->SetFontSize( $fsize );
 			$this->pdf->SetFontStyle( $fstyle );
 			$this->SetXY( 10, 20 );
@@ -129,18 +127,18 @@
 			$fsize = $this->pdf->GetFontSize();
 			
 			foreach( $content as &$row )
-			{	$row[dh] = 0;
+			{	$row['dh'] = 0;
 				foreach( $row as &$col )
 				{	if( is_array( $col ) )
 					{
-						$col_label	= $col[label];
-						$col_text	= $col[text];
-						$lh = $this->pdf->WordWrap( $col_label, $w * $col[width] );
-						$th = $this->pdf->WordWrap( $col_text, $w * $col[width] );
-						$col[th] = ( max(1, $lh) + max(1, $th) ) * $fsize / 2;
+						$col_label	= $col['label'];
+						$col_text	= $col['text'];
+						$lh = $this->pdf->WordWrap( $col_label, $w * $col['width'] );
+						$th = $this->pdf->WordWrap( $col_text, $w * $col['width'] );
+						$col['th'] = ( max(1, $lh) + max(1, $th) ) * $fsize / 2;
 						
-						if( $col[rowspan] == 1 )
-						{	$row[dh] = max( $row[dh], $col[th] );	}
+						if( $col['rowspan'] == 1 )
+						{	$row['dh'] = max( $row['dh'], $col['th'] );	}
 					}
 				}
 			}
@@ -148,14 +146,14 @@
 			
 			foreach( $content as $rnr => &$row )
 			{	foreach( $row as $cnr => &$col )
-				{	if( is_array( $col ) && $col[rowspan] != 1 )
+				{	if( is_array( $col ) && $col['rowspan'] != 1 )
 					{
 						$ph = 0;
 						$row_without_h = array();
-						for( $n = $rnr; $n < $rnr + $col[rowspan]; $n++)
+						for( $n = $rnr; $n < $rnr + $col['rowspan']; $n++)
 						{
-							if($content[$n][dh] == 0)	{	array_push($row_without_h, $n);	}
-							else						{	$ph += $content[$n][dh];	}
+							if($content[$n]['dh'] == 0)	{	array_push($row_without_h, $n);	}
+							else						{	$ph += $content[$n]['dh'];	}
 						}
 						
 						if( $ph < $col[th] )

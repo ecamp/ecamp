@@ -18,7 +18,6 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	
 	$mat_list_name = mysql_real_escape_string( $_REQUEST['mat_list_name'] );
 	$mat_list_name_js = htmlentities_utf8($_REQUEST['mat_list_name']);
 	

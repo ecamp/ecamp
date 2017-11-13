@@ -18,7 +18,6 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	
 	if( !isset( $_REQUEST['item'] ) )
 	{	header( "location: index.php?app=print" );	die();	}
 	else
@@ -32,25 +31,19 @@
 	require_once( 'class/data.php' );
 	require_once( 'class/build.php' );
 
-	
 	require_once( 'tcpdf/tcpdf.php' );
 	require_once( 'tcpdf/tcpdf_addons.php' );
 	require_once( 'FPDI/fpdi.php' );
-	
-	
+
 	$print_data = new print_data_class( $_camp->id );	
 	$print_build = new print_build_class( $print_data );
-	
-	
-	
+
 	$pdf = new FPDI('P', 'mm', 'A4', true, 'UTF-8', false);
 	$pdf->SetAutoPageBreak(true);
 	
 	$pdf->SetAuthor( 'ecamp2.pfadiluzern.ch' );
 	$pdf->SetSubject( 'J&S - Programm' );
 	$pdf->SetTitle( 'J&S - Programm' );
-	
-	
 	
 	foreach( $items as $nr => $item )
 	{
@@ -82,13 +75,11 @@
 			$event_instance_id = $conf[$nr]['event_instance'];
 			
 			$_camp->event_instance( $event_instance_id ) || die( "error" );
-			
-			
+
 			if( $conf[$nr]['dayoverview'] == "true" )
 			{	$print_build->day->build( $pdf, $print_build->data->event_instance[ $event_instance_id ]->day );	}
 			else
 			{	$pdf->addPage('P', 'A4');	}
-			
 			
 			$print_build->data->event_instance[ $event_instance_id ]->day->gen_event_nr();
 			$print_build->event->build( $pdf, $print_build->data->event_instance[ $event_instance_id ] );
@@ -114,17 +105,10 @@
 			//$pdf->setPageFormat( 'A4', 'P' );
 		}
 	}
-	
-	
+
 	$print_build->toc->build( $pdf );
-	
-	
-	
+
 	$pdf->output( $_camp->short_name . ".pdf", 'I' );
 
-	
 	die();
-	
-	
-	
 ?>

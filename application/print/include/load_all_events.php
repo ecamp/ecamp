@@ -18,7 +18,6 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	
 	$query = "	SELECT
     				event.id,
     				event.name,
@@ -106,8 +105,6 @@
 		$events[ $row['date'] ]['day_str'] = $c_date->getString( 'd.m.Y' );
 		$events[ $row['date'] ]['events'][] = $row;
 	}
-	
-	
+
 	$_page->html->set( 'events', $events );
-	
 ?>

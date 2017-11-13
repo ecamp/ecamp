@@ -29,7 +29,6 @@
 	$course_type	= mysql_real_escape_string($_REQUEST['course_type']);
 	$course_type_text = mysql_real_escape_string($_REQUEST['course_type_text']);
 	
-	
 	$start		= mysql_real_escape_string($_REQUEST['camp_start']);
 	$end		= mysql_real_escape_string($_REQUEST['camp_end']);
 	
@@ -45,16 +44,13 @@
 	$c_start->setUnix($start);
 	$c_end->setUnix($end);
 	
-	
 	$length = $c_end->getValue() - $c_start->getValue() + 1;
 	$start = $c_start->getValue();
 	$ende = $c_end->getValue();
-	
-	
+
 	$is_course = (boolean) $is_course;
 	if( !$is_course )	{	$type = 0;	}
 	else				{	$type = $course_type;	}
-	
 	
 	if($length <= 0 )
 	{
@@ -68,14 +64,12 @@
 		echo "<br /><a href='javascript:history.back()'>Zur&uuml;ck</a>";
 		die();
 	}
-	
-	
+
 	// Lager hinzufügen
 	$query = "INSERT INTO camp (group_id, name ,group_name, short_name, is_course, jstype, type, type_text, creator_user_id, t_created )
 						VALUES ('$group_id', '$name', '$group_name', '$short_name', '$is_course', '$jstype', '$type', '$course_type_text', '$_user->id', " . time() . ")";
 	mysql_query($query);
-	
-	
+
 	$last_camp_id = mysql_insert_id();
 	
 	// Kateogiren hinzufügen
@@ -100,8 +94,7 @@
 						('$last_camp_id', 'Lagersport', 'LS', '14dd33' , 1)";
 	}
 	mysql_query($query);
-	
-	
+
 	// ToDo std. einfüllen
 	if( $is_course)
 	{
@@ -111,7 +104,6 @@
 						('$last_camp_id', 'Detailprogramm einreichen', 			'Definitives Detailprogramm an LKB.', " . ( $start - 2 * 7 ) . "),
 						('$last_camp_id', 'Kursabschluss', 						'TN-Liste, Kursbericht', " . ( $ende + 3 * 7 ) . "),
 						('$last_camp_id', 'J+S-Material/Landeskarten', 			'J+S-Material und Landeskarten bestellen.', " . ( $start - 6 * 7 ) . ")";
-
 	}
 	else
 	{
@@ -132,17 +124,13 @@
 						('$last_camp_id', 'Letzte Infos verschicken', 			'Letzte Infos für TNs verschicken', " . ( $start - 2 * 7 ) . ")";
 	}
 	mysql_query( $query );
-	
-	
+
 	// Tages-chef hinzufügen
-	
 	$query = "INSERT INTO job (camp_id, job_name, show_gp)
 							VALUES ('$last_camp_id', 'Tageschef', '1')";
 	mysql_query($query);
 	
-	
 	//Einkaufslisten hinzufügen:
-	
 	$query = "INSERT INTO mat_list ( camp_id, name )
 							VALUES( '$last_camp_id', 'Lebensmittel' )";
 	mysql_query( $query );
@@ -150,15 +138,12 @@
 	$query = "INSERT INTO mat_list ( camp_id, name )
 							VALUES( '$last_camp_id', 'Baumarkt' )";
 	mysql_query( $query );
-	
-	
-	
+
 	// Eigenen User hinzufügen
 	$query = "INSERT INTO user_camp (user_id, camp_id, function_id, active)
 							VALUES	($_user->id, $last_camp_id, $function, '1')";
 	mysql_query($query);
-	
-	
+
 	// Subcamp hinzufügen
 	$query = "INSERT INTO subcamp 	(camp_id, start, length)
 						VALUES	($last_camp_id, $start, $length)";
@@ -166,8 +151,6 @@
 	$last_subcamp_id = mysql_insert_id();
 	
 	// Days hinzufügen
-	
-	
 	$days = array();
 	
 	for($i=0; $i < $length; $i++)
@@ -177,26 +160,20 @@
 	$query .= implode( ", ", $days );
 	
 	mysql_query($query);
-
-	
-	
-	
 	
 	$result = mysql_query("SELECT id FROM user_camp WHERE user_id='$_user->id' AND camp_id='$last_camp_id'");
 	if( mysql_num_rows($result) == 0 )
 	{
-		$_SESSION[camp_id] = 0;
+		$_SESSION['camp_id'] = 0;
 		header("Location: index.php?app=home");
 		die();
 	}
 
-	$_SESSION[camp_id] = $last_camp_id;
+	$_SESSION['camp_id'] = $last_camp_id;
 	
 	$query = "UPDATE user SET last_camp = '$last_camp_id' WHERE id = '" . $_user->id . "'";
 	mysql_query($query);
-	
-	
+
 	header("Location: index.php?app=camp&cmd=home&show=firsttime");
 	die();
-
 ?>

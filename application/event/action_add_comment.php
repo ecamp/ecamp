@@ -18,7 +18,6 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	
 	$text = 	mysql_real_escape_string( $_REQUEST['text'] );
 	$text_js = 	htmlentities_utf8( $_REQUEST['text'] );
 	$text_js = preg_replace("/\n/","<br/>",$text_js);
@@ -26,8 +25,7 @@
 	$event_id =	mysql_real_escape_string( $_REQUEST['event_id'] );
 	
 	$_camp->event( $event_id ) || die( "error" );
-	
-	
+
 	if( $text == "" )
 	{	$ans = array( "error" => true, "error_msg" => "Bitte zuerst ein Kommentar eingeben!" );	}
 	else
@@ -66,5 +64,4 @@
 	
 	echo json_encode( $ans );
 	die();
-	
 ?>

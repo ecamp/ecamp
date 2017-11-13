@@ -18,22 +18,21 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	$name 		= mysql_real_escape_string( $_REQUEST[name] );
-	$category 	= mysql_real_escape_string( $_REQUEST[category] );
-	$start_h	= mysql_real_escape_string( $_REQUEST[start_h] );
-	$start_min	= mysql_real_escape_string( $_REQUEST[start_min] );
-	$length_h	= mysql_real_escape_string( $_REQUEST[length_h] );
-	$length_min	= mysql_real_escape_string( $_REQUEST[length_min] );
-	$day_id 	= mysql_real_escape_string( $_REQUEST[day_id] );
+	$name 		= mysql_real_escape_string( $_REQUEST['name'] );
+	$category 	= mysql_real_escape_string( $_REQUEST['category'] );
+	$start_h	= mysql_real_escape_string( $_REQUEST['start_h'] );
+	$start_min	= mysql_real_escape_string( $_REQUEST['start_min'] );
+	$length_h	= mysql_real_escape_string( $_REQUEST['length_h'] );
+	$length_min	= mysql_real_escape_string( $_REQUEST['length_min'] );
+	$day_id 	= mysql_real_escape_string( $_REQUEST['day_id'] );
 	
 	$_camp->category( $category ) || die( "error" );
 	$_camp->day( $day_id ) || die( "error" );
-	
-	
+
 	$start  = $start_h * 60  + $start_min;
 	$length = $length_h * 60 + $length_min;
 	
-	if( $start < $GLOBALS[time_shift] )	{	$start += 24*60;	}
+	if( $start < $GLOBALS['time_shift'] )	{	$start += 24*60;	}
 	
 	$query = "	INSERT INTO event
 				( `camp_id`, `category_id`, `name` )
@@ -41,13 +40,6 @@
 				( $_camp->id, $category, '$name' )";
 	$result = mysql_query( $query );
 	$event_id = mysql_insert_id();
-	
-	
-	
-	
-	
-	
-	
 	
 	$query = "	SELECT day2.id 
 				FROM day as day1, day as day2 
@@ -61,25 +53,24 @@
 			mysql_num_rows( $result )
 			&&
 			(
-				( $start < $GLOBALS[time_shift] && ( $start + $length ) > $GLOBALS[time_shift] )
+				( $start < $GLOBALS['time_shift'] && ( $start + $length ) > $GLOBALS['time_shift'] )
 				||
-				( $start > $GLOBALS[time_shift] && ( $start + $length ) > 24*60 + $GLOBALS[time_shift] )
+				( $start > $GLOBALS['time_shift'] && ( $start + $length ) > 24*60 + $GLOBALS['time_shift'] )
 			)
 		)
 	{
 		$day2_id = mysql_result( $result, 'id', 0 );
 		
 		$starttime1 = $start;
-		$starttime2 = $GLOBALS[time_shift];
+		$starttime2 = $GLOBALS['time_shift'];
 		
-		if( $start < $GLOBALS[time_shift] )
-		{	$length1 = $GLOBALS[time_shift] - $start;	}
+		if( $start < $GLOBALS['time_shift'] )
+		{	$length1 = $GLOBALS['time_shift'] - $start;	}
 		else
-		{	$length1 = 24*60 + $GLOBALS[time_shift] - $start;	}
+		{	$length1 = 24*60 + $GLOBALS['time_shift'] - $start;	}
 		
 		$length2 = $length - $length1;
-		
-		
+
 		$query = "INSERT INTO event_instance ( event_id, day_id, starttime, length ) VALUES ( $event_id, $day_id, $starttime1, $length1 )";
 		mysql_query($query);
 		$query = "INSERT INTO event_instance ( event_id, day_id, starttime, length ) VALUES ( $event_id, $day2_id, $starttime2, $length2 )";
@@ -93,10 +84,7 @@
 				( $event_id, $day_id, $start, $length, 0, 1 )";
 		mysql_query( $query );
 	}
-	
-	
-	
-	
+
 	$ans = array( "error" => false );
 	echo json_encode( $ans );
 	die();

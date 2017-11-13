@@ -18,13 +18,10 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+	$subcamp_id = mysql_real_escape_string($_REQUEST['subcamp_id']);
 
-	$subcamp_id = mysql_real_escape_string($_REQUEST[subcamp_id]);
-	
-	
 	$_camp->subcamp( $subcamp_id ) || die( "error" );
-	
-	
+
 	// Überprüfen, ob noch eines vorhanden ist
 	$query = "SELECT * FROM subcamp WHERE camp_id = $_camp->id";
 	$result = mysql_query($query);
@@ -56,8 +53,7 @@
 		echo json_encode($ans);
 		die();
 	}
-	
-	
+
 	$ans = array( 
 					"error" => true,
 					"msg"	=> "Der ausgewählte Lagerabschnitt konnte nicht gelöscht werden. Ein Lager muss immer aus min. 1 Lagerabschnitt bestehen.<br /><br />Verwende &quot;Zeitfenster verändern&quot; oder &quot;Programm verschieben&quot; um den Lagerzeitpunkt zu ändern."

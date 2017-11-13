@@ -18,15 +18,13 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	
 	$day_id  = mysql_real_escape_string( $_REQUEST[ 'day_id' ] );
 	$job_id  = mysql_real_escape_string( $_REQUEST[ 'job_id' ] );
 	$user_id = mysql_real_escape_string( $_REQUEST[ 'user_id' ] );
 	
 	$_camp->day( $day_id ) || die( "error" );
 	$_camp->job( $job_id ) || die( "error" );
-	
-	
+
 	if( $user_id )
 	{
 		$query = "	SELECT
@@ -87,8 +85,6 @@
 		echo json_encode( $ans );
 		die();
 	}
-	
-	
+
 	die();
-	
 ?>

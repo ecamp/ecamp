@@ -18,8 +18,8 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	$camp_del_id 	= mysql_real_escape_string($_REQUEST[camp_id]);
-	
+	$camp_del_id 	= mysql_real_escape_string($_REQUEST['camp_id']);
+
 	// Rechte überprüfen (nur Ersteller darf Lager löschen
 	$query = "SELECT id, short_name FROM camp WHERE id='$camp_del_id' AND creator_user_id='$_user->id'";
 	$result = mysql_query($query);
@@ -33,9 +33,7 @@
 	else
 	{
 		$short_name = mysql_result( $result, 0, 'short_name' );
-	
-		
-		
+
 		$query = "	DELETE FROM 
 						camp 
 					WHERE 
@@ -62,10 +60,9 @@
 	    $_news->add2camp( "Lager gelöscht", $_user->display_name . " hat das Lager '$short_name' gelöscht.", time(), $camp_id );
 		$_news->add2user( "Lager gelöscht", "Du hast das Lager '$short_name' gelöscht.", time(), $_user->id );
 	
-	
-		if($_SESSION[camp_id] == $camp_del_id)
+		if($_SESSION['camp_id'] == $camp_del_id)
 		{
-			$_SESSION[camp_id] = "";
+			$_SESSION['camp_id'] = "";
 			$reload = true;
 		}
 		else

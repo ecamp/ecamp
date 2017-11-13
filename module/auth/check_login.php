@@ -20,10 +20,7 @@
 
 	session_start();
 
-	if(	
-		!isset($_SESSION['user_id']) || $_SESSION['user_id'] == "" || 
-		!isset($_SESSION['user_ip']) || $_SESSION['user_ip'] != $_SERVER['REMOTE_ADDR']
-	)
+	if(!isset($_SESSION['user_id']) || $_SESSION['user_id'] == "" || !isset($_SESSION['user_ip']) || $_SESSION['user_ip'] != $_SERVER['REMOTE_ADDR'])
 	{
 		header("Location: login.php");
 		die();
@@ -33,7 +30,6 @@
 		$_user->id = $_SESSION['user_id'];
 		$_user->ip = $_SESSION['user_ip'];
 		$_camp->id = $_SESSION['camp_id'];
-		
 		
 		$query = "SELECT `id`, `mail`, `scoutname`, `firstname`, `surname`, `admin`, `active` FROM `user` WHERE `id` = '" . $_user->id . "'";
 
@@ -50,7 +46,6 @@
 					$_user->display_name = $_user->scoutname;
 				else 
 					$_user->display_name = $_user->firstname . " " . $_user->surname;
-
 
 				// Berechtigungen auslesen
 				$_user_camp->auth_level = 10;
@@ -98,12 +93,11 @@
 							if(mysql_num_rows($result) > 0)
 							{
 								$val = mysql_fetch_assoc($result);
-								if( $val[level] > $_user_camp->auth_level) 
-								{	$_user_camp->auth_level = $val[level];	}
+								if( $val['level'] > $_user_camp->auth_level)
+								{	$_user_camp->auth_level = $val['level'];	}
 							}
 						}
 					}
-					
 				}
 				
 				// Wenn möglich Admin setzen

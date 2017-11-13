@@ -25,19 +25,16 @@
 		
 		if( mysql_num_rows($result) == 0)
 			return "<unbekannt>";
-			
-		
+
 	 	$this_user = mysql_fetch_assoc($result);
-		if( trim($this_user[scoutname]) != "" )
-			return $this_user[scoutname];
+		if( trim($this_user['scoutname']) != "" )
+			return $this_user['scoutname'];
 			
-		return $this_user[firstname]." ".$this_user[surname];
+		return $this_user['firstname']." ".$this_user['surname'];
 	}
 	
 	function htmlentities_utf8( $str )
 	{
 		return htmlentities( $str, ENT_QUOTES, "UTF-8" );
 	}
-
-
 ?>

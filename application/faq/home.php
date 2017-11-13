@@ -18,13 +18,10 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	
-	$_page->html->set('main_macro', $GLOBALS[tpl_dir].'/global/content_box_fit.tpl/predefine');
-	$_page->html->set('box_content', $GLOBALS[tpl_dir].'/application/faq/home.tpl/home');
+	$_page->html->set('main_macro', $GLOBALS['tpl_dir'].'/global/content_box_fit.tpl/predefine');
+	$_page->html->set('box_content', $GLOBALS['tpl_dir'].'/application/faq/home.tpl/home');
 	$_page->html->set('box_title', 'FAQ');
-	
-	
-	
+
 	$faq = array(
 					array(
 							"question" => "Wie kann ich meine Mitleiter zu meinem Lager einladen?",
@@ -66,5 +63,4 @@
 				);
 	
 	$_page->html->set( 'faqs', $faq );
-	
 ?>

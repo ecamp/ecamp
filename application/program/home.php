@@ -18,20 +18,15 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
-		
-	$_page->html->set('main_macro', $GLOBALS[tpl_dir].'/global/content_box_full.tpl/predefine');
-	$_page->html->set('box_content', $GLOBALS[tpl_dir].'/application/program/home.tpl/home');
+	$_page->html->set('main_macro', $GLOBALS['tpl_dir'].'/global/content_box_full.tpl/predefine');
+	$_page->html->set('box_content', $GLOBALS['tpl_dir'].'/application/program/home.tpl/home');
 	$_page->html->set('box_title', 'Grobprogramm');
-	
-	
+
 	$_page->html->set( 'show_info_box', true );
-	$_page->html->set( 'info_box', $GLOBALS[tpl_dir].'/module/info/info_box.tpl/info_box' );
-	
+	$_page->html->set( 'info_box', $GLOBALS['tpl_dir'].'/module/info/info_box.tpl/info_box' );
 
 	# Lagerstart, Lagerende und Lagerdauer
 	##############################################
-	
 	$all_days_query = " SELECT day.id, day.day_offset, subcamp.start
 						FROM day, subcamp
 						WHERE 	day.subcamp_id = subcamp.id AND
@@ -54,7 +49,7 @@
 								user_camp
 							WHERE
 								job.show_gp = 1 AND
-								job_day.day_id = " . $day[id] . " AND
+								job_day.day_id = " . $day['id'] . " AND
 								job_day.user_camp_id = user_camp.id AND
 								job_day.job_id = job.id";
 		$leader_result = mysql_query( $leader_query );
@@ -63,21 +58,18 @@
 		{	$leader = mysql_result( $leader_result, 'user_id', 0 );	}
 		else
 		{	$leader = "0";	}
-		
-		
-		
-		
+
 		$day_nr++;
 		
 		$date = new c_date;
-		$date->setDay2000($day[start] + $day[day_offset]);
+		$date->setDay2000($day['start'] + $day['day_offset']);
 		
 		$days[] = array(
-						"day_id" => $day[id],
-						"day_id_string" => "day_id_" . $day[id],
+						"day_id" => $day['id'],
+						"day_id_string" => "day_id_" . $day['id'],
 						"style" => "left:" . $day_width*($day_nr - 1) . "px; width:" . $day_width . "px",
-						"date" => strtr( $date->getString( 'D d.m.Y' ), $GLOBALS[en_to_de] ),
-						"link" => "index.php?app=day&cmd=home&day_id=" . $day[id],
+						"date" => strtr( $date->getString( 'D d.m.Y' ), $GLOBALS['en_to_de'] ),
+						"link" => "index.php?app=day&cmd=home&day_id=" . $day['id'],
 						"leader" => $leader,
 						"class" => (($day_nr % 2) ? "bg1" : "bg2"),
 						"body_class" => (($day_nr % 2) ? "bg1" : "bg2") . " day_body"
@@ -109,9 +101,7 @@
 											"selected" => 0
 										);
 	}
-	
-	
-		
+
 	$query = "	SELECT job_name
 				FROM job
 				WHERE
@@ -130,8 +120,6 @@
 		$_js_env->add( 'EnableMainJobResp', false );
 	}
 
-	
-	
 	$program = array(
 						"days"			=>	$days,
 						"show_width"	=>	"width:" . $day_width * $day_nr . "px",
@@ -142,6 +130,4 @@
 	$_page->html->set( "program", $program );
 	
 	include("module/info/category.php");
-	
-
 ?>

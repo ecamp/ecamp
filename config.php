@@ -18,8 +18,6 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	
-	
 	$GLOBALS['base_uri']				= "http://ecamps.ch/";
 	
 	$GLOBALS['lib_dir'] 				= "./lib";
@@ -41,8 +39,7 @@
 	
 	$GLOBALS['captcha_pub'] = "6LehoTMUAAAAAJ2XCzbBfduFd5uzppTU0wgm0y-_";
 	$GLOBALS['captcha_prv'] = "6LehoTMUAAAAAJVQOascfLNH-Wi9FPPGoAsMYtX5";
-	
-	
+
 	$GLOBALS['time_shift'] = 300; // Minuten;
 	$GLOBALS['news_num'] = 5;
 

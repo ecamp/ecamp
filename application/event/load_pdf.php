@@ -24,8 +24,7 @@
 	$file_type['application/pdf'] = 'icon_pdf.png';
 	$file_type['application/msword'] = 'icon_doc.png';
 	$file_type['application/vnd.ms-excel'] = 'icon_xls.png';
-	
-	
+
 	$query = "	SELECT
 					*
 				FROM
@@ -46,11 +45,8 @@
 		
 		$documents[] = $document;
 	}
-	
-	
-	
+
 	$_page->html->set( 'documents', $documents );
 	
 	//print_r( $documents );
-	
 ?>

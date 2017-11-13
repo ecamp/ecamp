@@ -1,43 +1,15 @@
-<html>
+<!DOCTYPE html>
+<html lang="de">
 	<head>
 		<title>eCamp v2</title>
-		
-        <link rel="stylesheet" type="text/css" href="./public/global/css/color.css" />
+
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<link rel="stylesheet" type="text/css" href="./public/global/css/color.css" />
         <link rel="stylesheet" type="text/css" href="./public/global/css/global.css" />
-        
-        
-        
-		<style>
-			
-			table
-			{ 	font-size:13px;}	
-			font.title
-			{	font-size: 25px;	}
-			div.menu
-			{	width: 180px;
-				background-color: #2288ff;
-				border-width: 1px;
-				border-color: #000000;
-				border-style: solid;	
-				position: relative;
-				top: 30px;
-				text-align: left;
-			}
-			a.menu
-			{	color: #000000;	
-				text-decoration: none;	}
-			table.Login
-			{
-				border-width: 1px;
-				border-color: #000000;
-				border-style: solid;	
-			}
-		</style>
 	</head>
-	
-	
 	<body marginheight="100" marginwidth="0" class="bgcolor_dark">
-        <center>
         	<table tal:condition="SHOW_MSG" width="400" class="Login round_corner bgcolor_content" cellpadding="5px">
             	<tr>
                 	<td align="center" tal:content="MSG">TEXT...</td>
@@ -72,9 +44,7 @@
 					</td>
 				</tr>
 			</table>
-		</center>
-        
-        <center>
+
         	<table width="250" height="100" class="Login bgcolor_white" style="margin-top:50px">
             	<tr>
                 	<td colspan="3" align="center"><b>Unterst&uuml;tzte Browser:</b></td>
@@ -86,8 +56,5 @@
                     <td align="center"><img src="public/global/img/ie.jpg" height="64" /></td>
                 </tr>
             </table>
-        </center>
-        
-        
 	</body>
 </html>

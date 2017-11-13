@@ -18,12 +18,11 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	$scoutname	= mysql_real_escape_string($_REQUEST[scoutname]);
-	$firstname	= mysql_real_escape_string($_REQUEST[firstname]);
-	$surname	= mysql_real_escape_string($_REQUEST[surname]);
-	$mail		= mysql_real_escape_string($_REQUEST[mail]);
-	
-	
+	$scoutname	= mysql_real_escape_string($_REQUEST['scoutname']);
+	$firstname	= mysql_real_escape_string($_REQUEST['firstname']);
+	$surname	= mysql_real_escape_string($_REQUEST['surname']);
+	$mail		= mysql_real_escape_string($_REQUEST['mail']);
+
 	// Argumente aufbauen
 	$search_arg = array("0");
 	if(!empty($scoutname))	{	$search_arg[] = " scoutname LIKE '$scoutname%' "; 	}
@@ -54,9 +53,7 @@
 		
 		$found_users[] = $found_user;
 	}
-	
-	
+
 	echo json_encode( $found_users );
 	die();
-	
 ?>

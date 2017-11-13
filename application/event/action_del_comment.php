@@ -18,18 +18,15 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	
 	$event_id 	= mysql_real_escape_string( $_REQUEST['event_id'] );
 	$comment_id	= mysql_real_escape_string( $_REQUEST['comment_id'] );
 	
 	$_camp->event( $event_id ) || die( "error" );
 	
-	
 	$query = "	DELETE FROM event_comment 
 				WHERE id = $comment_id AND event_id = $event_id";
 	mysql_query( $query );
-	
-	
+
 	if( mysql_error() )
 	{	$ans = array( "error" => true, "error_msg" => "Kommentar konnte nicht gelöscht weren." );	}
 	else
@@ -37,5 +34,4 @@
 	
 	echo json_encode( $ans );
 	die();
-	
 ?>

@@ -18,7 +18,6 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	
 	/*
 	$config = array(
 		"camp" => array(
@@ -32,7 +31,6 @@
 	*/
 	
 	class o {}
-	
 	
 	class db
 	{
@@ -62,7 +60,6 @@
 				$this->_meta->loaden_table[] = $table;
 			}
 		}
-		
 	}
 	
 	class db_table
@@ -89,15 +86,13 @@
 			
 			$result = mysql_query( $query );
 			if( mysql_error() )	{	return false;	}
-			
-			
+
 			while( $row = mysql_fetch_assoc( $result ) )
 			{
 				$id = $row['id'];
 				$this->$id = new db_row( $row, $this->_meta->config, $this );
 				$this->_data[$id] = $this->$id;
 			}
-			
 		}
 		
 		function waiting_table_is_loaden( $t )

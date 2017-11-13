@@ -20,21 +20,18 @@
 
 	$support = $_REQUEST['support'];
 	$camp_id = $_REQUEST['camp_id'];
-	
-	
+
 	$query = "SELECT is_course FROM camp WHERE id = $camp_id";
 	$result = mysql_query( $query );
 	$is_course = mysql_result( $result, 0, 'is_course' );
-	
-	
+
 	if( $is_course )
 	{	$query = "SELECT id FROM dropdown WHERE list = 'function_course' AND entry = 'Support'";	}
 	else
 	{	$query = "SELECT id FROM dropdown WHERE list = 'function_camp'  AND entry = 'Support'";	}
 	$result = mysql_query( $query );
 	$support_id = mysql_result( $result, 0, 'id' );
-	
-		
+
 	if($support)
 	{
 		$query = "SELECT * FROM user_camp WHERE user_id = $_user->id AND camp_id = $camp_id AND function_id = $support_id";

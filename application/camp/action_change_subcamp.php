@@ -28,8 +28,7 @@
 	
 	$change_end   = ereg("([0-9]{1,2})[\/\. -]+([0-9]{1,2})[\/\. -]+([0-9]{1,4})", $change_end  , $regs);
 	$change_end   = gmmktime(0, 0, 0, $regs[2], $regs[1], $regs[3]);
-	
-	
+
 	$_camp->subcamp( $subcamp_change_id ) || die( "error" );
 	
 	
@@ -46,7 +45,7 @@
 	}
 	
 	$subcamp = mysql_fetch_assoc( $result );
-	$subcamp[end] = $subcamp[start] + $subcamp[length] - 1;
+	$subcamp['end'] = $subcamp['start'] + $subcamp['length'] - 1;
 	
 	// Datum auslesen
 	$c_start = new c_date();
@@ -75,7 +74,7 @@
 	}
 	
 	// Überschneidungen prüfen
-	$query = "SELECT * FROM `subcamp` WHERE camp_id=".$_camp->id." AND NOT id=".$subcamp[id]." AND(`start` BETWEEN -10000 AND ".($end).") AND ((`start`+`length`-1) BETWEEN ".$start." AND 32000)";
+	$query = "SELECT * FROM `subcamp` WHERE camp_id=".$_camp->id." AND NOT id=".$subcamp['id']." AND(`start` BETWEEN -10000 AND ".($end).") AND ((`start`+`length`-1) BETWEEN ".$start." AND 32000)";
 	$result = mysql_query( $query );
 	
 	if( mysql_num_rows( $result ) >= 1 )
@@ -95,8 +94,7 @@
 		echo json_encode( $ans );
 		die();
 	}
-	
-	
+
 	/////////////////////////////////////////////////
 	// Zeitfenster-Veränderung vornehmen
 
@@ -105,18 +103,18 @@
 	  mysql_query( $query );
 	  
 	  // Verbliebene Tage verschieben
-	  if( $start >= $subcamp[start] )
-	  	$summand = "- ".($start - $subcamp[start]);
+	  if( $start >= $subcamp['start'] )
+	  	$summand = "- ".($start - $subcamp['start']);
 	  else
-	    $summand = "+ ".($subcamp[start] - $start);
+	    $summand = "+ ".($subcamp['start'] - $start);
 		
-	  $query = "UPDATE day SET day_offset=day_offset ".$summand." WHERE day.subcamp_id=".$subcamp[id];
+	  $query = "UPDATE day SET day_offset=day_offset ".$summand." WHERE day.subcamp_id=".$subcamp['id'];
 	  mysql_query( $query );
 	  
 	  // Zusätzliche Tage vorne hinzufügen
-	  if( $start < $subcamp[start] )
+	  if( $start < $subcamp['start'] )
 	  {
-	  	for( $i=0; $i < $subcamp[start] - $start; $i++ )
+	  	for( $i=0; $i < $subcamp['start'] - $start; $i++ )
 		{
 			$query = "INSERT INTO day 	    ( subcamp_id, day_offset)
 				 	  VALUES 				( '$subcamp[id]', '$i')";
@@ -125,7 +123,7 @@
 	  }
 	  
 	  // Zustäzliche Tage hinten hinzufügen  
-	  if( $end > $subcamp[end] )
+	  if( $end > $subcamp['end'] )
 	  {
 	  	for( $i=$subcamp['end']-$start+1; $i <= $end - $start; $i++ )
 		{
@@ -136,7 +134,7 @@
 	  }
 	  
 	  // Subcamp anpassen
-	  $query = "UPDATE subcamp SET `start`=$start, `length`=".($end-$start+1)." WHERE `id`=".$subcamp[id];
+	  $query = "UPDATE subcamp SET `start`=$start, `length`=".($end-$start+1)." WHERE `id`=".$subcamp['id'];
 	  mysql_query( $query );
 	
 	$ans = array( "error" => false, "subcamp_start" => $c_start->getString("d.m.Y"), "subcamp_end" => $c_end->getString("d.m.Y") );

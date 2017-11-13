@@ -28,11 +28,9 @@
 	
 	$name_save  = mysql_real_escape_string($name);
 	$short_name_save  = mysql_real_escape_string($short_name);
-	
-	
+
 	$_camp->category( $cat_id ) || die( "error" );
-	
-	
+
 	if( $name=="" )
 	{
 		//$uri = "&msg_title=".urlencode("Kategorie ändern: Fehler")."&msg_text=".urlencode("Bitte gib einen Kategorie-Namen ein!");

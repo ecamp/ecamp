@@ -30,69 +30,69 @@
 		public $cmd;
 		public $html;
 		
-		function addCssFile( $file )
+		function addCssFile($file)
 		{
-			if( is_file( $file ) && !in_array( realpath( $file ), $this->cssRealpath ) )
+			if( is_file($file) && !in_array(realpath($file),$this->cssRealpath))
 			{
-				$this->loadFileDependency( $file );
+				$this->loadFileDependency($file);
 
-				array_push( $this->cssFiles, $file );
-				array_push( $this->cssRealpath, realpath( $file ) );
+				array_push($this->cssFiles,$file);
+				array_push($this->cssRealpath,realpath($file));
 			}
 		}
 		
-		function addJsFile( $file )
+		function addJsFile($file)
 		{
-			if( is_file( $file ) && !in_array( realpath( $file ), $this->jsRealpath ) )
+			if(is_file($file) && !in_array(realpath($file),$this->jsRealpath))
 			{
-				$this->loadFileDependency( $file );
+				$this->loadFileDependency($file);
 
-				array_push( $this->jsFiles, $file );
-				array_push( $this->jsRealpath, realpath( $file ) );
+				array_push($this->jsFiles,$file);
+				array_push($this->jsRealpath,realpath($file));
 			}
 		}
 		
-		function addCssConfig( $config )
+		function addCssConfig($config)
 		{
-			foreach( $config as $file => $type )
+			foreach($config as $file => $type)
 			{
-				if( $type == "app" )
-				{	$this->addCssFile( $GLOBALS['public_app_dir'] . "/" . $this->app . "/css/" . $file );	}
+				if($type == "app")
+				{$this->addCssFile($GLOBALS['public_app_dir']."/".$this->app."/css/".$file);}
 				
-				if( $type == "global" )
-				{	$this->addCssFile( $GLOBALS['public_global_dir'] . "/css/" . $file );	}
+				if($type == "global")
+				{$this->addCssFile($GLOBALS['public_global_dir']."/css/".$file);}
 				
-				if( $type == "module" )
-				{	$this->addCssFile( $GLOBALS['public_module_dir'] . "/css/" . $file );	}
+				if($type == "module")
+				{$this->addCssFile($GLOBALS['public_module_dir']."/css/".$file);}
 			}
 		}
 		
-		function addJsConfig( $config )
+		function addJsConfig($config)
 		{
-			foreach( $config as $file => $type )
+			foreach($config as $file => $type)
 			{
-				if( $type == "app" )
-				{	$this->addJsFile( $GLOBALS['public_app_dir'] . "/" . $this->app . "/js/" . $file );	}
+				if($type == "app")
+				{$this->addJsFile($GLOBALS['public_app_dir']."/".$this->app."/js/".$file);}
 				
-				if( $type == "global" )
-				{	$this->addJsFile( $GLOBALS['public_global_dir'] . "/js/" . $file );	}
+				if($type == "global")
+				{$this->addJsFile($GLOBALS['public_global_dir']."/js/".$file);}
 				
-				if( $type == "module" )
-				{	$this->addJsFile( $GLOBALS['public_module_dir'] . "/js/" . $file );	}
+				if($type == "module")
+				{$this->addJsFile($GLOBALS['public_module_dir']."/js/".$file);}
 			}
 		}
 		
-		function loadFileDependency( $file )
+		function loadFileDependency($file)
 		{
-			if( ! is_file( $file ) )
-			{	return;	}
+			if(!is_file($file))
+			{return;}
 			
-			$fh = fopen( $file, "r" );
+			$fh = fopen($file,"r");
 			
-			if( trim( fgets( $fh ) ) != "/** eCampConfig" )
-			{	return;	}
+			if(trim(fgets($fh)) != "/** eCampConfig" )
+			{return;}
 		
-			while( !feof( $fh ) )
+			while(!feof($fh))
 			{
 				$line = trim( fgets( $fh ) );
 				
@@ -111,8 +111,8 @@
 					
 					foreach( $args as $arg )
 					{
-						if( $arg[1] == "on" )	{	$path = $arg[2];	continue;	}
-						if( $arg[1] == "type" )	{	$type = $arg[2];	continue;	}
+						if( $arg['1'] == "on" )	{	$path = $arg['2'];	continue;	}
+						if( $arg['1'] == "type" )	{	$type = $arg['2'];	continue;	}
 					}
 					
 					if( $type == "" ){	$type = end( pathinfo( $path, PATHINFO_EXTENSION ) );	}
@@ -120,17 +120,11 @@
 					if( $type == "js" )	{	$this->addJsFile( $path );	continue;	}
 					if( $type == "css")	{	$this->addCssFile( $path );	continue;	}				
 				}
-				
 			}
-			
 			fclose( $fh );
 		}
-		
-		
 	}
-	
-	
-	
+
 	class user
 	{
 		public $id;
@@ -145,15 +139,15 @@
 		
 		function load_data($data)
 		{
-			if( isset( $data['id'] ) )			{	$this->id = $data['id'];						}
-			if( isset( $data['ip'] ) )			{	$this->ip = $data['ip'];						}
-			if( isset( $data['mail'] ) )			{	$this->mail = $data['mail'];					}
-			if( isset( $data['scoutname'] ) )		{	$this->scoutname = $data['scoutname'];		}
-			if( isset( $data['firstname'] ) )		{	$this->firstname = $data['firstname'];		}
-			if( isset( $data['surname'] ) )		{	$this->surname = $data['surname'];			}
-			if( isset( $data['display_name'] ) )	{	$this->display_name = $data['display_name'];	}
-			if( isset( $data['admin'] ) )			{	$this->admin = $data['admin'];				}
-			if( isset( $data['active'] ) )		{	$this->active = $data['active'];				}
+			if(isset($data['id'])){$this->id = $data['id'];}
+			if(isset($data['ip'])){$this->ip = $data['ip'];}
+			if(isset($data['mail'])){$this->mail = $data['mail'];}
+			if(isset($data['scoutname'])){$this->scoutname = $data['scoutname'];}
+			if(isset($data['firstname'])){$this->firstname = $data['firstname'];}
+			if(isset($data['surname'])){$this->surname = $data['surname'];}
+			if(isset($data['display_name'])){$this->display_name = $data['display_name'];}
+			if(isset($data['admin'])){$this->admin = $data['admin'];}
+			if(isset($data['active'])){$this->active = $data['active'];}
 		}
 	}
 	
@@ -165,9 +159,9 @@
 		
 		function load_data( $data )
 		{
-			if( isset( $data['id'] ) )			{	$this->id = $data['id'];						}
-			if( isset( $data['function_id'] ) )	{	$this->function_id = $data['function_id'];	}
-			if( isset( $data['auth_level'] ) )	{	$this->auth_level = $data['auth_level'];		}
+			if(isset($data['id'])){$this->id = $data['id'];}
+			if(isset($data['function_id'])){$this->function_id = $data['function_id'];}
+			if(isset($data['auth_level'])){$this->auth_level = $data['auth_level'];}
 		}
 	}
 	
@@ -182,14 +176,13 @@
 		
 		function load_data($data)
 		{
-			if( isset( $data['id'] ) )				{	$this->id = $data['id'];	}
-			if( isset( $data['short_name'] ) )		{	$this->short_name = $data['short_name'];	}
-			if( isset( $data['group_name'] ) )		{	$this->group_name = $data['group_name'];	}
-			if( isset( $data['type'] ) )				{	$this->type = $data['type'];	}
-			if( isset( $data['is_course'] ) )			{	$this->is_course = $data['is_course'];	}
-			if( isset( $data['creator_user_id'] ) )	{	$this->creator_user_id = $data['creator_user_id'];	}
+			if(isset($data['id'])){$this->id = $data['id'];}
+			if(isset($data['short_name'])){$this->short_name = $data['short_name'];}
+			if(isset($data['group_name'])){$this->group_name = $data['group_name'];}
+			if(isset($data['type'])){$this->type = $data['type'];}
+			if(isset($data['is_course'])){$this->is_course = $data['is_course'];}
+			if(isset($data['creator_user_id'])){$this->creator_user_id = $data['creator_user_id'];}
 		}
-		
 		
 		function category( $id )
 		{	return $this->check( "SELECT id FROM category WHERE id = $id AND camp_id = $this->id" );	}
@@ -255,8 +248,7 @@
 		
 		function user( $id )
 		{	return $this->check( "SELECT user_id FROM user_camp WHERE user_id = $id AND camp_id = $this->id AND active = 1" );	}
-		
-		
+
 		function check( $query )
 		{
 			$result = mysql_query( $query );
@@ -265,7 +257,6 @@
 			else
 			{	return mysql_num_rows( $result );	}
 		}
-		
 	}
 	
 	class js_env
@@ -309,7 +300,6 @@
 			if( !$date )		{	$date = time();	}
 			if( $camp_id == 0 )	{	$camp_id = $_camp->id;	}
 			
-			
 			$query ="	SELECT user.id, user.news 
 						FROM user, user_camp 
 						WHERE 
@@ -318,10 +308,8 @@
 							user.id = user_camp.user_id";
 			$result = mysql_query( $query );
 			
-			
 			while( $user = mysql_fetch_assoc( $result ) )
 			{	$this->add2user( $title, $text, $date, $user['id'] );	}
-			
 		}
 		
 		function add2user( $title, $text, $date = 0, $user_id = 0 )
@@ -329,9 +317,7 @@
 			if( !$date )	{	$date = time();	}
 			if( !$user_id )	{	$_user->id;		}
 			
-			
 			$news = $this->load( $user_id );
-			
 			
 			while( array_key_exists( $date, $news ) )	{	$date ++;	}
 			$news[$date] = array( "key" => $date, "date" => date( "d.m.Y H:i", $date ), "title" => $title, "text" => $text );
@@ -340,8 +326,7 @@
 			
 			if( count( $news ) > $GLOBALS['news_num'] )
 			{	$news = array_slice( $news, count( $news ) - $GLOBALS['news_num'], $GLOBALS['news_num'], true );	}
-			
-			
+
 			$this->save( $news, $user_id );
 		}
 		
@@ -351,12 +336,10 @@
 			if( !$user_id )	{	$user_id = $_user->id;	}
 			
 			$news = $this->load( $user_id );
-			
-			
+
 			$news[$key] = null;
 			$news = array_filter( $news );
-			
-			
+
 			$this->save( $news, $user_id );
 		}
 		
@@ -372,5 +355,4 @@
 			mysql_query( $query );
 		}
 	}
-	
 ?>

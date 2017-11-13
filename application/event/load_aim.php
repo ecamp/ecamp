@@ -18,7 +18,6 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	
 	$course_aim = array();
 	
 	$query = "	SELECT
@@ -63,8 +62,6 @@
 			}
 		}
 	}
-	
-	
-	
+
 	$_js_env->add( 'course_aim', $course_aim );	
 ?>

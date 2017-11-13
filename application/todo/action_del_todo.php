@@ -21,8 +21,7 @@
 	$todo_id 	= mysql_real_escape_string($_REQUEST['todo_id']);
 	
 	$_camp->todo( $todo_id ) || die( "error" );
-	
-	
+
 	$query = "SELECT * FROM todo WHERE id = $todo_id AND camp_id = $_camp->id";
 	$result = mysql_query($query);
 	
@@ -32,13 +31,11 @@
 		echo json_encode( $ans );
 		die();
 	}
-	
-	
+
 	$query = "DELETE FROM todo WHERE id = $todo_id AND camp_id = $_camp->id";
 	$result = mysql_query($query);
 	
 	$ans = array( "error" => false );
 	echo json_encode( $ans );
 	die();
-	
 ?>

@@ -1,39 +1,92 @@
 <!DOCTYPE html>
 <html lang="de">
-	<head>
-		<title>eCamp v2</title>
-        
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	
-        <link rel="stylesheet" type="text/css" href="./public/global/css/global.css" />
-        <link rel="stylesheet" type="text/css" href="./public/global/css/main.css" />
-        <link rel="stylesheet" type="text/css" href="./public/global/css/menu.css" />
-        <link rel="stylesheet" type="text/css" href="./public/global/css/color.css" />
-    	
-    	<link tal:repeat="css includes/css" rel="stylesheet" type="text/css" tal:attributes="href css" />
-        
-        <script tal:repeat="js includes/js" type="text/javascript" language="javascript" tal:attributes="src js"></script>
-	
-    	<script tal:content="structure js_code" type="text/javascript" language="javascript"></script>
-    </head>
-    <body>
-    	<div class="body">
-            <div class="header bg_image">
-                <table width="100%" height="100%" cellpadding="0" cellspacing="0" style="padding-left:5px; padding-right:5px;" >
-                    <tr valign="top" >
-                        <td align="left" width="30%">	<b style="font-size:17px" class="textcolor_white">ecamps.ch</b></td>
-                        <td align="center" width="40%">	<b style="font-size:12px" class="textcolor_white">Willkommen <span tal:content="user/display_name" tal:omit-tag=""></span></b></td>
-                        <td align="right" width="30%">	<a href="logout.php" style="color:#FFFFFF;">Abmelden</a></td>
-                    </tr>
-                </table>
+<head>
+    <title>eCamp v2</title>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" type="text/css" href="./public/global/css/global.css" />
+
+    <link rel="stylesheet" type="text/css" href="./public/skin/skin4/css/main.css" />
+    <link rel="stylesheet" type="text/css" href="./public/skin/skin4/css/color.css" />
+    <link rel="stylesheet" type="text/css" href="./public/skin/skin4/css/layout.css" />
+    <link rel="stylesheet" type="text/css" href="./public/skin/skin4/css/bootstrap.min.css" />
+
+    <script type="text/javascript" language="javascript" src="./public/global/js/mootools-core-1.4.js"></script>
+    <script type="text/javascript" language="javascript" src="./public/skin/skin4/js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" language="javascript" src="./public/skin/skin4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" language="javascript">
+		jQuery.noConflict();
+    </script>
+
+    <link tal:repeat="css cssIncludes" rel="stylesheet" type="text/css" tal:attributes="href css" />
+
+    <script tal:content="structure js_code" type="text/javascript" language="javascript"></script>
+
+    <script tal:repeat="js jsIncludes" type="text/javascript" language="javascript" tal:attributes="src js"></script>
+
+    <script tal:condition="user/admin" type="text/javascript" language="javascript" src="public/module/js/admin.js"></script>
+    <script type="text/javascript" language="javascript" src="public/module/js/info_box.js"></script>
+</head>
+<body>
+<div id="app">
+    <nav class="navbar navbar-default navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <!-- Collapsed Hamburger -->
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
+                    <span class="sr-only">Toggle Navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <!-- Branding Image -->
+                <a class="navbar-brand" href="https://www.ecamps.ch/">
+                    eCamp v2
+                </a>
             </div>
-            <div class="main_menu" align="center">
-                <span metal:use-macro="../module/menu/menu.tpl/menu" />
-            </div>
-            <div class="main_content" align="center"><span metal:use-macro="${main_macro}" tal:omit-tag=""/></div>
-            <div class="main_info" align="center">
-                <!-- info_display -->
+
+            <div class="collapse navbar-collapse" id="app-navbar-collapse">
+                <!-- Left Side Of Navbar -->
+                <ul class="nav navbar-nav">
+                    &nbsp;
+                </ul>
+
+                <!-- Right Side Of Navbar -->
+                <ul class="nav navbar-nav navbar-right">
+                    <!-- Authentication Links -->
+                    <li><a href="index.php?app=faq">FAQ</a></li>
+                    <li><a href="index.php?app=impressum">Impressum</a></li>
+                    <li><a href="logout.php"><button class="btn btn-danger">Abmelden</button></a></li>
+                </ul>
             </div>
         </div>
-    </body>
+    </nav>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-xs-12 col-sm-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><b>Menü</b></div>
+                    <div class="panel-body">
+                        <img id="logo" src="./public/skin/skin4/img/ecamp.gif" style="margin-bottom:10px" />
+                        <span metal:use-macro="${tpl_dir}/module/menu/menu.tpl/menu" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-10">
+                <span metal:use-macro="${main_macro}" />
+
+                <tal:block condition="show_info_box">
+                    <span metal:use-macro="${info_box}" />
+                    <!-- info_display -->
+                </tal:block>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
 </html>

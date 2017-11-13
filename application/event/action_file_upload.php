@@ -22,8 +22,7 @@
 	$upload = $_FILES['upload'];
 	
 	$_camp->event( $event_id ) || die( "error" );
-	
-	
+
 	$save_path = 'userfiles/event/' . $_user->id . '_' . md5( microtime(true) );
 	$file_name = $upload['name'];
 	
@@ -57,8 +56,7 @@
 						'" . $upload['size'] . "',
 						'" . time() . "'
 					)";
-		
-		
+
 		mysql_query( $query );
 		$file_id = mysql_insert_id();
 		

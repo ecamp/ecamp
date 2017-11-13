@@ -17,7 +17,6 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 	
 	include( 'inc/get_program_update.php' );
 	
@@ -30,5 +29,4 @@
 	echo json_encode( $data );
 		
 	die();
-		
 ?>

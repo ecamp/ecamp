@@ -22,7 +22,6 @@
 	
 	$_camp->category( $cat_id ) || die( "error" );
 	
-	
 	$query = "SELECT * FROM category WHERE id = '$cat_id' AND camp_id='$_camp->id'";
 	$result = mysql_query($query);
 	

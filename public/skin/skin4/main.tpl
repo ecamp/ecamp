@@ -12,20 +12,30 @@
         <link rel="stylesheet" type="text/css" href="./public/skin/skin4/css/color.css" />
         <link rel="stylesheet" type="text/css" href="./public/skin/skin4/css/layout.css" />
         <link rel="stylesheet" type="text/css" href="./public/skin/skin4/css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="./public/skin/skin4/css/bootstrap-select.min.css" />
+        <link rel="stylesheet" type="text/css" href="./public/skin/skin4/css/bootstrap-datetimepicker.min.css" />
+        <link rel="stylesheet" type="text/css" href="./public/skin/skin4/css/fileinput.min.css" />
+
+        <script type="text/javascript" language="javascript" src="./public/global/js/mootools-core-1.4.js"></script>
+        <script type="text/javascript" language="javascript" src="./public/skin/skin4/js/jquery-3.2.1.min.js"></script>
+        <script type="text/javascript" language="javascript" src="./public/skin/skin4/js/bootstrap.min.js"></script>
+        <script type="text/javascript" language="javascript" src="./public/skin/skin4/js/bootstrap-select.min.js"></script>
+        <script type="text/javascript" language="javascript" src="./public/skin/skin4/js/moment-with-locales.min.js"></script>
+        <script type="text/javascript" language="javascript" src="./public/skin/skin4/js/bootstrap-datetimepicker.min.js"></script>
+        <script type="text/javascript" language="javascript" src="./public/skin/skin4/js/fileinput.min.js"></script>
+        <script type="text/javascript" language="javascript" src="./public/skin/skin4/js/de.js"></script>
+        <script type="text/javascript" language="javascript">
+		    jQuery.noConflict();
+        </script>
 
         <link tal:repeat="css cssIncludes" rel="stylesheet" type="text/css" tal:attributes="href css" />
     	
 	    <script tal:content="structure js_code" type="text/javascript" language="javascript"></script>
     	
-    	
     	<script tal:repeat="js jsIncludes" type="text/javascript" language="javascript" tal:attributes="src js"></script>
-		
 	    
 	    <script tal:condition="user/admin" type="text/javascript" language="javascript" src="public/module/js/admin.js"></script>
 	    <script type="text/javascript" language="javascript" src="public/module/js/info_box.js"></script>
-
-        <script type="text/javascript" language="javascript" src="./public/skin/skin4/js/jquery-3.2.1.min.js"></script>
-        <script type="text/javascript" language="javascript" src="./public/skin/skin4/js/bootstrap.min.js"></script>
     </head>
     <body>
         <div id="app">
@@ -63,7 +73,6 @@
                 </div>
             </nav>
         </div>
-        <div class="space-top"></div>
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -77,19 +86,12 @@
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-10">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <b tal:content="user/display_name" style="font-size:15px;" />, willkommen bei eCamp - Lager und Kurse vorbereiten und planen
-                            </div>
-                            <div class="panel-body">
-                                <span metal:use-macro="${main_macro}" />
+                        <span metal:use-macro="${main_macro}" />
 
-                                <tal:block condition="show_info_box">
-                                    <span metal:use-macro="${info_box}" />
-                                    <!-- info_display -->
-                                </tal:block>
-                            </div>
-                        </div>
+                        <tal:block condition="show_info_box">
+                            <span metal:use-macro="${info_box}" />
+                            <!-- info_display -->
+                        </tal:block>
                     </div>
                 </div>
             </div>

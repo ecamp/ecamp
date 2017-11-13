@@ -26,8 +26,7 @@
 	
 	$color		= mysql_real_escape_string($_REQUEST['color']);
 	$form_type	= mysql_real_escape_string($_REQUEST['type']);
-	
-	
+
 	if( $name=="" )
 	{
 		$ans = array( "error" => true, "msg" => "Bitte gib einen Kategorie-Namen ein!" );

@@ -18,10 +18,8 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	
 	class print_data_mat_event
 	{
-		
 		public $pid;
 		public $id;
 		public $event_id;
@@ -48,7 +46,6 @@
 			
 			$this->event = $pid->event[ $this->event_id ];
 			
-			
 			$this->type = "available";
 			
 			if( $this->user_id )
@@ -64,17 +61,12 @@
 				$this->type = "organize";
 				$this->resp = "mat_list";
 			}
-			
-			
+
 			if( $this->type == "available" )
 			{	$this->event->add_mat_available( $this );	}
 			
 			if( $this->type == "organize" )
 			{	$this->event->add_mat_organize( $this );	}
-			
-			
 		}
-		
 	}
-	
 ?>

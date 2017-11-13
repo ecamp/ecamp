@@ -18,7 +18,6 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	
 	$course_checklist = array();
 	
 	$query = "	SELECT
@@ -72,7 +71,6 @@
 			}
 		}
 	}
-	
 	
 	$_js_env->add( 'course_checklist', $course_checklist );	
 ?>

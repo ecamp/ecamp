@@ -21,8 +21,7 @@
 	$event_id 	= mysql_real_escape_string( $_REQUEST['event_id'] );
 	$input_edit	= mysql_real_escape_string( $_REQUEST['input_edit'] );
 	$input_edit_js = $_REQUEST['input_edit'];
-	
-	
+
 	$_camp->event( $event_id ) || die( "error" );
 	
 	$query = "
@@ -46,5 +45,4 @@
 		echo json_encode( $ans );
 		die();
 	}
-	
 ?>

@@ -17,15 +17,13 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 	
 	require_once( "application/day/inc/prog_color.php" );
 	
-	$_page->html->set('main_macro', $GLOBALS[tpl_dir].'/global/content_box_fit.tpl/predefine');
-	$_page->html->set('box_content', $GLOBALS[tpl_dir].'/application/my_resp/home.tpl/home');
+	$_page->html->set('main_macro', $GLOBALS['tpl_dir'].'/global/content_box_fit.tpl/predefine');
+	$_page->html->set('box_content', $GLOBALS['tpl_dir'].'/application/my_resp/home.tpl/home');
 	$_page->html->set('box_title', "Meine Verantwortung");
     $date = new c_date();
-    
     
     // Events
     $events = array();
@@ -116,7 +114,7 @@
     {
     	$date->setDay2000( $event['date'] );
     	
-    	$event['link'] = '$event.edit(' . $event[id] . ')';
+    	$event['link'] = '$event.edit(' . $event['id'] . ')';
     	$event['color_str'] = "background-color:#" . $event['color'];
     	
     	if( $event['form_type'] )
@@ -124,8 +122,7 @@
 		else
 		{	$event['prog_color'] = "#000000";	}
 		
-    	$event['show_event_nr'] = ( $event[form_type] > 0 );
-    	
+    	$event['show_event_nr'] = ( $event['form_type'] > 0 );
     	
     	$events[$event['date']]['day_offset'] = $event['day_offset'];
     	$events[$event['date']]['date'] = $date->getString( 'd.m.Y' );
@@ -133,8 +130,7 @@
     }
     //echo "events => ";
     //print_r($events);
-    
-    
+
     // day_jobs
     $day_jobs = array();
     $query = "	SELECT
@@ -175,8 +171,7 @@
     }
     //echo "day_jobs => ";
     //print_r($day_jobs);
-    
-    
+
     // todo
     $todos = array();
     $query = "	SELECT
@@ -200,21 +195,15 @@
     }
     //echo "todos => ";
     //print_r($todos);
-    
-    
-    
-    
+
     $_page->html->set('events', $events);
     $_page->html->set('day_jobs', $day_jobs);
     $_page->html->set('todos', $todos);
-    
-    
 	
 	//	INFOBOX:
 	// ==========
-	
 	include("module/info/category.php");
 	
 	$_page->html->set( 'show_info_box', true );
-	$_page->html->set( 'info_box', $GLOBALS[tpl_dir].'/module/info/info_box.tpl/info_box' );
+	$_page->html->set( 'info_box', $GLOBALS['tpl_dir'].'/module/info/info_box.tpl/info_box' );
 ?>

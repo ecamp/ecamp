@@ -1,13 +1,10 @@
 /** eCampConfig
-
 	<depend on="public/global/js/mootools-core-1.4.js" type="js" /> <depend on="public/global/js/mootools-more-1.4.js" type="js" />
-
 **/
 
 // Calendar: a Javascript class for Mootools that adds accessible and unobtrusive date pickers to your form elements <http://electricprism.com/aeron/calendar>
 // Calendar RC4, Copyright (c) 2007 Aeron Glemann <http://electricprism.com/aeron>, MIT Style License.
 // Mootools 1.2 compatibility by Davorin Šego
-
 var Calendar = new Class({
 	options: {
 		blocked: [], // blocked dates 
@@ -29,7 +26,6 @@ var Calendar = new Class({
 	// initialize: calendar constructor
 	// @param obj (obj) a js object containing the form elements and format strings { id: 'format', id: 'format' etc }
 	// @param props (obj) optional properties
-
 	initialize: function(obj, options) {
 		// basic error checking
 		if (!obj) { return false; }

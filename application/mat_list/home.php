@@ -29,16 +29,14 @@
 	
 	while( $u = mysql_fetch_assoc( $result ) )
 	{
-		if( $u[scoutname] )	{	$u[display_name] = $u[scoutname];	}
-		else	{	$u[display_name] = $u[firstname] . " " . $u[surname];	}
+		if( $u['scoutname'] )	{	$u['display_name'] = $u['scoutname'];	}
+		else	{	$u['display_name'] = $u['firstname'] . " " . $u['surname'];	}
 		
-		$u[href] = "index.php?app=mat_list&listtype=user&list=" . $u[user_camp_id];
+		$u['href'] = "index.php?app=mat_list&listtype=user&list=" . $u['user_camp_id'];
 		
 		$users[] = $u;
 	}
-	
-	
-	
+
 	$query = "	SELECT mat_list.*
 				FROM mat_list
 				WHERE mat_list.camp_id = $_camp->id";
@@ -46,22 +44,15 @@
 	
 	while( $m = mysql_fetch_assoc( $result ) )
 	{
-		$m[href] = "index.php?app=mat_list&listtype=mat_list&list=" . $m[id];
+		$m['href'] = "index.php?app=mat_list&listtype=mat_list&list=" . $m['id'];
 		$mat_lists[] = $m;
 	}
-	
-	
-	
-	
-	
+
 	if( isset( $_REQUEST['listtype'] ) && isset( $_REQUEST['list'] ) )
 	{
 		$selected = true;
 		$list_id = $_REQUEST['list'];
-		
-		
-		
-		
+
 		$list_entries = array();
 		
 		if( $_REQUEST['listtype'] == "user" )
@@ -102,13 +93,10 @@
 	}
 	else
 	{	$selected = false;	}
-	
-	
-	
-	
+
 	$mat_list = array(
-		"select" 		=> array(	"title" => "Materiallisten",	"macro" => $GLOBALS[tpl_dir]."/application/mat_list/select.tpl/select" ),
-		"display" 		=> array(	"title" => "Materialliste",		"macro" => $GLOBALS[tpl_dir]."/application/mat_list/display.tpl/display" ),
+		"select" 		=> array(	"title" => "Materiallisten",	"macro" => $GLOBALS['tpl_dir']."/application/mat_list/select.tpl/select" ),
+		"display" 		=> array(	"title" => "Materialliste",		"macro" => $GLOBALS['tpl_dir']."/application/mat_list/display.tpl/display" ),
 		"users" 		=> $users,
 		"mat_lists"	=> $mat_lists,
 		"selected"		=> $selected,
@@ -119,9 +107,5 @@
 	
 	$_page->html->set( 'mat_list', $mat_list );
 	
-	$_page->html->set('main_macro', $GLOBALS[tpl_dir].'/application/mat_list/border.tpl/border');
-	
-	
-		
-
+	$_page->html->set('main_macro', $GLOBALS['tpl_dir'].'/application/mat_list/border.tpl/border');
 ?>

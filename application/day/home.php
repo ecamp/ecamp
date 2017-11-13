@@ -18,18 +18,15 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	
-	$_page->html->set('main_macro', $GLOBALS[tpl_dir].'/application/day/border.tpl/border');
+	$_page->html->set('main_macro', $GLOBALS['tpl_dir'].'/application/day/border.tpl/border');
 	
 	$day_id = mysql_real_escape_string( $_REQUEST['day_id'] );
 	
 	if( is_numeric( $day_id ) )
 	{	$_camp->day( $day_id ) || die( "error" );	}
-	
-	
+
 	include( 'load_day_list.php' );
-	
-	
+
 	if( is_numeric( $day_id ) )
 	{
 		$_page->html->set( 'day_selected', true );
@@ -51,7 +48,7 @@
 		$day_date = new c_date();
 		$day_date->setDay2000( mysql_result( $result, 0, 'day_date' ) );
 		
-		$day_str = strtr( $day_date->getString( 'l d.m.Y' ), $GLOBALS[en_to_de] );
+		$day_str = strtr( $day_date->getString( 'l d.m.Y' ), $GLOBALS['en_to_de'] );
 		
 		$day_story = mysql_result( $result, 0, 'story' );
 		$day_notes = mysql_result( $result, 0, 'notes' );
@@ -60,9 +57,7 @@
 	{
 		$_page->html->set( 'day_selected', false );
 	}
-	
-	
-	
+
 	$query = "	SELECT category.*
 				FROM category
 				WHERE category.camp_id = $_camp->id";
@@ -73,11 +68,10 @@
 	{	$categories[] = $category;	}
 	
 	$_js_env->add( 'categories', $categories );
-	
-	
+
 	$day = array(
-			"list_border" 	=> array( "title" => "Liste aller Tage", "macro" => $GLOBALS[tpl_dir]."/application/day/list.tpl/list" ),
-			"day_border"	=> array( "title" => "Tagesübersicht", "macro" => $GLOBALS[tpl_dir]."/application/day/day.tpl/day" ),
+			"list_border" 	=> array( "title" => "Liste aller Tage", "macro" => $GLOBALS['tpl_dir']."/application/day/list.tpl/list" ),
+			"day_border"	=> array( "title" => "Tagesübersicht", "macro" => $GLOBALS['tpl_dir']."/application/day/day.tpl/day" ),
 			"day_list"		=> $day_list,
 			"job_list"		=> $job_list,
 			"event_list"	=> $event_list,
@@ -91,15 +85,11 @@
 	
 	$_page->html->set( 'day', $day );
 	$_js_env->add( 'event_list', $event_list );
-
-	
-	
 	
 	//	INFOBOX:
 	// ==========
-	
 	include("module/info/category.php");
 	
 	$_page->html->set( 'show_info_box', true );
-	$_page->html->set( 'info_box', $GLOBALS[tpl_dir].'/module/info/info_box.tpl/info_box' );
+	$_page->html->set( 'info_box', $GLOBALS['tpl_dir'].'/module/info/info_box.tpl/info_box' );
 ?>

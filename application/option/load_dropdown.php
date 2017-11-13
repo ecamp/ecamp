@@ -18,7 +18,7 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	if( $_camp->type == 1)
+	if($_camp->type == 1)
 	{	$query_camptype = "SELECT value, entry 	FROM dropdown WHERE list = 'form'";	}
 	else
 	{	$query_camptype = "SELECT value, entry 	FROM dropdown WHERE list = 'form' AND item_nr <= 4";	}

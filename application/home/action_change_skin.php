@@ -19,7 +19,7 @@
  */
 
 	$skin 	= mysql_real_escape_string($_REQUEST['skin']);
-	$_SESSION[skin] = $skin;
+	$_SESSION['skin'] = $skin;
 	
 	header("location:index.php?app=home");
 	die();

@@ -18,13 +18,11 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	$_page->html->set('main_macro', $GLOBALS[tpl_dir].'/global/content_box_fit.tpl/predefine');
-	$_page->html->set('box_content', $GLOBALS[tpl_dir].'/application/camp/home.tpl/home');
+	$_page->html->set('main_macro', $GLOBALS['tpl_dir'].'/global/content_box_fit.tpl/predefine');
+	$_page->html->set('box_content', $GLOBALS['tpl_dir'].'/application/camp/home.tpl/home');
 	
 	$_page->html->set('box_title', 'Infos zum Lager/Kurs');
-	
-	
-	
+
     // Authentifizierung überprüfen
 	// read & write --> Ab Lagerleiter (level: 50)
 	// read         --> Ab Coach       (level: 20)
@@ -32,21 +30,20 @@
 	
 	if( $_user_camp->auth_level >= 50 )
 	{
-		$camp_info[input] = true;
-		$camp_info[readonly] = false;
+		$camp_info['input'] = true;
+		$camp_info['readonly'] = false;
 	}
 	elseif( $_user_camp->auth_level >= 11 )
 	{
-		$camp_info[input] = false;
-		$camp_info[readonly] = true;
+		$camp_info['input'] = false;
+		$camp_info['readonly'] = true;
 	}
 	else
 	{
-		$_SESSION[camp_id] = "";
+		$_SESSION['camp_id'] = "";
 		header( "Location: index.php" );
 		die();
 	}
-	
 	
 	$start = new c_date;
 	$end   = new c_date;
@@ -62,12 +59,11 @@
 		$subcamps[] = array(
 			"start" => gmdate("d.m.Y", $start->getUnix()),
 			"end"	=>gmdate("d.m.Y", $end->getUnix()),
-			"id"	=> $row[id]
+			"id"	=> $row['id']
 		);
 	}
 
-	
-    // �berpr�fen, ob ein Lager gew�hlt wurde und Lagerdaten einlesen
+    // Ueberpruefen, ob ein Lager gewaehlt wurde und Lagerdaten einlesen
     $query = "	SELECT 
     				camp.*,
     				groups.name as groups_name,
@@ -84,7 +80,6 @@
 	$result = mysql_query($query);
 	if(mysql_num_rows($result) == 0)	{	die("Kein Lager gew&auml;hlt");	}
 	$camp_data = mysql_fetch_assoc($result);
-	
 	
 	// Lager-Detaildaten herausfiltern
 	$num1 = strpos( $camp_data['ca_coor'], "." );
@@ -113,7 +108,6 @@
 		$camp_data['ca_coor4'] = "";
 	}
 
-	
 	// Inhalte f�llen & bei Bedarf zur Anzeige aufbereiten
 	$camp_info['base']			= $camp_data['groups_short_prefix'] . " " . $camp_data['groups_name'];
 	$camp_info["group_name"] 	= array("name" => "group_name", "value" => $camp_data['group_name']);
@@ -127,24 +121,19 @@
 	$camp_info["ca_city"]		= array("name" => "ca_city", 	"value" => $camp_data['ca_city']);
 	$camp_info["ca_tel"]		= array("name" => "ca_tel", 	"value" => $camp_data['ca_tel']);
 	$camp_info["ca_coor"]		= array("name" => "ca_coor", 	"value" => $camp_data['ca_coor'], 
-																"value1" => $camp_data['ca_coor1'], 
-																"value2" => $camp_data['ca_coor2'], 
-																"value3" => $camp_data['ca_coor3'], 
-																"value4" => $camp_data['ca_coor4']);
+		"value1" => $camp_data['ca_coor1'],"value2" => $camp_data['ca_coor2'],"value3" => $camp_data['ca_coor3'],"value4" => $camp_data['ca_coor4']);
+
 	$camp_info['is_course']		= $camp_data['is_course'];
 
 	$camp_info["subcamps"]		= $subcamps;
 	
 	$camp_info['show_map_coor']	.= $camp_data['ca_coor1'] . $camp_data['ca_coor2'] . "," . $camp_data['ca_coor3'] . $camp_data['ca_coor4'];
-	
-	
+
 	if( $_REQUEST['show'] == 'firsttime' )
 	{	$camp_info['firsttime'] = true;		}
 	else
 	{	$camp_info['firsttime'] = false;	}
-	
-	
-	
+
 	if( $camp_data['is_course'] )
 	{
 		$query = "SELECT dropdown.entry
@@ -159,18 +148,10 @@
 		{	$camp_info['type'] = mysql_result($result, 0, 'entry' );	}
 	}
 	
-	
 	$_page->html->set('camp_info', $camp_info);
-	
-	
-	
-	
-	
-	
-	
+
 	//#####################################################
 	// Load Blocked Data:
-	
 	$cdate = new c_date;
 	
 	$blocked_days = array();
@@ -196,5 +177,4 @@
 	}
 	
 	$_js_env->add( 'blocked_days', $blocked_days );
-	
 ?>

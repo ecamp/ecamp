@@ -18,20 +18,15 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	
 	$todo_id = mysql_real_escape_string( $_REQUEST['todo_id'] );
 	$user = $_REQUEST['user'];
 	
 	$_camp->todo( $todo_id ) || die( "error" );
-	
-	
+
 	foreach( $user as $user_id => $selected )
 	{
 		$user_id 	= mysql_real_escape_string( $user_id  );
 		$selected 	= mysql_real_escape_string( $selected );
-		
-		
-		
 		
 		$query = "SELECT user_camp.id FROM user_camp WHERE user_camp.camp_id = $_camp->id AND user_camp.user_id = $user_id";
 		$result = mysql_query($query);
@@ -44,9 +39,6 @@
 		
 		$user_camp_id = mysql_result( $result, 0, 'id' );
 		
-		
-		
-		
 		$query = "SELECT * FROM todo WHERE id = $todo_id AND camp_id = $_camp->id";
 		$result = mysql_query($query);
 		if( mysql_num_rows($result) == 0 )
@@ -54,10 +46,7 @@
 			$ans = array( "error" => true, "msg" => "Aufgabe und Lager passen nicht zusammen!" );
 			die( json_encode( $ans ) );
 		}
-		
-		
-		
-		
+
 		$query = "SELECT * FROM todo_user_camp WHERE user_camp_id = $user_camp_id AND todo_id = $todo_id";
 		$result = mysql_query($query);
 		$num_rows = mysql_num_rows( $result );
@@ -71,10 +60,7 @@
 			$query = "INSERT INTO todo_user_camp (todo_id, user_camp_id) VALUES ( $todo_id, $user_camp_id )";
 			$result = mysql_query($query);
 		}
-		
 	}
-	
-	
 	
 	$query = "	SELECT
 					user_camp.user_id,

@@ -18,8 +18,8 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	$event_id 	= mysql_real_escape_string($_REQUEST[event_id]);
-	$day_id 	= mysql_real_escape_string($_REQUEST[day_id]); 
+	$event_id 	= mysql_real_escape_string($_REQUEST['event_id']);
+	$day_id 	= mysql_real_escape_string($_REQUEST['day_id']);
 	
 	$_camp->event( $event_id ) || die( "error" );
 	$_camp->day( $day_id ) || die( "error" );
@@ -44,9 +44,7 @@
 	// Event löschen
 	$query = "DELETE FROM event WHERE id = '$event_id'";
 	mysql_query($query);
-	
-	
+
 	header( "Location: index.php?app=day&dayid=".$day_id );
 	die();
-	
 ?>

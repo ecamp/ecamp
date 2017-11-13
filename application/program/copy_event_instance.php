@@ -24,8 +24,7 @@
 	$time				= mysql_real_escape_string($_REQUEST['time']);
 	
 	$_camp->event_instance( $event_instance_id ) || die( "error" );
-	
-	
+
 	$query = "	SELECT
 					length
 				FROM
@@ -62,8 +61,6 @@
 						id = $event_instance_id
 				)";
 	mysql_query($query);
-	
-	
 	
 	header("Content-type: application/json");
 	

@@ -18,7 +18,6 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	
 	class print_data_mat_list
 	{
 		
@@ -27,8 +26,7 @@
 		public $camp_id;
 		public $camp;
 		public $name;
-		
-		
+
 		function print_data_mat_list( $data, $pid )
 		{
 			$this->pid			= $pid;
@@ -38,7 +36,5 @@
 			
 			$this->camp = $pid->camp;
 		}
-		
 	}
-	
 ?>

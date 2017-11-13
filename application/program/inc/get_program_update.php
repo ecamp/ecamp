@@ -18,7 +18,6 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 	function get_program_update( $time )
 	{
 		global $_camp;
@@ -26,12 +25,9 @@
 		
 		$data = array();
 		$time_str = date( 'Y-m-d H:i:s', $time );
-		
-		
-		
+
 		//	USER:
 		// =======
-		
 		$query = "	SELECT 
 						user.id, scoutname, firstname, surname
 					FROM 
@@ -49,12 +45,9 @@
 		
 		while($user = mysql_fetch_assoc($users))
 		{	$data['users'][] = $user;	}
-		
-		
-		
+
 		//	CATEGORY:
 		// ===========
-		
 		$query = "	SELECT
 						id,
 						name,
@@ -70,12 +63,9 @@
 		
 		while( $category = mysql_fetch_assoc( $categorys ) )
 		{	$data['categorys'][] = $category;	}
-		
-		
-		
+
 		//	SUBCAMP:
 		// ==========
-		
 		$query = "	SELECT
 						id,
 						(
@@ -98,12 +88,9 @@
 		
 		while( $subcamp = mysql_fetch_assoc( $subcamps ) )
 		{	$data['subcamps'][] = $subcamp;	}
-		
-		
-		
+
 		//	DAY:
 		// ======
-		
 		$query = "	SELECT
 						day.id,
 						day.subcamp_id,
@@ -133,12 +120,9 @@
 		
 		while( $day = mysql_fetch_assoc( $days ) )
 		{	$data['days'][] = $day;	}
-		
-		
-		
+
 		//	EVENT:
 		// ========
-		
 		$query = "	SELECT 
 						event.id, 
 						event.name, 
@@ -178,11 +162,8 @@
 			$data['events'][] = $event;
 		}
 		
-		
-		
 		//	EVENT_INSTANCE:
 		// =================
-		
 		$query = "	SELECT
 						event_instance.id,
 						event_instance.event_id,
@@ -205,13 +186,9 @@
 		
 		while( $event_instance = mysql_fetch_assoc( $event_instances) )
 		{	$data['event_instances'][] = $event_instance;	}
-		
-		
-		
-		
+
 		//	DELETE-LOG:
 		// =============
-		
 		$filename = "application/program/del_protocol/" . $_user->id . ".log";
 		touch( $filename );
 		
@@ -221,11 +198,7 @@
 		unlink( $filename );
 		
 		$data['del'] = $file;
-		
-		
-		
-		
-		
+
 		$data['time'] = time();
 		
 		return $data;

@@ -24,8 +24,7 @@
 	$id 	= mysql_escape_string($_REQUEST['id']);
 	
 	$_camp->todo( $id ) || die( "error" );
-	
-	
+
 	if( $title == "" || $date == "" )
 	{	header ("Location: index.php?app=todo");	}
 	
@@ -40,5 +39,4 @@
 	
 	header ("Location: index.php?app=todo");
 	die();
-	
 ?> 

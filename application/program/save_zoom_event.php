@@ -35,16 +35,11 @@
 				WHERE 
 					`id` = '$event_instance_id';";
 	$result = mysql_query($query);
-	
-	
-	
-	
+
 	header("Content-type: application/json");
 	
 	$ans = get_program_update( $time );
 	echo json_encode( $ans );
 	
 	die();
-	
-	
 ?>

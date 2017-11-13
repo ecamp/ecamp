@@ -22,13 +22,10 @@
 	
 	$event_instance_id	= mysql_real_escape_string($_REQUEST['event_instance_id']);
 	$time				= mysql_real_escape_string($_REQUEST['time']);
-	
-	
+
 	$_camp->event_instance( $event_instance_id ) || die( "error" );
-	
-	
+
 	//***********************************************************************
-	
 	$query = "	SELECT event_instance.event_id
 				FROM event_instance
 				WHERE event_instance.id = $event_instance_id";
@@ -36,22 +33,18 @@
 	$event_id = mysql_result( $result, 0, 'event_id' );
 	
 	$_camp->event( $event_id ) || die( "error" );
-	
-	
+
 	$copy = array( "type" => "event_copy", "event" => $event_id, "event_instance" => $event_instance_id );
 	$copy = json_encode( $copy );
-	
 	
 	$query = "	UPDATE user
 				SET copyspace = '$copy'
 				WHERE user.id = $_user->id";
 	mysql_query( $query );
-	
 
 	//***********************************************************************
 	//***********************************************************************
 	/*
-	
 	$query = "	SELECT
 					dleft,
 					width,
@@ -80,9 +73,7 @@
 		if($dleft + $width >= 1)	{	$new_dleft = $dleft - 0.1;	}
 		else						{	$new_dleft = $dleft + 0.1;	}
 	}
-	
-	
-	
+
 	$query = "	INSERT INTO
 					event
 				(camp_id, category_id, name, place, story, aim, method, topics, notes, seco, progress, in_edition_by, in_edition_time)
@@ -108,15 +99,10 @@
 				)";
 	mysql_query($query);
 	
-	
 	$query = "SELECT  LAST_INSERT_ID()";
 	$result = mysql_query($query);
 	$new_event_id = implode(mysql_fetch_row($result));
-	
-	
-	
-	
-	
+
 	$query = "	INSERT INTO
 					event_instance
 				(event_id, day_id, starttime, length, dleft, width)	
@@ -137,11 +123,7 @@
 	*/
 	//=====================================================================================
 	//=====================================================================================
-	
-	
-	
-	
-	
+
 	header("Content-type: application/json");
 	
 	$ans = get_program_update( $time );

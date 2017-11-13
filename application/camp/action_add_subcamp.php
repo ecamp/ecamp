@@ -22,7 +22,6 @@
 	$start = mysql_real_escape_string($_REQUEST['subcamp_start']);
 	$end = mysql_real_escape_string($_REQUEST['subcamp_end']);
 	
-	
 	$start = ereg("([0-9]{1,2})[\/\. -]+([0-9]{1,2})[\/\. -]+([0-9]{1,4})", $start, $regs);
 	$start = gmmktime(0, 0, 0, $regs[2], $regs[1], $regs[3]);
 	
@@ -34,8 +33,7 @@
 	
 	//$end = preg_replace("/^\s*([0-9]{1,2})[\/\. -]+([0-9]{1,2})[\/\. -]+([0-9]{1,4})/", "\\2/\\1/\\3", $end);
 	//$end = strtotime($end);
-	
-	
+
 	$c_start = new c_date();
 	$c_end = new c_date();
 	
@@ -68,14 +66,12 @@
 		echo json_encode($ans);
 		die();
 	}
-	
-	
+
 	$query = "INSERT INTO subcamp 	( camp_id, start, length)
 				VALUES 				( '$_camp->id', '$start', '$length')";
 	mysql_query($query);
 	$last_subcamp_id = mysql_insert_id();
-	
-	
+
 	// day: Datensätze einfügen
 	for( $i=0; $i < $length; $i++ )
 	{
@@ -83,9 +79,7 @@
 				 VALUES 				( '$last_subcamp_id', '$i')";
 		mysql_query($query);
 	}
-	
-	
-	
+
 /*	$query = "SELECT LAST_INSERT_ID() FROM subcamp";
 	$result = mysql_query($query);
 	$last_subcamp_id = implode(mysql_fetch_assoc($result));*/

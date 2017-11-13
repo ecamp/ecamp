@@ -18,10 +18,8 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	
 	class print_data_user_class
 	{
-		
 		public $pid;
 		public $id;
 		public $scoutname;
@@ -39,8 +37,7 @@
 		public $jsedu;
 		public $pbsedu;
 		public $image;
-		
-		
+
 		function print_data_user_class( $data, $pid )
 		{
 			$this->pid			= $pid;
@@ -67,7 +64,5 @@
 			if( $this->scoutname )	{	return $this->scoutname;	}
 			else					{	return $this->firstname . " " . $this->surname;	}
 		}
-		
 	}
-	
 ?>

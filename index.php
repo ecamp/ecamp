@@ -33,8 +33,7 @@
   #############################################################################
   # Konfigurationsdatei einbinden
   include("./config.php");
-  
-  
+
   #############################################################################
   # Globale Variabeln $_camp, $_user, $_page, $_user_camp
   include("./class.php"); 
@@ -56,8 +55,7 @@
   
   // Datenbank verbinden
   db_connect();
- 
-  
+
   #############################################################################
   # Login überpüfen & Funktion (Sicherheitslevel) bestimmen
   # --> bei Bedarf wird auf login.php weitergeleitet
@@ -66,13 +64,11 @@
   if($debug)
   {	echo $_user_camp->auth_level;	}
   
-  
-  
   #############################################################################
   # Template-Engine einbinden
   require_once("./lib/PHPTAL.php");
   
-  if( $_SESSION['skin'] == "" ) {	$_SESSION['skin'] = $GLOBALS['skin'];	}
+  if( $_SESSION['skin'] == "" ) {$_SESSION['skin'] = $GLOBALS['skin'];}
   
   $_page->html = new PHPTAL("public/skin/".$_SESSION['skin']."/main.tpl");
   //$_page->html = new PHPTAL("template/global/main.tpl");
@@ -121,36 +117,26 @@
   // Kommando überprüfen & checken, ob Zugriff erlaubt
   if( !isset( $security_level[$_page->cmd] )) 					{ error_message("Keine gültiges Kommando: ".$_page->cmd); }
   if(  $security_level[$_page->cmd] > $_user_camp->auth_level ) { error_message("Keine Berechtigung für ausgewählten Befehl!"); }
-  
 
   #############################################################################
   # Applikation einbinden
-  
   // Inhalt (index.php; Kommando)
   $index_content['main'] = "";
   if( file_exists( $app_dir."/".$_page->app."/index.php" ) )	{ include($app_dir."/".$_page->app."/index.php"); }	
   if( is_file($app_dir."/".$_page->app."/".$_page->cmd.".php"))	{ include($app_dir."/".$_page->app."/".$_page->cmd.".php");	}
   else  { error_message("Datei zum Kommando konnte nicht gefunden werden. Kommando: ".$_page->cmd); }
   
-  
-  
   #############################################################################
   # Rechte für Darstellung einbinden.
-  
   $_js_env->add( 'auth_level', $_user_camp->auth_level );
   $js['auth.js'] = "global";
-  
-  
-  
+
   #############################################################################
   # CSS & JS & DIV einbinden
   
   //$index_content['css_includes'] = "";
   //$index_content['js_includes']  = "";
   //$index_content['div_includes'] = "";
-  
-  
-  
   $includes = array();
   
   if(is_array($css))
@@ -190,9 +176,7 @@
 		$includes['js'][] = $js_file;
 	}
   }
-	
-  
-  
+
   //echo $_camp->category(45);
   
   #############################################################################
@@ -200,14 +184,11 @@
   include($module_dir."/menu/menu.php");
   $_page->html->set("menu_macro", "template/module/menu/menu.tpl/menu");
 
-
   #############################################################################
   # Seite rendern
   header( "Content-Type: text/html; charset:utf-8" );
   header( 'Cache-Control: no-store, no-cache, must-revalidate' );
-  
-  
-  
+
   $_page->html->set('app', $_page->app );
   $_page->html->set('cmd', $_page->cmd );
   $_page->html->set('user', $_user );
@@ -219,8 +200,8 @@
   $_page->html->set('js_code', $_js_env->get_js_code() );
   
   $_page->html->set("sys_dir", "../../.." );
-  $_page->html->set("tpl_dir", $GLOBALS[tpl_dir] );
-  $_page->html->set("skin", $_SESSION[skin] );
+  $_page->html->set("tpl_dir", $GLOBALS['tpl_dir'] );
+  $_page->html->set("skin", $_SESSION['skin'] );
   
   if( $_REQUEST[ 'phptal' ] == 'debug' )
   {
@@ -233,7 +214,7 @@
   $output =  $_page->html->execute(); 
   
   // HTML Tidy
-  if( !extension_loaded('tidy') || !$GLOBALS[parse_tidy]  )
+  if( !extension_loaded('tidy') || !$GLOBALS['parse_tidy']  )
   {
   	echo $output;
   }
@@ -257,5 +238,4 @@
 	  $tidy->cleanRepair();
 	  echo tidy_get_output($tidy);
   }
- 
 ?>

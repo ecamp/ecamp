@@ -13,10 +13,12 @@
         <link rel="stylesheet" type="text/css" href="./public/skin/skin4/css/layout.css" />
 		<link rel="stylesheet" type="text/css" href="./public/skin/skin4/css/bootstrap.min.css" />
 	
-		<script type="text/javascript" language="javascript" src="./public/global/js/mootools1.2.js"></script>
-		<script type="text/javascript" language="javascript" src="./public/skin/skin4/js/login.js"></script>
+		<script type="text/javascript" language="javascript" src="./public/global/js/mootools-core-1.4.js"></script>
 		<script type="text/javascript" language="javascript" src="./public/skin/skin4/js/jquery-3.2.1.min.js"></script>
 		<script type="text/javascript" language="javascript" src="./public/skin/skin4/js/bootstrap.min.js"></script>
+		<script type="text/javascript" language="javascript">
+			jQuery.noConflict();
+		</script>
 	</head>
 	<body>
 		<div class="space-top"></div>
@@ -31,7 +33,7 @@
 							</div>
 							<form class="form-horizontal" action="login.php" method="post">
 								<div class="form-group">
-									<label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+									<label for="Login" class="col-sm-2 control-label">Email</label>
 									<div class="col-sm-10">
 										<input type="text" tabindex="1" class="form-control" id="Login" placeholder="Email" name="Login" />
 									</div>

@@ -18,7 +18,6 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 	include_once("application/".$app."/lib/event2html.php");
 	
 	class event
@@ -26,7 +25,6 @@
 		var $starttime;
 		var $length;
 		var $data = array();
-		
 	}
 	
 	function get_all_events_of_one_day_as_html( $this_day_id, $this_day_nr )
@@ -106,12 +104,10 @@
 							event_instance.day_id = $this_day_id AND
 							event_instance.event_id = event.id
 						ORDER BY starttime ASC, length DESC, id DESC ";
-						
-							
+
 		$event_result = mysql_query($event_query);
 		$event_nr = 0;
-		
-		
+
 		$rows = array();
 		$count = array();
 		
@@ -123,7 +119,7 @@
 			//$all_events[$event[id]] = $event;
 			
 			$row = 1;
-			while($rows[$row][count($rows[$row])]->starttime + $rows[$row][count($rows[$row])]->length > $event[starttime])
+			while($rows[$row][count($rows[$row])]->starttime + $rows[$row][count($rows[$row])]->length > $event['starttime'])
 			{
 				$row++;
 				if(!is_array($rows[$row]))
@@ -131,24 +127,20 @@
 			}
 			
 			//$all_events[$event[id]][row] = $row;
-			
-			
+
 			$rows[$row][count($rows[$row]) + 1] = new event();
-			$rows[$row][count($rows[$row])]->starttime 	= $event[starttime];
-			$rows[$row][count($rows[$row])]->length		= $event[length];
+			$rows[$row][count($rows[$row])]->starttime 	= $event['starttime'];
+			$rows[$row][count($rows[$row])]->length		= $event['length'];
 			$rows[$row][count($rows[$row])]->data		= $event;
-			$rows[$row][count($rows[$row])]->data[row] 	= $row;
+			$rows[$row][count($rows[$row])]->data['row'] 	= $row;
 			
-			for($time = $event[starttime]; $time < $event[starttime] + $event[length]; $time++)
+			for($time = $event['starttime']; $time < $event['starttime'] + $event['length']; $time++)
 			{	$count[$time]++;	}
-			
 		}
 		
 		//print_r($rows);
 		//echo "-- new day --";
-		
-		
-	
+
 		foreach ($rows as $list_of_events)
 		{
 			foreach ($list_of_events as $event)
@@ -157,10 +149,9 @@
 				for($time = $event->starttime; $time < $event->starttime + $event->length; $time++)
 				{	$max_row = max($max_row, $count[$time]);	}
 				
-				$event->data[max_row] = $max_row;
-				
-				
-				$events .= event2html( $event->data, $event->data[eventnr], $this_day_nr );
+				$event->data['max_row'] = $max_row;
+
+				$events .= event2html( $event->data, $event->data['eventnr'], $this_day_nr );
 				
 				//print_r($event->data);
 			}
@@ -182,9 +173,7 @@
 		}*/
 		
 		//print_r($all_events);
-		
-		
-		
+
 		/*
 		// alle Events durchlaufen
 		while($event = mysql_fetch_assoc($event_result))
@@ -194,5 +183,4 @@
 		
 		return $events;		
 	}
-
 ?>

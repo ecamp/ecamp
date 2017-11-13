@@ -18,12 +18,10 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	
 	$user_camp_id = $_REQUEST['user_camp_id'];
 	$function_id = $_REQUEST['function_id'];
 	
 	if( $_user_camp->auth_level < 50 )	{	die( "ERROR" );	}
-	
 	
 	$query = "	UPDATE user_camp
 				SET function_id = $function_id
@@ -41,5 +39,4 @@
 	}
 	
 	die();
-	
 ?>

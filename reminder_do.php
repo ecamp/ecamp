@@ -63,7 +63,7 @@
  	$text = "eCamp - Passwort ändern \n\n
 Um das Passwort zu ändern, musst du dem nachfolgendem Link folgen:
 \n\n
-" . $GLOBALS[base_uri] . "pwreset.php?user_id=$user_id&login=$login&acode=$acode
+" . $GLOBALS['base_uri'] . "pwreset.php?user_id=$user_id&login=$login&acode=$acode
 \n\n";
  	
  	mail( $login, "eCamp - Passwort ändern", $text, "From: eCamp Pfadi Luzern <ecamp@pfadiluzern.ch>" ); 

@@ -1,6 +1,5 @@
 /* Calendar: a Javascript class for Mootools that adds accessible and unobtrusive date pickers to your form elements <http://electricprism.com/aeron/calendar> */
 /* Alternate CSS for Calendar (navigation: 2), Copyright (c) 2007 Aeron Glemann <http://electricprism.com/aeron> */
-
 input.calendar,
 select.calendar {
 	width: 99px;

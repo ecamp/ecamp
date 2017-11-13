@@ -18,7 +18,6 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	
 	//print_r( getimagesize('http://images.apple.com/aperture/tutorials/images/qt_endstate.jpg') );
 	
 	//die();
@@ -37,6 +36,4 @@
 	$pdf->Image('http://map.search.ch/chmap.jpg?layer=sym,fg,copy&zd=2&w=1000&h=700&poi=verkehr,polizei,spital,apotheke,post,shop&base=Udligenswil', 30, 25, 150, 0, 'jpeg' ); 
 	
 	$pdf->Output();
-	
-		
 ?>

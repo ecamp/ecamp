@@ -17,6 +17,9 @@
 		<script type="text/javascript" language="javascript" src="./public/skin/skin4/js/login.js"></script>
 		<script type="text/javascript" language="javascript" src="./public/skin/skin4/js/jquery-3.2.1.min.js"></script>
 		<script type="text/javascript" language="javascript" src="./public/skin/skin4/js/bootstrap.min.js"></script>
+		<script type="text/javascript" language="javascript">
+			jQuery.noConflict();
+		</script>
 	</head>
 	<body>
 		<div class="space-top"></div>

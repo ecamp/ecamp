@@ -59,5 +59,4 @@
 	}
 	
 	$_page->html->set( 'leaders', $leaders );
-	
 ?>

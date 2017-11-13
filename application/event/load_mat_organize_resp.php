@@ -39,7 +39,6 @@
 	$users = array();
 	$mat_lists = array();
 	
-	
 	$query = "	SELECT
 					user.*
 				FROM
@@ -51,12 +50,10 @@
 	
 	while( $u = mysql_fetch_assoc( $result ) )
 	{
-		$user = array( "tag" => "option", "value" => "user_" . $u[id], "html" => htmlentities_utf8($u[scoutname]) );
+		$user = array( "tag" => "option", "value" => "user_" . $u['id'], "html" => htmlentities_utf8($u['scoutname']) );
 		$users[] = $user;
 	}
-	
-	
-	
+
 	$query = "	SELECT
 					mat_list.*
 				FROM
@@ -67,15 +64,12 @@
 	
 	while( $m = mysql_fetch_assoc( $result ) )
 	{
-		$mat_list = array( "tag" => "option", "value" => "mat_list_" . $m[id], "html" => htmlentities_utf8($m[name]) );
+		$mat_list = array( "tag" => "option", "value" => "mat_list_" . $m['id'], "html" => htmlentities_utf8($m['name']) );
 		$mat_lists[] = $mat_list;
 	}
-	
-	
+
 	$options[] = array( "tag" => "optgroup", "label" => "Leiter:", "options" => $users );
 	$options[] = array( "tag" => "optgroup", "label" => "Einkaufslisten:", "options" => $mat_lists );
-	
-	
-	$_js_env->add( 'mat_organize_resp', $options );	
 
+	$_js_env->add( 'mat_organize_resp', $options );
 ?>

@@ -18,28 +18,21 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	
 	$_page->html = new PHPTAL('template/application/event/home.tpl');
-	
-	
-	
+
 	$observer = 		file_get_contents( "public/global/js/observer.js" );
 	$autocompleter = 	file_get_contents( "public/global/js/autocompleter.js" );
 	
 	$_page->html->set( 'observer', 		$observer );
 	$_page->html->set( 'autocompleter', $autocompleter );
-	
-	
-	
-	
-	$event_id = mysql_real_escape_string($_REQUEST[event_id]);
+
+	$event_id = mysql_real_escape_string($_REQUEST['event_id']);
 	$_camp->event( $event_id ) || die( "error" );
 	
 	$_page->html->set( 'event_id', $event_id );
 	
 //	NAME:
 // =======
-
 	$query = "	SELECT
 					event.name,
 					event.place,
@@ -69,7 +62,6 @@
 
 //	HEADER:
 // =========
-	
 	$query = "	SELECT
 					user.scoutname,
 					user.firstname,
@@ -88,10 +80,10 @@
 	
 	while($row = mysql_fetch_assoc($result))
 	{
-		if(!empty($row[scoutname]))
-		{	array_push( $dp_header['users'], $row[scoutname] );	}
+		if(!empty($row['scoutname']))
+		{	array_push( $dp_header['users'], $row['scoutname'] );	}
 		else
-		{	array_push( $dp_header['users'], $row[firstname] . " " . $row[surname] );	}
+		{	array_push( $dp_header['users'], $row['firstname'] . " " . $row['surname'] );	}
 	}
 	
 	$dp_header['place'] =  array(
@@ -164,9 +156,7 @@
 	$start 	= new c_time;
 	$end 	= new c_time;
 	$dp_header['event_instance'] = array();
-	
-	
-	
+
 	$row = mysql_fetch_assoc( $result );
 	$_page->html->set( 'event_nr', "(" . $row['day_nr'] . "." . $row['event_nr'] . ")");
 	
@@ -187,11 +177,9 @@
 	
 	//echo "dp_header=>";
 	//print_r( $dp_header );
-	
-	
+
 //	HEAD:
 // =======
-	
 	$dp_head_show = array();
 	$query = "	SELECT
 					dropdown.value as form,
@@ -206,10 +194,9 @@
 					dropdown.list = 'form'";
 	$result = mysql_query($query);
 	while( $row = mysql_fetch_assoc( $result ) )
-	{	$dp_head_show[ $row[form] ] = $row[show_form];	}
+	{	$dp_head_show[ $row['form'] ] = $row['show_form'];	}
 	
 	$_page->html->set( 'dp_head_show', $dp_head_show );
-	
 	
 	$query = "	SELECT
 					event.aim as aim,
@@ -241,24 +228,17 @@
 								"script"	=> "action_change_method",
 								"event_id"	=>	$event_id
 							);
-							
-	
+
 	$dp_head['topics'] = array(
 								"value" => $replace['topics'],
 								"script"	=> "action_change_topics",
 								"event_id"	=>	$event_id
 							);
-	
-							
+
 	$_page->html->set( 'dp_head', $dp_head );	
 
-	
-	
-	
-	
 	// 	LOAD:
 	// =======
-	
 	include( "load_ablauf.php" );
 	include( "load_mat.php" );
 	include( "load_siko.php" );
@@ -271,8 +251,6 @@
 	include( "load_mat_list.php" );
 	include( "load_leader.php" );
 	include( "load_mat_organize_resp.php" );
-	
-	
+
 	//$_js_env->add( 'event_id', $event_id );
-	
 ?>

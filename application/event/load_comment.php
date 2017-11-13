@@ -46,8 +46,6 @@
 		
 		$comments[] = $comment;
 	}
-	
-	
+
 	$_page->html->set( 'comments', $comments );
-		
 ?>

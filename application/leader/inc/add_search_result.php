@@ -18,12 +18,11 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	$std = $_REQUEST[std];
-	$scoutname	= $_REQUEST[scoutname];
-	$firstname	= $_REQUEST[firstname];
-	$surname	= $_REQUEST[surname];
-	$mail		= $_REQUEST[mail];
-	
+	$std = $_REQUEST['std'];
+	$scoutname	= $_REQUEST['scoutname'];
+	$firstname	= $_REQUEST['firstname'];
+	$surname	= $_REQUEST['surname'];
+	$mail		= $_REQUEST['mail'];
 	
 	if( $_camp->is_course )
 		$query = "SELECT * FROM dropdown WHERE list = 'function_course'";
@@ -40,16 +39,13 @@
 		{	$selected = "";	}
 		
 		$option .= gettemplate_app('option', array(
-										'value' => $row[id], 
-										'content' => $row[entry],
+										'value' => $row['id'],
+										'content' => $row['entry'],
 										'selected' => $selected
 								));
 	}
 	$select = gettemplate_app('select', array("name" => "function", "content" => $option));
-	
-	
-	
-	
+
 	$search_arg = array("1");
 	if(!empty($scoutname))	{	$search_arg[] = " scoutname LIKE '$scoutname%' ";	}
 	if(!empty($firstname))	{	$search_arg[] = " firstname LIKE '$firstname%' ";	}
@@ -65,8 +61,7 @@
 		$found['function_list'] = $select;
 		$found_users .= gettemplate_app('add_search_result_user', $found);	
 	}
-	
-	
+
 	$index_content['main'] .= gettemplate_app('add_search_result', array(
 			"content" => $found_users,
 			"scoutname" => $scoutname,
@@ -75,5 +70,4 @@
 			"mail" => $mail,
 			"std" => $std
 			));
-	
 ?>

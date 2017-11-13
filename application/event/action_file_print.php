@@ -18,7 +18,6 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	
 	$event_document_id 	= mysql_real_escape_string( $_REQUEST['event_document_id'] );
 	$print				= mysql_real_escape_string( $_REQUEST['print'] );
 	
@@ -42,5 +41,4 @@
 		echo json_encode( $ans );
 	}
 	die();
-	
 ?>

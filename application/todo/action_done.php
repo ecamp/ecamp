@@ -22,8 +22,7 @@
 	$done 		= mysql_real_escape_string($_REQUEST['done']);
 	
 	$_camp->todo( $todo_id ) || die( "error" );
-	
-	
+
 	$query = "SELECT * FROM todo WHERE id = $todo_id AND camp_id = $_camp->id";
 	$result = mysql_query($query);
 	
@@ -34,12 +33,10 @@
 		die();
 	}
 	
-	
 	$query = "UPDATE todo SET done = $done WHERE id = $todo_id AND camp_id = $_camp->id";
 	$result = mysql_query($query);
 	
 	$ans = array( "error" => false, "done" => $done );
 	echo json_encode( $ans );
 	die();
-	
 ?>

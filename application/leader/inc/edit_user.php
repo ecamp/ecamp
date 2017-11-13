@@ -18,73 +18,63 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	$id = $_REQUEST[id];
+	$id = $_REQUEST['id'];
 	
 	$query = "SELECT * FROM user WHERE id = '$id'";
 	$result = mysql_query($query);
 	$user = mysql_fetch_assoc($result);
-	$user[birthday] = date("d.m.Y", $user[birthday]);
-	
-	
+	$user['birthday'] = date("d.m.Y", $user['birthday']);
+
 	# Geschlechtsoption:
 	#
 	###########################
-	
 	$query = "SELECT * FROM dropdown WHERE list = 'sex' ORDER BY id ASC";
 	$result = mysql_query($query);
 	
 	$sex_option = "";
 	while($row = mysql_fetch_assoc($result))
-	{	if($row[id] == $user[sex])
+	{	if($row['id'] == $user['sex'])
 		{	$selected = " selected=selected";	}
 		else
 		{	$selected = "";	}
 		
-		$sex_option .= gettemplate_app('option', array("value" => $row[id], "content" => $row[entry], "selected" => $selected));
+		$sex_option .= gettemplate_app('option', array("value" => $row['id'], "content" => $row['entry'], "selected" => $selected));
 	}
-	
-	
+
 	# JS Ausbildung:
 	#
 	###########################
-	
 	$query = "SELECT * FROM dropdown WHERE list = 'jsedu' ORDER BY id ASC";
 	$result = mysql_query($query);
 	
 	$jsedu_option = "";
 	while($row = mysql_fetch_assoc($result))
-	{	if($row[id] == $user[jsedu])
+	{	if($row[id] == $user['jsedu'])
 		{	$selected = " selected=selected";	}
 		else
 		{	$selected = "";	}
-		$jsedu_option .= gettemplate_app('option', array("value" => $row[id], "content" => $row[entry], "selected" => $selected));
+		$jsedu_option .= gettemplate_app('option', array("value" => $row['id'], "content" => $row['entry'], "selected" => $selected));
 	}
-	
-	
 	
 	# PBS Ausbildung:
 	#
 	###########################
-	
 	$query = "SELECT * FROM dropdown WHERE list = 'pbsedu' ORDER BY id ASC";
 	$result = mysql_query($query);
 	
 	$pbsedu_option = "";
 	while($row = mysql_fetch_assoc($result))
-	{	if($row[id] == $user[pbsedu])
+	{	if($row[id] == $user['pbsedu'])
 		{	$selected = " selected=selected";	}
 		else
 		{	$selected = "";	}
-		$pbsedu_option .= gettemplate_app('option', array("value" => $row[id], "content" => $row[entry], "selected" => $selected));
+		$pbsedu_option .= gettemplate_app('option', array("value" => $row['id'], "content" => $row['entry'], "selected" => $selected));
 	}
-	
-	
-	
-	$user[select_function] 	= gettemplate_app('select', array('name' => "function", "content" => $function_option));
-	$user[select_sex]		= gettemplate_app('select', array('name' => "sex", 	 "content" => $sex_option));
-	$user[select_jsedu]		= gettemplate_app('select', array('name' => "jsedu", 	 "content" => $jsedu_option));
-	$user[select_pbsedu]	= gettemplate_app('select', array('name' => "pbsedu", 	 "content" => $pbsedu_option));
-	
+
+	$user['select_function'] 	= gettemplate_app('select', array('name' => "function", "content" => $function_option));
+	$user['select_sex']		= gettemplate_app('select', array('name' => "sex", 	 "content" => $sex_option));
+	$user['select_jsedu']		= gettemplate_app('select', array('name' => "jsedu", 	 "content" => $jsedu_option));
+	$user['select_pbsedu']	= gettemplate_app('select', array('name' => "pbsedu", 	 "content" => $pbsedu_option));
 	
 	$index_content['main'] .= gettemplate_app('edit_user', $user);
 ?>

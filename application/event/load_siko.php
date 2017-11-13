@@ -41,5 +41,4 @@
 							);
 	
 	$_page->html->set( 'siko_note', $siko_note );
-	
 ?>

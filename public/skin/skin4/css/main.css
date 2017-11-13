@@ -41,3 +41,11 @@ div.content_box_fit, div.content_box_full
 	width: 5px;
 	height: 25px;
 }
+
+.float-left{
+	float: left;
+}
+
+.float-right{
+	float: right;
+}

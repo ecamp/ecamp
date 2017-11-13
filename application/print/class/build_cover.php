@@ -18,7 +18,6 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	
 	class print_build_cover_class
 	{
 		public $data;
@@ -41,8 +40,7 @@
 			$pdf->SetXY( 20, 65 );
 			$pdf->SetFont('','B',40);
 			$pdf->Cell( 170, 40, $this->data->camp->slogan, 0, 1, 'C' );
-			
-			
+
 			//$url = 'http://map.search.ch/chmap.jpg?layer=sym,fg,copy&zd=2&w=1000&h=700&poi=verkehr,polizei,spital,apotheke,post,shop&base=';
 			//$url .= strtr( $this->data->camp->ca_coor, array( "." => "", "/" => "," ) );
 			
@@ -51,5 +49,4 @@
 			$pdf->Bookmark( 'Titelblatt', 0, 0 );
 		}
 	}
-	
 ?>
