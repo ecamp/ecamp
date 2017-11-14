@@ -238,4 +238,3 @@
 	  $tidy->cleanRepair();
 	  echo tidy_get_output($tidy);
   }
-?>
