@@ -55,4 +55,3 @@
 	header( "location: login.php?msg=Account wurde erfolgreich aktiviert" );
 
 	die();
-?>
