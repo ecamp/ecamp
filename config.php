@@ -89,4 +89,3 @@
 		"November"	=> "November",
 		"December"	=> "Dezember"
 	);
-?>
