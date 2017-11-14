@@ -54,5 +54,3 @@
 	{	header("Location: login.php?msg=".$_REQUEST['msg']);	}
 	else
 	{	header("Location: login.php");	}
-?>
-
