@@ -355,4 +355,3 @@
 			mysql_query( $query );
 		}
 	}
-?>
