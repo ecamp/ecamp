@@ -1,4 +1,4 @@
-<div metal:define-macro="border" tal:omit-tag="">
+<span metal:define-macro="border" tal:omit-tag="">
 	
 <!--    
     <div align="center">
@@ -43,4 +43,4 @@
 
     <span metal:use-macro="${tpl_dir}/global/content_box_fit.tpl/predefine" />
 
-</div>
+</span>

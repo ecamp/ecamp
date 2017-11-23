@@ -20,12 +20,8 @@
 window.addEvent('load', function()
 {
 	path = new select_class( 0, null,-1 );
-	
-	
+
 	new Calendar({ 'camp_start': 'd.m.Y' , 'camp_end': 'd.m.Y'  }, { navigation: 2 , offset: 1 });
-	
-		
-		
 });
 
 var global_counter = 0;

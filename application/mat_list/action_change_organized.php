@@ -20,8 +20,7 @@
 
 	$mat_event_id 	= mysql_real_escape_string( $_REQUEST['mat_event_id'] );
 	$organized		= ( $_REQUEST['organized'] == "true" );
-	
-	
+
 	$query = "UPDATE mat_event SET organized = " . ( $organized ? 1 : 0 ) .
 			 " WHERE  mat_event.id = " . $mat_event_id;
 	mysql_query( $query );
@@ -31,4 +30,3 @@
 	$ans = array( "error" => false );
 	echo json_encode( $ans );
 	die();
-?>

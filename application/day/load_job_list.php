@@ -38,7 +38,7 @@
 	
 	while( $user = mysql_fetch_assoc( $result ) )
 	{	$job_list['users'][ $user['id'] ] = $user;	}
-	
+
 	$query = "	SELECT
 					job.id,
 					job.job_name,
@@ -67,4 +67,3 @@
 	
 	while( $job = mysql_fetch_assoc( $result ) )
 	{	$job_list['jobs'][ $job['id'] ] = $job;	}
-?>

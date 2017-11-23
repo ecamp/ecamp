@@ -71,6 +71,5 @@
 			}
 		}
 	}
-	
+
 	$_js_env->add( 'course_checklist', $course_checklist );	
-?>

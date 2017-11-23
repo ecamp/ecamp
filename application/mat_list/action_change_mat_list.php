@@ -20,7 +20,7 @@
 
 	$mat_list_id = mysql_real_escape_string( $_REQUEST['mat_list_id'] );
 	$mat_list_name = mysql_real_escape_string( $_REQUEST['mat_list_name'] );
-
+	
 	$_camp->mat_list( $mat_list_id ) || die( "error" );
 	
 	$query = "	UPDATE mat_list 
@@ -35,4 +35,3 @@
 	
 	echo json_encode( $ans );
 	die();
-?>

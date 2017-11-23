@@ -60,4 +60,3 @@
 	
 	header("Location: index.php?app=support&cmd=home");
 	die();
-?>

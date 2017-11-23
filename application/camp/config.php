@@ -50,4 +50,3 @@ $div = array();
 
 # Standardkommando
 if( $_page->cmd == "" ) $_page->cmd = "home";
-?>

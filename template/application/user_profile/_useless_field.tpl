@@ -1,4 +1,4 @@
-<div metal:define-macro="simple_input">
+<span metal:define-macro="simple_input">
     <div class="profile_input">
         <div class="wait hidden"><img border="0" src="public/global/img/wait.gif" /></div>
         
@@ -18,9 +18,11 @@
             </form>
         </div>
     </div>
-</div>
+</span>
 
-<div metal:define-macro="birthday_input">
+
+
+<span metal:define-macro="birthday_input">
     <div class="profile_input">
         <div class="wait hidden"><img border="0" src="public/global/img/wait.gif" /></div>
         
@@ -40,4 +42,4 @@
             </form>
         </div>
     </div>
-</div>
+</span>

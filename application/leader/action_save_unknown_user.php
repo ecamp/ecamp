@@ -38,7 +38,7 @@
 	$sex		= $_REQUEST['sex'];
 	
 	$function	= $_REQUEST['function'];
-	
+
 	$query = "SELECT * FROM user WHERE mail = '$mail'";
 	$result = mysql_query($query);
 	if(mysql_num_rows($result) > 0)
@@ -46,15 +46,13 @@
 		header("Location: index.php?app=leader");
 		die();
 	}
-
+	
 	$birthday = strtotime(preg_replace("/^\s*([0-9]{1,2})[\/\. -]+([0-9]{1,2})[\/\. -]+([0-9]{1,4})/", "\\2/\\1/\\3", $birthday));
-
+	
 	$query = "INSERT INTO user (`mail` ,`pw` ,`scoutname` ,`firstname` ,`surname` ,`street` ,`zipcode` ,`city` ,`homenr` ,`mobilnr` ,
 								`birthday` ,`ahv` ,`sex` ,`jspersnr` ,`jsedu` ,`pbsedu` ,`regtime` ,`active` ,`acode` ,`admin`)
-	
 	VALUES ('$mail', '0', '$scoutname', '$firstname', '$surname', '$street', '$zipcode', '$city', '$homenr', '$mobilnr', 
 			'$birthday', '$ahv', '$sex', '$jspersnr', '$jsedu', '$pbsedu', '0', '0', '0', '0')";
-	
 	mysql_query($query);
 
 	$query = "SELECT LAST_INSERT_ID() FROM user";
@@ -74,4 +72,3 @@
 
 	header("Location: index.php?app=leader");
 	die();
-?>

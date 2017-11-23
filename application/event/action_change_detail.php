@@ -23,7 +23,7 @@
 	$event_detail_id = mysql_real_escape_string( $_REQUEST['detail_id'] );
 	
 	$_camp->event_detail( $event_detail_id ) || die( "error" );
-
+	
 	$time = 	mysql_real_escape_string( $_REQUEST['time'] );
 	$content = 	mysql_real_escape_string( $_REQUEST['content'] );
 	$resp = 	mysql_real_escape_string( $_REQUEST['resp'] );
@@ -52,4 +52,3 @@
 				);
 	echo json_encode( $ans );
 	die();
-?>

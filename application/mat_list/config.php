@@ -21,26 +21,25 @@
 # Sichheitslevel der einzelnen Aktionen/Dateien
 # --> Kommandos/Files die nicht aufgeührt sind, können nicht aufgerufen werden
 $security_level = array( 
-				"home" => 20,
-				'action_add_mat_list' => 50,
-				'action_change_mat_list' => 50,
-				'action_del_mat_list' => 50,
-			    'action_generate_xls' => 20,
-			    'action_change_organized' => 20
-				);
+	"home" => 20,
+	'action_add_mat_list' => 50,
+	'action_change_mat_list' => 50,
+	'action_del_mat_list' => 50,
+    'action_generate_xls' => 20,
+    'action_change_organized' => 20
+);
 
 $css = array(
-				"content_template_fit.css" => "global",
-				"main.css" 					=> "app",
-			);
+	"content_template_fit.css" => "global",
+	"main.css" 					=> "app",
+);
 
 $js  = array(
-				"mootools-core-1.4.js" 		=> "global",
-				"mootools-more-1.4.js" 		=> "global",
-				"popup.js"					=> "global",
-				"home.js" 					=> "app"
-			);
+	"mootools-core-1.4.js" 		=> "global",
+	"mootools-more-1.4.js" 		=> "global",
+	"popup.js"					=> "global",
+	"home.js" 					=> "app"
+);
 
 # Standardkommando
 if( $_page->cmd == "" ) {	$_page->cmd = "home";	}
-?>

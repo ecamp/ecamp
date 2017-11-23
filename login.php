@@ -97,8 +97,6 @@
 		}
 	}
 	
-	
-	
 	if( isset( $_COOKIE['autologin'] ) && $_COOKIE['autologin'] && isset( $_COOKIE['auth_key'] ) && is_numeric( $_COOKIE['user_id'] ) )
 	{
 	    include($lib_dir . "/mysql.php");

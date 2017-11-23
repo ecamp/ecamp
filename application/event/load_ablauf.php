@@ -36,4 +36,3 @@
 	{	$details[] = $detail;	}
 	
 	$_page->html->set( 'details', $details );
-?>

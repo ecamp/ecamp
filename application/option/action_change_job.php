@@ -34,7 +34,7 @@
 	$change_job_save = mysql_real_escape_string($change_job);
 	
 	$_camp->job( $job_change_id ) || die( "error" );
-
+	
 	// Job überprüfen
 	$query = "SELECT * FROM job WHERE camp_id='$_camp->id' AND id='$job_change_id'";
 	$result = mysql_query( $query );
@@ -72,4 +72,3 @@
 	$ans = array( "error" => false, "job_id" => $job_change_id, "job_name" => htmlentities_utf8($change_job) );
 	echo json_encode( $ans );
 	die();
-?>

@@ -61,11 +61,10 @@
 						id = $event_instance_id
 				)";
 	mysql_query($query);
-	
+
 	header("Content-type: application/json");
 	
 	$ans = get_program_update( $time );
 	echo json_encode( $ans );
 	
 	die();
-?>

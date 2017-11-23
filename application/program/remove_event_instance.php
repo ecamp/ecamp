@@ -24,9 +24,9 @@
 	$time				= mysql_real_escape_string($_REQUEST['time']);
 	
 	$_camp->event_instance( $event_instance_id ) || die( "error" );
-	
+
 	$log = array();
-	
+
 	$query = "SELECT event_id FROM event_instance WHERE id = '$event_instance_id'";
 	$result = mysql_query($query);
 	if(mysql_num_rows($result) == 0)
@@ -35,7 +35,7 @@
 		echo json_encode( $ans );
 		die();
 	}
-	$event_id = mysql_result( $result, 'event_id' );
+	$event_id = mysql_result( $result, 0, 'event_id' );
 
 	$query = "DELETE FROM event_instance WHERE id = $event_instance_id";
 	mysql_query($query);
@@ -43,7 +43,7 @@
 
 	$query = "SELECT COUNT(id) as count FROM event_instance WHERE event_id = $event_id";
 	$result = mysql_query($query);
-	$count = mysql_result( $result, 'count' );
+	$count = mysql_result( $result, 0, 'count' );
 	
 	if($count == 0)
 	{
@@ -51,7 +51,7 @@
 		mysql_query($query);
 		$log[] = array( "type" => "event", "id" => $event_id );
 	}
-
+	
 	$query = "	SELECT user_id
 				FROM user_camp
 				WHERE camp_id = $_camp->id";
@@ -70,12 +70,11 @@
 		$file = json_encode( $file );
 		file_put_contents( $filename, $file );
 	}
-	
+
 	header("Content-type: application/json");
 	
 	$ans = get_program_update( $time );
 	echo json_encode( $ans );
 	
 	die();
-?>
 	

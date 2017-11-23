@@ -21,9 +21,8 @@
 	$event_id = mysql_real_escape_string($_REQUEST['event_id']);
 	
 	$_camp->event( $event_id ) || die( "error" );
-
+	
 	$query = "UPDATE event SET in_edition_by = $user[id], in_edition_time = " . time() . " WHERE id = $event_id";
 	mysql_query($query);
 	
 	die();
-?>

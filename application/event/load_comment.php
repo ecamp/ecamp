@@ -48,4 +48,3 @@
 	}
 
 	$_page->html->set( 'comments', $comments );
-?>

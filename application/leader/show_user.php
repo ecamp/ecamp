@@ -116,4 +116,3 @@
 	$user[ 'avatar' ] = "index.php?app=user_profile&cmd=show_avatar&show_user_id=" . $id;
 
 	$_page->html->set( 'user_detail', $user );
-?>

@@ -109,4 +109,3 @@
 	}
 	$_page->html->set( 'mat_stuff_nonstocked_list', $mat_stuff_nonstocked );
 	*/
-?>

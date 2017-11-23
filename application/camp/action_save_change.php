@@ -68,6 +68,7 @@
 			$value3 = substr( "000" . $value3, -3 );
 			$value4 = substr( "000" . $value4, -3 );
 			
+			
 			$value = $value1.".".$value2."/".$value3.".".$value4;
 			$value_save = $value;
 		}
@@ -83,10 +84,12 @@
 		{	$value = "";	}
 		$value_save = $value;
 	}
-	
+
 	$query = "UPDATE camp SET $field = '$value_save' WHERE id = '$_camp->id'";
 	mysql_query($query);
-
+	
+	
+	
 	$ans = array();
 	$ans['error'] = false;
 	$ans['value'] = $value;
@@ -102,4 +105,3 @@
 	echo json_encode($ans);
 	
 	die();
-?>

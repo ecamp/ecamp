@@ -44,4 +44,3 @@
 			$this->event->add_event_detail( $this );
 		}
 	}
-?>

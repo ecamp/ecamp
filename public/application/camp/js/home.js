@@ -218,7 +218,7 @@ window.addEvent('load', function()
 				}).send();
 			}
 			
-			question = "M&ouml;chtest du den Lagerteil vom " + item.getElement('.date').get('html') + " wirklich l&ouml;schen?<br /><br />Datum: " + item.getElement('.date').get('html');
+			question = "M&ouml;chtest du den Lagerteil vom " + item.getElement('.date').get('html') + " wirklich l&ouml;schen? Alle enthaltenen Programmbl&ouml;cke werden unwiderruflich gel&ouml;scht!<br /><br />Datum: " + item.getElement('.date').get('html');
 			$popup.popup_yes_no("Teillager l&ouml;schen", question, yes_function, function(){}, "popup_no_button");
 		});
 		

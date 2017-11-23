@@ -44,7 +44,7 @@
 	$pdf->SetAuthor( 'ecamp2.pfadiluzern.ch' );
 	$pdf->SetSubject( 'J&S - Programm' );
 	$pdf->SetTitle( 'J&S - Programm' );
-	
+
 	foreach( $items as $nr => $item )
 	{
 		if( $item == "title" )
@@ -75,12 +75,13 @@
 			$event_instance_id = $conf[$nr]['event_instance'];
 			
 			$_camp->event_instance( $event_instance_id ) || die( "error" );
-
+			
+			
 			if( $conf[$nr]['dayoverview'] == "true" )
 			{	$print_build->day->build( $pdf, $print_build->data->event_instance[ $event_instance_id ]->day );	}
 			else
 			{	$pdf->addPage('P', 'A4');	}
-			
+
 			$print_build->data->event_instance[ $event_instance_id ]->day->gen_event_nr();
 			$print_build->event->build( $pdf, $print_build->data->event_instance[ $event_instance_id ] );
 		}
@@ -107,8 +108,7 @@
 	}
 
 	$print_build->toc->build( $pdf );
-
+	
 	$pdf->output( $_camp->short_name . ".pdf", 'I' );
 
 	die();
-?>

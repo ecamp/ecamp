@@ -28,7 +28,7 @@
 	$camp_type		= mysql_real_escape_string($_REQUEST['camp_type']);
 	$course_type	= mysql_real_escape_string($_REQUEST['course_type']);
 	$course_type_text = mysql_real_escape_string($_REQUEST['course_type_text']);
-	
+
 	$start		= mysql_real_escape_string($_REQUEST['camp_start']);
 	$end		= mysql_real_escape_string($_REQUEST['camp_end']);
 	
@@ -43,7 +43,7 @@
 	
 	$c_start->setUnix($start);
 	$c_end->setUnix($end);
-	
+
 	$length = $c_end->getValue() - $c_start->getValue() + 1;
 	$start = $c_start->getValue();
 	$ende = $c_end->getValue();
@@ -51,7 +51,7 @@
 	$is_course = (boolean) $is_course;
 	if( !$is_course )	{	$type = 0;	}
 	else				{	$type = $course_type;	}
-	
+
 	if($length <= 0 )
 	{
 		echo "Das Enddatum darf nicht vor dem Startdatum liegen!";
@@ -94,7 +94,7 @@
 						('$last_camp_id', 'Lagersport', 'LS', '14dd33' , 1)";
 	}
 	mysql_query($query);
-
+	
 	// ToDo std. einfüllen
 	if( $is_course)
 	{
@@ -129,7 +129,7 @@
 	$query = "INSERT INTO job (camp_id, job_name, show_gp)
 							VALUES ('$last_camp_id', 'Tageschef', '1')";
 	mysql_query($query);
-	
+
 	//Einkaufslisten hinzufügen:
 	$query = "INSERT INTO mat_list ( camp_id, name )
 							VALUES( '$last_camp_id', 'Lebensmittel' )";
@@ -160,7 +160,7 @@
 	$query .= implode( ", ", $days );
 	
 	mysql_query($query);
-	
+
 	$result = mysql_query("SELECT id FROM user_camp WHERE user_id='$_user->id' AND camp_id='$last_camp_id'");
 	if( mysql_num_rows($result) == 0 )
 	{
@@ -176,4 +176,3 @@
 
 	header("Location: index.php?app=camp&cmd=home&show=firsttime");
 	die();
-?>

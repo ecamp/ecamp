@@ -31,7 +31,7 @@
 	*/
 	
 	class o {}
-	
+
 	class db
 	{
 		public $_meta;
@@ -86,7 +86,7 @@
 			
 			$result = mysql_query( $query );
 			if( mysql_error() )	{	return false;	}
-
+			
 			while( $row = mysql_fetch_assoc( $result ) )
 			{
 				$id = $row['id'];
@@ -136,4 +136,3 @@
 		function get_cell( $name )
 		{	return $this->$name;	}
 	}
-?>

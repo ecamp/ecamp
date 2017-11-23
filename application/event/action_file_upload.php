@@ -63,4 +63,3 @@
 		header( "location: index.php?app=event&cmd=file_upload_done&event_id=" . $event_id ."&file_id=" . $file_id );
 		die();
 	}
-?>

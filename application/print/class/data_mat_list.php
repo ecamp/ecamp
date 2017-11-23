@@ -20,7 +20,6 @@
 
 	class print_data_mat_list
 	{
-		
 		public $pid;
 		public $id;
 		public $camp_id;
@@ -37,4 +36,3 @@
 			$this->camp = $pid->camp;
 		}
 	}
-?>

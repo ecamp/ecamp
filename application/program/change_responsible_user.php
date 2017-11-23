@@ -66,7 +66,7 @@
 		$query = "DELETE FROM event_responsible WHERE user_id = $user AND event_id = $event_id";
 		mysql_query($query);
 	}
-
+	
 	$query = "	UPDATE event 
 				SET t_edited = CURRENT_TIMESTAMP
 				WHERE id = $event_id";
@@ -78,4 +78,3 @@
 	echo json_encode( $ans );
 	
 	die();
-?>

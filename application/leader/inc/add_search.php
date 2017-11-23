@@ -21,4 +21,3 @@
 	$std = $_REQUEST['std'];
 	
 	$index_content['main'] .= gettemplate_app('add_search', array("std" => $std));
-?>

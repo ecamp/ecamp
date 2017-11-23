@@ -47,4 +47,3 @@
 
 	header( "Location: index.php?app=day&dayid=".$day_id );
 	die();
-?>

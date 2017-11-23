@@ -51,7 +51,6 @@ $camp_id = 12;
 // Tabellen spezifizieren
 // Die Reihenfolge der Tabellen ist wichtig, da sie genau so bei einem Restore wieder zurückgeschrieben werden.
 // Eine falsche Reihenfolge führt zur Verletzung von Fremdschlüssel-Bedingungen.
-
 $tables = array(
    // Verknüpfung direkt über camp_id
   "camp"    		=> "SELECT * FROM camp WHERE id=$camp_id",
@@ -78,7 +77,6 @@ $tables = array(
   "event_comment"	  => "SELECT ec.* FROM event_comment ec, event e WHERE ec.event_id=e.id AND e.camp_id=$camp_id",
   "mat_event"		  => "SELECT me.* FROM mat_event me, event e WHERE me.event_id=e.id AND e.camp_id=$camp_id",
 
-
 //  "mat_article_event" => "SELECT m.* FROM mat_article_event m, event e WHERE m.event_id=e.id AND e.camp_id=$camp_id",
 //  "mat_stuff"		  => "SELECT m.* FROM mat_stuff m, event e WHERE m.event_id=e.id AND e.camp_id=$camp_id",
 //  "comment"  		  => "SELECT c.* FROM comment c, event e WHERE c.event_id=e.id AND e.camp_id=$camp_id",
@@ -91,7 +89,6 @@ $tables = array(
 //  "comment_user"	=> "SELECT cu.* FROM comment_user cu, event_responsible r, event e WHERE cu.user_event_id=r.id AND r.event_id=e.id AND e.camp_id=$camp_id" 
 );
 
-
 // Daten auslesen und SQL-Statements erstellen
 $sql = "";
 foreach( $tables as $table => $qry)
@@ -102,7 +99,7 @@ foreach( $tables as $table => $qry)
 	$column = array();
 	while ($tmp = mysql_fetch_assoc($info)) 
 	{
-		$column[$tmp[column_name]] = $tmp;
+		$column[$tmp['column_name']] = $tmp;
 	}
 				
 	$result = mysql_query($qry);
@@ -130,14 +127,14 @@ foreach( $tables as $table => $qry)
 			}
 			
 			// Daten ausgeben
-			if( $value == "" AND $column[$key][is_nullable] == "YES")
+			if( $value == "" AND $column[$key]['is_nullable'] == "YES")
 			{
 				$data .= "NULL";
 				// !!!etwas unsauber
 				// eigentlich müsste überprüft werden, ob der Datentyp numerisch ist
 				// denn bei einem varchar gibt es einen Unterschied zwischen NULL und Leerstring
 			}
-			else if( $column[$key][data_type] == "blob" )
+			else if( $column[$key]['data_type'] == "blob" )
 			{
 				$data .= "'".string2hex($value)."'";
 			}
@@ -158,4 +155,3 @@ foreach( $tables as $table => $qry)
 }
 
 echo $sql;
-?>

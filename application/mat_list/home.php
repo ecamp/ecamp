@@ -36,7 +36,7 @@
 		
 		$users[] = $u;
 	}
-
+	
 	$query = "	SELECT mat_list.*
 				FROM mat_list
 				WHERE mat_list.camp_id = $_camp->id";
@@ -106,6 +106,4 @@
 	);
 	
 	$_page->html->set( 'mat_list', $mat_list );
-	
 	$_page->html->set('main_macro', $GLOBALS['tpl_dir'].'/application/mat_list/border.tpl/border');
-?>

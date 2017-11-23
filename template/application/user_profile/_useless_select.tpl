@@ -4,7 +4,7 @@
         
         <div class="input">
             <form>
-                <select name="value selectpicker" style="width:100%">
+                <select name="value" style="width:100%">
                 	<tal:block repeat="item input_value">
                         <option tal:condition="item/selected" selected="selected" tal:content="structure item/content" tal:attributes="value item/value">
                             <!-- content -->

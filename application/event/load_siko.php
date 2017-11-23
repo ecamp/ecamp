@@ -31,14 +31,13 @@
 	$row = mysql_fetch_assoc( $result );
 	
 	$siko_note['siko'] = array(
-								"script" => 'action_change_siko',
-								"value"  => $row['seco']
-							);
+		"script" => 'action_change_siko',
+		"value"  => $row['seco']
+	);
 	
 	$siko_note['notes'] = array(
-								"script" => 'action_change_notes',
-								"value"  => $row['notes']
-							);
+		"script" => 'action_change_notes',
+		"value"  => $row['notes']
+	);
 	
 	$_page->html->set( 'siko_note', $siko_note );
-?>

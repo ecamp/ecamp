@@ -16,7 +16,9 @@
  */
 
 Fx.ProgressBar = new Class({
+
 	Extends: Fx,
+
 	options: {
 		text: null,
 		transition: Fx.Transitions.Circ.easeOut,
@@ -40,4 +42,5 @@ Fx.ProgressBar = new Class({
 		if (this.text) this.text.set('text', Math.round(to) + '%');
 		return this;
 	}
+
 });

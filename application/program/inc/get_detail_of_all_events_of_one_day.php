@@ -42,41 +42,19 @@
 							category.short_name,
 							category.form_type,
 							category.id as cat_id,
-							((
-								SELECT 
-									count(*) 
-								FROM 
-									event_instance as subevent_instance,
-									event as subevent, 
-									category as subcat
-								WHERE 
-									(
-										subevent_instance.starttime < event_instance.starttime OR
-										(
-											subevent_instance.starttime = event_instance.starttime AND
-											(
-												subevent_instance.length < event_instance.length OR
-												(
-													subevent_instance.length = event_instance.length AND
-													subevent_instance.id > event_instance.id
-												)
-											)
-										)
-									) AND 
-									subevent_instance.event_id = subevent.id AND
-									subevent_instance.day_id = event_instance.day_id AND
-									subevent.category_id=subcat.id AND
-									subcat.form_type > 0
-							) + 1) as eventnr
-						FROM 
+							v.event_nr as eventnr
+						FROM 	
 							event,
 							event_instance,
-							category 
+							category,
+							(".getQueryEventNr($_camp->id).") v	
 						WHERE 
+							v.event_instance_id = event_instance.id AND
 							event.category_id = category.id AND
 							event_instance.day_id = $this_day_id AND
 							event_instance.event_id = event.id
 						ORDER BY starttime ASC, length DESC, id DESC ";
+						
 							
 		$event_result = mysql_query($event_query);
 		$event_nr = 0;
@@ -89,7 +67,8 @@
 		while($event = mysql_fetch_assoc($event_result))
 		{
 			//$event[starttime] = (($event[starttime] + (24*60) - $GLOBALS[time_shift]) % (24*60)) + $GLOBALS[time_shift];
-
+			
+			
 			$row = 1;
 			while($rows[$row][count($rows[$row])]->starttime + $rows[$row][count($rows[$row])]->length > $event['starttime'])
 			{
@@ -105,13 +84,13 @@
 			$rows[$row][count($rows[$row])]->length		= $event['length'];
 			$rows[$row][count($rows[$row])]->row 		= $row;
 			$rows[$row][count($rows[$row])]->id 		= $event['event_instance_id'];
-			
+
 			$events[$event['event_instance_id']] = new event();
 			$events[$event['event_instance_id']]->starttime	= $event['starttime'];
 			$events[$event['event_instance_id']]->length		= $event['length'];
 			$events[$event['event_instance_id']]->row			= $row;
 			$events[$event['event_instance_id']]->event_nr	= $event['eventnr'];
-			
+
 			for($time = $event['starttime']; $time < $event['starttime'] + $event['length']; $time++)
 			{	$count[$time]++;	}
 		}
@@ -127,7 +106,6 @@
 				$events[$event->id]->row_max = $max_row;
 			}
 		}
-
+		
 		return $events;
 	}
-?>

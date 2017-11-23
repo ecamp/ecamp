@@ -47,12 +47,16 @@
 			
 			$this->starttime 	= ( ( $data['starttime'] + 24*60 - $GLOBALS['time_shift'] ) % ( 24*60 ) ) + $GLOBALS['time_shift'];
 			$this->length 		= min( $this->length, 24*60 + $GLOBALS['time_shift'] - $this->starttime );
-
+			
 			$this->event 		= $pid->event[ $this->event_id ];
 			$this->day			= $pid->day[ $this->day_id ];
 			
-			$this->event->add_event_instance( $this );
-			$this->day->add_event_instance( $this );
+			# somewhere we have a bug that allows event_instances that link to events and days of different camps
+			# this next line at least avoids crashing of the print functionality
+			if( !is_null($this->day) && !is_null($this->event) ){
+				$this->event->add_event_instance( $this );
+				$this->day->add_event_instance( $this );
+			}
 		}
 		
 		function get_linker( $pdf )
@@ -63,4 +67,3 @@
 			return $this->linker;
 		}
 	}
-?>

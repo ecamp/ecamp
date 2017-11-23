@@ -22,7 +22,7 @@
 	$comment_id	= mysql_real_escape_string( $_REQUEST['comment_id'] );
 	
 	$_camp->event( $event_id ) || die( "error" );
-	
+
 	$query = "	DELETE FROM event_comment 
 				WHERE id = $comment_id AND event_id = $event_id";
 	mysql_query( $query );
@@ -34,4 +34,3 @@
 	
 	echo json_encode( $ans );
 	die();
-?>

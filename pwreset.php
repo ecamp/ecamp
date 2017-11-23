@@ -52,4 +52,3 @@
 	$html->set( 'acode', $acode );
 	
 	echo $html->execute();
-	

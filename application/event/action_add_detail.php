@@ -21,7 +21,7 @@
 	$event_id = mysql_real_escape_string( $_REQUEST['event_id'] );
 	
 	$_camp->event( $event_id ) || die( "error" );
-	
+
 	$query = "	SELECT
 					count(*)
 				FROM
@@ -51,5 +51,4 @@
 
 	$ans = array( "error" => false, "event_detail_id" => $event_detail_id );
 	echo json_encode( $ans );
-	die();
-?>
+	die();	

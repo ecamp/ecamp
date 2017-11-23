@@ -19,6 +19,7 @@
 var Autocompleter = {};
 
 Autocompleter.Base = new Class({
+
 	options: {
 		minLength: 1,
 		markQuery: true,
@@ -135,7 +136,7 @@ Autocompleter.Base = new Class({
 					if (this.element.value != this.opted) return true;
 					if (this.selected && this.visible) {
 						this.choiceSelect(this.selected);
-						return (this.options.autoSubmit);
+						return !!(this.options.autoSubmit);
 					}
 					break;
 				case 'up': case 'down':

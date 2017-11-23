@@ -1,4 +1,4 @@
-<div metal:define-macro="simple_input">
+<span metal:define-macro="simple_input">
     <div class="camp_input">
         <div class="wait hidden"><img border="0" src="public/global/img/wait.gif" /></div>
         
@@ -18,7 +18,7 @@
             </form>
         </div>
     </div>
-</div>
+</span>
 
 <span metal:define-macro="simple_readonly">
     <div>
@@ -27,6 +27,9 @@
         </div>
     </div>
 </span>
+
+
+
 
 <span metal:define-macro="plz_input">
     <div class="camp_input">
@@ -57,6 +60,9 @@
         </div>
     </div>
 </span>
+
+
+
 
 <span metal:define-macro="coor_input">
     <div class="camp_input">

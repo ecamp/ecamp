@@ -17,7 +17,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
-
+	
 	class print_data_mat_event
 	{
 		public $pid;
@@ -45,7 +45,7 @@
 			$this->quantity		= $data['quantity'];
 			
 			$this->event = $pid->event[ $this->event_id ];
-			
+
 			$this->type = "available";
 			
 			if( $this->user_id )
@@ -69,4 +69,3 @@
 			{	$this->event->add_mat_organize( $this );	}
 		}
 	}
-?>

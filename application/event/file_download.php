@@ -33,4 +33,3 @@
 	
 	echo implode( "", readfile( $document['name'] ) );
 	die();
-?>

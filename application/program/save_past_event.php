@@ -26,7 +26,6 @@
 	
 	$_camp->day( $day_id ) || die( "error" );
 	
-	
 	if( $start < $GLOBALS['time_shift'] )
 	{	$start += 24*60;	}
 
@@ -89,14 +88,11 @@
 						category.camp_id = $_camp->id
 					LIMIT 1";
 		
-		//echo $query;
 		$result = mysql_query( $query );
-
+		
 		$i = 0;
-		//do{	
-		$category_id = mysql_result( $result, $i++, 'id' );//	}
-		//while( !$category_id );
-
+		$category_id = mysql_result( $result, 0, 'id' );
+		
 		$query = "	INSERT INTO
 						event
 					(camp_id, category_id, name, place, story, aim, method, topics, notes, seco, progress, in_edition_by, in_edition_time)
@@ -122,7 +118,7 @@
 					)";
 		mysql_query($query);
 		$new_event_id = mysql_insert_id();
-		
+
 		$query = "	INSERT INTO
 						event_instance
 					(event_id, day_id, starttime, length, dleft, width)	
@@ -167,4 +163,3 @@
 	$ans = get_program_update( $time );
 	echo json_encode( $ans );
 	die();
-?>

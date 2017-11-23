@@ -48,6 +48,7 @@
 	if( mysql_num_rows($result) )
 	{
 		// COPY MAT-RESPONSIBILITY TO NEW MAT-LIST CALLED THE SAME AS THE USER BEVOR.
+		
 		$query = "	SELECT user.scoutname, user.firstname, user.surname
 					FROM user, user_camp
 					WHERE user.id = user_camp.user_id AND user_camp.id = $user_camp_id";
@@ -56,7 +57,7 @@
 		$user_name = mysql_result( $result, 0, 'scoutname' );
 		if( !is_string( $user_name ) )
 		{	$user_name = mysql_result( $result, 0, 'firstname' ) . " " . mysql_result( $result, 0, 'surname' );	}
-		
+
 		$query = "	INSERT INTO mat_list ( `camp_id`, `name` )
 					VALUES ( $_camp->id, 'Materialliste von " . $user_name . "' )";
 		mysql_query( $query );
@@ -68,11 +69,19 @@
 		mysql_query( $query ); 
 	}
 
+	// Delete UserCamp-Instance:
 	$query = "	DELETE FROM 
 					user_camp 
 				WHERE 
 					id = '$user_camp_id' LIMIT 1";
 	mysql_query( $query );
+
+	// Extra Delete EventResponsibles  (Due To Design-Error :/ )
+	$query = "DELETE FROM event_responsible
+	WHERE user_id=$_user->id AND event_id IN
+	( SELECT event.id FROM event WHERE event.camp_id = $camp_id )";
+	
+    mysql_query( $query );
 
     $_news->add2camp( "Lager verlassen", $_user->display_name . " hat das Lager '$short_name' verlassen.", time(), $camp_id );
 	$_news->add2user( "Lager verlassen", "Du hast das Lager '$short_name' verlassen.", time(), $_user->id );
@@ -87,4 +96,3 @@
 	$ans = array("ans" => "Lager wurde verlassen!", "exit" => true);
 	echo json_encode($ans);
 	die();
-?>

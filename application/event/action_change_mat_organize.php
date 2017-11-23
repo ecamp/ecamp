@@ -43,7 +43,8 @@
 						FROM user_camp
 						WHERE user_id = $user_id AND camp_id = " . $_camp->id;
 			$result = mysql_query( $query );
-
+			
+			
 			$user_camp_id = mysql_result( $result, 0, 'id' );
 			$mat_list_id = "NULL";
 			
@@ -93,10 +94,10 @@
 		$result = mysql_query( $query );
 		
 		if( mysql_num_rows( $result ) )
-		{	$id = mysql_result( $result, 'id' );	}
+		{	$id = mysql_result( $result, 0, 'id' );	}
 		else
 		{	$id = "NULL";	}
-
+		
 		$query = "	INSERT INTO  
 						mat_event
 					(
@@ -127,7 +128,7 @@
 		echo json_encode( $ans );
 		die();
 	}
-	
+
 	if( $todo == "edit" )
 	{
 		$inputs = $_REQUEST['inputs'];
@@ -153,8 +154,7 @@
 						FROM user_camp
 						WHERE user_id = $user_id AND camp_id = " . $_camp->id;
 			$result = mysql_query( $query );
-			
-			
+
 			$user_camp_id = mysql_result( $result, 0, 'id' );
 			$mat_list_id = "NULL";
 			
@@ -178,7 +178,7 @@
 		}
 		
 		$resp_str_js = htmlentities_utf8( $resp_str );
-		
+
 		$query = "	SELECT
 						id
 					FROM
@@ -207,10 +207,10 @@
 		$result = mysql_query( $query );
 		
 		if( mysql_num_rows( $result ) )
-		{	$id = mysql_result( $result, 'id' );	}
+		{	$id = mysql_result( $result, 0, 'id' );	}
 		else
 		{	$id = "NULL";	}
-		
+
 		$query = "	UPDATE mat_event
 					SET 
 						`user_camp_id` = $user_camp_id,
@@ -234,7 +234,7 @@
 			die();
 		}
 	}
-	
+
 	if( $todo == "del" )
 	{
 		$event_id = mysql_real_escape_string( $_REQUEST['event_id'] );
@@ -255,4 +255,3 @@
 		}
 	}
 	die();
-?>

@@ -4,6 +4,7 @@
 			<col width="50%" />
 			<col width="50%" />
 		</colgroup>
+		
 		<tr>
 			<td colspan="2">
 				<span metal:use-macro="${tpl_dir}/global/content_box_fit.tpl/slot">
@@ -50,6 +51,9 @@
 		            </span>
 		        </span>
 			</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
 		</tr>
 	</table>
 </span>

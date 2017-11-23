@@ -22,4 +22,3 @@
 		"camp" 		=> "SELECT * FROM camp WHERE 1",
 		"category"	=> "SELECT * FROM category WHERE 1"
 	);
-?>

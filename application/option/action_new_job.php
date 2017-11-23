@@ -55,7 +55,7 @@
 		echo json_encode( $ans );
 		die();
 	}
-	
+
 	$query = "INSERT INTO `job` (`camp_id` ,`job_name` ,`show_gp`)
 			  VALUES ('$_camp->id', '$job_name_save', '0');";
 	mysql_query($query);
@@ -64,4 +64,3 @@
 	$ans = array( "error" => false, "job_id" => $id, "job_name" => $job_name );
 	echo json_encode( $ans );
 	die();
-?>

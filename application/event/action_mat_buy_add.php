@@ -23,7 +23,7 @@
 		$event_id = mysql_real_escape_string( $_REQUEST['event_id'] );
 		
 		$_camp->event( $event_id ) || die( "error" );
-		
+
 		$query = "	SELECT
 						id
 					FROM
@@ -52,10 +52,10 @@
 		$result = mysql_query( $query );
 		
 		if( mysql_num_rows( $result ) )
-		{	$id = mysql_result( $result, 'id' );	}
+		{	$id = mysql_result( $result, 0, 'id' );	}
 		else
 		{	$id = "NULL";	}
-		
+
 		$query = "	SELECT
 						*
 					FROM
@@ -70,13 +70,9 @@
 		{
 			$mode = mysql_real_escape_string( $_REQUEST['mode'] );
 			if( $mode == "concat" )
-			{
-			
-			}
+			{}
 			elseif( $mode == "seperate" )
-			{
-			
-			}
+			{}
 			elseif( !isset( $mode ) || $mode == "" )
 			{
 				$ans = array( "ans" => "aks_concat_seperate" );
@@ -101,11 +97,9 @@
 							$quantity
 						)";
 			mysql_query( $query );
-			
-			
+
 			$ans = array( "ans" => "saved" );
 			echo json_encode( $ans );
 		}
 
 	die();
-?>

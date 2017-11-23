@@ -49,4 +49,3 @@
 			$pdf->Bookmark( 'Titelblatt', 0, 0 );
 		}
 	}
-?>

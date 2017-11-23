@@ -20,10 +20,11 @@
 
 	include("./config.php");
 	include($lib_dir . "/mysql.php");
+	include($lib_dir . "/functions/mail.php");
 	db_connect();
-
+	
 	$login = mysql_escape_string( $_REQUEST[ 'Login' ] );
-
+	
 	$query = "	SELECT id, active, acode FROM user WHERE mail = '$login'";
 	$result = mysql_query( $query );
 	
@@ -48,7 +49,7 @@
 		$query = "UPDATE user SET acode = '$acode' WHERE id = ". $user_id;
 		mysql_query( $query );
 	}
-
+	
 	//	SEND MAIL FOR ACTIVATION:
 	// ===========================
  	$text = "eCamp - Willkommen \n\n
@@ -58,12 +59,15 @@ Zu diesem Zweck musst du nachfolgendem Link folgen:
 " . $GLOBALS['base_uri'] . "activate.php?user_id=$user_id&login=$login&acode=$acode
 \n\n
  ";
- 	mail( $login, "eCamp - Willkommen", $text, "From: eCamp Pfadi Luzern <ecamp@pfadiluzern.ch>" );
+ 	
+ 	ecamp_send_mail($login, "eCamp - Willkommen", $text);
+	//mail( $login, "eCamp - Willkommen", $text, "From: eCamp Pfadi Luzern <ecamp@pfadiluzern.ch>" );
+	
 	/*
 	$text = urlencode( $text );
  	$subject = urlencode( "eCamp - Passwort ändern" );
 	fopen( "http://ecamp2.pfadiluzern.ch/mail.php?to=$login&subject=$subject&message=$text", "r" );
 	*/
-
+	
 	header( 'location: login.php?msg=Überprüfe nun bitte deine Mailbox.' );
 	die();

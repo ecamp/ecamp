@@ -25,18 +25,23 @@
 	//die( $query );
 	
 	$result = mysql_query($query);
-
+	
+	
+	
 	if( mysql_num_rows($result) > 0)
 	{	
 		$ans = array("error" => true, "msg" => "Diese Person arbeitet beim ausgewählten Lager bereits mit. Solle diese nicht der Fall sein, kontaktiere bitte den Support." );
 		echo json_encode( $ans );
 		die();
 	}
-
+	
+	
 	$query = "INSERT INTO user_camp	(user_id ,camp_id ,function_id, invitation_id, active)
 			  VALUES ('$user', '$_camp->id', '$function','$_user->id','0')";
 	$result = mysql_query($query);
-
+	
+	
+	
 	$ans = array("error" => false, "msg" => "Die Person wurde dem Lager eingeladen. Sie muss die Einladung erst annehmen, bevor sie mitarbeiten kann." );
 	echo json_encode( $ans );
 	die();

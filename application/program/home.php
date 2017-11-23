@@ -49,13 +49,13 @@
 								user_camp
 							WHERE
 								job.show_gp = 1 AND
-								job_day.day_id = " . $day['id'] . " AND
+								job_day.day_id = " . $day[id] . " AND
 								job_day.user_camp_id = user_camp.id AND
 								job_day.job_id = job.id";
 		$leader_result = mysql_query( $leader_query );
 		
 		if( mysql_num_rows( $leader_result ) )
-		{	$leader = mysql_result( $leader_result, 'user_id', 0 );	}
+		{	$leader = mysql_result( $leader_result, 0, 'user_id' );	}
 		else
 		{	$leader = "0";	}
 
@@ -65,15 +65,15 @@
 		$date->setDay2000($day['start'] + $day['day_offset']);
 		
 		$days[] = array(
-						"day_id" => $day['id'],
-						"day_id_string" => "day_id_" . $day['id'],
-						"style" => "left:" . $day_width*($day_nr - 1) . "px; width:" . $day_width . "px",
-						"date" => strtr( $date->getString( 'D d.m.Y' ), $GLOBALS['en_to_de'] ),
-						"link" => "index.php?app=day&cmd=home&day_id=" . $day['id'],
-						"leader" => $leader,
-						"class" => (($day_nr % 2) ? "bg1" : "bg2"),
-						"body_class" => (($day_nr % 2) ? "bg1" : "bg2") . " day_body"
-					);
+			"day_id" => $day['id'],
+			"day_id_string" => "day_id_" . $day['id'],
+			"style" => "left:" . $day_width*($day_nr - 1) . "px; width:" . $day_width . "px",
+			"date" => strtr( $date->getString( 'D d.m.Y' ), $GLOBALS['en_to_de'] ),
+			"link" => "index.php?app=day&cmd=home&day_id=" . $day['id'],
+			"leader" => $leader,
+			"class" => (($day_nr % 2) ? "bg1" : "bg2"),
+			"body_class" => (($day_nr % 2) ? "bg1" : "bg2") . " day_body"
+		);
 	}
 	
 	$leaders = array();
@@ -96,10 +96,10 @@
 	while( $leader = mysql_fetch_assoc( $all_leader_result ) )
 	{
 		$leaders[$leader['id']] = array(
-											"value" => $leader['id'],
-											"content" => $leader['scoutname'],
-											"selected" => 0
-										);
+			"value" => $leader['id'],
+			"content" => $leader['scoutname'],
+			"selected" => 0
+		);
 	}
 
 	$query = "	SELECT job_name
@@ -111,7 +111,7 @@
 	
 	if( mysql_num_rows( $result ) )
 	{
-		$main_job = mysql_result( $result, 'job_name', 0 );
+		$main_job = mysql_result( $result, 0, 'job_name' );
 		$_js_env->add( 'EnableMainJobResp', true );
 	}
 	else
@@ -119,15 +119,14 @@
 		$main_job = "Undefiniert";
 		$_js_env->add( 'EnableMainJobResp', false );
 	}
-
+	
 	$program = array(
-						"days"			=>	$days,
-						"show_width"	=>	"width:" . $day_width * $day_nr . "px",
-						"day_width"		=>	$day_width,
-						"leaders"		=> 	$leaders,
-						"main_job"		=>	$main_job
-					);
+		"days"			=>	$days,
+		"show_width"	=>	"width:" . $day_width * $day_nr . "px",
+		"day_width"		=>	$day_width,
+		"leaders"		=> 	$leaders,
+		"main_job"		=>	$main_job
+	);
 	$_page->html->set( "program", $program );
 	
 	include("module/info/category.php");
-?>

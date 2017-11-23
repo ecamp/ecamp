@@ -27,7 +27,7 @@
 				WHERE list = 'function_course' AND value > 0";
 	$result = mysql_query( $query );
 	$functions = array();
-	
+
 	while( $function = mysql_fetch_assoc( $result ) )
 	{	$functions[] = $function;	}
 
@@ -49,10 +49,9 @@
 	while( $jstype = mysql_fetch_assoc( $result ) )
 	{	$jstypes[] = $jstype;	}
 
-	//$_page->html->set('box_content', $GLOBALS['tpl_dir'].'/application/camp_admin/new_camp.tpl/new_course');
+	//$_page->html->set('box_content', $GLOBALS[tpl_dir].'/application/camp_admin/new_camp.tpl/new_course');
 	//$_page->html->set('box_title', 'Neuen Kurs erstellen');
 	
 	$_page->html->set( 'functions', $functions );
 	$_page->html->set( 'coursetypes', $coursetypes );
 	$_page->html->set( 'jstypes', $jstypes );
-?>

@@ -32,4 +32,3 @@
 
 	header("Location: logout.php");
 	die();
-?>

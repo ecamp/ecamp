@@ -64,4 +64,3 @@
 	}
 
 	$_js_env->add( 'course_aim', $course_aim );	
-?>

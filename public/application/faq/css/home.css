@@ -1,3 +1,28 @@
+#accordion {
+	margin:20px 10px;
+}
+
 h3.question {
 	cursor: pointer;
+	font-size: 12px;
+
+	background: #335588;
+	color: #FFF;
+	
+	margin: 5px 0px 0px 0px;
+	padding: 3px 5px 1px;
+}
+
+div.answer p, div.answer h4 {
+	
+	font-size: 12px;
+	
+	border: 2px solid #335588;
+	
+	margin:0px;
+	padding:5px;
+}
+
+blockquote {
+	padding:5px 20px;
 }

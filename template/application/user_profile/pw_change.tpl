@@ -1,34 +1,32 @@
 <div class="profile_pw">
     <div class="wait hidden"><img border="0" src="public/global/img/wait.gif" /></div>
     
-    <div class="display">
-        <input class="btn" type="button" value="Ändern">
-    </div>
+    <div class="display"><input type="button" value="&Auml;ndern"></div>
     
     <div class="input hidden">
         <form onsubmit="return false;">
-            <div class="form-group">
-                <label for="oldPassword" class="col-sm-2 control-label">Altes Passwort:</label>
-                <div class="col-sm-10">
-                    <input type="password" class="form-control askedit" id="oldPassword" placeholder="Altes passwort" name="old_pw" />
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="inputPassword3" class="col-sm-2 control-label">Neues Passwort:</label>
-                <div class="col-sm-10">
-                    <input type="password" class="form-control askedit" id="inputPassword3" placeholder="Passwort" name="pw1" />
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="inputPassword3" class="col-sm-2 control-label">Neues Passwort wiederholen:</label>
-                <div class="col-sm-10">
-                    <input type="password" class="form-control askedit" id="inputPassword3" placeholder="Passwort wiederholen" name="pw2" />
-                </div>
-            </div>
-
-            <input type="button" class="btn btn-success askeditbutton  ok_button" value="OK">
-            <input type="button" class="btn btn-danger askeditbutton  cancel_button" value="Abbrechen">
-
+            <table width="100%">
+                <tr>
+                    <td>Altes Passwort:</td>
+                    <td><input name="old_pw" type="password" class="askedit " value="" style="width:100%;"></td>
+                </tr>
+                <tr>
+                    <td>Neues Passwort:</td>
+                    <td><input name="pw1" type="password" class="askedit " value="" style="width:100%;"></td>
+                </tr>
+                <tr>
+                    <td>Neues Passwort:</td>
+                    <td>
+                        <input name="pw2" type="password" class="askedit " value="" style="width:100%;">
+                        </td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="right">
+                        <input type="button" class="askeditbutton  ok_button" value="OK" style="width:10%;">
+                        <input type="button" class="askeditbutton  cancel_button" value="Abbrechen" style="width:20%;">
+                    </td>
+                </tr>
+            </table>
             <input name="app" value="user_profile" type="hidden" />
             <input name="cmd" value="action_save_change_pw"  type="hidden"/>
         </form>

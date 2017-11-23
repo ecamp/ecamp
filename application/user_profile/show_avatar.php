@@ -37,4 +37,3 @@
 	{	echo $imgData;	}
 	
 	die();
-?>

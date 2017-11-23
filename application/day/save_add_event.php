@@ -28,7 +28,7 @@
 	
 	$_camp->category( $category ) || die( "error" );
 	$_camp->day( $day_id ) || die( "error" );
-
+	
 	$start  = $start_h * 60  + $start_min;
 	$length = $length_h * 60 + $length_min;
 	
@@ -40,7 +40,7 @@
 				( $_camp->id, $category, '$name' )";
 	$result = mysql_query( $query );
 	$event_id = mysql_insert_id();
-	
+
 	$query = "	SELECT day2.id 
 				FROM day as day1, day as day2 
 				WHERE
@@ -59,7 +59,7 @@
 			)
 		)
 	{
-		$day2_id = mysql_result( $result, 'id', 0 );
+		$day2_id = mysql_result( $result, 0, 'id');
 		
 		$starttime1 = $start;
 		$starttime2 = $GLOBALS['time_shift'];
@@ -88,4 +88,3 @@
 	$ans = array( "error" => false );
 	echo json_encode( $ans );
 	die();
-?>

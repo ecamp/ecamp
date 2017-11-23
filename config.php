@@ -34,8 +34,8 @@
 	
 	$GLOBALS['tpl_dir'] = "../../../template";
 
-	$GLOBALS['pear_dir'] = "/home/pfadiluz/www/pear/PEAR/";
-	ini_set("include_path", ".:/usr/local/lib/php:/home/pfadiluz/www/pear/PEAR/");
+	//$GLOBALS['pear_dir'] = "/home/pfadiluz/pear/PEAR/";
+	//ini_set("include_path", ".:/usr/local/lib/php:/home/pfadiluz/pear/PEAR/");
 	
 	$GLOBALS['captcha_pub'] = "6LehoTMUAAAAAJ2XCzbBfduFd5uzppTU0wgm0y-_";
 	$GLOBALS['captcha_prv'] = "6LehoTMUAAAAAJVQOascfLNH-Wi9FPPGoAsMYtX5";
@@ -44,7 +44,7 @@
 	$GLOBALS['news_num'] = 5;
 
 	// Layout wählen
-	$GLOBALS['skin'] = "skin4";
+	$GLOBALS['skin'] = "skin3";
 	
 	$GLOBALS['debug'] = 1;
 	$GLOBALS['register'] = 0;

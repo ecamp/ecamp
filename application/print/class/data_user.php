@@ -65,4 +65,3 @@
 			else					{	return $this->firstname . " " . $this->surname;	}
 		}
 	}
-?>

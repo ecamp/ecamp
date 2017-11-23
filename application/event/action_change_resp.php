@@ -84,8 +84,7 @@
 
 		$ans['value'][] = array( 'value' => $user_id, 'selected' => ( $is_resp == 'true' ) );
 	}
-	
+
 	$ans['error'] = false;
 	echo json_encode( $ans );
 	die();
-?>

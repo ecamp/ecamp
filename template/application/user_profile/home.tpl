@@ -1,152 +1,145 @@
-<div metal:define-macro="home">
-    <img style="vertical-align:middle" tal:attributes="src structure profile/img_src" />
-    <b tal:content="user/mail"></b>
-    <a href="index.php?app=user_profile&cmd=delprofile">
-        <b>Profil löschen</b>
-    </a>
-
-    <div class="form-horizontal">
-        <div class="form-group">
-            <label for="user_profile_scoutname" class="col-sm-2 control-label">Pfadiname:</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="user_profile_scoutname" placeholder="Pfadiname" name="value" tal:attributes="value profile/scoutname/value" />
-            </div>
-        </div>
-    </div>
-    <div class="form-horizontal">
-        <div class="form-group">
-            <label for="user_profile_firstname" class="col-sm-2 control-label">Vorname:</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="user_profile_firstname" placeholder="Vorname" name="value" tal:attributes="value profile/firstname/value" />
-            </div>
-        </div>
-    </div>
-    <div class="form-horizontal">
-        <div class="form-group">
-            <label for="user_profile_surname" class="col-sm-2 control-label">Nachname:</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="user_profile_surname" placeholder="Nachname" name="value" tal:attributes="value profile/surname/value" />
-            </div>
-        </div>
-    </div>
-    <div class="form-horizontal">
-        <div class="form-group">
-            <label for="user_profile_birthday" class="col-sm-2 control-label">Geburtstag:</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="user_profile_birthday" placeholder="Geburtstag" name="value" tal:attributes="value profile/birthday/value" />
-            </div>
-        </div>
-    </div>
-    <div class="form-horizontal">
-        <div class="form-group">
-            <label for="user_profile_sex" class="col-sm-2 control-label">Geschlecht:</label>
-            <div class="col-sm-10">
-                <select class="form-control selectpicker" id="user_profile_sex" tal:attributes="initvalue profile/sex/selected" >
-                    <tal:block repeat="item profile/sex/value">
+<span metal:define-macro="home" tal:omit-tag="" >
+    <table width="100%">
+        <tr>
+            <td rowspan="10" width="18%" align="center"><img style="vertical-align:middle" tal:attributes="src structure profile/img_src" /></td>
+            <td rowspan="10" width="2%"> </td>
+            <td colspan="3" align=""><b tal:content="user/mail"></b></td>
+            <td colspan="3" align="right">
+            	
+            	<a href="index.php?app=user_profile&cmd=delprofile">
+	            	<b>Profil löschen</b>
+	            </a>
+	            
+            </td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr height="25">
+            <td width="12.5%" valign="top">Pfadiname:</td>
+            <td width="25%" valign="top">
+            	<input tabindex="1" type="text" name="value" id="user_profile_scoutname" style="width: 100%" tal:attributes="value profile/scoutname/value" />
+            </td>
+            
+            <td width="5%">&nbsp;</td>
+            
+            <td width="12.5%" valign="top">Geburtstag:</td>
+            <td width="25%" valign="top">
+            	<input tabindex="9" type="text" name="value" id="user_profile_birthday" style="width: 100%" tal:attributes="value profile/birthday/value" />
+            </td>
+        </tr>
+        
+        <tr height="25">
+            <td valign="top">Vorname:</td>
+            <td valign="top">
+            	<input tabindex="2" type="text" name="value" id="user_profile_firstname" style="width: 100%" tal:attributes="value profile/firstname/value" />
+            </td>
+            
+            <td>&nbsp;</td>
+            
+            <td valign="top">AHV Nr:</td>
+            <td valign="top">
+            	<input tabindex="10" type="text" name="value" id="user_profile_ahv" style="width: 100%" tal:attributes="value profile/ahv/value" />
+            </td>
+        </tr>
+        
+        <tr height="25">
+            <td valign="top">Nachname:</td>
+            <td valign="top">
+            	<input tabindex="3" type="text" name="value" id="user_profile_surname" style="width: 100%" tal:attributes="value profile/surname/value" />
+            </td>
+            
+            <td>&nbsp;</td>
+            
+            <td valign="top">J&amp;S Personal Nr:</td>
+            <td valign="top">
+            	<input tabindex="11" type="text" name="value" id="user_profile_jspersnr" style="width: 100%" tal:attributes="value profile/jspersnr/value" />
+            </td>
+        </tr>
+        
+        <tr height="25">
+            <td valign="top">Strasse:</td>
+            <td valign="top">
+            	<input tabindex="4" type="text" name="value" id="user_profile_street" style="width: 100%" tal:attributes="value profile/street/value" />
+            </td>
+            
+            <td>&nbsp;</td>
+            
+            <td valign="top">Geschlecht:</td>
+            <td valign="top">
+            	<select tabindex="12" name="value" id="user_profile_sex" style="width: 100%" tal:attributes="initvalue profile/sex/selected" >
+            		<tal:block repeat="item profile/sex/value">
                         <option tal:condition="item/selected" selected="selected" tal:content="structure item/content" tal:attributes="value item/value" />
                         <option tal:condition="not: item/selected" tal:content="structure item/content" tal:attributes="value item/value" />
                     </tal:block>
-                </select>
-            </div>
-        </div>
-    </div>
-    <div class="form-horizontal">
-        <div class="form-group">
-            <label for="user_profile_street" class="col-sm-2 control-label">Strasse:</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="user_profile_street" placeholder="Strasse" name="value" tal:attributes="value profile/street/value" />
-            </div>
-        </div>
-    </div>
-    <div class="form-horizontal">
-        <div class="form-group">
-            <label for="user_profile_zipcode" class="col-sm-2 control-label">PLZ:</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="user_profile_zipcode" placeholder="PLZ" name="value" tal:attributes="value profile/zipcode/value" />
-            </div>
-        </div>
-    </div>
-    <div class="form-horizontal">
-        <div class="form-group">
-            <label for="user_profile_city" class="col-sm-2 control-label">Ort:</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="user_profile_city" placeholder="Ort" name="value" tal:attributes="value profile/city/value" />
-            </div>
-        </div>
-    </div>
-    <div class="form-horizontal">
-        <div class="form-group">
-            <label for="user_profile_homenr" class="col-sm-2 control-label">Home Nr:</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="user_profile_homenr" placeholder="Home Nr" name="value" tal:attributes="value profile/homenr/value" />
-            </div>
-        </div>
-    </div>
-    <div class="form-horizontal">
-        <div class="form-group">
-            <label for="user_profile_mobilnr" class="col-sm-2 control-label">Mobil Nr:</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="user_profile_mobilnr" placeholder="Mobil Nr" name="value" tal:attributes="value profile/mobilnr/value" />
-            </div>
-        </div>
-    </div>
-    <div class="form-horizontal">
-        <div class="form-group">
-            <label for="user_profile_ahv" class="col-sm-2 control-label">AHV Nr:</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="user_profile_ahv" placeholder="AHV Nr" name="value" tal:attributes="value profile/ahv/value" />
-            </div>
-        </div>
-    </div>
-    <div class="form-horizontal">
-        <div class="form-group">
-            <label for="user_profile_jspersnr" class="col-sm-2 control-label">J&S Personal Nr:</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="user_profile_jspersnr" placeholder="J&S Personal Nr" name="value" tal:attributes="value profile/jspersnr/value" />
-            </div>
-        </div>
-    </div>
-    <div class="form-horizontal">
-        <div class="form-group">
-            <label for="user_profile_pbsedu" class="col-sm-2 control-label">PBS Ausbildung:</label>
-            <div class="col-sm-10">
-                <select class="form-control selectpicker" name="value" id="user_profile_pbsedu" tal:attributes="initvalue profile/pbsedu/selected" >
-                    <tal:block repeat="item profile/pbsedu/value">
+            	</select>
+            	
+            </td>
+        </tr>
+        
+        <tr height="25">
+            <td valign="top">PLZ:</td>
+            <td valign="top">
+            	<input tabindex="5" type="text" name="value" id="user_profile_zipcode" style="width: 100%" tal:attributes="value profile/zipcode/value" />
+            </td>
+            
+            <td>&nbsp;</td>
+            
+            <td valign="top">PBS Ausbildung:</td>
+            <td valign="top">
+            	<select tabindex="13" name="value" id="user_profile_pbsedu" style="width: 100%" tal:attributes="initvalue profile/pbsedu/selected" >
+            		<tal:block repeat="item profile/pbsedu/value">
                         <option tal:condition="item/selected" selected="selected" tal:content="structure item/content" tal:attributes="value item/value" />
                         <option tal:condition="not: item/selected" tal:content="structure item/content" tal:attributes="value item/value" />
                     </tal:block>
-                </select>
-            </div>
-        </div>
-    </div>
-    <div class="form-horizontal">
-        <div class="form-group">
-            <label for="user_profile_jsedu" class="col-sm-2 control-label">J&S Ausbildung:</label>
-            <div class="col-sm-10">
-                <select class="form-control selectpicker" name="value" id="user_profile_jsedu" tal:attributes="initvalue profile/jsedu/selected" >
-                    <tal:block repeat="item profile/jsedu/value">
+            	</select>
+            </td>
+        </tr>
+        
+        <tr height="25">
+            <td valign="top">Ort:</td>
+            <td valign="top">
+            	<input tabindex="6" type="text" name="value" id="user_profile_city" style="width: 100%" tal:attributes="value profile/city/value" />
+            </td>
+            
+            <td>&nbsp;</td>
+            
+            <td valign="top">J&amp;S Ausbildung:</td>
+            <td valign="top">
+            	<select tabindex="14" name="value" id="user_profile_jsedu" style="width: 100%" tal:attributes="initvalue profile/jsedu/selected" >
+            		<tal:block repeat="item profile/jsedu/value">
                         <option tal:condition="item/selected" selected="selected" tal:content="structure item/content" tal:attributes="value item/value" />
                         <option tal:condition="not: item/selected" tal:content="structure item/content" tal:attributes="value item/value" />
                     </tal:block>
-                </select>
-            </div>
-        </div>
-    </div>
-    <div class="form-horizontal">
-        <div class="form-group">
-            <label for="user_profile_homenr" class="col-sm-2 control-label">Portrait ändern:</label>
-            <div class="col-sm-10">
-                <input class="btn btn-danger" type="button" value="Ändern" id="profile_avatar" />
-                <input class="btn btn-danger" type="button" value="Löschen" id="profile_del_avatar" />
-            </div>
-        </div>
-    </div>
-    <div class="form-horizontal">
-        <div class="form-group">
-            <label for="user_profile_mobilnr" class="col-sm-2 control-label">Passwort ändern:</label>
-            <div class="col-sm-10">
-                <input class="btn btn-info" type="button" value="Ändern" id="profile_pw" />
-            </div>
-        </div>
-    </div>
-</div>
+            	</select>
+            </td>
+        </tr>
+        
+        <tr height="25">
+            <td valign="top">Home Nr:</td>
+            <td valign="top">
+            	<input tabindex="7" type="text" name="value" id="user_profile_homenr" style="width: 100%" tal:attributes="value profile/homenr/value" />
+            </td>
+            
+            <td>&nbsp;</td>
+            
+            <td valign="top">Portrait ändern:</td>
+            <td valign="top">
+            	<input tabindex="15" type="button" value="&Auml;ndern" id="profile_avatar" />
+                <input tabindex="16" type="button" value="L&ouml;schen" id="profile_del_avatar" />
+            </td>
+        </tr>
+        
+        <tr height="25">
+            <td valign="top">Mobil Nr:</td>
+            <td valign="top">
+            	<input tabindex="8" type="text" name="value" id="user_profile_mobilnr" style="width: 100%" tal:attributes="value profile/mobilnr/value" />
+            </td>
+            
+            <td>&nbsp;</td>
+            
+            <td valign="top" rowspan="3">Passwort &auml;ndern:</td>
+            <td valign="top">
+            	<input tabindex="17" type="button" value="&Auml;ndern" id="profile_pw" />
+            </td>
+        </tr>
+    </table>
+</span>

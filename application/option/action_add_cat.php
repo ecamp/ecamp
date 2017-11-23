@@ -26,7 +26,8 @@
 	
 	$color		= mysql_real_escape_string($_REQUEST['color']);
 	$form_type	= mysql_real_escape_string($_REQUEST['type']);
-
+	
+	
 	if( $name=="" )
 	{
 		$ans = array( "error" => true, "msg" => "Bitte gib einen Kategorie-Namen ein!" );
@@ -39,6 +40,9 @@
 	else
 		$color = substr($color,1,strlen($color)-1);
 	
+	if( ! ctype_xdigit($color) )
+		$color = "ffffff";
+			
 	$form_type = intval($form_type);
 	
 	// Überprüfen, ob selber Kategorienamen nicht schon existiert

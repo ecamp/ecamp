@@ -34,10 +34,10 @@
 		
 		$value_save = $birthday->getValue();
 	}
-	
+
 	$query = "UPDATE user SET $field = '$value_save' WHERE id = '$_user->id'";	
 	mysql_query($query);
-
+	
 	if($field == "birthday")	{	$value_save = $birthday->getString("d.m.Y");	}
 
 	// XML-Response senden
@@ -46,4 +46,3 @@
 	$ans_array= array("field" => $field, "value" => $value);
 	echo json_encode($ans_array);
 	die();
-?>

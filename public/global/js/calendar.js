@@ -8,7 +8,8 @@
 // Calendar RC4, Copyright (c) 2007 Aeron Glemann <http://electricprism.com/aeron>, MIT Style License.
 // Mootools 1.2 compatibility by Davorin Šego
 
-var Calendar = new Class({
+var Calendar = new Class({	
+
 	options: {
 		blocked: [], // blocked dates 
 		classes: [], // ['calendar', 'prev', 'next', 'month', 'year', 'today', 'invalid', 'valid', 'inactive', 'active', 'hover', 'hilite']
@@ -906,7 +907,7 @@ var Calendar = new Class({
 			n: '([0-9]{1,2})',
 			Y: '([0-9]{4})',
 			y: '([0-9]{2})'
-		};
+		}
 
 		var arr = []; // array of indexes
 

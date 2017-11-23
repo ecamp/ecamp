@@ -67,4 +67,3 @@
 	
 	header("Location: index.php?app=leader");
 	die();
-?>

@@ -39,13 +39,16 @@
 		else
 			$this_typ = $form[$category['form_type']];
 			
+		if( ! ctype_xdigit($category['color']) )
+			$category['color'] = "ffffff";
+		
 		$category_list[] = array(
-								"id" 			=> $category['id'],
-								"name" 			=> $category['name'],
-								"short_name" 	=> $category['short_name'],
-								"color" 		=> $category['color'],
-								"form_type" 	=> $this_typ,
-								"form_type_id"  => $category['form_type'] );
+			"id" 			=> $category['id'],
+			"name" 			=> $category['name'],
+			"short_name" 	=> $category['short_name'],
+			"color" 		=> $category['color'],
+			"form_type" 	=> $this_typ,
+			"form_type_id"  => $category['form_type'] );
 	}
 	
 	// Jobs auslesen
@@ -63,7 +66,7 @@
 		else
 			$job_list["slave"][] = array( "id" => $job['id'], "name" => $job['job_name'] );
 	}
-	
+
 	$mat_lists = array();
 	
 	$query = "SELECT * FROM mat_list WHERE camp_id = $_camp->id";
@@ -72,16 +75,15 @@
 	{	$mat_lists[] = $mat_list;	}
 
 	$option = array(
-			"jobs" 			=> array( "title" => "Tagesjobs", "macro" => $GLOBALS['tpl_dir']."/application/option/jobs.tpl/jobs" ),
-			"category"		=> array( "title" => "Block - Kategorien", "macro" => $GLOBALS['tpl_dir']."/application/option/category.tpl/category" ),
-			"mat_list" 		=> array( "title" => "Einkaufslisten", "macro" => $GLOBALS['tpl_dir']."/application/option/mat_list.tpl/mat_list" ),
-			"job_list"		=> $job_list,
-			"category_list" => $category_list,
-			"mat_lists"		=> $mat_lists
-		);
+		"jobs" 			=> array( "title" => "Tagesjobs", "macro" => $GLOBALS['tpl_dir']."/application/option/jobs.tpl/jobs" ),
+		"category"		=> array( "title" => "Block - Kategorien", "macro" => $GLOBALS['tpl_dir']."/application/option/category.tpl/category" ),
+		"mat_list" 		=> array( "title" => "Einkaufslisten", "macro" => $GLOBALS['tpl_dir']."/application/option/mat_list.tpl/mat_list" ),
+		"job_list"		=> $job_list,
+		"category_list" => $category_list,
+		"mat_lists"		=> $mat_lists
+	);
 	
 	$_page->html->set( 'option', $option );
 	
 	//print_r($option);
 	//die();
-?>

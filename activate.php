@@ -21,10 +21,11 @@
 	include("./config.php");
 	include($lib_dir . "/mysql.php");
 	db_connect();
-		
+	
 	$user_id 	= mysql_real_escape_string( $_REQUEST[ 'user_id' ] );
 	$login 		= mysql_real_escape_string( $_REQUEST[ 'login' ] );
 	$acode		= mysql_real_escape_string( $_REQUEST[ 'acode' ] );
+	
 	
 	$query = "SELECT user.active, user.acode FROM user WHERE user.id = $user_id AND mail = '$login'";
 	$result = mysql_query( $query );
@@ -34,7 +35,7 @@
 		header( "location: login.php?msg=Aktivierung ist fehlgeschlagen. Bitte Support kontaktieren." );
 		die();
 	}
-
+	
 	if( mysql_result( $result, 0, 'active' ) )
 	{
 		header( "location: login.php?msg=Account ist bereits aktiviert" );
@@ -51,7 +52,7 @@
 				SET  `active` =  '1', `acode` =  '' 
 				WHERE  `user`.`id` = $user_id LIMIT 1 ;";
 	mysql_query( $query );
-
+	
 	header( "location: login.php?msg=Account wurde erfolgreich aktiviert" );
 
 	die();

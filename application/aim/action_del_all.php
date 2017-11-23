@@ -23,4 +23,3 @@
 
 	header("Location:index.php?app=aim");
 	die();
-?>

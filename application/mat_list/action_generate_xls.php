@@ -81,10 +81,14 @@
 	// Creating a worksheet
 	$worksheet =& $workbook->addWorksheet(utf8_decode("Materialliste"));
 	
-	$format_content = & $workbook->addFormat(array( "Size" => 8,
-													"Align" => "left",
-													"Border" => 1,
-													"vAlign" => "top"));
+	$format_content = & $workbook->addFormat(
+		array(
+			"Size" => 8,
+			"Align" => "left",
+			"Border" => 1,
+			"vAlign" => "top"
+		)
+	);
 	
 	$format_content_unboxed = & $workbook->addFormat(array( "Size" => 8,
 													"Align" => "left",
@@ -151,4 +155,3 @@
 	// Let's send the file
 	$workbook->close();
 	die();
-?>

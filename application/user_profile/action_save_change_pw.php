@@ -50,4 +50,3 @@
 	echo json_encode(array("ans" => $ans));
 	
 	die();
-?>

@@ -48,13 +48,13 @@
 			
 		ksort( $todo_list[$date->getString("Ym")]['todos'] );
 	}
-	
+
 	//  TODAY:
 	// ========
 	$todo_list[date("Ym")]['name'] = strtr( date("F Y"), $GLOBALS['en_to_de'] );
 	$todo_list[date("Ym")]['todos'][date("d")][] = array( "date" => strtr( date("D d. M"), $GLOBALS['en_to_de'] ), "camptime" => false, "entry" => false, "today" => true );
 	ksort( $todo_list[date("Ym")]['todos'] );
-	
+
 	$query = "	SELECT
 					todo.*
 				FROM
@@ -126,12 +126,12 @@
 			if( $todo_user['scoutname'] )
 			{	$todo['resp'][] = array( "id" => $todo_user['id'], "resp" => $todo_user['resp'], "class" => "resp_user", "name" => $todo_user['scoutname'] );	}
 			else
-			{	$todo['resp'][] = array( "id" => $todo_user['id'], "resp" => $todo_user['resp'], "class" => "resp_user", "name" => $todo_user['firstname'] . " " . $todo_user['surname'] );	}
+			{	$todo['resp'][] = array( "id" => $todo_user['id'], "resp" => $todo_user['resp'], "class" => "resp_user", "name" => $todo_user['firstname'] . " " . $todo_user[surname] );	}
 			
 			if( $todo_user['resp'] == 1 )
 			{	$todo['resp_class'] .= "user_" . $todo_user['id'] . " ";	}
 		}
-		
+
 		$todo_list[$date->getString("Ym")]['name'] = strtr( $date->getString("F Y"), $GLOBALS['en_to_de'] );
 		$todo_list[$date->getString("Ym")]['todos'][$date->getString('d')][] = $todo;
 		
@@ -147,7 +147,7 @@
 	ksort( $todo_list );
 	
 	$_page->html->set('todo_list', $todo_list);
-
+	
 	$user_list = array();
 	$query = "	SELECT
 					user.id,
@@ -175,6 +175,5 @@
 		
 		$user_list[] = $user;
 	}
-	
+
 	$_page->html->set( 'user_list', $user_list );
-?>

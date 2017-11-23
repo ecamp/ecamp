@@ -38,4 +38,3 @@
 			$this->event->add_event_aim( $this );
 		}
 	}
-?>

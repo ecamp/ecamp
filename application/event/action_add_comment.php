@@ -48,14 +48,14 @@
 			while( $comment = mysql_fetch_assoc( $result ) )
 			{
 				$_news->add2user( 
-									"Neuer Kommentar:", 
-									"Zu einem Block, für welchen du verantwortlich bist, wurde ein Kommentar abgegeben.<br /><br />
-									Lager: $_camp->short_prefix $_camp->short_name <br />
-									Block: " . $comment['name'] . "<br /><br />
-									Kommentar: <br /><i>" . $text_js . "</i>", 
-									time(),
-									$comment['user_id']
-								);
+					"Neuer Kommentar:",
+					"Zu einem Block, für welchen du verantwortlich bist, wurde ein Kommentar abgegeben.<br /><br />
+							Lager: $_camp->short_prefix $_camp->short_name <br />
+							Block: " . $comment['name'] . "<br /><br />
+							Kommentar: <br /><i>" . $text_js . "</i>",
+							time(),
+							$comment['user_id']
+				);
 			}
 			
 			$ans = array( "error" => false, "id" => $comment_id, "user" => htmlentities_utf8($_user->display_name), "date" => date( "d.m.Y H:i" ), "text" => $text_js );
@@ -64,4 +64,3 @@
 	
 	echo json_encode( $ans );
 	die();
-?>

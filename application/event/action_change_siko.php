@@ -45,4 +45,3 @@
 		echo json_encode( $ans );
 		die();
 	}
-?>

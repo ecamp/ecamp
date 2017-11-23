@@ -42,7 +42,7 @@
 								FROM
 								  event e,
 								  event_instance i,
-								  v_event_nr v,
+								  (".getQueryEventNr($_camp->id).") v,
 								  day d,
 								  subcamp s,
 								  category c
@@ -100,15 +100,15 @@
 					$no_events = false;
 					
 					$start = new c_time();
-					$start->setValue($this_level3[start]);
+					$start->setValue($this_level3['start']);
 					
 					$end = new c_time();
-					$end->setValue($this_level3[end]);
+					$end->setValue($this_level3['end']);
 					
 					$date = new c_date();
-					$date->setDay2000($this_level3[day]);
+					$date->setDay2000($this_level3['day']);
 					
-					$this_level3[date] = $GLOBALS[en_to_de][$date->getString("D")].", ".$date->getString("j.n.")." ".$start->getString("G:i")."-".$end->getString("G:i");//"Fr, 5.10. 17:15-18:00";
+					$this_level3['date'] = $GLOBALS['en_to_de'][$date->getString("D")].", ".$date->getString("j.n.")." ".$start->getString("G:i")."-".$end->getString("G:i");//"Fr, 5.10. 17:15-18:00";
 					
 					if( $this_level3['short_name'] )
 					{	$this_level3['short_name'] .= ": ";	}
@@ -132,4 +132,3 @@
 		$_page->html->set("new_checklist", 1);
 	else
 		$_page->html->set("new_checklist", 0);
-?>

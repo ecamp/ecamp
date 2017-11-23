@@ -24,7 +24,7 @@
 	$file_type['application/pdf'] = 'icon_pdf.png';
 	$file_type['application/msword'] = 'icon_doc.png';
 	$file_type['application/vnd.ms-excel'] = 'icon_xls.png';
-
+	
 	$_page->html = new PHPTAL('template/application/event/file_upload_done.tpl');
 
 	$event_id = mysql_real_escape_string( $_REQUEST['event_id'] );
@@ -54,4 +54,3 @@
 	$_js_env->add(	'file', 	$file );
 	//$_js_env->add(	'file_id', 	$file_id );
 	$_js_env->add(	'event_id', $event_id );
-?>

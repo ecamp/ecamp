@@ -48,4 +48,3 @@
 	//print_r( $mat_article );
 	
 	$_js_env->add( 'mat_article_list', $mat_article );	
-?>

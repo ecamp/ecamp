@@ -20,32 +20,31 @@
 
 # Sichheitslevel der einzelnen Aktionen/Dateien
 # --> Kommandos/Files die nicht aufgeührt sind, können nicht aufgerufen werden
-$security_level = array( 'home' => 10,
-						 'delprofile' => 10,
-                       	 'action_save_change' => 10,
-						 'action_save_change_pw' => 10,
-						 'action_save_change_avatar' => 10,
-						 'action_delete_avatar' => 10,
-						 'show_avatar' => 10,
-						 'action_del_profile' => 10
-					   );
+$security_level = array(
+	'home' => 10,
+	'delprofile' => 10,
+    'action_save_change' => 10,
+	'action_save_change_pw' => 10,
+	'action_save_change_avatar' => 10,
+	'action_delete_avatar' => 10,
+	'show_avatar' => 10,
+	'action_del_profile' => 10
+);
 
 $css = array(
-				"home.css" 					=> "app",
-				"calendar.css" 				=> "module",
-				"content_template_fit.css" 	=> "global"
-			);
+	"home.css" 					=> "app",
+	"calendar.css" 				=> "module",
+	"content_template_fit.css" 	=> "global"
+);
 
 $js  = array(
-				"mootools-core-1.4.js" 		=> "global",
-				"mootools-more-1.4.js" 		=> "global",
-				"dynamic_input.js"			=> "global",
-				"popup.js"					=> "global",
-				"calendar.js"				=> "module",
-				"home.js"					=> "app"
-			);
-
+	"mootools-core-1.4.js" 		=> "global",
+	"mootools-more-1.4.js" 		=> "global",
+	"dynamic_input.js"			=> "global",
+	"popup.js"					=> "global",
+	"calendar.js"				=> "module",
+	"home.js"					=> "app"
+);
 
 # Standardkommando
 if( $_page->cmd == "" ) {	$_page->cmd = "home";	}
-?>

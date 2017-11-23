@@ -48,4 +48,3 @@
 	echo json_encode( array( "error" => false ) );
 	
 	die();
-?>

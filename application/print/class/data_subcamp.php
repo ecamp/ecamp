@@ -44,7 +44,7 @@
 			$this->ustart 	= $c_date->setDay2000( $this->start )->getUnix();
 			$this->uend		= $c_date->setDay2000( $this->start + $this->length )->getUnix();
 		}
-
+		
 		function add_day( $day )
 		{	$this->day[ $day->id ] = $day;	}
 
@@ -64,11 +64,10 @@
 			
 			return 0;
 		}
-
+		
 		function get_sorted_day()
 		{
 			uasort( $this->day, array( "print_data_subcamp_class", "sort_day" ) );
 			return $this->day;
 		}
 	}
-?>

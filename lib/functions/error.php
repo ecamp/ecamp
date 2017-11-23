@@ -26,4 +26,3 @@
   		echo "<a href='javascript:history.back()'>Zurück</a>";
 		exit;
   }
-?>

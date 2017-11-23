@@ -41,7 +41,7 @@
 		echo json_encode( $ans );
 		die();
 	}
-
+	
 	$query = "	SELECT 	*
 				FROM 	event_instance
 				WHERE	event_instance.event_id = $event_id";
@@ -57,4 +57,3 @@
 	$ans = array( "error" => false );
 	echo json_encode( $ans );
 	die();
-?>

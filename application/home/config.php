@@ -23,10 +23,10 @@
 $security_level = array(
 	'home' => 10,
 	'feedback' => 10,
-	'help' =>10,
-	"take_feedback" => 10,
-	"action_change_skin" => 100,
-	"action_del_news" => 10
+	 'help' =>10,
+	 "take_feedback" => 10,
+	 "action_change_skin" => 100,
+	 "action_del_news" => 10
 );
 
 $css = array(
@@ -44,4 +44,3 @@ $js  = array(
 
 # Standardkommando
 if( $_page->cmd == "" ) {	$_page->cmd = "home";	}
-?>

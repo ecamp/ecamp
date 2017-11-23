@@ -40,4 +40,3 @@
 	$ans = array("function_list" => $ans_function, "camptype_list" => $ans_camptype);
 	echo json_encode($ans);
 	die();
-?>

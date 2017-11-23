@@ -27,4 +27,3 @@
 	if(empty($user_option['scoutname']))	{	$user_option['scoutname'] = $user_option['firstname'];	}
 
 	$index_content['main'] .= gettemplate_app('user_option', $user_option);
-?>

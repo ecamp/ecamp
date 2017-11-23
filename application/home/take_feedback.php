@@ -25,7 +25,7 @@
 	$feedback 	= utf8_decode(mysql_real_escape_string($_REQUEST['feedback']));
 	$feedback = preg_replace("/\\\\n/","\n",$feedback);
 	
-	$type = mysql_real_escape_string($_REQUEST[type]);
+	$type = mysql_real_escape_string($_REQUEST['type']);
 	
 	$mail = $_user->mail;
 	$name = $_user->display_name . " [" . $_user->id . "]";
@@ -40,11 +40,14 @@
 	$mailto = $GLOBALS['feedback_mail'];
 	
 	$headers = "From: ".$name." <".$mail.">";
+	$feedback = preg_replace("/\\\\r/","",$feedback);
 
 	if( $type == "feedback" )
-		mail($mailto, "Feedback von: " . $name, $feedback, $headers);
+		ecamp_send_mail($mailto, "Feedback von: " . $name, $feedback);
+		// mail($mailto, "Feedback von: " . $name, $feedback, $headers);
 	else if( $type == "help" )
-		mail($mailto, "Supportanfrage von: " . $name, $feedback, $headers);
+		ecamp_send_mail($mailto, "Supportanfrage von: " . $name, $feedback);
+		// mail($mailto, "Supportanfrage von: " . $name, $feedback, $headers);
 
 	$_page->html->set( 'feedback', 	( $type == "feedback" ) );
 	$_page->html->set( 'help', 		( $type == "help" ) );
@@ -57,6 +60,5 @@
 	
     echo $xml;
     */
-
+    
 	//die();
-?>

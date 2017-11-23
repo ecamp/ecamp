@@ -24,4 +24,3 @@ function get_progress_color( $prog )
 	else
 	{	return dechex( 2.55 * ( 100 - $prog ) ) . dechex( 2.55 * $prog ) . "00";	}
 }
-?>

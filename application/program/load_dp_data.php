@@ -20,12 +20,12 @@
 
 	$_page->html = new PHPTAL('template/application/program/dp_main.tpl');
 	//$_page->html = new PHPTAL('template/global/main.tpl');
-	
+
 	$event_id = mysql_real_escape_string($_REQUEST['event_id']);
 	$_page->html->set( 'event_id', $event_id );
 	
 	$_camp->event( $event_id ) || die( "error" );
-
+	
 //	NAME:
 // =======
 	$query = "	SELECT
@@ -73,10 +73,10 @@
 	}
 	
 	$dp_header['place'] =  array(
-									"value" 	=> $event_place,
-									"event_id" 	=> $event_id,
-									"script"	=> "action_change_place"
-								);
+		"value" 	=> $event_place,
+		"event_id" 	=> $event_id,
+		"script"	=> "action_change_place"
+	);
 	
 	$query = "	SELECT
 					event_instance.starttime,
@@ -103,9 +103,9 @@
 		$end->setValue($row['starttime'] + $row['length']);
 		
 		$dp_header['event_instance'][] = array(
-												'startdate' => date("d.m.Y", $date->getUnix()),
-												'starttime' => $start->getString("H:i") . " - " . $end->getString("H:i")
-											);
+			'startdate' => date("d.m.Y", $date->getUnix()),
+			'starttime' => $start->getString("H:i") . " - " . $end->getString("H:i")
+		);
 	}
 	
 	$_page->html->set( 'dp_header', $dp_header );
@@ -145,20 +145,20 @@
 	$dp_head = array();
 	
 	$dp_head['aim'] = array(
-								"value" => $replace['aim'],
-								"script"	=> "action_save_change_aim",
-								"event_id"	=> $event_id
-							);
+		"value" => $replace['aim'],
+		"script"	=> "action_save_change_aim",
+		"event_id"	=> $event_id
+	);
 	$dp_head['story'] = array(
-								"value" => $replace['story'],
-								"script"	=> "action_save_change_story",
-								"event_id"	=>	$event_id
-							);
+		"value" => $replace['story'],
+		"script"	=> "action_save_change_story",
+		"event_id"	=>	$event_id
+	);
 	$dp_head['method'] = array(
-								"value" => $replace['method'],
-								"script"	=> "action_save_change_method",
-								"event_id"	=>	$event_id
-							);
+		"value" => $replace['method'],
+		"script"	=> "action_save_change_method",
+		"event_id"	=>	$event_id
+	);
 	$_page->html->set( 'dp_head', $dp_head );	
 	
 	echo $_page->html->execute();
@@ -184,26 +184,26 @@
 		{	$row[$k] = htmlentities($v);	}
 		
 		$row['time'] = gettemplate_app('input_text', array(
-															"value" => $row['time'],
-															"cmd"	=> "action_save_change_detail_time",
-															"event_id" => $row['id']
-														));
+			"value" => $row['time'],
+			"cmd"	=> "action_save_change_detail_time",
+			"event_id" => $row['id']
+		));
 		$row['content'] = gettemplate_app('input_textarea', array(
-															"value" => $row['content'],
-															"cmd"	=> "action_save_change_detail_content",
-															"event_id" => $row['id']
-														));
+			"value" => $row['content'],
+			"cmd"	=> "action_save_change_detail_content",
+			"event_id" => $row['id']
+		));
 		$row['resp'] = gettemplate_app('input_text', array(
-															"value" => $row['resp'],
-															"cmd"	=> "action_save_change_detail_resp",
-															"event_id" => $row['id']
-														));
+			"value" => $row['resp'],
+			"cmd"	=> "action_save_change_detail_resp",
+			"event_id" => $row['id']
+		));
 		
 		array_push($details, gettemplate_app('dp_event_detail', $row));
 	}
 	
 	$data_left['ablauf'] = gettemplate_app('dp_ablauf', array('ablauf' => implode("\n", $details)));
-	
+
 //	Material:
 // ===========
 		$mat_lists['buy'] = "";
@@ -227,11 +227,11 @@
 		while($row = mysql_fetch_assoc($result))
 		{
 			if( !empty($row['scoutname']) )
-			{	array_push($leader_list, "<option value='" . $row[id] . "'>" . $row['scoutname'] . "</option>");	}
+			{	array_push($leader_list, "<option value='" . $row['id'] . "'>" . $row['scoutname'] . "</option>");	}
 			else
-			{	array_push($leader_list, "<option value='" . $row[id] . "'>" . $row['firstname'] . " " . $row['surname'] . "</option>");	}
+			{	array_push($leader_list, "<option value='" . $row['id'] . "'>" . $row['firstname'] . " " . $row['surname'] . "</option>");	}
 		}
-		
+
 	//	Buy:
 	// ======
 		$query = "	SELECT
@@ -313,15 +313,15 @@
 	$row = mysql_fetch_assoc($result);
 	
 	$row['notice'] = gettemplate_app('input_textarea', array(
-															"value" => $row['notice'],
-															"cmd"	=> "action_save_change_notes",
-															"event_id" => $row['id']
-														));
+		"value" => $row['notice'],
+		"cmd"	=> "action_save_change_notes",
+		"event_id" => $row['id']
+	));
 	$row['siko_content'] = gettemplate_app('input_textarea', array(
-															"value" => $row['siko_content'],
-															"cmd"	=> "action_save_change_siko",
-															"event_id" => $row['id']
-														));
+		"value" => $row['siko_content'],
+		"cmd"	=> "action_save_change_siko",
+		"event_id" => $row['id']
+	));
 	
 	$data_right['siko'] = gettemplate_app('dp_siko', $row);
 
@@ -388,8 +388,8 @@
 		array_push($comment_list, gettemplate_app('dp_comment_entry', $row));
 	}
 	
-	$data_right['comment'] = gettemplate_app('dp_comment_main', array("comment" => implode("\n", $comment_list)));	
-
+	$data_right['comment'] = gettemplate_app('dp_comment_main', array("comment" => implode("\n", $comment_list)));
+	
 	//$replace = array('data' => "<html><![CDATA[" . implode($data) . "<br />]]></html>", 'error'=> '0');
 
 	//$xml = gettemplate_main( "ajax_response", $replace ); 
@@ -399,4 +399,3 @@
 	echo gettemplate_app('dp_main', array("left" => implode($data_left), "right" => implode($data_right) ) );
 	
 	die();
-?>

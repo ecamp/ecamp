@@ -1,4 +1,6 @@
 <span metal:define-macro="border" tal:omit-tag="">
+
+
 <table style="position:absolute; left:0px; width:100%;" border="0">
 	<colgroup>
 		<col width="50%" />
@@ -39,6 +41,8 @@
 	</tr>
 
 </table>
+
+
 <!--
 
 	<div style="width=100%; margin-bottom:20px;">
@@ -73,4 +77,5 @@
                      
     </div>
 -->
+
 </span>

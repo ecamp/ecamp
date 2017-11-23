@@ -22,7 +22,7 @@
 	$event_progress	= mysql_real_escape_string( $_REQUEST['event_progress'] );
 	
 	$_camp->event( $event_id ) || die( "error" );
-	
+
 	$query = "
 				UPDATE
 					event
@@ -44,4 +44,3 @@
 		echo json_encode( $ans );
 		die();
 	}
-?>

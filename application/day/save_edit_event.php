@@ -41,7 +41,7 @@
 	
 	$start 	= $start_h  * 60 + $start_min;
 	$length = $length_h * 60 + $length_min;
-	
+
 	$query = "	SELECT
 					event.*
 				FROM
@@ -56,7 +56,7 @@
 		echo json_encode( $ans );
 		die();
 	}
-
+	
 	$query = "	UPDATE 
 					event
 				SET 
@@ -65,7 +65,7 @@
 				WHERE 
 					id = $event_id";
 	mysql_query( $query );
-
+	
 	$query = "	UPDATE
 					event_instance
 				SET
@@ -82,4 +82,3 @@
 
 	echo json_encode( $ans );
 	die();
-?>

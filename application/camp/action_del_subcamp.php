@@ -36,8 +36,7 @@
 		// Subcamp löschen
 		// Der Rest (day, event) wird automatisch gelöscht (innoDB)
 		mysql_query($query);
-		
-		
+
 		$query = "	SELECT event.id
 					FROM event
 					LEFT JOIN event_instance 
@@ -47,8 +46,7 @@
 		
 		while( $row = mysql_fetch_assoc( $result ) )
 		{	mysql_query( "DELETE FROM event WHERE id = " . $row['id']	);	}
-		
-		
+
 		$ans = array( "error" => false );
 		echo json_encode($ans);
 		die();
@@ -60,4 +58,3 @@
 				);
 	echo json_encode($ans);
 	die();
-?>

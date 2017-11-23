@@ -29,7 +29,6 @@
 	$new  = mysql_real_escape_string($_REQUEST['new']);
 	$edit  = mysql_real_escape_string($_REQUEST['edit']);
 	
-	
 	// Neues Ziel
 	if( $new == 1  )
 	{
@@ -68,4 +67,3 @@
 	$ans = array( "error" => $error, "text" => $text_js, "pid" => $pid, "new" => $new, "id" => $id );
 	echo json_encode($ans);
 	die();
-?>

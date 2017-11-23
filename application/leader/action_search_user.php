@@ -56,4 +56,3 @@
 
 	echo json_encode( $found_users );
 	die();
-?>

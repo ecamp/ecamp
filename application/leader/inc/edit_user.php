@@ -18,7 +18,7 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	$id = $_REQUEST['id'];
+	$id = $_REQUEST[id];
 	
 	$query = "SELECT * FROM user WHERE id = '$id'";
 	$result = mysql_query($query);
@@ -44,6 +44,7 @@
 	# JS Ausbildung:
 	#
 	###########################
+	
 	$query = "SELECT * FROM dropdown WHERE list = 'jsedu' ORDER BY id ASC";
 	$result = mysql_query($query);
 	
@@ -55,7 +56,7 @@
 		{	$selected = "";	}
 		$jsedu_option .= gettemplate_app('option', array("value" => $row['id'], "content" => $row['entry'], "selected" => $selected));
 	}
-	
+
 	# PBS Ausbildung:
 	#
 	###########################
@@ -75,6 +76,5 @@
 	$user['select_sex']		= gettemplate_app('select', array('name' => "sex", 	 "content" => $sex_option));
 	$user['select_jsedu']		= gettemplate_app('select', array('name' => "jsedu", 	 "content" => $jsedu_option));
 	$user['select_pbsedu']	= gettemplate_app('select', array('name' => "pbsedu", 	 "content" => $pbsedu_option));
-	
+
 	$index_content['main'] .= gettemplate_app('edit_user', $user);
-?>

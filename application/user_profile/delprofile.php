@@ -29,4 +29,3 @@
 		$_page->html->set( 'profiledelable', false );
 	else
 		$_page->html->set( 'profiledelable', true );
-?>

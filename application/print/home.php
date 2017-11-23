@@ -28,4 +28,3 @@
 	
 	$_page->html->set( 'print', $print );
 	$_page->html->set( 'main_macro', $GLOBALS['tpl_dir'].'/application/print/border.tpl/border' );
-?>

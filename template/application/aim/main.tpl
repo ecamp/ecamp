@@ -41,10 +41,11 @@
                 <form action="index.php" onsubmit="if(this.type.get('value') == '') alert('Bitte einen Kurstyp wählen.'); else return confirm('Du bist dabei, die vordefinierten Ziele des gewählten Kurstyps in deinen Kurs zu kopieren. Weiterfahren?');">
                     <select name="type" id="type">
                         <option></option>
-                        <option value="1">Basiskurs 1. Stufe</option>
-                        <option value="2">Basiskurs 2. Stufe</option>
-                        <option value="3">Aufbaukurs 1. Stufe</option>
-                        <option value="4">Aufbaukurs 2. Stufe</option>
+                        <option value="1">Basiskurs Wolfsstufe</option>
+                        <option value="2">Basiskurs Pfadistufe</option>
+                        <option value="3">Aufbaukurs Wolfsstufe</option>
+                        <option value="4">Aufbaukurs Pfadistufe</option>
+                        <option value="5">Panoramakurs</option>
                     </select>
                     <input type="submit" value="Jetzt importieren" />
                     <input type="hidden" name="app" value="aim" />

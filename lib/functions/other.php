@@ -25,7 +25,8 @@
 		
 		if( mysql_num_rows($result) == 0)
 			return "<unbekannt>";
-
+			
+		
 	 	$this_user = mysql_fetch_assoc($result);
 		if( trim($this_user['scoutname']) != "" )
 			return $this_user['scoutname'];
@@ -37,4 +38,3 @@
 	{
 		return htmlentities( $str, ENT_QUOTES, "UTF-8" );
 	}
-?>

@@ -32,7 +32,7 @@
 				event e, 
 				event_instance i, 
 				category c,
-				v_event_nr v, 
+				(".getQueryEventNr($_camp->id).") v, 
 				day d, 
 				subcamp s 
 			WHERE   
@@ -59,34 +59,50 @@
 	
 	// Creating a workbook
 	$workbook = new Spreadsheet_Excel_Writer();
-  $workbook->setVersion(8); 
+    $workbook->setVersion(8);
 	
 	// sending HTTP headers
-	$workbook->send('Blockübersicht.xls');
+	$workbook->send('Blockuebersicht.xls');
 	
 	// Creating a worksheet
-	$worksheet =& $workbook->addWorksheet(utf8_decode("Blockübersicht"));
-  $worksheet->setInputEncoding ("UTF-8");
+	$worksheet =& $workbook->addWorksheet(utf8_decode("Blockuebersicht"));
+    $worksheet->setInputEncoding ("UTF-8");
 	
-  $format_content = & $workbook->addFormat(array( "Size" => 8,
-													"Align" => "left",
-													"Border" => 1,
-													"vAlign" => "top"));
+    $format_content = & $workbook->addFormat(
+  	    array(
+  		    "Size" => 8,
+	        "Align" => "left",
+	        "Border" => 1,
+	        "vAlign" => "top"
+        )
+    );
 	
-	$format_content_unboxed = & $workbook->addFormat(array( "Size" => 8,
-													"Align" => "left",
-													"Border" => 0,
-													"vAlign" => "top"));
+	$format_content_unboxed = & $workbook->addFormat(
+		array(
+			"Size" => 8,
+			"Align" => "left",
+			"Border" => 0,
+			"vAlign" => "top"
+		)
+	);
 	
-	$format_header  = & $workbook->addFormat(array( "Size" => 10,
-													"Bold" => 1,
-													"Align" => "left",
-													"Border" => 1,
-													"vAlign" => "top"));
+	$format_header  = & $workbook->addFormat(
+		array(
+			"Size" => 10,
+			"Bold" => 1,
+			"Align" => "left",
+			"Border" => 1,
+			"vAlign" => "top"
+		)
+	);
 	
-	$format_title  = & $workbook->addFormat(array( "Size" => 16,
-													"Bold" => 1,
-													"vAlign" => "top"));
+	$format_title  = & $workbook->addFormat(
+		array(
+			"Size" => 16,
+			"Bold" => 1,
+			"vAlign" => "top"
+		)
+	);
 	
 	$format_title->setFontFamily("Arial");
 	
@@ -152,8 +168,7 @@
 			$checklist_str = $checklist_str . $this_checklist_item['short'] . ", ";
 		}
 		$checklist_str = "[".substr($checklist_str,0,strlen($checklist_str)-2)."]";
-		
-		
+
 		// Ausbildungsziele
 		$query = "SELECT 
 		  ca.aim
@@ -211,4 +226,3 @@
 	// Let's send the file
 	$workbook->close();
 	die();
-?>

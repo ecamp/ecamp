@@ -26,4 +26,3 @@
 	mysql_query($query);
 	
 	die();
-?>

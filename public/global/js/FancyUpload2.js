@@ -16,7 +16,9 @@
  */
 
 var FancyUpload2 = new Class({
+
 	Extends: Swiff.Uploader,
+
 	options: {
 		limitSize: false,
 		limitFiles: 5,
@@ -50,6 +52,7 @@ var FancyUpload2 = new Class({
 		this.render();
 	},
 
+
 	render: function() {
 		this.overallTitle = this.status.getElement('.overall-title');
 		this.currentTitle = this.status.getElement('.current-title');
@@ -59,7 +62,7 @@ var FancyUpload2 = new Class({
 		this.overallProgress = new Fx.ProgressBar(progress, {
 			text: new Element('span', {'class': 'progress-text'}).inject(progress, 'after')
 		});
-		progress = this.status.getElement('.current-progress');
+		progress = this.status.getElement('.current-progress')
 		this.currentProgress = new Fx.ProgressBar(progress, {
 			text: new Element('span', {'class': 'progress-text'}).inject(progress, 'after')
 		});
@@ -228,7 +231,7 @@ var FancyUpload2 = new Class({
 	},
 
 	fileComplete: function(file, response) {
-		this.options.processResponse || this;
+		this.options.processResponse || this
 		var json = $H(JSON.decode(response, true));
 		if (json.get('result') == 'success') {
 			file.element.addClass('file-success');
@@ -263,6 +266,7 @@ var FancyUpload2 = new Class({
 	log: function(text, args) {
 		if (window.console) console.log(text.substitute(args || {}));
 	}
+
 });
 
 /**

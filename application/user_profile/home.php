@@ -156,4 +156,3 @@
 	$_page->html->set( 'profile', $profile );
 	
 	//print_r($profile);
-?>

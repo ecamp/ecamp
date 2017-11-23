@@ -17,7 +17,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
-	
+
 	$_page->html->set('main_macro', $GLOBALS['tpl_dir'].'/global/content_box_fit.tpl/predefine');
 	$_page->html->set('box_content', $GLOBALS['tpl_dir'].'/application/db/statistics.tpl/statistics');
 	$_page->html->set('box_title', 'Statistics:');
@@ -31,6 +31,5 @@
 	$query = "	SELECT count(camp.id) FROM camp";
 	$result = mysql_query( $query );
 	$count['camp'] = mysql_result( $result, 0 );
-	
+
 	$_page->html->set( 'count', $count );
-?>

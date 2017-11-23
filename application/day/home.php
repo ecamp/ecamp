@@ -24,7 +24,7 @@
 	
 	if( is_numeric( $day_id ) )
 	{	$_camp->day( $day_id ) || die( "error" );	}
-
+	
 	include( 'load_day_list.php' );
 
 	if( is_numeric( $day_id ) )
@@ -57,7 +57,7 @@
 	{
 		$_page->html->set( 'day_selected', false );
 	}
-
+	
 	$query = "	SELECT category.*
 				FROM category
 				WHERE category.camp_id = $_camp->id";
@@ -92,4 +92,3 @@
 	
 	$_page->html->set( 'show_info_box', true );
 	$_page->html->set( 'info_box', $GLOBALS['tpl_dir'].'/module/info/info_box.tpl/info_box' );
-?>

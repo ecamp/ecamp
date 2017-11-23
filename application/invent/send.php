@@ -35,8 +35,8 @@
 	else
 	{	$from = "From: " . $_user->display_name . " " . $_user->mail;	}
 
-	mail( $email, "eCamp - Einladung von " . $_user->display_name, $text, $from );
+	ecamp_send_mail($email, "eCamp - Einladung von " . $_user->display_name, $text);
+	//mail( $email, "eCamp - Einladung von " . $_user->display_name, $text, $from );
 	
 	header( "location: index.php?app=invent" );
 	die();
-?>

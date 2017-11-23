@@ -13,9 +13,10 @@
  * @author		Harald Kirschner <mail [at] digitarald.de>
  * @copyright	Author
  */
-
 var Observer = new Class({
+
 	Implements: [Options, Events],
+
 	options: {
 		periodical: false,
 		delay: 1000

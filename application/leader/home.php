@@ -29,7 +29,7 @@
 		$query = "SELECT * FROM dropdown WHERE list='function_course' AND value > '0'";
 	else
 		$query = "SELECT * FROM dropdown WHERE list='function_camp' AND value > '0'";
-	
+
 	$result = mysql_query($query);
 	
 	$leaders = array();
@@ -51,7 +51,7 @@
 				user_camp 
 			WHERE 
 				user_camp.camp_id = '$_camp->id' AND
-				user_camp.function_id = '" . $function[id] . "' AND
+				user_camp.function_id = '" . $function['id'] . "' AND
 				user_camp.user_id = user.id";
 		
 		//echo $subquery;
@@ -102,8 +102,8 @@
 	}
 	
 	$leader = array(
-						"leaders" => $leaders
-					);
+		"leaders" => $leaders
+	);
 	
 	//print_r($leader);
 	
@@ -113,4 +113,3 @@
 	
 	$_page->html->set( 'show_info_box', true );
 	$_page->html->set( 'info_box', $GLOBALS['tpl_dir'].'/module/info/info_box.tpl/info_box' );
-?>

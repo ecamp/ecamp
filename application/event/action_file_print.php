@@ -28,8 +28,7 @@
 				SET `print` = '$print'
 				WHERE id = $event_document_id";
 	mysql_query( $query );
-	
-	
+
 	if( mysql_affected_rows() )
 	{
 		$ans = array( "error" => 0, "error_msg" => "", "print" => $print );
@@ -41,4 +40,3 @@
 		echo json_encode( $ans );
 	}
 	die();
-?>

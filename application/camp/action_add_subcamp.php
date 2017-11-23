@@ -21,7 +21,7 @@
 	// Authentifizierung überprüfen
 	$start = mysql_real_escape_string($_REQUEST['subcamp_start']);
 	$end = mysql_real_escape_string($_REQUEST['subcamp_end']);
-	
+
 	$start = ereg("([0-9]{1,2})[\/\. -]+([0-9]{1,2})[\/\. -]+([0-9]{1,4})", $start, $regs);
 	$start = gmmktime(0, 0, 0, $regs[2], $regs[1], $regs[3]);
 	
@@ -55,7 +55,7 @@
 		echo json_encode($ans);
 		die();
 	}
-	
+
 	// Überschneidungen prüfen
 	$query = "SELECT * FROM `subcamp` WHERE camp_id=".$_camp->id." AND (`start` BETWEEN -10000 AND ".$c_end->getValue().") AND ((`start`+`length`-1) BETWEEN ".$c_start->getValue()." AND 32000)";
 	$result = mysql_query( $query );
@@ -71,7 +71,8 @@
 				VALUES 				( '$_camp->id', '$start', '$length')";
 	mysql_query($query);
 	$last_subcamp_id = mysql_insert_id();
-
+	
+	
 	// day: Datensätze einfügen
 	for( $i=0; $i < $length; $i++ )
 	{
@@ -90,4 +91,3 @@
 	$ans = array("error" => false );
 	echo json_encode($ans);
 	die();
-?>

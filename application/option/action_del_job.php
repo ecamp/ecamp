@@ -54,4 +54,3 @@
 	$ans = array( "error" => false );
 	echo json_encode( $ans );
 	die();
-?>

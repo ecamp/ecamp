@@ -20,16 +20,17 @@
 
 	include("./config.php");
 	include($lib_dir . "/mysql.php");
+	include($lib_dir . "/functions/mail.php");
 	db_connect();
 	
 	require_once( "./lib/recaptchalib.php" );
-
+	
 	//	CHECK ALL INPUTS:
 	// ===================
-	$resp = recaptcha_check_answer ($GLOBALS['captcha_prv'], $_SERVER["REMOTE_ADDR"],
+	$resp = recaptcha_check_answer ($GLOBALS['captcha_prv'], $_SERVER["REMOTE_ADDR"], 
 									$_REQUEST["recaptcha_challenge_field"],
 									$_REQUEST["recaptcha_response_field"]	);
-
+	
 	if (!$resp->is_valid)
 	{	header( 'location: register.php?msg=Bitte CAPTCHA richtig abschreiben!' );	die();	}
 	
@@ -58,25 +59,24 @@
 	$scoutname 	= mysql_real_escape_string( $_REQUEST[ 'scoutname' ] );
 	$firstname 	= mysql_real_escape_string( $_REQUEST[ 'firstname' ] );
 	$surname 	= mysql_real_escape_string( $_REQUEST[ 'surname' ] );
-
+	
 	if( $pw1 != $pw2 )
 	{	header( 'location: register.php?msg=Passwort unstimmig' );	die();	}
-	
 	
 	$query = "SELECT user.id FROM user WHERE user.mail = '" . $login . "'";
 	$result = mysql_query( $query );
 	
 	if( mysql_num_rows( $result ) )
 	{	header( 'location: register.php?msg=eMail-Adresse ist bereits registriert' );	die();	}
-
+	
 	//	INSERT NEW USER:
 	// ==================
 	$acode = md5( time() . $pw1 );
-
+	
 	$query = "	INSERT INTO user ( `mail`, `pw`, `scoutname`, `firstname`, `surname`, `acode` )
 				VALUES ( '$login', '$pw1', '$scoutname', '$firstname', '$surname', '$acode' );";
 	mysql_query( $query );
-
+	
 	$user_id = mysql_insert_id();
 	
 	//	SEND MAIL FOR ACTIVATION:
@@ -89,7 +89,8 @@ Zu diesem Zweck musst du nachfolgendem Link folgen:
 \n\n
  ";
 
- 	mail( $login, "eCamp - Willkommen", $text, "From: eCamp Pfadi Luzern <ecamp@pfadiluzern.ch>" ); 
+	ecamp_send_mail($login, "eCamp - Willkommen", $text);
+ 	// mail( $login, "eCamp - Willkommen", $text, "From: eCamp Pfadi Luzern <ecamp@pfadiluzern.ch>" );
 	
 	/*
 	$text = urlencode( $text );

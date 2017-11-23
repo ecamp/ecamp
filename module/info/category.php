@@ -28,4 +28,3 @@
 	
 	$_page->html->set( 'info_box_content', $cat_content );
 	$_page->html->set( 'info_box_title', "Blocktypen:" );
-?>

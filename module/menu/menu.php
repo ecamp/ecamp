@@ -21,11 +21,12 @@
 	# Search for all camps, the user is working
 	#
 	#########################################################
+	
 	$c_date = new c_date;
 	$c_date->setUnix( time() );
-
+	
 	$dropdown = array();
-
+	
 	$query = "	SELECT
 					camp.*,
 					groups.id as groups_id,
@@ -45,7 +46,7 @@
 	
 	$result = mysql_query( $query );
 	
-	while($camp = mysql_fetch_assoc($result))
+	while( $camp = mysql_fetch_assoc( $result ) )
 	{
 		$subquery = "	SELECT	MAX( subcamp.start + subcamp.length - 1 ) as camp_end
 						FROM	subcamp
@@ -85,7 +86,8 @@
 	else
 	{	$query = "SELECT * FROM dropdown WHERE list = 'function' AND value > 0";	}
 	$result = mysql_query($query);
-
+	
+	
 	while($function = mysql_fetch_assoc($result))
 	{
 		$dropdown[$function[id]] = array();
@@ -123,4 +125,3 @@
 	}
 	*/
 	$_page->html->set('menu_dropdown', $dropdown);
-?>

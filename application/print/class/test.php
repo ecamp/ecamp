@@ -73,7 +73,7 @@
 	//$pdf = new FPDF_ADDONS();
 	$pdf = new TCPDF_ADDONS('P', 'mm', 'A4', true, 'UTF-8', false);
 	$pdf->SetAutoPageBreak(true);
-
+	
 	$pdf->SetAuthor( 'ecamp2.pfadiluzern.ch' );
 	$pdf->SetSubject( 'J&S - Programm' );
 	$pdf->SetTitle( 'J&S - Programm' );
@@ -108,4 +108,3 @@
 	*/
 	
 	$pdf->output();
-?>

@@ -24,4 +24,3 @@
 	
 	header( 'location: index.php?app=home' );
 	die();
-?>

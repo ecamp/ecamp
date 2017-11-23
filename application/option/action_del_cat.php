@@ -21,7 +21,7 @@
 	$cat_del_id 	= mysql_real_escape_string($_REQUEST['category_id']);
 	
 	$_camp->category( $cat_del_id ) || die( "error" );
-
+	
 		//TESTEN OB NOCH BLÖCKE IN DIESER KATEGORIE SIND
 		$query = "SELECT id FROM event WHERE category_id='$cat_del_id'";
 		$result = mysql_query( $query );
@@ -33,7 +33,7 @@
 			echo json_encode( $ans );
 			die();
 		}
-				
+
 		// LÖSCHEN:
 		$query = "DELETE FROM category WHERE id = '$cat_del_id' and camp_id='$_camp->id'";
 		mysql_query($query);
@@ -42,4 +42,3 @@
 	$ans = array( "error" => false );
 	echo json_encode( $ans );
 	die();
-?>

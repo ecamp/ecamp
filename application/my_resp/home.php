@@ -17,14 +17,14 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
-	
+
 	require_once( "application/day/inc/prog_color.php" );
 	
 	$_page->html->set('main_macro', $GLOBALS['tpl_dir'].'/global/content_box_fit.tpl/predefine');
 	$_page->html->set('box_content', $GLOBALS['tpl_dir'].'/application/my_resp/home.tpl/home');
 	$_page->html->set('box_title', "Meine Verantwortung");
     $date = new c_date();
-    
+
     // Events
     $events = array();
     $query = "	SELECT
@@ -87,12 +87,12 @@
     				category.short_name,
     				category.color,
     				(day.day_offset + subcamp.start) as date,
-    				v_event_nr.day_nr as day_offset,
-    				v_event_nr.event_nr,
+    				v.day_nr as day_offset,
+    				v.event_nr,
 					category.form_type,
 					event_instance.starttime
     			FROM
-    				v_event_nr,
+    				(".getQueryEventNr($_camp->id).") v,
     				event,
     				event_responsible,
     				category,
@@ -100,7 +100,7 @@
     				day,
     				subcamp
     			WHERE
-    				v_event_nr.event_instance_id = event_instance.id AND
+    				v.event_instance_id = event_instance.id AND
     				event_responsible.user_id = " . $_user->id . " AND
     				event.camp_id = " . $_camp->id . " AND
     				event_responsible.event_id = event.id AND
@@ -114,7 +114,7 @@
     {
     	$date->setDay2000( $event['date'] );
     	
-    	$event['link'] = '$event.edit(' . $event['id'] . ')';
+    	$event['link'] = '$event.edit(' . $event[id] . ')';
     	$event['color_str'] = "background-color:#" . $event['color'];
     	
     	if( $event['form_type'] )
@@ -123,7 +123,7 @@
 		{	$event['prog_color'] = "#000000";	}
 		
     	$event['show_event_nr'] = ( $event['form_type'] > 0 );
-    	
+
     	$events[$event['date']]['day_offset'] = $event['day_offset'];
     	$events[$event['date']]['date'] = $date->getString( 'd.m.Y' );
     	$events[$event['date']]['data'][] = $event;
@@ -206,4 +206,3 @@
 	
 	$_page->html->set( 'show_info_box', true );
 	$_page->html->set( 'info_box', $GLOBALS['tpl_dir'].'/module/info/info_box.tpl/info_box' );
-?>

@@ -36,75 +36,17 @@
 					(subcamp.start + day.day_offset) as event_date,
 					event.progress,
 					day.id as day_id,
-					(day.day_offset + 1) as daynr,
-					(	
-						SELECT
-							count(event_instance_down.id)
-						FROM
-							event_instance as event_instance_up,
-							event_instance as event_instance_down,
-							event,
-							category
-						WHERE
-							event_instance_up.id = event_instance.id AND
-							event_instance_up.day_id = event_instance_down.day_id AND
-							event_instance_down.event_id = event.id AND
-							event.category_id = category.id AND
-							category.form_type > 0 AND
-							(
-								event_instance_down.starttime < event_instance_up.starttime OR
-								(
-									event_instance_down.starttime = event_instance_up.starttime AND
-									(
-										event_instance_down.dleft < event_instance_up.dleft OR
-										(
-											event_instance_down.dleft = event_instance_up.dleft AND
-											event_instance_down.id <= event_instance_up.id
-							)	)	)	)
-					) as eventnr
+					v.day_nr as daynr,
+					v.event_nr as eventnr
 				FROM
+					(".getQueryEventNr($_camp->id).") v,
 					event,
 					event_instance,
 					category,
 					day,
 					subcamp
 				WHERE
-					subcamp.camp_id = $_camp->id AND
-					day.id = $day_id AND
-					day.subcamp_id = subcamp.id AND
-					event_instance.day_id = day.id AND
-					
-					event.camp_id = $_camp->id AND
-					event.category_id = category.id AND
-					
-					event.id = event_instance.event_id
-				ORDER BY
-					event_instance.starttime, eventnr";
-	
-	$query = "	SELECT
-					event.id as event_id,
-					event.name,
-					category.id as category_id,
-					category.short_name,
-					category.form_type,
-					category.color,
-					event_instance.id,
-					event_instance.starttime,
-					event_instance.length,
-					(subcamp.start + day.day_offset) as event_date,
-					event.progress,
-					day.id as day_id,
-					v_event_nr.day_nr as daynr,
-					v_event_nr.event_nr as eventnr
-				FROM
-					v_event_nr,
-					event,
-					event_instance,
-					category,
-					day,
-					subcamp
-				WHERE
-					v_event_nr.event_instance_id = event_instance.id AND
+					v.event_instance_id = event_instance.id AND
 					subcamp.camp_id = $_camp->id AND
 					day.id = $day_id AND
 					day.subcamp_id = subcamp.id AND
@@ -145,4 +87,3 @@
 	}
 	
 	//print_r( $event_list );
-?>

@@ -103,7 +103,7 @@
 	
 	if( is_array( $active_camp_sort ) )
 	{	array_multisort( $active_camp_sort, SORT_DESC, $active_camp_list );	}
-	
+
 	$query = 
 		"SELECT camp.*,
 			user.mail,
@@ -166,5 +166,3 @@
 	$_page->html->set('active_camp_list', 	$active_camp_list );
 	$_page->html->set('request_camp_list', 	$request_camp_list );
 	$_page->html->set('request_camp_show', 	$request_camp_show );
-	
-?>

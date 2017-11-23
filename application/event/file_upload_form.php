@@ -32,6 +32,5 @@
 					event.id = $event_id";
 	$result = mysql_query( $query );
 	$event = mysql_fetch_assoc( $result );
-	
+
 	$_page->html->set( 'event', $event );
-?>

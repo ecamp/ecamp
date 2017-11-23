@@ -2,11 +2,8 @@
  *  - mooRainbow: defaultCSS
  * author: w00fz <w00fzIT@gmail.com>
  */
-#mooRainbow { 
-	font-size: 11px; 
-	color: #000;
-	z-index: 10000;
-}
+
+#mooRainbow { font-size: 11px; color: #000; }
 
 .moor-box {
 	width: 390px; 
@@ -73,7 +70,7 @@
 	margin-top: 190px;
 	margin-left: 315px;
 }
-span.moor-ballino { /* Style hue ° (degree) !! */
+span.moor-ballino { /* Style hue ∞ (degree) !! */
 	margin-top: 190px;
 	margin-left: 370px;
 }
@@ -98,12 +95,12 @@ span.moor-ballino { /* Style hue ° (degree) !! */
 	width: 55px;
 }
 .moor-cursor {
-	background-image: url(../img/moor_cursor.gif); 
+	background-image: url(images/moor_cursor.gif); 
 	width: 12px;
 	height: 12px;
 }
 .moor-arrows {
-	background-image: url(../img/moor_arrows.gif);
+	background-image: url(images/moor_arrows.gif);
 	top: 9px; 
 	left: 270px;
 	width: 41px;

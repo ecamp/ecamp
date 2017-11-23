@@ -25,4 +25,3 @@
 		touch( 	$filename );
 		unlink( $filename );
 	}
-?>

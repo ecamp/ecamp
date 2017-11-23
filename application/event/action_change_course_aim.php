@@ -17,7 +17,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
-	
+
 	$event_id = mysql_real_escape_string( $_REQUEST[ 'event_id' ] );
 	$aim = $_REQUEST[ 'aim' ];
 	
@@ -48,4 +48,3 @@
 	echo json_encode( array( "error" => false ) );
 	
 	die();
-?>

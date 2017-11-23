@@ -21,41 +21,40 @@
 # Sichheitslevel der einzelnen Aktionen/Dateien
 # --> Kommandos/Files die nicht aufgeührt sind, können nicht aufgerufen werden
 $security_level = array( 
-							'home' => 20,
-							'action_search_user' => 50,
-							'action_add_known_user' => 50,
-							'action_change_user_function' => 50,
-							'action_del_user' => 50,
-							'load_dropdown' => 10,
-							'vcard' => 20,
-							'show_user' => 20
-							
-/*							'action_save_unknown_user' => 1,
-							'action_save_edit_user' => 1,
-							
-							'action_csv' => 1*/
-						);
+	'home' => 20,
+	'action_search_user' => 50,
+	'action_add_known_user' => 50,
+	'action_change_user_function' => 50,
+	'action_del_user' => 50,
+	'load_dropdown' => 10,
+	'vcard' => 20,
+	'show_user' => 20
+
+	/*
+	'action_save_unknown_user' => 1,
+	'action_save_edit_user' => 1,
+
+	'action_csv' => 1
+	*/
+);
 
 $css = array(
-				//"home.css" => "app",
-				//"./public_folder/css/leader.css",
-				//"./public_folder/css/info_display.css",
-				"content_template_fit.css" 	=> "global",
-				"info_display.css" 			=> "global",
-				"show_user.css"				=> "app"
-			);
+	//"home.css" => "app",
+	//"./public_folder/css/leader.css",
+	//"./public_folder/css/info_display.css",
+	"content_template_fit.css" 	=> "global",
+	"info_display.css" 			=> "global",
+	"show_user.css"				=> "app"
+);
 
 $js  = array(
-				"mootools-core-1.4.js" 		=> "global",
-				"mootools-more-1.4.js" 		=> "global",
-				"popup.js"				=> "global",
-				"leader.js" 			=> "app"
-			);
+	"mootools-core-1.4.js" 		=> "global",
+	"mootools-more-1.4.js" 		=> "global",
+	"popup.js"				=> "global",
+	"leader.js" 			=> "app"
+);
 
-$div = array(
-				
-			);
+$div = array();
 
 # Standardkommando
 if( $_page->cmd == "" ) $_page->cmd = "home";
-?>

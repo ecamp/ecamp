@@ -35,8 +35,8 @@
 /**
  * The reCAPTCHA server URL's
  */
-define("RECAPTCHA_API_SERVER", "http://api.recaptcha.net");
-define("RECAPTCHA_API_SECURE_SERVER", "https://api-secure.recaptcha.net");
+define("RECAPTCHA_API_SERVER", "http://www.google.com/recaptcha/api");
+define("RECAPTCHA_API_SECURE_SERVER", "https://www.google.com/recaptcha/api");
 define("RECAPTCHA_VERIFY_SERVER", "api-verify.recaptcha.net");
 
 /**
@@ -63,6 +63,7 @@ function _recaptcha_qsencode ($data) {
  * @return array response
  */
 function _recaptcha_http_post($host, $path, $data, $port = 80) {
+
         $req = _recaptcha_qsencode ($data);
 
         $http_request  = "POST $path HTTP/1.0\r\n";
@@ -167,7 +168,7 @@ function recaptcha_check_answer ($privkey, $remoteip, $challenge, $response, $ex
                                                  ) + $extra_params
                                           );
 
-        $answers = explode ("\n", $response['1']);
+        $answers = explode ("\n", $response [1]);
         $recaptcha_response = new ReCaptchaResponse();
 
         if (trim ($answers [0]) == 'true') {
@@ -178,6 +179,7 @@ function recaptcha_check_answer ($privkey, $remoteip, $challenge, $response, $ex
                 $recaptcha_response->error = $answers [1];
         }
         return $recaptcha_response;
+
 }
 
 /**
@@ -218,6 +220,7 @@ function recaptcha_mailhide_url($pubkey, $privkey, $email) {
 		die ("To use reCAPTCHA Mailhide, you have to sign up for a public and private key, " .
 		     "you can do so at <a href='http://mailhide.recaptcha.net/apikey'>http://mailhide.recaptcha.net/apikey</a>");
 	}
+	
 
 	$ky = pack('H*', $privkey);
 	$cryptmail = _recaptcha_aes_encrypt ($email, $ky);
@@ -255,5 +258,5 @@ function recaptcha_mailhide_html($pubkey, $privkey, $email) {
 	
 	return htmlentities($emailparts[0]) . "<a href='" . htmlentities ($url) .
 		"' onclick=\"window.open('" . htmlentities ($url) . "', '', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=500,height=300'); return false;\" title=\"Reveal this e-mail address\">...</a>@" . htmlentities ($emailparts [1]);
+
 }
-?>

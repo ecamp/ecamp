@@ -53,4 +53,3 @@
 	$ans = array( "error" => false, "job_id" => $job_id );
 	echo json_encode( $ans );
 	die();
-?>

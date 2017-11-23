@@ -87,64 +87,24 @@
 	}
 	
 	$dp_header['place'] =  array(
-									"value" 	=> $event_place,
-									"event_id" 	=> $event_id,
-									"script"	=> "action_change_place"
-								);
+		"value" 	=> $event_place,
+		"event_id" 	=> $event_id,
+		"script"	=> "action_change_place"
+	);
 	
 	$query = "	SELECT
 					event_instance.starttime,
 					event_instance.length,
 					day.day_offset + subcamp.start as startdate,
-					(	SELECT
-							count(event_instance_down.id)
-						FROM
-							event_instance as event_instance_up,
-							event_instance as event_instance_down,
-							event,
-							category
-						WHERE
-							event_instance_up.id = event_instance.id AND
-							event_instance_up.day_id = event_instance_down.day_id AND
-							event_instance_down.event_id = event.id AND
-							event.category_id = category.id AND
-							category.form_type > 0 AND
-							(
-								event_instance_down.starttime < event_instance_up.starttime OR
-								(
-									event_instance_down.starttime = event_instance_up.starttime AND
-									(
-										event_instance_down.dleft < event_instance_up.dleft OR
-										(
-											event_instance_down.dleft = event_instance_up.dleft AND
-											event_instance_down.id <= event_instance_up.id
-							)	)	)	)
-					) as event_nr,
-					day.day_offset + 1 as day_nr
+					v.event_nr,
+					v.day_nr
 				FROM
+					(".getQueryEventNr($_camp->id).") v,
 					event_instance,
 					day,
 					subcamp
 				WHERE
-					event_instance.event_id = $event_id AND
-					event_instance.day_id = day.id AND
-					day.subcamp_id = subcamp.id
-				ORDER BY
-					startdate, event_nr";
-	
-	$query = "	SELECT
-					event_instance.starttime,
-					event_instance.length,
-					day.day_offset + subcamp.start as startdate,
-					v_event_nr.event_nr,
-					v_event_nr.day_nr
-				FROM
-					v_event_nr,
-					event_instance,
-					day,
-					subcamp
-				WHERE
-					v_event_nr.event_instance_id = event_instance.id AND
+					v.event_instance_id = event_instance.id AND
 					event_instance.event_id = $event_id AND
 					event_instance.day_id = day.id AND
 					day.subcamp_id = subcamp.id
@@ -167,10 +127,10 @@
 		$end->setValue($row['starttime'] + $row['length']);
 		
 		$dp_header['event_instance'][] = array(
-												'event_nr'	=> "(" . $row['day_nr'] . "." . $row['event_nr'] . ")",
-												'startdate' => date("d.m.Y", $date->getUnix()),
-												'starttime' => $start->getString("H:i") . " - " . $end->getString("H:i")
-											);
+			'event_nr'	=> "(" . $row['day_nr'] . "." . $row['event_nr'] . ")",
+			'startdate' => date("d.m.Y", $date->getUnix()),
+			'starttime' => $start->getString("H:i") . " - " . $end->getString("H:i")
+		);
 	} while($row = mysql_fetch_assoc( $result ) );
 	
 	$_page->html->set( 'dp_header', $dp_header );
@@ -214,27 +174,29 @@
 	$dp_head = array();
 	
 	$dp_head['aim'] = array(
-								"value" => $replace['aim'],
-								"script"	=> "action_change_aim",
-								"event_id"	=> $event_id
-							);
+		"value" => $replace['aim'],
+		"script"	=> "action_change_aim",
+		"event_id"	=> $event_id
+	);
+
 	$dp_head['story'] = array(
-								"value" => $replace['story'],
-								"script"	=> "action_change_story",
-								"event_id"	=>	$event_id
-							);
+		"value" => $replace['story'],
+		"script"	=> "action_change_story",
+		"event_id"	=>	$event_id
+	);
+
 	$dp_head['method'] = array(
-								"value" => $replace['method'],
-								"script"	=> "action_change_method",
-								"event_id"	=>	$event_id
-							);
+		"value" => $replace['method'],
+		"script"	=> "action_change_method",
+		"event_id"	=>	$event_id
+	);
 
 	$dp_head['topics'] = array(
-								"value" => $replace['topics'],
-								"script"	=> "action_change_topics",
-								"event_id"	=>	$event_id
-							);
-
+		"value" => $replace['topics'],
+		"script"	=> "action_change_topics",
+		"event_id"	=>	$event_id
+	);
+							
 	$_page->html->set( 'dp_head', $dp_head );	
 
 	// 	LOAD:
@@ -253,4 +215,3 @@
 	include( "load_mat_organize_resp.php" );
 
 	//$_js_env->add( 'event_id', $event_id );
-?>

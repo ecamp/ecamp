@@ -52,4 +52,3 @@
 	$_page->html->set( 'functions', $functions );
 	$_page->html->set( 'camptypes', $camptypes );
 	$_page->html->set( 'jstypes', $jstypes );
-?>

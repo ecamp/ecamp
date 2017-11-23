@@ -17,14 +17,14 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
-	
+
 	$_page->html->set('main_macro', $GLOBALS['tpl_dir'].'/global/content_box_full.tpl/predefine');
 	$_page->html->set('box_content', $GLOBALS['tpl_dir'].'/application/support/home.tpl/home');
 	$_page->html->set('box_title', 'Support');
-	
+
 	$search_arg = array();
 	$select_arg = array();
-
+	
 	unset( $camp_id, $camp_desc, $user_id, $user_desc );
 	
 	if( isset( $_REQUEST['search'] ) && $_REQUEST['search'] == 1 )
@@ -34,23 +34,23 @@
 		$user_id	= $_REQUEST['s_user_id'];
 		$user_desc	= $_REQUEST['s_user_desc'];
 		
-		if(!empty($camp_id)){$search_arg[] = " camp.id 	LIKE '$camp_id%' "; 	}
-		if(!empty($camp_desc)){$search_arg[] = " camp.name LIKE '$camp_desc%' ";	}
-		if(!empty($user_id)){$search_arg[] = " user.id 	LIKE '$user_id%' ";		}
-		if(!empty($user_desc)){
-			$search_arg[] = " user.scoutname LIKE '$user_desc%' ";
-			$search_arg[] = " user.firstname LIKE '$user_desc%' ";
-			$search_arg[] = " user.surname   LIKE '$user_desc%' ";
-		}
+		if(!empty($camp_id))	{	$search_arg[] = " camp.id 	LIKE '$camp_id%' "; 	}
+		if(!empty($camp_desc))	{	$search_arg[] = " camp.name LIKE '$camp_desc%' ";	}
+		if(!empty($user_id))	{	$search_arg[] = " user.id 	LIKE '$user_id%' ";		}
+		if(!empty($user_desc))	{
+									$search_arg[] = " user.scoutname LIKE '$user_desc%' ";
+									$search_arg[] = " user.firstname LIKE '$user_desc%' ";
+									$search_arg[] = " user.surname   LIKE '$user_desc%' ";
+								}
 		
 		if(!empty($camp_id))	{	$select_arg[] = " (camp.id 		LIKE '$camp_id%')*5 + 	(camp.id 	LIKE '$camp_id')*75 "; 		}
 		if(!empty($camp_desc))	{	$select_arg[] = " (camp.name 	LIKE '$camp_desc%')*2 + (camp.name 	LIKE '$camp_desc')*30 ";	}
 		if(!empty($user_id))	{	$select_arg[] = " (user.id 		LIKE '$user_id%')*1 + 	(user.id 	LIKE '$user_id')*15 ";		}
 		if(!empty($user_desc))	{
-			$select_arg[] = " (user.scoutname LIKE '$user_desc%')*1 + (user.scoutname LIKE '$user_desc')*15 ";
-			$select_arg[] = " (user.firstname LIKE '$user_desc%')*1 + (user.firstname LIKE '$user_desc')*15 ";
-			$select_arg[] = " (user.surname   LIKE '$user_desc%')*1 + (user.surname   LIKE '$user_desc')*15 ";
-		}
+									$select_arg[] = " (user.scoutname LIKE '$user_desc%')*1 + (user.scoutname LIKE '$user_desc')*15 ";
+									$select_arg[] = " (user.firstname LIKE '$user_desc%')*1 + (user.firstname LIKE '$user_desc')*15 ";
+									$select_arg[] = " (user.surname   LIKE '$user_desc%')*1 + (user.surname   LIKE '$user_desc')*15 ";
+								}
 	}
 	
 	if( ! count( $select_arg ) )
@@ -114,4 +114,3 @@
 	//	print_r( $camp_list );
 	
 	$_page->html->set( 'camp_list', $camp_list );
-?>

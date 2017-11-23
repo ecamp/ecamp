@@ -63,4 +63,3 @@
 				);
 	
 	$_page->html->set( 'faqs', $faq );
-?>

@@ -23,7 +23,7 @@
 	$firstname	= $_REQUEST['firstname'];
 	$surname	= $_REQUEST['surname'];
 	$mail		= $_REQUEST['mail'];
-	
+
 	if( $_camp->is_course )
 		$query = "SELECT * FROM dropdown WHERE list = 'function_course'";
 	else
@@ -38,11 +38,14 @@
 		else
 		{	$selected = "";	}
 		
-		$option .= gettemplate_app('option', array(
-										'value' => $row['id'],
-										'content' => $row['entry'],
-										'selected' => $selected
-								));
+		$option .= gettemplate_app(
+			'option',
+			array(
+				'value' => $row['id'],
+				'content' => $row['entry'],
+				'selected' => $selected
+			)
+		);
 	}
 	$select = gettemplate_app('select', array("name" => "function", "content" => $option));
 
@@ -62,12 +65,13 @@
 		$found_users .= gettemplate_app('add_search_result_user', $found);	
 	}
 
-	$index_content['main'] .= gettemplate_app('add_search_result', array(
+	$index_content['main'] .= gettemplate_app('add_search_result',
+		array(
 			"content" => $found_users,
 			"scoutname" => $scoutname,
 			"firstname" => $firstname,
 			"surname" => $surname,
 			"mail" => $mail,
 			"std" => $std
-			));
-?>
+		)
+	);

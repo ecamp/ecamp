@@ -43,8 +43,7 @@
 		
 		$swap_id = mysql_result( $result, 0, 'id' );
 		$swap_sorting = $base_sorting - 1;
-		
-		
+
 		$query = "UPDATE event_detail SET sorting = $base_sorting WHERE id = $swap_id";
 		mysql_query( $query );
 		
@@ -66,8 +65,7 @@
 		
 		$swap_id = mysql_result( $result, 0, 'id' );
 		$swap_sorting = $base_sorting + 1;
-		
-		
+
 		$query = "UPDATE event_detail SET sorting = $base_sorting WHERE id = $swap_id";
 		mysql_query( $query );
 		
@@ -78,4 +76,3 @@
 	$ans = array( "error" => false );
 	echo json_encode( $ans );
 	die();
-?>

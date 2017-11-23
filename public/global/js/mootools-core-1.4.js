@@ -2275,7 +2275,7 @@ local.setDocument = function(document){
 
 	features.documentSorter = (root.compareDocumentPosition) ? function(a, b){
 		if (!a.compareDocumentPosition || !b.compareDocumentPosition) return 0;
-		return a.compareDocumentPosition(b) && 4 ? -1 : a === b ? 0 : 1;
+		return a.compareDocumentPosition(b) & 4 ? -1 : a === b ? 0 : 1;
 	} : ('sourceIndex' in root) ? function(a, b){
 		if (!a.sourceIndex || !b.sourceIndex) return 0;
 		return a.sourceIndex - b.sourceIndex;
@@ -5736,7 +5736,7 @@ var Request = this.Request = new Class({
 	},
 
 	isRunning: function(){
-		return this.running;
+		return !!this.running;
 	},
 
 	processScripts: function(text){

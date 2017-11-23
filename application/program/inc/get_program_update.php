@@ -43,9 +43,9 @@
 						);";
 		$users = mysql_query($query);
 		
-		while($user = mysql_fetch_assoc($users))
+		while( $user = mysql_fetch_assoc( $users ) )
 		{	$data['users'][] = $user;	}
-
+		
 		//	CATEGORY:
 		// ===========
 		$query = "	SELECT
@@ -198,7 +198,7 @@
 		unlink( $filename );
 		
 		$data['del'] = $file;
-
+		
 		$data['time'] = time();
 		
 		return $data;
@@ -207,4 +207,3 @@
 	//echo json_encode( get_program_update( 1111111111 ) );	
 	
 	//die();
-?>

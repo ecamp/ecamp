@@ -1,31 +1,42 @@
-<div metal:define-macro="home">
-	<div align="left" width="75%">
-		Eigene Lager k&ouml;nnen gel&ouml;scht werden. Aus Lagern, in denen man zur Mitarbeit eingeladen wurde, kann man hier wieder austreten.
-		<br />
-		Durch anklicken des Titels kann sofort zum gewählten Lager gewechselt werden.
-	</div>
-	<div class="space-top"></div>
-	<div tal:condition="not: show_list">
-		<a href="index.php?app=camp_admin&show_list=1">Liste zeigen</a>
-	</div>
-	<div tal:condition="show_list">
-		<a href="index.php?app=camp_admin">Visitenkarten zeigen</a>
-	</div>
-	<form action="index.php">
-		<input type="submit" class="btn" value="Neues Lager erstellen" id="add_new_camp" />
-		<input type="hidden" name="app" value="camp_admin" />
-		<input type="hidden" name="cmd" value="new_camp" />
-	</form>
-	<form action="index.php">
-		<input type="submit" class="btn" value="Neuen Kurs erstellen" id="add_new_camp" />
-		<input type="hidden" name="app" value="camp_admin" />
-		<input type="hidden" name="cmd" value="new_course" />
-	</form>
-
-	<tal:block condition="request_camp_show">
-		<h1 align="center">Einladungen:</h1>
-		<div align="center">
-			<div tal:repeat="request request_camp_list" class="bgcolor_content invention">
+<span metal:define-macro="home" tal:omit-tag="">
+    
+    
+    
+    <table width="100%" border="0">
+		<tr>
+			<td>
+				<div align="left" width="75%">
+			    	Eigene Lager k&ouml;nnen gel&ouml;scht werden. Aus Lagern, in denen man zur Mitarbeit eingeladen wurde, kann man hier wieder austreten.<br />
+			    	Durch anklicken des Titels kann sofort zum gewählten Lager gewechselt werden.<br />
+			    &nbsp;</div>
+			</td>
+			<td tal:condition="not: show_list" width="15%" align="center" >
+				<a href="index.php?app=camp_admin&show_list=1">Liste zeigen</a>
+			</td>
+			<td tal:condition="show_list" width="15%" align="center" >
+				<a href="index.php?app=camp_admin">Visitenkarten zeigen</a>
+			</td>
+			<td align="right" width="10%">
+				<form action="index.php">
+					<input type="submit" value="Neues Lager erstellen" id="add_new_camp" />
+					<input type="hidden" name="app" value="camp_admin" />
+					<input type="hidden" name="cmd" value="new_camp" />
+				</form>
+				
+				<form action="index.php">
+					<input type="submit" value="Neuen Kurs erstellen" id="add_new_camp" />
+					<input type="hidden" name="app" value="camp_admin" />
+					<input type="hidden" name="cmd" value="new_course" />
+				</form>
+			</td>
+		</tr>
+	</table>
+	
+    <center class="center">
+	    <tal:block condition="request_camp_show">
+		    <h1 align="center">Einladungen:</h1>
+		    <div align="center">
+		        <div style="width:280px; display:inline-block; border:1px black solid; margin-right:10px" tal:repeat="request request_camp_list" class="bgcolor_content invention">
 		            <form style="width:280px" action="index.php">
 		            <table width="280px" cellspacing="20px">
 		             <tr align="left">
@@ -193,4 +204,5 @@
 	        	</tbody>
 	        </table>
 	    </div>
-</div>
+	</center>
+</span>

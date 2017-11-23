@@ -40,4 +40,3 @@
 			$this->event->add_event_checklist( $this );
 		}
 	}
-?>
