@@ -62,7 +62,7 @@
 			echo json_encode( $ans );
 			die();
 		}
-		
+
 		$swap_id = mysql_result( $result, 0, 'id' );
 		$swap_sorting = $base_sorting + 1;
 

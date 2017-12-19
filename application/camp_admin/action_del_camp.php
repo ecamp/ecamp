@@ -33,7 +33,7 @@
 	else
 	{
 		$short_name = mysql_result( $result, 0, 'short_name' );
-
+		
 		$query = "	DELETE FROM 
 						camp 
 					WHERE 

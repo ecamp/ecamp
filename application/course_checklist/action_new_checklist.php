@@ -25,7 +25,7 @@
 		
 		$query = "UPDATE camp SET type=".($_camp->type+10)." WHERE id=".$_camp->id." LIMIT 1";
 		mysql_query($query);
+	
 	}
-
 	header("Location: index.php?app=course_checklist");
 	die();

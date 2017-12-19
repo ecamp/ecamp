@@ -81,7 +81,8 @@
 			{	$print_build->day->build( $pdf, $print_build->data->event_instance[ $event_instance_id ]->day );	}
 			else
 			{	$pdf->addPage('P', 'A4');	}
-
+			
+			
 			$print_build->data->event_instance[ $event_instance_id ]->day->gen_event_nr();
 			$print_build->event->build( $pdf, $print_build->data->event_instance[ $event_instance_id ] );
 		}
@@ -108,7 +109,7 @@
 	}
 
 	$print_build->toc->build( $pdf );
-	
+
 	$pdf->output( $_camp->short_name . ".pdf", 'I' );
 
 	die();

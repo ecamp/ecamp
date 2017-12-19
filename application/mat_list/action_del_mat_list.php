@@ -21,7 +21,7 @@
 	$mat_list_id = mysql_real_escape_string( $_REQUEST['mat_list_id'] );
 	
 	$_camp->mat_list( $mat_list_id ) || die( "error" );
-
+	
 	$query = "DELETE FROM mat_list WHERE id = $mat_list_id";
 	mysql_query( $query );
 	

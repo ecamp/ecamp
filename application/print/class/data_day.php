@@ -18,10 +18,8 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	
 	class print_data_day_class
 	{
-		
 		public $pid;
 		public $id;
 		public $subcamp_id;
@@ -51,8 +49,7 @@
 			$this->date	 		= $data['date'];
 			$this->story 		= $data['story'];
 			$this->notes 		= $data['notes'];
-			
-			
+
 			$this->user_id		= $data['user_id'];
 			if( $this->user_id )
 			{	$this->user = $pid->user[ $this->user_id ];	}
@@ -60,19 +57,16 @@
 			$this->subcamp 		= $pid->subcamp[ $this->subcamp_id ];
 			$this->subcamp->add_day( $this );
 		}
-		
-		
+
 		function add_event_instance( $event_instance )
 		{	$this->event_instance[ $event_instance->id ] = $event_instance;	}
-		
-		
+
 		function add_job( $job_day )
 		{
 			$job_day[ 'user' ] = $this->pid->user[ $job_day [ 'user_id' ] ];
 			$this->job[ $job_day[ 'job_id' ] ] = $job_day;
 		}
-		
-		
+
 		function gen_event_nr()
 		{
 			$num = 1;
@@ -86,7 +80,6 @@
 				}
 			}
 		}
-		
 		
 		function sort_event_nr( $event_instance1, $event_instance2 )
 		{
@@ -103,14 +96,12 @@
 				}
 			}
 		}
-		
-		
+
 		function get_sorted_event_instance()
 		{
 			uasort( $this->event_instance, array( "print_data_day_class", "sort_event_nr" ) );
 			return $this->event_instance;
 		}
-		
 		
 		function get_linker( $pdf )
 		{
@@ -123,5 +114,3 @@
 		function set_marker( $marker )
 		{	$this->marker = $marker;	}
 	}
-	
-?>

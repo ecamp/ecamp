@@ -29,7 +29,7 @@
 	
 	$mail = $_user->mail;
 	$name = $_user->display_name . " [" . $_user->id . "]";
-	
+
 	$query = "INSERT INTO feedback (`name` ,`mail` ,`feedback`, `time`)
 							VALUES ('$name', '$mail', '$feedback', NOW( ) )";
 	

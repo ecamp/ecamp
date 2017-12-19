@@ -53,7 +53,7 @@
 	$sex_option = "";
 	while($row = mysql_fetch_assoc($result))
 	{	$sex_option .= gettemplate_app('option', array("value" => $row['id'], "content" => $row['entry'], "selected" => ""));	}
-
+	
 	# JS Ausbildung:
 	#
 	###########################
@@ -63,7 +63,7 @@
 	$jsedu_option = "";
 	while($row = mysql_fetch_assoc($result))
 	{	$jsedu_option .= gettemplate_app('option', array("value" => $row['id'], "content" => $row['entry'], "selected" => ""));	}
-
+	
 	# PBS Ausbildung:
 	#
 	###########################
@@ -84,6 +84,6 @@
 		"firstname" => $firstname,
 		"surname"	=> $surname,
 		"mail"		=> $mail
-	);
+		);
 
 	$index_content['main'] .= gettemplate_app('add_unknown_user', $replace);

@@ -18,10 +18,8 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	
 	class print_data_camp_class
 	{
-		
 		public $pid;
 		public $id;
 		public $name;
@@ -61,8 +59,5 @@
 			$this->last_day		= $data['last_day'];
 			
 			$this->job_name 	= $data['job_name'];
-			
 		}
 	}
-	
-?>

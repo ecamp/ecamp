@@ -18,7 +18,7 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	$GLOBALS['base_uri']				= "http://ecamps.ch/";
+	$GLOBALS['base_uri']				= "https://ecamps.ch/";
 	
 	$GLOBALS['lib_dir'] 				= "./lib";
 	$GLOBALS['module_dir'] 			= "./module";
@@ -34,26 +34,26 @@
 	
 	$GLOBALS['tpl_dir'] = "../../../template";
 
-	//$GLOBALS['pear_dir'] = "/home/pfadiluz/pear/PEAR/";
-	//ini_set("include_path", ".:/usr/local/lib/php:/home/pfadiluz/pear/PEAR/");
+	$GLOBALS['smtp-config'] = array('host' => 'ecamps.ch','auth' => true,'username' => 'mailbot@ecamps.ch','password' => 'oiH^92w1','port' => '587','debug' => true);
 	
 	$GLOBALS['captcha_pub'] = "6LehoTMUAAAAAJ2XCzbBfduFd5uzppTU0wgm0y-_";
 	$GLOBALS['captcha_prv'] = "6LehoTMUAAAAAJVQOascfLNH-Wi9FPPGoAsMYtX5";
-
+	
+	
 	$GLOBALS['time_shift'] = 300; // Minuten;
 	$GLOBALS['news_num'] = 5;
 
 	// Layout wählen
-	$GLOBALS['skin'] = "skin3";
+	$GLOBALS['skin'] = "skin4";
 	
-	$GLOBALS['debug'] = 1;
-	$GLOBALS['register'] = 0;
+	$GLOBALS['debug'] = 0;
+	$GLOBALS['register'] = 1;
 	
 	// Seite mit HTML-Tidy parsen
 	$GLOBALS['parse_tidy'] = false;
 	
-	$GLOBALS['feedback_mail'] = "ecamp@ecamps.ch";
-	$GLOBALS['support_mail']  = "ecamp@ecamps.ch";	
+	$GLOBALS['feedback_mail'] = "info@ecamps.ch";
+	$GLOBALS['support_mail']  = "info@ecamps.ch";	
 	
 	$GLOBALS['host']	= "localhost";
 	$GLOBALS['db']	= "ecamp";

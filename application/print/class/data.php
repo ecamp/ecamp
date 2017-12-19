@@ -30,8 +30,7 @@
 	require_once( 'data_event_checklist.php' );
 	require_once( 'data_mat_list.php' );
 	require_once( 'data_mat_event.php' );
-	
-	
+
 	class print_data_class
 	{
 		public $camp_id;
@@ -56,8 +55,7 @@
 			$this->camp_id = $camp_id;
 			$this->load_content();
 		}
-		
-		
+
 		function load_content()
 		{
 			$query = "SELECT user.* FROM user, user_camp WHERE user.id = user_camp.user_id AND user_camp.camp_id = " . $this->camp_id;
@@ -122,9 +120,7 @@
 			$query = "SELECT event_detail.* FROM event, event_detail WHERE event.id = event_detail.event_id AND event.camp_id = " . $this->camp_id . " ORDER BY sorting ASC";
 			$result = mysql_query( $query );
 			while( $event_detail = mysql_fetch_assoc( $result ) ){	$this->event_detail[ $event_detail['id'] ] = new print_data_event_detail_class( $event_detail, $this );	}
-			
-			
-			
+
 			$query = "SELECT event_instance.* FROM event, event_instance WHERE event.id = event_instance.event_id AND event.camp_id = " . $this->camp_id;
 			$result = mysql_query( $query );
 			while( $event_instance = mysql_fetch_assoc( $result ) ){	$this->event_instance[ $event_instance['id'] ] = new print_data_event_instance_class( $event_instance, $this );	}
@@ -132,8 +128,7 @@
 			$query = "SELECT event_responsible.* FROM event, event_responsible WHERE event.id = event_responsible.event_id AND event.camp_id = " . $this->camp_id;
 			$result = mysql_query( $query );
 			while( $event_responsible = mysql_fetch_assoc( $result ) ){	$this->event[ $event_responsible[ 'event_id' ] ]->add_event_responsible( $this->user[ $event_responsible[ 'user_id' ] ] );	}
-			
-			
+
 			$query = "SELECT event.id as event_id, course_aim.* FROM event_aim, course_aim, event WHERE event_aim.event_id = event.id AND event_aim.aim_id = course_aim.id AND event.camp_id = " . $this->camp_id;
 			$result = mysql_query( $query );
 			while( $course_aim = mysql_fetch_assoc( $result ) ){	$this->event_aim[ $course_aim[ 'id' ] ] = new print_data_event_aim_class( $course_aim, $this );	}
@@ -141,8 +136,7 @@
 			$query = "SELECT event.id as event_id, course_checklist.* FROM event_checklist, course_checklist, event WHERE event_checklist.event_id = event.id AND event_checklist.checklist_id = course_checklist.id AND event.camp_id = " . $this->camp_id;
 			$result = mysql_query( $query );
 			while( $course_checklist = mysql_fetch_assoc( $result ) ){	$this->event_checklist[ $course_checklist[ 'id' ] ] = new print_data_event_checklist_class( $course_checklist, $this );	}
-			
-			
+
 			$query = "SELECT mat_list.* FROM mat_list WHERE mat_list.camp_id = " . $this->camp_id;
 			$result = mysql_query( $query );
 			while( $mat_list = mysql_fetch_assoc( $result ) ){	$this->mat_list[ $mat_list[ 'id' ] ] = new print_data_mat_list( $mat_list, $this );	}
@@ -176,21 +170,16 @@
 			$result = mysql_query( $query );
 			while( $job_day = mysql_fetch_assoc( $result ) ){	$this->day[ $job_day[ 'day_id' ] ]->add_job( $job_day );	}
 		}
-		
-		
+
 		function sort_day( $day1, $day2 )
 		{
 			if( $day1->subcamp->start + $day1->day_nr > $day2->subcamp->start + $day2->day_nr )	{	return 1;	}
 			else																				{	return -1;	}
 		}
-		
-		
+
 		function get_sorted_day()
 		{
 			uasort( $this->day, array( "print_data_class", "sort_day" ) );
 			return $this->day;
 		}
-		
 	}	
-	
-?>

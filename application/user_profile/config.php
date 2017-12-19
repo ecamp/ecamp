@@ -23,7 +23,7 @@
 $security_level = array(
 	'home' => 10,
 	'delprofile' => 10,
-    'action_save_change' => 10,
+	'action_save_change' => 10,
 	'action_save_change_pw' => 10,
 	'action_save_change_avatar' => 10,
 	'action_delete_avatar' => 10,

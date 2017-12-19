@@ -32,10 +32,11 @@
 		echo json_encode( $ans );
 		die();
 	}
-
+	
 	$query = "UPDATE todo SET done = $done WHERE id = $todo_id AND camp_id = $_camp->id";
 	$result = mysql_query($query);
 	
 	$ans = array( "error" => false, "done" => $done );
 	echo json_encode( $ans );
 	die();
+	

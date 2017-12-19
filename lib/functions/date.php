@@ -18,7 +18,6 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 ###########################################
 # stellt Klassen zur Verfügung, um mit Datum und Zeit umzugehen
 #
@@ -125,6 +124,7 @@ class c_date
 				"Sat" => "Sa",
 				"Sun" => "So"
 				);
+	 
 	 
 	 return $change[gmdate("D", $this->getUnix())];
 	 
@@ -282,3 +282,5 @@ class c_datetime
   	return $this->m_date->getDayShortName();
   }
 }
+
+?>

@@ -1,67 +1,85 @@
 <!DOCTYPE html>
-<html lang="de">
+<html>
 	<head>
 		<title>eCamp v2</title>
+		
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-
+		<link rel="stylesheet" type="text/css" href="./public/global/css/bootstrap.min.css" />
 		<link rel="stylesheet" type="text/css" href="./public/global/css/global.css" />
+        
+        <link rel="stylesheet" type="text/css" href="./public/skin/skin3/css/main.css" />
+        <link rel="stylesheet" type="text/css" href="./public/skin/skin3/css/color.css" />
+        <link rel="stylesheet" type="text/css" href="./public/skin/skin3/css/layout.css" />
 
-		<link rel="stylesheet" type="text/css" href="./public/skin/skin4/css/main.css" />
-		<link rel="stylesheet" type="text/css" href="./public/skin/skin4/css/color.css" />
-		<link rel="stylesheet" type="text/css" href="./public/skin/skin4/css/layout.css" />
-		<link rel="stylesheet" type="text/css" href="./public/skin/skin4/css/bootstrap.min.css" />
+        <style>
+        	table
+			{ 	font-size:13px;}	
+			font.title
+			{	font-size: 25px;	}
+        	
+        	.message, .login, .register
+			{
+				width:380px;
+				padding:30px 10px 10px 10px;
+				margin-bottom:20px;
+			}
+			
+			input[type=text], input[type=password]
+			{
+				width: 100%;
+			}
+			
+			div.login
+			{
+				position: relative;
+			}
+			
+			div.gotologin
+			{
+				position: absolute;
+				top: 2px;
+				right: 4px;
+			}
+        </style>
 
-		<script type="text/javascript" language="javascript" src="./public/global/js/mootools-core-1.4.js"></script>
-		<script type="text/javascript" language="javascript" src="./public/skin/skin4/js/jquery-3.2.1.min.js"></script>
-		<script type="text/javascript" language="javascript" src="./public/skin/skin4/js/bootstrap.min.js"></script>
-		<script type="text/javascript" language="javascript">
+		<script type="text/javascript" src="./public/global/js/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="./public/global/js/bootstrap.min.js"></script>
+		<script type="text/javascript" language="javascript" src="./public/global/js/mootools1.2.js"></script>
+		<script type="text/javascript">
 			jQuery.noConflict();
 		</script>
 	</head>
-	<body>
-		<div class="space-top"></div>
-		<div class="container">
-			<div class="row">
-				<div class="col-md-8 col-md-offset-2">
-					<div class="panel panel-default">
-						<div class="panel-heading">eCamp - Passwort</div>
-						<div class="panel-body">
-							<div tal:condition="SHOW_MSG" class="alert alert-danger col-sm-offset-2">
-								<p class="text-center" tal:content="structure MSG">TEXT...</p>
-							</div>
-							<div class="gotologin">
-								<a href="login.php">Zurück zum Login</a>
-							</div>
-							<p>Du kannst dir nun ein neues Passwort setzten. Nicht wieder vergessen!</p>
-							<form class="form-horizontal" action="pwreset_do.php" method="post">
-								<div class="form-group">
-									<label for="inputPassword1" class="col-sm-2 control-label">Passwort</label>
-									<div class="col-sm-10">
-										<input type="password" tabindex="2" class="form-control" id="inputPassword1" placeholder="Passwort" name="pw1" />
-									</div>
-								</div>
-								<div class="form-group">
-									<label for="inputPassword2" class="col-sm-2 control-label">Passwort wiederholen</label>
-									<div class="col-sm-10">
-										<input type="password" tabindex="2" class="form-control" id="inputPassword2" placeholder="Passwort wiederholen" name="pw2" />
-									</div>
-								</div>
-								<div class="form-group">
-									<div class="col-sm-offset-2 col-sm-10">
-										<button type="submit" class="btn btn-default" tabindex="3">Abschicken</button>
-									</div>
-								</div>
-
-								<input type="hidden" name="user_id" tal:attributes="value user_id" />
-								<input type="hidden" name="login" tal:attributes="value login" />
-								<input type="hidden" name="acode" tal:attributes="value acode" />
-							</form>
-						</div>
-					</div>
+	<body marginheight="100" marginwidth="0" class="bgcolor ">
+		<center>	
+			<div class="message bgcolor_content content_border_fit" tal:condition="SHOW_MSG" >
+	        	<span tal:content="MSG">TEXT...</span>
+	        </div>
+			<div class="login bgcolor_content content_border_fit">
+				<div class="gotologin">
+					<a href="login.php">Zurück zum Login</a>
 				</div>
-			</div>
-		</div>
+	        	<form action="pwreset_do.php" method="post">
+	                <table width="80%">
+	                    <tr><td colspan="2"><font class="title">eCamp - Passwort</font></td></tr>
+	                    <tr height="10"><td> </td></tr>
+	                    <tr>
+	                    	<td colspan="2">
+	                    		Du kannst dir nun ein neues Passwort setzten. Nicht wieder vergessen!
+	                    	</td>
+	                    </tr>
+	                    <tr height="10"><td> </td></tr>
+	                    <tr><td>Passwort:</td><td><input tabindex="1" name="pw1" type="password" /></td></tr>
+	                    <tr><td>Wiederholen:</td><td><input tabindex="1" name="pw2" type="password" /></td></tr>
+	                    <tr height="10"><td> </td></tr>
+	                    <tr><td colspan="2" align="right"><input tabindex="7" type="submit" value="Abschicken" /></td></tr>
+	                    <tr><td> </td></tr>
+	                </table>
+	                <input type="hidden" name="user_id" tal:attributes="value user_id" />
+	                <input type="hidden" name="login" tal:attributes="value login" />
+	                <input type="hidden" name="acode" tal:attributes="value acode" />
+	            </form>
+	        </div>
+		</center>
 	</body>
 </html>

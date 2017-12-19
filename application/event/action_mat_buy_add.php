@@ -23,7 +23,7 @@
 		$event_id = mysql_real_escape_string( $_REQUEST['event_id'] );
 		
 		$_camp->event( $event_id ) || die( "error" );
-
+		
 		$query = "	SELECT
 						id
 					FROM
@@ -55,7 +55,7 @@
 		{	$id = mysql_result( $result, 0, 'id' );	}
 		else
 		{	$id = "NULL";	}
-
+		
 		$query = "	SELECT
 						*
 					FROM
@@ -97,7 +97,8 @@
 							$quantity
 						)";
 			mysql_query( $query );
-
+			
+			
 			$ans = array( "ans" => "saved" );
 			echo json_encode( $ans );
 		}

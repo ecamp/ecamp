@@ -70,7 +70,8 @@
 			//	Footer:
 			// =========
 				$this->pdf->Line(10, 280, 200, 280);
-
+			
+			
 			$this->pdf->SetFontSize( $fsize );
 			$this->pdf->SetFontStyle( $fstyle );
 			$this->SetXY( 10, 20 );
@@ -131,8 +132,8 @@
 				foreach( $row as &$col )
 				{	if( is_array( $col ) )
 					{
-						$col_label	= $col['label'];
-						$col_text	= $col['text'];
+						$col_label	= $col[label];
+						$col_text	= $col[text];
 						$lh = $this->pdf->WordWrap( $col_label, $w * $col[width] );
 						$th = $this->pdf->WordWrap( $col_text, $w * $col[width] );
 						$col[th] = ( max(1, $lh) + max(1, $th) ) * $fsize / 2;
@@ -435,7 +436,5 @@
 			$this->Space( 4 );
 			$this->LabeldCols( 190, $Data[detail] );
 		}
-		
-		
 	}
 ?>

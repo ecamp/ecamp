@@ -30,7 +30,7 @@
 					event_instance.id = $event_instance_id";
 	$result = mysql_query( $query );
 	$event_id = mysql_result( $result, 0, 'event_id' );
-
+	
 	$query = "	DELETE FROM event_instance
 				WHERE event_instance.id = $event_instance_id";
 	mysql_query( $query );
@@ -41,7 +41,7 @@
 		echo json_encode( $ans );
 		die();
 	}
-	
+
 	$query = "	SELECT 	*
 				FROM 	event_instance
 				WHERE	event_instance.event_id = $event_id";

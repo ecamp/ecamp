@@ -71,7 +71,7 @@
 			// Programmblöcke laden
 			$query = "SELECT i.id
 						FROM event_aim a, event e, event_instance i
-						WHERE   a.aim_id=".$this_aim2['id']." 
+						WHERE   a.aim_id=".$this_aim2[id]." 
 							AND a.event_id=e.id
 							AND e.id = i.event_id
 						ORDER BY i.day_id, i.starttime";
@@ -114,7 +114,7 @@
 	// JS Umgebung laden
 	$_js_env->add("template_aim1", file("template/application/aim/popup_new_aim1.tpl") );
 	$_js_env->add("template_aim2", file("template/application/aim/popup_new_aim2.tpl") );
-
+	
 	$aim = array( 
 		"intro" => array(
 			"title" => "Kursziele",

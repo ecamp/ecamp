@@ -17,7 +17,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
-
+	
 	$_page->html->set('main_macro', $GLOBALS['tpl_dir'].'/application/todo/border.tpl/border');
 	
 	$todo_list = array();
@@ -38,7 +38,7 @@
 		$date->setDay2000( $subcamp['start'] );
 		$start = $date->getString( 'd.m.Y' );
 		
-		$todo_list[$date->getString('Ym')]['name'] = strtr( $date->getString("F Y"), $GLOBALS['en_to_de'] );
+		$todo_list[$date->getString('Ym')]['name'] = strtr( $date->getString("F Y"), $GLOBALS[en_to_de] );
 		$todo_list[$date->getString('Ym')]['todos'][$date->getString('d')][] = array( 
 			"date" => $start,
 			"camptime" => true,
@@ -51,6 +51,7 @@
 
 	//  TODAY:
 	// ========
+	
 	$todo_list[date("Ym")]['name'] = strtr( date("F Y"), $GLOBALS['en_to_de'] );
 	$todo_list[date("Ym")]['todos'][date("d")][] = array( "date" => strtr( date("D d. M"), $GLOBALS['en_to_de'] ), "camptime" => false, "entry" => false, "today" => true );
 	ksort( $todo_list[date("Ym")]['todos'] );
@@ -124,15 +125,15 @@
 		while( $todo_user = mysql_fetch_assoc($subresult) )
 		{
 			if( $todo_user['scoutname'] )
-			{	$todo['resp'][] = array( "id" => $todo_user['id'], "resp" => $todo_user['resp'], "class" => "resp_user", "name" => $todo_user['scoutname'] );	}
+			{	$todo['resp'][] = array( "id" => $todo_user[id], "resp" => $todo_user[resp], "class" => "resp_user", "name" => $todo_user[scoutname] );	}
 			else
-			{	$todo['resp'][] = array( "id" => $todo_user['id'], "resp" => $todo_user['resp'], "class" => "resp_user", "name" => $todo_user['firstname'] . " " . $todo_user[surname] );	}
+			{	$todo['resp'][] = array( "id" => $todo_user[id], "resp" => $todo_user[resp], "class" => "resp_user", "name" => $todo_user[firstname] . " " . $todo_user[surname] );	}
 			
 			if( $todo_user['resp'] == 1 )
-			{	$todo['resp_class'] .= "user_" . $todo_user['id'] . " ";	}
+			{	$todo['resp_class'] .= "user_" . $todo_user[id] . " ";	}
 		}
 
-		$todo_list[$date->getString("Ym")]['name'] = strtr( $date->getString("F Y"), $GLOBALS['en_to_de'] );
+		$todo_list[$date->getString("Ym")]['name'] = strtr( $date->getString("F Y"), $GLOBALS[en_to_de] );
 		$todo_list[$date->getString("Ym")]['todos'][$date->getString('d')][] = $todo;
 		
 		ksort( $todo_list[$date->getString("Ym")]['todos'] );
@@ -147,7 +148,7 @@
 	ksort( $todo_list );
 	
 	$_page->html->set('todo_list', $todo_list);
-	
+
 	$user_list = array();
 	$query = "	SELECT
 					user.id,
@@ -175,5 +176,5 @@
 		
 		$user_list[] = $user;
 	}
-
+	
 	$_page->html->set( 'user_list', $user_list );

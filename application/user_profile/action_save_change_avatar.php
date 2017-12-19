@@ -61,7 +61,7 @@
 	thumbnail( "", "", $avatar['tmp_name'], $avatar['tmp_name'], 200, 90 );
 	
 	$imgData = addslashes( file_get_contents( $avatar['tmp_name'] ) );
-
+	
 	mysql_query( "SET CHARACTER SET 'binary'" );
 	
 	$query = "	UPDATE user SET image = '$imgData' WHERE id = $_user->id";

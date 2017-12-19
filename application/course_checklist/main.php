@@ -108,7 +108,7 @@
 					$date = new c_date();
 					$date->setDay2000($this_level3['day']);
 					
-					$this_level3['date'] = $GLOBALS['en_to_de'][$date->getString("D")].", ".$date->getString("j.n.")." ".$start->getString("G:i")."-".$end->getString("G:i");//"Fr, 5.10. 17:15-18:00";
+					$this_level3[date] = $GLOBALS['en_to_de'][$date->getString("D")].", ".$date->getString("j.n.")." ".$start->getString("G:i")."-".$end->getString("G:i");//"Fr, 5.10. 17:15-18:00";
 					
 					if( $this_level3['short_name'] )
 					{	$this_level3['short_name'] .= ": ";	}

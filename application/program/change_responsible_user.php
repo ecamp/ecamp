@@ -29,7 +29,7 @@
 	if( !is_array( $user_pool ) ){	$user_pool = array();	}
 	
 	$_camp->event( $event_id ) || die( "error" );
-
+	
 	foreach($resp_user as $user)
 	{
 		$user = mysql_real_escape_string( $user );
@@ -71,10 +71,11 @@
 				SET t_edited = CURRENT_TIMESTAMP
 				WHERE id = $event_id";
 	mysql_query( $query );
-
+	
 	header("Content-type: application/json");
 	
 	$ans = get_program_update( $time );
 	echo json_encode( $ans );
 	
 	die();
+	

@@ -1,16 +1,26 @@
 a{
 	text-decoration:none;
+	border-bottom-width:1px;
+	border-bottom-style:dotted;
 }
 
 /* Menü */
 div.menu_box a
 {
+	border:none;
 	color:navy;
 }
 
 /*******************************/
 /*  BOX                        */
 /*******************************/
+div.content_box_head
+{
+	height:16px;
+	padding-left: 5px;
+	font-weight:bold;
+}
+
 div.content_border_fit, div.content_border_full
 {
 	border:1px #335588 solid;
@@ -40,12 +50,4 @@ div.content_box_fit, div.content_box_full
     float:left;
 	width: 5px;
 	height: 25px;
-}
-
-.float-left{
-	float: left;
-}
-
-.float-right{
-	float: right;
 }

@@ -33,7 +33,7 @@
 	
 	//$end = preg_replace("/^\s*([0-9]{1,2})[\/\. -]+([0-9]{1,2})[\/\. -]+([0-9]{1,4})/", "\\2/\\1/\\3", $end);
 	//$end = strtotime($end);
-
+	
 	$c_start = new c_date();
 	$c_end = new c_date();
 	
@@ -55,7 +55,7 @@
 		echo json_encode($ans);
 		die();
 	}
-
+	
 	// Überschneidungen prüfen
 	$query = "SELECT * FROM `subcamp` WHERE camp_id=".$_camp->id." AND (`start` BETWEEN -10000 AND ".$c_end->getValue().") AND ((`start`+`length`-1) BETWEEN ".$c_start->getValue()." AND 32000)";
 	$result = mysql_query( $query );
@@ -66,13 +66,12 @@
 		echo json_encode($ans);
 		die();
 	}
-
+	
 	$query = "INSERT INTO subcamp 	( camp_id, start, length)
 				VALUES 				( '$_camp->id', '$start', '$length')";
 	mysql_query($query);
 	$last_subcamp_id = mysql_insert_id();
-	
-	
+
 	// day: Datensätze einfügen
 	for( $i=0; $i < $length; $i++ )
 	{

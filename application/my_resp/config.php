@@ -28,6 +28,7 @@ $css = array(
 	"content_template_fit.css" => "global"
 );
 
+
 $js  = array(
 	"mootools-core-1.4.js" 		=> "global",
 	"mootools-more-1.4.js" 		=> "global",

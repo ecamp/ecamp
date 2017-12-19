@@ -18,13 +18,10 @@
  */
 
 /** eCampConfig
-
 	<depend on="public/global/js/mootools-core-1.4.js" type="js" /> <depend on="public/global/js/mootools-more-1.4.js" type="js" />
-
 **/
 
 var DI_TEXT = new Class({
-	
 	options: {
 		args: 		{},
 		save_url: 	'index.php?',
@@ -50,15 +47,11 @@ var DI_TEXT = new Class({
 		if( $type( $( element ) ) != "element" )	{	return false;	}
 		if( $( element ).get( 'tag' ) != "input" )	{	return false;	}
 		if( $( element ).get( 'type' ) != "text" )	{	return false;	}
-		
-		
-		
+
 		if( !this.options.save_url.contains( '?' ) )	
 		{	this.options.save_url = this.options.save_url + '?';	}
 		
 		this.element = element;
-		
-		
 		
 		this.setup_element();
 		
@@ -66,7 +59,6 @@ var DI_TEXT = new Class({
 		{	this.setup_function();	}
 		
 		this.value = this.show_input.get( 'value' );
-		
 	},
 	
 	reproduce: function( element, options )
@@ -94,8 +86,7 @@ var DI_TEXT = new Class({
 			this.save_button.setStyle( 'padding-left', '5px' );
 			this.cancel_button.setStyle( 'padding-left', '5px' );
 		}
-		
-		
+
 		this.show_input.setStyle( 'border', '1px solid black' );
 		this.show_input.setStyle( 'margin', '2px' );
 		this.edit_input.setStyle( 'width', this.show_input.getStyle( 'width' ) );
@@ -112,13 +103,10 @@ var DI_TEXT = new Class({
 			this.save_button.inject(	this.edit_input, 'after' );
 			this.cancel_button.inject(	this.save_button, 'after' );
 		}
-		
-		
+
 		this.edit_div.addClass( 'hidden' );
 		this.wait_div.addClass( 'hidden' );
-		
-		
-		
+
 		if( this.options.buttons )
 		{
 			if( this.options.button_pos == "bottom" )
@@ -129,16 +117,12 @@ var DI_TEXT = new Class({
 			else
 			{	this.edit_input.setStyle( 'width', Math.max( (this.show_input.getSize().x - 60), 30 ) );	}
 		}
-		
-		
-
 
 		this.edit_input.setStyle( 'background-color', '#FFBB00' );
 		this.edit_input.removeProperty( 'readonly' );
 		this.show_input.set('readonly', 'readonly').setStyle('cursor', 'pointer');
 		
 		this.edit_input.set( 'value', this.show_input.get( 'value' ) );
-		
 	},
 	
 	setup_function: function()
@@ -164,7 +148,6 @@ var DI_TEXT = new Class({
 			this.save_button.addEvent( 	'click', this.save.bind( this ) );
 			this.cancel_button.addEvent('click', this.cancel.bind( this ) );
 		}
-		
 	},
 	
 	show_keyup: function( event )
@@ -272,22 +255,7 @@ var DI_TEXT = new Class({
 });
 DI_TEXT.implement( new Options );
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 var DI_DATE = new Class({
-	
 	options: {
 		args: 		{},
 		save_url: 	'index.php?'
@@ -306,10 +274,7 @@ var DI_DATE = new Class({
 		if( $type( $( element ) ) != "element" )		{	return false;	}
 		if( $( element ).get( 'tag' ) != "input" )	{	return false;	}
 		if( $( element ).get( 'type' ) != "text" )	{	return false;	}
-		
-		
-		
-		
+
 		if( !this.options.save_url.contains( '?' ) )	
 		{	this.options.save_url = this.options.save_url + '?';	}
 		
@@ -337,18 +302,14 @@ var DI_DATE = new Class({
 		this.show_input 	= $( this.element );
 		this.edit_input		= this.show_input.clone();
 		this.wait_img 		= new Element( 'img', { 'src': 'public/global/img/wait.gif' } );
-		
-		
-		
+
 		this.show_div.wraps( 		this.show_input );
 		this.wait_div.inject( 		this.show_div, 'after' );
 		this.wait_img.inject( 		this.wait_div );
 		
 		this.edit_div.inject(		this.show_div, 'after' );
 		this.edit_input.inject(		this.edit_div );
-		
-		
-		
+
 		this.edit_div.addClass( 'hidden' );
 		this.wait_div.addClass( 'hidden' );
 		
@@ -366,9 +327,7 @@ var DI_DATE = new Class({
 		
 		this.id_str = 'Calendar_element_' + $random( 0, Math.pow(2,64) );
 		this.edit_input.set( 'id', this.id_str );
-		
-		
-		
+
 		tx = -1 * this.edit_input.getStyle('width').toInt() - 25;
 		ty = 20;
 		this.cal_el = (new Hash({})).set( this.id_str, 'd.m.Y' );
@@ -462,25 +421,7 @@ var DI_DATE = new Class({
 });
 DI_DATE.implement( new Options );
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 var DI_TEXTAREA = new Class({
-	
 	options: {
 		args: 		{},
 		save_url: 	'index.php?',
@@ -494,7 +435,6 @@ var DI_TEXTAREA = new Class({
 
 	initialize: function( element, options )
 	{
-		
 		this.setOptions( options );
 		this.options.args = new Hash( this.options.args );
 		
@@ -503,9 +443,7 @@ var DI_TEXTAREA = new Class({
 				
 		if( $type( $( element ) ) != "element" )		{	return false;	}
 		if( $( element ).get( 'tag' ) != "textarea" )	{	return false;	}
-		
-		
-		
+
 		if( !this.options.save_url.contains( '?' ) )	
 		{	this.options.save_url = this.options.save_url + '?';	}
 		
@@ -542,12 +480,10 @@ var DI_TEXTAREA = new Class({
 			this.save_button	= new Element( 'input', { 'type': 'image', 'src': 'public/global/img/okay.png' 	} ).setStyle( 'padding-left', '5px' );
 			this.cancel_button 	= new Element( 'input', { 'type': 'image', 'src': 'public/global/img/cancel.png'} ).setStyle( 'padding-left', '5px' );
 		}
-		
-		
+
 		this.show_input.setStyle( 'border', '1px solid black' );
 		this.show_input.setStyle( 'margin', '2px' );
 		this.edit_input.setStyle( 'width', this.show_input.getStyle( 'width' ) );
-		
 		
 		this.show_div.wraps( 		this.show_input );
 		this.wait_div.inject( 		this.show_div, 'after' );
@@ -561,12 +497,10 @@ var DI_TEXTAREA = new Class({
 			this.save_button.inject(	this.edit_input, 'after' );
 			this.cancel_button.inject(	this.save_button, 'after' );
 		}
-		
-		
+
 		this.edit_div.addClass( 'hidden' );
 		this.wait_div.addClass( 'hidden' );
-		
-		
+
 		if( this.options.buttons )
 		{
 			if( this.options.button_pos == "bottom" )
@@ -581,15 +515,13 @@ var DI_TEXTAREA = new Class({
 		this.edit_input.setStyle( 'background-color', '#FFBB00' );
 		this.edit_input.removeProperty( 'readonly' );
 		this.show_input.set('readonly', 'readonly').setStyle('cursor', 'pointer');
-		
 	},
 	
 	setup_function: function()
 	{
 		this.show_input.addEvent( 	'click', this.edit.bind( this ) );
 		this.show_input.addEvent( 	'keyup', this.show_keyup.bind( this ) );
-		
-		
+
 		this.show_input.addEvent(	'focus', function()
 		{
 			this.show_input.setStyle( 'border', '3px solid red' );
@@ -600,8 +532,7 @@ var DI_TEXTAREA = new Class({
 			this.show_input.setStyle( 'border', '1px solid black' );
 			this.show_input.setStyle( 'margin', '2px' );
 		}.bind(this) );
-		
-		
+
 		this.edit_input.addEvent( 	'keyup', this.edit_keyup.bind( this ) );
 		this.edit_input.addEvent(	'keyup', this.autofit.bind( this ) );
 		
@@ -699,24 +630,7 @@ var DI_TEXTAREA = new Class({
 });
 DI_TEXTAREA.implement( new Options );
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 var DI_SELECT = new Class({
-	
 	options: {
 		args: 		{},
 		save_url: 	'index.php?',
@@ -737,10 +651,7 @@ var DI_SELECT = new Class({
 		
 		if( $type( $( element ) ) != "element" )		{	return false;	}
 		if( $( element ).get( 'tag' ) != "select" )	{	return false;	}
-		
-		
-		
-		
+
 		if( !this.options.save_url.contains( '?' ) )	
 		{	this.options.save_url = this.options.save_url + '?';	}
 		
@@ -752,9 +663,7 @@ var DI_SELECT = new Class({
 		{	this.setup_function();	}
 		else
 		{	this.show_input.set( 'disabled', 'disabled' );	}
-		
-		
-		
+
 		this.value = this.show_input.get( 'value' );
 	},
 
@@ -773,8 +682,6 @@ var DI_SELECT = new Class({
 		this.show_input 	= $( this.element );
 		this.wait_img 		= new Element( 'img', { 'src': 'public/global/img/wait.gif' } );
 		
-		
-		
 		if( this.show_input.get('initvalue') == "false" )
 		{
 			this.empty_opt = new Element('option').set('html', '-').inject(this.show_input, 'top').set('selected', 'selected');
@@ -790,13 +697,10 @@ var DI_SELECT = new Class({
 				
 		this.set_value( this.value );
 		
-		
 		this.show_div.wraps( 		this.show_input );
 		this.wait_div.inject( 		this.show_div, 'after' );
 		this.wait_img.inject( 		this.wait_div );
-		
-		
-		
+
 		this.wait_div.addClass( 'hidden' );
 	},
 	
@@ -845,28 +749,10 @@ var DI_SELECT = new Class({
 		
 		this.options.changed.run();
 	}
-	
 });
 DI_SELECT.implement( new Options );
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 var DI_MSELECT = new Class({
-	
 	options: {
 		args: 		{},
 		save_url: 	'index.php?',
@@ -893,8 +779,6 @@ var DI_MSELECT = new Class({
 		if( $type( $( element ) ) != "element" )	{	return false;	}
 		if( $( element ).get( 'tag' ) != "select" )	{	return false;	}
 		
-		
-		
 		if( !this.options.save_url.contains( '?' ) )	
 		{	this.options.save_url = this.options.save_url + '?';	}
 		
@@ -906,10 +790,8 @@ var DI_MSELECT = new Class({
 		{	this.setup_function();	}
 		else
 		{	this.element.set( 'disabled', 'disabled' );	}
-		
-		
+
 		this.value = this.show_input.get( 'value' );
-		
 	},
 
 	reproduce: function( element, options )
@@ -939,8 +821,7 @@ var DI_MSELECT = new Class({
 		{
 			opt.inject( this.list_optgroup );
 			opt.setStyle( 'font-family', 'Courier' );
-			
-			
+
 			optH = new Hash();
 			
 			optH.set( 'option', 	opt );
@@ -970,18 +851,13 @@ var DI_MSELECT = new Class({
 		this.show_option.set( 'html', this.show_string );		
 		this.show_option.set( 'value', 'display' );
 		this.show_input.set( 'value', 'display' );
-		
-		
-		
+
 		this.show_div.wraps( 		this.show_input );
 		
 		this.wait_div.inject( 		this.show_div, 'after' );
 		this.wait_img.inject( 		this.wait_div );
 		
-		
-		
 		this.wait_div.addClass( 'hidden' );
-		
 	},
 	
 	setup_function: function()
@@ -1007,9 +883,7 @@ var DI_MSELECT = new Class({
 		this.show_option.set( 'html', this.show_string );
 		this.show_input.set( 'value', 'display' );
 	},
-	
-	
-	
+
 	toggle_value: function( value )
 	{
 		optH = this.get_optH_by_value( value );
@@ -1021,25 +895,19 @@ var DI_MSELECT = new Class({
 		optH = this.get_optH_by_opt( opt );
 		this.set_optH( optH, !optH.selected );
 	},
-	
-	
-	
+
 	check_value: function( value )
 	{	this.set_value( value, true );	},
 	
 	check_opt: function( opt )
 	{	this.set_opt( opt, true );	},
-	
-	
-	
+
 	uncheck_value: function( value )
 	{	this.set_value( value, false );	},
 	
 	uncheck_opt: function( opt )
 	{	this.set_opt( opt, false );	},
-	
-	
-	
+
 	set_value: function( value, set )
 	{	this.set_optH( this.get_optH_by_value( value ), set );	},
 	
@@ -1048,21 +916,18 @@ var DI_MSELECT = new Class({
 	
 	set_optH: function( optH, set )
 	{	optH.selected = set;	},
-	
-	
+
 	get_optH_by_value: function( value )
 	{	return this.option_list.filter( function( optH ){	return (value == optH.value);	}).getLast();	},
 	
 	get_optH_by_opt: function( opt )
 	{	return opt.retrieve('H');	},
-	
-	
+
 	save: function()
 	{
 		if( this.show_input.getSelected().getLast() == this.show_option )
 		{	return;	}
-		
-		
+
 		this.show_div.addClass( 'hidden' );
 		this.wait_div.removeClass( 'hidden' );
 		
@@ -1074,9 +939,6 @@ var DI_MSELECT = new Class({
 		
 		this.toggle_opt( this.show_input.getSelected().getLast() );
 
-		
-		
-		
 		url = this.options.save_url;
 		if( this.options.args.getLength() )	{	url = url + this.options.args.toQueryString() + "&";	}
 		else								{	url = url + this.options.args.toQueryString() ;			}
@@ -1115,30 +977,18 @@ var DI_MSELECT = new Class({
 		
 		this.options.changed.run();
 	}
-	
 });
 DI_MSELECT.implement( new Options );
 
-
-
-
-
-
-
-
-
-
-
 var DI_TABLE = new Class({
-	
 	options:{
 		args:		{},
 		button:		true,
 		inputs:		{
-						'1': { 'width': 0.2, 'type': 'text', 'value': '' }, 
-						'2': { 'width': 0.7, 'type': 'text', 'value': '' }, 
-						'3': { 'width': 0.1, 'type': 'text', 'value': '' }
-					},
+			'1': { 'width': 0.2, 'type': 'text', 'value': '' },
+			'2': { 'width': 0.7, 'type': 'text', 'value': '' },
+			'3': { 'width': 0.1, 'type': 'text', 'value': '' }
+		},
 		save_url:	'index.php?',
 		
 		min_level:	0
@@ -1149,7 +999,6 @@ var DI_TABLE = new Class({
 	
 	initialize: function( element, options )
 	{
-		
 		this.setOptions( options );
 		this.options.args = new Hash( this.options.args );
 		
@@ -1158,20 +1007,17 @@ var DI_TABLE = new Class({
 		
 		if( $type( $( element ) ) != "element" )	{	return false;	}
 		if( $( element ).get( 'tag' ) != "table" )	{	return false;	}
-		
-		
+
 		if( !this.options.save_url.contains( '?' ) )	
 		{	this.options.save_url = this.options.save_url + '?';	}
 		
 		this.element = $( element );
-		
-		
+
 		this.setup_element();
 		if( auth.access( this.options.min_level ) )
 		{	this.setup_function();	}
 		
 		this.scroller = new Fx.Scroll( this.list );
-
 	},
 	
 	reproduce: function( element, options )
@@ -1187,8 +1033,7 @@ var DI_TABLE = new Class({
 		this.element.setStyle( 'width',  this.width - 20  );
 		
 		this.options.inputs = new Hash( this.options.inputs );
-		
-		
+
 		this.rows = new Hash();
 		this.row_count = 0;
 		this.col_count = 0;
@@ -1198,8 +1043,7 @@ var DI_TABLE = new Class({
 		this.height += this.element.get( 'cellspacing' ).toInt(); 
 		this.height += 2 * this.element.get( 'cellpadding' ).toInt();
 		this.height *= this.col_count.limit( 1, 4 );
-		
-		
+
 		this.list = new Element( 'div' );
 		this.list.wraps( this.element );
 		this.list.setStyle( 'overflow', 'auto' );
@@ -1207,17 +1051,14 @@ var DI_TABLE = new Class({
 		this.list.setStyle( 'height', this.height + "px" );
 		this.list.setStyle( 'width', this.width + "px" );
 		this.list.setStyle( 'border', '1px solid black' );
-		
-		
+
 		this.border = new Element( 'div' );
 		this.border.wraps( this.list );
 		
 		this.inputs = new Hash();
-		
-		
+
 		if( auth.access( this.options.min_level ) )
 		{
-			
 			if( this.row_count )	
 			{
 				this.rows.each( function( width, nr )
@@ -1238,7 +1079,6 @@ var DI_TABLE = new Class({
 					this.button.set( 'html', '+' );
 					this.button.inject( this.border, 'bottom' );
 				}
-				
 			}
 			else
 			{
@@ -1265,12 +1105,10 @@ var DI_TABLE = new Class({
 	
 	setup_text_input: function( i, nr )
 	{
-		
 		if( this.options.inputs.getLength() == nr )	{	return;	}
 				
 		input = new Element( 'input' );
-		
-		
+
 		input.setStyle( 'width', Math.max( 20, (this.width - 20) * i.width - 8 ) );
 		input.setStyle( 'border', '1px solid black' );
 		input.setStyle( 'margin', '2px' );
@@ -1370,9 +1208,7 @@ var DI_TABLE = new Class({
 		{	e.id = entry.get('id');	}
 		else
 		{	e.id = 0;	}
-		
-		
-		
+
 		this.temp = 1;
 		entry.getElements( 'td' ).each( function( row )
 		{
@@ -1384,7 +1220,6 @@ var DI_TABLE = new Class({
 			this.row_count = Math.max( this.row_count, this.temp );
 			this.temp++;
 		}.bind( this ));
-		
 		
 		this.setup_function_entry( entry, e );
 	},
@@ -1453,20 +1288,17 @@ var DI_TABLE = new Class({
 	{
 		tr = new Element( 'tr' ).set( 'id', id );
 		tr.inject( this.element, 'bottom' );
-		
-		
+
 		values.each( function( value )
 		{
 			td = new Element( 'td' );
 			td.set( 'html', value );
 			td.inject( tr, 'bottom' );
 		}.bind(this));
-		
-		
+
 		this.inputs.each( function( input )
 		{	input.set( 'value', '' );	});
-		
-		
+
 		this.setup_element_entry( tr );
 		this.update_element();
 		
@@ -1496,7 +1328,6 @@ var DI_TABLE = new Class({
 	
 	remove_entry: function( entry, e )
 	{
-		
 		if( this.edit_e == e )
 		{
 			this.inputs.each( function( input )
@@ -1558,8 +1389,7 @@ var DI_TABLE = new Class({
 			}
 		}.bind(this));
 		this.inputs.get(1).focus();
-		
-		
+
 		this.button.set( 'html', 'OK' );
 		this.button.removeEvents( 'click' );
 		this.button.addEvent( 'click', this.save_edit_entry.bind( this, e ) );
@@ -1567,14 +1397,12 @@ var DI_TABLE = new Class({
 	
 	edit_entry: function( e, values )
 	{
-		
 		this.edit_e = null;
 		
 		values = new Hash( values );
 		values.each( function( value, nr )
 		{	e.rows.get( nr ).set( 'html', value );	});
-		
-		
+
 		this.inputs.each( function( input )
 		{	input.set( 'value', '' );	});
 		
@@ -1589,14 +1417,7 @@ var DI_TABLE = new Class({
 });
 DI_TABLE.implement( new Options );
 
-
-
-
-
-
-
 var DI_HIDDEN = new Class({
-	
 	options:{
 		args:		{},
 		save_url:	'index.php?'
@@ -1606,8 +1427,6 @@ var DI_HIDDEN = new Class({
 	
 	initialize: function( element, options )
 	{
-		
-		
 		this.setOptions( options );
 		this.options.args = new Hash( this.options.args );
 		
@@ -1616,8 +1435,7 @@ var DI_HIDDEN = new Class({
 		
 		if( $type( $( element ) ) != "element" )	{	return false;	}
 		if( $( element ).get( 'tag' ) != "input" )	{	return false;	}
-		
-		
+
 		if( !this.options.save_url.contains( '?' ) )	
 		{	this.options.save_url = this.options.save_url + '?';	}
 		
@@ -1647,7 +1465,6 @@ var DI_HIDDEN = new Class({
 		this.element.addClass( 'hidden' );
 		//this.element.set( 'type', 'hidden' );
 		this.element.set( 'readonly', 'readonly' );
-		
 	},
 	
 	set_value: function( value )
@@ -1663,18 +1480,7 @@ var DI_HIDDEN = new Class({
 });
 DI_HIDDEN.implement( new Options );
 
-
-
-
-
-
-
-
-
-
-
 var DI_MULTIPLE = new Class({
-	
 	options: {
 		uni_height:		false,
 		
@@ -1699,13 +1505,11 @@ var DI_MULTIPLE = new Class({
 		if( !this.options.save_url.contains( '?' ) )	
 		{	this.options.save_url = this.options.save_url + '?';	}
 
-		
 		if( $type(inputs) == "array" )
 		{	inputs.each( function( input ){	this.setup_element( input );	}.bind( this ) );	}
 		else
 		{	this.setup_element( inputs );	}
-		
-		
+
 		if( auth.access( this.options.min_level ) )
 		{	this.setup_function();	}
 	},
@@ -1721,7 +1525,6 @@ var DI_MULTIPLE = new Class({
 			}
 			else
 			{	this.list.include( new DI_TEXT( input.element, input.options ) );	}
-			
 		}
 		else if( input.type.toLowerCase() == "textarea" )
 		{
@@ -1733,26 +1536,21 @@ var DI_MULTIPLE = new Class({
 			else
 			{	this.list.include( new DI_TEXTAREA( input.element, input.options ) );	}
 		}		
-		else if( input.type.toLowerCase() == "hidden" )
-		{
-			if( $defined( input.id ) )
-			{
-				this.set( input.id, new DI_HIDDEN( input.element, input.options ) );
-				this.list.include( this[ input.id ] );
+		else if( input.type.toLowerCase() == "hidden" ) {
+			if ($defined(input.id)) {
+				this.set(input.id, new DI_HIDDEN(input.element, input.options));
+				this.list.include(this[input.id]);
 			}
-			else
-			{	this.list.include( new DI_HIDDEN( input.element, input.options ) );	}
-			
+			else {
+				this.list.include(new DI_HIDDEN(input.element, input.options));
+			}
 		}
-		
-
 	},
 	
 	setup_function: function()
 	{
 		this.list.each( function( input )
 		{
-			
 			if( input.type.toLowerCase() == "text" )
 			{
 				input.show_input.removeEvents( 'click' );

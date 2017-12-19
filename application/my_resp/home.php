@@ -114,7 +114,7 @@
     {
     	$date->setDay2000( $event['date'] );
     	
-    	$event['link'] = '$event.edit(' . $event[id] . ')';
+    	$event['link'] = '$event.edit(' . $event['id'] . ')';
     	$event['color_str'] = "background-color:#" . $event['color'];
     	
     	if( $event['form_type'] )

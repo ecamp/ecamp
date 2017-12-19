@@ -28,7 +28,7 @@
 	$del   = mysql_real_escape_string($_REQUEST['del']);
 	$new  = mysql_real_escape_string($_REQUEST['new']);
 	$edit  = mysql_real_escape_string($_REQUEST['edit']);
-	
+
 	// Neues Ziel
 	if( $new == 1  )
 	{

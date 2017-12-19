@@ -35,20 +35,15 @@ $security_level = array(
 	'action_change_notes' => 40,
 	'action_change_topics' => 40,
 	'action_move_detail' => 40,
-
 	'action_add_comment' => 20,
 	'action_del_comment' => 20,
-
 	'action_change_mat_buy' => 40,
 	'action_change_mat_stocked' => 40,
 	'action_change_mat_nonstocked' => 40,
-
 	'action_change_mat_available' => 40,
 	'action_change_mat_organize' => 40,
-
 	'action_change_course_aim' => 40,
 	'action_change_course_checklist' => 40,
-
 	'file_download' => 20,
 	'file_upload_form' => 40,
 	'file_upload_done' => 40,

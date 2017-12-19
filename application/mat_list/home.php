@@ -106,4 +106,5 @@
 	);
 	
 	$_page->html->set( 'mat_list', $mat_list );
+	
 	$_page->html->set('main_macro', $GLOBALS['tpl_dir'].'/application/mat_list/border.tpl/border');

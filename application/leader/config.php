@@ -29,13 +29,9 @@ $security_level = array(
 	'load_dropdown' => 10,
 	'vcard' => 20,
 	'show_user' => 20
-
-	/*
-	'action_save_unknown_user' => 1,
-	'action_save_edit_user' => 1,
-
-	'action_csv' => 1
-	*/
+	/*'action_save_unknown_user' => 1,
+		'action_save_edit_user' => 1,
+		'action_csv' => 1*/
 );
 
 $css = array(

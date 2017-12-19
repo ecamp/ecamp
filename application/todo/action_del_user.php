@@ -34,8 +34,9 @@
 	}
 	
 	$row = mysql_fetch_assoc($result);
-	$user_camp_id = $row['id'];
-
+	$user_camp_id = $row[id];
+	
+	
 	$query = "SELECT * FROM todo WHERE id = $todo_id AND camp_id = $_camp->id";
 	$result = mysql_query($query);
 	
@@ -45,10 +46,11 @@
 		echo json_encode( $ans );
 		die();
 	}
-
+	
 	$query = "DELETE FROM todo_user_camp WHERE user_camp_id = $user_camp_id AND todo_id = $todo_id";
 	$result = mysql_query($query);
 	
 	$ans = array( "error" => false );
 	echo json_encode( $ans );
 	die();
+	

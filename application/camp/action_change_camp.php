@@ -44,7 +44,7 @@
 		$_SESSION['camp_id'] = $camp;
 		
 		//echo $_SESSION['camp_id'];
-
+		
 		$query = "UPDATE user SET last_camp = '$camp' WHERE id = '" . $_user->id . "'";
 
 		//echo $query;

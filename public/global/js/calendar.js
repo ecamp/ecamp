@@ -8,8 +8,7 @@
 // Calendar RC4, Copyright (c) 2007 Aeron Glemann <http://electricprism.com/aeron>, MIT Style License.
 // Mootools 1.2 compatibility by Davorin Šego
 
-var Calendar = new Class({	
-
+var Calendar = new Class({
 	options: {
 		blocked: [], // blocked dates 
 		classes: [], // ['calendar', 'prev', 'next', 'month', 'year', 'today', 'invalid', 'valid', 'inactive', 'active', 'hover', 'hilite']
@@ -30,7 +29,6 @@ var Calendar = new Class({
 	// initialize: calendar constructor
 	// @param obj (obj) a js object containing the form elements and format strings { id: 'format', id: 'format' etc }
 	// @param props (obj) optional properties
-
 	initialize: function(obj, options) {
 		// basic error checking
 		if (!obj) { return false; }
@@ -135,11 +133,9 @@ var Calendar = new Class({
 		}	
 	},
 
-
 	// blocked: returns an array of blocked days for the month / year
 	// @param cal (obj)
 	// @returns blocked days (array)
-
 	blocked: function(cal) {
 		var blocked = [];
 		var offset = new Date(cal.year, cal.month, 1).getDay(); // day of the week (offset)
@@ -173,11 +169,11 @@ var Calendar = new Class({
 
 					if (values[3]){ // optional value for day of week
 						for (var i = 0; i < last; i++){
-								var day = (i + offset) % 7;
+							var day = (i + offset) % 7;
 	
-								if (values[3].contains(day + '')){ 
-									blocked.push(i + 1); // add every date that corresponds to the blocked day of the week to the blocked array
-								}
+							if (values[3].contains(day + '')){
+								blocked.push(i + 1); // add every date that corresponds to the blocked day of the week to the blocked array
+							}
 						}
 					}
 				}
@@ -187,11 +183,9 @@ var Calendar = new Class({
 		return blocked;
 	},
 
-
 	// bounds: returns the start / end bounds of the calendar
 	// @param cal (obj)
-	// @returns obj	
-
+	// @returns obj
 	bounds: function(cal) {
 		// 1. first we assume the calendar has no bounds (or a thousand years in either direction)
 		
@@ -347,7 +341,6 @@ var Calendar = new Class({
 			caption.adopt(new Element('span').addClass(this.classes.year).appendText(cal.year));
 			
 			if (navigation.next.month && this.options.navigation) { next.clone().addEvent('click', function(cal) { this.navigate(cal, 'm', 1); }.pass(cal, this)).injectInside(caption); }
-
 		}
 
 		return caption;
@@ -380,10 +373,8 @@ var Calendar = new Class({
 		}, this);
 	},
 
-
 	// check: checks other calendars to make sure no overlapping values
 	// @param cal (obj)
-
 	check: function(cal) {
 		this.calendars.each(function(kal, i) {
 			if (kal.val) { // if calendar has value set
@@ -431,11 +422,9 @@ var Calendar = new Class({
 			}
 		}, this);
 	},
-	
 
 	// clicked: run when a valid day is clicked in the calendar
 	// @param cal (obj)
-
 	clicked: function(td, day, cal) {
 		cal.val = (this.value(cal) == day) ? null : new Date(cal.year, cal.month, day); // set new value - if same then disable
 
@@ -454,11 +443,9 @@ var Calendar = new Class({
 			td.removeClass(this.classes.active);
 		}
 	},
-	
 
 	// display: create calendar element
 	// @param cal (obj)
-
 	display: function(cal) {
 		// 1. header and navigation
 		this.calendar.empty(); // init div
@@ -556,12 +543,10 @@ var Calendar = new Class({
 		}
 	},
 
-
 	// element: helper function
 	// @param el (string) element id
 	// @param f (string) format string
 	// @param cal (obj)
-
 	element: function(el, f, cal) {
 		if ($type(f) == 'object') { // in the case of multiple inputs per calendar
 			for (var i in f) { 
@@ -589,7 +574,6 @@ var Calendar = new Class({
 
 		return true;
 	},
-
 
 	// format: formats a date object according to passed in instructions
 	// @param date (obj)
@@ -666,12 +650,10 @@ var Calendar = new Class({
 	  return str; //  return format with values replaced
 	},
 
-
 	// navigate: calendar navigation
 	// @param cal (obj)
 	// @param type (str) m or y for month or year
 	// @param n (int) + or - for next or prev
-
 	navigate: function(cal, type, n) {
 		switch (type) {
 			case 'm': // month
@@ -727,11 +709,9 @@ var Calendar = new Class({
 		this.display(cal);
 	},
 
-
 	// read: compiles cal value based on array of inputs passed in
 	// @param cal (obj)
 	// @returns date (obj) or (null)
-
 	read: function(cal) {
 		var arr = [null, null, null];
 
@@ -761,10 +741,8 @@ var Calendar = new Class({
 		return (cal.val == val) ? null : val; // if new date matches old return null (same date clicked twice = disable)
 	},
 
-	
 	// rebuild: rebuilds days + months selects
 	// @param cal (obj)
-
 	rebuild: function(cal) {
 		cal.els.each(function(el) {			
 			/*
@@ -803,17 +781,13 @@ var Calendar = new Class({
 		}, this); 
 	},
 
-
 	// sort: helper function for numerical sorting
-
 	sort: function(a, b) {
 		return a - b;
 	},
 
-
 	// toggle: show / hide calendar 
 	// @param cal (obj)
-
 	toggle: function(cal) {
 		document.removeEvent('mousedown', this.fn); // always remove the current mousedown script first
 			
@@ -886,12 +860,10 @@ var Calendar = new Class({
 		}
 	},
 
-
 	// unformat: takes a value from an input and parses the d, m and y elements
 	// @param val (string)
 	// @param f (string) any combination of punctuation / separators and d, j, D, l, S, m, n, F, M, y, Y
 	// @returns array
-	
 	unformat: function(val, f) {
 		f = f.escapeRegExp();
 		
@@ -968,11 +940,9 @@ var Calendar = new Class({
 		return dates;
 	},
 
-
 	// value: returns day value of calendar if set
 	// @param cal (obj)
 	// @returns day (int) or null
-
 	value: function(cal) {
 		var day = null;
 
@@ -982,12 +952,10 @@ var Calendar = new Class({
 
 		return day;
 	},
-	
 
 	// values: returns the years, months (for curr year) and days (for curr month and year) for the calendar
 	// @param cal (obj)
-	// @returns obj	
-
+	// @returns obj
 	values: function(cal) {
 		var years, months, days;
 
@@ -1093,10 +1061,8 @@ var Calendar = new Class({
 		return { 'days': days, 'months': months, 'years': years };
 	},
 
-
 	// write: sets calendars value to form elements
 	// @param cal (obj)
-
 	write: function(cal) {
 		this.rebuild(cal);	 // in the case of options, we'll need to make sure we have the correct number of days available
 		

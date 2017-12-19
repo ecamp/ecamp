@@ -27,7 +27,7 @@
   {
     return $value;
   }
-  
+
   function txt2html( $textfield )
   {
           $textfield = preg_replace("/\&/", "&amp;", $textfield);
@@ -54,7 +54,6 @@
           $textfield = preg_replace("/&lt;/", "<", $textfield);
           $textfield = preg_replace("/&gt;/", ">", $textfield);
           $textfield = preg_replace("/&quot;/", "\"", $textfield);
-
 
           $textfield = preg_replace("/&auml;/", "ä", $textfield);
           $textfield = preg_replace("/&ouml;/", "ö", $textfield);
@@ -136,10 +135,7 @@
           return $textfield;
   }
 
-  function securehtml2html( $textfield )
-  {
-
-  }
+  function securehtml2html( $textfield ){}
 
   // Erlaubt spezielle HTML-Tags
   function allowTag( $tag, $textfield )

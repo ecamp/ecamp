@@ -18,7 +18,6 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	
 	class print_build_picasso_class
 	{
 		public $data;
@@ -43,10 +42,8 @@
 			else
 			{	$this->ph = 300;	$this->pw = 210;	}
 			
-			
 			foreach( $this->data->subcamp as $subcamp )
 			{
-				
 				$start_row 	= 1;
 				$end_row	= $this->get_number_of_rows( $subcamp, 1 );
 				
@@ -64,9 +61,7 @@
 					$start_row = $end_row + 1;
 					$end_row += $this->get_number_of_rows( $subcamp, $page + 1 );
 				}
-				
 			}
-			
 		}
 		
 		function get_number_of_page( $subcamp )
@@ -76,16 +71,14 @@
 			else
 			{	return ceil( count( $subcamp->day ) / 4 );	}
 		}
-		
-		
+
 		function get_number_of_rows( $subcamp, $page )
 		{
 			$rows = floor( count( $subcamp->day ) / $this->get_number_of_page( $subcamp ) );
 			if( $page <= ( count( $subcamp->day ) % $this->get_number_of_page( $subcamp ) ) ){	$rows++;	}
 			return $rows;
 		}
-		
-		
+
 		function title( $pdf )
 		{
 			$title = "Picasso - " . $this->data->camp->name;
@@ -94,8 +87,7 @@
 			$pdf->SetXY( 20, 11 );
 			$pdf->drawTextBox( $title, $this->pw - 40, 10, 'C', 'M', 0 );
 		}
-		
-		
+
 		function category_list( $pdf )
 		{
 			$cat_num = count( $this->data->category );
@@ -132,7 +124,6 @@
 			}
 		}
 		
-		
 		function background( $pdf )
 		{
 			$pdf->SetFillColor( 200, 200, 200 );
@@ -157,7 +148,6 @@
 				$pdf->SetXY( 10, 				30 + $h * $baseh );	$pdf->drawTextBox( $time, 20, $baseh, 'C', 'M', 0 );
 				$pdf->SetXY( $this->pw - 30, 	30 + $h * $baseh );	$pdf->drawTextBox( $time, 20, $baseh, 'C', 'M', 0 );
 			}
-
 			
 			$pdf->RoundedRect(  10, 			22, 20, 4, 2, '1001', '' );
 			$pdf->RoundedRect( $this->pw - 30,	22, 20, 4, 2, '1001', '' );
@@ -174,7 +164,6 @@
 			$pdf->SetXY(  10, 26 );				$pdf->drawTextBox( $this->data->camp->job_name, 20, 4, 'C', 'M', 0 );
 			$pdf->SetXY(  $this->pw - 30, 26 );	$pdf->drawTextBox( $this->data->camp->job_name, 20, 4, 'C', 'M', 0 );
 		}
-		
 		
 		function page_content( $pdf, $subcamp, $start_row, $end_row )
 		{
@@ -199,7 +188,7 @@
 				$date->setDay2000( $day->subcamp->start + $day->day_offset );
 				$pdf->SetXY( $base_left, 22 );
 				$pdf->SetFontSize( 8 );
-				$pdf->drawTextBox( strtr( $date->getString( 'D, d.m.Y' ), $GLOBALS[en_to_de] ), $row_width, 4, 'C', 'M', 0 );
+				$pdf->drawTextBox( strtr( $date->getString( 'D, d.m.Y' ), $GLOBALS['en_to_de'] ), $row_width, 4, 'C', 'M', 0 );
 				
 				if( $row % 2 )
 				{
@@ -234,14 +223,12 @@
 					
 					$color = $this->color( $event_instance->event->category->color );
 					$pdf->SetFillColor( $color['r'], $color['g'], $color['b'] );
-					
-					
+
 					$pdf->SetAlpha( 0.85 );
 					$pdf->RoundedRect( $x, $y, $w, $h, 1.5, '1111', 'FD' );
 					$pdf->Link( $x, $y, $w, $h, $event_instance->get_linker( $pdf ) );
 					$pdf->SetAlpha( 1 );
-					
-					
+
 					$pdf->SetFontSize( 6 );
 					$pdf->SetXY( $x + $p , $y + $p );
 					
@@ -283,7 +270,6 @@
 			}
 		}
 		
-		
 		function time_mm( $time )
 		{
 			$time = $time - 300;
@@ -291,24 +277,18 @@
 			
 			$baseh = ( $this->ph - 50 ) / 40;
 			
-			
 			if( $time <= 120 )					{	return $time / 60 * $baseh;		}
 			if( $time > 120 && $time < 1080 )	{	return ( $time / 30 - 2  ) * $baseh;	}
 			if( $time >= 1080 )					{	return ( $time / 60 + 16 ) * $baseh;	}
 			
 		}
 		
-		
 		function color( $color )
 		{
 			return array(
-							"r" => hexdec( substr( $color, 0, 2 ) ),
-							"g" => hexdec( substr( $color, 2, 2 ) ),
-							"b" => hexdec( substr( $color, 4, 2 ) ),
-						);
+				"r" => hexdec( substr( $color, 0, 2 ) ),
+				"g" => hexdec( substr( $color, 2, 2 ) ),
+				"b" => hexdec( substr( $color, 4, 2 ) ),
+			);
 		}
-		
-		
 	}
-	
-?>

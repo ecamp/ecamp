@@ -125,7 +125,7 @@
 		
 		if( $row['selected'] )	{	$pbsedu_selected = $row['item_nr'];	}
 	}
-
+	
 	$query = "SELECT * FROM user WHERE id = '$_user->id'";
 	$result = mysql_query($query);
 	$row = mysql_fetch_assoc($result);
@@ -152,7 +152,7 @@
 		"pw_change"	=> "",
 		"avatar"	=> ""
 	);
-
+	
 	$_page->html->set( 'profile', $profile );
 	
 	//print_r($profile);

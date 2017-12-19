@@ -50,38 +50,40 @@ function escape($string) {
 	return str_replace(";","\;",$string);
 }
 
-// taken from PHP documentation comments
-function quoted_printable_encode($input, $line_max = 76) {
-	$hex = array('0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F');
-	$lines = preg_split("/(?:\r\n|\r|\n)/", $input);
-	$eol = "\r\n";
-	$linebreak = "=0D=0A";
-	$escape = "=";
-	$output = "";
+if (!function_exists('quoted_printable_encode')) {
+	// taken from PHP documentation comments
+	function quoted_printable_encode($input, $line_max = 76) {
+		$hex = array('0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F');
+		$lines = preg_split("/(?:\r\n|\r|\n)/", $input);
+		$eol = "\r\n";
+		$linebreak = "=0D=0A";
+		$escape = "=";
+		$output = "";
 
-	for ($j=0;$j<count($lines);$j++) {
-		$line = $lines[$j];
-		$linlen = strlen($line);
-		$newline = "";
-		for($i = 0; $i < $linlen; $i++) {
-			$c = substr($line, $i, 1);
-			$dec = ord($c);
-			if ( ($dec == 32) && ($i == ($linlen - 1)) ) { // convert space at eol only
-				$c = "=20"; 
-			} elseif ( ($dec == 61) || ($dec < 32 ) || ($dec > 126) ) { // always encode "\t", which is *not* required
-				$h2 = floor($dec/16); $h1 = floor($dec%16); 
-				$c = $escape.$hex["$h2"].$hex["$h1"]; 
-			}
-			if ( (strlen($newline) + strlen($c)) >= $line_max ) { // CRLF is not counted
-				$output .= $newline.$escape.$eol; // soft line break; " =\r\n" is okay
-				$newline = "    ";
-			}
-			$newline .= $c;
-		} // end of for
-		$output .= $newline;
-		if ($j<count($lines)-1) $output .= $linebreak;
+		for ($j=0;$j<count($lines);$j++) {
+			$line = $lines[$j];
+			$linlen = strlen($line);
+			$newline = "";
+			for($i = 0; $i < $linlen; $i++) {
+				$c = substr($line, $i, 1);
+				$dec = ord($c);
+				if ( ($dec == 32) && ($i == ($linlen - 1)) ) { // convert space at eol only
+					$c = "=20"; 
+				} elseif ( ($dec == 61) || ($dec < 32 ) || ($dec > 126) ) { // always encode "\t", which is *not* required
+					$h2 = floor($dec/16); $h1 = floor($dec%16); 
+					$c = $escape.$hex["$h2"].$hex["$h1"]; 
+				}
+				if ( (strlen($newline) + strlen($c)) >= $line_max ) { // CRLF is not counted
+					$output .= $newline.$escape.$eol; // soft line break; " =\r\n" is okay
+					$newline = "    ";
+				}
+				$newline .= $c;
+			} // end of for
+			$output .= $newline;
+			if ($j<count($lines)-1) $output .= $linebreak;
+		}
+		return trim($output);
 	}
-	return trim($output);
 }
 
 class vCard {
@@ -172,7 +174,6 @@ class vCard {
 	}
 }
 
-
 //  USAGE EXAMPLE
 /*
 $v = new vCard();
@@ -196,11 +197,9 @@ Header("Content-Type: text/x-vCard; name=$filename");
 echo $output;
 ?>
 */
-
 	$user_id = $_REQUEST['user_id'];
 	$user_id = mysql_real_escape_string( $user_id );
-	
-	
+
 	$query = "	SELECT
 					user.homenr,
 					user.mobilnr,
@@ -230,16 +229,16 @@ echo $output;
 	$user_data = mysql_fetch_assoc($result);
 	
 	$birthday = new c_date();
-	$birthday->setDay2000( $user_data[birthday] );
+	$birthday->setDay2000( $user_data['birthday'] );
 	
 	$v = new vCard();
 	
-	$v->setPhoneNumber($user_data[homenr], "PREF;HOME;VOICE");
-	$v->setPhoneNumber($user_data[mobilnr], "PREF;CELL;VOICE");
-	$v->setName($user_data[surname], $user_data[firstname], $user_data[scoutname], "");
+	$v->setPhoneNumber($user_data['homenr'], "PREF;HOME;VOICE");
+	$v->setPhoneNumber($user_data['mobilnr'], "PREF;CELL;VOICE");
+	$v->setName($user_data['surname'], $user_data['firstname'], $user_data['scoutname'], "");
 	$v->setBirthday( $birthday->getString("Y-m-d") );
-	$v->setAddress("", "", $user_data[street], $user_data[city], "", $user_data[zipcode], "");
-	$v->setEmail($user_data[mail]);
+	$v->setAddress("", "", $user_data['street'], $user_data['city'], "", $user_data['zipcode'], "");
+	$v->setEmail($user_data['mail']);
 	$v->setNote("Automatisch generiert auf Basis der Daten von eCamp");
 
 	$output = $v->getVCard();
@@ -253,4 +252,3 @@ echo $output;
 	echo $output;
 
 	die();
-?>

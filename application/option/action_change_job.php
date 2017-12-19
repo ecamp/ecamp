@@ -34,7 +34,7 @@
 	$change_job_save = mysql_real_escape_string($change_job);
 	
 	$_camp->job( $job_change_id ) || die( "error" );
-	
+
 	// Job überprüfen
 	$query = "SELECT * FROM job WHERE camp_id='$_camp->id' AND id='$job_change_id'";
 	$result = mysql_query( $query );
@@ -65,7 +65,7 @@
 			die();
 		}
 	}
-
+	
 	$query = "UPDATE job SET job_name = '$change_job_save' WHERE camp_id='$_camp->id' AND id='$job_change_id'";
 	mysql_query($query);
 	

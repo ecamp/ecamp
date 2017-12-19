@@ -45,7 +45,7 @@
 		
 		$documents[] = $document;
 	}
-	
+
 	$_page->html->set( 'documents', $documents );
 	
 	//print_r( $documents );

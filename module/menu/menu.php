@@ -24,9 +24,9 @@
 	
 	$c_date = new c_date;
 	$c_date->setUnix( time() );
-	
+
 	$dropdown = array();
-	
+
 	$query = "	SELECT
 					camp.*,
 					groups.id as groups_id,

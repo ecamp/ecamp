@@ -21,7 +21,7 @@
 	$_page->html->set('main_macro', $GLOBALS['tpl_dir'].'/global/content_box_fit.tpl/predefine');
 	$_page->html->set('box_content', $GLOBALS['tpl_dir'].'/application/db/integrity.tpl/integrity');
 	$_page->html->set('box_title', 'Integrity:');
-	
+
 	$subCampLength = array();
 	
 	$query = "	Select 

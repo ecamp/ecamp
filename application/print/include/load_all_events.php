@@ -57,5 +57,5 @@
 		$events[ $row['date'] ]['day_str'] = $c_date->getString( 'd.m.Y' );
 		$events[ $row['date'] ]['events'][] = $row;
 	}
-
+	
 	$_page->html->set( 'events', $events );

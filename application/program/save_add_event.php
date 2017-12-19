@@ -39,10 +39,10 @@
 	
 	$_camp->day( $day_id ) || die( "error" );
 	$_camp->category( $event_category_id ) || die( "error" );
-
+	
 	$starttime 	= 60 * $event_instance_starttime_h + $event_instance_starttime_min;
 	$length 	= 60 * $event_instance_length_h + $event_instance_length_min;
-
+	
 	$query = "INSERT INTO event ( camp_id, category_id, name ) VALUES ( $_camp->id, $event_category_id, '$event_name' )";
 	$result = mysql_query($query);
 	$event_id = mysql_insert_id();
@@ -55,7 +55,7 @@
 		
 		$query = "INSERT INTO event_responsible ( user_id, event_id ) VALUES ( $resp_user, $event_id )";
 		mysql_query($query);
-
+		
 		$query = "SELECT active FROM user_camp WHERE camp_id = $_camp->id AND user_id = $resp_user";
 		$result = mysql_query( $query );
 		$active = mysql_result( $result, 0, 'active' );
@@ -76,7 +76,7 @@
 					day2.day_offset = day1.day_offset + 1 AND
 					day1.id = " . $day_id;
 	$result = mysql_query( $query );
-
+	
 	if( 	// Block splitting!
 			mysql_num_rows( $result )
 			&&
@@ -109,11 +109,13 @@
 		$query = "INSERT INTO event_instance ( event_id, day_id, starttime, length ) VALUES ( $event_id, $day_id, $starttime, $length )";
 		mysql_query($query);
 	}
-
+	
 	header("Content-type: application/json");
 	
 	$ans = get_program_update( $time );
 	echo json_encode( $ans );
 	
 	die();
+	
 	die();
+	

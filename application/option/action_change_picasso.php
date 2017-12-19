@@ -32,7 +32,7 @@
 	$job_id = mysql_real_escape_string($_REQUEST['job_id']);
 	
 	$_camp->job( $job_id ) || die( "error" );
-
+	
 	// Job überprüfen
 	$query = "SELECT * FROM job WHERE camp_id='$_camp->id' AND id='$job_id'";
 	$result = mysql_query( $query );

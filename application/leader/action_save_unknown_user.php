@@ -51,10 +51,12 @@
 	
 	$query = "INSERT INTO user (`mail` ,`pw` ,`scoutname` ,`firstname` ,`surname` ,`street` ,`zipcode` ,`city` ,`homenr` ,`mobilnr` ,
 								`birthday` ,`ahv` ,`sex` ,`jspersnr` ,`jsedu` ,`pbsedu` ,`regtime` ,`active` ,`acode` ,`admin`)
+	
 	VALUES ('$mail', '0', '$scoutname', '$firstname', '$surname', '$street', '$zipcode', '$city', '$homenr', '$mobilnr', 
 			'$birthday', '$ahv', '$sex', '$jspersnr', '$jsedu', '$pbsedu', '0', '0', '0', '0')";
+	
 	mysql_query($query);
-
+	
 	$query = "SELECT LAST_INSERT_ID() FROM user";
 	$result = mysql_query($query);
 	$user = implode(mysql_fetch_assoc($result));
@@ -69,6 +71,6 @@
 		$result = mysql_query($query);
 		//echo $query;
 	}
-
+	
 	header("Location: index.php?app=leader");
 	die();

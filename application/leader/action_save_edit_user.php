@@ -39,7 +39,7 @@
 	$id 		= $_REQUEST['id'];
 	
 	$birthday = strtotime(preg_replace("/^\s*([0-9]{1,2})[\/\. -]+([0-9]{1,2})[\/\. -]+([0-9]{1,4})/", "\\2/\\1/\\3", $birthday));
-
+	
 	$query = "UPDATE user SET 
 				scoutname 	= '$scoutname',
 				firstname 	= '$firstname',
@@ -62,8 +62,9 @@
 			WHERE 
 				id = '$id'
 			LIMIT 1";
-
+	
 	mysql_query($query);
 	
 	header("Location: index.php?app=leader");
 	die();
+	

@@ -28,7 +28,7 @@
 	$camp_type		= mysql_real_escape_string($_REQUEST['camp_type']);
 	$course_type	= mysql_real_escape_string($_REQUEST['course_type']);
 	$course_type_text = mysql_real_escape_string($_REQUEST['course_type_text']);
-
+	
 	$start		= mysql_real_escape_string($_REQUEST['camp_start']);
 	$end		= mysql_real_escape_string($_REQUEST['camp_end']);
 	
@@ -69,7 +69,7 @@
 	$query = "INSERT INTO camp (group_id, name ,group_name, short_name, is_course, jstype, type, type_text, creator_user_id, t_created )
 						VALUES ('$group_id', '$name', '$group_name', '$short_name', '$is_course', '$jstype', '$type', '$course_type_text', '$_user->id', " . time() . ")";
 	mysql_query($query);
-
+	
 	$last_camp_id = mysql_insert_id();
 	
 	// Kateogiren hinzufügen
@@ -83,9 +83,7 @@
 						('$last_camp_id', 'Gruppestunde', 'GS', '99ccff' , 4),
 						('$last_camp_id', 'Essen', '', 'bbbbbb' , 0),
 						('$last_camp_id', 'Sonstiges', '', 'FFFFFF' , 0)";
-	}
-	else
-	{
+	}else{
 		$query = "INSERT INTO category (camp_id, name, short_name, color, form_type)
 					VALUES 
 						('$last_camp_id', 'Essen', 'ES', 'bbbbbb' , 0),
@@ -94,7 +92,7 @@
 						('$last_camp_id', 'Lagersport', 'LS', '14dd33' , 1)";
 	}
 	mysql_query($query);
-	
+
 	// ToDo std. einfüllen
 	if( $is_course)
 	{
@@ -104,9 +102,8 @@
 						('$last_camp_id', 'Detailprogramm einreichen', 			'Definitives Detailprogramm an LKB.', " . ( $start - 2 * 7 ) . "),
 						('$last_camp_id', 'Kursabschluss', 						'TN-Liste, Kursbericht', " . ( $ende + 3 * 7 ) . "),
 						('$last_camp_id', 'J+S-Material/Landeskarten', 			'J+S-Material und Landeskarten bestellen.', " . ( $start - 6 * 7 ) . ")";
-	}
-	else
-	{
+
+	}else{
 		$query = "INSERT INTO todo (camp_id, title, short, date)
 					VALUES
 						('$last_camp_id', 'Lagerhaus/Lagerplatz reservieren', 	'Das Lagerhaus/Lagerplatz definitiv reservieren.', " . ( $start - 8 * 30 ) . "),

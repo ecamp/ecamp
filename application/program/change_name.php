@@ -28,7 +28,7 @@
 
 	$query = "UPDATE event SET name = '$name' WHERE id = $event_id";
 	mysql_query($query);
-
+	
 	header("Content-type: application/json");
 	
 	$ans = get_program_update( $time );

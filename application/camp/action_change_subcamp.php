@@ -28,9 +28,9 @@
 	
 	$change_end   = ereg("([0-9]{1,2})[\/\. -]+([0-9]{1,2})[\/\. -]+([0-9]{1,4})", $change_end  , $regs);
 	$change_end   = gmmktime(0, 0, 0, $regs[2], $regs[1], $regs[3]);
-	
-	$_camp->subcamp( $subcamp_change_id ) || die( "error" );
 
+	$_camp->subcamp( $subcamp_change_id ) || die( "error" );
+	
 	// Subcamp suchen
 	$query = "SELECT * FROM subcamp WHERE id=$subcamp_change_id AND camp_id='$_camp->id'";
 	$result = mysql_query( $query );
@@ -73,7 +73,7 @@
 	}
 	
 	// Überschneidungen prüfen
-	$query = "SELECT * FROM `subcamp` WHERE camp_id=".$_camp->id." AND NOT id=".$subcamp[id]." AND(`start` BETWEEN -10000 AND ".($end).") AND ((`start`+`length`-1) BETWEEN ".$start." AND 32000)";
+	$query = "SELECT * FROM `subcamp` WHERE camp_id=".$_camp->id." AND NOT id=".$subcamp['id']." AND(`start` BETWEEN -10000 AND ".($end).") AND ((`start`+`length`-1) BETWEEN ".$start." AND 32000)";
 	$result = mysql_query( $query );
 	
 	if( mysql_num_rows( $result ) >= 1 )
@@ -96,7 +96,6 @@
 
 	/////////////////////////////////////////////////
 	// Zeitfenster-Veränderung vornehmen
-
 	  // Verorene Tage löschen	
 	  $query = "DELETE FROM `day` WHERE `subcamp_id`=$subcamp[id] AND NOT ((`day_offset`+$subcamp[start]) BETWEEN $start AND $end)";
 	  mysql_query( $query );

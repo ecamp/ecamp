@@ -27,7 +27,7 @@
 	{
 		$form[$typ['value']] = $typ['entry'];
 	}
-
+	
 	// Kategorien auslesen
 	$query = "SELECT * FROM category WHERE camp_id = '$_camp->id'";
 	$result = mysql_query($query);
@@ -73,7 +73,7 @@
 	$result = mysql_query( $query );
 	while( $mat_list = mysql_fetch_assoc( $result ) )
 	{	$mat_lists[] = $mat_list;	}
-
+	
 	$option = array(
 		"jobs" 			=> array( "title" => "Tagesjobs", "macro" => $GLOBALS['tpl_dir']."/application/option/jobs.tpl/jobs" ),
 		"category"		=> array( "title" => "Block - Kategorien", "macro" => $GLOBALS['tpl_dir']."/application/option/category.tpl/category" ),

@@ -59,23 +59,22 @@
 	
 	// Creating a workbook
 	$workbook = new Spreadsheet_Excel_Writer();
-    $workbook->setVersion(8);
+  $workbook->setVersion(8); 
 	
 	// sending HTTP headers
 	$workbook->send('Blockuebersicht.xls');
 	
 	// Creating a worksheet
 	$worksheet =& $workbook->addWorksheet(utf8_decode("Blockuebersicht"));
-    $worksheet->setInputEncoding ("UTF-8");
+  $worksheet->setInputEncoding ("UTF-8");
 	
-    $format_content = & $workbook->addFormat(
-  	    array(
-  		    "Size" => 8,
+  $format_content = & $workbook->addFormat(
+  	    array( "Size" => 8,
 	        "Align" => "left",
 	        "Border" => 1,
 	        "vAlign" => "top"
         )
-    );
+  );
 	
 	$format_content_unboxed = & $workbook->addFormat(
 		array(
@@ -150,7 +149,6 @@
 		///////////////////////
 		// load additional data
 		///////////////////////
-		
 		// Checkliste
 		$query = "SELECT 
 		  cc.short
@@ -189,7 +187,6 @@
 		///////////////////////
 		// format output
 		///////////////////////
-		
 		// name
 		$worksheet->write($row, 0, $this_event['name']." ".$checklist_str, $format_content);
 		//echo $this_event[name]." ".$checklist_str."   ";
@@ -219,7 +216,6 @@
 		// topics
 		$worksheet->write($row, 4, $this_event['topics'], $format_content);
 		//echo $this_event[topics]."   ";
-			
 		//echo "\n";
 	}
 		

@@ -51,7 +51,7 @@
 				user_camp 
 			WHERE 
 				user_camp.camp_id = '$_camp->id' AND
-				user_camp.function_id = '" . $function['id'] . "' AND
+				user_camp.function_id = '" . $function[id] . "' AND
 				user_camp.user_id = user.id";
 		
 		//echo $subquery;
@@ -97,7 +97,7 @@
 			$leader_list[] = $leader_data;
 		}
 		
-		$show = ( $function['id'] == 1 );
+		$show = ( $function[id] == 1 );
 		$leaders[] = array( "function_id" => $function['id'], "function_name" => $function['entry'], "show" => $show, "users" => $leader_list );
 	}
 	

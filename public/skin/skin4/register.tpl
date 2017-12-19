@@ -1,99 +1,94 @@
-<!DOCTYPE html>
-<html lang="de">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
 	<head>
 		<title>eCamp v2</title>
-		
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-	
-        <link rel="stylesheet" type="text/css" href="./public/global/css/global.css" />       
-        
-        <link rel="stylesheet" type="text/css" href="./public/skin/skin4/css/main.css" />
-        <link rel="stylesheet" type="text/css" href="./public/skin/skin4/css/color.css" />
-        <link rel="stylesheet" type="text/css" href="./public/skin/skin4/css/layout.css" />
-		<link rel="stylesheet" type="text/css" href="./public/skin/skin4/css/bootstrap.min.css" />
 
-        <script type="text/javascript" language="javascript" src="./public/global/js/mootools-core-1.4.js"></script>
-        <script type="text/javascript" language="javascript" src="./public/skin/skin4/js/jquery-3.2.1.min.js"></script>
-        <script type="text/javascript" language="javascript" src="./public/skin/skin4/js/bootstrap.min.js"></script>
-        <script type="text/javascript" language="javascript">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+		<link rel="stylesheet" type="text/css" href="./public/global/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="./public/global/css/global.css" />
+        
+        <link rel="stylesheet" type="text/css" href="./public/skin/skin3/css/main.css" />
+        <link rel="stylesheet" type="text/css" href="./public/skin/skin3/css/color.css" />
+        <link rel="stylesheet" type="text/css" href="./public/skin/skin3/css/layout.css" />
+        
+        
+        <style>
+        	table
+			{ 	font-size:13px;}	
+			font.title
+			{	font-size: 25px;	}
+        	
+        	.message, .login, .register
+			{
+				width:380px;
+				padding:30px 10px 10px 10px;
+				margin-bottom:20px;
+			}
+			
+			input[type=text], input[type=password]
+			{
+				width: 100%;
+			}
+			
+			div.login
+			{
+				position: relative;
+			}
+			
+			div.gotologin
+			{
+				position: absolute;
+				top: 2px;
+				right: 4px;
+			}
+        </style>
+
+		<script type="text/javascript" src="./public/global/js/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="./public/global/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="./public/global/js/mootools1.2.js"></script>
+		<script type="text/javascript">
 			jQuery.noConflict();
-        </script>
+		</script>
 		
-		<script type="text/javascript" language="javascript"  tal:condition="SHOW_MSG" >
+		<script type="text/javascript" tal:condition="SHOW_MSG" >
 			var error = "<tal:block content='MSG' />";
 			alert( error );
 			window.history.back();
 		</script>
 	</head>
-	<body>
-		<div class="space-top"></div>
-		<div class="container">
-			<div class="row">
-				<div class="col-md-8 col-md-offset-2">
-					<div class="panel panel-default">
-					<div class="panel-heading">eCamp - Register</div>
-						<div class="panel-body">
-                            <div tal:condition="SHOW_MSG" class="alert alert-danger col-sm-offset-2">
-                                <p class="text-center" tal:content="structure MSG">TEXT...</p>
-                            </div>
-                            <div class="gotologin">
-                                <a href="login.php">Zurück zum Login</a>
-                            </div>
-                            <form class="form-horizontal" action="register_do.php" method="post">
-                                <div class="form-group">
-                                    <label for="inputEmail" class="col-sm-2 control-label">E-Mail:</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" tabindex="1" class="form-control" id="Login" placeholder="Email" name="Login" />
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputPassword1" class="col-sm-2 control-label">Passwort</label>
-                                    <div class="col-sm-10">
-                                        <input type="password" tabindex="2" class="form-control" id="inputPassword1" placeholder="Passwort" name="Passwort1" />
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputPassword2" class="col-sm-2 control-label">Passwort wiederholen</label>
-                                    <div class="col-sm-10">
-                                        <input type="password" tabindex="2" class="form-control" id="inputPassword2" placeholder="Passwort wiederholen" name="Passwort2" />
-                                    </div>
-                                </div>
-                                <div class="space-top"></div>
-                                <div class="form-group">
-                                    <label for="inputPfadiname" class="col-sm-2 control-label">Pfadiname</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" tabindex="2" class="form-control" id="inputPfadiname" placeholder="Pfadiname" name="scoutname" />
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputVorname" class="col-sm-2 control-label">Vorname</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" tabindex="2" class="form-control" id="inputVorname" placeholder="Vorname" name="firstname" />
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputNachname" class="col-sm-2 control-label">Nachname</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" tabindex="2" class="form-control" id="inputNachname" placeholder="Nachname" name="surname" />
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputCaptcha" class="col-sm-2 control-label">Captcha</label>
-                                    <div class="col-sm-10">
-                                        <tal:block content="structure captcha" />
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-sm-offset-2 col-sm-10">
-                                        <button type="submit" class="btn btn-default" tabindex="3">Registrieren</button>
-                                    </div>
-                                </div>
-                            </form>
-						</div>
-					</div>
+	<body marginheight="100" marginwidth="0" class="bgcolor ">
+		<center>	
+			<div class="message bgcolor_content content_border_fit" tal:condition="SHOW_MSG" >
+	        	<span tal:content="MSG">TEXT...</span>
+	        </div>
+			<div class="login bgcolor_content content_border_fit">
+	        	<div class="gotologin">
+					<a href="login.php">Zurück zum Login</a>
 				</div>
-			</div>
-		</div>
+	        	<form action="register_do.php" method="post">
+	                <table width="80%">
+	                    <tr><td colspan="2"><font class="title">eCamp - Register</font></td></tr>
+	                    <tr height="10"><td> </td></tr>
+	                    <tr><td>E-Mail:</td><td><input tabindex="1" name="Login" type="text" /></td></tr>
+	                    <tr height="10"><td> </td></tr>
+	                    <tr><td>Passwort:</td><td><input tabindex="2" name="Passwort1" type="password" /></td></tr>
+	                    <tr><td>Wiederholen:</td><td><input tabindex="3" name="Passwort2" type="password" /></td></tr>
+	                    <tr height="40"><td> </td></tr>
+	                    <tr><td>Pfadiname:</td><td><input tabindex="4" name="scoutname" type="text" /></td></tr>
+	                    <tr><td>Vorname:</td><td><input tabindex="5" name="firstname" type="text" /></td></tr>
+	                    <tr><td>Nachname:</td><td><input tabindex="6" name="surname" type="text" /></td></tr>
+	                    <tr height="10"><td> </td></tr>
+	                    <tr>
+                            <td colspan="2">
+	                    		<tal:block content="structure captcha" />
+	                        </td>
+                        </tr>
+	                    <tr><td colspan="2" align="right"><input tabindex="7" type="submit" value="Register" /></td></tr>
+	                    <tr><td> </td></tr>
+	                </table>
+	            </form>
+	        </div>
+		</center>
 	</body>
 </html>

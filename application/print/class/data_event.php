@@ -18,10 +18,8 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	
 	class print_data_event_class
 	{
-		
 		public $pid;
 		public $id;
 		public $camp_id;
@@ -46,7 +44,6 @@
 		public $event_checklist = array();
 		public $event_aim = array();
 
-		
 		function print_data_event_class( $data, $pid )
 		{
 			$this->pid			= $pid;
@@ -64,8 +61,6 @@
 			$this->progress 	= $data['progress'];
 			
 			$this->category 	= $pid->category[ $this->category_id ];
-			
-			
 		}
 		
 		function add_event_detail( $event_detail )
@@ -89,5 +84,3 @@
 		function add_event_aim( $aim )
 		{	$this->event_aim[ $aim->id ] = $aim;	}
 	}
-	
-?>

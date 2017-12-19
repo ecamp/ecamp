@@ -19,11 +19,11 @@
  */
 
 	$_page->html = new PHPTAL('template/application/event/file_upload_form.tpl');
-
+	
 	$event_id = mysql_real_escape_string( $_REQUEST['event_id'] );
 	
 	$_camp->event( $event_id ) || die( "error" );
-
+	
 	$query = "	SELECT
 					*
 				FROM
@@ -32,5 +32,6 @@
 					event.id = $event_id";
 	$result = mysql_query( $query );
 	$event = mysql_fetch_assoc( $result );
-
+	
 	$_page->html->set( 'event', $event );
+	

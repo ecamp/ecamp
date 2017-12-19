@@ -22,7 +22,7 @@
 	$resp_user = $_REQUEST['resp_user'];
 	
 	$_camp->event( $event_id ) || die( "error" );
-
+	
 	$ans = array( 'value' => array() );
 	
 	foreach( $resp_user as $user_id => $is_resp )
@@ -61,7 +61,7 @@
 						SET t_edited = CURRENT_TIMESTAMP
 						WHERE id = $event_id";
 			mysql_query( $query );
-
+			
 			$query = "SELECT * FROM event WHERE id = $event_id";
 			$result = mysql_query( $query );
 			$event = mysql_fetch_assoc( $result );
@@ -77,14 +77,16 @@
 					"Dir wurde die Verantwortung für den Block '" . $event['name'] . "' zugeteilt.",
 					time(), $user_id );
 			}
+			
 		}
 		
 		if( mysql_error() )
 		{	/* error */	}
-
+		
 		$ans['value'][] = array( 'value' => $user_id, 'selected' => ( $is_resp == 'true' ) );
 	}
-
+	
 	$ans['error'] = false;
 	echo json_encode( $ans );
 	die();
+	

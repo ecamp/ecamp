@@ -50,7 +50,7 @@
 	$result = mysql_query( $query );
 	
 	$user = mysql_fetch_assoc( $result );
-	
+
 	// Sex:
 	$query = "	SELECT	entry
 				FROM	dropdown
@@ -70,7 +70,7 @@
 		$user['sex_str'] = "";
 		$user['sex_symbol'] = "";
 	}
-
+	
 	// J+S Edu:
 	$query = "	SELECT 	entry
 				FROM 	dropdown
@@ -85,7 +85,7 @@
 	}
 	else
 	{	$user['jsedu_str'] = "";	}
-
+	
 	// PBS Edu:
 	$query = "	SELECT 	entry
 				FROM 	dropdown
@@ -114,5 +114,5 @@
 
 	// Profile Pic:
 	$user[ 'avatar' ] = "index.php?app=user_profile&cmd=show_avatar&show_user_id=" . $id;
-
+	
 	$_page->html->set( 'user_detail', $user );

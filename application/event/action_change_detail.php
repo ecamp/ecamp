@@ -31,7 +31,7 @@
 	$time_js = 	$_REQUEST['time'];
 	$content_js = 	$_REQUEST['content'];
 	$resp_js = 	$_REQUEST['resp'];
-
+	
 	$query = "
 				UPDATE
 					event_detail
@@ -41,14 +41,13 @@
 					resp 	= '$resp'
 				WHERE
 					event_detail.id = $event_detail_id";
-	
 	mysql_query( $query );
 	
 	$ans = array( 
-					"error" 	=> false, 
-					"time" 		=> $time_js, 
-					"content" 	=> $content_js, 
-					"resp" 		=> $resp_js 
-				);
+		"error" 	=> false,
+		"time" 		=> $time_js,
+		"content" 	=> $content_js,
+		"resp" 		=> $resp_js
+	);
 	echo json_encode( $ans );
 	die();

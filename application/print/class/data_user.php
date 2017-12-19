@@ -37,7 +37,7 @@
 		public $jsedu;
 		public $pbsedu;
 		public $image;
-
+		
 		function print_data_user_class( $data, $pid )
 		{
 			$this->pid			= $pid;
@@ -65,3 +65,4 @@
 			else					{	return $this->firstname . " " . $this->surname;	}
 		}
 	}
+	

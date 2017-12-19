@@ -18,6 +18,7 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+
 # Sichheitslevel der einzelnen Aktionen/Dateien
 # --> Kommandos/Files die nicht aufgeührt sind, können nicht aufgerufen werden
 $security_level = array( 
@@ -51,7 +52,7 @@ $js  = array(
 	"mootools-more-1.4.js" 		=> "global",
 	"popup.js" => "global",
 	"other.js" => "global",
-
+				
 	"gp_class.js"	=> "app",
 	"user_class.js" => "app",
 	"category_class.js" => "app",
@@ -60,11 +61,11 @@ $js  = array(
 	"event_class.js" => "app",
 	"event_instance_class.js" => "app",
 	"menu_class.js" => "app",
-
+				
 	//"dp_class.js" => "app",
 	"config.js" => "app",
 	"numbering.js" => "app",
-
+				
 	"event.js" => "module",
 	"dynamic_input.js" => "global"
 );
@@ -78,4 +79,5 @@ $div = array(
 if( $_page->cmd == "" ) $_page->cmd = "home";
 
 $show_day = 8;
+
 $day_width = 150;

@@ -22,9 +22,9 @@
 	include($lib_dir . "/mysql.php");
 	include($lib_dir . "/functions/mail.php");
 	db_connect();
-	
+
 	$login = mysql_escape_string( $_REQUEST[ 'Login' ] );
-	
+
 	$query = "	SELECT id, active, acode FROM user WHERE mail = '$login'";
 	$result = mysql_query( $query );
 	
@@ -60,8 +60,8 @@ Zu diesem Zweck musst du nachfolgendem Link folgen:
 \n\n
  ";
  	
- 	ecamp_send_mail($login, "eCamp - Willkommen", $text);
-	//mail( $login, "eCamp - Willkommen", $text, "From: eCamp Pfadi Luzern <ecamp@pfadiluzern.ch>" );
+ 	//ecamp_send_mail($login, "eCamp - Willkommen", $text);
+	mail( $login, "eCamp - Willkommen", $text, "From: eCamp Pfadi Luzern <ecamp@pfadiluzern.ch>" );
 	
 	/*
 	$text = urlencode( $text );

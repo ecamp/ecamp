@@ -53,7 +53,7 @@
 		$user = array( "tag" => "option", "value" => "user_" . $u['id'], "html" => htmlentities_utf8($u['scoutname']) );
 		$users[] = $user;
 	}
-	
+
 	$query = "	SELECT
 					mat_list.*
 				FROM

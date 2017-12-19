@@ -41,7 +41,7 @@
 	
 	while( $row = mysql_fetch_assoc( $result ) )
 	{
-		if( $row['user_camp_id'] )
+		if( $row[user_camp_id] )
 		{
 			$query = "	SELECT user.scoutname
 						FROM user, user_camp
@@ -50,7 +50,7 @@
 			$subresult = mysql_query( $query );
 			$resp_str = mysql_result( $subresult, 0, 'scoutname' );
 		}
-		if( $row['mat_list_id'] )
+		if( $row[mat_list_id] )
 		{
 			$query = "	SELECT mat_list.name
 						FROM mat_list
@@ -70,6 +70,7 @@
 
 	//	MAT-STUFF - STOCKED:
 	// ======================
+	
 	$query = "	SELECT
 					mat_event.id,
 					mat_event.article_name,

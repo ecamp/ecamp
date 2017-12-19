@@ -25,6 +25,7 @@
 		var $starttime;
 		var $length;
 		var $data = array();
+		
 	}
 	
 	function get_all_events_of_one_day_as_html( $this_day_id, $this_day_nr )
@@ -81,10 +82,10 @@
 							event_instance.day_id = $this_day_id AND
 							event_instance.event_id = event.id
 						ORDER BY starttime ASC, length DESC, id DESC ";
-
+		
 		$event_result = mysql_query($event_query);
 		$event_nr = 0;
-
+		
 		$rows = array();
 		$count = array();
 		
@@ -104,7 +105,7 @@
 			}
 			
 			//$all_events[$event[id]][row] = $row;
-
+			
 			$rows[$row][count($rows[$row]) + 1] = new event();
 			$rows[$row][count($rows[$row])]->starttime 	= $event['starttime'];
 			$rows[$row][count($rows[$row])]->length		= $event['length'];
@@ -117,7 +118,7 @@
 		
 		//print_r($rows);
 		//echo "-- new day --";
-
+		
 		foreach ($rows as $list_of_events)
 		{
 			foreach ($list_of_events as $event)
@@ -127,7 +128,6 @@
 				{	$max_row = max($max_row, $count[$time]);	}
 				
 				$event->data['max_row'] = $max_row;
-				
 				
 				$events .= event2html( $event->data, $event->data['eventnr'], $this_day_nr );
 				
@@ -151,7 +151,9 @@
 		}*/
 		
 		//print_r($all_events);
-
+		
+		
+		
 		/*
 		// alle Events durchlaufen
 		while($event = mysql_fetch_assoc($event_result))

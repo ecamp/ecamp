@@ -1,12 +1,9 @@
 /** eCampConfig
-
 	<depend on="public/global/js/mootools-core-1.4.js" type="js" /> <depend on="public/global/js/mootools-more-1.4.js" type="js" />
-
 **/
 
 var LIFOKeyHandler = new Class(
 {
-	
 	buffer: [],
 	
 	initialize: function()
@@ -36,15 +33,11 @@ var LIFOKeyHandler = new Class(
 			if( ! this.buffer.getLast().handler.run( event ) )
 			{	this.removeLastKeyHandler();	}
 		}
-		
 	}
-	
 });
-
 
 var PostLoader = new Class(
 {
-	
 	loadenJS: null,
 	loadenCSS: null,
 	
@@ -53,8 +46,7 @@ var PostLoader = new Class(
 		this.loadenJS = new Hash();
 		this.loadenCSS = new Hash();
 	},
-	
-	
+
 	loadJS: function( src )
 	{	this.loadenJS.include( src, new Asset.javascript( src ) );	},
 	
@@ -67,7 +59,6 @@ var PostLoader = new Class(
 		}
 	},
 	
-	
 	loadCSS: function( src )
 	{	this.loadenCSS.include( src, new Asset.css( src ) );	},
 	
@@ -79,14 +70,10 @@ var PostLoader = new Class(
 			this.loadenCSS.erase( src );
 		}
 	}
-	
-	
 });
-
 
 $JSOS = 
 {
 	KeyHandler: new LIFOKeyHandler(),
 	PostLoader: new PostLoader()
 }
-

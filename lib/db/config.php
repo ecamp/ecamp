@@ -137,7 +137,6 @@
 			"camp_id" => "camp",
 			"invitation_id" => "user"
 		)
-		
 	);
-	
+
 	print_r( $config );

@@ -42,6 +42,7 @@
 	if( $num_failure > 0 )
 	{
 	    // Es existieren Events zu dieser Kategorie
+
 		$ans = array( "error" => false, "del" => false, "msg" => "Diese Kategory kann nicht gelöscht werden, da ihr $num_failure Programmblöcke zugeordnet sind. Bitte lösche erst die Blöcke, oder weise ihnen eine andere Kategorie zu, und wiederhole dann den Löschvorgang" );
 		echo json_encode( $ans );
 		die();

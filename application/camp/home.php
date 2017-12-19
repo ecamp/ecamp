@@ -131,14 +131,11 @@
 	$camp_info["subcamps"]		= $subcamps;
 	
 	$camp_info['show_map_coor']	.= $camp_data['ca_coor1'] . $camp_data['ca_coor2'] . "," . $camp_data['ca_coor3'] . $camp_data['ca_coor4'];
-	
-	
+
 	if( $_REQUEST['show'] == 'firsttime' )
 	{	$camp_info['firsttime'] = true;		}
 	else
 	{	$camp_info['firsttime'] = false;	}
-	
-	
 	
 	if( $camp_data['is_course'] )
 	{
@@ -153,7 +150,6 @@
 		else
 		{	$camp_info['type'] = mysql_result($result, 0, 'entry' );	}
 	}
-	
 	
 	$_page->html->set('camp_info', $camp_info);
 

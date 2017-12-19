@@ -42,9 +42,9 @@
 
 	// Überschneidungen prüfen
 	$start = new c_date(); $start->setUnix( $move_to );
-	$end   = new c_date(); $end->setDay2000( $start->getValue() + $subcamp['length'] - 1 );
+	$end   = new c_date(); $end->setDay2000( $start->getValue() + $subcamp[length] - 1 );
 	
-	$query = "SELECT * FROM `subcamp` WHERE camp_id=".$_camp->id." AND NOT id=".$subcamp['id']." AND(`start` BETWEEN -10000 AND ".($start->getValue()+$subcamp[length]-1).") AND ((`start`+`length`-1) BETWEEN ".$start->getValue()." AND 32000)";
+	$query = "SELECT * FROM `subcamp` WHERE camp_id=".$_camp->id." AND NOT id=".$subcamp[id]." AND(`start` BETWEEN -10000 AND ".($start->getValue()+$subcamp[length]-1).") AND ((`start`+`length`-1) BETWEEN ".$start->getValue()." AND 32000)";
 	$result = mysql_query( $query );
 	
 	if( mysql_num_rows( $result ) >= 1 )
@@ -55,7 +55,7 @@
 	}
 
 	// Verschiebung durchführen
-	$query = "UPDATE subcamp SET start=".$start->getValue()." WHERE id=".$subcamp['id'];
+	$query = "UPDATE subcamp SET start=".$start->getValue()." WHERE id=".$subcamp[id];
 	mysql_query( $query );
 
 	$ans = array( "error" => false, "subcamp_start" => $start->getString("d.m.Y"), "subcamp_end" => $end->getString("d.m.Y") );

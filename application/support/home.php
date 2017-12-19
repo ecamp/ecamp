@@ -21,7 +21,7 @@
 	$_page->html->set('main_macro', $GLOBALS['tpl_dir'].'/global/content_box_full.tpl/predefine');
 	$_page->html->set('box_content', $GLOBALS['tpl_dir'].'/application/support/home.tpl/home');
 	$_page->html->set('box_title', 'Support');
-
+	
 	$search_arg = array();
 	$select_arg = array();
 	
@@ -47,10 +47,10 @@
 		if(!empty($camp_desc))	{	$select_arg[] = " (camp.name 	LIKE '$camp_desc%')*2 + (camp.name 	LIKE '$camp_desc')*30 ";	}
 		if(!empty($user_id))	{	$select_arg[] = " (user.id 		LIKE '$user_id%')*1 + 	(user.id 	LIKE '$user_id')*15 ";		}
 		if(!empty($user_desc))	{
-									$select_arg[] = " (user.scoutname LIKE '$user_desc%')*1 + (user.scoutname LIKE '$user_desc')*15 ";
-									$select_arg[] = " (user.firstname LIKE '$user_desc%')*1 + (user.firstname LIKE '$user_desc')*15 ";
-									$select_arg[] = " (user.surname   LIKE '$user_desc%')*1 + (user.surname   LIKE '$user_desc')*15 ";
-								}
+			$select_arg[] = " (user.scoutname LIKE '$user_desc%')*1 + (user.scoutname LIKE '$user_desc')*15 ";
+			$select_arg[] = " (user.firstname LIKE '$user_desc%')*1 + (user.firstname LIKE '$user_desc')*15 ";
+			$select_arg[] = " (user.surname   LIKE '$user_desc%')*1 + (user.surname   LIKE '$user_desc')*15 ";
+			}
 	}
 	
 	if( ! count( $select_arg ) )
@@ -64,7 +64,7 @@
 	{	$search_arg = implode(" OR ", 	$search_arg);	}
 	
 	$camp_list = array();
-
+	
 	$query = "	SELECT 
 					camp.id,
 					camp.group_name,
@@ -114,3 +114,4 @@
 	//	print_r( $camp_list );
 	
 	$_page->html->set( 'camp_list', $camp_list );
+	

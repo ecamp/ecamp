@@ -17,7 +17,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
-
+	
 	class print_data_subcamp_class
 	{
 		public $pid;
@@ -44,7 +44,7 @@
 			$this->ustart 	= $c_date->setDay2000( $this->start )->getUnix();
 			$this->uend		= $c_date->setDay2000( $this->start + $this->length )->getUnix();
 		}
-		
+
 		function add_day( $day )
 		{	$this->day[ $day->id ] = $day;	}
 
@@ -64,10 +64,10 @@
 			
 			return 0;
 		}
-		
-		function get_sorted_day()
-		{
-			uasort( $this->day, array( "print_data_subcamp_class", "sort_day" ) );
+
+		function get_sorted_day(){
+			uasort($this->day,array("print_data_subcamp_class","sort_day"));
+
 			return $this->day;
 		}
 	}

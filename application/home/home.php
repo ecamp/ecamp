@@ -19,7 +19,7 @@
  */
 
 	$_page->html->set('main_macro', $GLOBALS['tpl_dir'].'/application/home/home.tpl/home');
-	
+
 	// Einladungen suchen
 	$query = "SELECT * FROM user_camp WHERE user_id='$_user->id' AND active=0";
 	$result = mysql_query( $query );

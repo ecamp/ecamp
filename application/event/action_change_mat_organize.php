@@ -43,8 +43,7 @@
 						FROM user_camp
 						WHERE user_id = $user_id AND camp_id = " . $_camp->id;
 			$result = mysql_query( $query );
-			
-			
+
 			$user_camp_id = mysql_result( $result, 0, 'id' );
 			$mat_list_id = "NULL";
 			
@@ -97,7 +96,7 @@
 		{	$id = mysql_result( $result, 0, 'id' );	}
 		else
 		{	$id = "NULL";	}
-		
+
 		$query = "	INSERT INTO  
 						mat_event
 					(
@@ -210,7 +209,7 @@
 		{	$id = mysql_result( $result, 0, 'id' );	}
 		else
 		{	$id = "NULL";	}
-
+		
 		$query = "	UPDATE mat_event
 					SET 
 						`user_camp_id` = $user_camp_id,

@@ -45,7 +45,7 @@
 			die();
 		}
 	}
-
+	
 	// Überprüfen, ob gleicher Tagesjob scho besteht
 	$query = "SELECT * FROM job WHERE camp_id='$_camp->id' AND job_name='$job_name_save'";
 	$result = mysql_query( $query );
@@ -55,7 +55,7 @@
 		echo json_encode( $ans );
 		die();
 	}
-
+	
 	$query = "INSERT INTO `job` (`camp_id` ,`job_name` ,`show_gp`)
 			  VALUES ('$_camp->id', '$job_name_save', '0');";
 	mysql_query($query);

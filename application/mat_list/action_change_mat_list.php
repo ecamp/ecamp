@@ -27,7 +27,7 @@
 				SET `name` = '$mat_list_name'
 				WHERE id = $mat_list_id";
 	mysql_query( $query );
-
+	
 	if( mysql_error() )
 	{	$ans = array( "error" => true, "error_msg" => "Liste konne nicht unbenannt werden!" );	}
 	else

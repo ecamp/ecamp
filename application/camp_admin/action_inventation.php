@@ -59,6 +59,6 @@
   {
   	mysql_query("DELETE FROM user_camp WHERE id='$user_camp_id'");
   }
-  
+
   header("Location: index.php?app=camp_admin");
   die();

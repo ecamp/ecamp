@@ -58,12 +58,18 @@ div.menu_box *
 .bgcolor_dp_dark
 {
 	background: white;
+	/*
+	background:#009900;
+	*/
 }
 
 .bgcolor_dp_bright
 {
 	background: #e6efff;
-}
+	/*
+	background:#00CC00;
+	*/
+} /* 00CC000 */
 
 .textcolor_dp_bright
 {	color:white;	}
@@ -87,5 +93,12 @@ div.d_program_border
 
 
 /* Formulare */
+input[type="text"], input[type="password"], select { 
+	background:white; 
+	border:1px black solid;
+	}
+	
+input[type="button"], input[type="submit"] {  }
+
 input.showtext { background:white; }  
 input.askedit { background:orange; } /* Farbveränderung bei aktiver Eingabe */

@@ -17,7 +17,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
-	
+
 	class print_data_mat_event
 	{
 		public $pid;

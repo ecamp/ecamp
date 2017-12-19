@@ -18,7 +18,6 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
   function getQueryEventNr( $camp_id )
   {
 	$query = "

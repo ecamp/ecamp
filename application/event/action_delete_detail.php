@@ -21,7 +21,7 @@
 	$event_detail_id = mysql_real_escape_string( $_REQUEST['detail_id'] );
 	
 	$_camp->event_detail( $event_detail_id ) || die( "error" );
-	
+
 	$query = "SELECT event_id, event_detail.sorting FROM event_detail WHERE event_detail.id = $event_detail_id";
 	$result = mysql_query( $query );
 	$sorting = mysql_result( $result, 0, 'sorting' );
@@ -42,6 +42,7 @@
 	}
 	else
 	{	$ans = array( "error" => true, "error_msg" => "Detail konnte nicht gelöscht werden" );	}
-
+	
+	
 	echo json_encode( $ans );
 	die();

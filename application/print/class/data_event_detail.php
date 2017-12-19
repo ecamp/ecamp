@@ -28,7 +28,7 @@
 		public $content;
 		public $resp;
 		public $sorting;
-
+		
 		function print_data_event_detail_class( $data, $pid )
 		{
 			$this->pid 		= $pid;

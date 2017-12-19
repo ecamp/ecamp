@@ -34,7 +34,7 @@
 						user_camp.user_id = $user_id";
 		$result = mysql_query( $query );
 		$user_camp_id = mysql_result( $result, 0, 'id' );
-	
+
 		$query = "
 					SELECT
 						job_day.id as job_day_id,

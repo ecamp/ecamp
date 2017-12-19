@@ -90,20 +90,32 @@
 		)
 	);
 	
-	$format_content_unboxed = & $workbook->addFormat(array( "Size" => 8,
-													"Align" => "left",
-													"Border" => 0,
-													"vAlign" => "top"));
+	$format_content_unboxed = & $workbook->addFormat(
+		array(
+			"Size" => 8,
+			"Align" => "left",
+			"Border" => 0,
+			"vAlign" => "top"
+		)
+	);
 	
-	$format_header  = & $workbook->addFormat(array( "Size" => 10,
-													"Bold" => 1,
-													"Align" => "left",
-													"Border" => 1,
-													"vAlign" => "top"));
+	$format_header  = & $workbook->addFormat(
+		array(
+			"Size" => 10,
+			"Bold" => 1,
+			"Align" => "left",
+			"Border" => 1,
+			"vAlign" => "top"
+		)
+	);
 	
-	$format_title  = & $workbook->addFormat(array( "Size" => 16,
-													"Bold" => 1,
-													"vAlign" => "top"));
+	$format_title  = & $workbook->addFormat(
+		array(
+			"Size" => 16,
+			"Bold" => 1,
+			"vAlign" => "top"
+		)
+	);
 	
 	$format_title->setFontFamily("Arial");
 	

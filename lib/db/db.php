@@ -86,7 +86,7 @@
 			
 			$result = mysql_query( $query );
 			if( mysql_error() )	{	return false;	}
-			
+
 			while( $row = mysql_fetch_assoc( $result ) )
 			{
 				$id = $row['id'];

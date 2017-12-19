@@ -27,16 +27,17 @@
 		header( "location: index.php?app=invent" );
 		die();
 	}
-
+	
 	//	SEND MAIL:
 	// ============
 	if( $from == "support" )
 	{	$from = "From: eCamp Pfadi Luzern <ecamp@pfadiluzern.ch>";	}
 	else
 	{	$from = "From: " . $_user->display_name . " " . $_user->mail;	}
-
+	
 	ecamp_send_mail($email, "eCamp - Einladung von " . $_user->display_name, $text);
 	//mail( $email, "eCamp - Einladung von " . $_user->display_name, $text, $from );
 	
 	header( "location: index.php?app=invent" );
 	die();
+	

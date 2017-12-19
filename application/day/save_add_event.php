@@ -28,7 +28,7 @@
 	
 	$_camp->category( $category ) || die( "error" );
 	$_camp->day( $day_id ) || die( "error" );
-	
+
 	$start  = $start_h * 60  + $start_min;
 	$length = $length_h * 60 + $length_min;
 	

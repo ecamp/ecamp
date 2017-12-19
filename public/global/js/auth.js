@@ -18,13 +18,10 @@
  */
 
 /** eCampConfig
-
 	<depend on="public/global/js/mootools-core-1.4.js" type="js" /> <depend on="public/global/js/mootools-more-1.4.js" type="js" />
-
 **/
 
 var auth_class = new Class({
-	
 	level: 0,
 	
 	initialize: function( level )
@@ -35,8 +32,6 @@ var auth_class = new Class({
 	access: function( min_level )
 	{	return this.level >= min_level;	}
 });
-
-
 
 if( !$_var_from_php.auth_level )
 {	$_var_from_php.auth_level = 0;	}

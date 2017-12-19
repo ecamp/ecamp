@@ -18,7 +18,7 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	$subcamp_id = mysql_real_escape_string($_REQUEST['subcamp_id']);
+	$subcamp_id = mysql_real_escape_string($_REQUEST[subcamp_id]);
 
 	$_camp->subcamp( $subcamp_id ) || die( "error" );
 
@@ -36,7 +36,8 @@
 		// Subcamp löschen
 		// Der Rest (day, event) wird automatisch gelöscht (innoDB)
 		mysql_query($query);
-
+		
+		
 		$query = "	SELECT event.id
 					FROM event
 					LEFT JOIN event_instance 
@@ -46,15 +47,17 @@
 		
 		while( $row = mysql_fetch_assoc( $result ) )
 		{	mysql_query( "DELETE FROM event WHERE id = " . $row['id']	);	}
-
+		
+		
 		$ans = array( "error" => false );
 		echo json_encode($ans);
 		die();
 	}
-
+	
 	$ans = array( 
-					"error" => true,
-					"msg"	=> "Der ausgewählte Lagerabschnitt konnte nicht gelöscht werden. Ein Lager muss immer aus min. 1 Lagerabschnitt bestehen.<br /><br />Verwende &quot;Zeitfenster verändern&quot; oder &quot;Programm verschieben&quot; um den Lagerzeitpunkt zu ändern."
-				);
+		"error" => true,
+		"msg"	=> "Der ausgewählte Lagerabschnitt konnte nicht gelöscht werden. Ein Lager muss immer aus min. 1 Lagerabschnitt bestehen.<br /><br />Verwende &quot;Zeitfenster verändern&quot; oder &quot;Programm verschieben&quot; um den Lagerzeitpunkt zu ändern."
+	);
+
 	echo json_encode($ans);
 	die();

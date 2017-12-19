@@ -89,6 +89,8 @@ function _recaptcha_http_post($host, $path, $data, $port = 80) {
         return $response;
 }
 
+
+
 /**
  * Gets the challenge HTML (javascript and non-javascript version).
  * This is called from the browser, and the resulting reCAPTCHA HTML widget
@@ -151,6 +153,8 @@ function recaptcha_check_answer ($privkey, $remoteip, $challenge, $response, $ex
 		die ("For security reasons, you must pass the remote ip to reCAPTCHA");
 	}
 
+	
+	
         //discard spam submissions
         if ($challenge == null || strlen($challenge) == 0 || $response == null || strlen($response) == 0) {
                 $recaptcha_response = new ReCaptchaResponse();
@@ -179,7 +183,6 @@ function recaptcha_check_answer ($privkey, $remoteip, $challenge, $response, $ex
                 $recaptcha_response->error = $answers [1];
         }
         return $recaptcha_response;
-
 }
 
 /**
@@ -220,7 +223,6 @@ function recaptcha_mailhide_url($pubkey, $privkey, $email) {
 		die ("To use reCAPTCHA Mailhide, you have to sign up for a public and private key, " .
 		     "you can do so at <a href='http://mailhide.recaptcha.net/apikey'>http://mailhide.recaptcha.net/apikey</a>");
 	}
-	
 
 	$ky = pack('H*', $privkey);
 	$cryptmail = _recaptcha_aes_encrypt ($email, $ky);
@@ -258,5 +260,5 @@ function recaptcha_mailhide_html($pubkey, $privkey, $email) {
 	
 	return htmlentities($emailparts[0]) . "<a href='" . htmlentities ($url) .
 		"' onclick=\"window.open('" . htmlentities ($url) . "', '', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=500,height=300'); return false;\" title=\"Reveal this e-mail address\">...</a>@" . htmlentities ($emailparts [1]);
-
 }
+?>

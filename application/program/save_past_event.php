@@ -26,9 +26,10 @@
 	
 	$_camp->day( $day_id ) || die( "error" );
 	
+	
 	if( $start < $GLOBALS['time_shift'] )
 	{	$start += 24*60;	}
-
+	
 	$query = "	SELECT copyspace
 				FROM user
 				WHERE user.id = $_user->id";
@@ -67,7 +68,7 @@
 							ORDER BY category.form_type DESC
 						) as category
 					WHERE category.camp_id = $_camp->id";
-
+		
 		$query = "	SELECT
 						category.id
 					FROM
@@ -87,7 +88,6 @@
 					WHERE
 						category.camp_id = $_camp->id
 					LIMIT 1";
-		
 		$result = mysql_query( $query );
 		
 		$i = 0;
@@ -118,7 +118,7 @@
 					)";
 		mysql_query($query);
 		$new_event_id = mysql_insert_id();
-
+		
 		$query = "	INSERT INTO
 						event_instance
 					(event_id, day_id, starttime, length, dleft, width)	
@@ -135,7 +135,7 @@
 							id = " . $copy['event_instance'] . "
 					)";
 		mysql_query($query);
-
+		
 		if( $category_id )
 		{
 			$query = "	INSERT INTO
@@ -157,9 +157,10 @@
 			mysql_query( $query );
 		}
 	}
-
+	
 	//header("Content-type: application/json");
 	
 	$ans = get_program_update( $time );
 	echo json_encode( $ans );
 	die();
+	

@@ -58,7 +58,7 @@
 							
 		$event_result = mysql_query($event_query);
 		$event_nr = 0;
-
+		
 		$rows = array();
 		$count = array();
 		
@@ -70,7 +70,7 @@
 			
 			
 			$row = 1;
-			while($rows[$row][count($rows[$row])]->starttime + $rows[$row][count($rows[$row])]->length > $event['starttime'])
+			while($rows[$row][count($rows[$row])]->starttime + $rows[$row][count($rows[$row])]->length > $event[starttime])
 			{
 				$row++;
 				if(!is_array($rows[$row]))
@@ -84,7 +84,8 @@
 			$rows[$row][count($rows[$row])]->length		= $event['length'];
 			$rows[$row][count($rows[$row])]->row 		= $row;
 			$rows[$row][count($rows[$row])]->id 		= $event['event_instance_id'];
-
+			
+			
 			$events[$event['event_instance_id']] = new event();
 			$events[$event['event_instance_id']]->starttime	= $event['starttime'];
 			$events[$event['event_instance_id']]->length		= $event['length'];

@@ -130,7 +130,7 @@
 			'event_nr'	=> "(" . $row['day_nr'] . "." . $row['event_nr'] . ")",
 			'startdate' => date("d.m.Y", $date->getUnix()),
 			'starttime' => $start->getString("H:i") . " - " . $end->getString("H:i")
-		);
+											);
 	} while($row = mysql_fetch_assoc( $result ) );
 	
 	$_page->html->set( 'dp_header', $dp_header );
@@ -157,7 +157,7 @@
 	{	$dp_head_show[ $row['form'] ] = $row['show_form'];	}
 	
 	$_page->html->set( 'dp_head_show', $dp_head_show );
-	
+
 	$query = "	SELECT
 					event.aim as aim,
 					event.story as story,
@@ -178,19 +178,17 @@
 		"script"	=> "action_change_aim",
 		"event_id"	=> $event_id
 	);
-
 	$dp_head['story'] = array(
 		"value" => $replace['story'],
 		"script"	=> "action_change_story",
 		"event_id"	=>	$event_id
 	);
-
 	$dp_head['method'] = array(
 		"value" => $replace['method'],
 		"script"	=> "action_change_method",
 		"event_id"	=>	$event_id
 	);
-
+	
 	$dp_head['topics'] = array(
 		"value" => $replace['topics'],
 		"script"	=> "action_change_topics",

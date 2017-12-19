@@ -19,7 +19,6 @@
 
 	function lock_screen()
 	{
-
 	   	$('transparent_div').removeClass('hidden');
 	   
 	   	//$('transparent').width  = document.body.clientWidth;
@@ -46,15 +45,9 @@
 		$('transparent_div').addClass('hidden');
 	}
 	
-	function show_busy()
-	{
-		
-	}
+	function show_busy(){}
 	
-	function hide_busy()
-	{
-		
-	}
+	function hide_busy(){}
 	
 	function utf8_encode(rohtext) 
 	{

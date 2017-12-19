@@ -24,11 +24,9 @@
 	require_once( 'build_day.php' );
 	require_once( 'build_event.php' );
 	require_once( 'build_toc.php' );
-	
-	
+
 	class print_build_class
 	{
-		
 		public $data;
 		
 		public $cover;
@@ -50,5 +48,3 @@
 			$this->toc		= new print_build_toc();
 		}
 	}
-	
-?>

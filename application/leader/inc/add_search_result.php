@@ -39,8 +39,7 @@
 		{	$selected = "";	}
 		
 		$option .= gettemplate_app(
-			'option',
-			array(
+			'option', array(
 				'value' => $row['id'],
 				'content' => $row['entry'],
 				'selected' => $selected
@@ -48,7 +47,7 @@
 		);
 	}
 	$select = gettemplate_app('select', array("name" => "function", "content" => $option));
-
+	
 	$search_arg = array("1");
 	if(!empty($scoutname))	{	$search_arg[] = " scoutname LIKE '$scoutname%' ";	}
 	if(!empty($firstname))	{	$search_arg[] = " firstname LIKE '$firstname%' ";	}
@@ -65,8 +64,8 @@
 		$found_users .= gettemplate_app('add_search_result_user', $found);	
 	}
 
-	$index_content['main'] .= gettemplate_app('add_search_result',
-		array(
+	$index_content['main'] .= gettemplate_app(
+		'add_search_result',	array(
 			"content" => $found_users,
 			"scoutname" => $scoutname,
 			"firstname" => $firstname,
@@ -75,3 +74,4 @@
 			"std" => $std
 		)
 	);
+?>

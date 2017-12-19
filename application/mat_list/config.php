@@ -25,8 +25,8 @@ $security_level = array(
 	'action_add_mat_list' => 50,
 	'action_change_mat_list' => 50,
 	'action_del_mat_list' => 50,
-    'action_generate_xls' => 20,
-    'action_change_organized' => 20
+	'action_generate_xls' => 20,
+	'action_change_organized' => 20
 );
 
 $css = array(

@@ -26,7 +26,6 @@
 	if( mysql_num_rows($result) )
 	{
 		// COPY MAT-RESPONSIBILITY TO NEW MAT-LIST CALLED THE SAME AS THE USER BEVOR.
-		
 		$query = "	SELECT user.scoutname, user.firstname, user.surname
 					FROM user, user_camp
 					WHERE user.id = user_camp.user_id AND user_camp.id = $user_camp_id";
@@ -35,18 +34,18 @@
 		$user_name = mysql_result( $result, 0, 'scoutname' );
 		if( !is_string( $user_name ) )
 		{	$user_name = mysql_result( $result, 0, 'firstname' ) . " " . mysql_result( $result, 0, 'surname' );	}
-		
+
 		$query = "	INSERT INTO mat_list ( `camp_id`, `name` )
 					VALUES ( $_camp->id, 'Materialliste von " . $user_name . "' )";
 		mysql_query( $query );
 		$mat_list_id = mysql_insert_id();
-		
+
 		$query = "	UPDATE mat_event
 					SET user_camp_id = NULL, mat_list_id = $mat_list_id
 					WHERE user_camp_id = $user_camp_id";
 		mysql_query( $query ); 
 	}
-	
+
 	$query = "SELECT user_id FROM user_camp  WHERE id = '$user_camp_id'";
 	$result = mysql_query($query);
 	$user_id = mysql_result( $result, 0, 'user_id' );

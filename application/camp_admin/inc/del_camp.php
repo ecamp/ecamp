@@ -24,5 +24,4 @@
 	$result = mysql_query($query);
 	$camp_detail = mysql_fetch_assoc($result);
 	
-	
 	$index_content['main'] .= gettemplate_app('del_camp', $camp_detail);

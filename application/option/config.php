@@ -25,21 +25,21 @@ $security_level = array(
 	'action_add_cat' => 50,
 	'is_del_possible' => 50,
 	'action_del_cat' => 50,
-
+							
 	'action_new_job' => 50,
 	'action_change_jobname' => 50,
 	'action_change_show_gp' => 50,
 	'action_del_job' => 50,
 	'action_change_job' => 50,
 	'action_change_picasso' => 50,
-
+							
 	'action_add_cat' => 50,
 	'action_change_cat' => 50,
-
+							
 	'action_add_mat_list' => 50,
 	'action_change_mat_list' => 50,
 	'action_del_mat_list' => 50,
-
+							
 	'load_dropdown' => 50
 );
 

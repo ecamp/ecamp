@@ -18,7 +18,7 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-////////////////////////////////
+	////////////////////////////////
 	// Wandelt einen Binärstring in Hex um
 	function string2hex($str)
 	{
@@ -33,7 +33,7 @@
 			return "0x".$hex;
 		}
 	}
-///////////////////////////////
+	///////////////////////////////
 
  include("../../config.php");
  include("../../lib/mysql.php");
@@ -76,6 +76,7 @@ $tables = array(
   "event_checklist"   => "SELECT c.* FROM event_checklist c, event e WHERE c.event_id=e.id AND e.camp_id=$camp_id",
   "event_comment"	  => "SELECT ec.* FROM event_comment ec, event e WHERE ec.event_id=e.id AND e.camp_id=$camp_id",
   "mat_event"		  => "SELECT me.* FROM mat_event me, event e WHERE me.event_id=e.id AND e.camp_id=$camp_id",
+
 
 //  "mat_article_event" => "SELECT m.* FROM mat_article_event m, event e WHERE m.event_id=e.id AND e.camp_id=$camp_id",
 //  "mat_stuff"		  => "SELECT m.* FROM mat_stuff m, event e WHERE m.event_id=e.id AND e.camp_id=$camp_id",

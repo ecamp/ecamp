@@ -19,7 +19,7 @@
  */
 
 	$todo = mysql_real_escape_string( $_REQUEST['todo'] );
-
+	
 	if( $todo == "add" )
 	{
 		$inputs = $_REQUEST['inputs'];
@@ -29,11 +29,11 @@
 		
 		$quantity_js = htmlentities_utf8($inputs[1]);
 		$article_js = htmlentities_utf8($inputs[2]);
-
+		
 		$event_id = mysql_real_escape_string( $_REQUEST['event_id'] );
 		
 		$_camp->event( $event_id ) || die( "error" );
-
+		
 		$query = "	INSERT INTO  
 						mat_event
 					(
@@ -57,7 +57,7 @@
 		echo json_encode( $ans );
 		die();
 	}
-
+	
 	if( $todo == "edit" )
 	{
 		$inputs = $_REQUEST['inputs'];
@@ -84,15 +84,13 @@
 			$ans = array( "error" => false, "values" => array( "1" => $quantity_js,  "2" => $article_js ) );
 			echo json_encode( $ans );
 			die();
-		}
-		else
-		{
+		}else{
 			$ans = array( "error" => true, "error_msg" => "Fehler aufgetreten" );
 			echo json_encode( $ans );
 			die();
 		}
 	}
-
+	
 	if( $todo == "del" )
 	{
 		$event_id = mysql_real_escape_string( $_REQUEST['event_id'] );
@@ -113,3 +111,4 @@
 		}
 	}
 	die();
+	

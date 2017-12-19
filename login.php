@@ -40,7 +40,7 @@
 	$html->set('SHOW_MSG', false);
 	
 	session_start();
-	
+
 	if(isset( $_REQUEST['msg'] ) )
 	{
 		$html->set('SHOW_MSG', true);
@@ -66,11 +66,9 @@
 				if(md5($_POST['Passwort']) == $row['pw'])
 				{				
 					$user_id = $row['id'];
-					
-					
+
 					if( $_REQUEST['autologin'] )
 					{	autologin_setup( $user_id );	}
-					
 					
 					session_setup( $user_id );
 					
@@ -96,7 +94,7 @@
 			$html->set('MSG', "Login ist fehlgeschlagen.");
 		}
 	}
-	
+
 	if( isset( $_COOKIE['autologin'] ) && $_COOKIE['autologin'] && isset( $_COOKIE['auth_key'] ) && is_numeric( $_COOKIE['user_id'] ) )
 	{
 	    include($lib_dir . "/mysql.php");
@@ -104,7 +102,6 @@
 		
 		$user_id 	= $_COOKIE['user_id'];
 		$auth_key 	= md5( $_COOKIE['auth_key'] );
-		
 		
 		$query = "SELECT id FROM user WHERE id = $user_id AND auth_key = '" . $auth_key . "'";
 		$result = mysql_query( $query );
@@ -123,5 +120,5 @@
 			setcookie( 'auth_key', '' );
 		}
 	}
-	
+
 	echo $html->execute();

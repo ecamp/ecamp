@@ -1,7 +1,5 @@
 /** eCampConfig
-
 	<depend on="public/global/js/mootools-core-1.4.js" type="js" /> <depend on="public/global/js/mootools-more-1.4.js" type="js" />
-
 **/
 
 /**
@@ -14,7 +12,6 @@
  * @copyright	Author
  */
 var Observer = new Class({
-
 	Implements: [Options, Events],
 
 	options: {
@@ -53,7 +50,6 @@ var Observer = new Class({
 		$clear(this.timeout || null);
 		return this;
 	}
-
 });
 
 var $equals = function(obj1, obj2) {

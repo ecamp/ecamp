@@ -24,7 +24,7 @@
 	
 	if( is_numeric( $day_id ) )
 	{	$_camp->day( $day_id ) || die( "error" );	}
-	
+
 	include( 'load_day_list.php' );
 
 	if( is_numeric( $day_id ) )
@@ -57,7 +57,7 @@
 	{
 		$_page->html->set( 'day_selected', false );
 	}
-	
+
 	$query = "	SELECT category.*
 				FROM category
 				WHERE category.camp_id = $_camp->id";
@@ -85,7 +85,7 @@
 	
 	$_page->html->set( 'day', $day );
 	$_js_env->add( 'event_list', $event_list );
-	
+
 	//	INFOBOX:
 	// ==========
 	include("module/info/category.php");

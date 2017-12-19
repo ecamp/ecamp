@@ -19,7 +19,7 @@
  */
 
 	include_once( 'include/load_all_events.php' );
-
+	
 	$print = array(
 		"view" 			=> array(	"title" => "Zusammenstellung",	"macro" => $GLOBALS['tpl_dir']."/application/print/view.tpl/view" ),
 		"libary" 		=> array(	"title" => "Auswahl",			"macro" => $GLOBALS['tpl_dir']."/application/print/libary.tpl/libary" ),

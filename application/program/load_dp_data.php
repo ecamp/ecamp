@@ -20,7 +20,7 @@
 
 	$_page->html = new PHPTAL('template/application/program/dp_main.tpl');
 	//$_page->html = new PHPTAL('template/global/main.tpl');
-
+	
 	$event_id = mysql_real_escape_string($_REQUEST['event_id']);
 	$_page->html->set( 'event_id', $event_id );
 	
@@ -45,7 +45,7 @@
 	$event_place = $row['place'];
 	
 	//$data_left['name'] = gettemplate_app('dp_name', array(	"name" => $row['short_name'] . ": " . $row['name'] ) );
-
+	
 //	HEADER:
 // =========
 	$query = "	SELECT
@@ -109,7 +109,7 @@
 	}
 	
 	$_page->html->set( 'dp_header', $dp_header );
-
+	
 //	HEAD:
 // =======
 	$dp_head_show = array();
@@ -129,7 +129,7 @@
 	{	$dp_head_show[ $row['form'] ] = $row['show_form'];	}
 	
 	$_page->html->set( 'dp_head_show', $dp_head_show );
-
+	
 	$query = "	SELECT
 					event.aim as aim,
 					event.story as story,
@@ -163,7 +163,7 @@
 	
 	echo $_page->html->execute();
 	die();
-
+	
 //	Ablauf:
 // =========
 	$details = array();
@@ -183,27 +183,28 @@
 		foreach($row as $k => $v)
 		{	$row[$k] = htmlentities($v);	}
 		
-		$row['time'] = gettemplate_app('input_text', array(
-			"value" => $row['time'],
+		$row['time'] = gettemplate_app(
+			'input_text', array(
+				"value" => $row['time'],
 			"cmd"	=> "action_save_change_detail_time",
 			"event_id" => $row['id']
 		));
 		$row['content'] = gettemplate_app('input_textarea', array(
-			"value" => $row['content'],
-			"cmd"	=> "action_save_change_detail_content",
-			"event_id" => $row['id']
-		));
+															"value" => $row['content'],
+															"cmd"	=> "action_save_change_detail_content",
+															"event_id" => $row['id']
+														));
 		$row['resp'] = gettemplate_app('input_text', array(
-			"value" => $row['resp'],
-			"cmd"	=> "action_save_change_detail_resp",
-			"event_id" => $row['id']
-		));
+															"value" => $row['resp'],
+															"cmd"	=> "action_save_change_detail_resp",
+															"event_id" => $row['id']
+														));
 		
 		array_push($details, gettemplate_app('dp_event_detail', $row));
 	}
 	
 	$data_left['ablauf'] = gettemplate_app('dp_ablauf', array('ablauf' => implode("\n", $details)));
-
+	
 //	Material:
 // ===========
 		$mat_lists['buy'] = "";
@@ -231,7 +232,7 @@
 			else
 			{	array_push($leader_list, "<option value='" . $row['id'] . "'>" . $row['firstname'] . " " . $row['surname'] . "</option>");	}
 		}
-
+		
 	//	Buy:
 	// ======
 		$query = "	SELECT
@@ -298,7 +299,7 @@
 	$mat_lists['leader_list'] = implode( $leader_list );
 	
 	$data_right['mat'] = gettemplate_app('dp_mat_main', $mat_lists);
-
+	
 //	SiKo / Notice:
 // ================
 	$query = "	SELECT
@@ -324,7 +325,7 @@
 	));
 	
 	$data_right['siko'] = gettemplate_app('dp_siko', $row);
-
+	
 //	PDF:
 // ======
 	$file_list = array();
@@ -346,19 +347,19 @@
 	
 	while($row = mysql_fetch_assoc($result))
 	{
-		$row['scoutname'] = htmlentities($row['scoutname']);
-		$row['firstname'] = htmlentities($row['firstname']);
-		$row['surname'] 	= htmlentities($row['surname']);
-		$row['name'] 		= htmlentities($row['name']);
+		$row[scoutname] = htmlentities($row[scoutname]);
+		$row[firstname] = htmlentities($row[firstname]);
+		$row[surname] 	= htmlentities($row[surname]);
+		$row[name] 		= htmlentities($row[name]);
 		
-		if(!empty($row['scoutname']))	{	$row['user'] = $row['scoutname'];	}
-		else						{	$row['user'] = $row['firstname'] . " " . $row['surname'];	}
+		if(!empty($row[scoutname]))	{	$row[user] = $row[scoutname];	}
+		else						{	$row[user] = $row[firstname] . " " . $row[surname];	}
 		
 		array_push($file_list, gettemplate_app('dp_pdf_file', $row));
 	}
 	
 	$data_right['pdf'] = gettemplate_app('dp_pdf_main', array("pdf" => implode("\n", $file_list)));
-
+	
 //	Kommentare:
 // =============
 	$comment_list = array();
@@ -382,20 +383,21 @@
 		foreach($row as $k => $v)
 		{	$row[$k] = htmlentities($v);	}
 		
-		if(!empty($row['scoutname']))	{	$row['user'] = $row['scoutname'];	}
-		else						{	$row['user'] = $row['firstname'] . " " . $row['surname'];	}
+		if(!empty($row[scoutname]))	{	$row[user] = $row[scoutname];	}
+		else						{	$row[user] = $row[firstname] . " " . $row[surname];	}
 		
 		array_push($comment_list, gettemplate_app('dp_comment_entry', $row));
 	}
 	
-	$data_right['comment'] = gettemplate_app('dp_comment_main', array("comment" => implode("\n", $comment_list)));
+	$data_right['comment'] = gettemplate_app('dp_comment_main', array("comment" => implode("\n", $comment_list)));	
 	
 	//$replace = array('data' => "<html><![CDATA[" . implode($data) . "<br />]]></html>", 'error'=> '0');
-
+	
 	//$xml = gettemplate_main( "ajax_response", $replace ); 
-
+	
 	header("Content-type: application/html");
     //echo $xml;
 	echo gettemplate_app('dp_main', array("left" => implode($data_left), "right" => implode($data_right) ) );
 	
 	die();
+	

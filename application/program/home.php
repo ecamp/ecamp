@@ -21,12 +21,13 @@
 	$_page->html->set('main_macro', $GLOBALS['tpl_dir'].'/global/content_box_full.tpl/predefine');
 	$_page->html->set('box_content', $GLOBALS['tpl_dir'].'/application/program/home.tpl/home');
 	$_page->html->set('box_title', 'Grobprogramm');
-
+	
 	$_page->html->set( 'show_info_box', true );
 	$_page->html->set( 'info_box', $GLOBALS['tpl_dir'].'/module/info/info_box.tpl/info_box' );
 
 	# Lagerstart, Lagerende und Lagerdauer
 	##############################################
+	
 	$all_days_query = " SELECT day.id, day.day_offset, subcamp.start
 						FROM day, subcamp
 						WHERE 	day.subcamp_id = subcamp.id AND
@@ -119,7 +120,7 @@
 		$main_job = "Undefiniert";
 		$_js_env->add( 'EnableMainJobResp', false );
 	}
-	
+
 	$program = array(
 		"days"			=>	$days,
 		"show_width"	=>	"width:" . $day_width * $day_nr . "px",

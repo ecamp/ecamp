@@ -62,5 +62,5 @@
 			}
 		}
 	}
-
-	$_js_env->add( 'course_aim', $course_aim );	
+	
+	$_js_env->add( 'course_aim', $course_aim );

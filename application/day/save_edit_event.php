@@ -56,7 +56,7 @@
 		echo json_encode( $ans );
 		die();
 	}
-	
+
 	$query = "	UPDATE 
 					event
 				SET 
@@ -65,7 +65,7 @@
 				WHERE 
 					id = $event_id";
 	mysql_query( $query );
-	
+
 	$query = "	UPDATE
 					event_instance
 				SET
@@ -79,6 +79,6 @@
 	{	$ans = array( "error" => true, "error_msg" => "Fehler" );	}
 	else
 	{	$ans = array( "error" => false, "error_msg" => "" );	}
-
+	
 	echo json_encode( $ans );
 	die();

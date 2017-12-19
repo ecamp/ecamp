@@ -18,12 +18,10 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	
 	class print_build_day_class
 	{
 		public $data;
 		public $y;
-		
 		
 		function print_build_day_class( $data )
 		{
@@ -57,14 +55,12 @@
 			$pdf->SetXY( 10, 15 );
 			$pdf->SetFont( '', 'B', 30 );
 			
-			
-			$pdf->drawTextBox( strtr( $date->getString( 'D, d.m.Y' ), $GLOBALS[en_to_de] ), 190, 15, 'C', 'M', 0 );
+			$pdf->drawTextBox( strtr( $date->getString( 'D, d.m.Y' ), $GLOBALS['en_to_de'] ), 190, 15, 'C', 'M', 0 );
 			
 			$pdf->SetFont( '', 'B', 20 );
 			$pdf->drawTextBox( 'Tagesübersicht:', 190, 10, 'C', 'M', 0 );
 			
-			
-			$pdf->Bookmark( strtr( $date->getString( 'D, d.m.Y' ), $GLOBALS[en_to_de] ), 1, 0 );
+			$pdf->Bookmark( strtr( $date->getString( 'D, d.m.Y' ), $GLOBALS['en_to_de'] ), 1, 0 );
 		}
 		
 		function joblist( $pdf, $day )
@@ -89,7 +85,6 @@
 				$y = $this->y + 9 * ( $row - 1 );
 				
 				//print_r( $job );
-				
 				//
 				$pdf->RoundedRect( $x, $y, $w, 4, 2, '1001', 'DF' );
 				$pdf->RoundedRect( $x, $y+4, $w, 4, 2, '0110', 'D' );
@@ -110,7 +105,6 @@
 				
 			}
 			
-			
 			$this->y += $row_num * 9 + 10;
 			
 			//$this->y = 70;
@@ -120,7 +114,6 @@
 		{
 			//	Tabellenkopf:
 			// ===============
-			
 			$pdf->SetFont( '', 'B', 8 );
 			
 			$pdf->SetXY( 12, $this->y );
@@ -137,11 +130,8 @@
 			
 			$this->y += 2;
 			
-			
-			
 			//	Tablleninhalt:
 			// ================
-			
 			$s_time = new c_time();
 			$e_time = new c_time();
 			
@@ -157,7 +147,6 @@
 				
 				$time  = $s_time->getString( 'H:i' ) . " - " . $e_time->getString( 'H:i' );
 				
-				
 				$name = "";
 				if( $event_instance->event->category->form_type )
 				{	$name .= "(" . $day->day_nr . "." . $event_instance->event_nr . ") ";	}
@@ -166,7 +155,6 @@
 				{	$name .= $event_instance->event->category->short_name . ": ";	}
 				
 				$name .= $event_instance->event->name;
-				
 				
 				$resp = "";
 				foreach( $event_instance->event->event_responsible as $event_responsible )
@@ -186,7 +174,6 @@
 				//$pdf->drawTextBox( $resp, 68, 4, 'L', 'T', 0 );
 				
 				$this->y += 4;
-				
 			}
 			
 			$this->y += 10;
@@ -248,15 +235,13 @@
 			
 			$pdf->SetFont( '', 'B', 8 );
 			$pdf->SetTextColor( 255, 255, 255 );
-			$day_str = strtr( $c_date->setDay2000( $day->date )->getString('D'), $GLOBALS[en_to_de] );
+			$day_str = strtr( $c_date->setDay2000( $day->date )->getString('D'), $GLOBALS['en_to_de'] );
 			$pdf->SetXY( 0, $day->marker );
 			$pdf->drawTextBox( $day_str, 6, 8, 'C', 'M', 0 );
 			$pdf->SetXY( 204, $day->marker );
 			$pdf->drawTextBox( $day_str, 6, 8, 'C', 'M', 0 );
 			
-			
 			$pdf->SetTextColor( 0, 0, 0 );			
 		}
 	}
 	
-?>

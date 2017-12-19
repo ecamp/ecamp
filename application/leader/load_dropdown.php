@@ -29,8 +29,7 @@
 	
 	while( $row = mysql_fetch_assoc($reslut_function) )
 	{	$ans_function[] = $row;	}
-	
-	
+
 	$ans = $ans_function;
 	echo json_encode($ans);
 	die();

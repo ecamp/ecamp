@@ -31,7 +31,7 @@
 		echo json_encode( $ans );
 		die();
 	}
-	
+
 	$query = "DELETE FROM todo WHERE id = $todo_id AND camp_id = $_camp->id";
 	$result = mysql_query($query);
 	

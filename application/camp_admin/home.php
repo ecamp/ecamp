@@ -36,7 +36,7 @@
 	
 	$active_camp_list = array();
 	$request_camp_list = array();
-
+	
 	$query = "	SELECT 
 					camp.*,
 					user_camp.function_id,
@@ -159,7 +159,7 @@
 		
 		$request_camp_list[] = $camp_detail;
 	}
-	
+
 	$show_list = ( $_REQUEST['show_list'] == 1 ) ? true : false;
 	
 	$_page->html->set('show_list', 			$show_list );

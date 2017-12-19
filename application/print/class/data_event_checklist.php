@@ -26,7 +26,7 @@
 		public $event;
 		public $short;
 		public $name;
-
+		
 		function print_data_event_checklist_class( $data, $pid )
 		{
 			$this->pid			= $pid;
@@ -40,3 +40,4 @@
 			$this->event->add_event_checklist( $this );
 		}
 	}
+	

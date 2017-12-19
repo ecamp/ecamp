@@ -161,7 +161,7 @@
 			
 			$data['events'][] = $event;
 		}
-		
+
 		//	EVENT_INSTANCE:
 		// =================
 		$query = "	SELECT
@@ -203,7 +203,7 @@
 		
 		return $data;
 	}
-	
+
 	//echo json_encode( get_program_update( 1111111111 ) );	
 	
 	//die();

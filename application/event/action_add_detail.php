@@ -48,7 +48,8 @@
 
 	$result = mysql_query( $query );
 	$event_detail_id = mysql_insert_id();
-
+	
+	
 	$ans = array( "error" => false, "event_detail_id" => $event_detail_id );
 	echo json_encode( $ans );
-	die();	
+	die();

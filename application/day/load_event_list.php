@@ -58,7 +58,6 @@
 					event.id = event_instance.event_id
 				ORDER BY
 					event_instance.starttime, eventnr";
-	
 	$result = mysql_query( $query );
 	
 	while( $event_instance = mysql_fetch_assoc( $result ) )

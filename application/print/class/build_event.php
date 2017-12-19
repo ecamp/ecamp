@@ -18,7 +18,6 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	
 	class print_build_event_class
 	{
 		public $data;
@@ -28,9 +27,7 @@
 		{
 			$this->data = $data;
 		}
-		
-		
-		
+
 		function build_h( $pdf, $event_instance )
 		{
 			$return = 0;
@@ -57,7 +54,6 @@
 
 			if( ! $event_instance->event->category->form_type )	{	return;	}
 			
-			
 			$this->y = $pdf->getY();
 			
 			if( $this->build_h( $pdf, $event_instance ) > ( 310 - $this->y ) && $this->y > 150 )
@@ -65,21 +61,16 @@
 			else
 			{	$this->y += 10;	}
 			
-			
-			
 			$this->build_assi( $pdf, $event_instance, 'title', 'title_h' );
-			
-			
+
 			if( $event_instance->event->category->form_type == 1 )	{	$this->build_assi( $pdf, $event_instance, 'ls_header', 'ls_header_h');	}
 			if( $event_instance->event->category->form_type == 2 )	{	$this->build_assi( $pdf, $event_instance, 'la_header', 'la_header_h');	}
 			if( $event_instance->event->category->form_type == 3 )	{	$this->build_assi( $pdf, $event_instance, 'lp_header', 'lp_header_h');	}
 			if( $event_instance->event->category->form_type == 4 )	{	$this->build_assi( $pdf, $event_instance, 'ka_header', 'ka_header_h');	}
-			
-			
+
 			$this->build_assi( $pdf, $event_instance, 'ablauf', 'ablauf_h' );
 			$this->build_assi( $pdf, $event_instance, 'material', 'material_h' );
-			
-			
+
 			$this->build_assi( $pdf, $event_instance, 'siko', 'siko_h' );
 			$this->build_assi( $pdf, $event_instance, 'notes', 'notes_h' );
 			
@@ -87,14 +78,12 @@
 			
 			$pdf->SetAutoPageBreak(true);
 
-			
 			$pdf->setY( $this->y );
 			return $this->y;
 		}
 		
 		function build_assi( $pdf, $event_instance, $build_func, $h_func )
 		{
-			
 			if( $this->y + $this->$h_func( $pdf, $event_instance ) < 282 )
 			{	$this->$build_func( $pdf, $event_instance );	}
 			else
@@ -112,14 +101,12 @@
 		{
 			$pdf->SetLink( $event_instance->get_linker( $pdf ), $this->y );
 			$color = $this->color( $event_instance->event->category->color );
-			
-			
+
 			$pdf->SetLineWidth( 0.5 );
 			$pdf->SetFillColor( $color['r'], $color['g'], $color['b'] );
 			$pdf->RoundedRect( 10, $this->y, 190, 17, 5, '1001', 'DF' );
 			$pdf->SetLineWidth( 0.2 );
-			
-			
+
 			$pdf->SetXY( 15, $this->y + 1 );
 			$pdf->SetFont( '', 'B', 30 );
 			
@@ -137,10 +124,8 @@
 				//$pdf->SetXY( 15, $this->y + $name_dy );
 			}
 			$pdf->MultiCell( 130, 30, $name, '', 'L' );
-			
-			
+
 			$pdf->SetFont( '', 'B', 10 );
-			
 			
 			$date = new c_date();
 			$date->SetDay2000( $event_instance->day->date );
@@ -149,35 +134,29 @@
 			$timestart->SetValue( $event_instance->starttime );
             $timeend = new c_time();
             $timeend->SetValue( $event_instance->starttime + $event_instance->length );
-			
-			
+
 			$pdf->SetXY( 155, $this->y + 1 );
 			$pdf->drawTextBox( 'Datum:', 15, 5, 'L', 'M', 0 );
 			$pdf->SetXY( 170, $this->y + 1 );
-			$pdf->drawTextBox( strtr( $date->getString( 'D d.m.Y' ), $GLOBALS[en_to_de] ), 30, 5, 'L', 'M', 0 );
+			$pdf->drawTextBox( strtr( $date->getString( 'D d.m.Y' ), $GLOBALS['en_to_de'] ), 30, 5, 'L', 'M', 0 );
 			$pdf->Link( 170, $this->y + 1, 30, 5, $event_instance->day->get_linker( $pdf ) );
-			
-			
+
 			$pdf->SetXY( 155, $this->y + 6 );
 			$pdf->drawTextBox( 'Zeit:', 15, 5, 'L', 'M', 0 );
 			$pdf->SetXY( 170, $this->y + 6 );
 			$pdf->drawTextBox( $timestart->getString( 'H:i' ) . " - ". $timeend->getString( 'H:i' ), 30, 5, 'L', 'M', 0 );
-			
-			
+
 			$pdf->SetXY( 155, $this->y + 11 );
 			$pdf->drawTextBox( 'Ort:', 15, 5, 'L', 'M', 0 );
 			$pdf->SetXY( 170, $this->y + 11 );
 			$pdf->drawTextBox( $event_instance->event->place, 30, 5, 'L', 'M', 0 );
-			
-			
+
 			$pdf->Bookmark( $name, 2, $this->y );
 			
 			//$this->y += 22;
 			$this->y += 17;
-			
 		}
-		
-		
+
 		function ls_header_h( $pdf, $event_instance )
 		{
 			$wl = 120;
@@ -206,12 +185,10 @@
 			}
 			$resp = substr( $resp, 0, -2 );
 			
-			
 			$num_line_story = $pdf->getNumLines( $event_instance->event->story, $wl );
 			$num_line_aim	= $pdf->getNumLines( $event_instance->event->aim, $wl );
 			$num_line_resp	= $pdf->getNumLines( $resp, $wr );
-			
-			
+
 			$lh = 2 + ( 2 + $num_line_story + $num_line_aim ) * 5;
 			$rh = 1 + ( 1 + $num_line_resp ) * 5;
 			$h = max( $lh, $rh );
@@ -219,9 +196,7 @@
 			$h_story	= ( $num_line_story / ( $num_line_story + $num_line_aim ) ) * ( $h - 10 );
 			$h_aim		= ( $num_line_aim / ( $num_line_story + $num_line_aim ) ) * ( $h - 10 );
 			$h_resp		= $h - 5;
-			
-			
-			
+
 			$pdf->SetFillColor( 200, 200, 200 );
 			
 			$pdf->RoundedRect( 10, $this->y, $wl, 5, 2, '0000', 'DF' );
@@ -246,9 +221,7 @@
 			
 			$pdf->SetXY( 10 + $wl, $this->y );
 			$pdf->drawTextBox( 'Verantwortliche/r: ', $wr, 5, 'L', 'M', 0 );
-			
-			
-			
+
 			$pdf->SetFont( '', '', 10 );
 			
 			$pdf->SetXY( 10, $this->y + 5 );
@@ -260,12 +233,9 @@
 			$pdf->SetXY( 10 + $wl, $this->y + 5 );
 			$pdf->MultiCell( $wr, $h_resp, $resp, '', 'L' );
 			
-			
-			
 			$this->y += $h;
 		}
-		
-		
+
 		function la_header_h( $pdf, $event_instnace )
 		{
 			$wl = 120;
@@ -275,8 +245,7 @@
 			$num_line_aim	= $pdf->getNumLines( $event_instance->event->aim, $wl );
 			$num_line_resp	= $pdf->getNumLines( $resp, $wr );
 			$num_line_method= $pdf->getNumLines( $event_instance->event->method, $wr );
-			
-			
+
 			$lh = 2 + ( 2 + $num_line_story + $num_line_aim ) * 5;
 			$rh = 2 + ( 2 + $num_line_resp + $num_line_method ) * 5;
 			$h = max( $lh, $rh );
@@ -295,14 +264,12 @@
 				{	$resp .= $event_responsible->get_name() . ", ";	}
 			}
 			$resp = substr( $resp, 0, -2 );
-			
-			
+
 			$num_line_story = $pdf->getNumLines( $event_instance->event->story, $wl );
 			$num_line_aim	= $pdf->getNumLines( $event_instance->event->aim, $wl );
 			$num_line_resp	= $pdf->getNumLines( $resp, $wr );
 			$num_line_method= $pdf->getNumLines( $event_instance->event->method, $wr );
-			
-			
+
 			$lh = 2 + ( 2 + $num_line_story + $num_line_aim ) * 5;
 			$rh = 2 + ( 2 + $num_line_resp + $num_line_method ) * 5;
 			$h = max( $lh, $rh );
@@ -311,9 +278,7 @@
 			$h_aim		= ( $num_line_aim / ( $num_line_story + $num_line_aim ) ) * ( $h - 10 );
 			$h_resp		= ( $num_line_resp / ( $num_line_resp + $num_line_method ) ) * ( $h - 10 );
 			$h_method	= ( $num_line_method / ( $num_line_resp + $num_line_method ) ) * ( $h - 10 );
-			
-			
-			
+
 			$pdf->SetFillColor( 200, 200, 200 );
 			
 			$pdf->RoundedRect( 10, $this->y, $wl, 5, 2, '0000', 'DF' );
@@ -325,13 +290,11 @@
 			$pdf->RoundedRect( 10 + $wl, $this->y + 5, $wr, $h_resp, 2, '0000', 'D' );
 			$pdf->RoundedRect( 10, $this->y + 10 + $h_story, $wl, $h_aim, 2, '0000', 'D' );
 			$pdf->RoundedRect( 10 + $wl, $this->y + 10 + $h_resp, $wr, $h_method, 2, '0000', 'D' );
-			
-			
+
 			$pdf->SetLineWidth( 0.5 );
 			$pdf->RoundedRect( 10, $this->y, $wl + $wr, $h, 2, '0000', 'D' );
 			$pdf->SetLineWidth( 0.2 );
-			
-			
+
 			$pdf->SetFont( '', 'B', 10 );
 			
 			$pdf->SetXY( 10, $this->y );
@@ -345,9 +308,7 @@
 			
 			$pdf->SetXY( 10 + $wl, $this->y + 5 + $h_resp );
 			$pdf->drawTextBox( 'Methode:', $wr, 5, 'L', 'M', 0 );
-			
-			
-			
+
 			$pdf->SetFont( '', '', 10 );
 			
 			$pdf->SetXY( 10, $this->y + 5 );
@@ -361,12 +322,9 @@
 			
 			$pdf->SetXY( 10 + $wl, $this->y + 10 + $h_resp );
 			$pdf->MultiCell( $wr, $h_method, $event_instance->event->method, '', 'L' );
-			
-			
-			
+
 			$this->y += $h;
 		}
-		
 		
 		function lp_header_h( $pdf, $event_instance )
 		{	return $this->ls_header_h( $pdf, $event_instance );	}
@@ -375,8 +333,7 @@
 		{
 			$this->ls_header( $pdf, $event_instance );
 		}
-		
-		
+
 		function ka_header_h( $pdf, $event_instance )
 		{
 			$wl = 120;
@@ -394,8 +351,7 @@
 			
 			foreach( $event_instance->event->event_checklist as $checklist )
 			{	$num_line_event_checklist += $pdf->getNumLines( $checklist->name, 95 );	}
-			
-			
+
 			$lh = 2 + ( 2 + $num_line_topics + $num_line_aim ) * 5;
 			$rh = 1 + ( 1 + $num_line_resp ) * 5;
 			$h = max( $lh, $rh );
@@ -413,8 +369,7 @@
 			foreach( $event_instance->event->event_responsible as $event_responsible )
 			{	$resp .= $event_responsible->get_name() . ", ";	}
 			$resp = substr( $resp, 0, -2 );
-			
-			
+
 			$num_line_aim	 = $pdf->getNumLines( $event_instance->event->aim, $wl );
 			$num_line_topics = $pdf->getNumLines( $event_instance->event->topics, $wl );
 			$num_line_resp	 = $pdf->getNumLines( $resp, $wr );
@@ -424,14 +379,11 @@
 			
 			foreach( $event_instance->event->event_checklist as $checklist )
 			{	$num_line_event_checklist += $pdf->getNumLines( $checklist->name, 95 );	}
-			
-			
-			
+
 			$lh = 2 + ( 2 + $num_line_topics + $num_line_aim ) * 5;
 			$rh = 1 + ( 1 + $num_line_resp ) * 5;
 			$h = max( $lh, $rh );
-			
-			
+
 			$h_topics	= ( $num_line_topics / ( $num_line_topics + $num_line_aim ) ) * ( $h - 10 );
 			$h_aim		= ( $num_line_aim / ( $num_line_topics + $num_line_aim ) ) * ( $h - 10 );
 			$h_resp		= $h - 5;
@@ -441,8 +393,7 @@
 			
 			$h_list = max( $h_event_aim, $h_event_checklist );
 			$h += $h_list;
-			
-			
+
 			$pdf->SetFillColor( 200, 200, 200 );
 			
 			$pdf->RoundedRect( 10, $this->y, $wl, 5, 2, '0000', 'DF' );
@@ -451,15 +402,13 @@
 			
 			$pdf->RoundedRect( 10, $this->y + 5 + $h_resp, 95, 5, 2, '0000', 'DF' );
 			$pdf->RoundedRect( 105, $this->y + 5 + $h_resp, 95, 5, 2, '0000', 'DF' );
-			
-			
+
 			$pdf->RoundedRect( 10, $this->y + 5, $wl, $h_aim, 2, '0000', 'D' );
 			$pdf->RoundedRect( 10, $this->y + 10 + $h_aim, $wl, $h_topics, 2, '0000', 'D' );
 			$pdf->RoundedRect( 10 + $wl, $this->y + 5, $wr, $h_resp, 2, '0000', 'D' );
 			
 			$pdf->RoundedRect( 10, $this->y + 10 + $h_resp, 95, $h_list, 2, '0000', 'D' );
 			$pdf->RoundedRect( 105, $this->y + 10 + $h_resp, 95, $h_list, 2, '0000', 'D' );
-			
 			
 			$pdf->SetLineWidth( 0.5 );
 			$pdf->RoundedRect( 10, $this->y, $wl + $wr, $h, 2, '0000', 'D' );
@@ -481,9 +430,7 @@
 			
 			$pdf->SetXY( 105, $this->y + 5 + $h_resp );
 			$pdf->drawTextBox( 'Checkliste J+S/PBS: ', $wr, 5, 'L', 'M', 0 );
-			
-			
-			
+
 			$aim_text = "";
 			$checklist_text = "";
 			
@@ -492,7 +439,6 @@
 			
 			foreach( $event_instance->event->event_checklist as $checklist )
 			{	$checklist_text .= $checklist->short . ": " . $checklist->name . "\r\n";	}
-			
 			
 			$pdf->SetFont( '', '', 10 );
 			
@@ -510,12 +456,10 @@
 			
 			$pdf->SetXY( 105, $this->y + 10 + $h_resp );
 			$pdf->MultiCell( 95, $h_list, $checklist_text, '', 'L' );
-			
-			
+
 			$this->y += $h;
 		}
-		
-		
+
 		function ablauf_h( $pdf, $event_instance )
 		{
 			$return = 0;
@@ -531,7 +475,7 @@
 			}
 			$return = max( $return, 5 );
 			*/
-			
+
 			$event_detail = reset( $event_instance->event->event_detail );
 			
 			$num_line_time 		= $pdf->getNumLines( $event_detail->time, 20 );
@@ -562,8 +506,7 @@
 			$pdf->drawTextBox( 'Verantwortlich: ', 40, 5, 'L', 'M', 0 );
 			
 			$this->y += 5;
-			
-				
+
 			$pdf->SetFont( '', '', 10 );
 			$start_y = $this->y;
 			$start_b = $start_y - 5;
@@ -598,14 +541,12 @@
 				$pdf->SetXY( 10, $this->y );
 				$pdf->MultiCell( 20, $num_line_time * 5, $event_detail->time, '', 'L' );
 				$time_h = $pdf->GetY() - $this->y;
-				
-				
+
 				$pdf->SetXY( 30, $this->y );
 				$pdf->MultiCell( 130, $h, $event_detail->content, '', 'L' );
 				//$pdf->writeHTMLCell( 130, 0, 30, $this->y, trim( $event_detail->content ), 0, 1, 0, true, 'L' );
 				$content_h = $pdf->GetY() - $this->y;
-				
-				
+
 				$pdf->SetXY( 160, $this->y );
 				$pdf->MultiCell( 40, $num_line_resp * 5, $event_detail->resp, '', 'L' );
 				$resp_h = $pdf->GetY() - $this->y;
@@ -618,18 +559,14 @@
 			$pdf->RoundedRect( 10, $start_y, 20, $hh, 2, '0000', 'D' );
 			$pdf->RoundedRect( 30, $start_y, 130, $hh, 2, '0000', 'D' );
 			$pdf->RoundedRect( 160, $start_y, 40, $hh, 2, '0000', 'D' );
-			
-			
+
 			$pdf->SetLineWidth( 0.5 );
 			$pdf->RoundedRect( 10, $start_b, 190, $hh + $border_h, 2, '0000', 'D' );
 			$pdf->SetLineWidth( 0.2 );
-			
-			
+
 			$this->y = $start_y + $hh;
 		}
-		
-		
-		
+
 		function material_h( $pdf, $event_instance )
 		{
 			$lines1 = 0;
@@ -641,8 +578,7 @@
 			
 				$lines1 += max($a,$b);
 			}
-				
-				
+
 			$lines2 = 0;
 			foreach( $event_instance->event->mat_organize as $mat_organize )
 			{
@@ -688,9 +624,7 @@
 			$this->y += 5;
 			
 			$pdf->SetFont( '', '', 10 );
-			
-			
-			
+
 			$h = 0;
 			foreach( $event_instance->event->mat_available as $mat_available )
 			{
@@ -705,7 +639,6 @@
 				$h += max(5,$quantity_h, $article_h);
 			}
 			$max_h = max( $max_h, $h );
-			
 			
 			$h = 0;
 			foreach( $event_instance->event->mat_organize as $mat_organize )
@@ -729,21 +662,17 @@
 				$h += max(5,$quantity_h, $article_h,$resp_h);
 			}
 			$max_h = max( $max_h, $h );
-			
-			
+
 			$pdf->RoundedRect( 10, $this->y, $w1, $max_h, 2, '0000', 'D' );
 			$pdf->RoundedRect( 10 + $w1, $this->y, $w2, $max_h, 2, '0000', 'D' );
-			
-			
-			
+
 			$pdf->SetLineWidth( 0.5 );
 			$pdf->RoundedRect( 10, $this->y - 5, 190, $max_h + 5, 2, '0000', 'D' );
 			$pdf->SetLineWidth( 0.2 );
 			
 			$this->y += $max_h;
 		}
-		
-		
+
 		function siko_h( $pdf, $event_instance )
 		{
 			return 5 * max( 1, $pdf->getNumLines( $event_instance->event->seco, 190 ) ) + 5;
@@ -766,20 +695,13 @@
 			$pdf->SetXY( 10, $this->y );
 			$pdf->MultiCell( 190, $h, $event_instance->event->seco, '', 'L' );
 			
-			
-			
 			$pdf->SetLineWidth( 0.5 );
 			$pdf->RoundedRect( 10, $this->y - 5, 190, $h + 5, 2, '0000', 'D' );
 			$pdf->SetLineWidth( 0.2 );
-			
-			
+
 			$this->y += $h;
-			
 		}
-		
-		
-		
-		
+
 		function notes_h( $pdf, $event_instance )
 		{
 			return 5 * max( 1, $pdf->getNumLines( $event_instance->event->notes, 190 ) ) + 5;
@@ -801,14 +723,11 @@
 			$pdf->RoundedRect( 10, $this->y, 190, $h, 2, '0110', 'D' );
 			$pdf->SetXY( 10, $this->y );
 			$pdf->MultiCell( 190, $h, $event_instance->event->notes, '', 'L' );
-			
-			
-			
+
 			$pdf->SetLineWidth( 0.5 );
 			$pdf->RoundedRect( 10, $this->y - 5, 190, $h + 5, 2, '0110', 'D' );
 			$pdf->SetLineWidth( 0.2 );
-			
-			
+
 			$this->y += $h + 5;
 		}
 		
@@ -816,10 +735,10 @@
 		function color( $color )
 		{
 			return array(
-							"r" => hexdec( substr( $color, 0, 2 ) ),
-							"g" => hexdec( substr( $color, 2, 2 ) ),
-							"b" => hexdec( substr( $color, 4, 2 ) ),
-						);
+				"r" => hexdec( substr( $color, 0, 2 ) ),
+				"g" => hexdec( substr( $color, 2, 2 ) ),
+				"b" => hexdec( substr( $color, 4, 2 ) ),
+			);
 		}
 		
 		function marker( $pdf, $event_instance )
@@ -828,9 +747,7 @@
 			
 			$day = $event_instance->day;
 			if( !$day->marker ){	return; }
-			
-			
-			
+
 			$pdf->SetFillColor( 0, 0, 0 );
 					
 			$pdf->RoundedRect( 0,   $day->marker + 0.3, 6, 7.4, 0, '0000', 'F' );
@@ -847,9 +764,6 @@
 			$pdf->SetXY( 204, $day->marker );
 			$pdf->drawTextBox( $day_str, 6, 8, 'C', 'M', 0 );
 			
-			
 			$pdf->SetTextColor( 0, 0, 0 );
 		}
 	}
-	
-?>

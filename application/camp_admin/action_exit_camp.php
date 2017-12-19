@@ -57,12 +57,13 @@
 		$user_name = mysql_result( $result, 0, 'scoutname' );
 		if( !is_string( $user_name ) )
 		{	$user_name = mysql_result( $result, 0, 'firstname' ) . " " . mysql_result( $result, 0, 'surname' );	}
-
+		
+		
 		$query = "	INSERT INTO mat_list ( `camp_id`, `name` )
 					VALUES ( $_camp->id, 'Materialliste von " . $user_name . "' )";
 		mysql_query( $query );
 		$mat_list_id = mysql_insert_id();
-
+		
 		$query = "	UPDATE mat_event
 					SET user_camp_id = NULL, mat_list_id = $mat_list_id
 					WHERE user_camp_id = $user_camp_id";
@@ -85,7 +86,8 @@
 
     $_news->add2camp( "Lager verlassen", $_user->display_name . " hat das Lager '$short_name' verlassen.", time(), $camp_id );
 	$_news->add2user( "Lager verlassen", "Du hast das Lager '$short_name' verlassen.", time(), $_user->id );
-
+	
+	
 	if($_SESSION['camp_id'] == $user_camp['camp_id'])
 	{	$_SESSION['camp_id'] = "";	}
 

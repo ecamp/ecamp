@@ -26,12 +26,12 @@
 	$file_type['application/vnd.ms-excel'] = 'icon_xls.png';
 	
 	$_page->html = new PHPTAL('template/application/event/file_upload_done.tpl');
-
+	
 	$event_id = mysql_real_escape_string( $_REQUEST['event_id'] );
 	$file_id = mysql_real_escape_string( $_REQUEST['file_id'] );
 	
 	$_camp->event( $event_id ) || die( "error" );
-
+	
 	$query = "	SELECT 
 					*
 				FROM
@@ -47,7 +47,7 @@
 	{	$file['type_img_src'] = "public/global/img/icon_unknown.png";	}
 	
 	$file['download_link'] = "index.php?app=event&cmd=file_download&file_id=" . $file['id'];
-
+	
 	$_page->html->set(	'file', $file );
 	$_page->html->set(	'event_id',  $event_id );
 	

@@ -27,7 +27,7 @@
 	{
 		$user_id 	= mysql_real_escape_string( $user_id  );
 		$selected 	= mysql_real_escape_string( $selected );
-		
+
 		$query = "SELECT user_camp.id FROM user_camp WHERE user_camp.camp_id = $_camp->id AND user_camp.user_id = $user_id";
 		$result = mysql_query($query);
 		

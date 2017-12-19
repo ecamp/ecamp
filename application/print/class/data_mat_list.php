@@ -25,7 +25,7 @@
 		public $camp_id;
 		public $camp;
 		public $name;
-
+		
 		function print_data_mat_list( $data, $pid )
 		{
 			$this->pid			= $pid;
@@ -36,3 +36,4 @@
 			$this->camp = $pid->camp;
 		}
 	}
+	

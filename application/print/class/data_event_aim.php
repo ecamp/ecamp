@@ -25,7 +25,7 @@
 		public $event_id;
 		public $event;
 		public $aim;
-
+		
 		function print_data_event_aim_class( $data, $pid )
 		{
 			$this->pid			= $pid;
@@ -38,3 +38,4 @@
 			$this->event->add_event_aim( $this );
 		}
 	}
+	
