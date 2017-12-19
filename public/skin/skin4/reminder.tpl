@@ -60,7 +60,6 @@
 											<tal:block content="structure captcha" />
 										</div>
 									</div>
-
 									<div class="clearfix"></div>
 									<div class="space-top"></div>
 									<div class="space-top"></div>
