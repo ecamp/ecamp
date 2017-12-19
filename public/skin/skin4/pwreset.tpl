@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
 		<title>eCamp v2</title>
-		
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 		<link rel="stylesheet" type="text/css" href="./public/global/css/bootstrap.min.css" />
 		<link rel="stylesheet" type="text/css" href="./public/global/css/global.css" />
         
-        <link rel="stylesheet" type="text/css" href="./public/skin/skin3/css/main.css" />
-        <link rel="stylesheet" type="text/css" href="./public/skin/skin3/css/color.css" />
-        <link rel="stylesheet" type="text/css" href="./public/skin/skin3/css/layout.css" />
+        <link rel="stylesheet" type="text/css" href="./public/skin/skin4/css/main.css" />
+        <link rel="stylesheet" type="text/css" href="./public/skin/skin4/css/color.css" />
+        <link rel="stylesheet" type="text/css" href="./public/skin/skin4/css/layout.css" />
 
         <style>
         	table

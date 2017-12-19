@@ -1,22 +1,21 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html>
 <html>
 	<head>
-
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 		<title>eCamp v2</title>
-
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
         <link rel="stylesheet" type="text/css" href="./public/global/css/bootstrap.min.css" />
         <link rel="stylesheet" type="text/css" href="./public/global/css/global.css" />
         <link rel="stylesheet" type="text/css" href="./public/global/css/menu.css" />        
         
         <link tal:repeat="css cssIncludes" rel="stylesheet" type="text/css" tal:attributes="href css" />
-        
-        
-        <link rel="stylesheet" type="text/css" href="./public/skin/skin3/css/main.css" />
-        <link rel="stylesheet" type="text/css" href="./public/skin/skin3/css/color.css" />
-        <link rel="stylesheet" type="text/css" href="./public/skin/skin3/css/layout.css" />
+
+        <link rel="stylesheet" type="text/css" href="./public/skin/skin4/css/main.css" />
+        <link rel="stylesheet" type="text/css" href="./public/skin/skin4/css/color.css" />
+        <link rel="stylesheet" type="text/css" href="./public/skin/skin4/css/layout.css" />
 
         <script type="text/javascript" src="./public/global/js/jquery-3.2.1.min.js"></script>
         <script type="text/javascript" src="./public/global/js/bootstrap.min.js"></script>
@@ -25,14 +24,11 @@
         </script>
     	
 	    <script tal:content="structure js_code" type="text/javascript" language="javascript"></script>
-    	
-    	
+
     	<script tal:repeat="js jsIncludes" type="text/javascript" language="javascript" tal:attributes="src js"></script>
-		
-	    
+
 	    <script tal:condition="user/admin" type="text/javascript" language="javascript" src="public/module/js/admin.js"></script>
 	    <script type="text/javascript" language="javascript" src="public/module/js/info_box.js"></script>
-
     </head>
     <body id="body" marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" class="bgcolor">
     	<!-- div_includes -->

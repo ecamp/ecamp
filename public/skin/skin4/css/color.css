@@ -1,28 +1,29 @@
+
 /************************************/
 /* Allgemein */
 /***********************************/
-.bgcolor { 
+.bgcolor {
 	background:white; }
-	
-.bgcolor_content { 
+
+.bgcolor_content {
 	background:#e6efff; }
-	
-.textcolor { 
+
+.textcolor {
 	color: black; }
-	
-a{ 
+
+a{
 	color:black; }
-	
-.textcolor_on_bg { 
+
+.textcolor_on_bg {
 	color:white; }
 
-div.content_box_head{ 
-	background-color:#335588; 
+div.content_box_head{
+	background-color:#335588;
 	color:white; }
 
 .red{ color:#FF3333; }
-.green{ color:#00AA00; }	
-	
+.green{ color:#00AA00; }
+
 /************************************/
 /* Menü */
 /***********************************/
@@ -46,10 +47,10 @@ div.menu_box *
 
 /* Grobprogramm */
 .bgcolor_gp_dark
-{	background:#e6efff;	} 
+{	background:#e6efff;	}
 
 .bgcolor_gp_bright
-{	background:#B2C5E3;	} 
+{	background:#B2C5E3;	}
 
 
 /************************************/
@@ -86,19 +87,19 @@ div.menu_box *
 div.d_program_border
 {
 	border-top, border-left, border-right: 2px red solid;
-	
+
 	-moz-border-radius:6px;
 	-khtml-border-radius:6px;
 }
 
 
 /* Formulare */
-input[type="text"], input[type="password"], select { 
-	background:white; 
+input[type="text"], input[type="password"], select {
+	background:white;
 	border:1px black solid;
-	}
-	
+}
+
 input[type="button"], input[type="submit"] {  }
 
-input.showtext { background:white; }  
+input.showtext { background:white; }
 input.askedit { background:orange; } /* Farbveränderung bei aktiver Eingabe */

@@ -51,3 +51,7 @@ div.content_box_fit, div.content_box_full
 	width: 5px;
 	height: 25px;
 }
+
+.space-top{
+	margin-top: 4%;
+}

@@ -1,6 +1,3 @@
-form
-{	margin:0;	}
-
 .hidden
 {	display:none;	}
 
@@ -10,14 +7,6 @@ form
 	-khtml-border-radius:5px;
 }
 
-td	{ vertical-align:top;	}
-
-a img {
-	border:none;
-	text-decoration:none;
-}
-
-a.img {
-	border:none;
-	text-decoration:none;
+hr {
+	border-top: 2px solid #ddd;
 }

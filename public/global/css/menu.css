@@ -18,9 +18,7 @@ div.menu a
 
 div.menu a:hover
 {
-	
 	font-weight: bold;
-	font-style: italic;
 }
 
 div.menu a.actual_menu

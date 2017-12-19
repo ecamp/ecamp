@@ -1,6 +1,5 @@
 div.content_box_head
-{	
-    
+{
 	height:20px;
 	font-weight:bold;
 	text-align:center;
@@ -10,8 +9,7 @@ div.content_box_full, div.content_box_fit
 {
 	padding:5px;
 	padding-top:10px;
-	 
-	
+
 	text-align:left;
 }
 
@@ -32,5 +30,3 @@ div.content_border_fit
 div.content_border_full
 {  height:100%;
 	position:absolute; }
-
-
