@@ -13,37 +13,6 @@
         <link rel="stylesheet" type="text/css" href="./public/skin/skin4/css/main.css" />
         <link rel="stylesheet" type="text/css" href="./public/skin/skin4/css/color.css" />
         <link rel="stylesheet" type="text/css" href="./public/skin/skin4/css/layout.css" />
-
-        <style>
-        	table
-			{ 	font-size:13px;}	
-			font.title
-			{	font-size: 25px;	}
-        	
-        	.message, .login, .register
-			{
-				width:380px;
-				padding:30px 10px 10px 10px;
-				margin-bottom:20px;
-			}
-			
-			input[type=text], input[type=password]
-			{
-				width: 100%;
-			}
-			
-			div.login
-			{
-				position: relative;
-			}
-			
-			div.gotologin
-			{
-				position: absolute;
-				top: 2px;
-				right: 4px;
-			}
-        </style>
         
 		<script type="text/javascript" src="./public/global/js/jquery-3.2.1.min.js"></script>
 		<script type="text/javascript" src="./public/global/js/bootstrap.min.js"></script>
@@ -52,39 +21,60 @@
 			jQuery.noConflict();
 		</script>
 	</head>
-	<body marginheight="100" marginwidth="0" class="bgcolor ">
-		<center>	
-			<div class="message bgcolor_content content_border_fit" tal:condition="SHOW_MSG" >
-	        	<span tal:content="MSG">TEXT...</span>
-	        </div>
-			<div class="login bgcolor_content content_border_fit">
-				<div class="gotologin">
-					<a href="login.php">Zurück zum Login</a>
+	<body>
+		<div class="space-top"></div>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12 col-md-8 col-md-offset-2">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<div class="float-left">
+								eCamp - Reminder
+							</div>
+							<div class="float-rigth">
+								<a href="login.php">Zurück zum Login</a>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="panel-body">
+							<div class="message alert alert-danger" tal:condition="SHOW_MSG" >
+								<span tal:content="MSG">TEXT...</span>
+							</div>
+							<div class="login">
+								<form class="form-horizontal" action="reminder_do.php" method="post">
+									<div>
+										Wenn du dein Passwort vergessen hast, kannst du hier deine eMail - Adresse eintragen.
+										Du erhälst eine Mail mit einem Link, um dir ein neues Passwort zu setzten.
+									</div>
+									<div class="space-top"></div>
+									<div class="form-group">
+										<label for="Login" class="col-sm-2 control-label">E-Mail:</label>
+										<div class="col-sm-10">
+											<input type="email" tabindex="1" class="form-control" id="Login" placeholder="Email" name="Login" />
+										</div>
+									</div>
+									<div class="clearfix"></div>
+									<div class="space-top"></div>
+									<div class="form-group">
+										<div class="col-sm-offset-2 col-sm-10">
+											<tal:block content="structure captcha" />
+										</div>
+									</div>
+
+									<div class="clearfix"></div>
+									<div class="space-top"></div>
+									<div class="space-top"></div>
+									<div class="form-group">
+										<div class="col-sm-offset-2 col-sm-10">
+											<input type="submit" tabindex="2" class="form-control btn btn-success" id="submit" placeholder="Abschicken" name="submit" value="Abschicken" />
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
 				</div>
-	        	<form action="reminder_do.php" method="post">
-	                <table width="80%">
-	                    <tr><td colspan="2"><font class="title">eCamp - Reminder</font></td></tr>
-	                    <tr height="10"><td> </td></tr>
-	                    <tr>
-	                    	<td colspan="2">
-	                    		Wenn du dein Passwort vergessen hast, kannst du hier deine eMail - Adresse eintragen.
-	                    		Du erhälst eine Mail mit einem Link, um dir ein neues Passwort zu setzten.
-	                    	</td>
-	                    </tr>
-	                    <tr height="10"><td> </td></tr>
-	                    
-	                    <tr><td>E-Mail:</td><td><input tabindex="1" name="Login" type="text" /></td></tr>
-	                    <tr height="10"><td> </td></tr>
-	                    <tr>
-                            <td colspan="2">
-	                    		<tal:block content="structure captcha" />
-	                        </td>
-                        </tr>
-	                    <tr><td colspan="2" align="right"><input tabindex="7" type="submit" value="Abschicken" /></td></tr>
-	                    <tr><td> </td></tr>
-	                </table>
-	            </form>
-	        </div>
-		</center>
+			</div>
+		</div>
 	</body>
 </html>
