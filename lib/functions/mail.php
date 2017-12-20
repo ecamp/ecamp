@@ -18,17 +18,50 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-function ecamp_send_mail($to, $subject, $body){
-	$from = 'eCamp <ecamp@pfadiluzern.ch>';
-	$to = '<' . $to . '>';
+	// Import PHPMailer classes into the global namespace
+	// These must be at the top of your script, not inside a function
+	use PHPMailer;
+	use Exception;
 
-	$headers = array(
-	    'From' => $from,
-	    'To' => $to,
-	    'Subject' => $subject
-	);
+	require 'vendor/autoload.php';
 
-	$smtp = Mail::factory('smtp', $GLOBALS['smtp-config']);
+	function ecamp_send_mail($to, $subject, $body){
+		$mail = new PHPMailer(TRUE);
+		try {
+			//Server settings
+			$mail->SMTPDebug = 2;                                 // Enable verbose debug output
+			$mail->isSMTP();                                      // Set mailer to use SMTP
+			$mail->Host = $GLOBALS['smtp-config']['host'];        // Specify main and backup SMTP servers
+			$mail->SMTPAuth = true;                               // Enable SMTP authentication
+			$mail->Username = $GLOBALS['smtp-config']['username'];// SMTP username
+			$mail->Password = $GLOBALS['smtp-config']['password'];// SMTP password
+			$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+			//Custom connection options
+			//Note that these settings are INSECURE
+			$mail->SMTPOptions = array(
+				'ssl' => array(
+					'verify_peer' => false,
+					'verify_peer_name' => false,
+					'allow_self_signed' => true
+				),
+			);
 
-	return $smtp->send($to, $headers, $body);
-}
+			$mail->Port = $GLOBALS['smtp-config']['port'];                                    // TCP port to connect to
+
+			//Recipients
+			$mail->setFrom('mailbot@ecamps.ch', 'eCamp Mailbot');
+			$mail->addAddress($to);     // Add a recipient
+
+			//Content
+			$mail->isHTML(true);                                  // Set email format to HTML
+			$mail->Subject = $subject;
+			$mail->Body    = $body;
+			$mail->AltBody = $body;
+
+			$mail->send();
+			echo 'Message has been sent';
+		} catch (Exception $e) {
+			echo 'Message could not be sent.';
+			echo 'Mailer Error: ' . $mail->ErrorInfo;
+		}
+	}

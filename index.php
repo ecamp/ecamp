@@ -29,7 +29,11 @@
   
   if( get_magic_quotes_gpc() )
   {	die( "SET MAGIC QUOTS OFF!!!!" );	}
-  
+
+	#############################################################################
+	//Load composer's autoloader
+	require 'vendor/autoload.php';
+
   #############################################################################
   # Konfigurationsdatei einbinden
   include("./config.php");
@@ -55,7 +59,7 @@
   include($lib_dir . "/functions/other.php");
 
   include($lib_dir . "/functions/mail.php");
-  
+
   // Datenbank verbinden
   db_connect();
 
