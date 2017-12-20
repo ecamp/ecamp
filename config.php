@@ -34,7 +34,7 @@
 	
 	$GLOBALS['tpl_dir'] = "../../../template";
 
-	$GLOBALS['smtp-config'] = array('host' => 'ecamps.ch','username' => 'mailbot@ecamps.ch','password' => 'wHh~x651','port' => '587');
+	$GLOBALS['smtp-config'] = array('host' => 'ecamps.ch','auth' => true,'username' => 'mailbot@ecamps.ch','password' => 'oiH^92w1','port' => '587','debug' => true);
 	
 	$GLOBALS['captcha_pub'] = "6LehoTMUAAAAAJ2XCzbBfduFd5uzppTU0wgm0y-_";
 	$GLOBALS['captcha_prv'] = "6LehoTMUAAAAAJVQOascfLNH-Wi9FPPGoAsMYtX5";
