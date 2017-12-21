@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="227d5942-fe95-4620-9f52-c74237944c13" name="Default" comment="" />
+    <list default="true" id="227d5942-fe95-4620-9f52-c74237944c13" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/register_do.php" afterPath="$PROJECT_DIR$/register_do.php" />
+      <change beforePath="$PROJECT_DIR$/reminder_do.php" afterPath="$PROJECT_DIR$/reminder_do.php" />
+      <change beforePath="$PROJECT_DIR$/resendacode_do.php" afterPath="$PROJECT_DIR$/resendacode_do.php" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,28 +28,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="register_do.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="register_do.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/register_do.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="622">
-              <caret line="90" column="57" lean-forward="false" selection-start-line="90" selection-start-column="57" selection-end-line="90" selection-end-column="57" />
+            <state relative-caret-position="514">
+              <caret line="84" column="4" lean-forward="false" selection-start-line="84" selection-start-column="4" selection-end-line="84" selection-end-column="4" />
               <folding>
-                <marker date="1513849534892" expanded="true" signature="2505:2564" ph="SELECT user.... user" />
-                <marker date="1513849534892" expanded="true" signature="2817:2978" ph="INSERT INTO user... " />
-                <marker date="1513849534892" expanded="true" signature="3366:3455" ph="..." />
+                <marker date="1513849729983" expanded="true" signature="2505:2564" ph="SELECT user.... user" />
+                <marker date="1513849729983" expanded="true" signature="2817:2978" ph="INSERT INTO user... " />
+                <marker date="1513849729983" expanded="true" signature="3368:3457" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="reminder_do.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="reminder_do.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/reminder_do.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="542">
-              <caret line="70" column="6" lean-forward="false" selection-start-line="70" selection-start-column="6" selection-end-line="70" selection-end-column="6" />
+            <state relative-caret-position="664">
+              <caret line="71" column="4" lean-forward="false" selection-start-line="71" selection-start-column="4" selection-end-line="71" selection-end-column="4" />
               <folding>
-                <marker date="1513795085589" expanded="true" signature="1280:1333" ph="SELECT id, p... user" />
-                <marker date="1513795085589" expanded="true" signature="1756:1805" ph="UPDATE user " />
+                <marker date="1513849734062" expanded="true" signature="1280:1333" ph="SELECT id, p... user" />
+                <marker date="1513849734062" expanded="true" signature="1756:1805" ph="UPDATE user " />
               </folding>
             </state>
           </provider>
@@ -54,11 +58,11 @@
       <file leaf-file-name="resendacode_do.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resendacode_do.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="542">
-              <caret line="63" column="6" lean-forward="false" selection-start-line="63" selection-start-column="6" selection-end-line="63" selection-end-column="6" />
+            <state relative-caret-position="458">
+              <caret line="59" column="83" lean-forward="false" selection-start-line="59" selection-start-column="83" selection-end-line="59" selection-end-column="83" />
               <folding>
-                <marker date="1513795061401" expanded="true" signature="940:996" ph="SELECT id, a... user" />
-                <marker date="1513795061401" expanded="true" signature="1515:1559" ph="UPDATE user... " />
+                <marker date="1513849601514" expanded="true" signature="940:996" ph="SELECT id, a... user" />
+                <marker date="1513849601514" expanded="true" signature="1515:1559" ph="UPDATE user... " />
               </folding>
             </state>
           </provider>
@@ -124,10 +128,10 @@
         <option value="$PROJECT_DIR$/public/skin/skin4/css/color.css" />
         <option value="$PROJECT_DIR$/public/skin/skin4/css/main.css" />
         <option value="$PROJECT_DIR$/public/skin/skin4/register.tpl" />
-        <option value="$PROJECT_DIR$/resendacode_do.php" />
-        <option value="$PROJECT_DIR$/reminder_do.php" />
         <option value="$PROJECT_DIR$/lib/functions/mail.php" />
+        <option value="$PROJECT_DIR$/resendacode_do.php" />
         <option value="$PROJECT_DIR$/register_do.php" />
+        <option value="$PROJECT_DIR$/reminder_do.php" />
       </list>
     </option>
   </component>
@@ -246,7 +250,7 @@
       <workItem from="1513667173716" duration="1850000" />
       <workItem from="1513677062705" duration="12424000" />
       <workItem from="1513794203988" duration="1287000" />
-      <workItem from="1513847858759" duration="1671000" />
+      <workItem from="1513847858759" duration="1872000" />
     </task>
     <task id="LOCAL-00001" summary="Style improvements">
       <created>1513678725464</created>
@@ -259,7 +263,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="31089000" />
+    <option name="totallyTimeSpent" value="31290000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -675,34 +679,34 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resendacode_do.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="542">
-          <caret line="63" column="6" lean-forward="false" selection-start-line="63" selection-start-column="6" selection-end-line="63" selection-end-column="6" />
+        <state relative-caret-position="458">
+          <caret line="59" column="83" lean-forward="false" selection-start-line="59" selection-start-column="83" selection-end-line="59" selection-end-column="83" />
           <folding>
-            <marker date="1513795061401" expanded="true" signature="940:996" ph="SELECT id, a... user" />
-            <marker date="1513795061401" expanded="true" signature="1515:1559" ph="UPDATE user... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/reminder_do.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="542">
-          <caret line="70" column="6" lean-forward="false" selection-start-line="70" selection-start-column="6" selection-end-line="70" selection-end-column="6" />
-          <folding>
-            <marker date="1513795085589" expanded="true" signature="1280:1333" ph="SELECT id, p... user" />
-            <marker date="1513795085589" expanded="true" signature="1756:1805" ph="UPDATE user " />
+            <marker date="1513849601514" expanded="true" signature="940:996" ph="SELECT id, a... user" />
+            <marker date="1513849601514" expanded="true" signature="1515:1559" ph="UPDATE user... " />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/register_do.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="622">
-          <caret line="90" column="57" lean-forward="false" selection-start-line="90" selection-start-column="57" selection-end-line="90" selection-end-column="57" />
+        <state relative-caret-position="514">
+          <caret line="84" column="4" lean-forward="false" selection-start-line="84" selection-start-column="4" selection-end-line="84" selection-end-column="4" />
           <folding>
-            <marker date="1513849534892" expanded="true" signature="2505:2564" ph="SELECT user.... user" />
-            <marker date="1513849534892" expanded="true" signature="2817:2978" ph="INSERT INTO user... " />
-            <marker date="1513849534892" expanded="true" signature="3366:3455" ph="..." />
+            <marker date="1513849729983" expanded="true" signature="2505:2564" ph="SELECT user.... user" />
+            <marker date="1513849729983" expanded="true" signature="2817:2978" ph="INSERT INTO user... " />
+            <marker date="1513849729983" expanded="true" signature="3368:3457" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reminder_do.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="664">
+          <caret line="71" column="4" lean-forward="false" selection-start-line="71" selection-start-column="4" selection-end-line="71" selection-end-column="4" />
+          <folding>
+            <marker date="1513849734062" expanded="true" signature="1280:1333" ph="SELECT id, p... user" />
+            <marker date="1513849734062" expanded="true" signature="1756:1805" ph="UPDATE user " />
           </folding>
         </state>
       </provider>

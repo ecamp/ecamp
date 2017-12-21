@@ -61,20 +61,14 @@
 
 	//	SEND MAIL FOR REMINDER:
 	// =========================
- 	$text = "eCamp - Passwort ändern \n\n
+ 	$text = "eCamp - Passwort ändern 
+<br />
 Um das Passwort zu ändern, musst du dem nachfolgendem Link folgen:
-\n\n
-" . $GLOBALS['base_uri'] . "pwreset.php?user_id=$user_id&login=$login&acode=$acode
-\n\n";
+<br />
+<br />
+<a href='".$GLOBALS['base_uri']."pwreset.php?user_id=$user_id&login=$login&acode=$acode'>" . $GLOBALS['base_uri'] . "pwreset.php?user_id=$user_id&login=$login&acode=$acode</a>";
 
 	ecamp_send_mail($login, "eCamp - Passwort ändern", $text);
-	//mail( $login, "eCamp - Passwort ändern", $text, "From: eCamp Pfadi Luzern <ecamp@pfadiluzern.ch>" );
 	
-	/*
-	$text = urlencode( $text );
- 	$subject = urlencode( "eCamp - Passwort ändern" );
-	fopen( "http://ecamp2.pfadiluzern.ch/mail.php?to=$login&subject=$subject&message=$text", "r" );
-	*/
-
 	header( 'location: login.php?msg=Überprüfe deine Mailbox. Mit dem Link im Mail kann das Passwort neu gesetzt werden.' );
 	die();

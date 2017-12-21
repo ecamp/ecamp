@@ -81,7 +81,8 @@
 
 	//	SEND MAIL FOR ACTIVATION:
 	// ===========================
- 	$text = "eCamp - Willkommen \n\n
+ 	$text = "eCamp - Willkommen
+<br />
 Um dich bie eCamp einloggen zu können, musst du deinen Account aktivieren.
 Zu diesem Zweck musst du nachfolgendem Link folgen:
 <br />

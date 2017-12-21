@@ -55,10 +55,9 @@
  	$text = "eCamp - Willkommen \n\n
 Um dich bie eCamp einloggen zu können, musst du deinen Account aktivieren.
 Zu diesem Zweck musst du nachfolgendem Link folgen:
-\n\n
-" . $GLOBALS['base_uri'] . "activate.php?user_id=$user_id&login=$login&acode=$acode
-\n\n
- ";
+<br />
+<br />
+" . $GLOBALS['base_uri'] . "activate.php?user_id=$user_id&login=$login&acode=$acode";
  	
  	ecamp_send_mail($login, "eCamp - Willkommen", $text);
 	//mail( $login, "eCamp - Willkommen", $text, "From: eCamp Pfadi Luzern <ecamp@pfadiluzern.ch>" );
