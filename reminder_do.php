@@ -69,6 +69,6 @@ Um das Passwort zu ändern, musst du dem nachfolgendem Link folgen:
 <a href='".$GLOBALS['base_uri']."pwreset.php?user_id=$user_id&login=$login&acode=$acode'>" . $GLOBALS['base_uri'] . "pwreset.php?user_id=$user_id&login=$login&acode=$acode</a>";
 
 	ecamp_send_mail($login, "eCamp - Passwort ändern", $text);
-	
+
 	header( 'location: login.php?msg=Überprüfe deine Mailbox. Mit dem Link im Mail kann das Passwort neu gesetzt werden.' );
 	die();
