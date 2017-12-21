@@ -89,13 +89,6 @@ Zu diesem Zweck musst du nachfolgendem Link folgen:
 <a href='".$GLOBALS['base_uri']."activate.php?user_id=$user_id&login=$login&acode=$acode'>" . $GLOBALS['base_uri'] . "activate.php?user_id=$user_id&login=$login&acode=$acode </a>";
 
 	ecamp_send_mail($login, "eCamp - Willkommen", $text);
- 	//mail( $login, "eCamp - Willkommen", $text, "From: eCamp Pfadi Luzern <ecamp@pfadiluzern.ch>" );
-	
-	/*
-	$text = urlencode( $text );
- 	$subject = urlencode( "eCamp - Willkommen" );
-	fopen( "http://ecamp2.pfadiluzern.ch/mail.php?to=$login&subject=$subject&message=$text", "r" );
-	*/
 	
 	header( 'location: login.php?msg=Vor dem ersten Login muss der Account aktiviert werden. Dafür bitte Mailbox überprüfen.' );
 	die();
