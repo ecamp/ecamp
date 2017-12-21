@@ -30,7 +30,7 @@
 	    <script tal:condition="user/admin" type="text/javascript" language="javascript" src="public/module/js/admin.js"></script>
 	    <script type="text/javascript" language="javascript" src="public/module/js/info_box.js"></script>
     </head>
-    <body id="body" marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" class="bgcolor">
+    <body id="body" class="bgcolor">
     	<!-- div_includes -->
     	<div class="body">
             <div class="faq">
