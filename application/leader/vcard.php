@@ -198,7 +198,7 @@ echo $output;
 ?>
 */
 	$user_id = $_REQUEST['user_id'];
-	$user_id = mysql_real_escape_string( $user_id );
+	$user_id = mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $user_id );
 
 	$query = "	SELECT
 					user.homenr,
@@ -223,10 +223,10 @@ echo $output;
 					user.id = user_camp.user_id AND
 					user_camp.camp_id = my_user_camp.camp_id";
 	
-	$result = mysql_query($query);
-	if( mysql_num_rows($result) < 1 )	{	die("no result");	}
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+	if( mysqli_num_rows($result) < 1 )	{	die("no result");	}
 	
-	$user_data = mysql_fetch_assoc($result);
+	$user_data = mysqli_fetch_assoc($result);
 	
 	$birthday = new c_date();
 	$birthday->setDay2000( $user_data['birthday'] );

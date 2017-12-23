@@ -22,10 +22,10 @@
 	$_page->html->set('box_content', $GLOBALS['tpl_dir'].'/application/home/taken.tpl/taken');
 	$_page->html->set('box_title', 'Danke!');
 
-	$feedback 	= utf8_decode(mysql_real_escape_string($_REQUEST['feedback']));
+	$feedback 	= utf8_decode(mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['feedback']));
 	$feedback = preg_replace("/\\\\n/","\n",$feedback);
 	
-	$type = mysql_real_escape_string($_REQUEST['type']);
+	$type = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['type']);
 	
 	$mail = $_user->mail;
 	$name = $_user->display_name . " [" . $_user->id . "]";
@@ -35,7 +35,7 @@
 	
 	//echo $query;
 	
-	mysql_query($query);
+	mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
 	$mailto = $GLOBALS['feedback_mail'];
 	

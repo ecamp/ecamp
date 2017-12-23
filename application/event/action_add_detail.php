@@ -18,7 +18,7 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	$event_id = mysql_real_escape_string( $_REQUEST['event_id'] );
+	$event_id = mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['event_id'] );
 	
 	$_camp->event( $event_id ) || die( "error" );
 
@@ -29,8 +29,8 @@
 				WHERE
 					event_id = '$event_id'";
 	
-	$result = mysql_query( $query );
-	$count = mysql_result( $result, 0 );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+	$count = mysqli_result( $result,  0 );
 	
 	$count++;
 	
@@ -46,8 +46,8 @@
 					'$count'
 				)";
 
-	$result = mysql_query( $query );
-	$event_detail_id = mysql_insert_id();
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+	$event_detail_id = ((is_null($___mysqli_res = mysqli_insert_id($GLOBALS["___mysqli_ston"]))) ? false : $___mysqli_res);
 	
 	
 	$ans = array( "error" => false, "event_detail_id" => $event_detail_id );

@@ -18,8 +18,8 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	$day_id = mysql_real_escape_string( $_REQUEST['day_id'] );
-	$notes = mysql_escape_string( $_REQUEST['notes'] );
+	$day_id = mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['day_id'] );
+	$notes = ((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['notes'] ) : ((trigger_error("[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.", E_USER_ERROR)) ? "" : ""));
 	$notes_js = $_REQUEST['notes'] ;
 	
 	$_camp->day( $day_id ) || die( "error" );
@@ -28,9 +28,9 @@
 				SET `notes` = '$notes'
 				WHERE
 				id = $day_id";
-	mysql_query( $query );
+	mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	
-	if( mysql_error() )
+	if( mysqli_error($GLOBALS["___mysqli_ston"]) )
 	{	$ans = array( "error" => true, "error_msg" => "" );	}
 	else
 	{	$ans = array( "error" => false, "value" => $notes_js );	}

@@ -18,8 +18,8 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	$day_id = mysql_real_escape_string( $_REQUEST['day_id'] );
-	$story = mysql_real_escape_string( $_REQUEST['story'] );
+	$day_id = mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['day_id'] );
+	$story = mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['story'] );
 	$story_js = $_REQUEST['story'];
 	
 	$_camp->day( $day_id ) || die( "error" );
@@ -28,9 +28,9 @@
 				SET `story` = '$story'
 				WHERE
 				id = $day_id";
-	mysql_query( $query );
+	mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	
-	if( mysql_error() )
+	if( mysqli_error($GLOBALS["___mysqli_ston"]) )
 	{	$ans = array( "error" => true, "error_msg" => "" );	}
 	else
 	{	$ans = array( "error" => false, "value" => $story_js );	}

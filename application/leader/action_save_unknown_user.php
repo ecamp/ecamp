@@ -40,8 +40,8 @@
 	$function	= $_REQUEST['function'];
 
 	$query = "SELECT * FROM user WHERE mail = '$mail'";
-	$result = mysql_query($query);
-	if(mysql_num_rows($result) > 0)
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+	if(mysqli_num_rows($result) > 0)
 	{	
 		header("Location: index.php?app=leader");
 		die();
@@ -55,20 +55,20 @@
 	VALUES ('$mail', '0', '$scoutname', '$firstname', '$surname', '$street', '$zipcode', '$city', '$homenr', '$mobilnr', 
 			'$birthday', '$ahv', '$sex', '$jspersnr', '$jsedu', '$pbsedu', '0', '0', '0', '0')";
 	
-	mysql_query($query);
+	mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
 	$query = "SELECT LAST_INSERT_ID() FROM user";
-	$result = mysql_query($query);
-	$user = implode(mysql_fetch_assoc($result));
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+	$user = implode(mysqli_fetch_assoc($result));
 
 	$query = "SELECT * FROM user_camp WHERE user = '$user' AND camp = '$camp_id'";
-	$result = mysql_query($query);
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
 	if($mysql_num_rows == 0)
 	{
 		$query = "INSERT INTO user_camp 	(user ,camp ,function)
 								VALUES 		('$user', '$camp_id', '$function')";
-		$result = mysql_query($query);
+		$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 		//echo $query;
 	}
 	

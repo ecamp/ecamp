@@ -56,7 +56,7 @@
 						ORDER BY starttime ASC, length DESC, id DESC ";
 						
 							
-		$event_result = mysql_query($event_query);
+		$event_result = mysqli_query($GLOBALS["___mysqli_ston"], $event_query);
 		$event_nr = 0;
 		
 		$rows = array();
@@ -64,7 +64,7 @@
 		
 		$events = array();
 		
-		while($event = mysql_fetch_assoc($event_result))
+		while($event = mysqli_fetch_assoc($event_result))
 		{
 			//$event[starttime] = (($event[starttime] + (24*60) - $GLOBALS[time_shift]) % (24*60)) + $GLOBALS[time_shift];
 			

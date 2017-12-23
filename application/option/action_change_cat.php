@@ -18,16 +18,16 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	$cat_id     = mysql_real_escape_string($_REQUEST['cat_id']);
+	$cat_id     = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['cat_id']);
 	
-	$color		= mysql_real_escape_string($_REQUEST['color']);
-	$form_type	= mysql_real_escape_string($_REQUEST['type']);
+	$color		= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['color']);
+	$form_type	= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['type']);
 	
 	$name		= trim($_REQUEST['name']);
 	$short_name	= trim($_REQUEST['short']);
 	
-	$name_save  = mysql_real_escape_string($name);
-	$short_name_save  = mysql_real_escape_string($short_name);
+	$name_save  = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $name);
+	$short_name_save  = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $short_name);
 
 	$_camp->category( $cat_id ) || die( "error" );
 
@@ -53,8 +53,8 @@
 	
 	// Überprüfen, ob Kategorie gefunden
 	$query = "SELECT * FROM category WHERE camp_id='$_camp->id' AND id='$cat_id'";
-	$result = mysql_query($query);
-	if( mysql_num_rows($result) == 0 )
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+	if( mysqli_num_rows($result) == 0 )
 	{
 		//$uri = "&msg_title=".urlencode("Kategorie ändern: Fehler")."&msg_text=".urlencode("Kategorie nicht gefunden!");
 		//header( "Location: index.php?app=option".$uri );
@@ -66,8 +66,8 @@
 	
 	// Überprüfen, ob selbe Kategorie nicht schon vorhanden
 	$query = "SELECT * FROM category WHERE camp_id='$_camp->id' AND name='$name_save' AND NOT id='$cat_id'";
-	$result = mysql_query($query);
-	if( mysql_num_rows($result) > 0 )
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+	if( mysqli_num_rows($result) > 0 )
 	{
 		//$uri = "&msg_title=".urlencode("Kategorie ändern: Fehler")."&msg_text=".urlencode("Eine Kategorie mit einem solchen Namen existiert bereits!");
 		//header( "Location: index.php?app=option".$uri );
@@ -79,8 +79,8 @@
 	
 	// Kategorie hinzufügen
 	$query = "UPDATE `category` SET `name` = '$name_save', `short_name` = '$short_name_save', `color` = '$color', `form_type` = '$form_type' WHERE `id` ='$cat_id' LIMIT 1 ;";
-	mysql_query($query);
-	$last_camp_id = mysql_insert_id();
+	mysqli_query($GLOBALS["___mysqli_ston"], $query);
+	$last_camp_id = ((is_null($___mysqli_res = mysqli_insert_id($GLOBALS["___mysqli_ston"]))) ? false : $___mysqli_res);
 	
     //header("Location: index.php?app=option");
 	

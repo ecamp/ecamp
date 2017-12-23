@@ -46,9 +46,9 @@
 				WHERE
 					user.id = user_camp.user_id AND
 					user_camp.camp_id = $_camp->id";
-	$result = mysql_query( $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	
-	while( $u = mysql_fetch_assoc( $result ) )
+	while( $u = mysqli_fetch_assoc( $result ) )
 	{
 		$user = array( "tag" => "option", "value" => "user_" . $u['id'], "html" => htmlentities_utf8($u['scoutname']) );
 		$users[] = $user;
@@ -60,9 +60,9 @@
 					mat_list
 				WHERE
 					mat_list.camp_id = $_camp->id";
-	$result = mysql_query( $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	
-	while( $m = mysql_fetch_assoc( $result ) )
+	while( $m = mysqli_fetch_assoc( $result ) )
 	{
 		$mat_list = array( "tag" => "option", "value" => "mat_list_" . $m['id'], "html" => htmlentities_utf8($m['name']) );
 		$mat_lists[] = $mat_list;

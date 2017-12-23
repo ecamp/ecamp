@@ -45,12 +45,12 @@
     				day.subcamp_id = subcamp.id
     			ORDER BY date, starttime";
     
-	$result = mysql_query( $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	
 	$events = array();
 	$c_date = new c_date();
 	
-	while( $row = mysql_fetch_assoc( $result ) )
+	while( $row = mysqli_fetch_assoc( $result ) )
 	{
 		$c_date->setDay2000( $row['date'] );
 		

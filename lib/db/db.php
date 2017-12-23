@@ -84,10 +84,10 @@
 			
 			$query = $_Q[$table];
 			
-			$result = mysql_query( $query );
-			if( mysql_error() )	{	return false;	}
+			$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+			if( mysqli_error($GLOBALS["___mysqli_ston"]) )	{	return false;	}
 
-			while( $row = mysql_fetch_assoc( $result ) )
+			while( $row = mysqli_fetch_assoc( $result ) )
 			{
 				$id = $row['id'];
 				$this->$id = new db_row( $row, $this->_meta->config, $this );

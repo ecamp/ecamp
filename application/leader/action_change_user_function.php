@@ -28,9 +28,9 @@
 				WHERE user_camp.id = $user_camp_id
 				AND user_camp.camp_id = " . $_camp->id;
 	
-	mysql_query( $query );
+	mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	
-	if( mysql_error() )
+	if( mysqli_error($GLOBALS["___mysqli_ston"]) )
 	{	die( "Error" );	}
 	else
 	{

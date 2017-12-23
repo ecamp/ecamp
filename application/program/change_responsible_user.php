@@ -20,7 +20,7 @@
 
 	include( 'inc/get_program_update.php');
 	
-	$event_id	= mysql_real_escape_string($_REQUEST['event_id']);
+	$event_id	= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['event_id']);
 	$resp_user	= $_REQUEST['resp_user'];
 	$user_pool	= $_REQUEST['user_pool'];
 	$time		= $_REQUEST['time'];
@@ -32,22 +32,22 @@
 	
 	foreach($resp_user as $user)
 	{
-		$user = mysql_real_escape_string( $user );
+		$user = mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $user );
 		
 		$query = "SELECT id FROM event_responsible WHERE user_id = $user AND event_id = $event_id";
-		$result = mysql_query($query);
-		if(mysql_num_rows($result) == 0)
+		$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+		if(mysqli_num_rows($result) == 0)
 		{	
 			$query = "INSERT INTO event_responsible (user_id, event_id) VALUES ($user, $event_id)";
-			mysql_query($query);
+			mysqli_query($GLOBALS["___mysqli_ston"], $query);
 			
 			$query = "SELECT * FROM event WHERE id = $event_id";
-			$result = mysql_query( $query );
-			$event = mysql_fetch_assoc( $result );
+			$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+			$event = mysqli_fetch_assoc( $result );
 			
 			$query = "SELECT active FROM user_camp WHERE camp_id = $_camp->id AND user_id = $user";
-			$result = mysql_query( $query );
-			$active = mysql_result( $result, 0, 'active' );
+			$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+			$active = mysqli_result( $result,  0,  'active' );
 			
 			if( $user != $_user->id && $active )
 			{
@@ -61,16 +61,16 @@
 	
 	foreach($user_pool as $user)
 	{
-		$user = mysql_real_escape_string( $user );
+		$user = mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $user );
 		
 		$query = "DELETE FROM event_responsible WHERE user_id = $user AND event_id = $event_id";
-		mysql_query($query);
+		mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	}
 	
 	$query = "	UPDATE event 
 				SET t_edited = CURRENT_TIMESTAMP
 				WHERE id = $event_id";
-	mysql_query( $query );
+	mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	
 	header("Content-type: application/json");
 	

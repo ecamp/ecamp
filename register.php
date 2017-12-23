@@ -34,7 +34,7 @@
 	if( isset( $_REQUEST[ 'msg' ] ) )
 	{
 		$html->set( 'SHOW_MSG', true );
-		$html->set( 'MSG', mysql_escape_string( $_REQUEST[ 'msg' ] ) );
+		$html->set( 'MSG', ((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST[ 'msg' ] ) : ((trigger_error("[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.", E_USER_ERROR)) ? "" : "")) );
 	}
 	
 	$html->set( 'captcha' ,recaptcha_get_html( $GLOBALS['captcha_pub'], null, true ) );

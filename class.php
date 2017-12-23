@@ -252,11 +252,11 @@
 
 		function check( $query )
 		{
-			$result = mysql_query( $query );
-			if( mysql_error() )
+			$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+			if( mysqli_error($GLOBALS["___mysqli_ston"]) )
 			{	return 0;	}
 			else
-			{	return mysql_num_rows( $result );	}
+			{	return mysqli_num_rows( $result );	}
 		}
 	}
 	
@@ -285,8 +285,8 @@
 			if( !$user_id )	{	$user_id = $_user->id;	}
 			
 			$query = "SELECT news FROM user WHERE id = " . $user_id;
-			$result = mysql_query( $query );
-			$news = mysql_result( $result, 0, 'news' );
+			$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+			$news = mysqli_result( $result,  0,  'news' );
 			
 			$news = json_decode( $news, true ) or $news = array();
 			krsort( $news );
@@ -307,9 +307,9 @@
 							user_camp.active = 1 AND
 							user_camp.camp_id = $camp_id AND
 							user.id = user_camp.user_id";
-			$result = mysql_query( $query );
+			$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 
-			while( $user = mysql_fetch_assoc( $result ) )
+			while( $user = mysqli_fetch_assoc( $result ) )
 			{	$this->add2user( $title, $text, $date, $user['id'] );	}
 		}
 		
@@ -353,6 +353,6 @@
 			$news = addslashes( $news );
 			
 			$query = "UPDATE user SET `news` = '$news' WHERE id = " . $user_id;
-			mysql_query( $query );
+			mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 		}
 	}

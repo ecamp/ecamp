@@ -29,23 +29,23 @@
 	}
 
 	// Feld auslesen
-	$job_change_id = mysql_real_escape_string($_REQUEST['job_id']);
+	$job_change_id = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['job_id']);
 	$change_job = trim($_REQUEST['job_name']);
-	$change_job_save = mysql_real_escape_string($change_job);
+	$change_job_save = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $change_job);
 	
 	$_camp->job( $job_change_id ) || die( "error" );
 
 	// Job überprüfen
 	$query = "SELECT * FROM job WHERE camp_id='$_camp->id' AND id='$job_change_id'";
-	$result = mysql_query( $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	
 	$query2 = "SELECT * FROM job WHERE camp_id='$_camp->id' AND NOT id='$job_change_id' AND job_name='$change_job_save'";
-	$result2 = mysql_query( $query2 );
+	$result2 = mysqli_query($GLOBALS["___mysqli_ston"],  $query2 );
 	
-	if( mysql_num_rows( $result ) == 0 || mysql_num_rows($result2) != 0 )
+	if( mysqli_num_rows( $result ) == 0 || mysqli_num_rows($result2) != 0 )
 	{
 		// Job und Camp passen nicht zusammen
-		if( mysql_num_rows( $result ) == 0)
+		if( mysqli_num_rows( $result ) == 0)
 		{
     		//$xml_replace[error] = 1;
 			//$xml_replace['error-msg'] = "Lager-ID und Job-ID passen nicht zusammen!";
@@ -67,7 +67,7 @@
 	}
 	
 	$query = "UPDATE job SET job_name = '$change_job_save' WHERE camp_id='$_camp->id' AND id='$job_change_id'";
-	mysql_query($query);
+	mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
 	$ans = array( "error" => false, "job_id" => $job_change_id, "job_name" => htmlentities_utf8($change_job) );
 	echo json_encode( $ans );
