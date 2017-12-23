@@ -1,0 +1,12 @@
+preset: recommended
+
+risky: false
+
+finder:
+ not-name:
+  - "*.tpl"
+  - "*.css"
+  - "*.js"
+
+ not-path:
+  - "vendor"

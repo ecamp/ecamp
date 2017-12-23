@@ -5,6 +5,7 @@ input.askedit
 	border-width: 1px;
 	background-color: 0066ff;
 }
+
 input.askeditbutton
 {
 	border-style: solid;
@@ -12,6 +13,7 @@ input.askeditbutton
 	border-width: 1px;
 	background-color: 0066ff;
 }
+
 input.showtext
 {
 	border-style: dotted;
@@ -21,6 +23,7 @@ input.showtext
 	width: 100%;
 	cursor: pointer;
 }
+
 div.invention
 {
 	-moz-border-radius:5px;
@@ -31,6 +34,7 @@ ul.camp_list
 {
 	display: inline-table;
 }
+
 li.camp_frame
 {
 	display: inline-table;
@@ -38,6 +42,7 @@ li.camp_frame
 	padding-right: 10px;
 	padding-bottom: 10px;
 }
+
 table.camp
 {
 	width: 300px;
@@ -46,32 +51,38 @@ table.camp
 	-moz-border-radius:5px;
 	-khtml-border-radius:5px;
 }
+
 table.camp:hover
 {
 	border: 2px black solid;
 	margin: 0px;
 	padding: 0px;
 }
+
 table.camp td
 {
 	padding-bottom: 2px;
 	padding-left: 10px;
 }
+
 td.seperator
 {
 	padding-left: 5px;
 	padding-right: 10px;
 }
+
 td.seperator p
 {
 	border-bottom: 1px black dashed;
 	height: 2px;
 	margin: 5px;	
 }
+
 td.camp_option
 {
 	padding-right: 20px;
 }
+
 p.camp_slogan
 {
 	text-align: center;

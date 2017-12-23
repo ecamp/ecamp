@@ -1,0 +1,1 @@
+<div style="position:fixed; left:0; top:0; visibility:hidden; background-color:#0066FF; border-color:#000000; border-width:1px; border-style:solid; padding:2px; z-index:3000" id="by_mouse_info"></div>

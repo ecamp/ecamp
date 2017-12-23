@@ -2,10 +2,220 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="227d5942-fe95-4620-9f52-c74237944c13" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/.styleci.yml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/aim/border.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/aim/main.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/aim/popup_new_aim1.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/aim/popup_new_aim2.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/aim/sql/course_aim_1.sql" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/aim/sql/course_aim_2.sql" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/aim/sql/course_aim_3.sql" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/aim/sql/course_aim_4.sql" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/aim/sql/course_aim_5.sql" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/camp/home.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/camp/input.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/camp_admin/border.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/camp_admin/home copy.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/camp_admin/home.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/camp_admin/new_camp.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/course_checklist/border.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/course_checklist/checklist.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/day/border.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/day/day.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/day/days.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/day/days_guest.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/day/days_light.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/day/home.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/day/list.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/day/menu_add_event.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/day/menu_add_event_option.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/day/one_event.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/day/one_event_guest.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/day/one_job.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/day/one_job_guest.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/db/integrity.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/db/statistics.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/event/dp_ablauf.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/event/dp_border.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/event/dp_comment.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/event/dp_course_head.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/event/dp_header.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/event/dp_la_head.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/event/dp_lp_head.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/event/dp_ls_head.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/event/dp_main.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/event/dp_mat.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/event/dp_pdf.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/event/dp_siko.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/event/file_upload_done.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/event/file_upload_form.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/event/home.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/event/input_text.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/event/input_textarea.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/faq/home.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/home/comment.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/home/feedback.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/home/help.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/home/home.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/home/info.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/home/news.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/home/taken.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/home/team.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/home/welcome_msg.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/impressum/home.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/invent/home.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/leader/add.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/leader/add_search.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/leader/add_search_result.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/leader/add_search_result_user.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/leader/add_unknown_user.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/leader/edit_user.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/leader/home.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/leader/info_display.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/leader/option.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/leader/search_result_empty.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/leader/select.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/leader/show_user.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/leader/user_option.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/mat_list/border.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/mat_list/display.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/mat_list/home.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/mat_list/select.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/my_resp/home.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/option/border.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/option/category.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/option/jobs.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/print/bin.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/print/border.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/print/libary.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/print/view.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/program/context_menu.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/program/day.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/program/home.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/support/home.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/todo/border.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/todo/home.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/user_profile/_useless_field.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/user_profile/_useless_select.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/user_profile/avatar_change.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/user_profile/delprofile.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/user_profile/home.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/application/user_profile/pw_change.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/global/ajax_response.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/global/busy.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/global/by_mouse_info.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/global/content_box_fit.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/global/content_box_full.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/global/info_display.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/global/lock.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/global/login.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/global/main.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/module/info/info_box.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/module/menu/menu copy.tpl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/skin/skin4/template/module/menu/menu.tpl" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" afterPath="$PROJECT_DIR$/.idea/php.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/composer.json" afterPath="$PROJECT_DIR$/composer.json" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" afterPath="$PROJECT_DIR$/composer.lock" />
+      <change beforePath="$PROJECT_DIR$/config.php" afterPath="$PROJECT_DIR$/config.php" />
+      <change beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
+      <change beforePath="$PROJECT_DIR$/module/menu/_template/submenu_l.tpl" afterPath="$PROJECT_DIR$/module/menu/_template/submenu_l.tpl" />
+      <change beforePath="$PROJECT_DIR$/module/menu/_template/submenu_ll.tpl" afterPath="$PROJECT_DIR$/module/menu/_template/submenu_ll.tpl" />
+      <change beforePath="$PROJECT_DIR$/public/application/aim/css/main.css" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/aim/js/main.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/camp/css/home.css" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/camp/js/home.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/camp/js/map.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/camp_admin/css/home.css" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/camp_admin/img/del.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/camp_admin/img/exit.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/camp_admin/js/home.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/camp_admin/js/new_camp.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/day/css/home.css" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/day/js/edit_event.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/day/js/home.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/day/js/new_event.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/event/css/autocompliter.css" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/event/css/d_program.css" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/event/css/home.css" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/event/img/close.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/event/img/open.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/event/js/_useless_fire_setup.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/event/js/_useless_home.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/event/js/fire_setup.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/event/js/mat.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/faq/css/home.css" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/faq/js/home.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/home/css/home.css" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/impressum/css/home.css" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/leader/css/show_user.css" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/leader/img/c_green.gif" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/leader/img/c_red.gif" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/leader/img/c_yellow.gif" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/leader/img/exit.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/leader/img/green.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/leader/img/red.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/leader/img/vcard.gif" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/leader/img/vcard_locked.gif" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/leader/img/vcard_locked.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/leader/img/yellow.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/leader/js/leader.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/mat_list/css/main.css" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/mat_list/js/home.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/my_resp/css/home.css" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/my_resp/js/home.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/option/css/home.css" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/option/js/home.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/print/css/home.css" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/print/img/trash.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/print/js/main.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/program/css/context_menu.css" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/program/css/context_menu_new.css" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/program/css/home.css" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/program/img/bearbeiten.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/program/img/copy.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/program/img/del.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/program/img/dp.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/program/img/ecke.gif" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/program/img/edit.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/program/img/lock.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/program/img/new.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/program/img/next.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/program/img/option.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/program/img/print.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/program/img/progress.gif" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/program/img/rename.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/program/img/resp.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/program/img/split.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/program/img/type.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/program/img/wait.gif" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/program/js/_useless_dp_class.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/program/js/category_class.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/program/js/config.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/program/js/day_class.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/program/js/event_class.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/program/js/event_instance_class.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/program/js/gp_class.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/program/js/menu_class.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/program/js/numbering.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/program/js/subcamp_class.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/program/js/user_class.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/support/css/home.css" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/support/img/green.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/support/img/red.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/todo/css/home.css" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/todo/img/green.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/todo/img/red.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/todo/js/home.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/todo/js/home_user_dnd.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/user_profile/css/home.css" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/application/user_profile/js/home.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/global/css/content_box.css" afterPath="$PROJECT_DIR$/public/global/css/content_box.css" />
+      <change beforePath="$PROJECT_DIR$/public/module/css/_calendar.css" afterPath="$PROJECT_DIR$/public/module/css/_calendar.css" />
+      <change beforePath="$PROJECT_DIR$/public/module/js/admin.js" afterPath="$PROJECT_DIR$/public/module/js/admin.js" />
+      <change beforePath="$PROJECT_DIR$/public/skin/skin4/css/main.css" afterPath="$PROJECT_DIR$/public/skin/skin4/css/main.css" />
       <change beforePath="$PROJECT_DIR$/public/skin/skin4/login.tpl" afterPath="$PROJECT_DIR$/public/skin/skin4/login.tpl" />
       <change beforePath="$PROJECT_DIR$/public/skin/skin4/main.tpl" afterPath="$PROJECT_DIR$/public/skin/skin4/main.tpl" />
-      <change beforePath="$PROJECT_DIR$/public/skin/skin4/resendacode.tpl" afterPath="$PROJECT_DIR$/public/skin/skin4/resendacode.tpl" />
-      <change beforePath="$PROJECT_DIR$/resendacode_do.php" afterPath="$PROJECT_DIR$/resendacode_do.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -14,16 +224,36 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="main.tpl" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/public/skin/skin4/main.tpl">
+      <file leaf-file-name="autocompliter.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/application/event/css/autocompliter.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="32" column="19" lean-forward="false" selection-start-line="32" selection-start-column="19" selection-end-line="32" selection-end-column="19" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="d_program.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/application/event/css/d_program.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="home.css" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/application/event/css/home.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-2205">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -34,6 +264,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>vers</find>
+      <find>d_program_close</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -42,57 +273,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/application/user_profile/action_save_change_pw.php" />
-        <option value="$PROJECT_DIR$/application/user_profile/action_save_change_avatar.php" />
-        <option value="$PROJECT_DIR$/application/user_profile/action_save_change.php" />
-        <option value="$PROJECT_DIR$/application/user_profile/action_delete_avatar.php" />
-        <option value="$PROJECT_DIR$/application/user_profile/action_del_profile.php" />
-        <option value="$PROJECT_DIR$/lib/validation.php" />
-        <option value="$PROJECT_DIR$/lib/template.php" />
-        <option value="$PROJECT_DIR$/lib/sqlqueries.php" />
-        <option value="$PROJECT_DIR$/lib/session.php" />
-        <option value="$PROJECT_DIR$/lib/recaptchalib.php" />
-        <option value="$PROJECT_DIR$/lib/app_program.php" />
-        <option value="$PROJECT_DIR$/lib/db/query.php" />
-        <option value="$PROJECT_DIR$/lib/db/db.php" />
-        <option value="$PROJECT_DIR$/lib/db/config.php" />
-        <option value="$PROJECT_DIR$/lib/functions/other.php" />
-        <option value="$PROJECT_DIR$/lib/functions/error.php" />
-        <option value="$PROJECT_DIR$/lib/functions/date.php" />
-        <option value="$PROJECT_DIR$/module/auth/check_login.php" />
-        <option value="$PROJECT_DIR$/module/info/leader.php" />
-        <option value="$PROJECT_DIR$/module/info/category.php" />
-        <option value="$PROJECT_DIR$/module/menu/menu.php" />
-        <option value="$PROJECT_DIR$/config.php" />
-        <option value="$PROJECT_DIR$/public/global/js/auth.js" />
-        <option value="$PROJECT_DIR$/public/global/js/autocompleter.js" />
-        <option value="$PROJECT_DIR$/public/global/js/calendar.js" />
-        <option value="$PROJECT_DIR$/public/global/js/dynamic_input.js" />
-        <option value="$PROJECT_DIR$/public/global/js/jsos.js" />
-        <option value="$PROJECT_DIR$/public/global/js/observer.js" />
-        <option value="$PROJECT_DIR$/public/global/js/os_class.js" />
-        <option value="$PROJECT_DIR$/public/global/js/popup.js" />
-        <option value="$PROJECT_DIR$/public/global/js/useless_other.js" />
-        <option value="$PROJECT_DIR$/public/global/js/useless_request.js" />
-        <option value="$PROJECT_DIR$/lib/mysql.php" />
-        <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/public/skin/skin4/css/layout.css" />
-        <option value="$PROJECT_DIR$/public/global/css/menu.css" />
-        <option value="$PROJECT_DIR$/public/global/css/info_display.css" />
-        <option value="$PROJECT_DIR$/public/global/css/content_box.css" />
-        <option value="$PROJECT_DIR$/public/skin/skin4/reminder.tpl" />
-        <option value="$PROJECT_DIR$/public/skin/skin4/pwreset.tpl" />
-        <option value="$PROJECT_DIR$/public/global/css/global.css" />
-        <option value="$PROJECT_DIR$/public/skin/skin4/css/color.css" />
-        <option value="$PROJECT_DIR$/public/skin/skin4/css/main.css" />
-        <option value="$PROJECT_DIR$/public/skin/skin4/register.tpl" />
-        <option value="$PROJECT_DIR$/lib/functions/mail.php" />
-        <option value="$PROJECT_DIR$/register_do.php" />
         <option value="$PROJECT_DIR$/reminder_do.php" />
         <option value="$PROJECT_DIR$/resendacode_do.php" />
-        <option value="$PROJECT_DIR$/public/skin/skin4/main.tpl" />
-        <option value="$PROJECT_DIR$/public/skin/skin4/login.tpl" />
         <option value="$PROJECT_DIR$/public/skin/skin4/resendacode.tpl" />
+        <option value="$PROJECT_DIR$/public/skin/skin4/login.tpl" />
+        <option value="$PROJECT_DIR$/.styleci.yml" />
+        <option value="$PROJECT_DIR$/public/skin/skin4/css/main.css" />
+        <option value="$PROJECT_DIR$/module/menu/_template/submenu_ll.tpl" />
+        <option value="$PROJECT_DIR$/module/menu/_template/submenu_l.tpl" />
+        <option value="$PROJECT_DIR$/public/skin/skin4/template/application/user_profile/_useless_field.tpl" />
+        <option value="$PROJECT_DIR$/public/skin/skin4/template/application/impressum/home.tpl" />
+        <option value="$PROJECT_DIR$/public/skin/skin4/template/application/camp/input.tpl" />
+        <option value="$PROJECT_DIR$/public/skin/skin4/template/application/user_profile/pw_change.tpl" />
+        <option value="$PROJECT_DIR$/public/skin/skin4/template/application/home/welcome_msg.tpl" />
+        <option value="$PROJECT_DIR$/public/skin/skin4/template/application/home/team.tpl" />
+        <option value="$PROJECT_DIR$/public/skin/skin4/template/application/home/taken.tpl" />
+        <option value="$PROJECT_DIR$/public/skin/skin4/template/application/home/info.tpl" />
+        <option value="$PROJECT_DIR$/public/skin/skin4/template/application/home/comment.tpl" />
+        <option value="$PROJECT_DIR$/public/skin/skin4/template/application/home/home.tpl" />
+        <option value="$PROJECT_DIR$/public/global/css/content_box.css" />
+        <option value="$PROJECT_DIR$/public/skin/skin4/template/application/home/news.tpl" />
+        <option value="$PROJECT_DIR$/public/skin/skin4/template/module/info/info_box.tpl" />
+        <option value="$PROJECT_DIR$/public/skin/skin4/template/module/menu/menu.tpl" />
+        <option value="$PROJECT_DIR$/public/skin/skin4/template/global/main.tpl" />
+        <option value="$PROJECT_DIR$/public/skin/skin4/template/global/login.tpl" />
+        <option value="$PROJECT_DIR$/public/skin/skin4/template/global/content_box_fit.tpl" />
+        <option value="$PROJECT_DIR$/public/skin/skin4/template/application/event/dp_main.tpl" />
+        <option value="$PROJECT_DIR$/public/skin/skin4/template/application/event/dp_mat.tpl" />
+        <option value="$PROJECT_DIR$/public/skin/skin4/template/application/event/home.tpl" />
+        <option value="$PROJECT_DIR$/public/skin/skin4/module/js/admin.js" />
+        <option value="$PROJECT_DIR$/public/skin/skin4/template/application/event/input_text.tpl" />
+        <option value="$PROJECT_DIR$/public/skin/skin4/template/application/event/input_textarea.tpl" />
+        <option value="$PROJECT_DIR$/public/skin/skin4/module/css/_calendar.css" />
+        <option value="$PROJECT_DIR$/public/skin/skin4/application/aim/js/main.js" />
+        <option value="$PROJECT_DIR$/public/skin/skin4/template/application/aim/border.tpl" />
+        <option value="$PROJECT_DIR$/public/skin/skin4/template/application/camp/home.tpl" />
+        <option value="$PROJECT_DIR$/public/skin/skin4/template/application/camp_admin/home.tpl" />
+        <option value="$PROJECT_DIR$/index.php" />
+        <option value="$PROJECT_DIR$/config.php" />
+        <option value="$PROJECT_DIR$/composer.json" />
+        <option value="$PROJECT_DIR$/public/skin/skin4/main.tpl" />
+        <option value="$PROJECT_DIR$/public/application/aim/js/main.js" />
+        <option value="$PROJECT_DIR$/public/application/aim/css/main.css" />
+        <option value="$PROJECT_DIR$/public/application/camp/js/home.js" />
+        <option value="$PROJECT_DIR$/public/application/camp_admin/js/new_camp.js" />
+        <option value="$PROJECT_DIR$/public/application/camp_admin/js/home.js" />
+        <option value="$PROJECT_DIR$/public/application/camp_admin/css/home.css" />
+        <option value="$PROJECT_DIR$/public/application/day/js/new_event.js" />
+        <option value="$PROJECT_DIR$/public/application/day/js/home.js" />
+        <option value="$PROJECT_DIR$/public/application/day/js/edit_event.js" />
+        <option value="$PROJECT_DIR$/public/application/event/js/mat.js" />
+        <option value="$PROJECT_DIR$/public/application/event/js/_useless_home.js" />
       </list>
     </option>
   </component>
@@ -106,9 +337,11 @@
     <include_path>
       <path value="$PROJECT_DIR$/vendor/composer" />
       <path value="$PROJECT_DIR$/vendor/phpmailer/phpmailer" />
+      <path value="$PROJECT_DIR$/vendor/vlucas/phpdotenv" />
+      <path value="$PROJECT_DIR$/vendor/phpoffice/phpexcel" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="952" />
     <option name="width" value="976" />
     <option name="height" value="1038" />
@@ -145,6 +378,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -156,6 +391,49 @@
               <item name="htdocs" type="b2602c69:ProjectViewProjectNode" />
               <item name="htdocs" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="public" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="htdocs" type="b2602c69:ProjectViewProjectNode" />
+              <item name="htdocs" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="public" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="htdocs" type="b2602c69:ProjectViewProjectNode" />
+              <item name="htdocs" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="public" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="event" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="htdocs" type="b2602c69:ProjectViewProjectNode" />
+              <item name="htdocs" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="public" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="event" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="css" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="htdocs" type="b2602c69:ProjectViewProjectNode" />
+              <item name="htdocs" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="public" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="event" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="img" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="htdocs" type="b2602c69:ProjectViewProjectNode" />
+              <item name="htdocs" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="public" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="event" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="js" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="htdocs" type="b2602c69:ProjectViewProjectNode" />
+              <item name="htdocs" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="public" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="global" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="htdocs" type="b2602c69:ProjectViewProjectNode" />
@@ -174,8 +452,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -185,7 +461,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp5.6\htdocs\public\skin\skin4" />
       <recent name="C:\xampp5.6\htdocs\public\skin" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp5.6\htdocs\public" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -218,7 +498,11 @@
       <workItem from="1513667173716" duration="1850000" />
       <workItem from="1513677062705" duration="12424000" />
       <workItem from="1513794203988" duration="1287000" />
-      <workItem from="1513847858759" duration="3484000" />
+      <workItem from="1513847858759" duration="5319000" />
+      <workItem from="1513855036847" duration="5706000" />
+      <workItem from="1513924974525" duration="295000" />
+      <workItem from="1513959214651" duration="9461000" />
+      <workItem from="1514035045373" duration="4415000" />
     </task>
     <task id="LOCAL-00001" summary="Style improvements">
       <created>1513678725464</created>
@@ -231,29 +515,29 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32902000" />
+    <option name="totallyTimeSpent" value="54614000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
+    <frame x="-9" y="-9" width="1938" height="1048" extended-state="7" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14479166" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="SvgViewer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930845" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -268,343 +552,63 @@
     <option name="LAST_COMMIT_MESSAGE" value="Style improvements" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/application/aim/main.php</url>
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/lib/mysql.php">
+    <entry file="file://$PROJECT_DIR$/public/skin/skin4/template/application/camp/home.tpl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="22" column="13" lean-forward="false" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
-          <folding />
+        <state relative-caret-position="454">
+          <caret line="188" column="23" lean-forward="false" selection-start-line="188" selection-start-column="23" selection-end-line="188" selection-end-column="23" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/skin/skin4/img/ecamp.gif">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/global/css/content_box.css">
+    <entry file="file://$PROJECT_DIR$/public/skin/skin4/template/application/camp_admin/home.tpl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="672">
-          <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="0" column="48" lean-forward="false" selection-start-line="0" selection-start-column="48" selection-end-line="0" selection-end-column="48" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/global/css/info_display.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="63">
-          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/lib/phpstorm.jar!/resources/html5-schema/html5/common.rnc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="124" column="18" lean-forward="false" selection-start-line="124" selection-start-column="18" selection-end-line="124" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/global/css/menu.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="19" column="1" lean-forward="false" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/global/css/tips.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="10" column="38" lean-forward="true" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/global/_useless_mootools/mootools.js">
+    <entry file="file://$PROJECT_DIR$/public/skin/skin4/template/application/faq/home.tpl">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/skin/skin4/css/color.css">
+    <entry file="file://$PROJECT_DIR$/public/skin/skin4/template/application/home/home.tpl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="724">
-          <caret line="105" column="0" lean-forward="true" selection-start-line="105" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
+        <state relative-caret-position="-263">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/skin/skin4/css/layout.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="10" column="10" lean-forward="false" selection-start-line="10" selection-start-column="10" selection-end-line="10" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/global/css/global.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="10" column="30" lean-forward="false" selection-start-line="10" selection-start-column="27" selection-end-line="10" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/session.php">
+    <entry file="file://$PROJECT_DIR$/public/skin/skin4/template/application/todo/border.tpl">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/recaptchalib.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="94" column="62" lean-forward="false" selection-start-line="94" selection-start-column="58" selection-end-line="94" selection-end-column="62" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/skin/skin4/css/main.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="346">
-          <caret line="42" column="16" lean-forward="false" selection-start-line="42" selection-start-column="16" selection-end-line="42" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/skin/skin4/pwreset.tpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="14" column="72" lean-forward="false" selection-start-line="14" selection-start-column="72" selection-end-line="14" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/composer.json">
+    <entry file="file://$PROJECT_DIR$/public/skin/skin4/template/application/todo/home.tpl">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/composer.lock">
+    <entry file="file://$PROJECT_DIR$/lib/db/config.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/LICENSE.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resendacode.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/reminder.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="0">
-            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/skin/skin4/reminder.tpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-872">
-          <caret line="14" column="72" lean-forward="false" selection-start-line="14" selection-start-column="72" selection-end-line="14" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/app_program.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/validation.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-378">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/activate.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-116">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1513529702634" expanded="true" signature="1028:1113" ph="SELECT user.... user" />
-            <marker date="1513529702634" expanded="true" signature="1610:1706" ph="UPDATE user " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backup.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-6455">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1513529935532" expanded="true" signature="5457:5510" ph="SELECT id FR... category" />
-            <marker date="1513529935532" expanded="true" signature="5584:5639" ph="SELECT id FR... course_aim" />
-            <marker date="1513529935532" expanded="true" signature="5706:5811" ph="SELECT day.i... day" />
-            <marker date="1513529935532" expanded="true" signature="5880:5930" ph="SELECT id FR... event" />
-            <marker date="1513529935532" expanded="true" signature="6003:6124" ph="SELECT event... event_aim" />
-            <marker date="1513529935532" expanded="true" signature="6203:6348" ph="SELECT event... event_checklist" />
-            <marker date="1513529935532" expanded="true" signature="6425:6562" ph="SELECT event... event_comment" />
-            <marker date="1513529935532" expanded="true" signature="6638:6771" ph="SELECT event... event_detail" />
-            <marker date="1513529935532" expanded="true" signature="6849:6990" ph="SELECT event... event_document" />
-            <marker date="1513529935532" expanded="true" signature="7072:7345" ph="SELECT event... event_instance" />
-            <marker date="1513529935532" expanded="true" signature="7428:7581" ph="SELECT event... event_responsible" />
-            <marker date="1513529935532" expanded="true" signature="7648:7696" ph="SELECT id FR... job" />
-            <marker date="1513529935532" expanded="true" signature="7771:7979" ph="SELECT job_d... job_day" />
-            <marker date="1513529935532" expanded="true" signature="8054:8175" ph="SELECT mat_e... mat_event" />
-            <marker date="1513529935532" expanded="true" signature="8247:8300" ph="SELECT id FR... mat_list" />
-            <marker date="1513529935532" expanded="true" signature="8371:8423" ph="SELECT id FR... subcamp" />
-            <marker date="1513529935532" expanded="true" signature="8491:8540" ph="SELECT id FR... todo" />
-            <marker date="1513529935532" expanded="true" signature="8618:8740" ph="SELECT id FR... todo_user_camp" />
-            <marker date="1513529935532" expanded="true" signature="8808:8896" ph="SELECT user_... user_camp" />
-            <marker date="1513529935532" expanded="true" signature="9491:9524" ph="SELECT news user" />
-            <marker date="1513529935532" expanded="true" signature="9920:10094" ph="SELECT user.... user" />
-            <marker date="1513529935532" expanded="true" signature="11270:11314" ph="UPDATE user... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="861">
-          <caret line="58" column="28" lean-forward="false" selection-start-line="58" selection-start-column="28" selection-end-line="58" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3644">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/login.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1513529977560" expanded="true" signature="1878:1989" ph="SELECT pw, i... user" />
-            <marker date="1513529977560" expanded="true" signature="3128:3202" ph="SELECT id FR... user" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/logout.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-95">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pwreset.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-53">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1513530382202" expanded="true" signature="1094:1179" ph="SELECT user.... user" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pwreset_do.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="5" lean-forward="true" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
-          <folding>
-            <marker date="1513530382230" expanded="true" signature="1304:1429" ph="UPDATE user... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/register.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resendacode_do.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-11">
-          <caret line="31" column="5" lean-forward="true" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
-          <folding>
-            <marker date="1513850311471" expanded="true" signature="940:996" ph="SELECT id, a... user" />
-            <marker date="1513850311471" expanded="true" signature="1515:1559" ph="UPDATE user... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/reminder_do.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="619">
-          <caret line="68" column="19" lean-forward="false" selection-start-line="68" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
-          <folding>
-            <marker date="1513849957928" expanded="true" signature="1280:1333" ph="SELECT id, p... user" />
-            <marker date="1513849957928" expanded="true" signature="1756:1805" ph="UPDATE user " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/register_do.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="514">
-          <caret line="84" column="4" lean-forward="false" selection-start-line="84" selection-start-column="4" selection-end-line="84" selection-end-column="4" />
-          <folding>
-            <marker date="1513849729983" expanded="true" signature="2505:2564" ph="SELECT user.... user" />
-            <marker date="1513849729983" expanded="true" signature="2817:2978" ph="INSERT INTO user... " />
-            <marker date="1513849729983" expanded="true" signature="3368:3457" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/functions/mail.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="535">
-          <caret line="59" column="29" lean-forward="false" selection-start-line="59" selection-start-column="29" selection-end-line="59" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -612,9 +616,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1513540558001" expanded="true" signature="796:891" ph="SELECT user.... user" />
-          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/functions/mail.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-63">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -628,39 +636,67 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/functions/date.php">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1008">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/app_program.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="26" column="5" lean-forward="false" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/PHPTAL.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2835">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/recaptchalib.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/session.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/sqlqueries.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-620">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/validation.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2048">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/mysql.php">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/template.php">
+    <entry file="file://$PROJECT_DIR$/module/menu/menu.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="10">
-          <caret line="33" column="3" lean-forward="true" selection-start-line="33" selection-start-column="3" selection-end-line="33" selection-end-column="3" />
-          <caret line="34" column="4" lean-forward="false" selection-start-line="34" selection-start-column="4" selection-end-line="34" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/module/auth/check_login.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1397">
+        <state relative-caret-position="-1586">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1513540557689" expanded="true" signature="1107:1228" ph="SELECT `id`,... user" />
-            <marker date="1513540557689" expanded="true" signature="1700:1779" ph="SELECT id, f... user_camp" />
-            <marker date="1513540557689" expanded="true" signature="1940:2195" ph="SELECT `camp... camp" />
-            <marker date="1513540557689" expanded="true" signature="2630:3036" ph="SELECT MAX(d... camp" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/module/info/leader.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -668,51 +704,280 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1513540558050" expanded="true" signature="782:821" ph="SELECT * FRO... category" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/module/menu/menu.php">
+    <entry file="file://$PROJECT_DIR$/module/info/leader.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1271">
+        <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1513540557717" expanded="true" signature="948:1256" ph="SELECT camp.... user_camp" />
-            <marker date="1513540557717" expanded="true" signature="1373:1483" ph="SELECT MAX( subcamp" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/skin/skin4/register.tpl">
+    <entry file="file://$PROJECT_DIR$/module/auth/check_login.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="472">
-          <caret line="105" column="47" lean-forward="true" selection-start-line="105" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
+        <state relative-caret-position="-1397">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/template.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="33" column="3" lean-forward="true" selection-start-line="33" selection-start-column="3" selection-end-line="33" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/composer.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/skin/skin4/login.tpl">
+    <entry file="file://$PROJECT_DIR$/application/camp/config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="32" column="12" lean-forward="false" selection-start-line="32" selection-start-column="7" selection-end-line="32" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1491">
+          <caret line="88" column="19" lean-forward="false" selection-start-line="88" selection-start-column="19" selection-end-line="88" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2636">
+          <caret line="84" column="40" lean-forward="false" selection-start-line="84" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/application/aim/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4820">
+          <caret line="20" column="131" lean-forward="false" selection-start-line="20" selection-start-column="131" selection-end-line="20" selection-end-column="131" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <marker date="1514038332666" expanded="true" signature="2717:2723" ph=" " />
+            <marker date="1514038332666" expanded="true" signature="2943:2961" ph="..." />
+            <marker date="1514038332666" expanded="true" signature="4568:4574" ph=" " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/application/aim/css/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="21" column="1" lean-forward="true" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/application/camp/js/map.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="399">
-          <caret line="62" column="61" lean-forward="true" selection-start-line="62" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
+          <caret line="19" column="10" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <marker date="1513976662310" expanded="true" signature="1532:1563" ph="..." />
+            <marker date="1513976662310" expanded="true" signature="79635:79677" ph="..." />
+            <marker date="1513976662310" expanded="true" signature="79734:79768" ph="..." />
+            <marker date="1513976662310" expanded="true" signature="79837:79846" ph="..." />
+            <marker date="1513976662310" expanded="true" signature="111489:111496" ph="..." />
+            <marker date="1513976662310" expanded="true" signature="111543:111560" ph="..." />
+            <marker date="1513976662310" expanded="true" signature="111562:111569" ph="..." />
+            <marker date="1513976662310" expanded="true" signature="113334:113342" ph="..." />
+            <marker date="1513976662310" expanded="true" signature="113436:113445" ph="..." />
+            <marker date="1513976662310" expanded="true" signature="113638:113646" ph="..." />
+            <marker date="1513976662310" expanded="true" signature="125131:125137" ph=" " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/application/camp/js/home.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="307">
+          <caret line="390" column="25" lean-forward="false" selection-start-line="390" selection-start-column="25" selection-end-line="390" selection-end-column="25" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <marker date="1514039107662" expanded="true" signature="6829:6835" ph="ö" />
+            <marker date="1514039107662" expanded="true" signature="6918:6924" ph="ö" />
+            <marker date="1514039107662" expanded="true" signature="6958:6964" ph="ö" />
+            <marker date="1514039107662" expanded="true" signature="6993:6999" ph="ö" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/application/camp_admin/js/new_camp.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="703">
+          <caret line="270" column="1" lean-forward="false" selection-start-line="270" selection-start-column="1" selection-end-line="270" selection-end-column="1" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/application/camp_admin/js/home.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="706">
+          <caret line="78" column="4" lean-forward="false" selection-start-line="78" selection-start-column="4" selection-end-line="78" selection-end-column="4" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/application/camp_admin/css/home.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1764">
+          <caret line="84" column="0" lean-forward="true" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/skin/skin4/resendacode.tpl">
+    <entry file="file://$PROJECT_DIR$/public/application/camp/css/home.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1092">
-          <caret line="61" column="42" lean-forward="false" selection-start-line="61" selection-start-column="42" selection-end-line="61" selection-end-column="42" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/skin/skin4/main.tpl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="32" column="19" lean-forward="false" selection-start-line="32" selection-start-column="19" selection-end-line="32" selection-end-column="19" />
+        <state relative-caret-position="535">
+          <caret line="83" column="0" lean-forward="false" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/application/camp_admin/img/exit.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/application/camp_admin/img/del.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/application/day/js/new_event.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="601">
+          <caret line="90" column="18" lean-forward="true" selection-start-line="90" selection-start-column="18" selection-end-line="90" selection-end-column="18" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/application/day/js/home.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="661">
+          <caret line="102" column="154" lean-forward="false" selection-start-line="102" selection-start-column="154" selection-end-line="102" selection-end-column="154" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/application/day/js/edit_event.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="475">
+          <caret line="84" column="5" lean-forward="true" selection-start-line="84" selection-start-column="5" selection-end-line="84" selection-end-column="5" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/application/day/css/home.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="10" column="4" lean-forward="false" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/application/event/css/autocompliter.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/application/event/css/d_program.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/application/event/js/mat.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1386">
+          <caret line="66" column="18" lean-forward="true" selection-start-line="66" selection-start-column="18" selection-end-line="66" selection-end-column="18" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/application/event/js/fire_setup.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/application/event/js/_useless_home.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="682">
+          <caret line="120" column="3" lean-forward="false" selection-start-line="120" selection-start-column="3" selection-end-line="120" selection-end-column="3" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/application/event/js/_useless_fire_setup.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/application/event/img/open.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/application/event/img/close.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/application/event/css/home.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2205">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
