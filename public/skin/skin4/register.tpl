@@ -20,12 +20,6 @@
 		<script type="text/javascript">
 			jQuery.noConflict();
 		</script>
-		
-		<script type="text/javascript" tal:condition="SHOW_MSG" >
-			var error = "<tal:block content='MSG' />";
-			alert( error );
-			window.history.back();
-		</script>
 	</head>
 	<body>
 		<div class="space-top"></div>
@@ -43,7 +37,7 @@
 							<div class="clearfix"></div>
 						</div>
 						<div class="panel-body">
-							<div class="message" tal:condition="SHOW_MSG" >
+							<div class="message alert alert-danger" tal:condition="SHOW_MSG" >
 								<span tal:content="MSG">TEXT...</span>
 							</div>
 							<div class="login">
