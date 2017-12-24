@@ -18,26 +18,26 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	$event_detail_id = mysql_real_escape_string( $_REQUEST['detail_id'] );
+	$event_detail_id = mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['detail_id'] );
 	
 	$_camp->event_detail( $event_detail_id ) || die( "error" );
 
 	$query = "SELECT event_id, event_detail.sorting FROM event_detail WHERE event_detail.id = $event_detail_id";
-	$result = mysql_query( $query );
-	$sorting = mysql_result( $result, 0, 'sorting' );
-	$event_id = mysql_result( $result, 0, 'event_id' );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+	$sorting = mysqli_result( $result,  0,  'sorting' );
+	$event_id = mysqli_result( $result,  0,  'event_id' );
 	
 	$query = "
 				DELETE FROM
 					event_detail
 				WHERE
 					event_detail.id = $event_detail_id";
-	mysql_query( $query );
+	mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 
-	if( mysql_affected_rows() )
+	if( mysqli_affected_rows($GLOBALS["___mysqli_ston"]) )
 	{
 		$query = "UPDATE event_detail SET sorting = sorting - 1 WHERE event_id = $event_id AND sorting > $sorting";
-		mysql_query( $query );
+		mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 		$ans = array( "error" 	=> false 	);
 	}
 	else

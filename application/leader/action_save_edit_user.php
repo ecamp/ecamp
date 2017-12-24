@@ -63,7 +63,7 @@
 				id = '$id'
 			LIMIT 1";
 	
-	mysql_query($query);
+	mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
 	header("Location: index.php?app=leader");
 	die();

@@ -20,8 +20,8 @@
 
 	include( 'inc/get_program_update.php');
 
-	$event_instance_id	= mysql_real_escape_string($_REQUEST['event_instance_id']);
-	$time				= mysql_real_escape_string($_REQUEST['time']);
+	$event_instance_id	= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['event_instance_id']);
+	$time				= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['time']);
 	
 	$_camp->event_instance( $event_instance_id ) || die( "error" );
 	
@@ -31,14 +31,14 @@
 					event_instance
 				WHERE
 					id = $event_instance_id";
-	$result = mysql_query($query);
-	$length = implode(mysql_fetch_row($result));
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+	$length = implode(mysqli_fetch_row($result));
 	
 	if($length > 60)
 	{
 		$new_length = $length / 2;
 		$query = "UPDATE event_instance SET length = $new_length WHERE id = $event_instance_id";
-		mysql_query($query);
+		mysqli_query($GLOBALS["___mysqli_ston"], $query);
 		
 		$move = $new_length;
 	}
@@ -60,7 +60,7 @@
 					WHERE
 						id = $event_instance_id
 				)";
-	mysql_query($query);
+	mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
 	header("Content-type: application/json");
 	

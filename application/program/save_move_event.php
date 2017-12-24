@@ -20,11 +20,11 @@
 
 	include( 'inc/get_program_update.php');
 	
-	$event_instance_id	= mysql_real_escape_string($_REQUEST['event_instance_id']);
-	$start 				= mysql_real_escape_string($_REQUEST['start']);
-	$left 				= mysql_real_escape_string($_REQUEST['left']);
-	$day_id				= mysql_real_escape_string($_REQUEST['day_id']);
-	$time				= mysql_real_escape_string($_REQUEST['time']);
+	$event_instance_id	= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['event_instance_id']);
+	$start 				= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['start']);
+	$left 				= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['left']);
+	$day_id				= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['day_id']);
+	$time				= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['time']);
 	
 	$_camp->event_instance( $event_instance_id ) || die( "error" );
 	$_camp->day( $day_id ) || die( "error" );
@@ -32,13 +32,13 @@
 	$query = "	SELECT day_id
 				FROM event_instance
 				WHERE id = $event_instance_id";
-	$result = mysql_query( $query );
-	$old_day_id = mysql_result( $result, 0, 'day_id' );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+	$old_day_id = mysqli_result( $result,  0,  'day_id' );
 	
 	$query = "UPDATE  `day` SET t_edited = CURRENT_TIMESTAMP WHERE id = " . $old_day_id;
-	mysql_query( $query );
+	mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	$query = "UPDATE  `day` SET t_edited = CURRENT_TIMESTAMP WHERE id = " . $day_id;
-	mysql_query( $quey );
+	mysqli_query($GLOBALS["___mysqli_ston"],  $quey );
 
 	$query = "	UPDATE 
 					event_instance 
@@ -48,7 +48,7 @@
 					`day_id` = '$day_id' 
 				WHERE 
 					`id` = '$event_instance_id';";
-	$result = mysql_query($query);
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
 	header("Content-type: application/json");
 	

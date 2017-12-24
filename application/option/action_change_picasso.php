@@ -29,15 +29,15 @@
 	}
 
 	// Feld auslesen
-	$job_id = mysql_real_escape_string($_REQUEST['job_id']);
+	$job_id = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['job_id']);
 	
 	$_camp->job( $job_id ) || die( "error" );
 	
 	// Job überprüfen
 	$query = "SELECT * FROM job WHERE camp_id='$_camp->id' AND id='$job_id'";
-	$result = mysql_query( $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	
-	if( mysql_num_rows( $result ) == 0 )
+	if( mysqli_num_rows( $result ) == 0 )
 	{
 		$ans = array( "error" => true, "msg" => "Lager-ID und Job-ID passen nicht zusammen!" );
 		echo json_encode( $ans );
@@ -45,10 +45,10 @@
 	}
 	
 	$query = "UPDATE job SET show_gp = 0 WHERE camp_id='$_camp->id'";
-	mysql_query($query);
+	mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
 	$query = "UPDATE job SET show_gp = 1 WHERE camp_id='$_camp->id' AND id='$job_id'";
-	mysql_query($query);
+	mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
 	$ans = array( "error" => false, "job_id" => $job_id );
 	echo json_encode( $ans );

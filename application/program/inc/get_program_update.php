@@ -41,9 +41,9 @@
 							user.t_edited >= '$time_str' OR
 							user_camp.t_edited >= '$time_str'
 						);";
-		$users = mysql_query($query);
+		$users = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 		
-		while( $user = mysql_fetch_assoc( $users ) )
+		while( $user = mysqli_fetch_assoc( $users ) )
 		{	$data['users'][] = $user;	}
 		
 		//	CATEGORY:
@@ -59,9 +59,9 @@
 					WHERE
 						camp_id = $_camp->id AND
 						category.t_edited >= '$time_str' ;";
-		$categorys = mysql_query($query);
+		$categorys = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 		
-		while( $category = mysql_fetch_assoc( $categorys ) )
+		while( $category = mysqli_fetch_assoc( $categorys ) )
 		{	$data['categorys'][] = $category;	}
 
 		//	SUBCAMP:
@@ -84,9 +84,9 @@
 					WHERE
 						camp_id = $_camp->id AND
 						t_edited >= '$time_str' ;";
-		$subcamps = mysql_query($query);
+		$subcamps = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 		
-		while( $subcamp = mysql_fetch_assoc( $subcamps ) )
+		while( $subcamp = mysqli_fetch_assoc( $subcamps ) )
 		{	$data['subcamps'][] = $subcamp;	}
 
 		//	DAY:
@@ -116,9 +116,9 @@
 							day.t_edited >= '$time_str' OR
 							subcamp.t_edited >= '$time_str'
 						);";
-		$days = mysql_query($query);
+		$days = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 		
-		while( $day = mysql_fetch_assoc( $days ) )
+		while( $day = mysqli_fetch_assoc( $days ) )
 		{	$data['days'][] = $day;	}
 
 		//	EVENT:
@@ -142,9 +142,9 @@
 							event.t_edited >= '$time_str' OR 
 							event_responsible.t_edited >= '$time_str'
 						)";
-		$events = mysql_query( $query );
+		$events = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 		
-		while( $event = mysql_fetch_assoc( $events ) )
+		while( $event = mysqli_fetch_assoc( $events ) )
 		{
 			$event['users'] = array();
 			
@@ -154,9 +154,9 @@
 							event_responsible
 						WHERE
 							event_id = " . $event['id'];
-			$event_responsibles = mysql_query( $query );
+			$event_responsibles = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 			
-			while( $event_responsible = mysql_fetch_assoc( $event_responsibles ) )
+			while( $event_responsible = mysqli_fetch_assoc( $event_responsibles ) )
 			{	$event['users'][] = $event_responsible['user_id'];	}
 			
 			$data['events'][] = $event;
@@ -182,9 +182,9 @@
 							event.t_edited >= '$time_str' OR
 							event_instance.t_edited >= '$time_str'
 						);";
-		$event_instances = mysql_query($query);
+		$event_instances = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 		
-		while( $event_instance = mysql_fetch_assoc( $event_instances) )
+		while( $event_instance = mysqli_fetch_assoc( $event_instances) )
 		{	$data['event_instances'][] = $event_instance;	}
 
 		//	DELETE-LOG:

@@ -36,15 +36,15 @@
 					ORDER BY
 						mat_event.event_id";
 		
-		$result = mysql_query( $query );
+		$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 		
-		while( $list_entry = mysql_fetch_assoc( $result ) )
+		while( $list_entry = mysqli_fetch_assoc( $result ) )
 		{	$list_entries[] = $list_entry;	}
 		
 		/* load list title */
 		$query = "SELECT user.scoutname FROM user_camp, user WHERE user.id=user_camp.user_id AND user_camp.id=".$list_id;
-		$res = mysql_query($query);
-		$res = mysql_fetch_assoc($res);
+		$res = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+		$res = mysqli_fetch_assoc($res);
 		$title = "Materialliste für ".$res['scoutname'];
 	}
 	elseif( $_REQUEST['listtype'] == "mat_list" )
@@ -60,15 +60,15 @@
 						event.camp_id = $_camp->id AND
 						event.id = mat_event.event_id AND
 						mat_event.mat_list_id = $list_id";
-		$result = mysql_query( $query );
+		$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 		
-		while( $list_entry = mysql_fetch_assoc( $result ) )
+		while( $list_entry = mysqli_fetch_assoc( $result ) )
 		{	$list_entries[] = $list_entry;	}
 		
 		/* load list title */
 		$query = "SELECT name FROM mat_list WHERE id=".$list_id;
-		$res = mysql_query($query);
-		$res = mysql_fetch_assoc($res);
+		$res = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+		$res = mysqli_fetch_assoc($res);
 		$title = "Einkaufsliste ".$res['name'];
 	}
 

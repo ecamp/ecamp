@@ -7,3 +7,5 @@
 .idea/misc.xml
 .idea/modules.xml
 .idea/workspace.xml
+config.php
+/vendor/

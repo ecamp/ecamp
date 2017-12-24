@@ -23,11 +23,11 @@
 	else
 		$query = "SELECT id, entry FROM dropdown WHERE list = 'function_camp' AND value > '0'";
 	
-	$reslut_function = mysql_query($query);
+	$reslut_function = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
 	$ans_function = array();
 	
-	while( $row = mysql_fetch_assoc($reslut_function) )
+	while( $row = mysqli_fetch_assoc($reslut_function) )
 	{	$ans_function[] = $row;	}
 
 	$ans = $ans_function;

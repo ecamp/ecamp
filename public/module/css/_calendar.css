@@ -1,5 +1,4 @@
 /* The main calendar widget.  DIV containing a table. */
-
 div.calendar { position: relative; z-index:1005;}
 
 .calendar, .calendar table {
@@ -12,7 +11,6 @@ div.calendar { position: relative; z-index:1005;}
 }
 
 /* Header part -- contains navigation buttons and day names. */
-
 .calendar .button { /* "<<", "<", ">", ">>" buttons have this class */
   text-align: center;    /* They are the navigation buttons */
   padding: 2px;          /* Make the buttons seem like they're pressing */

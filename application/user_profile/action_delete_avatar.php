@@ -19,7 +19,7 @@
  */
 
 	$query = "	UPDATE user SET image = '' WHERE id = $_user->id";
-	mysql_query($query);
+	mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
 	header("Location: index.php?app=user_profile");
 	die();

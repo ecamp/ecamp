@@ -18,10 +18,10 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	$scoutname	= mysql_real_escape_string($_REQUEST['scoutname']);
-	$firstname	= mysql_real_escape_string($_REQUEST['firstname']);
-	$surname	= mysql_real_escape_string($_REQUEST['surname']);
-	$mail		= mysql_real_escape_string($_REQUEST['mail']);
+	$scoutname	= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['scoutname']);
+	$firstname	= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['firstname']);
+	$surname	= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['surname']);
+	$mail		= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['mail']);
 	
 	// Argumente aufbauen
 	$search_arg = array("0");
@@ -39,10 +39,10 @@
 	$select_arg = implode(" + ", $select_arg);
 	
 	$query = "SELECT *, ($select_arg) AS rank  FROM user WHERE (" . implode(" OR ", $search_arg).") AND active='1' ORDER BY rank DESC LIMIT 10";
-	$result = mysql_query($query);
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
 	$found_users = array();
-	while( $found = mysql_fetch_assoc($result) )
+	while( $found = mysqli_fetch_assoc($result) )
 	{	
 		$found_user['scoutname'] = htmlentities_utf8($found['scoutname']);
  		$found_user['firstname'] = htmlentities_utf8($found['firstname']);
