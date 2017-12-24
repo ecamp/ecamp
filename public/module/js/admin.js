@@ -18,9 +18,7 @@
  */
 
 /** eCampConfig
-
 	<depend on="public/global/js/mootools-core-1.4.js" type="js" /> <depend on="public/global/js/mootools-more-1.4.js" type="js" />
-
 **/
 
 window.addEvent( 'domready', function()
@@ -29,6 +27,4 @@ window.addEvent( 'domready', function()
 	{
 		$$('.admin_menu').toggleClass('hidden');
 	});
-	
-	
 });

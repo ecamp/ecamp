@@ -160,7 +160,8 @@
 									</tr>
 								</table>
 							</div>
-							<div class="hidden browser content_border_fit" id="recomanded_browser">
+							<hr />
+							<div class="hidden browser" id="recomanded_browser">
 								<table width="100%" border="0" class="support">
 									<colgroup>
 										<col width="10%" />
