@@ -18,18 +18,18 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	$day_id = 				mysql_real_escape_string( $_REQUEST['day_id'] );
-	$event_id = 			mysql_real_escape_string( $_REQUEST['event_id'] );
-	$event_instance_id = 	mysql_real_escape_string( $_REQUEST['event_instance_id'] );
+	$day_id = 				mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['day_id'] );
+	$event_id = 			mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['event_id'] );
+	$event_instance_id = 	mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['event_instance_id'] );
 	
-	$name = 				mysql_real_escape_string( $_REQUEST['name'] );
-	$category_id = 			mysql_real_escape_string( $_REQUEST['category_id'] );
+	$name = 				mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['name'] );
+	$category_id = 			mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['category_id'] );
 	
-	$start_h = 				mysql_real_escape_string( $_REQUEST['start_h'] );
-	$start_min = 			mysql_real_escape_string( $_REQUEST['start_min'] );
+	$start_h = 				mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['start_h'] );
+	$start_min = 			mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['start_min'] );
 	
-	$length_h = 			mysql_real_escape_string( $_REQUEST['length_h'] );
-	$length_min = 			mysql_real_escape_string( $_REQUEST['length_min'] );
+	$length_h = 			mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['length_h'] );
+	$length_min = 			mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['length_min'] );
 
 	$_camp->day( $day_id ) || 						die( "error" );
 	$_camp->event( $event_id ) || 					die( "error" );
@@ -49,8 +49,8 @@
 					event_instance
 				WHERE
 					event.id = event_instance.event_id";
-	$result = mysql_query( $query );
-	if( !mysql_num_rows( $result ) ) 
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+	if( !mysqli_num_rows( $result ) ) 
 	{
 		$ans = array( "error" => true, "error_msg" => "Fehler!" );
 		echo json_encode( $ans );
@@ -64,7 +64,7 @@
 					`category_id` = '$category_id'
 				WHERE 
 					id = $event_id";
-	mysql_query( $query );
+	mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 
 	$query = "	UPDATE
 					event_instance
@@ -73,9 +73,9 @@
 					`length`	= $length
 				WHERE
 					id = $event_instance_id";
-	mysql_query( $query );
+	mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 
-	if( mysql_error() )
+	if( mysqli_error($GLOBALS["___mysqli_ston"]) )
 	{	$ans = array( "error" => true, "error_msg" => "Fehler" );	}
 	else
 	{	$ans = array( "error" => false, "error_msg" => "" );	}

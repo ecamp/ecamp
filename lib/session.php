@@ -21,10 +21,10 @@
 	function session_setup( $user_id )
 	{
 		$query = "SELECT camp.id FROM camp, user WHERE user.last_camp = camp.id AND user.id = $user_id";
-		$result = mysql_query( $query );
+		$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 		
-		if( mysql_num_rows( $result ) )
-		{	$camp_id = mysql_result( $result, 0, 'id' );	}
+		if( mysqli_num_rows( $result ) )
+		{	$camp_id = mysqli_result( $result,  0,  'id' );	}
 		else
 		{	$camp_id = 0;	}
 
@@ -44,7 +44,7 @@
 		$auth_key_db = md5( $auth_key );
 		
 		$query = "UPDATE user SET auth_key = '$auth_key_db' WHERE id = $user_id LIMIT 1";
-		mysql_query( $query );
+		mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 		
 		setcookie( 'autologin', true, time() + 14*24*60*60, '/' );
 		setcookie( 'user_id', $user_id, time() + 14*24*60*60, '/' );

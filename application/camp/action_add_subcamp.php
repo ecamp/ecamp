@@ -19,8 +19,8 @@
  */
 
 	// Authentifizierung überprüfen
-	$start = mysql_real_escape_string($_REQUEST['subcamp_start']);
-	$end = mysql_real_escape_string($_REQUEST['subcamp_end']);
+	$start = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['subcamp_start']);
+	$end = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['subcamp_end']);
 
 	$start = ereg("([0-9]{1,2})[\/\. -]+([0-9]{1,2})[\/\. -]+([0-9]{1,4})", $start, $regs);
 	$start = gmmktime(0, 0, 0, $regs[2], $regs[1], $regs[3]);
@@ -58,9 +58,9 @@
 	
 	// Überschneidungen prüfen
 	$query = "SELECT * FROM `subcamp` WHERE camp_id=".$_camp->id." AND (`start` BETWEEN -10000 AND ".$c_end->getValue().") AND ((`start`+`length`-1) BETWEEN ".$c_start->getValue()." AND 32000)";
-	$result = mysql_query( $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	
-	if( mysql_num_rows( $result ) >= 1 )
+	if( mysqli_num_rows( $result ) >= 1 )
 	{
 		$ans = array("error" => true, "msg" => "Der ausgewählte Zeitabschnitt überschneidet sich mit einem anderen Lagerabschnitt. Wähle einen freien Lagerabschnitt aus!");
 		echo json_encode($ans);
@@ -69,15 +69,15 @@
 	
 	$query = "INSERT INTO subcamp 	( camp_id, start, length)
 				VALUES 				( '$_camp->id', '$start', '$length')";
-	mysql_query($query);
-	$last_subcamp_id = mysql_insert_id();
+	mysqli_query($GLOBALS["___mysqli_ston"], $query);
+	$last_subcamp_id = ((is_null($___mysqli_res = mysqli_insert_id($GLOBALS["___mysqli_ston"]))) ? false : $___mysqli_res);
 
 	// day: Datensätze einfügen
 	for( $i=0; $i < $length; $i++ )
 	{
 		$query = "INSERT INTO day 	    ( subcamp_id, day_offset)
 				 VALUES 				( '$last_subcamp_id', '$i')";
-		mysql_query($query);
+		mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	}
 
 /*	$query = "SELECT LAST_INSERT_ID() FROM subcamp";

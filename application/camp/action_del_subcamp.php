@@ -18,14 +18,14 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	$subcamp_id = mysql_real_escape_string($_REQUEST[subcamp_id]);
+	$subcamp_id = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST[subcamp_id]);
 
 	$_camp->subcamp( $subcamp_id ) || die( "error" );
 
 	// Überprüfen, ob noch eines vorhanden ist
 	$query = "SELECT * FROM subcamp WHERE camp_id = $_camp->id";
-	$result = mysql_query($query);
-	if( mysql_num_rows($result) >= 2 )
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+	if( mysqli_num_rows($result) >= 2 )
 	{
 		$query = "	DELETE FROM 
 						subcamp 
@@ -35,7 +35,7 @@
 		
 		// Subcamp löschen
 		// Der Rest (day, event) wird automatisch gelöscht (innoDB)
-		mysql_query($query);
+		mysqli_query($GLOBALS["___mysqli_ston"], $query);
 		
 		
 		$query = "	SELECT event.id
@@ -43,10 +43,10 @@
 					LEFT JOIN event_instance 
 					ON event.id = event_instance.event_id
 					WHERE ISNULL( event_instance.id )";
-		$result = mysql_query( $query );
+		$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 		
-		while( $row = mysql_fetch_assoc( $result ) )
-		{	mysql_query( "DELETE FROM event WHERE id = " . $row['id']	);	}
+		while( $row = mysqli_fetch_assoc( $result ) )
+		{	mysqli_query($GLOBALS["___mysqli_ston"],  "DELETE FROM event WHERE id = " . $row['id']	);	}
 		
 		
 		$ans = array( "error" => false );

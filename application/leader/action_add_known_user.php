@@ -18,17 +18,17 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	$user = mysql_real_escape_string($_REQUEST['add_user_id']);
-	$function = mysql_real_escape_string($_REQUEST['function_id']);
+	$user = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['add_user_id']);
+	$function = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['function_id']);
 	
 	$query = "SELECT * FROM user_camp WHERE user_id = '$user' AND camp_id = '$_camp->id'";
 	//die( $query );
 	
-	$result = mysql_query($query);
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
 	
 	
-	if( mysql_num_rows($result) > 0)
+	if( mysqli_num_rows($result) > 0)
 	{	
 		$ans = array("error" => true, "msg" => "Diese Person arbeitet beim ausgewählten Lager bereits mit. Solle diese nicht der Fall sein, kontaktiere bitte den Support." );
 		echo json_encode( $ans );
@@ -38,7 +38,7 @@
 	
 	$query = "INSERT INTO user_camp	(user_id ,camp_id ,function_id, invitation_id, active)
 			  VALUES ('$user', '$_camp->id', '$function','$_user->id','0')";
-	$result = mysql_query($query);
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
 	
 	

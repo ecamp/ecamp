@@ -58,9 +58,9 @@
 					event.id = event_instance.event_id
 				ORDER BY
 					event_instance.starttime, eventnr";
-	$result = mysql_query( $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	
-	while( $event_instance = mysql_fetch_assoc( $result ) )
+	while( $event_instance = mysqli_fetch_assoc( $result ) )
 	{
 		$event_instance['event_date_str'] = $event_date->setDay2000( $event_instance['event_date'] )->getString( 'd.m.Y' );
 		$event_instance['starttime_str'] = $event_time->setValue( $event_instance['starttime'] )->getString( 'H:i' );

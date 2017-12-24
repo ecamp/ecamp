@@ -20,7 +20,7 @@
 
 	$_page->html = new PHPTAL('template/application/event/file_upload_form.tpl');
 	
-	$event_id = mysql_real_escape_string( $_REQUEST['event_id'] );
+	$event_id = mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['event_id'] );
 	
 	$_camp->event( $event_id ) || die( "error" );
 	
@@ -30,8 +30,8 @@
 					event
 				WHERE
 					event.id = $event_id";
-	$result = mysql_query( $query );
-	$event = mysql_fetch_assoc( $result );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+	$event = mysqli_fetch_assoc( $result );
 	
 	$_page->html->set( 'event', $event );
 	

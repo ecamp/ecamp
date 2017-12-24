@@ -18,9 +18,9 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	$pw1 	= mysql_real_escape_string($_REQUEST['pw1']);
-	$pw2 	= mysql_real_escape_string($_REQUEST['pw2']);
-	$old_pw	= mysql_real_escape_string($_REQUEST['old_pw']);
+	$pw1 	= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['pw1']);
+	$pw2 	= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['pw2']);
+	$old_pw	= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['old_pw']);
 	
 	if( $pw1 != $_REQUEST['pw1'] )
 	{	$ans = "Das Passwort enhält unerlaubte Zeichen!";	}
@@ -31,9 +31,9 @@
 			$pw = md5($pw1);
 			$old_pw = md5($old_pw);
 			$query = "UPDATE user SET pw = '$pw' WHERE id = '$_user->id' AND pw = '$old_pw'";
-			mysql_query($query);
+			mysqli_query($GLOBALS["___mysqli_ston"], $query);
 			
-			if( mysql_affected_rows() )
+			if( mysqli_affected_rows($GLOBALS["___mysqli_ston"]) )
 			{	$ans = "Passwort wurde erfolgreich geändert.";	}
 			else
 			{	$ans = "Passwort konnte nicht geändert werden. Das alte Passwort war ungültig.";	}

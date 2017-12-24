@@ -31,9 +31,9 @@
 					subcamp.camp_id = $_camp->id
 				ORDER BY
 					subcamp.start";
-	$result = mysql_query( $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	
-	while( $subcamp = mysql_fetch_assoc( $result ) )
+	while( $subcamp = mysqli_fetch_assoc( $result ) )
 	{
 		$subcamp['end'] = $subcamp['start'] + $subcamp['length'];
 		
@@ -50,9 +50,9 @@
 						day
 					WHERE
 						day.subcamp_id = " . $subcamp['id'];
-		$day_result = mysql_query( $query );
+		$day_result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 		
-		while( $day = mysql_fetch_assoc( $day_result ) )
+		while( $day = mysqli_fetch_assoc( $day_result ) )
 		{
 			if( ! is_numeric( $day_id ) )
 			{	$day_id = $day['id'];	}

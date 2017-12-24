@@ -18,8 +18,8 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	$event_id 		= mysql_real_escape_string( $_REQUEST['event_id'] );
-	$event_progress	= mysql_real_escape_string( $_REQUEST['event_progress'] );
+	$event_id 		= mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['event_id'] );
+	$event_progress	= mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['event_progress'] );
 	
 	$_camp->event( $event_id ) || die( "error" );
 	
@@ -30,7 +30,7 @@
 					progress = '$event_progress'
 				WHERE
 					event.id = $event_id";
-	$result = mysql_query( $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	
 	if( $result )
 	{

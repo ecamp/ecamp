@@ -18,19 +18,19 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	$group_id		= mysql_real_escape_string($_REQUEST['groups']);
-	$name 			= mysql_real_escape_string($_REQUEST['camp_name']);
-	$short_name		= mysql_real_escape_string($_REQUEST['camp_short_name']);
-	$group_name		= mysql_real_escape_string($_REQUEST['scout']);
-	$function		= mysql_real_escape_string($_REQUEST['function_id']);
-	$jstype			= mysql_real_escape_string($_REQUEST['jstype']);
-	$is_course		= mysql_real_escape_string($_REQUEST['is_course']);
-	$camp_type		= mysql_real_escape_string($_REQUEST['camp_type']);
-	$course_type	= mysql_real_escape_string($_REQUEST['course_type']);
-	$course_type_text = mysql_real_escape_string($_REQUEST['course_type_text']);
+	$group_id		= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['groups']);
+	$name 			= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['camp_name']);
+	$short_name		= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['camp_short_name']);
+	$group_name		= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['scout']);
+	$function		= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['function_id']);
+	$jstype			= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['jstype']);
+	$is_course		= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['is_course']);
+	$camp_type		= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['camp_type']);
+	$course_type	= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['course_type']);
+	$course_type_text = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['course_type_text']);
 	
-	$start		= mysql_real_escape_string($_REQUEST['camp_start']);
-	$end		= mysql_real_escape_string($_REQUEST['camp_end']);
+	$start		= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['camp_start']);
+	$end		= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['camp_end']);
 	
 	$start = ereg("([0-9]{1,2})[\/\. -]+([0-9]{1,2})[\/\. -]+([0-9]{1,4})", $start, $regs);
 	$start = gmmktime(0, 0, 0, $regs[2], $regs[1], $regs[3]);
@@ -68,9 +68,9 @@
 	// Lager hinzufügen
 	$query = "INSERT INTO camp (group_id, name ,group_name, short_name, is_course, jstype, type, type_text, creator_user_id, t_created )
 						VALUES ('$group_id', '$name', '$group_name', '$short_name', '$is_course', '$jstype', '$type', '$course_type_text', '$_user->id', " . time() . ")";
-	mysql_query($query);
+	mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
-	$last_camp_id = mysql_insert_id();
+	$last_camp_id = ((is_null($___mysqli_res = mysqli_insert_id($GLOBALS["___mysqli_ston"]))) ? false : $___mysqli_res);
 	
 	// Kateogiren hinzufügen
 	if( $is_course )
@@ -91,7 +91,7 @@
 						('$last_camp_id', 'Lageraktivität', 'LA', 'ffa200' , 2), 
 						('$last_camp_id', 'Lagersport', 'LS', '14dd33' , 1)";
 	}
-	mysql_query($query);
+	mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
 	// ToDo std. einfüllen
 	if( $is_course)
@@ -120,32 +120,32 @@
 						('$last_camp_id', 'Regaversicherung', 					'Für alle TN eine gratis - Regaversicherung abschliessen.', " . ( $start - 2 * 7 ) . "),
 						('$last_camp_id', 'Letzte Infos verschicken', 			'Letzte Infos für TNs verschicken', " . ( $start - 2 * 7 ) . ")";
 	}
-	mysql_query( $query );
+	mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 
 	// Tages-chef hinzufügen
 	$query = "INSERT INTO job (camp_id, job_name, show_gp)
 							VALUES ('$last_camp_id', 'Tageschef', '1')";
-	mysql_query($query);
+	mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
 	//Einkaufslisten hinzufügen:
 	$query = "INSERT INTO mat_list ( camp_id, name )
 							VALUES( '$last_camp_id', 'Lebensmittel' )";
-	mysql_query( $query );
+	mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	
 	$query = "INSERT INTO mat_list ( camp_id, name )
 							VALUES( '$last_camp_id', 'Baumarkt' )";
-	mysql_query( $query );
+	mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 
 	// Eigenen User hinzufügen
 	$query = "INSERT INTO user_camp (user_id, camp_id, function_id, active)
 							VALUES	($_user->id, $last_camp_id, $function, '1')";
-	mysql_query($query);
+	mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
 	// Subcamp hinzufügen
 	$query = "INSERT INTO subcamp 	(camp_id, start, length)
 						VALUES	($last_camp_id, $start, $length)";
-	mysql_query($query);
-	$last_subcamp_id = mysql_insert_id();
+	mysqli_query($GLOBALS["___mysqli_ston"], $query);
+	$last_subcamp_id = ((is_null($___mysqli_res = mysqli_insert_id($GLOBALS["___mysqli_ston"]))) ? false : $___mysqli_res);
 	
 	// Days hinzufügen
 	$days = array();
@@ -156,10 +156,10 @@
 	$query = "INSERT INTO day (subcamp_id, day_offset) VALUES ";
 	$query .= implode( ", ", $days );
 	
-	mysql_query($query);
+	mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
-	$result = mysql_query("SELECT id FROM user_camp WHERE user_id='$_user->id' AND camp_id='$last_camp_id'");
-	if( mysql_num_rows($result) == 0 )
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], "SELECT id FROM user_camp WHERE user_id='$_user->id' AND camp_id='$last_camp_id'");
+	if( mysqli_num_rows($result) == 0 )
 	{
 		$_SESSION['camp_id'] = 0;
 		header("Location: index.php?app=home");
@@ -169,7 +169,7 @@
 	$_SESSION['camp_id'] = $last_camp_id;
 	
 	$query = "UPDATE user SET last_camp = '$last_camp_id' WHERE id = '" . $_user->id . "'";
-	mysql_query($query);
+	mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
 	header("Location: index.php?app=camp&cmd=home&show=firsttime");
 	die();

@@ -20,15 +20,15 @@
 
 	include( 'inc/get_program_update.php');
 	
-	$event_id		= mysql_real_escape_string($_REQUEST['event_id']);
-	$category_id	= mysql_real_escape_string($_REQUEST['category_id']);
-	$time			= mysql_real_escape_string($_REQUEST['time']);
+	$event_id		= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['event_id']);
+	$category_id	= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['category_id']);
+	$time			= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['time']);
 	
 	$_camp->event( $event_id ) || die( "error" );
 	$_camp->category( $category_id ) || die( "error" );
 	
 	$query = "UPDATE event SET category_id = '$category_id' WHERE id = $event_id";
-	mysql_query($query);
+	mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
 	header("Content-type: application/json");
 	
