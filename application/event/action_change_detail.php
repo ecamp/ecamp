@@ -21,7 +21,6 @@
 	//index.php?app=event&cmd=action_change_detail& time=time&content=content&resp=who&detail_id=2
 	
 	$event_detail_id = mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['detail_id'] );
-	
 	$_camp->event_detail( $event_detail_id ) || die( "error" );
 	
 	$time = 	mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['time'] );
@@ -31,6 +30,9 @@
 	$time_js = 	$_REQUEST['time'];
 	$content_js = 	$_REQUEST['content'];
 	$resp_js = 	$_REQUEST['resp'];
+
+	$query = "SELECT * FROM event_detail WHERE event_detail.id = $event_detail_id";
+	$oldRevision = mysqli_query($GLOBALS['___mysqli_ston'],$query);
 	
 	$query = "
 				UPDATE
@@ -47,7 +49,9 @@
 		"error" 	=> false,
 		"time" 		=> $time_js,
 		"content" 	=> $content_js,
-		"resp" 		=> $resp_js
+		"resp" 		=> $resp_js,
+		"test"      => $oldRevision
 	);
+
 	echo json_encode( $ans );
 	die();
