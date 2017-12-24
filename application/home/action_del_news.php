@@ -18,7 +18,7 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	$date = mysql_real_escape_string( $_REQUEST['date'] );
+	$date = mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['date'] );
 	
 	$_news->remove( $date );
 	

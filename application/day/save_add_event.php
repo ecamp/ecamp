@@ -18,13 +18,13 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	$name 		= mysql_real_escape_string( $_REQUEST['name'] );
-	$category 	= mysql_real_escape_string( $_REQUEST['category'] );
-	$start_h	= mysql_real_escape_string( $_REQUEST['start_h'] );
-	$start_min	= mysql_real_escape_string( $_REQUEST['start_min'] );
-	$length_h	= mysql_real_escape_string( $_REQUEST['length_h'] );
-	$length_min	= mysql_real_escape_string( $_REQUEST['length_min'] );
-	$day_id 	= mysql_real_escape_string( $_REQUEST['day_id'] );
+	$name 		= mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['name'] );
+	$category 	= mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['category'] );
+	$start_h	= mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['start_h'] );
+	$start_min	= mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['start_min'] );
+	$length_h	= mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['length_h'] );
+	$length_min	= mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['length_min'] );
+	$day_id 	= mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['day_id'] );
 	
 	$_camp->category( $category ) || die( "error" );
 	$_camp->day( $day_id ) || die( "error" );
@@ -38,8 +38,8 @@
 				( `camp_id`, `category_id`, `name` )
 				VALUES
 				( $_camp->id, $category, '$name' )";
-	$result = mysql_query( $query );
-	$event_id = mysql_insert_id();
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+	$event_id = ((is_null($___mysqli_res = mysqli_insert_id($GLOBALS["___mysqli_ston"]))) ? false : $___mysqli_res);
 
 	$query = "	SELECT day2.id 
 				FROM day as day1, day as day2 
@@ -47,10 +47,10 @@
 					day2.subcamp_id = day1.subcamp_id AND
 					day2.day_offset = day1.day_offset + 1 AND
 					day1.id = " . $day_id;
-	$result = mysql_query( $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	
 	if( 	// Block splitting!
-			mysql_num_rows( $result )
+			mysqli_num_rows( $result )
 			&&
 			(
 				( $start < $GLOBALS['time_shift'] && ( $start + $length ) > $GLOBALS['time_shift'] )
@@ -59,7 +59,7 @@
 			)
 		)
 	{
-		$day2_id = mysql_result( $result, 0, 'id');
+		$day2_id = mysqli_result( $result,  0,  'id');
 		
 		$starttime1 = $start;
 		$starttime2 = $GLOBALS['time_shift'];
@@ -72,9 +72,9 @@
 		$length2 = $length - $length1;
 
 		$query = "INSERT INTO event_instance ( event_id, day_id, starttime, length ) VALUES ( $event_id, $day_id, $starttime1, $length1 )";
-		mysql_query($query);
+		mysqli_query($GLOBALS["___mysqli_ston"], $query);
 		$query = "INSERT INTO event_instance ( event_id, day_id, starttime, length ) VALUES ( $event_id, $day2_id, $starttime2, $length2 )";
-		mysql_query($query);
+		mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	}
 	else
 	{
@@ -82,7 +82,7 @@
 				( `event_id`, `day_id`, `starttime`, `length`, `dleft`, `width` )
 				VALUES
 				( $event_id, $day_id, $start, $length, 0, 1 )";
-		mysql_query( $query );
+		mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	}
 
 	$ans = array( "error" => false );

@@ -22,8 +22,8 @@
 
 	// Einladungen suchen
 	$query = "SELECT * FROM user_camp WHERE user_id='$_user->id' AND active=0";
-	$result = mysql_query( $query );
-	$num = mysql_num_rows( $result );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+	$num = mysqli_num_rows( $result );
 	
 	if( $num > 0 )
 	{

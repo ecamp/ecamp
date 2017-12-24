@@ -44,8 +44,8 @@
 				WHERE 
 					list = 'sex' AND 
 					user.id = '$_user->id'";
-	$result = mysql_query($query);
-	while($row = mysql_fetch_assoc($result))
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+	while($row = mysqli_fetch_assoc($result))
 	{
 		$sex_content[] = array
 		(
@@ -78,8 +78,8 @@
 				WHERE 
 					list = 'jsedu' AND 
 					user.id = '$_user->id'";
-	$result = mysql_query($query);
-	while($row = mysql_fetch_assoc($result))
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+	while($row = mysqli_fetch_assoc($result))
 	{	
 		$jsedu_content[] = array
 		(
@@ -113,8 +113,8 @@
 				WHERE 
 					list = 'pbsedu' AND 
 					user.id = '$_user->id'";
-	$result = mysql_query($query);
-	while($row = mysql_fetch_assoc($result))
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+	while($row = mysqli_fetch_assoc($result))
 	{	
 		$pbsedu_content[] = array
 		(
@@ -127,8 +127,8 @@
 	}
 	
 	$query = "SELECT * FROM user WHERE id = '$_user->id'";
-	$result = mysql_query($query);
-	$row = mysql_fetch_assoc($result);
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+	$row = mysqli_fetch_assoc($result);
 	
 	$birthday = new c_date;
 	$birthday->setDay2000($row['birthday']);

@@ -20,7 +20,7 @@
 
 	include( 'inc/get_program_update.php' );
 	
-	$time = mysql_real_escape_string( $_REQUEST['time'] );
+	$time = mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['time'] );
 	
 	$data = get_program_update( $time );
 	

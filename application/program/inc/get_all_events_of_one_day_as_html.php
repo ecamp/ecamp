@@ -52,8 +52,8 @@
                         day.id=$this_day_id AND
                         day.subcamp_id=subcamp.id";
 	
-			$result = mysql_query($query);
-			$result = mysql_fetch_assoc($result);
+			$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+			$result = mysqli_fetch_assoc($result);
 			$this_day_nr = $result['daynr'];
 		}
 		
@@ -83,7 +83,7 @@
 							event_instance.event_id = event.id
 						ORDER BY starttime ASC, length DESC, id DESC ";
 		
-		$event_result = mysql_query($event_query);
+		$event_result = mysqli_query($GLOBALS["___mysqli_ston"], $event_query);
 		$event_nr = 0;
 		
 		$rows = array();
@@ -92,7 +92,7 @@
 		//$all_events = array();
 		$events = "";
 		
-		while($event = mysql_fetch_assoc($event_result))
+		while($event = mysqli_fetch_assoc($event_result))
 		{
 			//$all_events[$event[id]] = $event;
 			

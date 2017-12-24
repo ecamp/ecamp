@@ -27,8 +27,8 @@
 	
 	$_page->html = new PHPTAL('template/application/event/file_upload_done.tpl');
 	
-	$event_id = mysql_real_escape_string( $_REQUEST['event_id'] );
-	$file_id = mysql_real_escape_string( $_REQUEST['file_id'] );
+	$event_id = mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['event_id'] );
+	$file_id = mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['file_id'] );
 	
 	$_camp->event( $event_id ) || die( "error" );
 	
@@ -38,8 +38,8 @@
 					event_document
 				WHERE
 					event_document.id = " . $file_id;
-	$result = mysql_query( $query );
-	$file = mysql_fetch_assoc( $result );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+	$file = mysqli_fetch_assoc( $result );
 	
 	if( $file_type[$file['type']] )
 	{	$file['type_img_src'] = "public/global/img/" . $file_type[$file['type']];	}

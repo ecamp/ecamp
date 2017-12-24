@@ -18,16 +18,16 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	$event_id 	= mysql_real_escape_string( $_REQUEST['event_id'] );
-	$comment_id	= mysql_real_escape_string( $_REQUEST['comment_id'] );
+	$event_id 	= mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['event_id'] );
+	$comment_id	= mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['comment_id'] );
 	
 	$_camp->event( $event_id ) || die( "error" );
 
 	$query = "	DELETE FROM event_comment 
 				WHERE id = $comment_id AND event_id = $event_id";
-	mysql_query( $query );
+	mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 
-	if( mysql_error() )
+	if( mysqli_error($GLOBALS["___mysqli_ston"]) )
 	{	$ans = array( "error" => true, "error_msg" => "Kommentar konnte nicht gelöscht weren." );	}
 	else
 	{	$ans = array( "error" => false );	}

@@ -44,15 +44,15 @@
 					user_camp.camp_id = camp.id AND
 					user_camp.user_id = $_user->id";
 	
-	$result = mysql_query( $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	
-	while( $camp = mysql_fetch_assoc( $result ) )
+	while( $camp = mysqli_fetch_assoc( $result ) )
 	{
 		$subquery = "	SELECT	MAX( subcamp.start + subcamp.length - 1 ) as camp_end
 						FROM	subcamp
 						WHERE	subcamp.camp_id = " . $camp['id'];
-		$subresult = mysql_query( $subquery );
-		$camp_end = mysql_result( $subresult, 0 , 'camp_end' );
+		$subresult = mysqli_query($GLOBALS["___mysqli_ston"],  $subquery );
+		$camp_end = mysqli_result( $subresult,  0 ,  'camp_end' );
 		
 		
 		//$dropdown[$camp[groups_id]] = array();

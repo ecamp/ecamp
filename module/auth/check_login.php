@@ -36,11 +36,11 @@
 
 		$query = "SELECT `id`, `mail`, `scoutname`, `firstname`, `surname`, `admin`, `active` FROM `user` WHERE `id` = '" . $_user->id . "'";
 
-		$result = mysql_query($query);
+		$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 		
-		if(mysql_num_rows($result) > 0)
+		if(mysqli_num_rows($result) > 0)
 		{
-			$_user->load_data( mysql_fetch_assoc($result) );
+			$_user->load_data( mysqli_fetch_assoc($result) );
 		
 			if($_user->active == "1")
 			{	
@@ -55,18 +55,18 @@
 				if( $_camp->id > 0 )
 				{
 					$query = "SELECT id, function_id FROM user_camp WHERE user_id = $_user->id AND camp_id = $_camp->id";
-					$result = mysql_query( $query );
-					$_user_camp->load_data( mysql_fetch_assoc( $result ) );
+					$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+					$_user_camp->load_data( mysqli_fetch_assoc( $result ) );
 					
 					# Besitzer überprüfen
 					$query = "	SELECT  `camp`.`id` , `is_course`, `type` ,  `creator_user_id` ,  `short_name` ,  `short_prefix` ,  `groups`.`name` 
 								FROM  `camp` 
 								LEFT JOIN  `groups` ON  `groups`.`id` =  `camp`.`group_id` 
 								WHERE  `camp`.`id` ='" . $_camp->id . "'";
-					$result = mysql_query($query);
-					if(mysql_num_rows($result) > 0)
+					$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+					if(mysqli_num_rows($result) > 0)
 					{
-						$_camp->load_data( mysql_fetch_assoc($result) );
+						$_camp->load_data( mysqli_fetch_assoc($result) );
 						
 						if( $_camp->creator_user_id == $_user->id )
 						{	$_user_camp->auth_level = 60;	}
@@ -92,10 +92,10 @@
 											dropdown.list='".$fnc."' AND 
 											user_camp.user_id='" . $_user->id . "' 
 											AND camp.id='" . $_camp->id . "'";
-							$result = mysql_query($query);
-							if(mysql_num_rows($result) > 0)
+							$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+							if(mysqli_num_rows($result) > 0)
 							{
-								$val = mysql_fetch_assoc($result);
+								$val = mysqli_fetch_assoc($result);
 								if( $val[level] > $_user_camp->auth_level) 
 								{	$_user_camp->auth_level = $val[level];	}
 							}

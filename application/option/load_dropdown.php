@@ -23,10 +23,10 @@
 	else
 	{	$query_camptype = "SELECT value, entry 	FROM dropdown WHERE list = 'form' AND item_nr <= 4";	}
 	
-	$result_camptype = mysql_query($query_camptype);
+	$result_camptype = mysqli_query($GLOBALS["___mysqli_ston"], $query_camptype);
 	$ans_camptype = array();
 	
-	while( $row = mysql_fetch_assoc($result_camptype) )
+	while( $row = mysqli_fetch_assoc($result_camptype) )
 	{	$ans_camptype[] = $row;	}
 	
 	echo json_encode( array("formtype" => $ans_camptype ) );

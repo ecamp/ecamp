@@ -30,11 +30,11 @@
 	else
 		$query = "SELECT * FROM dropdown WHERE list='function_camp' AND value > '0'";
 
-	$result = mysql_query($query);
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
 	$leaders = array();
 	
-	while($function = mysql_fetch_assoc($result))
+	while($function = mysqli_fetch_assoc($result))
 	{
 		$subquery = "
 			SELECT 
@@ -56,11 +56,11 @@
 		
 		//echo $subquery;
 		
-		$subresult = mysql_query($subquery);
+		$subresult = mysqli_query($GLOBALS["___mysqli_ston"], $subquery);
 		
 		$leader_list = array();
 	
-		while($leader_data = mysql_fetch_assoc($subresult))
+		while($leader_data = mysqli_fetch_assoc($subresult))
 		{	
 			if($leader_data['active'])
 			{	$leader_data['green'] = true;		$leader_data['yellow'] = false;	}

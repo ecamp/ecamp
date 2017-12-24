@@ -25,28 +25,28 @@
 	$query = "	SELECT *
 				FROM dropdown
 				WHERE list = 'function_camp' AND value > 0";
-	$result = mysql_query( $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	$functions = array();
 
-	while( $function = mysql_fetch_assoc( $result ) )
+	while( $function = mysqli_fetch_assoc( $result ) )
 	{	$functions[] = $function;	}
 	
 	$query = "	SELECT *
 				FROM dropdown
 				WHERE list = 'camptype'";
-	$result = mysql_query( $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	$camptypes = array();
 	
-	while( $camptype = mysql_fetch_assoc( $result ) )
+	while( $camptype = mysqli_fetch_assoc( $result ) )
 	{	$camptypes[] = $camptype;	}
 
 	$query = "	SELECT *
 				FROM dropdown
 				WHERE list = 'jstype'";
-	$result = mysql_query( $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	$jstypes = array();
 	
-	while( $jstype = mysql_fetch_assoc( $result ) )
+	while( $jstype = mysqli_fetch_assoc( $result ) )
 	{	$jstypes[] = $jstype;	}
 
 	$_page->html->set( 'functions', $functions );

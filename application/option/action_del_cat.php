@@ -18,13 +18,13 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	$cat_del_id 	= mysql_real_escape_string($_REQUEST['category_id]');
+	$cat_del_id 	= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['category_id]');
 	
 	$_camp->category( $cat_del_id ) || die( "error" );
 		//TESTEN OB NOCH BLÖCKE IN DIESER KATEGORIE SIND
 		$query = "SELECT id FROM event WHERE category_id='$cat_del_id'";
-		$result = mysql_query( $query );
-		$num_failure = mysql_num_rows( $result );
+		$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+		$num_failure = mysqli_num_rows( $result );
 	
 		if( $num_failure > 0 )
 		{
@@ -35,7 +35,7 @@
 		
 		// LÖSCHEN:
 		$query = "DELETE FROM category WHERE id = '$cat_del_id' and camp_id='$_camp->id'";
-		mysql_query($query);
+		mysqli_query($GLOBALS["___mysqli_ston"], $query);
 		
 	//header("Location: index.php?app=option");
 	$ans = array( "error" => false );

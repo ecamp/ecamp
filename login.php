@@ -53,14 +53,14 @@
 		db_connect();
 		
 		// Verhindern von injection!!!
-		$_POST['Login'] = mysql_real_escape_string($_POST['Login']);
+		$_POST['Login'] = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_POST['Login']);
 		
 		$query = "SELECT pw, id, scoutname, firstname, active, last_camp FROM user WHERE mail = '" . $_POST['Login'] . "' LIMIT 1";
-		$result = mysql_query($query);
+		$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 		
-		if(mysql_num_rows($result) > 0)
+		if(mysqli_num_rows($result) > 0)
 		{
-			$row = mysql_fetch_assoc($result);
+			$row = mysqli_fetch_assoc($result);
 			if($row['active'] == 1)
 			{
 				if(md5($_POST['Passwort']) == $row['pw'])
@@ -104,9 +104,9 @@
 		$auth_key 	= md5( $_COOKIE['auth_key'] );
 		
 		$query = "SELECT id FROM user WHERE id = $user_id AND auth_key = '" . $auth_key . "'";
-		$result = mysql_query( $query );
+		$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 		
-		if( mysql_num_rows( $result ) )
+		if( mysqli_num_rows( $result ) )
 		{
 			session_setup( $user_id );
 			
