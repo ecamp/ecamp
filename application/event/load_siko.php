@@ -27,8 +27,8 @@
 					event
 				WHERE
 					event.id = $event_id";
-	$result = mysql_query( $query );
-	$row = mysql_fetch_assoc( $result );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+	$row = mysqli_fetch_assoc( $result );
 	
 	$siko_note['siko'] = array(
 		"script" => 'action_change_siko',

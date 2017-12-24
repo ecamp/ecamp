@@ -25,16 +25,16 @@
 			
 	$query_camptype = "SELECT value, entry 	FROM dropdown WHERE list = 'camptype'";
 	
-	$result_function = mysql_query($query_function);
-	$result_camptype = mysql_query($query_camptype);
+	$result_function = mysqli_query($GLOBALS["___mysqli_ston"], $query_function);
+	$result_camptype = mysqli_query($GLOBALS["___mysqli_ston"], $query_camptype);
 	
 	$ans_function = array();
 	$ans_camptype = array();
 	
-	while( $row = mysql_fetch_assoc($result_function) )
+	while( $row = mysqli_fetch_assoc($result_function) )
 	{	$ans_function[] = $row;	}
 	
-	while( $row = mysql_fetch_assoc($result_camptype) )
+	while( $row = mysqli_fetch_assoc($result_camptype) )
 	{	$ans_camptype[] = $row;	}
 
 	$ans = array("function_list" => $ans_function, "camptype_list" => $ans_camptype);

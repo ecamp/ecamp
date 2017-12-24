@@ -18,8 +18,8 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	$event_id 	= mysql_real_escape_string( $_REQUEST['event_id'] );
-	$input_edit	= mysql_real_escape_string( $_REQUEST['input_edit'] );
+	$event_id 	= mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['event_id'] );
+	$input_edit	= mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['input_edit'] );
 	$input_edit_js = $_REQUEST['input_edit'];
 	
 	$_camp->event( $event_id ) || die( "error" );
@@ -32,7 +32,7 @@
 				WHERE
 					event.id = $event_id";
 	
-	$result = mysql_query( $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	
 	if( $result )
 	{

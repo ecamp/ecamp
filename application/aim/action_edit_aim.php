@@ -19,15 +19,15 @@
  */
 
 	// Daten auslesen
-	$pid  = mysql_real_escape_string($_REQUEST['pid']);
-	$text = mysql_real_escape_string($_REQUEST['text']);
+	$pid  = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['pid']);
+	$text = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['text']);
 	$text_js = htmlentities_utf8($_REQUEST['text']);
 	
-	$id   = mysql_real_escape_string($_REQUEST['id']);
+	$id   = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['id']);
 	
-	$del   = mysql_real_escape_string($_REQUEST['del']);
-	$new  = mysql_real_escape_string($_REQUEST['new']);
-	$edit  = mysql_real_escape_string($_REQUEST['edit']);
+	$del   = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['del']);
+	$new  = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['new']);
+	$edit  = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['edit']);
 
 	// Neues Ziel
 	if( $new == 1  )
@@ -36,8 +36,8 @@
 		
 		$query = "INSERT INTO `course_aim` (`id` ,`pid` ,`camp_id` ,`aim` )
 					VALUES (NULL , $pid , $_camp->id, '$text' );";
-		mysql_query($query);
-		$id = mysql_insert_id();
+		mysqli_query($GLOBALS["___mysqli_ston"], $query);
+		$id = ((is_null($___mysqli_res = mysqli_insert_id($GLOBALS["___mysqli_ston"]))) ? false : $___mysqli_res);
 	}
 	
 	// Ziel löschen
@@ -46,7 +46,7 @@
 		$_camp->course_aim( $id ) || die( "error" );
 		
 		$query = "DELETE FROM course_aim WHERE id='$id' AND camp_id='$_camp->id' LIMIT 1;";
-		mysql_query($query);
+		mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	}
 	
 	// Ziel ändern
@@ -55,7 +55,7 @@
 		$_camp->course_aim( $id ) || die( "error" );
 		
 		$query = "UPDATE course_aim SET aim='$text' WHERE id='$id' AND camp_id='$_camp->id' LIMIT 1;";
-		mysql_query( $query );
+		mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	}
 	
 	// Fehler

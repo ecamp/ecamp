@@ -21,11 +21,11 @@
 	$name		= trim($_REQUEST['name']);
 	$short_name	= trim($_REQUEST['short']);
 	
-	$name_save  		= mysql_real_escape_string($name);
-	$short_name_save  	= mysql_real_escape_string($short_name);
+	$name_save  		= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $name);
+	$short_name_save  	= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $short_name);
 	
-	$color		= mysql_real_escape_string($_REQUEST['color']);
-	$form_type	= mysql_real_escape_string($_REQUEST['type']);
+	$color		= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['color']);
+	$form_type	= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['type']);
 	
 	
 	if( $name=="" )
@@ -47,8 +47,8 @@
 	
 	// Überprüfen, ob selber Kategorienamen nicht schon existiert
 	$query = "SELECT * FROM category WHERE camp_id='$_camp->id' AND name='$name_save'";
-	$result = mysql_query($query);
-	if( mysql_num_rows($result) > 0 )
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+	if( mysqli_num_rows($result) > 0 )
 	{
 		$ans = array( "error" => true, "msg" => "Die Kategorie konnte nicht hinzugef&uuml;gt werden. Eine Kategorie mit einem solchen Namen existiert bereits!" );
 		echo json_encode( $ans );
@@ -58,8 +58,8 @@
 	// Kategorie hinzufügen
 	$query = "INSERT INTO category	(camp_id, name, short_name, color, form_type)
 							VALUES	('$_camp->id', '$name_save', '$short_name_save', '$color', '$form_type')";
-	mysql_query($query);
-	$last_camp_id = mysql_insert_id();
+	mysqli_query($GLOBALS["___mysqli_ston"], $query);
+	$last_camp_id = ((is_null($___mysqli_res = mysqli_insert_id($GLOBALS["___mysqli_ston"]))) ? false : $___mysqli_res);
 	
     //header("Location: index.php?app=option");
 	

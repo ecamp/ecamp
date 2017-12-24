@@ -20,9 +20,9 @@
 
 	$valid_fields = array("scoutname","firstname","surname","street","zipcode","city","homenr","mobilnr","birthday","ahv","sex","jspersnr","jsedu","pbsedu");
 	
-	$field = mysql_real_escape_string($_REQUEST['field']);
+	$field = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['field']);
 	$value = $_REQUEST['value'];
-	$value_save = mysql_real_escape_string($value);
+	$value_save = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $value);
 	
 	if( !in_array($field,$valid_fields) )
 	{	die();	}	
@@ -36,7 +36,7 @@
 	}
 	
 	$query = "UPDATE user SET $field = '$value_save' WHERE id = '$_user->id'";	
-	mysql_query($query);
+	mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
 	if($field == "birthday")	{	$value_save = $birthday->getString("d.m.Y");	}
 	

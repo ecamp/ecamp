@@ -27,7 +27,6 @@
 		}); 
 		
 		var ttip = new Tips('.tooltip');
-
 		
 		$$('.camp_frame').each(function(item)
 		{
@@ -77,5 +76,3 @@
 			}			
 		});
 	});
-
-	

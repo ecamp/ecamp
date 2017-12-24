@@ -96,21 +96,21 @@ foreach( $tables as $table => $qry)
 {	
 	// Zusatz-Infos zum Schema laden
 	$query = "SELECT column_name, data_type, column_type, is_nullable FROM information_schema.columns WHERE table_name='$table'";
-	$info = mysql_query($query);
+	$info = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	$column = array();
-	while ($tmp = mysql_fetch_assoc($info)) 
+	while ($tmp = mysqli_fetch_assoc($info)) 
 	{
 		$column[$tmp['column_name']] = $tmp;
 	}
 				
-	$result = mysql_query($qry);
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $qry);
 	$row_i = 0;
-	$row_num = mysql_num_rows($result);
+	$row_num = mysqli_num_rows($result);
 	$data = "";
 	$cols = "";
 	
 	// Alle Datensätze durchlaufen
-	while( $row = mysql_fetch_assoc($result) )
+	while( $row = mysqli_fetch_assoc($result) )
 	{
 		$row_i++;
 		$data .= "(";
@@ -140,7 +140,7 @@ foreach( $tables as $table => $qry)
 				$data .= "'".string2hex($value)."'";
 			}
 			else
-				$data .= "'".mysql_real_escape_string($value)."'";
+				$data .= "'".mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $value)."'";
 				
 			if($i != count($row)) $data .= ", ";
 		}

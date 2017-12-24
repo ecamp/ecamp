@@ -28,9 +28,9 @@
 	$query = "	SELECT camp.id, subcamp.start , subcamp.start + subcamp.length as end
 				FROM camp, subcamp
 				WHERE camp.id = subcamp.camp_id AND camp_id = " . $_camp->id;
-	$result = mysql_query( $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	
-	while( $subcamp = mysql_fetch_assoc( $result ) )
+	while( $subcamp = mysqli_fetch_assoc( $result ) )
 	{
 		$date->setDay2000( $subcamp['end'] );
 		$end = $date->getString( 'd.m.Y' );
@@ -64,9 +64,9 @@
 					todo.camp_id = $_camp->id
 				ORDER BY
 					todo.date";
-	$result = mysql_query($query);
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
-	while( $todo = mysql_fetch_assoc($result) )
+	while( $todo = mysqli_fetch_assoc($result) )
 	{
 		if( $date->getUnix() < time() )
 		{
@@ -121,8 +121,8 @@
 
 		$todo['resp_class'] = "";
 		
-		$subresult = mysql_query($subquery);
-		while( $todo_user = mysql_fetch_assoc($subresult) )
+		$subresult = mysqli_query($GLOBALS["___mysqli_ston"], $subquery);
+		while( $todo_user = mysqli_fetch_assoc($subresult) )
 		{
 			if( $todo_user['scoutname'] )
 			{	$todo['resp'][] = array( "id" => $todo_user[id], "resp" => $todo_user[resp], "class" => "resp_user", "name" => $todo_user[scoutname] );	}
@@ -166,8 +166,8 @@
 					user_camp.camp_id = $_camp->id
 				ORDER BY
 					user.scoutname";
-	$result = mysql_query($query);
-	while( $user = mysql_fetch_assoc($result) )
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+	while( $user = mysqli_fetch_assoc($result) )
 	{
 		if( $user['scoutname'] )
 		{	$user['name'] = $user['scoutname'];	}

@@ -29,9 +29,9 @@
 	
 	$query = "SELECT * FROM dropdown WHERE list = 'function_camp' OR list = 'function_course'";
 		
-	$result = mysql_query($query);
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	$function_list = array();
-	while($row = mysql_fetch_assoc($result))
+	while($row = mysqli_fetch_assoc($result))
 	{	$function_list[$row['id']] = $row['entry'];	}
 	
 	$active_camp_list = array();
@@ -56,8 +56,8 @@
 					user_camp.user_id = user.id
 				ORDER BY camp.id DESC";
 	
-	$result = mysql_query($query);
-	while($camp_detail = mysql_fetch_assoc($result))
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+	while($camp_detail = mysqli_fetch_assoc($result))
 	{
 		$subquery = "SELECT 
 						MIN( subcamp.start ) AS start , 
@@ -69,8 +69,8 @@
 						subcamp.camp_id = camp.id AND
 						camp.id = $camp_detail[id]";
 						
-		$subresult = mysql_query($subquery);
-		$camp_time = mysql_fetch_assoc($subresult);
+		$subresult = mysqli_query($GLOBALS["___mysqli_ston"], $subquery);
+		$camp_time = mysqli_fetch_assoc($subresult);
 		
 		$c_start = new c_date;
 		$c_end = new c_date;
@@ -120,11 +120,11 @@
 			user_camp.camp_id = camp.id AND
 			user_camp.active = 0";
 	
-	$result = mysql_query($query);
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
-	$request_camp_show = ( mysql_num_rows($result) > 0 );
+	$request_camp_show = ( mysqli_num_rows($result) > 0 );
 	
-	while($camp_detail = mysql_fetch_assoc($result))
+	while($camp_detail = mysqli_fetch_assoc($result))
 	{
 		$subquery = "SELECT 
 						MIN( subcamp.start ) AS start , 
@@ -136,8 +136,8 @@
 						subcamp.camp_id = camp.id AND
 						camp.id = $camp_detail[id]";
 						
-		$subresult = mysql_query($subquery);
-		$camp_time = mysql_fetch_assoc($subresult);
+		$subresult = mysqli_query($GLOBALS["___mysqli_ston"], $subquery);
+		$camp_time = mysqli_fetch_assoc($subresult);
 		
 		$c_start = new c_date;
 		$c_end = new c_date;

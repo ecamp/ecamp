@@ -29,7 +29,7 @@
 	/* alle Events des Camps laden */
 	// Events suchen, die die Chechliste erfüllen
 	$campevents = array();
-	mysql_query("SET SESSION group_concat_max_len = 512");
+	mysqli_query($GLOBALS["___mysqli_ston"], "SET SESSION group_concat_max_len = 512");
 	$query =   	"SELECT
 								  i.id AS instance,
 								  e.id,
@@ -55,8 +55,8 @@
 								AND e.category_id = c.id
 								ORDER BY v.day_nr, v.event_nr";
 	
-	$result = mysql_query($query);
-	while( $this_event = @mysql_fetch_assoc($result) )
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+	while( $this_event = @mysqli_fetch_assoc($result) )
 	{
 		$campevents[$this_event['instance']] = $this_event;
 	}
@@ -66,15 +66,15 @@
 	{
 		$list[$i] = array();
 		$query = "SELECT * FROM course_checklist WHERE course_type=$type AND checklist_type=$i AND IsNull(pid) ORDER BY short_1";
-		$result1 = mysql_query( $query );
+		$result1 = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 		
-		while( $this_level1 = @mysql_fetch_assoc($result1) )
+		while( $this_level1 = @mysqli_fetch_assoc($result1) )
 		{
 			$query = "SELECT * FROM course_checklist WHERE pid=".$this_level1[id]." ORDER BY short_2";
-			$result2 = mysql_query( $query );
+			$result2 = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 			$level2 = array();
 			
-			while( $this_level2 = @mysql_fetch_assoc($result2) )
+			while( $this_level2 = @mysqli_fetch_assoc($result2) )
 			{
 				// Events suchen, die die Checkliste erfüllen
 				$events = array();
@@ -91,9 +91,9 @@
 							AND i.event_id = e.id
 							ORDER BY i.day_id, i.starttime";
 					
-				$result3 = mysql_query($query);
+				$result3 = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 				$no_events = true;
-				while( $this_level3_instance = @mysql_fetch_assoc($result3) )
+				while( $this_level3_instance = @mysqli_fetch_assoc($result3) )
 				{
 					$this_level3 = $campevents[$this_level3_instance["id"]];
 					

@@ -35,11 +35,11 @@
 						mat_event.mat_list_id IS NOT NULL
 					) AND
 					event_id = $event_id";
-	$result = mysql_query( $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	
 	$mat_article_event = array();
 	
-	while( $row = mysql_fetch_assoc( $result ) )
+	while( $row = mysqli_fetch_assoc( $result ) )
 	{
 		if( $row[user_camp_id] )
 		{
@@ -47,16 +47,16 @@
 						FROM user, user_camp
 						WHERE user.id = user_camp.user_id 
 						AND user_camp.id = " . $row['user_camp_id'];
-			$subresult = mysql_query( $query );
-			$resp_str = mysql_result( $subresult, 0, 'scoutname' );
+			$subresult = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+			$resp_str = mysqli_result( $subresult,  0,  'scoutname' );
 		}
 		if( $row[mat_list_id] )
 		{
 			$query = "	SELECT mat_list.name
 						FROM mat_list
 						WHERE mat_list.id = " . $row['mat_list_id'];
-			$subresult = mysql_query( $query );
-			$resp_str = mysql_result( $subresult, 0, 'name' );
+			$subresult = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+			$resp_str = mysqli_result( $subresult,  0,  'name' );
 		}
 		
 		$row['list_name'] = $row['article_name'];
@@ -81,10 +81,10 @@
 					ISNULL( mat_event.user_camp_id ) AND
 					ISNULL( mat_event.mat_list_id ) AND
 					mat_event.event_id = $event_id";
-	$result = mysql_query( $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	$mat_stuff_stocked = array();
 	
-	while( $row = mysql_fetch_assoc( $result ) )
+	while( $row = mysqli_fetch_assoc( $result ) )
 	{
 		$mat_stuff_stocked[] = $row;
 	}

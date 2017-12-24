@@ -45,10 +45,10 @@
 					user.id = user_camp.user_id AND
 					user_camp.camp_id = $_camp->id";
 					
-	$result = mysql_query( $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	$leaders = array();
 	
-	while( $leader = mysql_fetch_assoc( $result ) )
+	while( $leader = mysqli_fetch_assoc( $result ) )
 	{
 		if( $leader['scoutname'] == "" )
 		{	$leader['displayname'] = $leader['firstname'] . " " . $leader['surname'];	}

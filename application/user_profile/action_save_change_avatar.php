@@ -62,10 +62,10 @@
 	
 	$imgData = addslashes( file_get_contents( $avatar['tmp_name'] ) );
 	
-	mysql_query( "SET CHARACTER SET 'binary'" );
+	mysqli_query($GLOBALS["___mysqli_ston"],  "SET CHARACTER SET 'binary'" );
 	
 	$query = "	UPDATE user SET image = '$imgData' WHERE id = $_user->id";
-	mysql_query($query);
+	mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
 	header("Location: index.php?app=user_profile");
 	die();

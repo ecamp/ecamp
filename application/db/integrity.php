@@ -46,8 +46,8 @@
 					days.subcamp_id = subcamp.id AND
 					subcamp.length != days.length";
 					
-	$result = mysql_query( $query );
-	while( $error = mysql_fetch_assoc( $result ) )
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+	while( $error = mysqli_fetch_assoc( $result ) )
 	{	$subCampLength[] = $error;	}
 
 	$_page->html->set( 'subCampLength', $subCampLength );
@@ -72,8 +72,8 @@
 					dmax != dcount OR 
 					dsum != ( dcount*(dcount+1)/2 )";
 	
-	$result = mysql_query( $query );
-	while( $error = mysql_fetch_assoc( $result ) )
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+	while( $error = mysqli_fetch_assoc( $result ) )
 	{	$eventDetailSorting[] = $error;	}
 
 	$_page->html->set( 'eventDetailSorting', $eventDetailSorting );

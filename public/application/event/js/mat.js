@@ -24,16 +24,15 @@ alert( $_var_from_php.mat_article_list );
 alert( Autocompleter.Local );
 
 new Autocompleter.Local( $('dp_mat_buy_add_input'), $_var_from_php.mat_article_list, {
-				'minLength': 1, // We need at least 1 character
-				'selectMode': 'type-ahead', // Instant completion
-				'multiple': false // Tag support, by default comma separated
-			});
+	'minLength': 1, // We need at least 1 character
+	'selectMode': 'type-ahead', // Instant completion
+	'multiple': false // Tag support, by default comma separated
+});
 
 alert( "debug" );
 alert( $$('ul.autocompleter-choices') );
 
 $$('ul.autocompleter-choices').setStyle( 'z-index', 1100 );
-
 
 alert( "TEST" );
 
@@ -74,9 +73,6 @@ $$('.dp_mat_buy_add').addEvent('click', function()
 			{
 				alert( "Dieses Material haben sie bereits hinzugefügt. Erhöhen sie die Zahl." );
 			}
-			
 		}.bind(this)
 	}).send();
-	
-	
 });
