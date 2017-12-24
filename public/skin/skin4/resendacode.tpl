@@ -42,12 +42,12 @@
 									Mit der Aktivierung stellen wir sicher, dass du die korrekte eMail - Adresse angegeben hast.
 									Um dies sicher zu stellen, senden wir per Mail einen Link, welchen du aufrufen musst.
 									Wird dieser Link aufgerufen, dann wird auch dein Account aktiviert.
-									<br />
-									<br />
+									<br/>
+									<br/>
 									Wenn du diese Mail nicht erhalten hast, kannst du sie dir noch einmal zuschicken lassen.
 									Bitte überprüfe auch, ob die Mail im SPAM Ordner gelandet ist.
 								</p>
-								<br />
+								<div class="space-top"></div>
 								<form class="form-horizontal" action="resendacode_do.php" method="post">
 									<div class="form-group">
 										<label for="Login" class="col-sm-2 control-label">E-Mail:</label>
@@ -55,9 +55,11 @@
 											<input type="email" tabindex="1" class="form-control" id="Login" placeholder="Email" name="Login" />
 										</div>
 									</div>
+									<div class="clearfix"></div>
+									<div class="space-top"></div>
 									<div class="form-group">
 										<div class="col-sm-offset-2 col-sm-10">
-											<input type="submit" tabindex="2" class="form-control btn btn-success" id="Senden" placeholder="Senden" name="senden" value="Senden" />
+											<input type="submit" tabindex="2" class="form-control btn btn-success" id="submit" placeholder="Senden" name="submit" value="Senden" />
 										</div>
 									</div>
 								</form>
