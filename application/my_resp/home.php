@@ -109,8 +109,8 @@
     				event_instance.day_id = day.id AND
     				day.subcamp_id = subcamp.id
     			ORDER BY date, starttime";
-    $result = mysql_query($query);
-    while( $event = mysql_fetch_assoc($result) )
+    $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+    while( $event = mysqli_fetch_assoc($result) )
     {
     	$date->setDay2000( $event['date'] );
     	
@@ -158,8 +158,8 @@
     				job_day.day_id = day.id AND
     				day.subcamp_id = subcamp.id
     			ORDER BY day_offset";
-    $result = mysql_query($query);
-    while( $day_job = mysql_fetch_assoc( $result ) )
+    $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+    while( $day_job = mysqli_fetch_assoc( $result ) )
     {
     	$date->setDay2000( $day_job['date'] );
     	
@@ -186,8 +186,8 @@
     				todo_user_camp.user_camp_id = " . $_user_camp->id . " AND
     				todo.id = todo_user_camp.todo_id 
        			ORDER BY todo.date";
-    $result = mysql_query($query);
-    while( $todo = mysql_fetch_assoc( $result ) )
+    $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+    while( $todo = mysqli_fetch_assoc( $result ) )
     {
     	$date->setDay2000( $todo['date'] );
     	$todo['date_string'] = $date->getString( 'd.m.Y' );

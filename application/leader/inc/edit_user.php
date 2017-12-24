@@ -21,18 +21,18 @@
 	$id = $_REQUEST['id'];
 	
 	$query = "SELECT * FROM user WHERE id = '$id'";
-	$result = mysql_query($query);
-	$user = mysql_fetch_assoc($result);
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+	$user = mysqli_fetch_assoc($result);
 	$user['birthday'] = date("d.m.Y", $user['birthday']);
 	
 	# Geschlechtsoption:
 	#
 	###########################
 	$query = "SELECT * FROM dropdown WHERE list = 'sex' ORDER BY id ASC";
-	$result = mysql_query($query);
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
 	$sex_option = "";
-	while($row = mysql_fetch_assoc($result))
+	while($row = mysqli_fetch_assoc($result))
 	{	if($row['id'] == $user['sex'])
 		{	$selected = " selected=selected";	}
 		else
@@ -45,10 +45,10 @@
 	#
 	###########################
 	$query = "SELECT * FROM dropdown WHERE list = 'jsedu' ORDER BY id ASC";
-	$result = mysql_query($query);
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
 	$jsedu_option = "";
-	while($row = mysql_fetch_assoc($result))
+	while($row = mysqli_fetch_assoc($result))
 	{	if($row['id'] == $user['jsedu'])
 		{	$selected = " selected=selected";	}
 		else
@@ -60,10 +60,10 @@
 	#
 	###########################
 	$query = "SELECT * FROM dropdown WHERE list = 'pbsedu' ORDER BY id ASC";
-	$result = mysql_query($query);
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
 	$pbsedu_option = "";
-	while($row = mysql_fetch_assoc($result))
+	while($row = mysqli_fetch_assoc($result))
 	{	if($row[id] == $user['pbsedu'])
 		{	$selected = " selected=selected";	}
 		else

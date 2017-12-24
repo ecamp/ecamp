@@ -18,8 +18,8 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	$user_id = mysql_real_escape_string( $_REQUEST['user'] );
-	$day_id  = mysql_real_escape_string( $_REQUEST['day_id'] );
+	$user_id = mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['user'] );
+	$day_id  = mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['day_id'] );
 	
 	$_camp->day( $day_id ) || die( "error" );
 
@@ -32,8 +32,8 @@
 					WHERE
 						user_camp.camp_id = $_camp->id AND
 						user_camp.user_id = $user_id";
-		$result = mysql_query( $query );
-		$user_camp_id = mysql_result( $result, 0, 'id' );
+		$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+		$user_camp_id = mysqli_result( $result,  0,  'id' );
 
 		$query = "
 					SELECT
@@ -48,16 +48,16 @@
 						job_day.day_id = $day_id AND
 						job.id = job_day.job_id
 					";
-		$result = mysql_query( $query );
+		$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 
-		if( mysql_num_rows( $result ) )
+		if( mysqli_num_rows( $result ) )
 		{
-			$job_day_id = mysql_result( $result, 0, 'job_day_id' );
+			$job_day_id = mysqli_result( $result,  0,  'job_day_id' );
 			
 			$query = "	UPDATE job_day
 						SET user_camp_id = $user_camp_id
 						WHERE id = $job_day_id";
-			mysql_query( $query );
+			mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 		}
 		else
 		{
@@ -66,14 +66,14 @@
 						WHERE 
 							job.camp_id = $_camp->id AND
 							job.show_gp = 1";
-			$result = mysql_query( $query );
-			$job_id = mysql_result( $result, 0, 'job_id' );
+			$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+			$job_id = mysqli_result( $result,  0,  'job_id' );
 			
 			$query = "	INSERT INTO job_day
 						( `job_id`, `day_id`, `user_camp_id` )
 						VALUES
 						( $job_id, $day_id, $user_camp_id )";
-			mysql_query( $query );
+			mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 		}
 	}
 	else
@@ -83,11 +83,11 @@
 					WHERE 
 						job.camp_id = $_camp->id AND
 						job.show_gp = 1";
-		$result = mysql_query( $query );
-		$job_id = mysql_result( $result, 0, 'job_id' );
+		$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+		$job_id = mysqli_result( $result,  0,  'job_id' );
 		
 		$query = "	DELETE FROM job_day WHERE job_id = $job_id AND day_id = $day_id";
-		mysql_query( $query );
+		mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	}
 
 	header("Content-type: application/json");

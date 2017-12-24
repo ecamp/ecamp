@@ -20,7 +20,7 @@
 
 	$_page->html->set('main_macro', $GLOBALS['tpl_dir'].'/application/day/border.tpl/border');
 	
-	$day_id = mysql_real_escape_string( $_REQUEST['day_id'] );
+	$day_id = mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['day_id'] );
 	
 	if( is_numeric( $day_id ) )
 	{	$_camp->day( $day_id ) || die( "error" );	}
@@ -43,15 +43,15 @@
 					WHERE
 						day.id = $day_id AND
 						day.subcamp_id = subcamp.id";
-		$result = mysql_query( $query );
+		$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 		
 		$day_date = new c_date();
-		$day_date->setDay2000( mysql_result( $result, 0, 'day_date' ) );
+		$day_date->setDay2000( mysqli_result( $result,  0,  'day_date' ) );
 		
 		$day_str = strtr( $day_date->getString( 'l d.m.Y' ), $GLOBALS['en_to_de'] );
 		
-		$day_story = mysql_result( $result, 0, 'story' );
-		$day_notes = mysql_result( $result, 0, 'notes' );
+		$day_story = mysqli_result( $result,  0,  'story' );
+		$day_notes = mysqli_result( $result,  0,  'notes' );
 	}
 	else
 	{
@@ -61,10 +61,10 @@
 	$query = "	SELECT category.*
 				FROM category
 				WHERE category.camp_id = $_camp->id";
-	$result = mysql_query( $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	
 	$categories = array();
-	while( $category = mysql_fetch_assoc( $result ) )
+	while( $category = mysqli_fetch_assoc( $result ) )
 	{	$categories[] = $category;	}
 	
 	$_js_env->add( 'categories', $categories );

@@ -29,10 +29,10 @@
 					event_id = $event_id
 				ORDER BY
 					sorting ASC";
-	$result = mysql_query( $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	$details = array();
 	
-	while( $detail = mysql_fetch_assoc( $result ) )
+	while( $detail = mysqli_fetch_assoc( $result ) )
 	{	$details[] = $detail;	}
 	
 	$_page->html->set( 'details', $details );

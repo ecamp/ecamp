@@ -24,14 +24,14 @@
 	require_once("./lib/PHPTAL.php");
 	db_connect();
 
-	$user_id 	= mysql_escape_string( $_REQUEST[ 'user_id' ] );
-	$login 		= mysql_escape_string( $_REQUEST[ 'login' ] );
-	$acode		= mysql_escape_string( $_REQUEST[ 'acode' ] );
+	$user_id 	= ((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST[ 'user_id' ] ) : ((trigger_error("[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.", E_USER_ERROR)) ? "" : ""));
+	$login 		= ((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST[ 'login' ] ) : ((trigger_error("[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.", E_USER_ERROR)) ? "" : ""));
+	$acode		= ((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST[ 'acode' ] ) : ((trigger_error("[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.", E_USER_ERROR)) ? "" : ""));
 
 	$query = "	SELECT user.id FROM user WHERE id = $user_id AND mail = '$login' AND acode = '$acode'";
-	$result = mysql_query( $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	
-	if( mysql_error() || !mysql_num_rows( $result ) )
+	if( mysqli_error($GLOBALS["___mysqli_ston"]) || !mysqli_num_rows( $result ) )
 	{	die("FEHLER; Support anfragen" ); }
 
 	if( $_SESSION['skin'] == "" ) $_SESSION['skin'] = $GLOBALS['skin'];
@@ -44,7 +44,7 @@
 	if( isset( $_REQUEST[ 'msg' ] ) )
 	{
 		$html->set( 'SHOW_MSG', true );
-		$html->set( 'MSG', mysql_escape_string( $_REQUEST[ 'msg' ] ) );
+		$html->set( 'MSG', ((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST[ 'msg' ] ) : ((trigger_error("[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.", E_USER_ERROR)) ? "" : "")) );
 	}
 
 	$html->set( 'user_id', $user_id );

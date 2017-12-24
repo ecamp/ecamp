@@ -21,7 +21,7 @@
 	$_page->html = new PHPTAL('template/application/program/dp_main.tpl');
 	//$_page->html = new PHPTAL('template/global/main.tpl');
 	
-	$event_id = mysql_real_escape_string($_REQUEST['event_id']);
+	$event_id = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['event_id']);
 	$_page->html->set( 'event_id', $event_id );
 	
 	$_camp->event( $event_id ) || die( "error" );
@@ -38,8 +38,8 @@
 				WHERE
 					event.id = $event_id AND
 					event.category_id = category.id";
-	$result = mysql_query($query);
-	$row = mysql_fetch_assoc($result);
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+	$row = mysqli_fetch_assoc($result);
 	
 	$_page->html->set( 'name', $row['short_name'] . ": " . $row['name'] );
 	$event_place = $row['place'];
@@ -59,12 +59,12 @@
 					event_responsible.event_id = $event_id AND
 					event_responsible.user_id = user.id ";
 	
-	$result = mysql_query($query);
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
 	$users = array();
 	$dp_header = array( "users" => $users );
 	
-	while($row = mysql_fetch_assoc($result))
+	while($row = mysqli_fetch_assoc($result))
 	{
 		if(!empty($row['scoutname']))
 		{	array_push( $dp_header['users'], $row['scoutname'] );	}
@@ -90,13 +90,13 @@
 					event_instance.event_id = $event_id AND
 					event_instance.day_id = day.id AND
 					day.subcamp_id = subcamp.id";
-	$result = mysql_query( $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	
 	$date 	= new c_date;
 	$start 	= new c_time;
 	$end 	= new c_time;
 	$dp_header['event_instance'] = array();
-	while($row = mysql_fetch_assoc( $result ) )
+	while($row = mysqli_fetch_assoc( $result ) )
 	{
 		$date->setDay2000($row['startdate']);
 		$start->setValue($row['starttime']);
@@ -124,8 +124,8 @@
 					event.id = $event_id AND
 					event.category_id = category.id AND
 					dropdown.list = 'form'";
-	$result = mysql_query($query);
-	while( $row = mysql_fetch_assoc( $result ) )
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+	while( $row = mysqli_fetch_assoc( $result ) )
 	{	$dp_head_show[ $row['form'] ] = $row['show_form'];	}
 	
 	$_page->html->set( 'dp_head_show', $dp_head_show );
@@ -139,8 +139,8 @@
 					event
 				WHERE
 					event.id = $event_id";
-	$result = mysql_query($query);
-	$replace = mysql_fetch_assoc($result);
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+	$replace = mysqli_fetch_assoc($result);
 	
 	$dp_head = array();
 	
@@ -176,9 +176,9 @@
 					event_detail
 				WHERE
 					event_detail.event_id = $event_id";
-	$result = mysql_query($query);
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
-	while($row = mysql_fetch_assoc($result))
+	while($row = mysqli_fetch_assoc($result))
 	{
 		foreach($row as $k => $v)
 		{	$row[$k] = htmlentities($v);	}
@@ -223,9 +223,9 @@
 					WHERE
 						user_camp.camp_id = $_camp->id AND
 						user_camp.user_id = user.id";
-		$result = mysql_query($query);
+		$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 		
-		while($row = mysql_fetch_assoc($result))
+		while($row = mysqli_fetch_assoc($result))
 		{
 			if( !empty($row['scoutname']) )
 			{	array_push($leader_list, "<option value='" . $row['id'] . "'>" . $row['scoutname'] . "</option>");	}
@@ -243,9 +243,9 @@
 						mat_article_event
 					WHERE
 						mat_article_event.event_id = $event_id";
-		$result = mysql_query($query);
+		$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 		
-		while($row = mysql_fetch_assoc($result))
+		while($row = mysqli_fetch_assoc($result))
 		{
 			foreach($row as $k => $v)
 			{	$row[$k] = htmlentities($v);	}
@@ -264,9 +264,9 @@
 					WHERE
 						mat_stuff.event_id = $event_id AND
 						mat_stuff.stocked = '1'";
-		$result = mysql_query($query);
+		$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 		
-		while($row = mysql_fetch_assoc($result))
+		while($row = mysqli_fetch_assoc($result))
 		{
 			foreach($row as $k => $v)
 			{	$row[$k] = htmlentities($v);	}
@@ -285,9 +285,9 @@
 					WHERE
 						mat_stuff.event_id = $event_id AND
 						mat_stuff.stocked = '0'";
-		$result = mysql_query($query);
+		$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 		
-		while($row = mysql_fetch_assoc($result))
+		while($row = mysqli_fetch_assoc($result))
 		{
 			foreach($row as $k => $v)
 			{	$row[$k] = htmlentities($v);	}
@@ -310,8 +310,8 @@
 					event
 				WHERE
 					event.id = $event_id";
-	$result = mysql_query($query);
-	$row = mysql_fetch_assoc($result);
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+	$row = mysqli_fetch_assoc($result);
 	
 	$row['notice'] = gettemplate_app('input_textarea', array(
 		"value" => $row['notice'],
@@ -343,9 +343,9 @@
 				WHERE
 					event_document.event_id = $event_id AND
 					event_document.user_id = user.id";
-	$result = mysql_query($query);
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
-	while($row = mysql_fetch_assoc($result))
+	while($row = mysqli_fetch_assoc($result))
 	{
 		$row[scoutname] = htmlentities($row[scoutname]);
 		$row[firstname] = htmlentities($row[firstname]);
@@ -376,9 +376,9 @@
 				WHERE
 					comment.event_id = $event_id AND
 					comment.user_id = user.id";
-	$result = mysql_query($query);
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
-	while($row = mysql_fetch_assoc($result))
+	while($row = mysqli_fetch_assoc($result))
 	{
 		foreach($row as $k => $v)
 		{	$row[$k] = htmlentities($v);	}

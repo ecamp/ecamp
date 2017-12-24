@@ -87,9 +87,9 @@
 	
 	$_page->html->set( 'query', $query );
 
-	$result = mysql_query($query);
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
-	while( $camp = mysql_fetch_assoc( $result ) )
+	while( $camp = mysqli_fetch_assoc( $result ) )
 	{
 		$query = "	SELECT user_camp.* 
 					FROM user_camp, dropdown 
@@ -98,9 +98,9 @@
 						user_camp.camp_id = $camp[id] AND 
 						user_camp.function_id = dropdown.id AND
 						dropdown.entry = 'Support'";
-		$is_supported = mysql_query( $query );
+		$is_supported = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 		
-		if( mysql_num_rows( $is_supported ) )	{	$camp['supported'] = 1;	}
+		if( mysqli_num_rows( $is_supported ) )	{	$camp['supported'] = 1;	}
 		else									{	$camp['supported'] = 0;	}
 		
 		if( $camp['scoutname'] != "" )

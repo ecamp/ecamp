@@ -46,7 +46,7 @@
 			ORDER BY v.day_nr, v.event_nr";
 			//echo $query;
 			//die( $query );
-	$result = mysql_query( $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	
 	//
 	$query = "SELECT d.entry FROM camp, dropdown d
@@ -54,8 +54,8 @@
 					camp.type = d.value 
 					AND camp.id = $_camp->id
 					AND d.list='coursetype'";
-	$result2 = mysql_query($query);
-	$course_type = mysql_fetch_assoc($result2);
+	$result2 = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+	$course_type = mysqli_fetch_assoc($result2);
 	
 	// Creating a workbook
 	$workbook = new Spreadsheet_Excel_Writer();
@@ -142,7 +142,7 @@
 	$worksheet->write($row, 3, "Blockziele",$format_header);
 	$worksheet->write($row, 4, "Inhalte",$format_header);
 	
-	while( $this_event = mysql_fetch_assoc($result) )
+	while( $this_event = mysqli_fetch_assoc($result) )
 	{
 		$row++;
 		
@@ -158,10 +158,10 @@
 		  AND ec.event_id=$this_event[id]
 		ORDER BY cc.short_1, cc.short_2";
 		//echo $query;
-		$result2 = mysql_query( $query );
+		$result2 = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 		
 		$checklist_str = "";
-		while( $this_checklist_item = mysql_fetch_assoc($result2) )
+		while( $this_checklist_item = mysqli_fetch_assoc($result2) )
 		{
 			$checklist_str = $checklist_str . $this_checklist_item['short'] . ", ";
 		}
@@ -176,10 +176,10 @@
 		  AND ea.event_id=$this_event[id]
 		ORDER BY ea.id";
 		//echo $query;
-		$result2 = mysql_query( $query );
+		$result2 = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 		
 		$aim_str = "";
-		while( $this_aim = mysql_fetch_assoc($result2) )
+		while( $this_aim = mysqli_fetch_assoc($result2) )
 		{
 			$aim_str = $aim_str . "- ".$this_aim['aim'] . "\n";
 		}

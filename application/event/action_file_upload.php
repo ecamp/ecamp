@@ -18,7 +18,7 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	$event_id = mysql_real_escape_string( $_REQUEST['event_id'] );
+	$event_id = mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['event_id'] );
 	$upload = $_FILES['upload'];
 	
 	$_camp->event( $event_id ) || die( "error" );
@@ -57,8 +57,8 @@
 						'" . time() . "'
 					)";
 		
-		mysql_query( $query );
-		$file_id = mysql_insert_id();
+		mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+		$file_id = ((is_null($___mysqli_res = mysqli_insert_id($GLOBALS["___mysqli_ston"]))) ? false : $___mysqli_res);
 		
 		header( "location: index.php?app=event&cmd=file_upload_done&event_id=" . $event_id ."&file_id=" . $file_id );
 		die();

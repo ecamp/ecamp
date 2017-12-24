@@ -31,10 +31,10 @@
 					event_document
 				WHERE
 					event_id = $event_id";
-	$result = mysql_query( $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	
 	$documents = array();
-	while( $document = mysql_fetch_assoc( $result ) )
+	while( $document = mysqli_fetch_assoc( $result ) )
 	{
 		if( $file_type[$document['type']] )
 		{	$document['type_img_src'] = "public/global/img/" . $file_type[$document['type']];	}

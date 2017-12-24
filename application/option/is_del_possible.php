@@ -18,14 +18,14 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	$cat_id	= mysql_real_escape_string($_REQUEST['category_id']);
+	$cat_id	= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['category_id']);
 	
 	$_camp->category( $cat_id ) || die( "error" );
 
 	$query = "SELECT * FROM category WHERE id = '$cat_id' AND camp_id='$_camp->id'";
-	$result = mysql_query($query);
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
-	if( mysql_num_rows($result) == 0 )
+	if( mysqli_num_rows($result) == 0 )
 	{
 		// Keine Berechtigung oder Kategorie existiert nicht
 		$ans = array( "error" => true, "msg" => "Keine Berechtigung" );
@@ -33,11 +33,11 @@
 		die();
 	}
 	
-	$category = mysql_fetch_assoc($result);
+	$category = mysqli_fetch_assoc($result);
 	
 	$query = "SELECT id FROM event WHERE category_id='$category[id]'";
-	$result = mysql_query( $query );
-	$num_failure = mysql_num_rows( $result );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+	$num_failure = mysqli_num_rows( $result );
 	
 	if( $num_failure > 0 )
 	{

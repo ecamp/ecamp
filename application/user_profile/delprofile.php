@@ -23,9 +23,9 @@
 	$_page->html->set('box_title', 'Mein Profil löschen');
 
 	$query = "SELECT user_camp.id FROM user_camp WHERE user_id = " . $_user->id;
-	$result = mysql_query( $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	
-	if( mysql_num_rows( $result ) )
+	if( mysqli_num_rows( $result ) )
 		$_page->html->set( 'profiledelable', false );
 	else
 		$_page->html->set( 'profiledelable', true );

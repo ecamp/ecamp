@@ -29,9 +29,9 @@
 	else
 		$query = "SELECT * FROM dropdown WHERE list = 'function_camp'";
 	
-	$reuslt = mysql_query($query);
+	$reuslt = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	$option = "";
-	while($row = mysql_fetch_assoc($reuslt))
+	while($row = mysqli_fetch_assoc($reuslt))
 	{
 		if($row[id] == $std)
 		{	$selected = " selected=selected ";	}
@@ -55,10 +55,10 @@
 	if(!empty($mail))		{	$search_arg[] = " mail LIKE '$mail%' ";	}
 	
 	$query = "SELECT * FROM user WHERE " . implode(" AND ", $search_arg);
-	$result = mysql_query($query);
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
 	$found_users = "";
-	while($found = mysql_fetch_assoc($result))
+	while($found = mysqli_fetch_assoc($result))
 	{	
 		$found['function_list'] = $select;
 		$found_users .= gettemplate_app('add_search_result_user', $found);	

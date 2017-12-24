@@ -18,7 +18,7 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	$pid = mysql_real_escape_string( $_REQUEST['pid'] );
+	$pid = mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['pid'] );
 
 	$ans = array();
 	
@@ -37,8 +37,8 @@
 					ORDER BY name";
 	}
 	
-	$result = mysql_query( $query );
-	while( $g = mysql_fetch_assoc( $result ) )
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+	while( $g = mysqli_fetch_assoc( $result ) )
 	{
 		$g['text']  = $g['prefix'] . " " . $g['name'];
 		
