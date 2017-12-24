@@ -29,9 +29,9 @@
 
 	// Feld auslesen
 	$valid_fields = array("name","group_name","slogan","short_name","ca_name","ca_street","ca_zipcode","ca_city","ca_tel","ca_coor");
-    $field = mysql_real_escape_string($_REQUEST['field']);	
+    $field = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['field']);	
 	$value = $_REQUEST['value'];
-	$value_save = mysql_real_escape_string($_REQUEST['value']);
+	$value_save = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['value']);
 
 	if( !in_array($field, $valid_fields) )
 	{
@@ -43,10 +43,10 @@
 	// Spezialberechnungen durchführen
 	if( $field == "ca_coor" ) // Koordinaten zusammenführen
 	{
-		$value1 = mysql_real_escape_string($_REQUEST['value1']);
-    	$value2 = mysql_real_escape_string($_REQUEST['value2']);
-		$value3 = mysql_real_escape_string($_REQUEST['value3']);
-		$value4 = mysql_real_escape_string($_REQUEST['value4']);
+		$value1 = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['value1']);
+    	$value2 = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['value2']);
+		$value3 = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['value3']);
+		$value4 = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['value4']);
 		
 		if( $value1=="" && $value2=="" && $value3=="" && $value4 == "")
 		{	$value = "";	}
@@ -84,7 +84,7 @@
 	}
 
 	$query = "UPDATE camp SET $field = '$value_save' WHERE id = '$_camp->id'";
-	mysql_query($query);
+	mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
 	$ans = array();
 	$ans['error'] = false;

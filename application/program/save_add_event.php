@@ -21,20 +21,20 @@
 	//	index.php?app=program&cmd=save_add_event&day_id=1&name=&category=1&starttime_h=0&starttime_min=0&length_h=0&length_min=0&resp_user=
 	
 	include( 'inc/get_program_update.php');
-	$time				= mysql_real_escape_string($_REQUEST['time']);
+	$time				= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['time']);
 	
-	$day_id				= mysql_real_escape_string($_REQUEST['day_id']);
+	$day_id				= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['day_id']);
 	
-	$event_name			= mysql_real_escape_string($_REQUEST['name']);
-	$event_category_id	= mysql_real_escape_string($_REQUEST['category']);
+	$event_name			= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['name']);
+	$event_category_id	= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['category']);
 	
-	$event_instance_starttime_h 	= mysql_real_escape_string($_REQUEST['starttime_h']);
-	$event_instance_starttime_min 	= mysql_real_escape_string($_REQUEST['starttime_min']);
+	$event_instance_starttime_h 	= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['starttime_h']);
+	$event_instance_starttime_min 	= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['starttime_min']);
 	
-	$event_instance_length_h 	= mysql_real_escape_string($_REQUEST['length_h']);
-	$event_instance_length_min 	= mysql_real_escape_string($_REQUEST['length_min']);
+	$event_instance_length_h 	= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['length_h']);
+	$event_instance_length_min 	= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['length_min']);
 	
-	$event_resp_user	= mysql_real_escape_string($_REQUEST['resp_user']);
+	$event_resp_user	= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['resp_user']);
 	$event_resp_user 	= explode("_", substr($event_resp_user, 0, -1) );
 	
 	$_camp->day( $day_id ) || die( "error" );
@@ -44,21 +44,21 @@
 	$length 	= 60 * $event_instance_length_h + $event_instance_length_min;
 	
 	$query = "INSERT INTO event ( camp_id, category_id, name ) VALUES ( $_camp->id, $event_category_id, '$event_name' )";
-	$result = mysql_query($query);
-	$event_id = mysql_insert_id();
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+	$event_id = ((is_null($___mysqli_res = mysqli_insert_id($GLOBALS["___mysqli_ston"]))) ? false : $___mysqli_res);
 	
 	foreach( $event_resp_user as $resp_user )
 	{
-		$resp_user = mysql_real_escape_string( $resp_user );
+		$resp_user = mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $resp_user );
 		if( !is_numeric( $resp_user ) )
 		{	break;	}
 		
 		$query = "INSERT INTO event_responsible ( user_id, event_id ) VALUES ( $resp_user, $event_id )";
-		mysql_query($query);
+		mysqli_query($GLOBALS["___mysqli_ston"], $query);
 		
 		$query = "SELECT active FROM user_camp WHERE camp_id = $_camp->id AND user_id = $resp_user";
-		$result = mysql_query( $query );
-		$active = mysql_result( $result, 0, 'active' );
+		$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+		$active = mysqli_result( $result,  0,  'active' );
 		
 		if( $resp_user != $_user->id && $active )
 		{
@@ -75,10 +75,10 @@
 					day2.subcamp_id = day1.subcamp_id AND
 					day2.day_offset = day1.day_offset + 1 AND
 					day1.id = " . $day_id;
-	$result = mysql_query( $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	
 	if( 	// Block splitting!
-			mysql_num_rows( $result )
+			mysqli_num_rows( $result )
 			&&
 			(
 				( $starttime < $GLOBALS['time_shift'] && ( $starttime + $length ) > $GLOBALS['time_shift'] )
@@ -87,7 +87,7 @@
 			)
 		)
 	{
-		$day2_id = mysql_result( $result, 0, 'id' );
+		$day2_id = mysqli_result( $result,  0,  'id' );
 		
 		$starttime1 = $starttime;
 		$starttime2 = $GLOBALS['time_shift'];
@@ -100,14 +100,14 @@
 		$length2 = $length - $length1;
 		
 		$query = "INSERT INTO event_instance ( event_id, day_id, starttime, length ) VALUES ( $event_id, $day_id, $starttime1, $length1 )";
-		mysql_query($query);
+		mysqli_query($GLOBALS["___mysqli_ston"], $query);
 		$query = "INSERT INTO event_instance ( event_id, day_id, starttime, length ) VALUES ( $event_id, $day2_id, $starttime2, $length2 )";
-		mysql_query($query);
+		mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	}
 	else
 	{
 		$query = "INSERT INTO event_instance ( event_id, day_id, starttime, length ) VALUES ( $event_id, $day_id, $starttime, $length )";
-		mysql_query($query);
+		mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	}
 	
 	header("Content-type: application/json");

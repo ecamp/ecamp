@@ -14,37 +14,6 @@
         <link rel="stylesheet" type="text/css" href="./public/skin/skin4/css/color.css" />
         <link rel="stylesheet" type="text/css" href="./public/skin/skin4/css/layout.css" />
 
-        <style>
-        	table
-			{ 	font-size:13px;}	
-			font.title
-			{	font-size: 25px;	}
-        	
-        	.message, .login, .register
-			{
-				width:380px;
-				padding:30px 10px 10px 10px;
-				margin-bottom:20px;
-			}
-			
-			input[type=text], input[type=password]
-			{
-				width: 100%;
-			}
-			
-			div.login
-			{
-				position: relative;
-			}
-			
-			div.gotologin
-			{
-				position: absolute;
-				top: 2px;
-				right: 4px;
-			}
-        </style>
-
 		<script type="text/javascript" src="./public/global/js/jquery-3.2.1.min.js"></script>
 		<script type="text/javascript" src="./public/global/js/bootstrap.min.js"></script>
 		<script type="text/javascript" language="javascript" src="./public/global/js/mootools1.2.js"></script>
@@ -52,36 +21,57 @@
 			jQuery.noConflict();
 		</script>
 	</head>
-	<body marginheight="100" marginwidth="0" class="bgcolor ">
-		<center>	
-			<div class="message bgcolor_content content_border_fit" tal:condition="SHOW_MSG" >
-	        	<span tal:content="MSG">TEXT...</span>
-	        </div>
-			<div class="login bgcolor_content content_border_fit">
-				<div class="gotologin">
-					<a href="login.php">Zurück zum Login</a>
+	<body>
+		<div class="space-top"></div>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12 col-md-8 col-md-offset-2">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<div class="float-left">
+								eCamp - Passwort
+							</div>
+							<div class="float-rigth">
+								<a href="login.php">Zurück zum Login</a>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="panel-body">
+							<div class="message alert alert-danger" tal:condition="SHOW_MSG" >
+								<span tal:content="MSG">TEXT...</span>
+							</div>
+							<p>Du kannst dir nun ein neues Passwort setzten. Nicht wieder vergessen!</p>
+							<div class="login">
+								<form class="form-horizontal" action="pwreset_do.php" method="post">
+									<div class="form-group">
+										<label for="pw1" class="col-sm-2 control-label">Passwort:</label>
+										<div class="col-sm-10">
+											<input type="password" tabindex="1" class="form-control" id="pw1" placeholder="Passwort" name="pw1" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="pw2" class="col-sm-2 control-label">Passwort wiederholen:</label>
+										<div class="col-sm-10">
+											<input type="password" tabindex="2" class="form-control" id="pw2" placeholder="Passwort wiederholen" name="pw2" />
+										</div>
+									</div>
+									<div class="clearfix"></div>
+									<div class="space-top"></div>
+									<div class="space-top"></div>
+									<div class="form-group">
+										<div class="col-sm-offset-2 col-sm-10">
+											<input type="submit" tabindex="3" class="form-control btn btn-success" id="submit" placeholder="Abschicken" name="submit"  value="Abschicken" />
+										</div>
+									</div>
+									<input type="hidden" name="user_id" tal:attributes="value user_id" />
+									<input type="hidden" name="login" tal:attributes="value login" />
+									<input type="hidden" name="acode" tal:attributes="value acode" />
+								</form>
+							</div>
+						</div>
+					</div>
 				</div>
-	        	<form action="pwreset_do.php" method="post">
-	                <table width="80%">
-	                    <tr><td colspan="2"><font class="title">eCamp - Passwort</font></td></tr>
-	                    <tr height="10"><td> </td></tr>
-	                    <tr>
-	                    	<td colspan="2">
-	                    		Du kannst dir nun ein neues Passwort setzten. Nicht wieder vergessen!
-	                    	</td>
-	                    </tr>
-	                    <tr height="10"><td> </td></tr>
-	                    <tr><td>Passwort:</td><td><input tabindex="1" name="pw1" type="password" /></td></tr>
-	                    <tr><td>Wiederholen:</td><td><input tabindex="1" name="pw2" type="password" /></td></tr>
-	                    <tr height="10"><td> </td></tr>
-	                    <tr><td colspan="2" align="right"><input tabindex="7" type="submit" value="Abschicken" /></td></tr>
-	                    <tr><td> </td></tr>
-	                </table>
-	                <input type="hidden" name="user_id" tal:attributes="value user_id" />
-	                <input type="hidden" name="login" tal:attributes="value login" />
-	                <input type="hidden" name="acode" tal:attributes="value acode" />
-	            </form>
-	        </div>
-		</center>
+			</div>
+		</div>
 	</body>
 </html>

@@ -19,9 +19,9 @@
  */
 
 	$job_name = htmlentities_utf8(trim($_REQUEST['job_name']));	
-	$job_name_save = mysql_real_escape_string($_REQUEST['job_name']);
+	$job_name_save = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['job_name']);
 	
-	$cmd      = mysql_real_escape_string($_REQUEST['cmd']);	
+	$cmd      = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['cmd']);	
 	
 	// Authentifizierung überprüfen
 	// write --> Ab Lagerleiter (level: 50)
@@ -48,8 +48,8 @@
 	
 	// Überprüfen, ob gleicher Tagesjob scho besteht
 	$query = "SELECT * FROM job WHERE camp_id='$_camp->id' AND job_name='$job_name_save'";
-	$result = mysql_query( $query );
-	if( mysql_num_rows($result) > 0 )
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+	if( mysqli_num_rows($result) > 0 )
 	{
 		$ans = array( "error" => true, "msg" => "Ein Job mit diesem Namen besteht bereits!" );
 		echo json_encode( $ans );
@@ -58,8 +58,8 @@
 	
 	$query = "INSERT INTO `job` (`camp_id` ,`job_name` ,`show_gp`)
 			  VALUES ('$_camp->id', '$job_name_save', '0');";
-	mysql_query($query);
-	$id = mysql_insert_id();
+	mysqli_query($GLOBALS["___mysqli_ston"], $query);
+	$id = ((is_null($___mysqli_res = mysqli_insert_id($GLOBALS["___mysqli_ston"]))) ? false : $___mysqli_res);
 	
 	$ans = array( "error" => false, "job_id" => $id, "job_name" => $job_name );
 	echo json_encode( $ans );

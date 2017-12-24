@@ -1,14 +1,11 @@
-a{
-	text-decoration:none;
-	border-bottom-width:1px;
-	border-bottom-style:dotted;
-}
-
 /* Menü */
 div.menu_box a
 {
 	border:none;
-	color:navy;
+}
+
+.center-image{
+	text-align: center;
 }
 
 /*******************************/
@@ -16,7 +13,6 @@ div.menu_box a
 /*******************************/
 div.content_box_head
 {
-	height:16px;
 	padding-left: 5px;
 	font-weight:bold;
 }
@@ -40,7 +36,6 @@ div.content_box_fit, div.content_box_full
 {
     padding-top:5px;
     float:left;
-	height:20px;
 	color:brown;
 }
 
@@ -49,7 +44,6 @@ div.content_box_fit, div.content_box_full
 .action-button-left, .action-button-right{
     float:left;
 	width: 5px;
-	height: 25px;
 }
 
 .space-top{

@@ -32,10 +32,10 @@
 	else
 		$query = "SELECT * FROM dropdown WHERE list = 'function_camp' ORDER BY id ASC";
 		
-	$result = mysql_query($query);
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
 	$function_option = "";
-	while($row = mysql_fetch_assoc($result))
+	while($row = mysqli_fetch_assoc($result))
 	{	if($row[id] == $std)
 		{	$selected = " selected=selected";	}
 		else
@@ -48,30 +48,30 @@
 	#
 	###########################
 	$query = "SELECT * FROM dropdown WHERE list = 'sex' ORDER BY id ASC";
-	$result = mysql_query($query);
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
 	$sex_option = "";
-	while($row = mysql_fetch_assoc($result))
+	while($row = mysqli_fetch_assoc($result))
 	{	$sex_option .= gettemplate_app('option', array("value" => $row['id'], "content" => $row['entry'], "selected" => ""));	}
 	
 	# JS Ausbildung:
 	#
 	###########################
 	$query = "SELECT * FROM dropdown WHERE list = 'jsedu' ORDER BY id ASC";
-	$result = mysql_query($query);
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
 	$jsedu_option = "";
-	while($row = mysql_fetch_assoc($result))
+	while($row = mysqli_fetch_assoc($result))
 	{	$jsedu_option .= gettemplate_app('option', array("value" => $row['id'], "content" => $row['entry'], "selected" => ""));	}
 	
 	# PBS Ausbildung:
 	#
 	###########################
 	$query = "SELECT * FROM dropdown WHERE list = 'pbsedu' ORDER BY id ASC";
-	$result = mysql_query($query);
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
 	$pbsedu_option = "";
-	while($row = mysql_fetch_assoc($result))
+	while($row = mysqli_fetch_assoc($result))
 	{	$pbsedu_option .= gettemplate_app('option', array("value" => $row['id'], "content" => $row['entry'], "selected" => ""));	}
 
 	$replace = array(

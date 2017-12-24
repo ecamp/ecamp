@@ -25,28 +25,28 @@
 	$query = "	SELECT *
 				FROM dropdown
 				WHERE list = 'function_course' AND value > 0";
-	$result = mysql_query( $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	$functions = array();
 
-	while( $function = mysql_fetch_assoc( $result ) )
+	while( $function = mysqli_fetch_assoc( $result ) )
 	{	$functions[] = $function;	}
 
 	$query = "	SELECT *
 				FROM dropdown
 				WHERE list = 'coursetype' AND item_nr>=5 ORDER BY item_nr";
-	$result = mysql_query( $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	$coursetypes = array();
 	
-	while( $coursetype = mysql_fetch_assoc( $result ) )
+	while( $coursetype = mysqli_fetch_assoc( $result ) )
 	{	$coursetypes[] = $coursetype;	}
 	
 	$query = "	SELECT *
 				FROM dropdown
 				WHERE list = 'jstype'";
-	$result = mysql_query( $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	$jstypes = array();
 	
-	while( $jstype = mysql_fetch_assoc( $result ) )
+	while( $jstype = mysqli_fetch_assoc( $result ) )
 	{	$jstypes[] = $jstype;	}
 
 	//$_page->html->set('box_content', $GLOBALS[tpl_dir].'/application/camp_admin/new_camp.tpl/new_course');

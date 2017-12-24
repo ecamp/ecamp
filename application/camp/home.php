@@ -50,8 +50,8 @@
 	
 	$subcamps = array();
 	$query = "SELECT * FROM subcamp WHERE camp_id = '$_camp->id' ORDER BY start ASC ";
-	$result = mysql_query($query);
-	while($row = mysql_fetch_assoc($result))
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+	while($row = mysqli_fetch_assoc($result))
 	{
 		$start->m_days = $row['start'];
 		$end->m_days = $row['start'] + $row['length'] - 1;
@@ -77,9 +77,9 @@
     			WHERE
     				camp.id = '$_camp->id'";
     
-	$result = mysql_query($query);
-	if(mysql_num_rows($result) == 0)	{	die("Kein Lager gew&auml;hlt");	}
-	$camp_data = mysql_fetch_assoc($result);
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+	if(mysqli_num_rows($result) == 0)	{	die("Kein Lager gew&auml;hlt");	}
+	$camp_data = mysqli_fetch_assoc($result);
 	
 	
 	// Lager-Detaildaten herausfiltern
@@ -144,11 +144,11 @@
 					WHERE
 						value = " . $camp_data['type'] . " AND
 						list = 'coursetype'";
-		$result = mysql_query( $query );
-		if( mysql_error() || !mysql_num_rows($result) )
+		$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+		if( mysqli_error($GLOBALS["___mysqli_ston"]) || !mysqli_num_rows($result) )
 		{	$camp_info['type'] = "asdf";	}
 		else
-		{	$camp_info['type'] = mysql_result($result, 0, 'entry' );	}
+		{	$camp_info['type'] = mysqli_result($result,  0,  'entry' );	}
 	}
 	
 	$_page->html->set('camp_info', $camp_info);
@@ -168,9 +168,9 @@
 				WHERE
 					day.subcamp_id = subcamp.id AND
 					subcamp.camp_id = " . $_camp->id;
-	$result = mysql_query( $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	
-	while( $day = mysql_fetch_assoc( $result ) )
+	while( $day = mysqli_fetch_assoc( $result ) )
 	{
 		if( !isset( $blocked_days[ $day['id'] ] ) )
 		{	$blocked_days[ $day['id'] ] = array();	}

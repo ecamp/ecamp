@@ -32,20 +32,20 @@
 	if (!$resp->is_valid)
 	{	header( 'location: reminder.php?msg=Bitte CAPTCHA richtig abschreiben!' );	die();	}
 
-	$login = mysql_escape_string( $_REQUEST[ 'Login' ] );
+	$login = ((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST[ 'Login' ] ) : ((trigger_error("[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.", E_USER_ERROR)) ? "" : ""));
 
 	$query = "	SELECT id, pw, active FROM user WHERE mail = '$login'";
-	$result = mysql_query( $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	
-	if( ! mysql_num_rows( $result ) )
+	if( ! mysqli_num_rows( $result ) )
 	{
 		header( "location: login.php" );
 		die();
 	}
 	
-	$user_id 		= mysql_result( $result, 0, 'id' );
-	$user_pw 		= mysql_result( $result, 0, 'pw' );
-	$user_active 	= mysql_result( $result, 0, 'active' );
+	$user_id 		= mysqli_result( $result,  0,  'id' );
+	$user_pw 		= mysqli_result( $result,  0,  'pw' );
+	$user_active 	= mysqli_result( $result,  0,  'active' );
 
 	if( ! $user_active )
 	{
@@ -57,24 +57,18 @@
 	$acode = md5( $acode );
 
 	$query = "	UPDATE  user SET  `acode` =  '$acode' WHERE id = $user_id";
-	$result = mysql_query( $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 
 	//	SEND MAIL FOR REMINDER:
 	// =========================
- 	$text = "eCamp - Passwort ändern \n\n
+ 	$text = "eCamp - Passwort ändern 
+<br />
 Um das Passwort zu ändern, musst du dem nachfolgendem Link folgen:
-\n\n
-" . $GLOBALS['base_uri'] . "pwreset.php?user_id=$user_id&login=$login&acode=$acode
-\n\n";
+<br />
+<br />
+<a href='".$GLOBALS['base_uri']."pwreset.php?user_id=$user_id&login=$login&acode=$acode'>" . $GLOBALS['base_uri'] . "pwreset.php?user_id=$user_id&login=$login&acode=$acode</a>";
 
-	//ecamp_send_mail($login, "eCamp - Passwort ändern", $text);
-	mail( $login, "eCamp - Passwort ändern", $text, "From: eCamp Pfadi Luzern <ecamp@pfadiluzern.ch>" );
-	
-	/*
-	$text = urlencode( $text );
- 	$subject = urlencode( "eCamp - Passwort ändern" );
-	fopen( "http://ecamp2.pfadiluzern.ch/mail.php?to=$login&subject=$subject&message=$text", "r" );
-	*/
+	ecamp_send_mail($login, "eCamp - Passwort ändern", $text);
 
 	header( 'location: login.php?msg=Überprüfe deine Mailbox. Mit dem Link im Mail kann das Passwort neu gesetzt werden.' );
 	die();

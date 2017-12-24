@@ -13,20 +13,14 @@ div.content_box_full, div.content_box_fit
 	text-align:left;
 }
 
-div.content_box_full
-{
-	top:0px;
-}
-
 div.content_border_fit, div.content_border_full
 {	
 	border:1px #000000 solid;
 	width:100%;
 }
 
-div.content_border_fit
-{	}
-
 div.content_border_full
-{  height:100%;
-	position:absolute; }
+{
+	height:100%;
+	position:absolute;
+}

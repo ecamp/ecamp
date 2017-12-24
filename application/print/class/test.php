@@ -55,11 +55,11 @@
 	$GLOBALS['time_shift'] = 300;
 	
 	//*******************************************************
-	mysql_connect( 'localhost' , 'root', '') or die(mysql_error());
-	mysql_select_db( 'ecamp' ) or die(mysql_error());
+	($GLOBALS["___mysqli_ston"] = mysqli_connect( 'localhost' ,  'root',  '')) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+	mysqli_select_db($GLOBALS["___mysqli_ston"], ecamp) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
 	
-	mysql_query("SET NAMES 'utf8'");
-	mysql_query("SET CHARACTER SET 'utf8'");
+	mysqli_query($GLOBALS["___mysqli_ston"], "SET NAMES 'utf8'");
+	mysqli_query($GLOBALS["___mysqli_ston"], "SET CHARACTER SET 'utf8'");
 
 	require_once( 'data.php' );
 	require_once( 'build.php' );

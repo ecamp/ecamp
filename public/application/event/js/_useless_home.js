@@ -88,8 +88,7 @@ $event_detail = Hash(
 				
 				item.getElement('.input_edit_border .input_edit').set( 'value', item.getElement('.input_show_border .input_show').get('value') );
 			});
-			
-			
+
 			item.getElement('.input_edit_save').addEvent('click', function()
 			{
 				item.getElement('.input_edit_border').addClass('hidden');
@@ -119,10 +118,6 @@ $event_detail = Hash(
 			
 		});
 	}
-	
-	
-	
 });
-
 
 $event_detail.load();

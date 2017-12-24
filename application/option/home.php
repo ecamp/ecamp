@@ -22,17 +22,17 @@
 	
 	// Formular-Typen auslesen
 	$query = "SELECT * FROM dropdown WHERE list='form'";
-	$result = mysql_query($query);
-	while( $typ = mysql_fetch_assoc($result) )
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+	while( $typ = mysqli_fetch_assoc($result) )
 	{
 		$form[$typ['value']] = $typ['entry'];
 	}
 	
 	// Kategorien auslesen
 	$query = "SELECT * FROM category WHERE camp_id = '$_camp->id'";
-	$result = mysql_query($query);
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	$category_list = array();
-	while($category = mysql_fetch_assoc($result))
+	while($category = mysqli_fetch_assoc($result))
 	{
 		if( $form[$category['form_type']] == "" )
 			$this_typ = htmlspecialchars("<unbekannt>");
@@ -58,8 +58,8 @@
 	$job_list["slave"] = array();
 	
 	$query = "SELECT * FROM job WHERE camp_id = '$_camp->id'";
-	$result = mysql_query( $query );
-	while( $job = mysql_fetch_assoc($result) )
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+	while( $job = mysqli_fetch_assoc($result) )
 	{
 		if( $job['show_gp'] )
 			$job_list["master"][] = array( "id" => $job['id'], "name" => $job['job_name'] );
@@ -70,8 +70,8 @@
 	$mat_lists = array();
 	
 	$query = "SELECT * FROM mat_list WHERE camp_id = $_camp->id";
-	$result = mysql_query( $query );
-	while( $mat_list = mysql_fetch_assoc( $result ) )
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+	while( $mat_list = mysqli_fetch_assoc( $result ) )
 	{	$mat_lists[] = $mat_list;	}
 	
 	$option = array(

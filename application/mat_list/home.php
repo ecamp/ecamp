@@ -25,9 +25,9 @@
 				FROM user, user_camp, dropdown
 				WHERE 	user_camp.function_id = dropdown.id AND dropdown.entry != 'Support' AND
 						user.id = user_camp.user_id AND user_camp.camp_id = $_camp->id";
-	$result = mysql_query( $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	
-	while( $u = mysql_fetch_assoc( $result ) )
+	while( $u = mysqli_fetch_assoc( $result ) )
 	{
 		if( $u['scoutname'] )	{	$u['display_name'] = $u['scoutname'];	}
 		else	{	$u['display_name'] = $u['firstname'] . " " . $u['surname'];	}
@@ -40,9 +40,9 @@
 	$query = "	SELECT mat_list.*
 				FROM mat_list
 				WHERE mat_list.camp_id = $_camp->id";
-	$result = mysql_query( $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	
-	while( $m = mysql_fetch_assoc( $result ) )
+	while( $m = mysqli_fetch_assoc( $result ) )
 	{
 		$m['href'] = "index.php?app=mat_list&listtype=mat_list&list=" . $m['id'];
 		$mat_lists[] = $m;
@@ -66,9 +66,9 @@
 						ORDER BY
 							mat_event.event_id";
 			
-			$result = mysql_query( $query );
+			$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 			
-			while( $list_entry = mysql_fetch_assoc( $result ) )
+			while( $list_entry = mysqli_fetch_assoc( $result ) )
 			{
 				$list_entries[] = $list_entry;
 			}
@@ -83,9 +83,9 @@
 							event.camp_id = $_camp->id AND
 							event.id = mat_event.event_id AND
 							mat_event.mat_list_id = $list_id";
-			$result = mysql_query( $query );
+			$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 			
-			while( $list_entry = mysql_fetch_assoc( $result ) )
+			while( $list_entry = mysqli_fetch_assoc( $result ) )
 			{
 				$list_entries[] = $list_entry;
 			}
