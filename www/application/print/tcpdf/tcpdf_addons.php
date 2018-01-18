@@ -18,8 +18,9 @@
 				$this->SetXY( 10, 4 );		$this->drawTextBox( $print_data->camp->slogan, $w - 20, 4, 'C', 'T', 0 );
 				$this->SetXY( 10, 4 );		$this->drawTextBox( $print_data->camp->group_name, $w - 20, 4, 'L', 'T', 0 );
 				$this->SetXY( 10, 4 );		$this->drawTextBox( $print_data->camp->name, $w - 20, 4, 'R', 'T', 0 );
+				$this->SetXY( 10, 7 );		$this->drawTextBox( $print_data->camp->ca_name . ", " . $print_data->camp->ca_zipcode . " " . $print_data->camp->ca_city, $w - 20, 4, 'C', 'T', 0 );
 				$this->SetXY( 10, 7 );		$this->drawTextBox( $first_day->getString( 'd.m.Y' ) . " - " . $last_day->getString( 'd.m.Y' ), $w - 20, 4, 'L', 'T', 0 );
-				$this->SetXY( 10, 7 );		$this->drawTextBox( $print_data->camp->ca_city, $w - 20, 4, 'R', 'T', 0 );
+				//$this->SetXY( 10, 7 );		$this->drawTextBox( $print_data->camp->ca_city, $w - 20, 4, 'R', 'T', 0 );
 				
 				$this->Line( 10, 10.5, $w - 10, 10.5 );
 				
