@@ -71,7 +71,10 @@
 								</td>
 							</tr>
 							<tr>
-                            	<td align="left">Kurzer Anzeigenamen:</td>
+								<td align="left">
+									<span tal:condition="not: camp/is_course">Kurzer Anzeigenamen:</span>
+									<span tal:condition="camp/is_course">Kursnummer:</span>
+								</td>
 								<td align="left">
 									<input type="text" name="value" id="camp_short_name" style="width: 100%" tal:attributes="value camp_info/short_name/value" />
 								</td>
