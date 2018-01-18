@@ -39,6 +39,7 @@
 		public $jsedu;
 		public $pbsedu;
 		public $image;
+		public $funct;
 		
 		
 		function print_data_user_class( $data, $pid )
@@ -60,6 +61,7 @@
 			$this->jsedu 		= $data['jsedu'];
 			$this->pbsedu 		= $data['pbsedu'];
 			$this->image 		= $data['image'];
+			$this->funct 		= $data['funct'];
 		}
 		
 		function get_name()
