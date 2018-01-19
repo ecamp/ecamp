@@ -16,11 +16,15 @@
 				$last_day = new c_date();		$last_day->setDay2000( $print_data->camp->last_day );
 				
 				$main_leader = "";
+				$main_leaders = array();
 				for ($i=0; $i<count($print_data->user); ++$i) {
 					$leader = $print_data->user[$i];
 					if (($print_data->camp->is_course && $leader->funct == "Kursleiter") || (!$print_data->camp->is_course && $leader->funct == "Lagerleiter")) {
-						$main_leader = "Hauptleitung: " . $leader->firstname . " " . $leader->surname;
+						$main_leaders[] = $leader->firstname . " " . $leader->surname;
 					}
+				}
+				if (count($main_leaders) > 0) {
+					$main_leaders = "Hauptleitung: " . implode(", ", $main_leaders);
 				}
 				
 				$w = $this->getPageWidth();
