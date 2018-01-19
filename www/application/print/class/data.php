@@ -60,7 +60,7 @@
 		
 		function load_content()
 		{
-			$query = "SELECT user.*, dropdown.entry as funct FROM user, user_camp, dropdown WHERE user.id = user_camp.user_id AND user_camp.camp_id = " . $this->camp_id . " AND user_camp.function_id = dropdown.item_nr";
+			$query = "SELECT user.*, dropdown.entry as funct FROM user, user_camp, dropdown WHERE user.id = user_camp.user_id AND user_camp.camp_id = " . $this->camp_id . " AND user_camp.function_id = dropdown.id";
 			$result = mysql_query( $query );
 			while( $user = mysql_fetch_assoc( $result ) ){	$this->user[ $user['id'] ] = new print_data_user_class( $user, $this );	}
 			
