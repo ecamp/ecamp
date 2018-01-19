@@ -77,7 +77,7 @@
 				<tr>
 					<td>
 						<span tal:condition="not: course">Kurze Bezeichnung:</span>
-						<span tal:condition="course">Kurze Bezeichnung (z.B. Kurs-Nr.):</span>
+						<span tal:condition="course">Kursnummer:</span>
 					</td>
 					<td><input type="text" name="camp_short_name" id="camp_short_name" maxlength="15" style="width:170px"/></td>
 				</tr>
