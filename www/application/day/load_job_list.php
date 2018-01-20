@@ -17,7 +17,6 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 	
 	$job_list = array();
 	
@@ -35,12 +34,11 @@
 					dropdown.entry != 'Support' AND
 					user.id = user_camp.user_id AND
 					user_camp.camp_id = $_camp->id";
-	$result = mysql_query( $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	
-	while( $user = mysql_fetch_assoc( $result ) )
+	while( $user = mysqli_fetch_assoc( $result ) )
 	{	$job_list['users'][ $user['id'] ] = $user;	}
-	
-	
+
 	$query = "	SELECT
 					job.id,
 					job.job_name,
@@ -65,9 +63,7 @@
 					user_camp.id = job_day.user_camp_id 
 				WHERE
 					job.camp_id = $_camp->id";
-	$result = mysql_query( $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	
-	while( $job = mysql_fetch_assoc( $result ) )
+	while( $job = mysqli_fetch_assoc( $result ) )
 	{	$job_list['jobs'][ $job['id'] ] = $job;	}
-	
-?>

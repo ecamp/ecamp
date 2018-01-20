@@ -18,28 +18,21 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	
 	$_page->html = new PHPTAL('template/application/event/home.tpl');
-	
-	
-	
+
 	$observer = 		file_get_contents( "public/global/js/observer.js" );
 	$autocompleter = 	file_get_contents( "public/global/js/autocompleter.js" );
 	
 	$_page->html->set( 'observer', 		$observer );
 	$_page->html->set( 'autocompleter', $autocompleter );
-	
-	
-	
-	
-	$event_id = mysql_real_escape_string($_REQUEST[event_id]);
+
+	$event_id = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['event_id']);
 	$_camp->event( $event_id ) || die( "error" );
 	
 	$_page->html->set( 'event_id', $event_id );
 	
 //	NAME:
 // =======
-
 	$query = "	SELECT
 					event.name,
 					event.place,
@@ -52,8 +45,8 @@
 				WHERE
 					event.id = $event_id AND
 					event.category_id = category.id";
-	$result = mysql_query($query);
-	$row = mysql_fetch_assoc($result);
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+	$row = mysqli_fetch_assoc($result);
 	
 	if( $row['short_name'] != "" )
 	{	$_page->html->set( 'category_short', $row['short_name'] . ":" );	}
@@ -69,7 +62,6 @@
 
 //	HEADER:
 // =========
-	
 	$query = "	SELECT
 					user.scoutname,
 					user.firstname,
@@ -81,24 +73,24 @@
 					event_responsible.event_id = $event_id AND
 					event_responsible.user_id = user.id ";
 	
-	$result = mysql_query($query);
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
 	$users = array();
 	$dp_header = array( "users" => $users );
 	
-	while($row = mysql_fetch_assoc($result))
+	while($row = mysqli_fetch_assoc($result))
 	{
-		if(!empty($row[scoutname]))
-		{	array_push( $dp_header['users'], $row[scoutname] );	}
+		if(!empty($row['scoutname']))
+		{	array_push( $dp_header['users'], $row['scoutname'] );	}
 		else
-		{	array_push( $dp_header['users'], $row[firstname] . " " . $row[surname] );	}
+		{	array_push( $dp_header['users'], $row['firstname'] . " " . $row['surname'] );	}
 	}
 	
 	$dp_header['place'] =  array(
-									"value" 	=> $event_place,
-									"event_id" 	=> $event_id,
-									"script"	=> "action_change_place"
-								);
+		"value" 	=> $event_place,
+		"event_id" 	=> $event_id,
+		"script"	=> "action_change_place"
+	);
 	
 	$query = "	SELECT
 					event_instance.starttime,
@@ -118,16 +110,14 @@
 					day.subcamp_id = subcamp.id
 				ORDER BY
 					startdate, event_nr";
-	$result = mysql_query( $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	
 	$date 	= new c_date;
 	$start 	= new c_time;
 	$end 	= new c_time;
 	$dp_header['event_instance'] = array();
-	
-	
-	
-	$row = mysql_fetch_assoc( $result );
+
+	$row = mysqli_fetch_assoc( $result );
 	$_page->html->set( 'event_nr', "(" . $row['day_nr'] . "." . $row['event_nr'] . ")");
 	
 	do 
@@ -137,21 +127,19 @@
 		$end->setValue($row['starttime'] + $row['length']);
 		
 		$dp_header['event_instance'][] = array(
-												'event_nr'	=> "(" . $row['day_nr'] . "." . $row['event_nr'] . ")",
-												'startdate' => date("d.m.Y", $date->getUnix()),
-												'starttime' => $start->getString("H:i") . " - " . $end->getString("H:i")
+			'event_nr'	=> "(" . $row['day_nr'] . "." . $row['event_nr'] . ")",
+			'startdate' => date("d.m.Y", $date->getUnix()),
+			'starttime' => $start->getString("H:i") . " - " . $end->getString("H:i")
 											);
-	} while($row = mysql_fetch_assoc( $result ) );
+	} while($row = mysqli_fetch_assoc( $result ) );
 	
 	$_page->html->set( 'dp_header', $dp_header );
 	
 	//echo "dp_header=>";
 	//print_r( $dp_header );
-	
-	
+
 //	HEAD:
 // =======
-	
 	$dp_head_show = array();
 	$query = "	SELECT
 					dropdown.value as form,
@@ -164,13 +152,12 @@
 					event.id = $event_id AND
 					event.category_id = category.id AND
 					dropdown.list = 'form'";
-	$result = mysql_query($query);
-	while( $row = mysql_fetch_assoc( $result ) )
-	{	$dp_head_show[ $row[form] ] = $row[show_form];	}
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+	while( $row = mysqli_fetch_assoc( $result ) )
+	{	$dp_head_show[ $row['form'] ] = $row['show_form'];	}
 	
 	$_page->html->set( 'dp_head_show', $dp_head_show );
-	
-	
+
 	$query = "	SELECT
 					event.aim as aim,
 					event.story as story,
@@ -181,44 +168,37 @@
 					event
 				WHERE
 					event.id = $event_id";
-	$result = mysql_query($query);
-	$replace = mysql_fetch_assoc($result);
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+	$replace = mysqli_fetch_assoc($result);
 	
 	$dp_head = array();
 	
 	$dp_head['aim'] = array(
-								"value" => $replace['aim'],
-								"script"	=> "action_change_aim",
-								"event_id"	=> $event_id
-							);
+		"value" => $replace['aim'],
+		"script"	=> "action_change_aim",
+		"event_id"	=> $event_id
+	);
 	$dp_head['story'] = array(
-								"value" => $replace['story'],
-								"script"	=> "action_change_story",
-								"event_id"	=>	$event_id
-							);
+		"value" => $replace['story'],
+		"script"	=> "action_change_story",
+		"event_id"	=>	$event_id
+	);
 	$dp_head['method'] = array(
-								"value" => $replace['method'],
-								"script"	=> "action_change_method",
-								"event_id"	=>	$event_id
-							);
-							
+		"value" => $replace['method'],
+		"script"	=> "action_change_method",
+		"event_id"	=>	$event_id
+	);
 	
 	$dp_head['topics'] = array(
-								"value" => $replace['topics'],
-								"script"	=> "action_change_topics",
-								"event_id"	=>	$event_id
-							);
-	
+		"value" => $replace['topics'],
+		"script"	=> "action_change_topics",
+		"event_id"	=>	$event_id
+	);
 							
 	$_page->html->set( 'dp_head', $dp_head );	
 
-	
-	
-	
-	
 	// 	LOAD:
 	// =======
-	
 	include( "load_ablauf.php" );
 	include( "load_mat.php" );
 	include( "load_siko.php" );
@@ -231,8 +211,5 @@
 	include( "load_mat_list.php" );
 	include( "load_leader.php" );
 	include( "load_mat_organize_resp.php" );
-	
-	
+
 	//$_js_env->add( 'event_id', $event_id );
-	
-?>

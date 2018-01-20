@@ -18,8 +18,7 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	
-	require_once $GLOBALS[pear_dir]."Spreadsheet/Excel/Writer.php";
+	require_once $GLOBALS['pear_dir']."Spreadsheet/Excel/Writer.php";
 	
 	// load data
 	$query = "SELECT CONCAT('(',v.day_nr,'.' ,v.event_nr,') ', e.name) AS name, 
@@ -47,7 +46,7 @@
 			ORDER BY v.day_nr, v.event_nr";
 			//echo $query;
 			//die( $query );
-	$result = mysql_query( $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	
 	//
 	$query = "SELECT d.entry FROM camp, dropdown d
@@ -55,8 +54,8 @@
 					camp.type = d.value 
 					AND camp.id = $_camp->id
 					AND d.list='coursetype'";
-	$result2 = mysql_query($query);
-	$course_type = mysql_fetch_assoc($result2);
+	$result2 = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+	$course_type = mysqli_fetch_assoc($result2);
 	
 	// Creating a workbook
 	$workbook = new Spreadsheet_Excel_Writer();
@@ -69,25 +68,40 @@
 	$worksheet =& $workbook->addWorksheet(utf8_decode("Blockuebersicht"));
   $worksheet->setInputEncoding ("UTF-8");
 	
-  $format_content = & $workbook->addFormat(array( "Size" => 8,
-													"Align" => "left",
-													"Border" => 1,
-													"vAlign" => "top"));
+  $format_content = & $workbook->addFormat(
+  	    array( "Size" => 8,
+	        "Align" => "left",
+	        "Border" => 1,
+	        "vAlign" => "top"
+        )
+  );
 	
-	$format_content_unboxed = & $workbook->addFormat(array( "Size" => 8,
-													"Align" => "left",
-													"Border" => 0,
-													"vAlign" => "top"));
+	$format_content_unboxed = & $workbook->addFormat(
+		array(
+			"Size" => 8,
+			"Align" => "left",
+			"Border" => 0,
+			"vAlign" => "top"
+		)
+	);
 	
-	$format_header  = & $workbook->addFormat(array( "Size" => 10,
-													"Bold" => 1,
-													"Align" => "left",
-													"Border" => 1,
-													"vAlign" => "top"));
+	$format_header  = & $workbook->addFormat(
+		array(
+			"Size" => 10,
+			"Bold" => 1,
+			"Align" => "left",
+			"Border" => 1,
+			"vAlign" => "top"
+		)
+	);
 	
-	$format_title  = & $workbook->addFormat(array( "Size" => 16,
-													"Bold" => 1,
-													"vAlign" => "top"));
+	$format_title  = & $workbook->addFormat(
+		array(
+			"Size" => 16,
+			"Bold" => 1,
+			"vAlign" => "top"
+		)
+	);
 	
 	$format_title->setFontFamily("Arial");
 	
@@ -106,7 +120,7 @@
 	
 	$worksheet->hideGridlines();
 	
-	$worksheet->setHeader("&L&8".$_camp->short_name." &C &R&8 ".$course_type[entry],"0.4"); 
+	$worksheet->setHeader("&L&8".$_camp->short_name." &C &R&8 ".$course_type['entry'],"0.4");
 	$worksheet->setFooter("&C&8&P/&N","0.4"); 
 
 	// Column width
@@ -128,14 +142,13 @@
 	$worksheet->write($row, 3, "Blockziele",$format_header);
 	$worksheet->write($row, 4, "Inhalte",$format_header);
 	
-	while( $this_event = mysql_fetch_assoc($result) )
+	while( $this_event = mysqli_fetch_assoc($result) )
 	{
 		$row++;
 		
 		///////////////////////
 		// load additional data
 		///////////////////////
-		
 		// Checkliste
 		$query = "SELECT 
 		  cc.short
@@ -145,16 +158,15 @@
 		  AND ec.event_id=$this_event[id]
 		ORDER BY cc.short_1, cc.short_2";
 		//echo $query;
-		$result2 = mysql_query( $query );
+		$result2 = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 		
 		$checklist_str = "";
-		while( $this_checklist_item = mysql_fetch_assoc($result2) )
+		while( $this_checklist_item = mysqli_fetch_assoc($result2) )
 		{
-			$checklist_str = $checklist_str . $this_checklist_item[short] . ", ";
+			$checklist_str = $checklist_str . $this_checklist_item['short'] . ", ";
 		}
 		$checklist_str = "[".substr($checklist_str,0,strlen($checklist_str)-2)."]";
-		
-		
+
 		// Ausbildungsziele
 		$query = "SELECT 
 		  ca.aim
@@ -164,33 +176,32 @@
 		  AND ea.event_id=$this_event[id]
 		ORDER BY ea.id";
 		//echo $query;
-		$result2 = mysql_query( $query );
+		$result2 = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 		
 		$aim_str = "";
-		while( $this_aim = mysql_fetch_assoc($result2) )
+		while( $this_aim = mysqli_fetch_assoc($result2) )
 		{
-			$aim_str = $aim_str . "- ".$this_aim[aim] . "\n";
+			$aim_str = $aim_str . "- ".$this_aim['aim'] . "\n";
 		}
 		
 		///////////////////////
 		// format output
 		///////////////////////
-		
 		// name
-		$worksheet->write($row, 0, $this_event[name]." ".$checklist_str, $format_content);
+		$worksheet->write($row, 0, $this_event['name']." ".$checklist_str, $format_content);
 		//echo $this_event[name]." ".$checklist_str."   ";
 		
 		// date
 		$start = new c_time();
-		$start->setValue($this_event[start]);
+		$start->setValue($this_event['start']);
 		
 		$end = new c_time();
-		$end->setValue($this_event[end]);
+		$end->setValue($this_event['end']);
 		
 		$date = new c_date();
-		$date->setDay2000($this_event[day]);
+		$date->setDay2000($this_event['day']);
 		
-		$this_date = $GLOBALS[en_to_de][$date->getString("D")].", ".$date->getString("j.n.").", ".$start->getString("G:i")."-".$end->getString("G:i");//"Fr, 5.10., 17:15-18:00";
+		$this_date = $GLOBALS['en_to_de'][$date->getString("D")].", ".$date->getString("j.n.").", ".$start->getString("G:i")."-".$end->getString("G:i");//"Fr, 5.10., 17:15-18:00";
 		$worksheet->write($row, 1, $this_date, $format_content);
 		//echo $this_date."   ";	
 		
@@ -199,17 +210,15 @@
 		//echo $aim_str."   ";
 		
 		// event-aim
-		$worksheet->write($row, 3, $this_event[aim], $format_content);
+		$worksheet->write($row, 3, $this_event['aim'], $format_content);
 		//echo $this_event[aim]."   ";
 		
 		// topics
-		$worksheet->write($row, 4, $this_event[topics], $format_content);
+		$worksheet->write($row, 4, $this_event['topics'], $format_content);
 		//echo $this_event[topics]."   ";
-			
 		//echo "\n";
 	}
 		
 	// Let's send the file
 	$workbook->close();
 	die();
-?>

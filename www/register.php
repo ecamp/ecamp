@@ -18,17 +18,14 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 	include("./config.php");
 	include($lib_dir . "/functions/error.php");
 	require_once("./lib/PHPTAL.php");
 	
 	require_once( "./lib/recaptchalib.php" );
-	
-	
-	
-	if( $_SESSION[skin] == "" ) $_SESSION[skin] = $GLOBALS[skin];
-	$html = new PHPTAL("public/skin/".$_SESSION[skin]."/register.tpl");
+
+	if( $_SESSION['skin'] == "" ) $_SESSION['skin'] = $GLOBALS['skin'];
+	$html = new PHPTAL("public/skin/".$_SESSION['skin']."/register.tpl");
 	
 	$html->setEncoding('UTF-8');
 	
@@ -37,13 +34,9 @@
 	if( isset( $_REQUEST[ 'msg' ] ) )
 	{
 		$html->set( 'SHOW_MSG', true );
-		$html->set( 'MSG', mysql_escape_string( $_REQUEST[ 'msg' ] ) );
+		$html->set( 'MSG', ((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST[ 'msg' ] ) : ((trigger_error("[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.", E_USER_ERROR)) ? "" : "")) );
 	}
 	
-	$html->set( 'captcha' ,recaptcha_get_html( $GLOBALS[captcha_pub], null, true ) );
-
+	$html->set( 'captcha' ,recaptcha_get_html( $GLOBALS['captcha_pub'], null, true ) );
 	
 	echo $html->execute();
-	
-	
-?>

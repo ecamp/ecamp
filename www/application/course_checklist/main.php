@@ -18,7 +18,7 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	$_page->html->set('main_macro', $GLOBALS[tpl_dir].'/application/course_checklist/border.tpl/border');
+	$_page->html->set('main_macro', $GLOBALS['tpl_dir'].'/application/course_checklist/border.tpl/border');
 		
     ////////////////////////////
 	// Todo: Kurstyp von den Einstellungen lsen
@@ -29,7 +29,7 @@
 	/* alle Events des Camps laden */
 	// Events suchen, die die Chechliste erfüllen
 	$campevents = array();
-	mysql_query("SET SESSION group_concat_max_len = 512");
+	mysqli_query($GLOBALS["___mysqli_ston"], "SET SESSION group_concat_max_len = 512");
 	$query =   	"SELECT
 								  i.id AS instance,
 								  e.id,
@@ -55,8 +55,8 @@
 								AND e.category_id = c.id
 								ORDER BY v.day_nr, v.event_nr";
 	
-	$result = mysql_query($query);
-	while( $this_event = @mysql_fetch_assoc($result) )
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+	while( $this_event = @mysqli_fetch_assoc($result) )
 	{
 		$campevents[$this_event['instance']] = $this_event;
 	}
@@ -66,15 +66,15 @@
 	{
 		$list[$i] = array();
 		$query = "SELECT * FROM course_checklist WHERE course_type=$type AND checklist_type=$i AND IsNull(pid) ORDER BY short_1";
-		$result1 = mysql_query( $query );
+		$result1 = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 		
-		while( $this_level1 = @mysql_fetch_assoc($result1) )
+		while( $this_level1 = @mysqli_fetch_assoc($result1) )
 		{
 			$query = "SELECT * FROM course_checklist WHERE pid=".$this_level1[id]." ORDER BY short_2";
-			$result2 = mysql_query( $query );
+			$result2 = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 			$level2 = array();
 			
-			while( $this_level2 = @mysql_fetch_assoc($result2) )
+			while( $this_level2 = @mysqli_fetch_assoc($result2) )
 			{
 				// Events suchen, die die Checkliste erfüllen
 				$events = array();
@@ -91,24 +91,24 @@
 							AND i.event_id = e.id
 							ORDER BY i.day_id, i.starttime";
 					
-				$result3 = mysql_query($query);
+				$result3 = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 				$no_events = true;
-				while( $this_level3_instance = @mysql_fetch_assoc($result3) )
+				while( $this_level3_instance = @mysqli_fetch_assoc($result3) )
 				{
 					$this_level3 = $campevents[$this_level3_instance["id"]];
 					
 					$no_events = false;
 					
 					$start = new c_time();
-					$start->setValue($this_level3[start]);
+					$start->setValue($this_level3['start']);
 					
 					$end = new c_time();
-					$end->setValue($this_level3[end]);
+					$end->setValue($this_level3['end']);
 					
 					$date = new c_date();
-					$date->setDay2000($this_level3[day]);
+					$date->setDay2000($this_level3['day']);
 					
-					$this_level3[date] = $GLOBALS[en_to_de][$date->getString("D")].", ".$date->getString("j.n.")." ".$start->getString("G:i")."-".$end->getString("G:i");//"Fr, 5.10. 17:15-18:00";
+					$this_level3[date] = $GLOBALS['en_to_de'][$date->getString("D")].", ".$date->getString("j.n.")." ".$start->getString("G:i")."-".$end->getString("G:i");//"Fr, 5.10. 17:15-18:00";
 					
 					if( $this_level3['short_name'] )
 					{	$this_level3['short_name'] .= ": ";	}
@@ -116,10 +116,10 @@
 					$events[] = $this_level3;
 				}
 				
-				$level2[] = array("short" => $this_level2[short], "name" => $this_level2[name], "no_events" => $no_events, "events" => $events);
+				$level2[] = array("short" => $this_level2['short'], "name" => $this_level2['name'], "no_events" => $no_events, "events" => $events);
 			}
 			
-			$list[$i][] = array("level2" => $level2, "short" => $this_level1[short], "name" => $this_level1[name] );
+			$list[$i][] = array("level2" => $level2, "short" => $this_level1['short'], "name" => $this_level1['name'] );
 		}
 	}
 	
@@ -132,4 +132,3 @@
 		$_page->html->set("new_checklist", 1);
 	else
 		$_page->html->set("new_checklist", 0);
-?>

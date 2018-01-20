@@ -18,31 +18,26 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	
-	$_page->html->set('main_macro', $GLOBALS[tpl_dir].'/global/content_box_fit.tpl/predefine');
-	$_page->html->set('box_content', $GLOBALS[tpl_dir].'/application/home/taken.tpl/taken');
+	$_page->html->set('main_macro', $GLOBALS['tpl_dir'].'/global/content_box_fit.tpl/predefine');
+	$_page->html->set('box_content', $GLOBALS['tpl_dir'].'/application/home/taken.tpl/taken');
 	$_page->html->set('box_title', 'Danke!');
-	
-	
-	
-	
-	$feedback 	= utf8_decode(mysql_real_escape_string($_REQUEST['feedback']));
+
+	$feedback 	= utf8_decode(mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['feedback']));
 	$feedback = preg_replace("/\\\\n/","\n",$feedback);
 	
-	$type = mysql_real_escape_string($_REQUEST[type]);
+	$type = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['type']);
 	
 	$mail = $_user->mail;
 	$name = $_user->display_name . " [" . $_user->id . "]";
-	
-	
+
 	$query = "INSERT INTO feedback (`name` ,`mail` ,`feedback`, `time`)
 							VALUES ('$name', '$mail', '$feedback', NOW( ) )";
 	
 	//echo $query;
 	
-	mysql_query($query);
+	mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
-	$mailto = $GLOBALS[feedback_mail];
+	$mailto = $GLOBALS['feedback_mail'];
 	
 	$headers = "From: ".$name." <".$mail.">";
 	$feedback = preg_replace("/\\\\r/","",$feedback);
@@ -53,9 +48,7 @@
 	else if( $type == "help" )
 		ecamp_send_mail($mailto, "Supportanfrage von: " . $name, $feedback);
 		// mail($mailto, "Supportanfrage von: " . $name, $feedback, $headers);
-	
-	
-	
+
 	$_page->html->set( 'feedback', 	( $type == "feedback" ) );
 	$_page->html->set( 'help', 		( $type == "help" ) );
 	
@@ -68,7 +61,4 @@
     echo $xml;
     */
     
-    
-    
 	//die();
-?>

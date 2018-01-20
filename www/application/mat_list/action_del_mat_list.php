@@ -18,20 +18,17 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	$mat_list_id = mysql_real_escape_string( $_REQUEST['mat_list_id'] );
+	$mat_list_id = mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['mat_list_id'] );
 	
 	$_camp->mat_list( $mat_list_id ) || die( "error" );
 	
-	
 	$query = "DELETE FROM mat_list WHERE id = $mat_list_id";
-	mysql_query( $query );
+	mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	
-	if( mysql_error() )
+	if( mysqli_error($GLOBALS["___mysqli_ston"]) )
 	{	$ans = array( "error" => true, "error_msg" => "Diese Einkaufsliste kann nicht gelöscht werden");	}
 	else
 	{	$ans = array( "error" => false );	}
 	
 	echo json_encode( $ans );
 	die();
-	
-?>

@@ -24,18 +24,17 @@
 	$file_type['application/pdf'] = 'icon_pdf.png';
 	$file_type['application/msword'] = 'icon_doc.png';
 	$file_type['application/vnd.ms-excel'] = 'icon_xls.png';
-	
-	
+
 	$query = "	SELECT
 					*
 				FROM
 					event_document
 				WHERE
 					event_id = $event_id";
-	$result = mysql_query( $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	
 	$documents = array();
-	while( $document = mysql_fetch_assoc( $result ) )
+	while( $document = mysqli_fetch_assoc( $result ) )
 	{
 		if( $file_type[$document['type']] )
 		{	$document['type_img_src'] = "public/global/img/" . $file_type[$document['type']];	}
@@ -46,11 +45,7 @@
 		
 		$documents[] = $document;
 	}
-	
-	
-	
+
 	$_page->html->set( 'documents', $documents );
 	
 	//print_r( $documents );
-	
-?>
