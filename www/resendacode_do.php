@@ -52,14 +52,71 @@
 	
 	//	SEND MAIL FOR ACTIVATION:
 	// ===========================
- 	$text = "eCamp - Willkommen \n\n
-Um dich bie eCamp einloggen zu können, musst du deinen Account aktivieren.
-Zu diesem Zweck musst du nachfolgendem Link folgen:
-\n\n
-" . $GLOBALS['base_uri'] . "activate.php?user_id=$user_id&login=$login&acode=$acode
-\n\n
- ";
- 	
+$text = <<<___MAILBODY
+<table width="100%">
+    <tbody>
+		<tr>
+			<td align="center">
+				<table border="0" width="550">
+					<tbody>
+						<tr>
+							<td valign="top" align="left" width="200"><h1>eCamp v2</h1></td>
+							<td valign="top" align="rigth" width="200"><img alt="eCamp v2" src="https://ecamps.ch/logo.gif"></td>
+						</tr>
+					</tbody>
+				</table>
+				<br />
+				<table width="550" cellpadding="0" cellspacing="0" border="0">
+					<tbody>
+						<tr>
+							<td width="15"></td>
+							<td align="left" width="535">
+								<table width="507" cellpadding="0" cellspacing="0" border="0">
+									<tbody>
+										<tr>
+											<td>
+												<p style="padding-left: 5px;">
+													eCamp - Willkommen
+													<br />
+													Um dich bei eCamp einloggen zu können, musst du deinen Account aktivieren.
+													Zu diesem Zweck musst du nachfolgendem Link folgen:
+													<br />
+													<br />
+													<a href="$GLOBALS[base_uri]activate.php?user_id=$user_id&login=$login&acode=$acode">$GLOBALS[base_uri]activate.php?user_id=$user_id&login=$login&acode=$acode</a>
+												</p>
+
+												<br />
+												<br />
+												<br />
+												<br />
+
+												<table style="padding-left: 5px; color: #888888;" width="507" cellpadding="5" cellspacing="0" border="0">
+													<tbody>
+														<tr>
+															<td style="border-top: 1px dashed #888888; border-bottom: 1px dashed #888888;">
+																<b>Hinweis:</b>
+																<br />
+																Diese Mail wurde durch den Mailbot von <a href="https://www.ecamps.ch/">ecamps.ch</a> versendet.
+																<br />
+																Antworten Sie nicht auf diese Mail. Die Nachrichten werden vom Server abgelehnt.
+															</td>
+														</tr>
+													</tbody>
+												</table>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+	</tbody>
+</table>
+___MAILBODY;
+
  	ecamp_send_mail($login, "eCamp - Willkommen", $text);
 	//mail( $login, "eCamp - Willkommen", $text, "From: eCamp Pfadi Luzern <ecamp@pfadiluzern.ch>" );
 	

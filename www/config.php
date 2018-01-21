@@ -33,7 +33,7 @@
 	$GLOBALS['template_module_dir'] = "./template/module";
 
 	// Layout wählen
-	$GLOBALS['skin'] = "skin4";
+	$GLOBALS['skin'] = "skin3";
 
 	$GLOBALS['tpl_dir'] = "../../../template";
 
