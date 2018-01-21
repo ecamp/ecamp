@@ -18,36 +18,33 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	
-	$event_id = mysql_real_escape_string( $_REQUEST[ 'event_id' ] );
+	$event_id = mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST[ 'event_id' ] );
 	$aim = $_REQUEST[ 'aim' ];
 	
 	$_camp->event( $event_id ) || die( "error" );
-	
-	
+
 	foreach( $aim as $aim_id => $checked )
 	{
-		$aim_id = mysql_real_escape_string( $aim_id );
+		$aim_id = mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $aim_id );
 		
 		if( $checked == "true" )
 		{
 			$query = " 	SELECT * FROM event_aim WHERE event_id = $event_id AND aim_id = $aim_id";
-			$result = mysql_query( $query );
+			$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 			
-			if( !mysql_num_rows( $result ) )
+			if( !mysqli_num_rows( $result ) )
 			{
 				$query = "	INSERT INTO event_aim ( `event_id`, `aim_id` ) VALUES ( '$event_id', '$aim_id' )";
-				mysql_query( $query );
+				mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 			}
 		}
 		else
 		{
 			$query = "	DELETE FROM event_aim WHERE event_id = $event_id AND aim_id = $aim_id";
-			mysql_query( $query );
+			mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 		}
 	}
 	
 	echo json_encode( array( "error" => false ) );
 	
 	die();
-?>

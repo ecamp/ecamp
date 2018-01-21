@@ -18,13 +18,11 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	
-		$article = mysql_real_escape_string( $_REQUEST['article'] );
-		$quantity = mysql_real_escape_string( $_REQUEST['quantity'] );
-		$event_id = mysql_real_escape_string( $_REQUEST['event_id'] );
+		$article = mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['article'] );
+		$quantity = mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['quantity'] );
+		$event_id = mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['event_id'] );
 		
 		$_camp->event( $event_id ) || die( "error" );
-		
 		
 		$query = "	SELECT
 						id
@@ -51,17 +49,12 @@
 					) as mat
 					WHERE
 						mat.name = '$article'";
-		$result = mysql_query( $query );
+		$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 		
-		if( mysql_num_rows( $result ) )
-		{	$id = mysql_result( $result, 0, 'id' );	}
+		if( mysqli_num_rows( $result ) )
+		{	$id = mysqli_result( $result,  0,  'id' );	}
 		else
 		{	$id = "NULL";	}
-		
-		
-		
-		
-		
 		
 		$query = "	SELECT
 						*
@@ -71,19 +64,15 @@
 						event_id = $event_id AND
 						mat_article_id = $id AND
 						article_name = '$article'";
-		$result = mysql_query( $query );
+		$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 		
-		if( mysql_num_rows($result) )
+		if( mysqli_num_rows($result) )
 		{
-			$mode = mysql_real_escape_string( $_REQUEST['mode'] );
+			$mode = mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['mode'] );
 			if( $mode == "concat" )
-			{
-			
-			}
+			{}
 			elseif( $mode == "seperate" )
-			{
-			
-			}
+			{}
 			elseif( !isset( $mode ) || $mode == "" )
 			{
 				$ans = array( "ans" => "aks_concat_seperate" );
@@ -107,7 +96,7 @@
 							'$article', 
 							$quantity
 						)";
-			mysql_query( $query );
+			mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 			
 			
 			$ans = array( "ans" => "saved" );
@@ -115,4 +104,3 @@
 		}
 
 	die();
-?>

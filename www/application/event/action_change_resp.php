@@ -18,18 +18,17 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	$event_id = mysql_real_escape_string( $_REQUEST['event_id'] );
+	$event_id = mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['event_id'] );
 	$resp_user = $_REQUEST['resp_user'];
 	
 	$_camp->event( $event_id ) || die( "error" );
-	
 	
 	$ans = array( 'value' => array() );
 	
 	foreach( $resp_user as $user_id => $is_resp )
 	{
-		$user_id = mysql_real_escape_string( $user_id );
-		$is_resp = mysql_real_escape_string( $is_resp );
+		$user_id = mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $user_id );
+		$is_resp = mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $is_resp );
 				
 		$query = "	SELECT
 						*
@@ -38,40 +37,38 @@
 					WHERE
 						user_id = $user_id AND
 						event_id  = $event_id";
-		$result = mysql_query( $query );
+		$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 		
-		if( mysql_num_rows( $result ) > 0 && $is_resp == 'false' )
+		if( mysqli_num_rows( $result ) > 0 && $is_resp == 'false' )
 		{
 			$query = "	DELETE FROM event_responsible
 						WHERE user_id = $user_id AND event_id = $event_id";
-			mysql_query( $query );
+			mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 			
 			$query = "	UPDATE event 
 						SET t_edited = CURRENT_TIMESTAMP
 						WHERE id = $event_id";
-			mysql_query( $query );
+			mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 		}
 		
-		if( mysql_num_rows( $result ) == 0 && $is_resp == 'true' )
+		if( mysqli_num_rows( $result ) == 0 && $is_resp == 'true' )
 		{
 			$query = "	INSERT INTO event_responsible	(	`user_id`, `event_id`	)
 						VALUES 							(	$user_id,	$event_id	)";
-			mysql_query( $query );
+			mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 			
 			$query = "	UPDATE event 
 						SET t_edited = CURRENT_TIMESTAMP
 						WHERE id = $event_id";
-			mysql_query( $query );
-			
-			
+			mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 			
 			$query = "SELECT * FROM event WHERE id = $event_id";
-			$result = mysql_query( $query );
-			$event = mysql_fetch_assoc( $result );
+			$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+			$event = mysqli_fetch_assoc( $result );
 			
 			$query = "SELECT active FROM user_camp WHERE camp_id = $_camp->id AND user_id = $user_id";
-			$result = mysql_query( $query );
-			$active = mysql_result( $result, 0, 'active' );
+			$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+			$active = mysqli_result( $result,  0,  'active' );
 			
 			if( $user_id != $_user->id && $active )
 			{
@@ -83,16 +80,13 @@
 			
 		}
 		
-		if( mysql_error() )
+		if( mysqli_error($GLOBALS["___mysqli_ston"]) )
 		{	/* error */	}
-	
 		
 		$ans['value'][] = array( 'value' => $user_id, 'selected' => ( $is_resp == 'true' ) );
 	}
-	
 	
 	$ans['error'] = false;
 	echo json_encode( $ans );
 	die();
 	
-?>

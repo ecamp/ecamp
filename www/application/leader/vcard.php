@@ -42,7 +42,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 ***************************************************************************/
 
-
 function encode($string) {
 	return escape(quoted_printable_encode($string));
 }
@@ -175,7 +174,6 @@ class vCard {
 	}
 }
 
-
 //  USAGE EXAMPLE
 /*
 $v = new vCard();
@@ -199,11 +197,9 @@ Header("Content-Type: text/x-vCard; name=$filename");
 echo $output;
 ?>
 */
-
 	$user_id = $_REQUEST['user_id'];
-	$user_id = mysql_real_escape_string( $user_id );
-	
-	
+	$user_id = mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $user_id );
+
 	$query = "	SELECT
 					user.homenr,
 					user.mobilnr,
@@ -227,22 +223,22 @@ echo $output;
 					user.id = user_camp.user_id AND
 					user_camp.camp_id = my_user_camp.camp_id";
 	
-	$result = mysql_query($query);
-	if( mysql_num_rows($result) < 1 )	{	die("no result");	}
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+	if( mysqli_num_rows($result) < 1 )	{	die("no result");	}
 	
-	$user_data = mysql_fetch_assoc($result);
+	$user_data = mysqli_fetch_assoc($result);
 	
 	$birthday = new c_date();
-	$birthday->setDay2000( $user_data[birthday] );
+	$birthday->setDay2000( $user_data['birthday'] );
 	
 	$v = new vCard();
 	
-	$v->setPhoneNumber($user_data[homenr], "PREF;HOME;VOICE");
-	$v->setPhoneNumber($user_data[mobilnr], "PREF;CELL;VOICE");
-	$v->setName($user_data[surname], $user_data[firstname], $user_data[scoutname], "");
+	$v->setPhoneNumber($user_data['homenr'], "PREF;HOME;VOICE");
+	$v->setPhoneNumber($user_data['mobilnr'], "PREF;CELL;VOICE");
+	$v->setName($user_data['surname'], $user_data['firstname'], $user_data['scoutname'], "");
 	$v->setBirthday( $birthday->getString("Y-m-d") );
-	$v->setAddress("", "", $user_data[street], $user_data[city], "", $user_data[zipcode], "");
-	$v->setEmail($user_data[mail]);
+	$v->setAddress("", "", $user_data['street'], $user_data['city'], "", $user_data['zipcode'], "");
+	$v->setEmail($user_data['mail']);
 	$v->setNote("Automatisch generiert auf Basis der Daten von eCamp");
 
 	$output = $v->getVCard();
@@ -256,4 +252,3 @@ echo $output;
 	echo $output;
 
 	die();
-?>

@@ -18,14 +18,13 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	$title 	= mysql_escape_string($_REQUEST['title']);
-	$text 	= mysql_escape_string($_REQUEST['text']);
-	$date 	= mysql_escape_string($_REQUEST['date']);
-	$id 	= mysql_escape_string($_REQUEST['id']);
+	$title 	= ((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['title']) : ((trigger_error("[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.", E_USER_ERROR)) ? "" : ""));
+	$text 	= ((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['text']) : ((trigger_error("[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.", E_USER_ERROR)) ? "" : ""));
+	$date 	= ((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['date']) : ((trigger_error("[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.", E_USER_ERROR)) ? "" : ""));
+	$id 	= ((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['id']) : ((trigger_error("[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.", E_USER_ERROR)) ? "" : ""));
 	
 	$_camp->todo( $id ) || die( "error" );
-	
-	
+
 	if( $title == "" || $date == "" )
 	{	header ("Location: index.php?app=todo");	}
 	
@@ -36,9 +35,7 @@
 	$todo_date->setUnix( $date );
 	
 	$query = "UPDATE todo SET title='$title', short='$text', date='" . $todo_date->getValue() . "' WHERE id = $id";
-	mysql_query( $query );
+	mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	
 	header ("Location: index.php?app=todo");
 	die();
-	
-?> 

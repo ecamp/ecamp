@@ -18,7 +18,7 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	$GLOBALS['base_uri']				= "http://ecamp.pfadiluzern.ch/";
+	$GLOBALS['base_uri']				= "https://ecamps.ch/";
 	
 	$GLOBALS['lib_dir'] 				= "./lib";
 	$GLOBALS['module_dir'] 			= "./module";
@@ -33,35 +33,33 @@
 	$GLOBALS['template_module_dir'] 	= "./template/module";
 	
 	$GLOBALS['tpl_dir'] = "../../../template";
+
+	$GLOBALS['smtp-config'] = array('host' => 'ecamps.ch','username' => 'mailbot@ecamps.ch','password' => 'wHh~x651','port' => '587');
 	
-	$GLOBALS['captcha_pub'] = "";
-	$GLOBALS['captcha_prv'] = "";
+	$GLOBALS['captcha_pub'] = "6LehoTMUAAAAAJ2XCzbBfduFd5uzppTU0wgm0y-_";
+	$GLOBALS['captcha_prv'] = "6LehoTMUAAAAAJVQOascfLNH-Wi9FPPGoAsMYtX5";
 	
 	
 	$GLOBALS['time_shift'] = 300; // Minuten;
 	$GLOBALS['news_num'] = 5;
 
 	// Layout wählen
-	$GLOBALS['skin'] = "skin3";
+	$GLOBALS['skin'] = "skin4";
 	
 	$GLOBALS['debug'] = 0;
-	$GLOBALS['register'] = 0;
+	$GLOBALS['register'] = 1;
 	
 	// Seite mit HTML-Tidy parsen
 	$GLOBALS['parse_tidy'] = false;
 	
-	$GLOBALS['feedback_mail'] = "ecamp@pfadiluzern.ch";
-	$GLOBALS['support_mail']  = "ecamp@pfadiluzern.ch";
+	$GLOBALS['feedback_mail'] = "info@ecamps.ch";
+	$GLOBALS['support_mail']  = "info@ecamps.ch";	
 	
-	if( $_SERVER['HTTP_HOST'] == "localhost" )
-	{
-		$GLOBALS['host']	= "localhost";
-		$GLOBALS['db']	= "ecamp";
-		$GLOBALS['us'] 	= "root";
-		$GLOBALS['pw'] 	= "";
-	}
-	
-	
+	$GLOBALS['host']	= "localhost";
+	$GLOBALS['db']	= "ecamp";
+	$GLOBALS['us'] 	= "root";
+	$GLOBALS['pw'] 	= "";
+		
 	$GLOBALS['en_to_de'] = array(
 		"Monday" 	=> "Montag",
 		"Tuesday"	=> "Dienstag",
@@ -91,4 +89,3 @@
 		"November"	=> "November",
 		"December"	=> "Dezember"
 	);
-?>

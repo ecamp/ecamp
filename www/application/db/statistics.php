@@ -18,25 +18,18 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	
-	$_page->html->set('main_macro', $GLOBALS[tpl_dir].'/global/content_box_fit.tpl/predefine');
-	$_page->html->set('box_content', $GLOBALS[tpl_dir].'/application/db/statistics.tpl/statistics');
+	$_page->html->set('main_macro', $GLOBALS['tpl_dir'].'/global/content_box_fit.tpl/predefine');
+	$_page->html->set('box_content', $GLOBALS['tpl_dir'].'/application/db/statistics.tpl/statistics');
 	$_page->html->set('box_title', 'Statistics:');
 	
 	$count = array();
-	
-	
+
 	$query = "	SELECT count(user.id) FROM user";
-	$result = mysql_query( $query );
-	$count['user'] = mysql_result( $result, 0 );
-	
-	
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+	$count['user'] = mysqli_result( $result,  0 );
+
 	$query = "	SELECT count(camp.id) FROM camp";
-	$result = mysql_query( $query );
-	$count['camp'] = mysql_result( $result, 0 );
-	
-	
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+	$count['camp'] = mysqli_result( $result,  0 );
+
 	$_page->html->set( 'count', $count );
-	
-	
-?>

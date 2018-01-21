@@ -18,13 +18,11 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	$_page->html->set('main_macro', $GLOBALS[tpl_dir].'/global/content_box_fit.tpl/predefine');
-	$_page->html->set('box_content', $GLOBALS[tpl_dir].'/application/camp/home.tpl/home');
+	$_page->html->set('main_macro', $GLOBALS['tpl_dir'].'/global/content_box_fit.tpl/predefine');
+	$_page->html->set('box_content', $GLOBALS['tpl_dir'].'/application/camp/home.tpl/home');
 	
 	$_page->html->set('box_title', 'Infos zum Lager/Kurs');
-	
-	
-	
+
     // Authentifizierung überprüfen
 	// read & write --> Ab Lagerleiter (level: 50)
 	// read         --> Ab Coach       (level: 20)
@@ -32,41 +30,39 @@
 	
 	if( $_user_camp->auth_level >= 50 )
 	{
-		$camp_info[input] = true;
-		$camp_info[readonly] = false;
+		$camp_info['input'] = true;
+		$camp_info['readonly'] = false;
 	}
 	elseif( $_user_camp->auth_level >= 11 )
 	{
-		$camp_info[input] = false;
-		$camp_info[readonly] = true;
+		$camp_info['input'] = false;
+		$camp_info['readonly'] = true;
 	}
 	else
 	{
-		$_SESSION[camp_id] = "";
+		$_SESSION['camp_id'] = "";
 		header( "Location: index.php" );
 		die();
 	}
-	
-	
+
 	$start = new c_date;
 	$end   = new c_date;
 	
 	$subcamps = array();
 	$query = "SELECT * FROM subcamp WHERE camp_id = '$_camp->id' ORDER BY start ASC ";
-	$result = mysql_query($query);
-	while($row = mysql_fetch_assoc($result))
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+	while($row = mysqli_fetch_assoc($result))
 	{
 		$start->m_days = $row['start'];
 		$end->m_days = $row['start'] + $row['length'] - 1;
 		
 		$subcamps[] = array(
-								"start" => gmdate("d.m.Y", $start->getUnix()),
-								"end"	=>gmdate("d.m.Y", $end->getUnix()),
-								"id"	=> $row[id]
-							);
+			"start" => gmdate("d.m.Y", $start->getUnix()),
+			"end"	=>gmdate("d.m.Y", $end->getUnix()),
+			"id"	=> $row['id']
+		);
 	}
 
-	
     // �berpr�fen, ob ein Lager gew�hlt wurde und Lagerdaten einlesen
     $query = "	SELECT 
     				camp.*,
@@ -81,9 +77,9 @@
     			WHERE
     				camp.id = '$_camp->id'";
     
-	$result = mysql_query($query);
-	if(mysql_num_rows($result) == 0)	{	die("Kein Lager gew&auml;hlt");	}
-	$camp_data = mysql_fetch_assoc($result);
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+	if(mysqli_num_rows($result) == 0)	{	die("Kein Lager gew&auml;hlt");	}
+	$camp_data = mysqli_fetch_assoc($result);
 	
 	
 	// Lager-Detaildaten herausfiltern
@@ -113,7 +109,6 @@
 		$camp_data['ca_coor4'] = "";
 	}
 
-	
 	// Inhalte f�llen & bei Bedarf zur Anzeige aufbereiten
 	$camp_info['base']			= $camp_data['groups_short_prefix'] . " " . $camp_data['groups_name'];
 	$camp_info["group_name"] 	= array("name" => "group_name", "value" => $camp_data['group_name']);
@@ -136,14 +131,11 @@
 	$camp_info["subcamps"]		= $subcamps;
 	
 	$camp_info['show_map_coor']	.= $camp_data['ca_coor1'] . $camp_data['ca_coor2'] . "," . $camp_data['ca_coor3'] . $camp_data['ca_coor4'];
-	
-	
+
 	if( $_REQUEST['show'] == 'firsttime' )
 	{	$camp_info['firsttime'] = true;		}
 	else
 	{	$camp_info['firsttime'] = false;	}
-	
-	
 	
 	if( $camp_data['is_course'] )
 	{
@@ -152,25 +144,17 @@
 					WHERE
 						value = " . $camp_data['type'] . " AND
 						list = 'coursetype'";
-		$result = mysql_query( $query );
-		if( mysql_error() || !mysql_num_rows($result) )
+		$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+		if( mysqli_error($GLOBALS["___mysqli_ston"]) || !mysqli_num_rows($result) )
 		{	$camp_info['type'] = "asdf";	}
 		else
-		{	$camp_info['type'] = mysql_result($result, 0, 'entry' );	}
+		{	$camp_info['type'] = mysqli_result($result,  0,  'entry' );	}
 	}
 	
-	
 	$_page->html->set('camp_info', $camp_info);
-	
-	
-	
-	
-	
-	
-	
+
 	//#####################################################
 	// Load Blocked Data:
-	
 	$cdate = new c_date;
 	
 	$blocked_days = array();
@@ -184,9 +168,9 @@
 				WHERE
 					day.subcamp_id = subcamp.id AND
 					subcamp.camp_id = " . $_camp->id;
-	$result = mysql_query( $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	
-	while( $day = mysql_fetch_assoc( $result ) )
+	while( $day = mysqli_fetch_assoc( $result ) )
 	{
 		if( !isset( $blocked_days[ $day['id'] ] ) )
 		{	$blocked_days[ $day['id'] ] = array();	}
@@ -196,5 +180,3 @@
 	}
 	
 	$_js_env->add( 'blocked_days', $blocked_days );
-	
-?>

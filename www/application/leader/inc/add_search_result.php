@@ -18,37 +18,35 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	$std = $_REQUEST[std];
-	$scoutname	= $_REQUEST[scoutname];
-	$firstname	= $_REQUEST[firstname];
-	$surname	= $_REQUEST[surname];
-	$mail		= $_REQUEST[mail];
-	
-	
+	$std = $_REQUEST['std'];
+	$scoutname	= $_REQUEST['scoutname'];
+	$firstname	= $_REQUEST['firstname'];
+	$surname	= $_REQUEST['surname'];
+	$mail		= $_REQUEST['mail'];
+
 	if( $_camp->is_course )
 		$query = "SELECT * FROM dropdown WHERE list = 'function_course'";
 	else
 		$query = "SELECT * FROM dropdown WHERE list = 'function_camp'";
 	
-	$reuslt = mysql_query($query);
+	$reuslt = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	$option = "";
-	while($row = mysql_fetch_assoc($reuslt))
+	while($row = mysqli_fetch_assoc($reuslt))
 	{
 		if($row[id] == $std)
 		{	$selected = " selected=selected ";	}
 		else
 		{	$selected = "";	}
 		
-		$option .= gettemplate_app('option', array(
-										'value' => $row[id], 
-										'content' => $row[entry],
-										'selected' => $selected
-								));
+		$option .= gettemplate_app(
+			'option', array(
+				'value' => $row['id'],
+				'content' => $row['entry'],
+				'selected' => $selected
+			)
+		);
 	}
 	$select = gettemplate_app('select', array("name" => "function", "content" => $option));
-	
-	
-	
 	
 	$search_arg = array("1");
 	if(!empty($scoutname))	{	$search_arg[] = " scoutname LIKE '$scoutname%' ";	}
@@ -57,23 +55,23 @@
 	if(!empty($mail))		{	$search_arg[] = " mail LIKE '$mail%' ";	}
 	
 	$query = "SELECT * FROM user WHERE " . implode(" AND ", $search_arg);
-	$result = mysql_query($query);
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
 	$found_users = "";
-	while($found = mysql_fetch_assoc($result))
+	while($found = mysqli_fetch_assoc($result))
 	{	
 		$found['function_list'] = $select;
 		$found_users .= gettemplate_app('add_search_result_user', $found);	
 	}
-	
-	
-	$index_content['main'] .= gettemplate_app('add_search_result', array(
+
+	$index_content['main'] .= gettemplate_app(
+		'add_search_result',	array(
 			"content" => $found_users,
 			"scoutname" => $scoutname,
 			"firstname" => $firstname,
 			"surname" => $surname,
 			"mail" => $mail,
 			"std" => $std
-			));
-	
+		)
+	);
 ?>

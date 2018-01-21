@@ -18,7 +18,6 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	
 	class event
 	{
 		var $starttime;
@@ -57,16 +56,15 @@
 						ORDER BY starttime ASC, length DESC, id DESC ";
 						
 							
-		$event_result = mysql_query($event_query);
+		$event_result = mysqli_query($GLOBALS["___mysqli_ston"], $event_query);
 		$event_nr = 0;
-		
 		
 		$rows = array();
 		$count = array();
 		
 		$events = array();
 		
-		while($event = mysql_fetch_assoc($event_result))
+		while($event = mysqli_fetch_assoc($event_result))
 		{
 			//$event[starttime] = (($event[starttime] + (24*60) - $GLOBALS[time_shift]) % (24*60)) + $GLOBALS[time_shift];
 			
@@ -79,30 +77,25 @@
 				{	$rows[$row] = array();	}
 			}
 			
-			if($event[form_type] == 0)	{	$event[eventnr] = 0;	}
+			if($event['form_type'] == 0)	{	$event['eventnr'] = 0;	}
 			
 			$rows[$row][count($rows[$row]) + 1] = new event();
-			$rows[$row][count($rows[$row])]->starttime 	= $event[starttime];
-			$rows[$row][count($rows[$row])]->length		= $event[length];
+			$rows[$row][count($rows[$row])]->starttime 	= $event['starttime'];
+			$rows[$row][count($rows[$row])]->length		= $event['length'];
 			$rows[$row][count($rows[$row])]->row 		= $row;
-			$rows[$row][count($rows[$row])]->id 		= $event[event_instance_id];
+			$rows[$row][count($rows[$row])]->id 		= $event['event_instance_id'];
 			
 			
-			$events[$event[event_instance_id]] = new event();
-			$events[$event[event_instance_id]]->starttime	= $event[starttime];
-			$events[$event[event_instance_id]]->length		= $event[length];
-			$events[$event[event_instance_id]]->row			= $row;
-			$events[$event[event_instance_id]]->event_nr	= $event[eventnr];
-			
-			
-			
-			for($time = $event[starttime]; $time < $event[starttime] + $event[length]; $time++)
+			$events[$event['event_instance_id']] = new event();
+			$events[$event['event_instance_id']]->starttime	= $event['starttime'];
+			$events[$event['event_instance_id']]->length		= $event['length'];
+			$events[$event['event_instance_id']]->row			= $row;
+			$events[$event['event_instance_id']]->event_nr	= $event['eventnr'];
+
+			for($time = $event['starttime']; $time < $event['starttime'] + $event['length']; $time++)
 			{	$count[$time]++;	}
-			
 		}
-		
-		
-		
+
 		foreach ($rows as $list_of_events)
 		{
 			foreach ($list_of_events as $event)
@@ -112,12 +105,8 @@
 				{	$max_row = max($max_row, $count[$time]);	}
 				
 				$events[$event->id]->row_max = $max_row;
-				
 			}
 		}
 		
-		return $events;	
-	
+		return $events;
 	}
-	
-?>

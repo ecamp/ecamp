@@ -20,10 +20,10 @@
 
 	include( 'inc/get_program_update.php');
 	
-	$event_instance_id	= mysql_real_escape_string($_REQUEST['event_instance_id']);
-	$length				= mysql_real_escape_string($_REQUEST['length']);
-	$width				= mysql_real_escape_string($_REQUEST['width']);
-	$time				= mysql_real_escape_string($_REQUEST['time']);
+	$event_instance_id	= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['event_instance_id']);
+	$length				= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['length']);
+	$width				= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['width']);
+	$time				= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['time']);
 	
 	$_camp->event_instance( $event_instance_id ) || die( "error" );
 	
@@ -34,10 +34,7 @@
 					`width` = '$width'
 				WHERE 
 					`id` = '$event_instance_id';";
-	$result = mysql_query($query);
-	
-	
-	
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
 	header("Content-type: application/json");
 	
@@ -46,5 +43,3 @@
 	
 	die();
 	
-	
-?>

@@ -17,7 +17,6 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 	
 	$course_checklist = array();
 	
@@ -31,11 +30,11 @@
 					camp.id = $_camp->id AND
 					camp.is_course = 1 AND
 					ISNULL( course_checklist.pid )";
-	$result = mysql_query( $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	
-	if( !mysql_error() && mysql_num_rows( $result ) )
+	if( !mysqli_error($GLOBALS["___mysqli_ston"]) && mysqli_num_rows( $result ) )
 	{
-		while( $checklist_group = mysql_fetch_assoc( $result ) )
+		while( $checklist_group = mysqli_fetch_assoc( $result ) )
 		{
 			$subquery = "	SELECT
 								course_checklist.id,
@@ -56,11 +55,11 @@
 								event_checklist.checklist_id = course_checklist.id
 							WHERE
 								course_checklist.pid = " . $checklist_group['id'];
-			$subresult = mysql_query( $subquery );
+			$subresult = mysqli_query($GLOBALS["___mysqli_ston"],  $subquery );
 			
-			if( !mysql_error() && mysql_num_rows( $subresult ) )
+			if( !mysqli_error($GLOBALS["___mysqli_ston"]) && mysqli_num_rows( $subresult ) )
 			{
-				while( $checklist = mysql_fetch_assoc( $subresult ) )
+				while( $checklist = mysqli_fetch_assoc( $subresult ) )
 				{
 					$checklist['display'] = $checklist['short'] . " " . $checklist['name'];
 					
@@ -72,7 +71,5 @@
 			}
 		}
 	}
-	
-	
+
 	$_js_env->add( 'course_checklist', $course_checklist );	
-?>

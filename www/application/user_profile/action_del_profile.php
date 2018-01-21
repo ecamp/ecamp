@@ -18,23 +18,17 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 	$query = "SELECT user_camp.id FROM user_camp WHERE user_id = " . $_user->id;
-	$result = mysql_query( $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	
-	if( mysql_num_rows( $result ) )
+	if( mysqli_num_rows( $result ) )
 	{	die( "Profil kann nicht gelöscht werden!" );	}
-	
-	
-	$query = "UPDATE camp SET creator_user_id = NULL WHERE creator_user_id = " . $_user->id;
-	mysql_query( $query );
 
-	
+	$query = "UPDATE camp SET creator_user_id = NULL WHERE creator_user_id = " . $_user->id;
+	mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+
 	$query = "DELETE FROM user WHERE id = " . $_user->id;
-	mysql_query( $query );
-	
-	
+	mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+
 	header("Location: logout.php");
 	die();
-	
-?>

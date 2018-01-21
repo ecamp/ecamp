@@ -18,12 +18,12 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	$camp_del_id 	= mysql_real_escape_string($_REQUEST[camp_id]);
+	$camp_del_id 	= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['camp_id']);
 	
 	// Rechte überprüfen (nur Ersteller darf Lager löschen
 	$query = "SELECT id, short_name FROM camp WHERE id='$camp_del_id' AND creator_user_id='$_user->id'";
-	$result = mysql_query($query);
-	if( mysql_num_rows($result) == 0 )
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+	if( mysqli_num_rows($result) == 0 )
 	{
 		// error
 		$ans = array("ans" => "Lager wurde nicht gel&ouml;scht. Keine Berechtigung!", "del" => false);
@@ -32,9 +32,7 @@
 	}
 	else
 	{
-		$short_name = mysql_result( $result, 0, 'short_name' );
-	
-		
+		$short_name = mysqli_result( $result,  0,  'short_name' );
 		
 		$query = "	DELETE FROM 
 						camp 
@@ -43,7 +41,7 @@
 		
 		// Camp löschen
 		// Der Rest (subcamp, day, event, category, user_camp, preuser_camp, preuser) wird automatisch gelöscht (innoDB)
-		mysql_query($query);
+		mysqli_query($GLOBALS["___mysqli_ston"], $query);
 		
 		//$q[camp] 		= "DELETE FROM camp			WHERE id = '$camp_del_id'";
 		//$q[user_camp]	= "DELETE FROM user_camp 	WHERE camp_id = '$camp_del_id'";
@@ -61,11 +59,10 @@
 		
 	    $_news->add2camp( "Lager gelöscht", $_user->display_name . " hat das Lager '$short_name' gelöscht.", time(), $camp_id );
 		$_news->add2user( "Lager gelöscht", "Du hast das Lager '$short_name' gelöscht.", time(), $_user->id );
-	
-	
-		if($_SESSION[camp_id] == $camp_del_id)
+
+		if($_SESSION['camp_id'] == $camp_del_id)
 		{
-			$_SESSION[camp_id] = "";
+			$_SESSION['camp_id'] = "";
 			$reload = true;
 		}
 		else
@@ -77,4 +74,3 @@
 	}
 	
 	die();
-?>

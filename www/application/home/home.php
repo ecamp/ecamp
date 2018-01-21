@@ -18,14 +18,12 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	
-	$_page->html->set('main_macro', $GLOBALS[tpl_dir].'/application/home/home.tpl/home');
+	$_page->html->set('main_macro', $GLOBALS['tpl_dir'].'/application/home/home.tpl/home');
 
-	
 	// Einladungen suchen
 	$query = "SELECT * FROM user_camp WHERE user_id='$_user->id' AND active=0";
-	$result = mysql_query( $query );
-	$num = mysql_num_rows( $result );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+	$num = mysqli_num_rows( $result );
 	
 	if( $num > 0 )
 	{
@@ -42,7 +40,6 @@
 	$notes = array();
 	$no_notes = true;
 	/*
-	
 	$query = "SELECT co.id AS comment_id, e.id as event_id, e.name as event, ca.name as camp, co.text, co.t_created, co.t_edited, u.scoutname as creater, cu.id AS comment_user_id
 				FROM event_responsible r, 
 					 event e,
@@ -56,24 +53,18 @@
 				  AND  cu.user_event_id = r.id
 				  AND  cu.comment_id = co.id";
 	$result = mysql_query($query);
-	
-	
-	
+
 	while( $row = mysql_fetch_array($result, MYSQL_ASSOC) )
 	{
 		$notes[] = $row;
 		$no_notes = false;
 	}
 	*/
-	
-	
+
 	$no_news = ( count( $_news->load() ) == 0 );
-	
-	
+
 	$_page->html->set( 'notes', $notes );
 	$_page->html->set( 'no_notes', $no_notes );
 	
 	$_page->html->set( 'news', $_news->load() );
 	$_page->html->set( 'no_news', $no_news );
-	
-?>

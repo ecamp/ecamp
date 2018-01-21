@@ -20,7 +20,7 @@
 
 	header( "Content-Type: image/jpeg" );
 	
-	$show_user_id = mysql_real_escape_string( $_REQUEST['show_user_id'] );
+	$show_user_id = mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['show_user_id'] );
 	
 	$query = "	SELECT
 					image
@@ -28,8 +28,8 @@
 					user
 				WHERE
 					id = $show_user_id";
-	$result = mysql_query($query);
-	$imgData = mysql_result( $result, 0, 'image' );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+	$imgData = mysqli_result( $result,  0,  'image' );
 	
 	if($imgData == "")
 	{	die( file_get_contents( "public/global/img/no-avatar.gif" ) );	}
@@ -37,4 +37,3 @@
 	{	echo $imgData;	}
 	
 	die();
-?>

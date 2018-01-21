@@ -18,17 +18,14 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	$std = $_REQUEST[std];
-	
-	
+	$std = $_REQUEST['std'];
+
 	if( $_camp->is_course )
 		$query = "SELECT * FROM dropdown WHERE list = 'function_course' AND id = '$std'";
 	else
 		$query = "SELECT * FROM dropdown WHERE list = 'function_camp' AND id = '$std'";
 		
-	$result = mysql_query($query);
-	$function = implode(mysql_fetch_assoc($result));
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+	$function = implode(mysqli_fetch_assoc($result));
 
 	$index_content['main'] .= gettemplate_app('add', array("function" => $function, "std" => $std));
-	
-?>

@@ -20,8 +20,7 @@
 
 	// DO NOT INSERT THIS PART!!!
 	//*******************************************************
-	
-	$GLOBALS[en_to_de] = array(
+	$GLOBALS['en_to_de'] = array(
 		"Monday" 	=> "Montag",
 		"Tuesday"	=> "Dienstag",
 		"Wednesday"	=> "Mittwoch",
@@ -53,50 +52,34 @@
 	
 	require_once( '../../../lib/functions/date.php' );
 	
-	$GLOBALS[time_shift] = 300;
+	$GLOBALS['time_shift'] = 300;
 	
 	//*******************************************************
+	($GLOBALS["___mysqli_ston"] = mysqli_connect( 'localhost' ,  'root',  '')) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+	mysqli_select_db($GLOBALS["___mysqli_ston"], ecamp) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
 	
-	
-	
-	mysql_connect( 'localhost' , 'root', '') or die(mysql_error());
-	mysql_select_db( 'ecamp' ) or die(mysql_error());
-	
-	mysql_query("SET NAMES 'utf8'");
-	mysql_query("SET CHARACTER SET 'utf8'");
-	
-	
-	
+	mysqli_query($GLOBALS["___mysqli_ston"], "SET NAMES 'utf8'");
+	mysqli_query($GLOBALS["___mysqli_ston"], "SET CHARACTER SET 'utf8'");
+
 	require_once( 'data.php' );
 	require_once( 'build.php' );
 
-	
 	require_once( '../tcpdf/tcpdf.php' );
 	require_once( '../tcpdf/tcpdf_addons.php' );
-	
-	
-	
+
 	$print_data = new print_data_class( 14 );	
 	$print_build = new print_build_class( $print_data );
-	
-	
-	
-	
+
 	//$pdf = new FPDF_ADDONS();
 	$pdf = new TCPDF_ADDONS('P', 'mm', 'A4', true, 'UTF-8', false);
 	$pdf->SetAutoPageBreak(true);
-	
-	
+
 	$pdf->SetAuthor( 'ecamp2.pfadiluzern.ch' );
 	$pdf->SetSubject( 'J&S - Programm' );
 	$pdf->SetTitle( 'J&S - Programm' );
 
-	
 	$pdf->SetFont('helvetica','',12); 
-	
-	
-	
-	
+
 	//$print_build->cover->build( $pdf );
 	$print_build->picasso->build( $pdf );
 	
@@ -126,7 +109,3 @@
 	*/
 	
 	$pdf->output();
-	
-	
-	
-?>
