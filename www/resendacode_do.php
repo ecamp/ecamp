@@ -23,31 +23,31 @@
 	include($lib_dir . "/functions/mail.php");
 	db_connect();
 
-	$login = mysql_escape_string( $_REQUEST[ 'Login' ] );
+	$login = ((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST[ 'Login' ] ) : ((trigger_error("[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.", E_USER_ERROR)) ? "" : ""));
 
 	$query = "	SELECT id, active, acode FROM user WHERE mail = '$login'";
-	$result = mysql_query( $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	
-	if( ! mysql_num_rows( $result ) )
+	if( ! mysqli_num_rows( $result ) )
 	{
 		header( "location: login.php?msg=Angegebene Mailadresse ist nicht registriert!" );
 		die();
 	}
 	
-	$active = mysql_result( $result, 0, 'active' );
+	$active = mysqli_result( $result,  0,  'active' );
 	if( $active )
 	{
 		header( "location: login.php?msg=Account ist bereits aktiviert!<br /> Du kannst dich einloggen!" );
 		die();
 	}
 	
-	$user_id = mysql_result( $result, 0, 'id' );
-	$acode 	= mysql_result( $result, 0, 'acode' );
+	$user_id = mysqli_result( $result,  0,  'id' );
+	$acode 	= mysqli_result( $result,  0,  'acode' );
 	if( $acode == "" )
 	{
 		$acode = md5( microtime() );
 		$query = "UPDATE user SET acode = '$acode' WHERE id = ". $user_id;
-		mysql_query( $query );
+		mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	}
 	
 	//	SEND MAIL FOR ACTIVATION:
