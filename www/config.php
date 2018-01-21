@@ -44,7 +44,7 @@
 	$GLOBALS['news_num'] = 5;
 
 	// Layout wählen
-	$GLOBALS['skin'] = "skin4";
+	$GLOBALS['skin'] = "skin3";
 	
 	$GLOBALS['debug'] = 0;
 	$GLOBALS['register'] = 1;
