@@ -27,6 +27,7 @@
 
 	function ecamp_send_mail($to, $subject, $body){
 		$mail = new PHPMailer(false);
+		$mail->CharSet = 'UTF-8';
 		try {
 			//Server settings
 			$mail->SMTPDebug = 0;                                 // Enable verbose debug output
