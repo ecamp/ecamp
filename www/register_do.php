@@ -52,21 +52,21 @@
 	if( $_REQUEST[ 'surname' ] == "" )
 	{	header( 'location: register.php?msg=Nachname muss angegeben werden!' );	die();	}
 	
-	$login 	= mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST[ 'Login' ] );
+	$login 	= mysql_real_escape_string( $_REQUEST[ 'Login' ] );
 	$pw1	= md5( $_REQUEST[ 'Passwort1' ] );
 	$pw2	= md5( $_REQUEST[ 'Passwort2' ] );
 	
-	$scoutname 	= mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST[ 'scoutname' ] );
-	$firstname 	= mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST[ 'firstname' ] );
-	$surname 	= mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST[ 'surname' ] );
+	$scoutname 	= mysql_real_escape_string( $_REQUEST[ 'scoutname' ] );
+	$firstname 	= mysql_real_escape_string( $_REQUEST[ 'firstname' ] );
+	$surname 	= mysql_real_escape_string( $_REQUEST[ 'surname' ] );
 
 	if( $pw1 != $pw2 )
 	{	header( 'location: register.php?msg=Passwort unstimmig' );	die();	}
 
 	$query = "SELECT user.id FROM user WHERE user.mail = '" . $login . "'";
-	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+	$result = mysql_query( $query );
 	
-	if( mysqli_num_rows( $result ) )
+	if( mysql_num_rows( $result ) )
 	{	header( 'location: register.php?msg=eMail-Adresse ist bereits registriert' );	die();	}
 	
 	//	INSERT NEW USER:
@@ -75,9 +75,9 @@
 
 	$query = "	INSERT INTO user ( `mail`, `pw`, `scoutname`, `firstname`, `surname`, `acode` )
 				VALUES ( '$login', '$pw1', '$scoutname', '$firstname', '$surname', '$acode' );";
-	mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+	mysql_query( $query );
 
-	$user_id = ((is_null($___mysqli_res = mysqli_insert_id($GLOBALS["___mysqli_ston"]))) ? false : $___mysqli_res);
+	$user_id = mysql_insert_id();
 
 	//	SEND MAIL FOR ACTIVATION:
 	// ===========================
@@ -89,8 +89,8 @@ Zu diesem Zweck musst du nachfolgendem Link folgen:
 \n\n
  ";
 
-	//ecamp_send_mail($login, "eCamp - Willkommen", $text);
- 	mail( $login, "eCamp - Willkommen", $text, "From: eCamp Pfadi Luzern <ecamp@pfadiluzern.ch>" );
+	ecamp_send_mail($login, "eCamp - Willkommen", $text);
+ 	//mail( $login, "eCamp - Willkommen", $text, "From: eCamp Pfadi Luzern <ecamp@pfadiluzern.ch>" );
 	
 	/*
 	$text = urlencode( $text );
