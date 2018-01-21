@@ -45,8 +45,8 @@
 	$GLOBALS['time_shift'] = 300; // Minuten;
 	$GLOBALS['news_num'] = 5;
 	
-	$GLOBALS['debug'] = 1;
-	$GLOBALS['register'] = 1;
+	$GLOBALS['debug'] = 0;
+	$GLOBALS['register'] = 0;
 	
 	// Seite mit HTML-Tidy parsen
 	$GLOBALS['parse_tidy'] = false;

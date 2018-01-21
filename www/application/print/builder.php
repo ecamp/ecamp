@@ -18,7 +18,6 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	
 	if( !isset( $_REQUEST['item'] ) )
 	{	header( "location: index.php?app=print" );	die();	}
 	else

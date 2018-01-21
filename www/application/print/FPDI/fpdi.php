@@ -85,18 +85,19 @@ class FPDI extends FPDF_TPL {
         $fn =& $this->current_filename;
 
         if (!isset($this->parsers[$fn]))
-            $this->parsers[$fn] =& new fpdi_pdf_parser($fn, $this);
+            $this->parsers[$fn] = new fpdi_pdf_parser($fn, $this);
         $this->current_parser =& $this->parsers[$fn];
         
         return $this->parsers[$fn]->getPageCount();
     }
-    
-    /**
-     * Import a page
-     *
-     * @param int $pageno pagenumber
-     * @return int Index of imported page - to use with fpdf_tpl::useTemplate()
-     */
+
+	/**
+	 * Import a page
+	 *
+	 * @param int $pageno pagenumber
+	 * @return int Index of imported page - to use with fpdf_tpl::useTemplate()
+	 * @throws Exception
+	 */
     function importPage($pageno, $boxName='/CropBox') {
         if ($this->_intpl) {
             return $this->error('Please import the desired pages before creating a new template.');
