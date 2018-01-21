@@ -25,12 +25,8 @@
 	else
 		$query = "SELECT * FROM dropdown WHERE list = 'function_camp'";
 		
-	$result = mysql_query($query);
-	while($option = mysql_fetch_assoc($result))
-	{	$select_content .= gettemplate_app('add_camp_function', array("value" => $option[id], "function" => $option[entry]));	}
-	
-	
-	
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+	while($option = mysqli_fetch_assoc($result))
+	{	$select_content .= gettemplate_app('add_camp_function', array("value" => $option['id'], "function" => $option['entry']));	}
+
 	$index_content['main'] .= gettemplate_app('add_camp', array("function" => $select_content));
-	
-?>

@@ -18,8 +18,6 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	
-	
 	$GLOBALS[base_uri]				= "http://ecamp.pfadiluzern.ch/";
 	
 	$GLOBALS[lib_dir] 				= "./lib";
@@ -36,11 +34,8 @@
 	
 	$GLOBALS[tpl_dir] = "../../../template";
 
-	$GLOBALS[pear_dir] = "/home/pfadiluz/www/pear/PEAR/";
-	ini_set("include_path", ".:/usr/local/lib/php:/home/pfadiluz/www/pear/PEAR/");
-	
-	$GLOBALS[captcha_pub] = "";
-	$GLOBALS[captcha_prv] = "";
+	$GLOBALS[captcha_pub] = "6LehoTMUAAAAAJ2XCzbBfduFd5uzppTU0wgm0y-_";
+	$GLOBALS[captcha_prv] = "6LehoTMUAAAAAJVQOascfLNH-Wi9FPPGoAsMYtX5";
 	
 	
 	$GLOBALS[time_shift] = 300; // Minuten;
@@ -63,7 +58,7 @@
 		$GLOBALS[host]	= "localhost";
 		$GLOBALS[db]	= "ecamp";
 		$GLOBALS[us] 	= "root";
-		$GLOBALS[pw] 	= "root";
+		$GLOBALS[pw] 	= "";
 	}
 	
 	

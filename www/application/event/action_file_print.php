@@ -18,9 +18,8 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	
-	$event_document_id 	= mysql_real_escape_string( $_REQUEST['event_document_id'] );
-	$print				= mysql_real_escape_string( $_REQUEST['print'] );
+	$event_document_id 	= mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['event_document_id'] );
+	$print				= mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['print'] );
 	
 	if( $print == "on" )	{	$print = 1;	}
 	else					{	$print = 0;	}
@@ -28,10 +27,9 @@
 	$query = "	UPDATE event_document
 				SET `print` = '$print'
 				WHERE id = $event_document_id";
-	mysql_query( $query );
+	mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	
-	
-	if( mysql_affected_rows() )
+	if( mysqli_affected_rows($GLOBALS["___mysqli_ston"]) )
 	{
 		$ans = array( "error" => 0, "error_msg" => "", "print" => $print );
 		echo json_encode( $ans );
@@ -42,5 +40,3 @@
 		echo json_encode( $ans );
 	}
 	die();
-	
-?>

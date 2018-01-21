@@ -18,8 +18,7 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
-////////////////////////////////
+	////////////////////////////////
 	// Wandelt einen Binärstring in Hex um
 	function string2hex($str)
 	{
@@ -34,8 +33,7 @@
 			return "0x".$hex;
 		}
 	}
-///////////////////////////////
-
+	///////////////////////////////
 
  include("../../config.php");
  include("../../lib/mysql.php");
@@ -48,13 +46,11 @@
 // 
 // - pro Lager wird ein SQL-File gespeichert. Dateien werden in ein Unterverzeichnis kopiert.
 // - wenn ein Lager die maximal zulässige Anzahl Backups überschritten hat, wird das älteste Backup gelöscht
-
 $camp_id = 12;
 
 // Tabellen spezifizieren
 // Die Reihenfolge der Tabellen ist wichtig, da sie genau so bei einem Restore wieder zurückgeschrieben werden.
 // Eine falsche Reihenfolge führt zur Verletzung von Fremdschlüssel-Bedingungen.
-
 $tables = array(
    // Verknüpfung direkt über camp_id
   "camp"    		=> "SELECT * FROM camp WHERE id=$camp_id",
@@ -94,28 +90,27 @@ $tables = array(
 //  "comment_user"	=> "SELECT cu.* FROM comment_user cu, event_responsible r, event e WHERE cu.user_event_id=r.id AND r.event_id=e.id AND e.camp_id=$camp_id" 
 );
 
-
 // Daten auslesen und SQL-Statements erstellen
 $sql = "";
 foreach( $tables as $table => $qry)
 {	
 	// Zusatz-Infos zum Schema laden
 	$query = "SELECT column_name, data_type, column_type, is_nullable FROM information_schema.columns WHERE table_name='$table'";
-	$info = mysql_query($query);
+	$info = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	$column = array();
-	while ($tmp = mysql_fetch_assoc($info)) 
+	while ($tmp = mysqli_fetch_assoc($info)) 
 	{
-		$column[$tmp[column_name]] = $tmp;
+		$column[$tmp['column_name']] = $tmp;
 	}
 				
-	$result = mysql_query($qry);
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $qry);
 	$row_i = 0;
-	$row_num = mysql_num_rows($result);
+	$row_num = mysqli_num_rows($result);
 	$data = "";
 	$cols = "";
 	
 	// Alle Datensätze durchlaufen
-	while( $row = mysql_fetch_assoc($result) )
+	while( $row = mysqli_fetch_assoc($result) )
 	{
 		$row_i++;
 		$data .= "(";
@@ -133,19 +128,19 @@ foreach( $tables as $table => $qry)
 			}
 			
 			// Daten ausgeben
-			if( $value == "" AND $column[$key][is_nullable] == "YES")
+			if( $value == "" AND $column[$key]['is_nullable'] == "YES")
 			{
 				$data .= "NULL";
 				// !!!etwas unsauber
 				// eigentlich müsste überprüft werden, ob der Datentyp numerisch ist
 				// denn bei einem varchar gibt es einen Unterschied zwischen NULL und Leerstring
 			}
-			else if( $column[$key][data_type] == "blob" )
+			else if( $column[$key]['data_type'] == "blob" )
 			{
 				$data .= "'".string2hex($value)."'";
 			}
 			else
-				$data .= "'".mysql_real_escape_string($value)."'";
+				$data .= "'".mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $value)."'";
 				
 			if($i != count($row)) $data .= ", ";
 		}
@@ -160,8 +155,4 @@ foreach( $tables as $table => $qry)
 		$sql .= "INSERT INTO `$table` ($cols) VALUES\n$data;\n\n";
 }
 
-
-
 echo $sql;
-
-?>

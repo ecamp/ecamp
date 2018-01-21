@@ -18,7 +18,6 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	
 	$query = "	SELECT
 					id as id,
 					name as name
@@ -38,15 +37,14 @@
 				
 				ORDER BY name";
 	
-	$result = mysql_query( $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	
 	$mat_article = array();
 	
-	while( $row = mysql_fetch_assoc( $result ) )
+	while( $row = mysqli_fetch_assoc( $result ) )
 	{	$mat_article[] = $row['name'];	}
 	
 	//$mat_article = array( "test"  , "tast" );
 	//print_r( $mat_article );
 	
 	$_js_env->add( 'mat_article_list', $mat_article );	
-?>

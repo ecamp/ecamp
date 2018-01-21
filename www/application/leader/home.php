@@ -18,26 +18,23 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	$_page->html->set('main_macro', $GLOBALS[tpl_dir].'/global/content_box_fit.tpl/predefine');
-	$_page->html->set('box_content', $GLOBALS[tpl_dir].'/application/leader/home.tpl/home');
+	$_page->html->set('main_macro', $GLOBALS['tpl_dir'].'/global/content_box_fit.tpl/predefine');
+	$_page->html->set('box_content', $GLOBALS['tpl_dir'].'/application/leader/home.tpl/home');
 	$_page->html->set('box_title', 'Leiterliste');
-	
-	
+
 	# Leitertabelle anzeigen:
 	#
 	##############################################
-	
 	if( $_camp->is_course )
 		$query = "SELECT * FROM dropdown WHERE list='function_course' AND value > '0'";
 	else
 		$query = "SELECT * FROM dropdown WHERE list='function_camp' AND value > '0'";
-		
-	
-	$result = mysql_query($query);
+
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
 	$leaders = array();
 	
-	while($function = mysql_fetch_assoc($result))
+	while($function = mysqli_fetch_assoc($result))
 	{
 		$subquery = "
 			SELECT 
@@ -59,16 +56,16 @@
 		
 		//echo $subquery;
 		
-		$subresult = mysql_query($subquery);
+		$subresult = mysqli_query($GLOBALS["___mysqli_ston"], $subquery);
 		
 		$leader_list = array();
 	
-		while($leader_data = mysql_fetch_assoc($subresult))
+		while($leader_data = mysqli_fetch_assoc($subresult))
 		{	
-			if($leader_data[active])
-			{	$leader_data[green] = true;		$leader_data[yellow] = false;	}
+			if($leader_data['active'])
+			{	$leader_data['green'] = true;		$leader_data['yellow'] = false;	}
 			else
-			{	$leader_data[green] = false;	$leader_data[yellow] = true;	}
+			{	$leader_data['green'] = false;	$leader_data['yellow'] = true;	}
 			
 			$leader_data['scoutname'] = $leader_data['scoutname'];
 			$leader_data['firstname'] = $leader_data['firstname'];
@@ -78,43 +75,41 @@
 			$leader_data['mailto'] = "mailto:" . $leader_data['mail'];
 			$leader_data['callto'] = "callto:" . $leader_data['mobilnr'];
 			
-			$leader_data['vcard'] = "index.php?app=leader&cmd=vcard&user_id=" . $leader_data[id];
-			$leader_data['detail'] = "index.php?app=leader&cmd=show_user&id=" . $leader_data[id];
+			$leader_data['vcard'] = "index.php?app=leader&cmd=vcard&user_id=" . $leader_data['id'];
+			$leader_data['detail'] = "index.php?app=leader&cmd=show_user&id=" . $leader_data['id'];
 			
-			if( $_camp->creator_user_id == $leader_data[id]  )
+			if( $_camp->creator_user_id == $leader_data['id']  )
 			{
 				$leader_data['exit']	= false;
-				$leader_data[creator] 	= true;
+				$leader_data['creator'] 	= true;
 			}
 			elseif( $_user_camp->auth_level < 50 )
 			{
 				$leader_data['exit']	= false;
-				$leader_data[creator] 	= false;
+				$leader_data['creator'] 	= false;
 			}
 			else
 			{
 				$leader_data['exit']	= true;
-				$leader_data[creator] 	= false;
+				$leader_data['creator'] 	= false;
 			}
 			
 			$leader_list[] = $leader_data;
 		}
 		
 		$show = ( $function[id] == 1 );
-		$leaders[] = array( "function_id" => $function[id], "function_name" => $function[entry], "show" => $show, "users" => $leader_list );
+		$leaders[] = array( "function_id" => $function['id'], "function_name" => $function['entry'], "show" => $show, "users" => $leader_list );
 	}
 	
 	$leader = array(
-						"leaders" => $leaders
-					);
+		"leaders" => $leaders
+	);
 	
 	//print_r($leader);
 	
 	$_page->html->set( 'leader', $leader );
-	
 
 	include("module/info/leader.php");
 	
 	$_page->html->set( 'show_info_box', true );
-	$_page->html->set( 'info_box', $GLOBALS[tpl_dir].'/module/info/info_box.tpl/info_box' );
-?>
+	$_page->html->set( 'info_box', $GLOBALS['tpl_dir'].'/module/info/info_box.tpl/info_box' );

@@ -17,9 +17,6 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
-
-	
-	
 	
 	class page
 	{
@@ -60,13 +57,13 @@
 			foreach( $config as $file => $type )
 			{
 				if( $type == "app" )
-				{	$this->addCssFile( $GLOBALS[public_app_dir] . "/" . $this->app . "/css/" . $file );	}
+				{	$this->addCssFile( $GLOBALS['public_app_dir'] . "/" . $this->app . "/css/" . $file );	}
 				
 				if( $type == "global" )
-				{	$this->addCssFile( $GLOBALS[public_global_dir] . "/css/" . $file );	}
+				{	$this->addCssFile( $GLOBALS['public_global_dir'] . "/css/" . $file );	}
 				
 				if( $type == "module" )
-				{	$this->addCssFile( $GLOBALS[public_module_dir] . "/css/" . $file );	}
+				{	$this->addCssFile( $GLOBALS['public_module_dir'] . "/css/" . $file );	}
 			}
 		}
 		
@@ -75,13 +72,13 @@
 			foreach( $config as $file => $type )
 			{
 				if( $type == "app" )
-				{	$this->addJsFile( $GLOBALS[public_app_dir] . "/" . $this->app . "/js/" . $file );	}
+				{	$this->addJsFile( $GLOBALS['public_app_dir'] . "/" . $this->app . "/js/" . $file );	}
 				
 				if( $type == "global" )
-				{	$this->addJsFile( $GLOBALS[public_global_dir] . "/js/" . $file );	}
+				{	$this->addJsFile( $GLOBALS['public_global_dir'] . "/js/" . $file );	}
 				
 				if( $type == "module" )
-				{	$this->addJsFile( $GLOBALS[public_module_dir] . "/js/" . $file );	}
+				{	$this->addJsFile( $GLOBALS['public_module_dir'] . "/js/" . $file );	}
 			}
 		}
 		
@@ -123,16 +120,11 @@
 					if( $type == "js" )	{	$this->addJsFile( $path );	continue;	}
 					if( $type == "css")	{	$this->addCssFile( $path );	continue;	}				
 				}
-				
 			}
 			
 			fclose( $fh );
 		}
-		
-		
 	}
-	
-	
 	
 	class user
 	{
@@ -148,15 +140,15 @@
 		
 		function load_data($data)
 		{
-			if( isset( $data[id] ) )			{	$this->id = $data[id];						}
-			if( isset( $data[ip] ) )			{	$this->ip = $data[ip];						}
-			if( isset( $data[mail] ) )			{	$this->mail = $data[mail];					}
-			if( isset( $data[scoutname] ) )		{	$this->scoutname = $data[scoutname];		}
-			if( isset( $data[firstname] ) )		{	$this->firstname = $data[firstname];		}
-			if( isset( $data[surname] ) )		{	$this->surname = $data[surname];			}
-			if( isset( $data[display_name] ) )	{	$this->display_name = $data[display_name];	}
-			if( isset( $data[admin] ) )			{	$this->admin = $data[admin];				}
-			if( isset( $data[active] ) )		{	$this->active = $data[active];				}
+			if( isset( $data['id'] ) )			{	$this->id = $data['id'];						}
+			if( isset( $data['ip'] ) )			{	$this->ip = $data['ip'];						}
+			if( isset( $data['mail'] ) )			{	$this->mail = $data['mail'];					}
+			if( isset( $data['scoutname'] ) )		{	$this->scoutname = $data['scoutname'];		}
+			if( isset( $data['firstname'] ) )		{	$this->firstname = $data['firstname'];		}
+			if( isset( $data['surname'] ) )		{	$this->surname = $data['surname'];			}
+			if( isset( $data['display_name'] ) )	{	$this->display_name = $data['display_name'];	}
+			if( isset( $data['admin'] ) )			{	$this->admin = $data['admin'];				}
+			if( isset( $data['active'] ) )		{	$this->active = $data['active'];				}
 		}
 	}
 	
@@ -168,9 +160,9 @@
 		
 		function load_data( $data )
 		{
-			if( isset( $data[id] ) )			{	$this->id = $data[id];						}
-			if( isset( $data[function_id] ) )	{	$this->function_id = $data[function_id];	}
-			if( isset( $data[auth_level] ) )	{	$this->auth_level = $data[auth_level];		}
+			if( isset( $data['id'] ) )			{	$this->id = $data['id'];						}
+			if( isset( $data['function_id'] ) )	{	$this->function_id = $data['function_id'];	}
+			if( isset( $data['auth_level'] ) )	{	$this->auth_level = $data['auth_level'];		}
 		}
 	}
 	
@@ -185,15 +177,14 @@
 		
 		function load_data($data)
 		{
-			if( isset( $data[id] ) )				{	$this->id = $data[id];	}
-			if( isset( $data[short_name] ) )		{	$this->short_name = $data[short_name];	}
-			if( isset( $data[group_name] ) )		{	$this->group_name = $data[group_name];	}
-			if( isset( $data[type] ) )				{	$this->type = $data[type];	}
-			if( isset( $data[is_course] ) )			{	$this->is_course = $data[is_course];	}
-			if( isset( $data[creator_user_id] ) )	{	$this->creator_user_id = $data[creator_user_id];	}
+			if( isset( $data['id'] ) )				{	$this->id = $data['id'];	}
+			if( isset( $data['short_name'] ) )		{	$this->short_name = $data['short_name'];	}
+			if( isset( $data['group_name'] ) )		{	$this->group_name = $data['group_name'];	}
+			if( isset( $data['type'] ) )				{	$this->type = $data['type'];	}
+			if( isset( $data['is_course'] ) )			{	$this->is_course = $data['is_course'];	}
+			if( isset( $data['creator_user_id'] ) )	{	$this->creator_user_id = $data['creator_user_id'];	}
 		}
-		
-		
+
 		function category( $id )
 		{	return $this->check( "SELECT id FROM category WHERE id = $id AND camp_id = $this->id" );	}
 		
@@ -258,17 +249,15 @@
 		
 		function user( $id )
 		{	return $this->check( "SELECT user_id FROM user_camp WHERE user_id = $id AND camp_id = $this->id AND active = 1" );	}
-		
-		
+
 		function check( $query )
 		{
-			$result = mysql_query( $query );
-			if( mysql_error() )
+			$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+			if( mysqli_error($GLOBALS["___mysqli_ston"]) )
 			{	return 0;	}
 			else
-			{	return mysql_num_rows( $result );	}
+			{	return mysqli_num_rows( $result );	}
 		}
-		
 	}
 	
 	class js_env
@@ -296,8 +285,8 @@
 			if( !$user_id )	{	$user_id = $_user->id;	}
 			
 			$query = "SELECT news FROM user WHERE id = " . $user_id;
-			$result = mysql_query( $query );
-			$news = mysql_result( $result, 0, 'news' );
+			$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+			$news = mysqli_result( $result,  0,  'news' );
 			
 			$news = json_decode( $news, true ) or $news = array();
 			krsort( $news );
@@ -311,40 +300,34 @@
 			
 			if( !$date )		{	$date = time();	}
 			if( $camp_id == 0 )	{	$camp_id = $_camp->id;	}
-			
-			
+
 			$query ="	SELECT user.id, user.news 
 						FROM user, user_camp 
 						WHERE 
 							user_camp.active = 1 AND
 							user_camp.camp_id = $camp_id AND
 							user.id = user_camp.user_id";
-			$result = mysql_query( $query );
-			
-			
-			while( $user = mysql_fetch_assoc( $result ) )
+			$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+
+			while( $user = mysqli_fetch_assoc( $result ) )
 			{	$this->add2user( $title, $text, $date, $user['id'] );	}
-			
 		}
 		
 		function add2user( $title, $text, $date = 0, $user_id = 0 )
 		{
 			if( !$date )	{	$date = time();	}
 			if( !$user_id )	{	$_user->id;		}
-			
-			
+
 			$news = $this->load( $user_id );
-			
-			
+
 			while( array_key_exists( $date, $news ) )	{	$date ++;	}
 			$news[$date] = array( "key" => $date, "date" => date( "d.m.Y H:i", $date ), "title" => $title, "text" => $text );
 			
 			krsort( $news );
 			
-			if( count( $news ) > $GLOBALS[news_num] )
-			{	$news = array_slice( $news, count( $news ) - $GLOBALS[news_num], $GLOBALS[news_num], true );	}
-			
-			
+			if( count( $news ) > $GLOBALS['news_num'] )
+			{	$news = array_slice( $news, count( $news ) - $GLOBALS['news_num'], $GLOBALS['news_num'], true );	}
+
 			$this->save( $news, $user_id );
 		}
 		
@@ -354,12 +337,10 @@
 			if( !$user_id )	{	$user_id = $_user->id;	}
 			
 			$news = $this->load( $user_id );
-			
-			
+
 			$news[$key] = null;
 			$news = array_filter( $news );
-			
-			
+
 			$this->save( $news, $user_id );
 		}
 		
@@ -372,8 +353,6 @@
 			$news = addslashes( $news );
 			
 			$query = "UPDATE user SET `news` = '$news' WHERE id = " . $user_id;
-			mysql_query( $query );
+			mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 		}
 	}
-	
-?>

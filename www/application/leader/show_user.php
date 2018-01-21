@@ -18,16 +18,14 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	$_page->html->set('main_macro', $GLOBALS[tpl_dir].'/global/content_box_fit.tpl/predefine');
-	$_page->html->set('box_content', $GLOBALS[tpl_dir].'/application/leader/show_user.tpl/show_user');
+	$_page->html->set('main_macro', $GLOBALS['tpl_dir'].'/global/content_box_fit.tpl/predefine');
+	$_page->html->set('box_content', $GLOBALS['tpl_dir'].'/application/leader/show_user.tpl/show_user');
 	$_page->html->set('box_title', 'Leiterliste');
 	
-	$id	= mysql_real_escape_string( $_REQUEST[ id ] );
+	$id	= mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['id'] );
 	
 	$_camp->user( $id ) || die( "error" );
-	
-	
-	
+
 	$query = "	SELECT 
 					mail,
 					scoutname, 
@@ -49,24 +47,20 @@
 				WHERE
 					user.id = $id";
 					
-	$result = mysql_query( $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	
-	$user = mysql_fetch_assoc( $result );
-	
-	
-	
-	
+	$user = mysqli_fetch_assoc( $result );
+
 	// Sex:
-	
 	$query = "	SELECT	entry
 				FROM	dropdown
 				WHERE	list = 'sex'
 				AND		item_nr = " . $user['sex'];
-	$result = mysql_query( $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	
-	if( mysql_num_rows( $result ) == 1 )
+	if( mysqli_num_rows( $result ) == 1 )
 	{
-		$sex_array = mysql_fetch_assoc( $result );
+		$sex_array = mysqli_fetch_assoc( $result );
 		$user['sex_str'] = $sex_array['entry'];
 		
 		$user['sex_symbol'] = ( $user['sex_str'] == "Weiblich" ) ? "&#9792;" : "&#9794;";
@@ -77,53 +71,37 @@
 		$user['sex_symbol'] = "";
 	}
 	
-	
-	
-	
 	// J+S Edu:
-	
 	$query = "	SELECT 	entry
 				FROM 	dropdown
 				WHERE	list = 'jsedu'
 				AND		item_nr = '" . $user['jsedu'] . "'";
-	$result = mysql_query( $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	
-	if( mysql_num_rows( $result ) == 1 )
+	if( mysqli_num_rows( $result ) == 1 )
 	{
-		$jsedu_array = mysql_fetch_assoc( $result );
+		$jsedu_array = mysqli_fetch_assoc( $result );
 		$user['jsedu_str'] = $jsedu_array['entry'];
 	}
 	else
 	{	$user['jsedu_str'] = "";	}
 	
-	
-	
-	
-	
-	
 	// PBS Edu:
-	
 	$query = "	SELECT 	entry
 				FROM 	dropdown
 				WHERE	list = 'pbsedu'
 				AND		item_nr = '" . $user['pbsedu'] . "'";
-	$result = mysql_query( $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	
-	if( mysql_num_rows( $result ) == 1 )
+	if( mysqli_num_rows( $result ) == 1 )
 	{
-		$pbsedu_array = mysql_fetch_assoc( $result );
+		$pbsedu_array = mysqli_fetch_assoc( $result );
 		$user['pbsedu_str'] = $pbsedu_array['entry'];
 	}
 	else
 	{	$user['pbsedu_str'] = "";	}
-	
-	
-	
-	
-	
-	
+
 	// birthday:
-	
 	$user['birthday_str'] = "";
 	
 	if( is_numeric( $user['birthday'] ) )
@@ -133,19 +111,8 @@
 		$date->setDay2000( $user[ 'birthday' ] );
 		$user['birthday_str'] = $date->getString( "d.m.Y" );
 	}
-	
-	
-	
+
 	// Profile Pic:
 	$user[ 'avatar' ] = "index.php?app=user_profile&cmd=show_avatar&show_user_id=" . $id;
 	
-	
-	
-	
 	$_page->html->set( 'user_detail', $user );
-	
-	
-	
-	
-	
-?>

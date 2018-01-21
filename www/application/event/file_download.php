@@ -19,15 +19,13 @@
  */
 
 	$file_id = $_REQUEST['file_id'];
-	
-	
+
 	$query = "	SELECT *
 				FROM event_document
 				WHERE id = " . $file_id;
-	$result = mysql_query( $query );
-	$document = mysql_fetch_assoc( $result );
-	
-	
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+	$document = mysqli_fetch_assoc( $result );
+
 	header( 'Content-Type: application/force-download' );
 	header( 'Content-Type: ' . $document['type'] );
 	header('Content-Length: ' . $document['size'] );
@@ -35,6 +33,3 @@
 	
 	echo implode( "", readfile( $document['name'] ) );
 	die();
-	
-	
-?>

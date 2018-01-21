@@ -21,41 +21,38 @@
 	$support = $_REQUEST['support'];
 	$camp_id = $_REQUEST['camp_id'];
 	
-	
 	$query = "SELECT is_course FROM camp WHERE id = $camp_id";
-	$result = mysql_query( $query );
-	$is_course = mysql_result( $result, 0, 'is_course' );
-	
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+	$is_course = mysqli_result( $result,  0,  'is_course' );
 	
 	if( $is_course )
 	{	$query = "SELECT id FROM dropdown WHERE list = 'function_course' AND entry = 'Support'";	}
 	else
 	{	$query = "SELECT id FROM dropdown WHERE list = 'function_camp'  AND entry = 'Support'";	}
-	$result = mysql_query( $query );
-	$support_id = mysql_result( $result, 0, 'id' );
-	
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+	$support_id = mysqli_result( $result,  0,  'id' );
 		
 	if($support)
 	{
 		$query = "SELECT * FROM user_camp WHERE user_id = $_user->id AND camp_id = $camp_id AND function_id = $support_id";
-		$result = mysql_query( $query );
+		$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 		
-		if( !mysql_num_rows( $result ) )
+		if( !mysqli_num_rows( $result ) )
 		{
 			$query = "INSERT INTO user_camp ( user_id, camp_id, function_id, invitation_id, active )
 									VALUES 	( $_user->id, $camp_id, $support_id, $_user->id, 1 )";
-			$result = mysql_query( $query );
+			$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 		}
 	}
 	else
 	{
 		$query = "SELECT * FROM user_camp WHERE user_id = $_user->id AND camp_id = $camp_id AND function_id = $support_id";
-		$result = mysql_query( $query );
+		$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 		
-		if( mysql_num_rows( $result ) )
+		if( mysqli_num_rows( $result ) )
 		{
 			$query = "DELETE FROM user_camp WHERE user_id = $_user->id AND camp_id = $camp_id AND function_id = $support_id";
-			$result = mysql_query( $query );
+			$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 		}
 		
 		if( $camp_id == $_SESSION['camp_id'] )	{	$_SESSION['camp_id'] = 0;	}
@@ -63,4 +60,3 @@
 	
 	header("Location: index.php?app=support&cmd=home");
 	die();
-?>

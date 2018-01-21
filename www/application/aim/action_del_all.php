@@ -19,9 +19,7 @@
  */
 
 	$query = "DELETE FROM course_aim WHERE camp_id='$_camp->id';";
-	mysql_query($query);
-	
+	mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
 	header("Location:index.php?app=aim");
 	die();
-?>

@@ -33,20 +33,18 @@
 	include( $lib_dir . "/functions/error.php" );
 	require_once( "./lib/PHPTAL.php" );
 	
-	if( $_SESSION[skin] == "" ) $_SESSION[skin] = $GLOBALS[skin];
-	$html = new PHPTAL("public/skin/".$_SESSION[skin]."/login.tpl");
+	if( $_SESSION['skin'] == "" ) $_SESSION['skin'] = $GLOBALS['skin'];
+	$html = new PHPTAL("public/skin/".$_SESSION['skin']."/login.tpl");
 	
 	$html->setEncoding('UTF-8');
 	$html->set('SHOW_MSG', false);
 	
-	
 	session_start();
-	
-	
-	if(isset( $_REQUEST[msg] ) )
+
+	if(isset( $_REQUEST['msg'] ) )
 	{
 		$html->set('SHOW_MSG', true);
-		$html->set('MSG', $_REQUEST[msg]);
+		$html->set('MSG', $_REQUEST['msg']);
 	}
 	
 	if($_POST['Form'] == "Login")
@@ -55,24 +53,22 @@
 		db_connect();
 		
 		// Verhindern von injection!!!
-		$_POST['Login'] = mysql_real_escape_string($_POST['Login']);
+		$_POST['Login'] = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_POST['Login']);
 		
 		$query = "SELECT pw, id, scoutname, firstname, active, last_camp FROM user WHERE mail = '" . $_POST['Login'] . "' LIMIT 1";
-		$result = mysql_query($query);
+		$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 		
-		if(mysql_num_rows($result) > 0)
+		if(mysqli_num_rows($result) > 0)
 		{
-			$row = mysql_fetch_assoc($result);
+			$row = mysqli_fetch_assoc($result);
 			if($row['active'] == 1)
 			{
 				if(md5($_POST['Passwort']) == $row['pw'])
 				{				
 					$user_id = $row['id'];
-					
-					
+
 					if( $_REQUEST['autologin'] )
 					{	autologin_setup( $user_id );	}
-					
 					
 					session_setup( $user_id );
 					
@@ -98,9 +94,7 @@
 			$html->set('MSG', "Login ist fehlgeschlagen.");
 		}
 	}
-	
-	
-	
+
 	if( isset( $_COOKIE['autologin'] ) && $_COOKIE['autologin'] && isset( $_COOKIE['auth_key'] ) && is_numeric( $_COOKIE['user_id'] ) )
 	{
 	    include($lib_dir . "/mysql.php");
@@ -109,11 +103,10 @@
 		$user_id 	= $_COOKIE['user_id'];
 		$auth_key 	= md5( $_COOKIE['auth_key'] );
 		
-		
 		$query = "SELECT id FROM user WHERE id = $user_id AND auth_key = '" . $auth_key . "'";
-		$result = mysql_query( $query );
+		$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 		
-		if( mysql_num_rows( $result ) )
+		if( mysqli_num_rows( $result ) )
 		{
 			session_setup( $user_id );
 			
@@ -127,8 +120,5 @@
 			setcookie( 'auth_key', '' );
 		}
 	}
-	
-	
+
 	echo $html->execute();
-	
-?>

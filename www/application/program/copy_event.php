@@ -20,38 +20,31 @@
 
 	include( 'inc/get_program_update.php');
 	
-	$event_instance_id	= mysql_real_escape_string($_REQUEST['event_instance_id']);
-	$time				= mysql_real_escape_string($_REQUEST['time']);
-	
+	$event_instance_id	= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['event_instance_id']);
+	$time				= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['time']);
 	
 	$_camp->event_instance( $event_instance_id ) || die( "error" );
 	
-	
 	//***********************************************************************
-	
 	$query = "	SELECT event_instance.event_id
 				FROM event_instance
 				WHERE event_instance.id = $event_instance_id";
-	$result = mysql_query( $query );
-	$event_id = mysql_result( $result, 0, 'event_id' );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+	$event_id = mysqli_result( $result,  0,  'event_id' );
 	
 	$_camp->event( $event_id ) || die( "error" );
-	
 	
 	$copy = array( "type" => "event_copy", "event" => $event_id, "event_instance" => $event_instance_id );
 	$copy = json_encode( $copy );
 	
-	
 	$query = "	UPDATE user
 				SET copyspace = '$copy'
 				WHERE user.id = $_user->id";
-	mysql_query( $query );
+	mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	
-
 	//***********************************************************************
 	//***********************************************************************
 	/*
-	
 	$query = "	SELECT
 					dleft,
 					width,
@@ -65,8 +58,7 @@
 	$dleft = $row['dleft'];
 	$width = $row['width'];
 	$event_id = $row['event_id'];
-	
-	
+
 	if($width > 0.3)
 	{
 		$new_width = $width - 0.1;
@@ -80,8 +72,6 @@
 		if($dleft + $width >= 1)	{	$new_dleft = $dleft - 0.1;	}
 		else						{	$new_dleft = $dleft + 0.1;	}
 	}
-	
-	
 	
 	$query = "	INSERT INTO
 					event
@@ -107,15 +97,10 @@
 						event.id = $event_id
 				)";
 	mysql_query($query);
-	
-	
+
 	$query = "SELECT  LAST_INSERT_ID()";
 	$result = mysql_query($query);
 	$new_event_id = implode(mysql_fetch_row($result));
-	
-	
-	
-	
 	
 	$query = "	INSERT INTO
 					event_instance
@@ -138,14 +123,9 @@
 	//=====================================================================================
 	//=====================================================================================
 	
-	
-	
-	
-	
 	header("Content-type: application/json");
 	
 	$ans = get_program_update( $time );
 	echo json_encode( $ans );
 		
 	die();
-?>

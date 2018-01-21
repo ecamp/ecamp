@@ -21,23 +21,19 @@
 	function get_username( $id )
 	{
 		$query = "SELECT user.scoutname, user.firstname, user.surname, user.mail FROM user WHERE id='$id' LIMIT 1";
-		$result = mysql_query( $query );
+		$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 		
-		if( mysql_num_rows($result) == 0)
+		if( mysqli_num_rows($result) == 0)
 			return "<unbekannt>";
+
+	 	$this_user = mysqli_fetch_assoc($result);
+		if( trim($this_user['scoutname']) != "" )
+			return $this_user['scoutname'];
 			
-		
-	 	$this_user = mysql_fetch_assoc($result);
-		if( trim($this_user[scoutname]) != "" )
-			return $this_user[scoutname];
-			
-		return $this_user[firstname]." ".$this_user[surname];
+		return $this_user['firstname']." ".$this_user['surname'];
 	}
 	
 	function htmlentities_utf8( $str )
 	{
 		return htmlentities( $str, ENT_QUOTES, "UTF-8" );
 	}
-
-
-?>
