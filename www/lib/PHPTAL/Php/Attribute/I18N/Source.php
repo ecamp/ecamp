@@ -1,38 +1,48 @@
 <?php
+/**
+ * PHPTAL templating engine
+ *
+ * PHP Version 5
+ *
+ * @category HTML
+ * @package  PHPTAL
+ * @author   Laurent Bedubourg <lbedubourg@motion-twin.com>
+ * @author   Kornel Lesiński <kornel@aardvarkmedia.co.uk>
+ * @license  http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License
+ * @version  SVN: $Id$
+ * @link     http://phptal.org/
+ */
 
-require_once PHPTAL_DIR.'PHPTAL/Php/Attribute.php';
-
-// i18n:source
-//
-// The i18n:source attribute specifies the language of the text to be 
-// translated. The default is "nothing", which means we don't provide 
-// this information to the translation services.
-//
 
 /**
- * @package phptal.php.attribute.i18n
+ * i18n:source
+ *
+ *  The i18n:source attribute specifies the language of the text to be
+ *  translated. The default is "nothing", which means we don't provide
+ *  this information to the translation services.
+ *
+ *
+ * @package PHPTAL
+ * @subpackage Php.attribute.i18n
  */
 class PHPTAL_Php_Attribute_I18N_Source extends PHPTAL_Php_Attribute
 {
-    public function start()
+    public function before(PHPTAL_Php_CodeWriter $codewriter)
     {
         // ensure that a sources stack exists or create it
-        $this->tag->generator->doIf('!isset($__i18n_sources)');
-        $this->tag->generator->pushCode('$__i18n_sources = array()');
-        $this->tag->generator->end();
+        $codewriter->doIf('!isset($_i18n_sources)');
+        $codewriter->pushCode('$_i18n_sources = array()');
+        $codewriter->end();
 
         // push current source and use new one
-        $code = '$__i18n_sources[] = $tpl->getTranslator()->setSource(\'%s\')';
-        $code = sprintf($code, $this->expression);
-        $this->tag->generator->pushCode($code);
+        $codewriter->pushCode('$_i18n_sources[] = ' . $codewriter->getTranslatorReference(). '->setSource('.$codewriter->str($this->expression).')');
     }
 
-    public function end()
+    public function after(PHPTAL_Php_CodeWriter $codewriter)
     {
         // restore source
-        $code = '$tpl->getTranslator()->setSource(array_pop($__i18n_sources))';
-        $this->tag->generator->pushCode($code);
+        $code = $codewriter->getTranslatorReference().'->setSource(array_pop($_i18n_sources))';
+        $codewriter->pushCode($code);
     }
 }
 
-?>

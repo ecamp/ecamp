@@ -1,70 +1,67 @@
 <?php
-/* vim: set expandtab tabstop=4 shiftwidth=4: */
-//  
-//  Copyright (c) 2004-2005 Laurent Bedubourg
-//  
-//  This library is free software; you can redistribute it and/or
-//  modify it under the terms of the GNU Lesser General Public
-//  License as published by the Free Software Foundation; either
-//  version 2.1 of the License, or (at your option) any later version.
-//  
-//  This library is distributed in the hope that it will be useful,
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-//  Lesser General Public License for more details.
-//  
-//  You should have received a copy of the GNU Lesser General Public
-//  License along with this library; if not, write to the Free Software
-//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-//  
-//  Authors: Laurent Bedubourg <lbedubourg@motion-twin.com>
-//  
-
-require_once PHPTAL_DIR.'PHPTAL/Php/Attribute.php';
-
-// METAL Specification 1.0
-//
-//      argument ::= Name
-//
-// Example:
-//
-//      <p metal:define-macro="copyright">
-//      Copyright 2001, <em>Foobar</em> Inc.
-//      </p>
-//
-// PHPTAL:
-//      
-//      <?php function XXX_macro_copyright( $tpl ) { ? >
-//        <p>
-//        Copyright 2001, <em>Foobar</em> Inc.
-//        </p>
-//      <?php } ? >
-//
+/**
+ * PHPTAL templating engine
+ *
+ * PHP Version 5
+ *
+ * @category HTML
+ * @package  PHPTAL
+ * @author   Laurent Bedubourg <lbedubourg@motion-twin.com>
+ * @author   Kornel Lesiński <kornel@aardvarkmedia.co.uk>
+ * @license  http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License
+ * @version  SVN: $Id$
+ * @link     http://phptal.org/
+ */
 
 /**
- * @package phptal.php.attribute.metal
+ * METAL Specification 1.0
+ *
+ *      argument ::= Name
+ *
+ * Example:
+ *
+ *      <p metal:define-macro="copyright">
+ *      Copyright 2001, <em>Foobar</em> Inc.
+ *      </p>
+ *
+ * PHPTAL:
+ *
+ *      <?php function XXX_macro_copyright($tpl) { ? >
+ *        <p>
+ *        Copyright 2001, <em>Foobar</em> Inc.
+ *        </p>
+ *      <?php } ? >
+ *
+ * @package PHPTAL
+ * @subpackage Php.attribute.metal
  * @author Laurent Bedubourg <lbedubourg@motion-twin.com>
  */
 class PHPTAL_Php_Attribute_METAL_DefineMacro extends PHPTAL_Php_Attribute
 {
-    public function start()
+    public function before(PHPTAL_Php_CodeWriter $codewriter)
     {
-        $macroname = strtr(trim($this->expression),'-','_');
-        if (!preg_match('/^[a-z0-9_]+$/i', $macroname)){
-            throw new PHPTAL_Exception('Bad macro name "'.$macroname.'"', $this->tag->getSourceFile(), $this->tag->getSourceLine());
+        $macroname = strtr(trim($this->expression), '-', '_');
+        if (!preg_match('/^[a-z0-9_]+$/i', $macroname)) {
+            throw new PHPTAL_ParserException('Bad macro name "'.$macroname.'"',
+                $this->phpelement->getSourceFile(), $this->phpelement->getSourceLine());
         }
-        
-        $this->tag->generator->doFunction($macroname, '$tpl, $ctx');
-        $this->tag->generator->doXmlDeclaration();
-        $this->tag->generator->doDoctype();
-        $this->tag->generator->doSetVar('$tpl', 'clone $tpl');
-        $this->tag->generator->doSetVar('$ctx', '$tpl->getContext()');
-        $this->tag->generator->doSetVar('$glb', '$tpl->getGlobalContext()');
+
+        if ($codewriter->functionExists($macroname)) {
+            throw new PHPTAL_TemplateException("Macro $macroname is defined twice",
+                $this->phpelement->getSourceFile(), $this->phpelement->getSourceLine());
+        }
+
+        $codewriter->doFunction($macroname, 'PHPTAL $_thistpl, PHPTAL $tpl');
+        $codewriter->doSetVar('$tpl', 'clone $tpl');
+        $codewriter->doSetVar('$ctx', '$tpl->getContext()');
+        $codewriter->doInitTranslator();
+        $codewriter->doXmlDeclaration(true);
+        $codewriter->doDoctype(true);
     }
-    
-    public function end()
+
+    public function after(PHPTAL_Php_CodeWriter $codewriter)
     {
-        $this->tag->generator->doEnd();
+        $codewriter->doEnd('function');
     }
 }
 

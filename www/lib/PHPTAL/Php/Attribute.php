@@ -1,26 +1,17 @@
 <?php
-/* vim: set expandtab tabstop=4 shiftwidth=4: */
-//  
-//  Copyright (c) 2004-2005 Laurent Bedubourg
-//  
-//  This library is free software; you can redistribute it and/or
-//  modify it under the terms of the GNU Lesser General Public
-//  License as published by the Free Software Foundation; either
-//  version 2.1 of the License, or (at your option) any later version.
-//  
-//  This library is distributed in the hope that it will be useful,
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-//  Lesser General Public License for more details.
-//  
-//  You should have received a copy of the GNU Lesser General Public
-//  License along with this library; if not, write to the Free Software
-//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-//  
-//  Authors: Laurent Bedubourg <lbedubourg@motion-twin.com>
-//  
-
-require_once PHPTAL_DIR.'PHPTAL/Dom/Node.php';
+/**
+ * PHPTAL templating engine
+ *
+ * PHP Version 5
+ *
+ * @category HTML
+ * @package  PHPTAL
+ * @author   Laurent Bedubourg <lbedubourg@motion-twin.com>
+ * @author   Kornel Lesiński <kornel@aardvarkmedia.co.uk>
+ * @license  http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License
+ * @version  SVN: $Id$
+ * @link     http://phptal.org/
+ */
 
 /**
  * Base class for all PHPTAL attributes.
@@ -29,26 +20,37 @@ require_once PHPTAL_DIR.'PHPTAL/Dom/Node.php';
  * priority before and after the element printing.
  *
  * An attribute must implements start() and end().
- * 
- * @package phptal.php
+ *
+ * @package PHPTAL
+ * @subpackage Php
  * @author Laurent Bedubourg <lbedubourg@motion-twin.com>
  */
-abstract class PHPTAL_Php_Attribute 
+abstract class PHPTAL_Php_Attribute
 {
     const ECHO_TEXT = 'text';
     const ECHO_STRUCTURE = 'structure';
-    
-    /** Attribute name (ie: 'tal:content'). */
-    public $name;
-    /** Attribute value specified by the element. */
-    public $expression;
-    /** Element using this attribute (xml node). */
-    public $tag;
 
-    /** Called before element printing. */
-    public abstract function start();
-    /** Called after element printing. */
-    public abstract function end();
+    /** Attribute value specified by the element. */
+    protected $expression;
+
+    /** Element using this attribute (PHPTAL's counterpart of XML node) */
+    protected $phpelement;
+
+    /**
+     * Called before element printing.
+     */
+    abstract function before(PHPTAL_Php_CodeWriter $codewriter);
+
+    /**
+     * Called after element printing.
+     */
+    abstract function after(PHPTAL_Php_CodeWriter $codewriter);
+
+    function __construct(PHPTAL_Dom_Element $phpelement, $expression)
+    {
+        $this->expression = $expression;
+        $this->phpelement = $phpelement;
+    }
 
     /**
      * Remove structure|text keyword from expression and stores it for later
@@ -72,21 +74,20 @@ abstract class PHPTAL_Php_Attribute
         return trim($expression);
     }
 
-    protected function doEcho($code)
+    protected function doEchoAttribute(PHPTAL_Php_CodeWriter $codewriter, $code)
     {
-        if ($this->_echoType == self::ECHO_TEXT)
-            $this->tag->generator->doEcho($code);
+        if ($this->_echoType === self::ECHO_TEXT)
+            $codewriter->doEcho($code);
         else
-            $this->tag->generator->doEchoRaw($code);
+            $codewriter->doEchoRaw($code);
     }
 
     protected function parseSetExpression($exp)
     {
         $exp = trim($exp);
         // (dest) (value)
-        if (preg_match('/^([a-z0-9:\-_]+)\s+(.*?)$/i', $exp, $m)){
-            array_shift($m);
-            return $m;
+        if (preg_match('/^([a-z0-9:\-_]+)\s+(.*?)$/si', $exp, $m)) {
+            return array($m[1], trim($m[2]));
         }
         // (dest)
         return array($exp, null);
@@ -95,4 +96,3 @@ abstract class PHPTAL_Php_Attribute
     protected $_echoType = PHPTAL_Php_Attribute::ECHO_TEXT;
 }
 
-?>

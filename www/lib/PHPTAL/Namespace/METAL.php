@@ -1,17 +1,24 @@
 <?php
-
-require_once PHPTAL_DIR.'PHPTAL/Dom/Defs.php';
-require_once PHPTAL_DIR.'PHPTAL/Namespace.php';
-
-require_once PHPTAL_DIR.'PHPTAL/Php/Attribute/METAL/DefineMacro.php';
-require_once PHPTAL_DIR.'PHPTAL/Php/Attribute/METAL/UseMacro.php';
-require_once PHPTAL_DIR.'PHPTAL/Php/Attribute/METAL/DefineSlot.php';
-require_once PHPTAL_DIR.'PHPTAL/Php/Attribute/METAL/FillSlot.php';
-
-/** 
- * @package phptal.namespace
+/**
+ * PHPTAL templating engine
+ *
+ * PHP Version 5
+ *
+ * @category HTML
+ * @package  PHPTAL
+ * @author   Laurent Bedubourg <lbedubourg@motion-twin.com>
+ * @author   Kornel Lesiński <kornel@aardvarkmedia.co.uk>
+ * @license  http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License
+ * @version  SVN: $Id$
+ * @link     http://phptal.org/
  */
-class PHPTAL_Namespace_METAL extends PHPTAL_BuiltinNamespace
+
+
+/**
+ * @package PHPTAL
+ * @subpackage Namespace
+ */
+class PHPTAL_Namespace_METAL extends PHPTAL_Namespace_Builtin
 {
     public function __construct()
     {
@@ -22,7 +29,3 @@ class PHPTAL_Namespace_METAL extends PHPTAL_BuiltinNamespace
         $this->addAttribute(new PHPTAL_NamespaceAttributeSurround('fill-slot', 9));
     }
 }
-
-PHPTAL_Dom_Defs::getInstance()->registerNamespace(new PHPTAL_Namespace_METAL());
-
-?>

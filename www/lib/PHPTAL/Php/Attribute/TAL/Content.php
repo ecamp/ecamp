@@ -1,88 +1,86 @@
 <?php
-/* vim: set expandtab tabstop=4 shiftwidth=4: */
-//  
-//  Copyright (c) 2004-2005 Laurent Bedubourg
-//  
-//  This library is free software; you can redistribute it and/or
-//  modify it under the terms of the GNU Lesser General Public
-//  License as published by the Free Software Foundation; either
-//  version 2.1 of the License, or (at your option) any later version.
-//  
-//  This library is distributed in the hope that it will be useful,
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-//  Lesser General Public License for more details.
-//  
-//  You should have received a copy of the GNU Lesser General Public
-//  License along with this library; if not, write to the Free Software
-//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-//  
-//  Authors: Laurent Bedubourg <lbedubourg@motion-twin.com>
-//  
-
-require_once PHPTAL_DIR.'PHPTAL/Php/Attribute.php';
-
-// TAL Specifications 1.4
-//
-//      argument ::= (['text'] | 'structure') expression
-//
-// Example:
-// 
-//      <p tal:content="user/name">Fred Farkas</p>
-//
-//
-
-require_once PHPTAL_DIR.'PHPTAL/Php/TalesChainExecutor.php';
-
 /**
- * @package phptal.php.attribute.tal
+ * PHPTAL templating engine
+ *
+ * PHP Version 5
+ *
+ * @category HTML
+ * @package  PHPTAL
+ * @author   Laurent Bedubourg <lbedubourg@motion-twin.com>
+ * @author   Kornel Lesiński <kornel@aardvarkmedia.co.uk>
+ * @license  http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License
+ * @version  SVN: $Id$
+ * @link     http://phptal.org/
+ */
+
+
+/** TAL Specifications 1.4
+ *
+ *     argument ::= (['text'] | 'structure') expression
+ *
+ * Example:
+ *
+ *     <p tal:content="user/name">Fred Farkas</p>
+ *
+ *
+ *
+ *
+ * @package PHPTAL
+ * @subpackage Php.attribute.tal
  * @author Laurent Bedubourg <lbedubourg@motion-twin.com>
  */
-class PHPTAL_Php_Attribute_TAL_Content 
+class PHPTAL_Php_Attribute_TAL_Content
 extends PHPTAL_Php_Attribute
 implements PHPTAL_Php_TalesChainReader
 {
-    public function start()
+    public function before(PHPTAL_Php_CodeWriter $codewriter)
     {
         $expression = $this->extractEchoType($this->expression);
-        
-        $code = $this->tag->generator->evaluateExpression($expression);
+
+        $code = $codewriter->evaluateExpression($expression);
 
         if (is_array($code)) {
-            return $this->generateChainedContent($code);
+            return $this->generateChainedContent($codewriter, $code);
         }
 
-        if ($code == PHPTAL_TALES_NOTHING_KEYWORD) {
+        if ($code == PHPTAL_Php_TalesInternal::NOTHING_KEYWORD) {
             return;
         }
 
-        if ($code == PHPTAL_TALES_DEFAULT_KEYWORD) {
-            return $this->generateDefault();
+        if ($code == PHPTAL_Php_TalesInternal::DEFAULT_KEYWORD) {
+            return $this->generateDefault($codewriter);
         }
-        
-        $this->doEcho($code);
+
+        $this->doEchoAttribute($codewriter, $code);
     }
-    
-    public function end()
+
+    public function after(PHPTAL_Php_CodeWriter $codewriter)
     {
     }
 
-    private function generateDefault()
+    private function generateDefault(PHPTAL_Php_CodeWriter $codewriter)
     {
-        $this->tag->generateContent(true);
+        $this->phpelement->generateContent($codewriter, true);
     }
-    
-    private function generateChainedContent($code)
+
+    protected function generateChainedContent(PHPTAL_Php_CodeWriter $codewriter, $code)
     {
-        $executor = new PHPTAL_Php_TalesChainExecutor($this->tag->generator, $code, $this);
+        $executor = new PHPTAL_Php_TalesChainExecutor($codewriter, $code, $this);
     }
 
     public function talesChainPart(PHPTAL_Php_TalesChainExecutor $executor, $exp, $islast)
     {
-        $executor->doIf('!phptal_isempty($__content__ = '.$exp.')');
-        $this->doEcho('$__content__');
+        if (!$islast) {
+            $var = $executor->getCodeWriter()->createTempVariable();
+            $executor->doIf('!phptal_isempty('.$var.' = '.$exp.')');
+            $this->doEchoAttribute($executor->getCodeWriter(), $var);
+            $executor->getCodeWriter()->recycleTempVariable($var);
+        } else {
+            $executor->doElse();
+            $this->doEchoAttribute($executor->getCodeWriter(), $exp);
+        }
     }
-    
+
     public function talesChainNothingKeyword(PHPTAL_Php_TalesChainExecutor $executor)
     {
         $executor->breakChain();
@@ -91,8 +89,7 @@ implements PHPTAL_Php_TalesChainReader
     public function talesChainDefaultKeyword(PHPTAL_Php_TalesChainExecutor $executor)
     {
         $executor->doElse();
-        $this->generateDefault();
+        $this->generateDefault($executor->getCodeWriter());
         $executor->breakChain();
     }
 }
-?>

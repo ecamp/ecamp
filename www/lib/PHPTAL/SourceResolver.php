@@ -1,16 +1,25 @@
 <?php
-
-require_once PHPTAL_DIR.'PHPTAL/Source.php';
-
-/** 
- * @package phptal
+/**
+ * PHPTAL templating engine
+ *
+ * PHP Version 5
+ *
+ * @category HTML
+ * @package  PHPTAL
+ * @author   Laurent Bedubourg <lbedubourg@motion-twin.com>
+ * @author   Kornel Lesiński <kornel@aardvarkmedia.co.uk>
+ * @license  http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License
+ * @version  SVN: $Id$
+ * @link     http://phptal.org/
  */
-interface PHPTAL_SourceResolver 
+
+/**
+ * @package PHPTAL
+ */
+interface PHPTAL_SourceResolver
 {
     /**
      * Returns PHPTAL_Source or null.
      */
     public function resolve($path);
 }
-
-?>

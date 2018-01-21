@@ -1,17 +1,24 @@
 <?php
+/**
+ * PHPTAL templating engine
+ *
+ * PHP Version 5
+ *
+ * @category HTML
+ * @package  PHPTAL
+ * @author   Laurent Bedubourg <lbedubourg@motion-twin.com>
+ * @author   Kornel Lesiński <kornel@aardvarkmedia.co.uk>
+ * @license  http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License
+ * @version  SVN: $Id$
+ * @link     http://phptal.org/
+ */
 
-require_once PHPTAL_DIR.'PHPTAL/Dom/Defs.php';
-require_once PHPTAL_DIR.'PHPTAL/Namespace.php';
-
-require_once PHPTAL_DIR.'PHPTAL/Php/Attribute/I18N/Translate.php';
-require_once PHPTAL_DIR.'PHPTAL/Php/Attribute/I18N/Name.php';
-require_once PHPTAL_DIR.'PHPTAL/Php/Attribute/I18N/Domain.php';
-require_once PHPTAL_DIR.'PHPTAL/Php/Attribute/I18N/Attributes.php';
 
 /**
- * @package phptal.namespace
+ * @package PHPTAL
+ * @subpackage Namespace
  */
-class PHPTAL_Namespace_I18N extends PHPTAL_BuiltinNamespace
+class PHPTAL_Namespace_I18N extends PHPTAL_Namespace_Builtin
 {
     public function __construct()
     {
@@ -23,6 +30,3 @@ class PHPTAL_Namespace_I18N extends PHPTAL_BuiltinNamespace
     }
 }
 
-PHPTAL_Dom_Defs::getInstance()->registerNamespace(new PHPTAL_Namespace_I18N());
-
-?>

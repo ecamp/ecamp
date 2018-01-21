@@ -1,109 +1,130 @@
 <?php
-
-require_once PHPTAL_DIR.'PHPTAL/Php/Attribute.php';
-
-// ZPTInternationalizationSupport
-//
-// i18n:translate
-//
-// This attribute is used to mark units of text for translation. If this 
-// attribute is specified with an empty string as the value, the message ID 
-// is computed from the content of the element bearing this attribute. 
-// Otherwise, the value of the element gives the message ID.
-// 
+/**
+ * PHPTAL templating engine
+ *
+ * PHP Version 5
+ *
+ * @category HTML
+ * @package  PHPTAL
+ * @author   Laurent Bedubourg <lbedubourg@motion-twin.com>
+ * @author   Kornel Lesi≈Ñski <kornel@aardvarkmedia.co.uk>
+ * @license  http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License
+ * @version  SVN: $Id$
+ * @link     http://phptal.org/
+ */
 
 /**
- * @package phptal.php.attribute.i18n
+ * ZPTInternationalizationSupport
+ *
+ * i18n:translate
+ *
+ * This attribute is used to mark units of text for translation. If this
+ * attribute is specified with an empty string as the value, the message ID
+ * is computed from the content of the element bearing this attribute.
+ * Otherwise, the value of the element gives the message ID.
+ *
+ *
+ * @package PHPTAL
+ * @subpackage Php.attribute.i18n
  */
-class PHPTAL_Php_Attribute_I18N_Translate extends PHPTAL_Php_Attribute
+class PHPTAL_Php_Attribute_I18N_Translate extends PHPTAL_Php_Attribute_TAL_Content
 {
-    public function start()
+    public function before(PHPTAL_Php_CodeWriter $codewriter)
     {
-        // if no expression is given, the content of the node is used as 
+        $escape = true;
+        $this->_echoType = PHPTAL_Php_Attribute::ECHO_TEXT;
+        if (preg_match('/^(text|structure)(?:\s+(.*)|\s*$)/', $this->expression, $m)) {
+            if ($m[1]=='structure') { $escape=false; $this->_echoType = PHPTAL_Php_Attribute::ECHO_STRUCTURE; }
+            $this->expression = isset($m[2])?$m[2]:'';
+        }
+
+        $this->_prepareNames($codewriter, $this->phpelement);
+
+        // if no expression is given, the content of the node is used as
         // a translation key
-        if (strlen(trim($this->expression)) == 0){
-            $code = $this->_getTranslationKey($this->tag);
-            $code = str_replace('\'', '\\\'', $code);
-            $code = '\'' . $code . '\'';
-        }
-        else {
-            $code = $this->tag->generator->evaluateExpression($this->expression);
-        }
-        $this->_prepareNames($this->tag);
+        if (strlen(trim($this->expression)) == 0) {
+            $key = $this->_getTranslationKey($this->phpelement, !$escape, $codewriter->getEncoding());
+            $key = trim(preg_replace('/\s+/sm'.($codewriter->getEncoding()=='UTF-8'?'u':''), ' ', $key));
+            if ('' === trim($key)) {
+                throw new PHPTAL_TemplateException("Empty translation key",
+                            $this->phpelement->getSourceFile(), $this->phpelement->getSourceLine());
+            }
+            $code = $codewriter->str($key);
+        } else {
+            $code = $codewriter->evaluateExpression($this->expression);
+            if (is_array($code))
+                return $this->generateChainedContent($codewriter, $code);
 
-        $php = sprintf('echo $tpl->getTranslator()->translate(%s);', self::_canonalizeKey($code));
-        $this->tag->generator->pushCode($php);
+            $code = $codewriter->evaluateExpression($this->expression);
+        }
+
+        $codewriter->pushCode('echo '.$codewriter->getTranslatorReference().'->translate('.$code.','.($escape ? 'true':'false').');');
     }
 
-    public function end()
+    public function after(PHPTAL_Php_CodeWriter $codewriter)
     {
     }
 
-    private function _getTranslationKey($tag)
+    public function talesChainPart(PHPTAL_Php_TalesChainExecutor $executor, $exp, $islast)
+    {
+        $codewriter = $executor->getCodeWriter();
+
+        $escape = !($this->_echoType == PHPTAL_Php_Attribute::ECHO_STRUCTURE);
+        $exp = $codewriter->getTranslatorReference()."->translate($exp, " . ($escape ? 'true':'false') . ')';
+        if (!$islast) {
+            $var = $codewriter->createTempVariable();
+            $executor->doIf('!phptal_isempty('.$var.' = '.$exp.')');
+            $codewriter->pushCode("echo $var");
+            $codewriter->recycleTempVariable($var);
+        } else {
+            $executor->doElse();
+            $codewriter->pushCode("echo $exp");
+        }
+    }
+
+    private function _getTranslationKey(PHPTAL_Dom_Node $tag, $preserve_tags, $encoding)
     {
         $result = '';
-        foreach ($tag->children as $child){
-            if ($child instanceOf PHPTAL_Php_Text){
-                $result .= $child->node->getValue();
-            }
-            else if ($child instanceOf PHPTAL_Php_Element){
-                if ($child->hasAttribute('i18n:name')){
-                    $value = $child->getAttribute('i18n:name');
-                    $result .= '${' . $value . '}';
+        foreach ($tag->childNodes as $child) {
+            if ($child instanceof PHPTAL_Dom_Text) {
+                if ($preserve_tags) {
+                    $result .= $child->getValueEscaped();
+                } else {
+                    $result .= $child->getValue($encoding);
                 }
-                else {
-                    $result .= $this->_getTranslationKey($child);
+            } elseif ($child instanceof PHPTAL_Dom_Element) {
+                if ($attr = $child->getAttributeNodeNS('http://xml.zope.org/namespaces/i18n', 'name')) {
+                    $result .= '${' . $attr->getValue() . '}';
+                } else {
+
+                    if ($preserve_tags) {
+                        $result .= '<'.$child->getQualifiedName();
+                        foreach ($child->getAttributeNodes() as $attr) {
+                            if ($attr->getReplacedState() === PHPTAL_Dom_Attr::HIDDEN) continue;
+
+                            $result .= ' '.$attr->getQualifiedName().'="'.$attr->getValueEscaped().'"';
+                        }
+                        $result .= '>'.$this->_getTranslationKey($child, $preserve_tags, $encoding) . '</'.$child->getQualifiedName().'>';
+                    } else {
+                        $result .= $this->_getTranslationKey($child, $preserve_tags, $encoding);
+                    }
                 }
             }
         }
-        // cleanup result
-        $result = preg_replace('/\s+/sm', ' ', $result);
-        $result = trim($result);
         return $result;
     }
 
-    private function _prepareNames($tag)
+    private function _prepareNames(PHPTAL_Php_CodeWriter $codewriter, PHPTAL_Dom_Node $tag)
     {
-        foreach ($tag->children as $child){
-            if ($child instanceOf PHPTAL_Php_Element){
-                if ($child->hasAttribute('i18n:name')){
-                    $child->generate();
-                }
-                else {
-                    $this->_prepareNames($child);
+        foreach ($tag->childNodes as $child) {
+            if ($child instanceof PHPTAL_Dom_Element) {
+                if ($child->hasAttributeNS('http://xml.zope.org/namespaces/i18n', 'name')) {
+                    $child->generateCode($codewriter);
+                } else {
+                    $this->_prepareNames($codewriter, $child);
                 }
             }
         }
-    }
-
-    static function _canonalizeKey($key_)
-    {
-        $result = "";
-        $key_ = trim($key_);
-        $key_ = str_replace("\n", "", $key_);
-        $key_ = str_replace("\r", "", $key_);
-        for ($i = 0; $i<strlen($key_); $i++){
-            $c = $key_[$i];
-            $o = ord($c);
-            if ($o < 5 || $o > 127){
-                $result .= 'C<'.$o.'>';
-            }
-            else {
-                $result .= $c;
-            }
-        }
-        return $result;
-        /*
-        $key = utf8_decode($key_);
-        $key = preg_replace('/[‡‚]/sm', 'a', $key);
-        $key = preg_replace('/[ÍÎËÈ]/sm', 'e', $key);
-        $key = preg_replace('/[ÓÔ]/sm', 'i', $key);
-        $key = preg_replace('/[˚¸]/sm', 'u', $key);
-        $key = preg_replace('/[Ùˆ]/sm', 'o', $key);
-        $key = preg_replace('/[ˇ]/sm', 'y', $key);
-        return $key;
-        */
     }
 }
 
-?>

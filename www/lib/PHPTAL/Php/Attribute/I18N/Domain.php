@@ -1,39 +1,50 @@
 <?php
-
-require_once PHPTAL_DIR.'PHPTAL/Php/Attribute.php';
-
-// i18n:domain
-//
-// The i18n:domain attribute is used to specify the domain to be used to get 
-// the translation. If not specified, the translation services will use a 
-// default domain. The value of the attribute is used directly; it is not 
-// a TALES expression.
-// 
+/**
+ * PHPTAL templating engine
+ *
+ * PHP Version 5
+ *
+ * @category HTML
+ * @package  PHPTAL
+ * @author   Laurent Bedubourg <lbedubourg@motion-twin.com>
+ * @author   Kornel Lesiński <kornel@aardvarkmedia.co.uk>
+ * @license  http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License
+ * @version  SVN: $Id$
+ * @link     http://phptal.org/
+ */
 
 /**
- * @package phptal.php.attribute.i18n
+ * i18n:domain
+ *
+ * The i18n:domain attribute is used to specify the domain to be used to get
+ * the translation. If not specified, the translation services will use a
+ * default domain. The value of the attribute is used directly; it is not
+ * a TALES expression.
+ *
+ * @package PHPTAL
+ * @subpackage Php.attribute.i18n
  */
 class PHPTAL_Php_Attribute_I18N_Domain extends PHPTAL_Php_Attribute
 {
-    public function start()
+    public function before(PHPTAL_Php_CodeWriter $codewriter)
     {
         // ensure a domain stack exists or create it
-        $this->tag->generator->doIf('!isset($__i18n_domains)');
-        $this->tag->generator->pushCode('$__i18n_domains = array()');
-        $this->tag->generator->doEnd();
+        $codewriter->doIf('!isset($_i18n_domains)');
+        $codewriter->pushCode('$_i18n_domains = array()');
+        $codewriter->doEnd('if');
+
+        $expression = $codewriter->interpolateTalesVarsInString($this->expression);
 
         // push current domain and use new domain
-        $code = '$__i18n_domains[] = $tpl->getTranslator()->useDomain(\'%s\')';
-        $code = sprintf($code, $this->expression);
-        $this->tag->generator->pushCode($code);
+        $code = '$_i18n_domains[] = '.$codewriter->getTranslatorReference().'->useDomain('.$expression.')';
+        $codewriter->pushCode($code);
     }
 
-    public function end()
+    public function after(PHPTAL_Php_CodeWriter $codewriter)
     {
         // restore domain
-        $code = '$tpl->getTranslator()->useDomain(array_pop($__i18n_domains))';
-        $this->tag->generator->pushCode($code);
+        $code = $codewriter->getTranslatorReference().'->useDomain(array_pop($_i18n_domains))';
+        $codewriter->pushCode($code);
     }
 }
 
-?>
