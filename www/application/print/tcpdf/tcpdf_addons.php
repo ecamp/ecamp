@@ -17,8 +17,7 @@
 				
 				$main_leader = "";
 				$main_leaders = array();
-				for ($i=0; $i<count($print_data->user); ++$i) {
-					$leader = $print_data->user[$i];
+				foreach($print_data->user as $leader) {
 					if (($print_data->camp->is_course && $leader->funct == "Kursleiter") || (!$print_data->camp->is_course && $leader->funct == "Lagerleiter")) {
 						$main_leaders[] = $leader->firstname . " " . $leader->surname;
 					}
