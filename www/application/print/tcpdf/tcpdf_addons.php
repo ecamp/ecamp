@@ -15,7 +15,6 @@
 				$first_day = new c_date();		$first_day->setDay2000( $print_data->camp->first_day );
 				$last_day = new c_date();		$last_day->setDay2000( $print_data->camp->last_day );
 				
-				$main_leader = "";
 				$main_leaders = array();
 				foreach($print_data->user as $leader) {
 					if (($print_data->camp->is_course && $leader->funct == "Kursleiter") || (!$print_data->camp->is_course && $leader->funct == "Lagerleiter")) {
@@ -35,7 +34,7 @@
 				$this->SetXY( 10, 4 );		$this->drawTextBox( $name_and_short_name, $w - 20, 4, 'R', 'T', 0 );
 				$this->SetXY( 10, 7 );		$this->drawTextBox( $print_data->camp->ca_name . ", " . $print_data->camp->ca_zipcode . " " . $print_data->camp->ca_city, $w - 20, 4, 'C', 'T', 0 );
 				$this->SetXY( 10, 7 );		$this->drawTextBox( $first_day->getString( 'd.m.Y' ) . " - " . $last_day->getString( 'd.m.Y' ), $w - 20, 4, 'L', 'T', 0 );
-				$this->SetXY( 10, 7 );		$this->drawTextBox( $main_leader, $w - 20, 4, 'R', 'T', 0 );
+				$this->SetXY( 10, 7 );		$this->drawTextBox( $main_leaders, $w - 20, 4, 'R', 'T', 0 );
 				
 				$this->Line( 10, 10.5, $w - 10, 10.5 );
 				
