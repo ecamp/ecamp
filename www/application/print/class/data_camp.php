@@ -30,6 +30,7 @@
 		public $slogan;
 		public $type;
 		public $is_course;
+		public $coursetype;
 		public $ca_name;
 		public $ca_street;
 		public $ca_zipcode;
