@@ -47,7 +47,7 @@
 			$this->pid 			= $pid;
 			$this->id 			= $data['id'];
 			$this->name 		= $data['name'];
-			$this->short_name   = $data['short_name'];
+			$this->short_name	= $data['short_name'];
 			$this->group_name	= $data['group_name'];
 			$this->slogan 		= $data['slogan'];
 			$this->type 		= $data['type'];

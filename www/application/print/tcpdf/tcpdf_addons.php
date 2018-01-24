@@ -23,6 +23,8 @@
 				}
 				if (count($main_leaders) > 0) {
 					$main_leaders = "Hauptleitung: " . implode(", ", $main_leaders);
+				} else {
+					$main_leaders = "";
 				}
 				
 				$w = $this->getPageWidth();
