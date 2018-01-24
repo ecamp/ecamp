@@ -67,8 +67,8 @@
 			$query = "SELECT * FROM category WHERE camp_id = " . $this->camp_id;
 			$result = mysql_query( $query );
 			while( $category = mysql_fetch_assoc( $result ) ){	$this->category[ $category['id'] ] = new print_data_category_class( $category, $this );	}
-			
-			$query = "SELECT *, MIN( subcamp.start ) as first_day, MAX( subcamp.start + subcamp.length - 1 ) as last_day, job.job_name FROM camp, subcamp, job WHERE camp.id = subcamp.camp_id AND camp.id = " . $this->camp_id . " AND job.camp_id = camp.id AND job.show_gp = 1 GROUP BY camp.id";
+
+			$query = "SELECT *, MIN( subcamp.start ) as first_day, MAX( subcamp.start + subcamp.length - 1 ) as last_day, job.job_name, dropdown.entry as coursetype FROM camp, subcamp, job, dropdown WHERE camp.id = subcamp.camp_id AND camp.id = " . $this->camp_id . " AND job.camp_id = camp.id AND job.show_gp = 1 AND dropdown.value = camp.type GROUP BY camp.id";
 			$result = mysql_query( $query );
 			$this->camp = new print_data_camp_class( mysql_fetch_assoc( $result ), $this );
 			

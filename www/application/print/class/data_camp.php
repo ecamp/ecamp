@@ -52,6 +52,7 @@
 			$this->slogan 		= $data['slogan'];
 			$this->type 		= $data['type'];
 			$this->is_course	= $data['is_course'];
+			$this->coursetype	= $data['coursetype'];
 			$this->ca_name 		= $data['ca_name'];
 			$this->ca_street 	= $data['ca_street'];
 			$this->ca_zipcode 	= $data['ca_zipcode'];

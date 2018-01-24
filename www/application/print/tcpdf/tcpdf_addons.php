@@ -37,8 +37,23 @@
 				$this->SetXY( 10, 7 );		$this->drawTextBox( $print_data->camp->ca_name . ", " . $print_data->camp->ca_zipcode . " " . $print_data->camp->ca_city, $w - 20, 4, 'C', 'T', 0 );
 				$this->SetXY( 10, 7 );		$this->drawTextBox( $first_day->getString( 'd.m.Y' ) . " - " . $last_day->getString( 'd.m.Y' ), $w - 20, 4, 'L', 'T', 0 );
 				$this->SetXY( 10, 7 );		$this->drawTextBox( $main_leaders, $w - 20, 4, 'R', 'T', 0 );
+
+				if($print_data->camp->is_course){
+					$lkbs = array();
+					foreach($print_data->user as $lkb) {
+						if (($print_data->camp->is_course && $lkb->funct == "LKB")) {
+							$lkbs[] = $lkb->firstname . " " . $lkb->surname;
+						}
+					}
+					if (count($lkbs) > 0) {
+						$lkbs = implode(", ", $lkbs);
+					}
+
+					$this->SetXY(10, 10);   $this->drawTextBox( 'LKB: ' . $lkbs, $w - 20, 4, 'L', 'T', 0);
+					$this->SetXY(10, 10);  $this->drawTextBox( 'Kurstyp: ' . $print_data->camp->courstype, $w - 20, 4, 'C', 'T', 0);
+				}
 				
-				$this->Line( 10, 10.5, $w - 10, 10.5 );
+				$this->Line( 10, 14, $w - 10, 14 );
 				
 				$this->SetFontSize( $fs );
 				return;
