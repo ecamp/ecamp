@@ -46,10 +46,12 @@
 						}
 					}
 					if (count($lkbs) > 0) {
-						$lkbs = implode(", ", $lkbs);
+						$lkbs = "LKB: " . implode(", ", $lkbs);
+					} else {
+						$lkbs = "";
 					}
 
-					$this->SetXY(10, 10);   $this->drawTextBox( 'LKB: ' . $lkbs, $w - 20, 4, 'L', 'T', 0);
+					$this->SetXY(10, 10);   $this->drawTextBox( $lkbs, $w - 20, 4, 'L', 'T', 0);
 					$this->SetXY(10, 10);  $this->drawTextBox( 'Kurstyp: ' . $print_data->camp->coursetype, $w - 20, 4, 'C', 'T', 0);
 				}
 				
