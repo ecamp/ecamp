@@ -28,7 +28,7 @@
 	if( $title == "" || $date == "" )
 	{	header ("Location: index.php?app=todo");	}
 	
-	$date = ereg("([0-9]{1,2})[\/\. -]+([0-9]{1,2})[\/\. -]+([0-9]{1,4})", $date, $regs);
+	$date = preg_match("/([0-9]{1,2})[\/\. -]+([0-9]{1,2})[\/\. -]+([0-9]{1,4})/", $date, $regs);
 	$date = gmmktime(0, 0, 0, $regs[2], $regs[1], $regs[3]);
 	
 	$todo_date = new c_date();

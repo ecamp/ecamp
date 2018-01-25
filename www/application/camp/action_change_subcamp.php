@@ -23,10 +23,10 @@
 	$change_end   = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['subcamp_end']);
     $subcamp_change_id = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['subcamp_id']);
 	
-	$change_start = ereg("([0-9]{1,2})[\/\. -]+([0-9]{1,2})[\/\. -]+([0-9]{1,4})", $change_start, $regs);
+	$change_start = preg_match("/([0-9]{1,2})[\/\. -]+([0-9]{1,2})[\/\. -]+([0-9]{1,4})/", $change_start, $regs);
 	$change_start = gmmktime(0, 0, 0, $regs[2], $regs[1], $regs[3]);
 	
-	$change_end   = ereg("([0-9]{1,2})[\/\. -]+([0-9]{1,2})[\/\. -]+([0-9]{1,4})", $change_end  , $regs);
+	$change_end   = preg_match("/([0-9]{1,2})[\/\. -]+([0-9]{1,2})[\/\. -]+([0-9]{1,4})/", $change_end  , $regs);
 	$change_end   = gmmktime(0, 0, 0, $regs[2], $regs[1], $regs[3]);
 
 	$_camp->subcamp( $subcamp_change_id ) || die( "error" );

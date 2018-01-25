@@ -69,7 +69,7 @@ class c_date
   // Datum mittels eines Strings im Format 01.11.2007 setzen
   function setString( $string )
   {
-  	ereg("([0-9]{1,2})[\/\. -]+([0-9]{1,2})[\/\. -]+([0-9]{1,4})", $string, $regs);
+  	preg_match("/([0-9]{1,2})[\/\. -]+([0-9]{1,2})[\/\. -]+([0-9]{1,4})/", $string, $regs);
 	$this->setUnix( gmmktime(0, 0, 0, $regs[2], $regs[1], $regs[3]) );
   	return $this;
   }
@@ -176,8 +176,8 @@ class c_time
   // Uhrzeit mittels eines Strings im Format 12:54/12.54/12 54/1254 setzen
   function setString( $string )
   {  
-	if(!ereg("([0-9]{1,2})[.: ]+([0-9]{1,2})", $string, $regs) && strlen($string) == 4)
-	{	ereg("([0-9]{1,2})([0-9]{1,2})", $string, $regs);	}
+	if(!preg_match("/([0-9]{1,2})[.: ]+([0-9]{1,2})/", $string, $regs) && strlen($string) == 4)
+	{	preg_match("/([0-9]{1,2})([0-9]{1,2})/", $string, $regs);	}
 	
 	$this->setManual( $regs[1], $regs[2] );
     return $this;

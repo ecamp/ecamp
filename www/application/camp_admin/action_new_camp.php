@@ -32,10 +32,10 @@
 	$start		= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['camp_start']);
 	$end		= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['camp_end']);
 	
-	$start = ereg("([0-9]{1,2})[\/\. -]+([0-9]{1,2})[\/\. -]+([0-9]{1,4})", $start, $regs);
+	$start = preg_match("/([0-9]{1,2})[\/\. -]+([0-9]{1,2})[\/\. -]+([0-9]{1,4})/", $start, $regs);
 	$start = gmmktime(0, 0, 0, $regs[2], $regs[1], $regs[3]);
 	
-	$end = ereg("([0-9]{1,2})[\/\. -]+([0-9]{1,2})[\/\. -]+([0-9]{1,4})", $end, $regs);
+	$end = preg_match("/([0-9]{1,2})[\/\. -]+([0-9]{1,2})[\/\. -]+([0-9]{1,4})/", $end, $regs);
 	$end = gmmktime(0, 0, 0, $regs[2], $regs[1], $regs[3]);
 	
 	$c_start = new c_date;

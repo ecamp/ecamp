@@ -26,7 +26,7 @@
 	{	$ans = "Das Passwort enhält unerlaubte Zeichen!";	}
 	elseif($pw1 == $pw2)
 	{
-		if( eregi("^[a-zA-Z0-9]{6,25}",$pw1) )
+		if( preg_match("/^[a-zA-Z0-9]{6,25}/i",$pw1) )
 		{
 			$pw = md5($pw1);
 			$old_pw = md5($old_pw);

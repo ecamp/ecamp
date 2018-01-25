@@ -3,7 +3,7 @@
     "description": "a application to plan camps for scouting.",
     "type": "project",
     "require": {
-        "phpmailer/phpmailer": "5.2.*"
+        "phpmailer/phpmailer": "5.2.*",
     },
     "license": "AGPL",
     "authors": [

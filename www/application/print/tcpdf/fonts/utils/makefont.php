@@ -479,7 +479,7 @@ function MakeFontDescriptor($fm, $symbolic=false) {
 	//StemV
 	if (isset($fm['StdVW'])) {
 		$stemv = $fm['StdVW'];
-	} elseif (isset($fm['Weight']) and eregi('(bold|black)', $fm['Weight'])) {
+	} elseif (isset($fm['Weight']) and preg_match('/(bold|black)/i', $fm['Weight'])) {
 		$stemv = 120;
 	} else {
 		$stemv = 70;

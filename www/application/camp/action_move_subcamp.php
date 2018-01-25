@@ -22,7 +22,7 @@
 	$move_to = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['subcamp_start']);
     $subcamp_move_id = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['subcamp_id']);
 	
-	$move_to = ereg("([0-9]{1,2})[\/\. -]+([0-9]{1,2})[\/\. -]+([0-9]{1,4})", $move_to, $regs);
+	$move_to = preg_match("/([0-9]{1,2})[\/\. -]+([0-9]{1,2})[\/\. -]+([0-9]{1,4})/", $move_to, $regs);
 	$move_to = gmmktime(0, 0, 0, $regs[2], $regs[1], $regs[3]);
 
 	$_camp->subcamp( $subcamp_move_id ) || die( "error" );

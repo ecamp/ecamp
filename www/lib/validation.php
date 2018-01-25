@@ -147,8 +147,8 @@
   // Erlaubt spezielle HTML-Tags
   function allowTag( $tag, $textfield )
   {
-          $textfield = eregi_replace("(&lt;)(".$tag.")([^<>/&]*)(&gt;)", "<\\2\\3>", $textfield );
-          $textfield = eregi_replace("(&lt;)(/".$tag.")([^<>/&]*)(&gt;)", "<\\2\\3>", $textfield );
+          $textfield = preg_replace("/(&lt;)(".$tag.")([^<>/&]*)(&gt;)/", "<\\2\\3>", $textfield );
+          $textfield = preg_replace("/(&lt;)(/".$tag.")([^<>/&]*)(&gt;)/", "<\\2\\3>", $textfield );
 
           # evtl. Anzahl Tag's zählen
 
