@@ -32,7 +32,7 @@
 	if (!$resp->is_valid)
 	{	header( 'location: reminder.php?msg=Bitte CAPTCHA richtig abschreiben!' );	die();	}
 
-	$login = ((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST[ 'Login' ] ) : ((trigger_error("[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.", E_USER_ERROR)) ? "" : ""));
+	$login = mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST[ 'Login' ] );
 
 	$query = "	SELECT id, pw, active FROM user WHERE mail = '$login'";
 	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );

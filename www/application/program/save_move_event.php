@@ -38,7 +38,7 @@
 	$query = "UPDATE  `day` SET t_edited = CURRENT_TIMESTAMP WHERE id = " . $old_day_id;
 	mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	$query = "UPDATE  `day` SET t_edited = CURRENT_TIMESTAMP WHERE id = " . $day_id;
-	mysqli_query($GLOBALS["___mysqli_ston"],  $quey );
+	mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 
 	$query = "	UPDATE 
 					event_instance 

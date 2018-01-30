@@ -87,6 +87,11 @@
 		}
 	});
 	
+	window.addEvent( 'resize', function()
+	{	if( $event.id == 0 )
+		{	window.location.reload();	}
+	});
+	
 	window.addEvent( 'keydown', function( key )
 	{
 		if( key.key == "space" && $event.id == 0 && $popup.actuall_popup == $empty )

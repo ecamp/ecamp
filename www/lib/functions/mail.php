@@ -18,11 +18,6 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	// Import PHPMailer classes into the global namespace
-	// These must be at the top of your script, not inside a function
-	use PHPMailer;
-	use Exception;
-
 	require 'vendor/autoload.php';
 
 	function ecamp_send_mail($to, $subject, $body){
@@ -50,7 +45,7 @@
 			$mail->Port = $GLOBALS['smtp-config']['port'];                                    // TCP port to connect to
 
 			//Recipients
-			$mail->setFrom('mailbot@ecamps.ch', 'eCamp Mailbot');
+			$mail->setFrom('ecamp@pfadiluzern.ch', 'eCamp');
 			$mail->addAddress($to);     // Add a recipient
 
 			//Content
@@ -60,7 +55,6 @@
 			$mail->AltBody = $body;
 
 			$mail->send();
-			echo 'Message has been sent';
 		} catch (Exception $e) {
 			echo 'Message could not be sent.';
 			echo 'Mailer Error: ' . $mail->ErrorInfo;
