@@ -91,7 +91,7 @@
 			$title = "Picasso - " . $this->data->camp->name;
 			
 			$pdf->SetFont('','B', 20); 
-			$pdf->SetXY( 20, 11 );
+			$pdf->SetXY( 20, 12 );
 			$pdf->drawTextBox( $title, $this->pw - 40, 10, 'C', 'M', 0 );
 		}
 		

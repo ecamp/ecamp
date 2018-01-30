@@ -7,9 +7,28 @@
 			{
 				global $print_data;
 				
+				$name_and_short_name = $print_data->camp->name;
+				if ($print_data->camp->is_course) {
+					$name_and_short_name = implode(", ", array($print_data->camp->name, $print_data->camp->short_name));
+				}
+
 				$first_day = new c_date();		$first_day->setDay2000( $print_data->camp->first_day );
 				$last_day = new c_date();		$last_day->setDay2000( $print_data->camp->last_day );
 				
+				$main_leaders = array();
+				foreach($print_data->user as $leader) {
+					if (($print_data->camp->is_course && $leader->funct == "Kursleiter") || (!$print_data->camp->is_course && $leader->funct == "Lagerleiter")) {
+						$main_leaders[] = $leader->firstname . " " . $leader->surname;
+					}
+				}
+				if (count($main_leaders) > 0) {
+					if (count($main_leaders) > 2) {
+						$main_leaders[floor(count($main_leaders) / 2)] = "\n" . $main_leaders[floor(count($main_leaders) / 2)];
+					}
+					$main_leaders = "Hauptleitung: " . implode(", ", $main_leaders);
+				} else {
+					$main_leaders = "";
+				}
 				
 				$w = $this->getPageWidth();
 				$fs = $this->getFontSize();
@@ -17,11 +36,30 @@
 				
 				$this->SetXY( 10, 4 );		$this->drawTextBox( $print_data->camp->slogan, $w - 20, 4, 'C', 'T', 0 );
 				$this->SetXY( 10, 4 );		$this->drawTextBox( $print_data->camp->group_name, $w - 20, 4, 'L', 'T', 0 );
-				$this->SetXY( 10, 4 );		$this->drawTextBox( $print_data->camp->name, $w - 20, 4, 'R', 'T', 0 );
+				$this->SetXY( 10, 4 );		$this->drawTextBox( $name_and_short_name, $w - 20, 4, 'R', 'T', 0 );
+				$this->SetXY( 10, 7 );		$this->drawTextBox( $print_data->camp->ca_name . ", " . $print_data->camp->ca_zipcode . " " . $print_data->camp->ca_city, $w - 20, 4, 'C', 'T', 0 );
 				$this->SetXY( 10, 7 );		$this->drawTextBox( $first_day->getString( 'd.m.Y' ) . " - " . $last_day->getString( 'd.m.Y' ), $w - 20, 4, 'L', 'T', 0 );
-				$this->SetXY( 10, 7 );		$this->drawTextBox( $print_data->camp->ca_city, $w - 20, 4, 'R', 'T', 0 );
+				$this->SetXY( 10, 7 );		$this->drawTextBox( $main_leaders, $w - 20, 8, 'R', 'T', 0 );
+
+				if($print_data->camp->is_course){
+					$lkbs = array();
+					foreach($print_data->user as $lkb) {
+						if (($print_data->camp->is_course && $lkb->funct == "LKB")) {
+							$lkbs[] = $lkb->firstname . " " . $lkb->surname;
+						}
+					}
+					if (count($lkbs) > 0) {
+						$lkbs = "LKB: " . implode(", ", $lkbs);
+					} else {
+						$lkbs = "";
+					}
+
+					$this->SetXY(10, 10);   $this->drawTextBox( $lkbs, $w - 20, 4, 'L', 'T', 0);
+					$this->SetXY(10, 10);  $this->drawTextBox( 'Kurstyp: ' . $print_data->camp->coursetype, $w - 20, 4, 'C', 'T', 0);
+				}
 				
-				$this->Line( 10, 10.5, $w - 10, 10.5 );
+				$this->Line( 10, 14, $w - 10, 14 );
+				$this->SetMargins(10,100, 10);
 				
 				$this->SetFontSize( $fs );
 				return;

@@ -25,10 +25,12 @@
 		public $pid;
 		public $id;
 		public $name;
+		public $short_name;
 		public $group_name;
 		public $slogan;
 		public $type;
 		public $is_course;
+		public $coursetype;
 		public $ca_name;
 		public $ca_street;
 		public $ca_zipcode;
@@ -46,10 +48,12 @@
 			$this->pid 			= $pid;
 			$this->id 			= $data['id'];
 			$this->name 		= $data['name'];
+			$this->short_name	= $data['short_name'];
 			$this->group_name	= $data['group_name'];
 			$this->slogan 		= $data['slogan'];
 			$this->type 		= $data['type'];
 			$this->is_course	= $data['is_course'];
+			$this->coursetype	= $data['coursetype'];
 			$this->ca_name 		= $data['ca_name'];
 			$this->ca_street 	= $data['ca_street'];
 			$this->ca_zipcode 	= $data['ca_zipcode'];
