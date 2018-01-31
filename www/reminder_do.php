@@ -23,7 +23,7 @@
 	include($lib_dir . "/functions/mail.php");
 	db_connect();
 	
-	require_once( "./lib/recaptchalib.php" );
+	require_once("./lib/recaptchalib.php");
 
 	$resp = recaptcha_check_answer ($GLOBALS['captcha_prv'], $_SERVER["REMOTE_ADDR"],
 									$_REQUEST["recaptcha_challenge_field"],
