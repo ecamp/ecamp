@@ -33,7 +33,7 @@
 
 	$query = "	SELECT *
 				FROM dropdown
-				WHERE list = 'coursetype' AND item_nr>=5 ORDER BY item_nr";
+				WHERE list = 'coursetype' AND item_nr>=20 ORDER BY item_nr";
 	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	$coursetypes = array();
 	
