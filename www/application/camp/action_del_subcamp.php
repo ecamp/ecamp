@@ -18,7 +18,7 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	$subcamp_id = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST[subcamp_id]);
+	$subcamp_id = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['subcamp_id']);
 
 	$_camp->subcamp( $subcamp_id ) || die( "error" );
 
