@@ -59,9 +59,9 @@
 			{
 				$this->y += 10;
 				
-				$subcamp_str = strtr( date( 'd.m.Y',  $subcamp->ustart ), $GLOBALS[en_to_de] );
+				$subcamp_str = strtr( date( 'd.m.Y',  $subcamp->ustart ), $GLOBALS['en_to_de'] );
 				$subcamp_str .= " - ";
-				$subcamp_str .= strtr( date( 'd.m.Y',  $subcamp->uend ), $GLOBALS[en_to_de] );
+				$subcamp_str .= strtr( date( 'd.m.Y',  $subcamp->uend ), $GLOBALS['en_to_de'] );
 				
 				$pdf->SetXY( 10, $this->y );
 				$pdf->SetFont( '', 'B', 20 );
@@ -90,14 +90,14 @@
 					
 					$pdf->SetFont( '', 'B', 12 );
 					$pdf->SetTextColor( 0, 0, 0 );
-					$day_str = strtr( $c_date->setDay2000( $day->date )->getString('d.m.Y - l'), $GLOBALS[en_to_de] );
+					$day_str = strtr( $c_date->setDay2000( $day->date )->getString('d.m.Y - l'), $GLOBALS['en_to_de'] );
 					$pdf->SetXY( 15, $this->y );
 					$pdf->drawTextBox( $day_str, 190, 8, 'L', 'M', 0 );
 					
 					
 					$pdf->SetFont( '', 'B', 8 );
 					$pdf->SetTextColor( 255, 255, 255 );
-					$day_str = strtr( $c_date->setDay2000( $day->date )->getString('D'), $GLOBALS[en_to_de] );
+					$day_str = strtr( $c_date->setDay2000( $day->date )->getString('D'), $GLOBALS['en_to_de'] );
 					$pdf->SetXY( 0, $this->y );
 					$pdf->drawTextBox( $day_str, 6, 8, 'C', 'M', 0 );
 					$pdf->SetXY( 204, $this->y );

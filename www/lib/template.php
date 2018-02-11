@@ -51,17 +51,17 @@
 
   function gettemplate_main( $template, $replace=array(), $endung="tpl" )
   {
-	  return gettemplate( $template, $replace, $endung, $GLOBALS[template_global_dir] );
+	  return gettemplate( $template, $replace, $endung, $GLOBALS['template_global_dir'] );
   }
   
   function gettemplate_module( $template, $module, $replace=array(), $endung="tpl" )
   {
-	  return gettemplate( $template, $replace, $endung, $GLOBALS[template_module_dir] . "/" . $module );
+	  return gettemplate( $template, $replace, $endung, $GLOBALS['template_module_dir'] . "/" . $module );
   }
   
   function gettemplate_app( $template, $replace=array(), $endung="tpl" )
   {
-      return gettemplate( $template, $replace, $endung, $GLOBALS[template_app_dir] . "/" . $_page[app] );
+      return gettemplate( $template, $replace, $endung, $GLOBALS['template_app_dir'] . "/" . $_page['app'] );
   }
   
   function gettemplate_manual( $template, $folder, $replace=array(), $endung="tpl" )

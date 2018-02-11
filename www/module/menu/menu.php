@@ -55,11 +55,11 @@
 		$camp_end = mysqli_result( $subresult,  0 ,  'camp_end' );
 		
 		
-		//$dropdown[$camp[groups_id]] = array();
+		//$dropdown[$camp['groups_id']] = array();
 		$dropdown[$camp['groups_id']]['group_name'] = $camp['short_prefix'] . " " . $camp['groups_name'];
-		//$dropdown[$camp[groups_id]][camp_list]  = array();
+		//$dropdown[$camp['groups_id']]['camp_list']  = array();
 		
-		//$dropdown[$camp[groups_id]][camp_list][$camp[id]] = array();
+		//$dropdown[$camp['groups_id']]['camp_list'][$camp['id']] = array();
 		$dropdown[$camp['groups_id']]['camp_list'][$camp['id']]['short_name'] = $camp['short_name'];
 		$dropdown[$camp['groups_id']]['camp_list'][$camp['id']]['id'] = $camp['id'];
 		
