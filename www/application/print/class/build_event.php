@@ -154,7 +154,7 @@
 			$pdf->SetXY( 155, $this->y + 1 );
 			$pdf->drawTextBox( 'Datum:', 15, 5, 'L', 'M', 0 );
 			$pdf->SetXY( 170, $this->y + 1 );
-			$pdf->drawTextBox( strtr( $date->getString( 'D d.m.Y' ), $GLOBALS[en_to_de] ), 30, 5, 'L', 'M', 0 );
+			$pdf->drawTextBox( strtr( $date->getString( 'D d.m.Y' ), $GLOBALS['en_to_de'] ), 30, 5, 'L', 'M', 0 );
 			$pdf->Link( 170, $this->y + 1, 30, 5, $event_instance->day->get_linker( $pdf ) );
 			
 			
@@ -841,7 +841,7 @@
 			
 			$pdf->SetFont( '', 'B', 8 );
 			$pdf->SetTextColor( 255, 255, 255 );
-			$day_str = strtr( $c_date->setDay2000( $day->date )->getString('D'), $GLOBALS[en_to_de] );
+			$day_str = strtr( $c_date->setDay2000( $day->date )->getString('D'), $GLOBALS['en_to_de'] );
 			$pdf->SetXY( 0, $day->marker );
 			$pdf->drawTextBox( $day_str, 6, 8, 'C', 'M', 0 );
 			$pdf->SetXY( 204, $day->marker );

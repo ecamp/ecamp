@@ -64,7 +64,7 @@
 	
 	$pbsedu_option = "";
 	while($row = mysqli_fetch_assoc($result))
-	{	if($row[id] == $user['pbsedu'])
+	{	if($row['id'] == $user['pbsedu'])
 		{	$selected = " selected=selected";	}
 		else
 		{	$selected = "";	}

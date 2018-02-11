@@ -110,7 +110,7 @@
 			$rows[$row][count($rows[$row])]->starttime 	= $event['starttime'];
 			$rows[$row][count($rows[$row])]->length		= $event['length'];
 			$rows[$row][count($rows[$row])]->data		= $event;
-			$rows[$row][count($rows[$row])]->data[row] 	= $row;
+			$rows[$row][count($rows[$row])]->data['row'] 	= $row;
 			
 			for($time = $event['starttime']; $time < $event['starttime'] + $event['length']; $time++)
 			{	$count[$time]++;	}
