@@ -24,7 +24,7 @@
 	require_once("./lib/PHPTAL.php");
 	db_connect();
 
-	require_once( "./lib/recaptchalib.php" );
+	require_once("./lib/recaptchalib.php");
 	
 	if( $_SESSION['skin'] == "" ) $_SESSION['skin'] = $GLOBALS['skin'];
 	$html = new PHPTAL("public/skin/".$_SESSION['skin']."/reminder.tpl");

@@ -22,9 +22,11 @@
 	include($lib_dir . "/mysql.php");
 	include($lib_dir . "/functions/error.php");
 	require_once("./lib/PHPTAL.php");
+
 	db_connect();
 
-	require_once( "./lib/recaptchalib.php" );
+	//require_once("./lib/recaptchalib.php");
+	require 'vendor/autoload.php';
 
 	if( $_SESSION['skin'] == "" ) $_SESSION['skin'] = $GLOBALS['skin'];
 	$html = new PHPTAL("public/skin/".$_SESSION['skin']."/register.tpl");

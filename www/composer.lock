@@ -4,8 +4,49 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "500bd9fdf1abf48e9e4143b9a9998c48",
+    "content-hash": "e0847b30911f8833f4c0d3e992231181",
     "packages": [
+        {
+            "name": "phelium/recaptcha",
+            "version": "1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/shevabam/recaptcha.git",
+                "reference": "cdb88f72cc528473b734ba83cad5fcadc134b2eb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/shevabam/recaptcha/zipball/cdb88f72cc528473b734ba83cad5fcadc134b2eb",
+                "reference": "cdb88f72cc528473b734ba83cad5fcadc134b2eb",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Phelium\\Component\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GNU GPL 2.0"
+            ],
+            "authors": [
+                {
+                    "name": "ShevAbam"
+                }
+            ],
+            "description": "reCAPTCHA v2 class",
+            "homepage": "https://github.com/shevabam/recaptcha",
+            "keywords": [
+                "captcha",
+                "google",
+                "recaptcha"
+            ],
+            "time": "2017-08-14T09:42:56+00:00"
+        },
         {
             "name": "phpmailer/phpmailer",
             "version": "v5.2.26",

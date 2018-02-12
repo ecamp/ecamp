@@ -23,7 +23,7 @@
 	include($lib_dir . "/functions/mail.php");
 	db_connect();
 	
-	require_once( "./lib/recaptchalib.php" );
+	require_once("./lib/recaptchalib.php");
 
 	//	CHECK ALL INPUTS:
 	// ===================
