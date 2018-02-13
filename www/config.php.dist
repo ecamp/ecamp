@@ -18,57 +18,64 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+	
+	
+	$GLOBALS[base_uri]				= "http://ecamp.pfadiluzern.ch/";
+	
+	$GLOBALS[lib_dir] 				= "./lib";
+	$GLOBALS[module_dir] 			= "./module";
+	$GLOBALS[app_dir] 				= "./application";
+	
+	$GLOBALS[public_app_dir]		= "./public/application";
+	$GLOBALS[public_global_dir]		= "./public/global";
+	$GLOBALS[public_module_dir]		= "./public/module";
+	
+	$GLOBALS[template_app_dir] 		= "./template/application";
+	$GLOBALS[template_global_dir] 	= "./template/global";
+	$GLOBALS[template_module_dir] 	= "./template/module";
+	
+	$GLOBALS[tpl_dir] = "../../../template";
 
-	$GLOBALS['base_uri']				= "http://ecamp.pfadiluzern.ch/";
-	
-	$GLOBALS['lib_dir'] 				= "./lib";
-	$GLOBALS['module_dir'] 			    = "./module";
-	$GLOBALS['app_dir'] 				= "./application";
-	
-	$GLOBALS['public_app_dir']		    = "./public/application";
-	$GLOBALS['public_global_dir']		= "./public/global";
-	$GLOBALS['public_module_dir']		= "./public/module";
-	
-	$GLOBALS['template_app_dir'] 		= "./template/application";
-	$GLOBALS['template_global_dir'] 	= "./template/global";
-	$GLOBALS['template_module_dir']     = "./template/module";
-	
-	$GLOBALS['tpl_dir']                 = "../../../template";
-
-	$GLOBALS['pear_dir']                = "/home/pfadiluz/www/pear/PEAR/";
+	$GLOBALS[pear_dir] = "/home/pfadiluz/www/pear/PEAR/";
 	ini_set("include_path", ".:/usr/local/lib/php:/home/pfadiluz/www/pear/PEAR/");
 	
+<<<<<<< HEAD
 	$GLOBALS['captcha_pub']             = "";
 	$GLOBALS['captcha_prv']             = "";
 
 	$GLOBALS['midata_user']                        = "";
 	$GLOBALS['midata_pass']                        = "";
+=======
+	$GLOBALS[captcha_pub] = "";
+	$GLOBALS[captcha_prv] = "";
 	
-	$GLOBALS['time_shift']              = 300; // Minuten;
-	$GLOBALS['news_num']                = 5;
+>>>>>>> parent of c7a1ed8... Arrays Optimieren
+	
+	$GLOBALS[time_shift] = 300; // Minuten;
+	$GLOBALS[news_num] = 5;
 
 	// Layout wählen
-	$GLOBALS['skin']                    = "skin3";
+	$GLOBALS[skin] = "skin3";
 	
-	$GLOBALS['debug']                   = 0;
-	$GLOBALS['register']                = 0;
+	$GLOBALS[debug] = 0;
+	$GLOBALS[register] = 0;
 	
 	// Seite mit HTML-Tidy parsen
-	$GLOBALS['parse_tidy']              = false;
+	$GLOBALS[parse_tidy] = false;
 	
-	$GLOBALS['feedback_mail']           = "ecamp@pfadiluzern.ch";
-	$GLOBALS['support_mail']            = "ecamp@pfadiluzern.ch";
+	$GLOBALS[feedback_mail] = "ecamp@pfadiluzern.ch";
+	$GLOBALS[support_mail]  = "ecamp@pfadiluzern.ch";	
 	
 	if( $_SERVER['HTTP_HOST'] == "localhost" )
 	{
-		$GLOBALS['host']    = "localhost";
-		$GLOBALS['db']	    = "ecamp";
-		$GLOBALS['us'] 	    = "root";
-		$GLOBALS['pw'] 	    = "root";
+		$GLOBALS[host]	= "localhost";
+		$GLOBALS[db]	= "ecamp";
+		$GLOBALS[us] 	= "root";
+		$GLOBALS[pw] 	= "root";
 	}
 	
 	
-	$GLOBALS['en_to_de'] = array(
+	$GLOBALS[en_to_de] = array(
 		"Monday" 	=> "Montag",
 		"Tuesday"	=> "Dienstag",
 		"Wednesday"	=> "Mittwoch",
@@ -97,5 +104,6 @@
 		"November"	=> "November",
 		"December"	=> "Dezember"
 	);
-
+	
+		
 ?>

@@ -59,7 +59,7 @@
 			
 			$day['date'] = $subcamp['start'] + $day['day_offset'];
 			$day['date_str'] = $date->setDay2000( $day['date'] )->getString( 'd.m.Y' );
-			$day['day_str'] = strtr( $date->setDay2000( $day['date'] )->getString( 'l' ), $GLOBALS['en_to_de'] );
+			$day['day_str'] = strtr( $date->setDay2000( $day['date'] )->getString( 'l' ), $GLOBALS[en_to_de] );
 			$day['link'] = "index.php?app=day&cmd=home&day_id=" . $day['id'];
 			
 			$day['bold'] = ( $day_id == $day['id'] ) ? true : false;

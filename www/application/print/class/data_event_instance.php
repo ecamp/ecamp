@@ -47,8 +47,8 @@
 			$this->dleft 		= $data['dleft'];
 			$this->width 		= $data['width'];
 			
-			$this->starttime 	= ( ( $data['starttime'] + 24*60 - $GLOBALS['time_shift'] ) % ( 24*60 ) ) + $GLOBALS['time_shift'];
-			$this->length 		= min( $this->length, 24*60 + $GLOBALS['time_shift'] - $this->starttime );
+			$this->starttime 	= ( ( $data['starttime'] + 24*60 - $GLOBALS[time_shift] ) % ( 24*60 ) ) + $GLOBALS[time_shift];
+			$this->length 		= min( $this->length, 24*60 + $GLOBALS[time_shift] - $this->starttime );
 			
 			
 			$this->event 		= $pid->event[ $this->event_id ];

@@ -199,7 +199,7 @@
 				$date->setDay2000( $day->subcamp->start + $day->day_offset );
 				$pdf->SetXY( $base_left, 22 );
 				$pdf->SetFontSize( 8 );
-				$pdf->drawTextBox( strtr( $date->getString( 'D, d.m.Y' ), $GLOBALS['en_to_de'] ), $row_width, 4, 'C', 'M', 0 );
+				$pdf->drawTextBox( strtr( $date->getString( 'D, d.m.Y' ), $GLOBALS[en_to_de] ), $row_width, 4, 'C', 'M', 0 );
 				
 				if( $row % 2 )
 				{

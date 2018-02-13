@@ -80,5 +80,5 @@
 </table>
 ___MAILBODY;
 
-		ecamp_send_mail($_GET['mailtest'],'Testmail von '.$GLOBALS['base_uri'],$mailBody);
+		ecamp_send_mail($_GET['mailtest'],'Testmail von ecamps.ch',$mailBody);
 	}

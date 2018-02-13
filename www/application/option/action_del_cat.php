@@ -18,7 +18,7 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	$cat_del_id 	= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['category_id']);
+	$cat_del_id 	= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['category_id]');
 	
 	$_camp->category( $cat_del_id ) || die( "error" );
 		//TESTEN OB NOCH BLÖCKE IN DIESER KATEGORIE SIND

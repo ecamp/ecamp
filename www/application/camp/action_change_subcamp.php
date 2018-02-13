@@ -84,7 +84,7 @@
 	}
 	
 	// Check: keine Blöcke drin
-	$query = "SELECT event.id FROM event, event_instance, day, subcamp WHERE event_instance.event_id = event.id AND event_instance.day_id=day.id AND day.subcamp_id=subcamp.id AND subcamp.id=".$subcamp['id']." AND NOT ((subcamp.start+day.day_offset) BETWEEN $start AND $end)";
+	$query = "SELECT event.id FROM event, event_instance, day, subcamp WHERE event_instance.event_id = event.id AND event_instance.day_id=day.id AND day.subcamp_id=subcamp.id AND subcamp.id=".$subcamp[id]." AND NOT ((subcamp.start+day.day_offset) BETWEEN $start AND $end)";
 	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	$error = mysqli_num_rows( $result );
 	if( $error != 0 )

@@ -34,7 +34,7 @@
 	}
 	
 	$row = mysqli_fetch_assoc($result);
-	$user_camp_id = $row['id'];
+	$user_camp_id = $row[id];
 	
 	
 	$query = "SELECT * FROM todo WHERE id = $todo_id AND camp_id = $_camp->id";

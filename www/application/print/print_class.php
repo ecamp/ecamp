@@ -129,18 +129,18 @@
 			$fsize = $this->pdf->GetFontSize();
 			
 			foreach( $content as &$row )
-			{	$row['dh'] = 0;
+			{	$row[dh] = 0;
 				foreach( $row as &$col )
 				{	if( is_array( $col ) )
 					{
-						$col_label	= $col['label'];
-						$col_text	= $col['text'];
-						$lh = $this->pdf->WordWrap( $col_label, $w * $col['width'] );
-						$th = $this->pdf->WordWrap( $col_text, $w * $col['width'] );
-						$col['th'] = ( max(1, $lh) + max(1, $th) ) * $fsize / 2;
+						$col_label	= $col[label];
+						$col_text	= $col[text];
+						$lh = $this->pdf->WordWrap( $col_label, $w * $col[width] );
+						$th = $this->pdf->WordWrap( $col_text, $w * $col[width] );
+						$col[th] = ( max(1, $lh) + max(1, $th) ) * $fsize / 2;
 						
-						if( $col['rowspan'] == 1 )
-						{	$row['dh'] = max( $row['dh'], $col['th'] );	}
+						if( $col[rowspan] == 1 )
+						{	$row[dh] = max( $row[dh], $col[th] );	}
 					}
 				}
 			}
@@ -148,27 +148,27 @@
 			
 			foreach( $content as $rnr => &$row )
 			{	foreach( $row as $cnr => &$col )
-				{	if( is_array( $col ) && $col['rowspan'] != 1 )
+				{	if( is_array( $col ) && $col[rowspan] != 1 )
 					{
 						$ph = 0;
 						$row_without_h = array();
-						for( $n = $rnr; $n < $rnr + $col['rowspan']; $n++)
+						for( $n = $rnr; $n < $rnr + $col[rowspan]; $n++)
 						{
-							if($content[$n]['dh'] == 0)	{	array_push($row_without_h, $n);	}
-							else						{	$ph += $content[$n]['dh'];	}
+							if($content[$n][dh] == 0)	{	array_push($row_without_h, $n);	}
+							else						{	$ph += $content[$n][dh];	}
 						}
 						
-						if( $ph < $col['th'] )
+						if( $ph < $col[th] )
 						{	if( count( $row_without_h ) == 0 )
 							{
-								$supersize = ( $col['th'] - $ph ) / $col['rowspan'];
-								for( $n = $rnr; $n < $rnr + $col['rowspan']; $n++ )
-								{	$content[$n]['dh'] += $supersize;	}
+								$supersize = ( $col[th] - $ph ) / $col[rowspan];
+								for( $n = $rnr; $n < $rnr + $col[rowspan]; $n++ )
+								{	$content[$n][dh] += $supersize;	}
 							}
 							else
 							{
-								$dh = ( $col['th'] - $ph ) / count( $row_without_h );
-								foreach( $row_without_h as $n )	{	$content[$n]['dh'] = $dh;	}
+								$dh = ( $col[th] - $ph ) / count( $row_without_h );
+								foreach( $row_without_h as $n )	{	$content[$n][dh] = $dh;	}
 							}
 						}
 					}
@@ -182,17 +182,17 @@
 				{	if( is_array( $col ) )
 					{
 						$dh = 0;
-						for( $n = $rnr; $n < $rnr + $col['rowspan']; $n++ )
-						{	$dh += $content[$n]['dh'];	}
-						$col['dh'] = $dh;
+						for( $n = $rnr; $n < $rnr + $col[rowspan]; $n++ )
+						{	$dh += $content[$n][dh];	}
+						$col[dh] = $dh;
 						
-						if( $rnr == 1 && $col['left'] == 0 )													{	$col['corner'] .= "1";	}
-						if( $rnr == 1 && $col['left'] + $col['width'] == 1 )									{	$col['corner'] .= "2";	}
-						if( $rnr + $col['rowspan'] - 1 == count( $content ) && $col['left'] == 0 )				{	$col['corner'] .= "4";	}
-						if( $rnr + $col['rowspan'] - 1 == count( $content ) && $col['left'] + $col['width'] == 1 ){	$col['corner'] .= "3";	}
+						if( $rnr == 1 && $col[left] == 0 )													{	$col[corner] .= "1";	}
+						if( $rnr == 1 && $col[left] + $col[width] == 1 )									{	$col[corner] .= "2";	}
+						if( $rnr + $col[rowspan] - 1 == count( $content ) && $col[left] == 0 )				{	$col[corner] .= "4";	}
+						if( $rnr + $col[rowspan] - 1 == count( $content ) && $col[left] + $col[width] == 1 ){	$col[corner] .= "3";	}
 					}
 				}
-				$tableh += $row['dh'];
+				$tableh += $row[dh];
 			}
 			unset($row);	unset($col);
 			
@@ -205,11 +205,11 @@
 			{	foreach( $row as $cnr => $col )
 				{	if( is_array( $col ) )
 					{
-						$x_t = $x + $w * $col['left'];	$w_t = $w * $col['width'];
-						$this->SetXY($x_t, $y_t)->LabeldCell( $w_t, $col['dh'], $col['label'], $col['lbgc'], $col['lstyle'], $col['lalign'], $col['text'], $col['tbgc'], $col['tstyle'], $col['talign'], $col['corner'] );
+						$x_t = $x + $w * $col[left];	$w_t = $w * $col[width];
+						$this->SetXY($x_t, $y_t)->LabeldCell( $w_t, $col[dh], $col[label], $col[lbgc], $col[lstyle], $col[lalign], $col[text], $col[tbgc], $col[tstyle], $col[talign], $col[corner] );
 					}
 				}
-				$y_t += $row['dh'];
+				$y_t += $row[dh];
 			}
 			
 			$this->SetXY( $save_x, false);
@@ -219,16 +219,16 @@
 		
 		function LabeldCols( $w, $content )
 		{
-			$lh = $this->LabeldColsLabel( $w, $content['label'] );
+			$lh = $this->LabeldColsLabel( $w, $content[label] );
 			$fsize = $this->pdf->GetFontSize() / 2;
 			$xb = $this->GetX();	$yb = $this->GetY();
 			
 			$left = array();	$width = array();
-			foreach( $content['label'] as $nr => $label )
-			{	$left[$nr] = $label['left'];	$width[$nr] = $label['width'];	}
+			foreach( $content[label] as $nr => $label )
+			{	$left[$nr] = $label[left];	$width[$nr] = $label[width];	}
 			
 			
-			foreach( $content['content'] as $row )
+			foreach( $content[content] as $row )
 			{
 				if( $this->LabeldColsRow( $w, $row, $left, $width ) === false )
 				{
@@ -238,7 +238,7 @@
 					$x = $this->GetX();
 					$this->AddPage();
 					$this->SetXY( $x, false );
-					$this->LabeldColsLabel( $w, $content['label'], false );
+					$this->LabeldColsLabel( $w, $content[label], false );
 					
 					$xb = $this->GetX();	$yb = $this->GetY();
 					$this->LabeldColsRow( $w, $row, $left, $width );
@@ -265,8 +265,8 @@
 			
 			foreach( $row_array as $nr => $col )
 			{
-				$this->pdf->SetFontStyle( $col['style'] );
-				$h = $this->pdf->WordWrap( $col['text'], $w * $width[$nr] - $col['offset'] - 2 );
+				$this->pdf->SetFontStyle( $col[style] );
+				$h = $this->pdf->WordWrap( $col[text], $w * $width[$nr] - $col[offset] - 2 );
 				$ch = max( $ch, $h * $fsize );
 			}
 			
@@ -275,16 +275,16 @@
 			
 			foreach( $row_array as $nr => $col )
 			{
-				if( $col['bgc'] )
+				if( $col[bgc] )
 				{
-					$color = split( "/", $col['bgc'] );	$this->pdf->SetFillColor( $color[0], $color[1], $color[2] );
+					$color = split( "/", $col[bgc] );	$this->pdf->SetFillColor( $color[0], $color[1], $color[2] );
 					$color = 1;
 				}
 				else	{	$color = 0;	}
 				
-				$this->pdf->SetFontStyle( $col['style'] );
-				$this->SetXY( $xs + $w * $left[$nr] + $col['offset'], $ys );
-				$this->pdf->MultiCell( $w * $width[$nr] - $col['offset'], $fsize, $col['text'], 0, $col['align'], $color );
+				$this->pdf->SetFontStyle( $col[style] );
+				$this->SetXY( $xs + $w * $left[$nr] + $col[offset], $ys );
+				$this->pdf->MultiCell( $w * $width[$nr] - $col[offset], $fsize, $col[text], 0, $col[align], $color );
 			}
 			
 			$this->SetXY( $xs, $ys + $ch );
@@ -299,8 +299,8 @@
 			$lh = 0;
 			foreach( $label_array as $label )
 			{
-				$this->pdf->SetFontStyle( $label['style'] );
-				$h = $this->pdf->WordWrap( $label['text'], $w * $label['width'] - $label['offset'] - 2 );
+				$this->pdf->SetFontStyle( $label[style] );
+				$h = $this->pdf->WordWrap( $label[text], $w * $label[width] - $label[offset] - 2 );
 				$lh = max( $h * $fsize, $lh );
 			}
 			
@@ -314,8 +314,8 @@
 				if( $print_corner && $nr == 1 )						{	$corner .= "1";	}
 				if( $print_corner && $nr == count( $label_array ) )	{	$corner .= "2";	}
 				
-				$this->SetXY( $xs + $w * $label['left'], $ys );
-				$this->Cell( $w * $label['width'], $lh, $label['text'], $label['bgc'], $label['style'], $label['align'], $corner );
+				$this->SetXY( $xs + $w * $label[left], $ys );
+				$this->Cell( $w * $label[width], $lh, $label[text], $label[bgc], $label[style], $label[align], $corner );
 			}
 			
 			$this->SetXY( $xs, $ys + $lh );
@@ -336,10 +336,10 @@
 				$ry = $this->GetY();
 				foreach( $row as $nr => $col )
 				{
-					if($col['left'])	{	$cl[$nr] = $col['left'];	}
-					if($col['width'])	{	$cw[$nr] = $col['width'];	}
+					if($col[left])	{	$cl[$nr] = $col[left];	}
+					if($col[width])	{	$cw[$nr] = $col[width];	}
 					$this->SetXY( $tx + $w * $cl[$nr], $ry );
-					$ch = $this->TableRow( $w * $cw[$nr], $col['text'], $col['style'], $col['align'], $col['offset'] );
+					$ch = $this->TableRow( $w * $cw[$nr], $col[text], $col[style], $col[align], $col[offset] );
 					
 					$rh = max( $rh, $ch );
 				}
@@ -376,7 +376,7 @@
 			$this->pdf->RoundedRect( 10, 20, 190, 25, $this->R, 'DF', '1234' );
 			
 			$this->pdf->SetFontSize(25);	$this->pdf->SetFontStyle('B');	$this->SetXY( 10, 24 );
-			$this->pdf->Cell( 190, 10, strtr( date("l, d.m.Y", $Data['date']), $GLOBALS['en_to_de'] ), 0, 1, 'C', 0 );
+			$this->pdf->Cell( 190, 10, strtr( date("l, d.m.Y", $Data['date']), $GLOBALS[en_to_de] ), 0, 1, 'C', 0 );
 			
 			$this->pdf->SetFontSize(16);	$this->SetXY( 10, 35 );
 			$this->pdf->Cell( 190, 10, "Tagesübersicht:", 0, 1, 'C', 0 ); 
@@ -384,19 +384,19 @@
 			
 			
 			$this->pdf->SetFontSize(10);
-			$this->SetXY( 10, 50 )->LabeldTable( 190, $Data['jobs'] );
+			$this->SetXY( 10, 50 )->LabeldTable( 190, $Data[jobs] );
 			$this->Space(10);
 			
 			$this->SetXY( 15, false );
 			$this->pdf->Line( 10, $this->GetY() + 5, 200, $this->GetY() + 5 );
-			$this->Table( 180, $Data['events'] );
+			$this->Table( 180, $Data[events] );
 			$this->Space(10);
 			
 			$this->SetXY( 10, false );
-			$this->LabeldCell( 190, 0, "Roter Faden:", "200/200/200", "B", "L", $Data['story'], false, "", "L", '1234' );
+			$this->LabeldCell( 190, 0, "Roter Faden:", "200/200/200", "B", "L", $Data[story], false, "", "L", '1234' );
 			$this->Space();
 			
-			$this->LabeldCell( 190, 0, "Notizen:", "200/200/200", "B", "L", $Data['notes'], false, "", "L", '1234' );
+			$this->LabeldCell( 190, 0, "Notizen:", "200/200/200", "B", "L", $Data[notes], false, "", "L", '1234' );
 			
 		}
 		
@@ -407,11 +407,11 @@
 			// Reicht der Platz aus, um den Block zu drucken...
 			
 			
-			$y = $this->GetY();	$head = $Data['head'];
-			$this->pdf->SetFillColor( hexdec( substr($head['color'], 0, 2) ), hexdec( substr($head['color'], 2, 2) ), hexdec( substr($head['color'], 4, 2) ) );
+			$y = $this->GetY();	$head = $Data[head];
+			$this->pdf->SetFillColor( hexdec( substr($head[color], 0, 2) ), hexdec( substr($head[color], 2, 2) ), hexdec( substr($head[color], 4, 2) ) );
 			$this->pdf->RoundedRect( 10, $y, 190, 18, $this->R, 'DF', '1234' );
 			
-			$display = "(" . $head['day_nr'] . "." . $head['event_nr'] . ") " . $head['short_name'] . ": " . $head['name'];
+			$display = "(" . $head[day_nr] . "." . $head[event_nr] . ") " . $head[short_name] . ": " . $head[name];
 			$this->pdf->setFontSize( 20 );	$this->pdf->SetFontStyle('B');	$this->SetXY( 15, $y );
 			$this->pdf->Cell( 120, 18, $display, 0, 1, 'L', 0 );
 			
@@ -420,22 +420,22 @@
 			$this->SetXY( 140, $y + 6.5	); 	$this->pdf->Write( 5, "Zeit:"	);
 			$this->SetXY( 140, $y + 12	);	$this->pdf->Write( 5, "Ort:"	);
 			
-			$start_date = new c_date();	$start_date->setDay2000( $head['start'] );
-			$this->SetXY( 160, $y + 1 );	$this->pdf->Write( 5, strtr( $start_date->getString( "D d.m.Y" ), $GLOBALS['en_to_de'] ) );
+			$start_date = new c_date();	$start_date->setDay2000( $head[start] );
+			$this->SetXY( 160, $y + 1 );	$this->pdf->Write( 5, strtr( $start_date->getString( "D d.m.Y" ), $GLOBALS[en_to_de] ) );
 			
-			$start_time = new c_time();	$start_time->setValue( $head['starttime'] );
-			$end_time = new c_time();	$end_time->setValue( $head['starttime'] + $head['length'] );
+			$start_time = new c_time();	$start_time->setValue( $head[starttime] );
+			$end_time = new c_time();	$end_time->setValue( $head[starttime] + $head[length] );
 			$this->SetXY( 160, $y + 6.5 );	$this->pdf->Write( 5, $start_time->getString("H:i") . " - " . $end_time->getString("H:i") );
 			
-			$this->SetXY( 160, $y + 12 );	$this->pdf->Write( 5, $head['place'] );
+			$this->SetXY( 160, $y + 12 );	$this->pdf->Write( 5, $head[place] );
 			
 			$this->SetXY( 10, $y + 18 );
 			$this->Space( 4 );
 			
 			
-			$this->LabeldTable( 190, $Data['info'] );
+			$this->LabeldTable( 190, $Data[info] );
 			$this->Space( 4 );
-			$this->LabeldCols( 190, $Data['detail'] );
+			$this->LabeldCols( 190, $Data[detail] );
 		}
 		
 		

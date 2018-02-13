@@ -71,7 +71,7 @@
 			// Programmblöcke laden
 			$query = "SELECT i.id
 						FROM event_aim a, event e, event_instance i
-						WHERE   a.aim_id=".$this_aim2['id']." 
+						WHERE   a.aim_id=".$this_aim2[id]." 
 							AND a.event_id=e.id
 							AND e.id = i.event_id
 						ORDER BY i.day_id, i.starttime";

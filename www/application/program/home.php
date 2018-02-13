@@ -50,7 +50,7 @@
 								user_camp
 							WHERE
 								job.show_gp = 1 AND
-								job_day.day_id = " . $day['id'] . " AND
+								job_day.day_id = " . $day[id] . " AND
 								job_day.user_camp_id = user_camp.id AND
 								job_day.job_id = job.id";
 		$leader_result = mysqli_query($GLOBALS["___mysqli_ston"],  $leader_query );

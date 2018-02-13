@@ -347,13 +347,13 @@
 	
 	while($row = mysqli_fetch_assoc($result))
 	{
-		$row['scoutname'] = htmlentities($row['scoutname']);
-		$row['firstname'] = htmlentities($row['firstname']);
-		$row['surname'] 	= htmlentities($row['surname']);
-		$row['name'] 		= htmlentities($row['name']);
+		$row[scoutname] = htmlentities($row[scoutname]);
+		$row[firstname] = htmlentities($row[firstname]);
+		$row[surname] 	= htmlentities($row[surname]);
+		$row[name] 		= htmlentities($row[name]);
 		
-		if(!empty($row['scoutname']))	{	$row['user'] = $row['scoutname'];	}
-		else						{	$row['user'] = $row['firstname'] . " " . $row['surname'];	}
+		if(!empty($row[scoutname]))	{	$row[user] = $row[scoutname];	}
+		else						{	$row[user] = $row[firstname] . " " . $row[surname];	}
 		
 		array_push($file_list, gettemplate_app('dp_pdf_file', $row));
 	}
@@ -383,8 +383,8 @@
 		foreach($row as $k => $v)
 		{	$row[$k] = htmlentities($v);	}
 		
-		if(!empty($row['scoutname']))	{	$row['user'] = $row['scoutname'];	}
-		else						{	$row['user'] = $row['firstname'] . " " . $row['surname'];	}
+		if(!empty($row[scoutname]))	{	$row[user] = $row[scoutname];	}
+		else						{	$row[user] = $row[firstname] . " " . $row[surname];	}
 		
 		array_push($comment_list, gettemplate_app('dp_comment_entry', $row));
 	}

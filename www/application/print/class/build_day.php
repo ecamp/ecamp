@@ -58,13 +58,13 @@
 			$pdf->SetFont( '', 'B', 30 );
 			
 			
-			$pdf->drawTextBox( strtr( $date->getString( 'D, d.m.Y' ), $GLOBALS['en_to_de'] ), 190, 15, 'C', 'M', 0 );
+			$pdf->drawTextBox( strtr( $date->getString( 'D, d.m.Y' ), $GLOBALS[en_to_de] ), 190, 15, 'C', 'M', 0 );
 			
 			$pdf->SetFont( '', 'B', 20 );
 			$pdf->drawTextBox( 'Tagesübersicht:', 190, 10, 'C', 'M', 0 );
 			
 			
-			$pdf->Bookmark( strtr( $date->getString( 'D, d.m.Y' ), $GLOBALS['en_to_de'] ), 1, 0 );
+			$pdf->Bookmark( strtr( $date->getString( 'D, d.m.Y' ), $GLOBALS[en_to_de] ), 1, 0 );
 		}
 		
 		function joblist( $pdf, $day )
@@ -248,7 +248,7 @@
 			
 			$pdf->SetFont( '', 'B', 8 );
 			$pdf->SetTextColor( 255, 255, 255 );
-			$day_str = strtr( $c_date->setDay2000( $day->date )->getString('D'), $GLOBALS['en_to_de'] );
+			$day_str = strtr( $c_date->setDay2000( $day->date )->getString('D'), $GLOBALS[en_to_de] );
 			$pdf->SetXY( 0, $day->marker );
 			$pdf->drawTextBox( $day_str, 6, 8, 'C', 'M', 0 );
 			$pdf->SetXY( 204, $day->marker );

@@ -50,8 +50,8 @@
 	session_destroy();
 	
 	# zum Login weiterleiten
-	if(isset($_REQUEST['msg']))
-	{	header("Location: login.php?msg=".$_REQUEST['msg']);	}
+	if(isset($_REQUEST[msg]))
+	{	header("Location: login.php?msg=".$_REQUEST[msg]);	}
 	else
 	{	header("Location: login.php");	}
 ?>
