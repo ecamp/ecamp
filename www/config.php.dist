@@ -40,7 +40,9 @@
 	
 	$GLOBALS['captcha_pub']             = "";
 	$GLOBALS['captcha_prv']             = "";
-	
+
+	$GLOBALS['midata_user']                        = "";
+	$GLOBALS['midata_pass']                        = "";
 	
 	$GLOBALS['time_shift']              = 300; // Minuten;
 	$GLOBALS['news_num']                = 5;

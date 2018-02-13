@@ -21,31 +21,74 @@
 	$pid = mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['pid'] );
 
 	$ans = array();
+
+	$kanton = 0;
+	$region = 0;
+	$abteilung = 0;
 	
-	if( $pid == 0 )
+	if($pid == 0)
 	{
-		$query = "	SELECT *
-					FROM groups
-					WHERE ISNULL( pid ) AND active=1
-					ORDER BY name";
+		$db = new midata;
+		$data = $db->getGroups(2);
+
+		foreach($data['linked']['groups'] as $groups){
+			if($groups['group_type'] == 'Bund'){
+				$ans['values'][] = $groups;
+			}
+		}
+	}else{
+		$db = new midata;
+		$data = $db->getGroups($pid);
+
+		foreach($data['linked']['groups'] as $groups){
+			if($groups['group_type'] == 'Kantonalverband'){
+				$kanton++;
+			}
+		}
+
+		foreach($data['linked']['groups'] as $groups){
+			if($groups['group_type'] == 'Region'){
+				$region++;
+			}
+		}
+
+		foreach($data['linked']['groups'] as $groups){
+			if($groups['group_type'] == 'Abteilung'){
+				$abteilung++;
+			}
+		}
 	}
-	else
-	{
-		$query = "	SELECT *
-					FROM groups
-					WHERE pid = $pid AND active=1
-					ORDER BY name";
+
+
+
+	if($kanton > 1){
+		foreach($data['linked']['groups'] as $groups){
+			if($groups['group_type'] == 'Kantonalverband'){
+				$ans['values'][] = $groups;
+			}
+		}
+	}elseif($region > 1){
+		foreach($data['linked']['groups'] as $groups){
+			if($groups['group_type'] == 'Region'){
+				$ans['values'][] = $groups;
+			}
+		}
+	}elseif($abteilung > 1){
+		foreach($data['linked']['groups'] as $groups){
+			if($groups['group_type'] == 'Abteilung'){
+				$ans['values'][] = $groups;
+			}
+		}
 	}
-	
-	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
-	while( $g = mysqli_fetch_assoc( $result ) )
+
+	/*while( $g = mysqli_fetch_assoc( $result ) )
 	{
 		$g['text']  = $g['prefix'] . " " . $g['name'];
 		
 		$ans['values'][] = $g;
-	}
+	}*/
 	
-	$ans['num_values' ] = count( $ans['values'] );
+	$ans['num_values'] = count( $ans['values'] );
 	
 	echo json_encode( $ans );
 	die();

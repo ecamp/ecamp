@@ -36,7 +36,7 @@ select_class = new Class(
 	right_select:	null,
 	select_element:	null,
 	wait:			null,
-	
+
 	value:			null,
 	counter:	      0,
 	
@@ -112,7 +112,7 @@ select_class = new Class(
 			ans.values.each( function( o ){
 				option = new Element('option');
 				option.set( 'value', o.id );
-				option.set( 'text', o.text );
+				option.set( 'text', o.name );
 				option.store( 'o', o );
 				
 				option.inject( this.select_element );
@@ -173,7 +173,7 @@ select_class = new Class(
 		{	left = "";	}
 		
 		o = this.select_element.getSelected().getLast().retrieve( 'o' );
-		return left + o.short_prefix + " " + o.name;
+		return left + " " + o.name;
 	}
 	
 	
