@@ -39,9 +39,17 @@
 	$GLOBALS[pear_dir] = "/home/pfadiluz/www/pear/PEAR/";
 	ini_set("include_path", ".:/usr/local/lib/php:/home/pfadiluz/www/pear/PEAR/");
 	
+<<<<<<< HEAD
+	$GLOBALS['captcha_pub']             = "";
+	$GLOBALS['captcha_prv']             = "";
+
+	$GLOBALS['midata_user']                        = "";
+	$GLOBALS['midata_pass']                        = "";
+=======
 	$GLOBALS[captcha_pub] = "";
 	$GLOBALS[captcha_prv] = "";
 	
+>>>>>>> parent of c7a1ed8... Arrays Optimieren
 	
 	$GLOBALS[time_shift] = 300; // Minuten;
 	$GLOBALS[news_num] = 5;

@@ -109,8 +109,31 @@
 		$camp_data['ca_coor4'] = "";
 	}
 
+	$i = 0;
+
+	$db = new midata;
+	$data = $db->getGroups($camp_data['group_id']);
+
+	foreach($data['linked']['groups']  as $groups){
+		if($groups['group_type'] == 'Bund'){
+			$full_group[1] = $groups['name'];
+		}
+
+		if($groups['group_type'] == 'Kantonalverband'){
+			$full_group[2] = " :: ".$groups['name'];
+		}
+
+		if($groups['group_type'] == 'Region'){
+			$full_group[3] = " :: ".$groups['name'];
+		}
+
+		if($groups['group_type'] == 'Abteilung'){
+			$full_group[4] = " :: ".$groups['name'];
+		}
+	}
+
 	// Inhalte f�llen & bei Bedarf zur Anzeige aufbereiten
-	$camp_info['base']			= $camp_data['groups_short_prefix'] . " " . $camp_data['groups_name'];
+	$camp_info['base']			= $full_group[1] . $full_group[2] . $full_group[3]. $full_group[4];
 	$camp_info["group_name"] 	= array("name" => "group_name", "value" => $camp_data['group_name']);
 	$camp_info["name"]  		= array("name" => "name",  		"value" => $camp_data['name']);
 	$camp_info["slogan"]		= array("name" => "slogan", 	"value" => $camp_data['slogan']);
