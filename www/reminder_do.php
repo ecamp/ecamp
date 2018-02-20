@@ -18,18 +18,17 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+	require 'vendor/autoload.php';
+	use Phelium\Component\reCAPTCHA;
+
 	include("./config.php");
 	include($lib_dir . "/mysql.php");
 	include($lib_dir . "/functions/mail.php");
 	db_connect();
-	
-	require_once( "./lib/recaptchalib.php" );
 
-	$resp = recaptcha_check_answer ($GLOBALS['captcha_prv'], $_SERVER["REMOTE_ADDR"],
-									$_REQUEST["recaptcha_challenge_field"],
-									$_REQUEST["recaptcha_response_field"]	);
+	$captcha = new reCAPTCHA($GLOBALS['captcha_pub'], $GLOBALS['captcha_prv']);
 	
-	if (!$resp->is_valid)
+	if (!$captcha->isValid($_POST['g-recaptcha-response']))
 	{	header( 'location: reminder.php?msg=Bitte CAPTCHA richtig abschreiben!' );	die();	}
 
 	$login = mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST[ 'Login' ] );

@@ -18,14 +18,17 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+	require 'vendor/autoload.php';
+	use Phelium\Component\reCAPTCHA;
+
 	include("./config.php");
 	include($lib_dir . "/mysql.php");
 	include($lib_dir . "/functions/error.php");
 	require_once("./lib/PHPTAL.php");
 	db_connect();
 
-	require_once( "./lib/recaptchalib.php" );
-	
+	$captcha = new reCAPTCHA($GLOBALS['captcha_pub'], $GLOBALS['captcha_prv']);
+
 	if( $_SESSION['skin'] == "" ) $_SESSION['skin'] = $GLOBALS['skin'];
 	$html = new PHPTAL("public/skin/".$_SESSION['skin']."/reminder.tpl");
 	
@@ -38,7 +41,8 @@
 		$html->set( 'SHOW_MSG', true );
 		$html->set( 'MSG', mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST[ 'msg' ] ) );
 	}
-	
-	$html->set( 'captcha' ,recaptcha_get_html( $GLOBALS['captcha_pub'],null,true ) );
+
+	$html->set('captcha_script', $captcha->getScript());
+	$html->set('captcha_html', $captcha->getHtml());
 
 	echo $html->execute();
