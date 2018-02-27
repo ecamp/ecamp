@@ -45,6 +45,7 @@
         
         	
 		<script type="text/javascript" language="javascript" src="./public/global/js/mootools1.2.js"></script>
+		<tal:block content="structure captcha_script" />
 	</head>
 	
 	
@@ -74,7 +75,7 @@
 	                    <tr height="10"><td> </td></tr>
 	                    
 	                    <tr><td colspan="2">
-	                    		<tal:block content="structure captcha" />
+	                    		<tal:block content="structure captcha_html" />
 	                    </td></tr>
 	                    
 	                    <tr><td colspan="2" align="right"><input tabindex="7" type="submit" value="Abschicken" /></td></tr>

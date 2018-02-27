@@ -30,7 +30,7 @@
 					<tbody>
 						<tr>
 							<td valign="top" align="left" width="200"><h1>eCamp v2</h1></td>
-							<td valign="top" align="rigth" width="200"><img alt="eCamp v2" src="https://ecamps.ch/logo.gif"></td>
+							<td valign="top" align="rigth" width="200"><img alt="eCamp v2" src="https://ecamp.pfadiluzern.ch/logo.gif"></td>
 						</tr>
 					</tbody>
 				</table>
@@ -59,7 +59,7 @@
 															<td style="border-top: 1px dashed #888888; border-bottom: 1px dashed #888888;">
 																<b>Hinweis:</b>
 																<br />
-																Diese Mail wurde durch den Mailbot von <a href="https://www.ecamps.ch/">ecamps.ch</a> versendet.
+																Diese Mail wurde durch den Mailbot von <a href="https://www.ecamp.pfadiluzern.ch/">ecamp.pfadiluzern.ch</a> versendet.
 																<br />
 																Antworten Sie nicht auf diese Mail. Die Nachrichten werden vom Server abgelehnt.
 															</td>
@@ -80,5 +80,5 @@
 </table>
 ___MAILBODY;
 
-		ecamp_send_mail($_GET['mailtest'],'Testmail von ecamps.ch',$mailBody);
+		ecamp_send_mail($_GET['mailtest'],'Testmail von ecamp.pfadiluzern.ch',$mailBody);
 	}
