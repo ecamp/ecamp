@@ -18,20 +18,19 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+	require 'vendor/autoload.php';
+	use Phelium\Component\reCAPTCHA;
+
 	include("./config.php");
 	include($lib_dir . "/mysql.php");
 	include($lib_dir . "/functions/mail.php");
 	db_connect();
-	
-	require_once( "./lib/recaptchalib.php" );
+
+	$captcha = new reCAPTCHA($GLOBALS['captcha_pub'], $GLOBALS['captcha_prv']);
 
 	//	CHECK ALL INPUTS:
 	// ===================
-	$resp = recaptcha_check_answer ($GLOBALS['captcha_prv'], $_SERVER["REMOTE_ADDR"],
-									$_REQUEST["recaptcha_challenge_field"],
-									$_REQUEST["recaptcha_response_field"]	);
-
-	if (!$resp->is_valid)
+	if (!$captcha->isValid($_POST['g-recaptcha-response']))
 	{	header( 'location: register.php?msg=Bitte CAPTCHA richtig abschreiben!' );	die();	}
 	
 	if( $_REQUEST[ 'Login' ] == "" )
@@ -90,7 +89,7 @@ $text = <<<___MAILBODY
 					<tbody>
 						<tr>
 							<td valign="top" align="left" width="200"><h1>eCamp v2</h1></td>
-							<td valign="top" align="rigth" width="200"><img alt="eCamp v2" src="https://ecamps.ch/logo.gif"></td>
+							<td valign="top" align="rigth" width="200"><img alt="eCamp v2" src="https://ecamp.pfadiluzern.ch/logo.gif"></td>
 						</tr>
 					</tbody>
 				</table>
@@ -115,23 +114,7 @@ $text = <<<___MAILBODY
 												</p>
 
 												<br />
-												<br />
-												<br />
-												<br />
-
-												<table style="padding-left: 5px; color: #888888;" width="507" cellpadding="5" cellspacing="0" border="0">
-													<tbody>
-														<tr>
-															<td style="border-top: 1px dashed #888888; border-bottom: 1px dashed #888888;">
-																<b>Hinweis:</b>
-																<br />
-																Diese Mail wurde durch den Mailbot von <a href="https://www.ecamps.ch/">ecamps.ch</a> versendet.
-																<br />
-																Antworten Sie nicht auf diese Mail. Die Nachrichten werden vom Server abgelehnt.
-															</td>
-														</tr>
-													</tbody>
-												</table>
+										
 											</td>
 										</tr>
 									</tbody>
