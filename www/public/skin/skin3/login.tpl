@@ -103,6 +103,7 @@
                 <table width="80%">
                     <tr><td colspan="2"><font class="title">eCamp - Login</font></td></tr>
                     <tr height="10"><td> </td></tr>
+					<select name="login_type" class="hidden"><option value="midata">MiData</option></select>
                     <tr><td>E-Mail:</td><td><input tabindex="1" name="Login" type="text" id="Login" /></td></tr>
                     <tr><td>Passwort:</td><td><input tabindex="2" name="Passwort" type="password" /></td></tr>
 					
