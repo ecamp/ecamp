@@ -32,15 +32,16 @@
 	include( $lib_dir . "/session.php" );
 	include( $lib_dir . "/functions/error.php" );
 	require_once( "./lib/PHPTAL.php" );
+	require_once( $GLOBALS['lib_dir'] . "/functions/date.php" );
 	
 	if( $_SESSION['skin'] == "" ) $_SESSION['skin'] = $GLOBALS['skin'];
 	$html = new PHPTAL("public/skin/".$_SESSION['skin']."/login.tpl");
 	
 	$html->setEncoding('UTF-8');
 	$html->set('SHOW_MSG', false);
-    $html->set('LOGIN_TYPE', (($GLOBALS['auth'] == "midata") ? "MiData" : "Lokal"));
-	
+
 	session_start();
+	$_SESSION['midata'] = false;
 
 	if(isset( $_REQUEST['msg'] ) )
 	{
@@ -112,7 +113,6 @@
                 }
 
                 // Format birthday
-                require_once( $GLOBALS['lib_dir'] . "/functions/date.php" );
                 if($birthday != "NULL")
                 {
                     $d = date_create($birthday);
@@ -126,12 +126,10 @@
                 $query = "SELECT * FROM user WHERE id=$id LIMIT 1;";
                 if(mysqli_num_rows(mysqli_query($GLOBALS['___mysqli_ston'],$query)))
                 {
-                    $query = "
-                        UPDATE user SET
+                    $query = "UPDATE user SET
                         mail='$mail',pw='$pw',scoutname='$scoutname',firstname='$firstname',surname='$surname',street='$street',
                         zipcode='$zipcode',city='$city',homenr='$priv_number',mobilnr='$mobile_number',birthday='$birthday',ahv='$ahvnr',sex=$sex,jspersnr='$jspersnr'
-                        WHERE id=$id;
-                    ";
+                        WHERE id=$id;";
                 }
                 else
                 {
@@ -152,6 +150,7 @@
             }
             curl_close($curl);
 
+            $_SESSION['midata'] = true;
         }
 
 		$query = "SELECT pw, id, scoutname, firstname, active, last_camp FROM user WHERE mail = '" . $_POST['Login'] . "' LIMIT 1";
