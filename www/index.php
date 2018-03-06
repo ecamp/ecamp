@@ -35,7 +35,7 @@
 
     #############################################################################
     # Konfigurationsdatei einbinden
-    include("./config.php");
+    include("./config/config.php");
 
     #############################################################################
     # Globale Variabeln $_camp, $_user, $_page, $_user_camp

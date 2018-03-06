@@ -28,7 +28,7 @@
   #        - Überprüfen, wie oft ein Login versucht wurde --> Kennwortrücksetzung anbieten
   #        - Validieren der User-Eingaben
   
-	include( "./config.php" );
+	include( "./config/config.php" );
 	include( $lib_dir . "/session.php" );
 	include( $lib_dir . "/functions/error.php" );
 	require_once( "./lib/PHPTAL.php" );
