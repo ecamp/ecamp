@@ -97,6 +97,12 @@ window.addEvent( 'domready', function()
 			
 			if( item.hasClass('toc') )
 			{	order.set( 'item[' + index + ']', 'toc' );	}
+
+            if( item.hasClass('notes') )
+            {
+            	order.set( 'item[' + index + ']', 'notes' );
+                order.set( 'conf[' + index + ']', item.getElement( 'input' ).get('value') );
+            }
 			
 			if( item.hasClass('pdf') )
 			{
