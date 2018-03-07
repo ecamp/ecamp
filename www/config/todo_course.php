@@ -18,7 +18,7 @@
 	 * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
 	 */
 
-	return $todo_course = [
+	return [
 		'course_declaration' => [
 			'title' => 'Kursanmeldung',
 			'short' => 'Anmeldung an LKB (Picasso, Blockübersicht, Checklisten)',

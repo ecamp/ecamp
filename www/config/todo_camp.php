@@ -18,7 +18,7 @@
 	 * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
 	 */
 
-	return $todo_camp = [
+	return [
 		'place' => [
 			'title' => 'Lagerhaus/Lagerplatz reservieren',
 			'short' => 'Das Lagerhaus/Lagerplatz definitiv reservieren.',
