@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright (C) 2010 Urban Suppiger, Pirmin Mattmann
+ * Copyright (C) 2018 Urban Suppiger, Pirmin Mattmann, Caspar Brenneisen
  *
  * This file is part of eCamp.
  *
@@ -96,31 +96,20 @@
 	// ToDo std. einfüllen
 	if( $is_course)
 	{
-		$query = "INSERT INTO todo (camp_id, title, short, date)
-					VALUES
-						('$last_camp_id', 'Kursanmeldung',  					'Anmeldung an LKB (Picasso, Blockübersicht, Checklisten)', " . ( $start - 8 * 7 ) . "),
-						('$last_camp_id', 'Detailprogramm einreichen', 			'Definitives Detailprogramm an LKB.', " . ( $start - 2 * 7 ) . "),
-						('$last_camp_id', 'Kursabschluss', 						'TN-Liste, Kursbericht', " . ( $ende + 3 * 7 ) . "),
-						('$last_camp_id', 'J+S-Material/Landeskarten', 			'J+S-Material und Landeskarten bestellen.', " . ( $start - 6 * 7 ) . ")";
+		$todo_course = include "./config/todo_course.php";
 
+		foreach($todo_course as $todo){
+			$query = "INSERT INTO todo(camp_id, title, short, date) VALUES('$last_camp_id', '$todo[title]', '$todo[short]', '$todo[date]');";
+			mysqli_query($GLOBALS["___mysqli_ston"],  $query);
+		}
 	}else{
-		$query = "INSERT INTO todo (camp_id, title, short, date)
-					VALUES
-						('$last_camp_id', 'Lagerhaus/Lagerplatz reservieren', 	'Das Lagerhaus/Lagerplatz definitiv reservieren.', " . ( $start - 8 * 30 ) . "),
-						('$last_camp_id', 'Küchenteam suchen', 					'Das Küchenteam zusammenstellen.', " . ( $start - 6 * 30 ) . "),
-						('$last_camp_id', 'Picasso zusammenstellen', 			'Ersten Entwurf des Picassos zusammenstellen.', " . ( $start - 6 * 30 ) . "),
-						('$last_camp_id', 'PBS - Lageranmeldung', 				'PBS - Lageranmeldung ausfüllen und an Coach schicken.', " . ( $start - 3 * 30 ) . "),
-						('$last_camp_id', 'J&S - Materialbestellung', 			'J&S - Materialbestellung ausfüllen und an Coach schicken', " . ( $start - 3 * 30 ) . "),
-						('$last_camp_id', 'Landeskartenbestellung', 			'Landeskartenbestellung ausfüllen und an Coach schicken', " . ( $start - 3 * 30 ) . "),
-						('$last_camp_id', 'J&S - Lageranmeldung', 				'Sicherstellen, dass Coach das Lager unter J&S anmeldet (online).', " . ( $start - 2 * 30 ) . "),
-						('$last_camp_id', 'Spendenaufrufe verschicken', 		'Spendenaufrufe an regionale Firmen verschicken.', " . ( $start - 2 * 30 ) . "),
-						('$last_camp_id', 'Lageranmeldung verschicken', 		'Lageranmeldung an alle TN verschicken.', " . ( $start - 2 * 30 ) . "),
-						('$last_camp_id', 'Programmabgabe', 					'Fertiges Programm an Coach abgeben.', " . ( $start - 6 * 7 ) . "),
-						('$last_camp_id', 'Siebdruck anfertigen', 				'Siebdruck / Lagerdruck anfertigen.', " . ( $start - 4 * 7 ) . "),
-						('$last_camp_id', 'Regaversicherung', 					'Für alle TN eine gratis - Regaversicherung abschliessen.', " . ( $start - 2 * 7 ) . "),
-						('$last_camp_id', 'Letzte Infos verschicken', 			'Letzte Infos für TNs verschicken', " . ( $start - 2 * 7 ) . ")";
+		$todo_camp = include "./config/todo_camp.php";
+
+		foreach($todo_camp as $todo){
+			$query = "INSERT INTO todo(camp_id, title, short, date) VALUES('$last_camp_id', '$todo[title]', '$todo[short]', '$todo[date]');";
+			mysqli_query($GLOBALS["___mysqli_ston"],  $query);
+		}
 	}
-	mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 
 	// Tages-chef hinzufügen
 	$query = "INSERT INTO job (camp_id, job_name, show_gp)

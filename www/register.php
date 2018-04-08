@@ -21,7 +21,7 @@
 	require 'vendor/autoload.php';
 	use Phelium\Component\reCAPTCHA;
 
-	include("./config.php");
+	include("./config/config.php");
 	include($lib_dir . "/mysql.php");
 	include($lib_dir . "/functions/error.php");
 	require_once("./lib/PHPTAL.php");

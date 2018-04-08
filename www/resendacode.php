@@ -18,7 +18,7 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	require_once( "./config.php" );
+	require_once( "./config/config.php" );
 	require_once( "./lib/PHPTAL.php" );
 	
 	
