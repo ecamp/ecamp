@@ -35,7 +35,7 @@
 	}
 	///////////////////////////////
 
- include("../../config.php");
+ include("../../config/config.php");
  include("../../lib/mysql.php");
  db_connect();
  
