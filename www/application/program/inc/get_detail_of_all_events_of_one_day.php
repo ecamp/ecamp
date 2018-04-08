@@ -70,7 +70,7 @@
 			
 			
 			$row = 1;
-			while($rows[$row][count($rows[$row])]->starttime + $rows[$row][count($rows[$row])]->length > $event[starttime])
+			while($rows[$row][count($rows[$row])]->starttime + $rows[$row][count($rows[$row])]->length > $event['starttime'])
 			{
 				$row++;
 				if(!is_array($rows[$row]))

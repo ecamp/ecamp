@@ -21,7 +21,7 @@
 	$_page->html->set('main_macro', $GLOBALS['tpl_dir'].'/application/course_checklist/border.tpl/border');
 		
     ////////////////////////////
-	// Todo: Kurstyp von den Einstellungen lsen
+	// Todo: Kurstyp von den Einstellungen lesen
 	$type = 1; // Basis 1. Stufe
 	///////////////////////////
 	$type = $_camp->type;
@@ -70,7 +70,7 @@
 		
 		while( $this_level1 = @mysqli_fetch_assoc($result1) )
 		{
-			$query = "SELECT * FROM course_checklist WHERE pid=".$this_level1[id]." ORDER BY short_2";
+			$query = "SELECT * FROM course_checklist WHERE pid=".$this_level1['id']." ORDER BY short_2";
 			$result2 = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 			$level2 = array();
 			
@@ -108,7 +108,7 @@
 					$date = new c_date();
 					$date->setDay2000($this_level3['day']);
 					
-					$this_level3[date] = $GLOBALS['en_to_de'][$date->getString("D")].", ".$date->getString("j.n.")." ".$start->getString("G:i")."-".$end->getString("G:i");//"Fr, 5.10. 17:15-18:00";
+					$this_level3['date'] = $GLOBALS['en_to_de'][$date->getString("D")].", ".$date->getString("j.n.")." ".$start->getString("G:i")."-".$end->getString("G:i");//"Fr, 5.10. 17:15-18:00";
 					
 					if( $this_level3['short_name'] )
 					{	$this_level3['short_name'] .= ": ";	}

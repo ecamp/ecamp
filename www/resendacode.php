@@ -25,8 +25,8 @@
 
 	
 	
-	if( $_SESSION[skin] == "" ) $_SESSION[skin] = $GLOBALS[skin];
-	$html = new PHPTAL("public/skin/".$_SESSION[skin]."/resendacode.tpl");
+	if( $_SESSION['skin'] == "" ) $_SESSION['skin'] = $GLOBALS['skin'];
+	$html = new PHPTAL("public/skin/".$_SESSION['skin']."/resendacode.tpl");
 	
 	$html->setEncoding('UTF-8');
 	
