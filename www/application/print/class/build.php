@@ -24,6 +24,7 @@
 	require_once( 'build_day.php' );
 	require_once( 'build_event.php' );
 	require_once( 'build_toc.php' );
+	require_once( 'build_notes.php' );
 	
 	
 	class print_build_class
@@ -37,6 +38,7 @@
 		public $day;
 		public $event;
 		public $toc;
+		public $notes;
 		
 		function print_build_class( $data )
 		{
@@ -48,6 +50,7 @@
 			$this->day		= new print_build_day_class( $this->data );
 			$this->event	= new print_build_event_class( $this->data );
 			$this->toc		= new print_build_toc();
+			$this->notes    = new print_build_notes();
 		}
 	}
 	

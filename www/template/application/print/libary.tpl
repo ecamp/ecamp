@@ -49,6 +49,14 @@
 			<li class="libary toc">
 				<h1>Inhaltsverzeichnis</h1>
 			</li>
+
+			<li class="libary notes">
+				<h1>Notizen</h1>
+				<p>
+					Anzahl Seiten Notizpapier:
+					<input type="number" name="notes" value="1" min="1" />
+				</p>
+			</li>
 			
 			<li class="libary pdf" tal:condition="true">
 				<h1>PDF</h1>
