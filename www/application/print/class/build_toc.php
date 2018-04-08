@@ -34,6 +34,8 @@
 		
 		function build( $pdf )
 		{
+			$pdf->SetFont( '', '', 10 );
+			
 			if( count( $this->page ) )
 			{
 				foreach( $this->page as $nr )

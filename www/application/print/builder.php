@@ -25,7 +25,7 @@
 		$items = $_REQUEST['item'];
 		$conf  = $_REQUEST['conf'];
 	}
-	
+
 	ini_set("memory_limit","64M");
 	
 	require_once( 'class/data.php' );
@@ -48,9 +48,7 @@
 	$pdf->SetAuthor( 'ecamp2.pfadiluzern.ch' );
 	$pdf->SetSubject( 'J&S - Programm' );
 	$pdf->SetTitle( 'J&S - Programm' );
-	
-	
-	
+
 	foreach( $items as $nr => $item )
 	{
 		if( $item == "title" )
@@ -95,7 +93,14 @@
 		
 		if( $item == "toc" )
 		{	$print_build->toc->addTOC( $pdf );	}
-		
+
+		if( $item == "notes" )
+		{
+			for( $i = 1; $i <= $conf[$nr]; $i++){
+				$print_build->notes->build($pdf);
+			}
+		}
+
 		if( $item == "pdf" )
 		{
 			$file = $_FILES[$conf[$nr]];
@@ -123,7 +128,4 @@
 
 	
 	die();
-	
-	
-	
 ?>
