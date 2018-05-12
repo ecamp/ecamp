@@ -31,18 +31,14 @@
 	require_once( 'class/data.php' );
 	require_once( 'class/build.php' );
 
-	
-	require_once( 'tcpdf/tcpdf.php' );
-	require_once( 'tcpdf/tcpdf_addons.php' );
-	require_once( 'FPDI/fpdi.php' );
-	
-	
+	require_once('class/tcpdf_addons.php');
+
+	use setasign\Fpdi\TcpdfFpdi;
+
 	$print_data = new print_data_class( $_camp->id );	
 	$print_build = new print_build_class( $print_data );
-	
-	
-	
-	$pdf = new FPDI('P', 'mm', 'A4', true, 'UTF-8', false);
+
+	$pdf = new TcpdfFpdi('P', 'mm', 'A4', true, 'UTF-8', false);
 	$pdf->SetAutoPageBreak(true);
 	
 	$pdf->SetAuthor( 'ecamp2.pfadiluzern.ch' );
@@ -104,16 +100,16 @@
 		if( $item == "pdf" )
 		{
 			$file = $_FILES[$conf[$nr]];
-			
+
 			$page_nr = $pdf->setSourceFile( $file['tmp_name'] );
-			
+
 			for( $i = 1; $i <= $page_nr; $i++ )
 			{
 				$tplidx = $pdf->ImportPage( $i );
-				$s = $pdf->getTemplatesize($tplidx); 
-				
+				$s = $pdf->getTemplatesize($tplidx);
+
 				$pdf->AddPage( 'P', array($s['w'], $s['h']) );
-				$pdf->useTemplate( $tplidx );
+				$pdf->useTemplate( $tplidx, 0, 5);
 			}
 			//$pdf->setPageFormat( 'A4', 'P' );
 		}

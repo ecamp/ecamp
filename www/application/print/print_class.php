@@ -27,7 +27,7 @@
 		
     	function PRINT_CLASS(  )
 		{	
-			$this->pdf = new FPDF_ADDONS();
+			$this->pdf = new TCPDF();
 			$this->pdf->SetFont('arial', '', 10);
 			$this->pdf->SetAutoPageBreak(false, 20);
 			$this->R = '1';

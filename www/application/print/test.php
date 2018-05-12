@@ -17,26 +17,14 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
+		
+	#############################################################################
+	//Load composer's autoloader
+	require '../../vendor/autoload.php';
 
-	
-	//print_r( getimagesize('http://images.apple.com/aperture/tutorials/images/qt_endstate.jpg') );
-	
-	//die();
-	
-	include("fpdf/fpdf.php");
-	include("fpdf/fpdf_addons.php");
-	
-	$pdf = new FPDF_ADDONS();
-	
-	$pdf->Open(); 
-	
-	// Erste Seite erstellen 
-	$pdf->AddPage(); 
-	
-	// Bild einfügen (Position x = 0 / y = 0) 
-	$pdf->Image('http://map.search.ch/chmap.jpg?layer=sym,fg,copy&zd=2&w=1000&h=700&poi=verkehr,polizei,spital,apotheke,post,shop&base=Udligenswil', 30, 25, 150, 0, 'jpeg' ); 
-	
+	$pdf = new TCPDF();
+	$pdf->AddPage();
 	$pdf->Output();
 	
-		
+	die();
 ?>
