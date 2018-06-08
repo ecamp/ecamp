@@ -14,7 +14,7 @@
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
+ * along with eCamp.  If not, see <www.gnu.org/licenses/>.
  */
 
 window.addEvent('load', function()
@@ -191,7 +191,7 @@ window.addEvent('load', function()
 						"," + 
 						$('camp_ca_coor3').get('value') + $('camp_ca_coor4').get('value')
 		});
-		url = "http://map.search.ch/chmap.jpg?" + link.toQueryString();
+		url = "https://map.search.ch/chmap.jpg?" + link.toQueryString();
 		
 		window.open( url, "map" );
 	});
