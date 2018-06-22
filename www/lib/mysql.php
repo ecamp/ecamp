@@ -20,19 +20,19 @@
 
 	function db_connect()
 	{
-		($GLOBALS["___mysqli_ston"] = mysqli_connect($GLOBALS['host'],  $GLOBALS['us'],  $GLOBALS['pw'])) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+		($GLOBALS["___mysqli_ston"] = mysqli_connect($GLOBALS['host'], $GLOBALS['us'], $GLOBALS['pw'])) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
 		mysqli_select_db($GLOBALS["___mysqli_ston"], $GLOBALS['db']) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
 		
 		mysqli_query($GLOBALS["___mysqli_ston"], "SET NAMES 'utf8'");
 		mysqli_query($GLOBALS["___mysqli_ston"], "SET CHARACTER SET 'utf8'");
 	}
 
-	function mysqli_result($res,$row=0,$col=0){
+	function mysqli_result($res, $row = 0, $col = 0) {
 		$numrows = mysqli_num_rows($res);
-		if ($numrows && $row <= ($numrows-1) && $row >=0){
-			mysqli_data_seek($res,$row);
+		if ($numrows && $row <= ($numrows - 1) && $row >= 0) {
+			mysqli_data_seek($res, $row);
 			$resrow = (is_numeric($col)) ? mysqli_fetch_row($res) : mysqli_fetch_assoc($res);
-			if (isset($resrow[$col])){
+			if (isset($resrow[$col])) {
 				return $resrow[$col];
 			}
 		}

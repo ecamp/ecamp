@@ -20,7 +20,7 @@
 
 	$std = $_REQUEST['std'];
 
-	if( $_camp->is_course )
+	if ($_camp->is_course)
 		$query = "SELECT * FROM dropdown WHERE list = 'function_course' AND id = '$std'";
 	else
 		$query = "SELECT * FROM dropdown WHERE list = 'function_camp' AND id = '$std'";

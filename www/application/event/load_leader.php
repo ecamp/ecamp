@@ -45,17 +45,17 @@
 					user.id = user_camp.user_id AND
 					user_camp.camp_id = $_camp->id";
 					
-	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	$leaders = array();
 	
-	while( $leader = mysqli_fetch_assoc( $result ) )
+	while ($leader = mysqli_fetch_assoc($result))
 	{
-		if( $leader['scoutname'] == "" )
-		{	$leader['displayname'] = $leader['firstname'] . " " . $leader['surname'];	}
+		if ($leader['scoutname'] == "")
+		{	$leader['displayname'] = $leader['firstname']." ".$leader['surname']; }
 		else
-		{	$leader['displayname'] = $leader['scoutname'];	}
+		{	$leader['displayname'] = $leader['scoutname']; }
 		
 		$leaders[] = $leader;
 	}
 	
-	$_page->html->set( 'leaders', $leaders );
+	$_page->html->set('leaders', $leaders);

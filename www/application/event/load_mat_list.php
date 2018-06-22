@@ -37,14 +37,14 @@
 				
 				ORDER BY name";
 	
-	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
 	$mat_article = array();
 	
-	while( $row = mysqli_fetch_assoc( $result ) )
-	{	$mat_article[] = $row['name'];	}
+	while ($row = mysqli_fetch_assoc($result))
+	{	$mat_article[] = $row['name']; }
 	
 	//$mat_article = array( "test"  , "tast" );
 	//print_r( $mat_article );
 	
-	$_js_env->add( 'mat_article_list', $mat_article );	
+	$_js_env->add('mat_article_list', $mat_article);	

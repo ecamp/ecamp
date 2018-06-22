@@ -18,10 +18,10 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	$event_id 		= mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['event_id'] );
-	$event_progress	= mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['event_progress'] );
+	$event_id = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['event_id']);
+	$event_progress = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['event_progress']);
 	
-	$_camp->event( $event_id ) || die( "error" );
+	$_camp->event($event_id) || die("error");
 	
 	$query = "
 				UPDATE
@@ -30,18 +30,17 @@
 					progress = '$event_progress'
 				WHERE
 					event.id = $event_id";
-	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
-	if( $result )
+	if ($result)
 	{
-		$ans = array( "saved" => true, "value" => $event_progress );
-		echo json_encode( $ans );
+		$ans = array("saved" => true, "value" => $event_progress);
+		echo json_encode($ans);
 		die();
-	}
-	else
+	} else
 	{
-		$ans = array( "saved" => false );
-		echo json_encode( $ans );
+		$ans = array("saved" => false);
+		echo json_encode($ans);
 		die();
 	}
 	

@@ -20,12 +20,12 @@
  */
 class PHPTAL_Namespace_METAL extends PHPTAL_Namespace_Builtin
 {
-    public function __construct()
-    {
-        parent::__construct('metal', 'http://xml.zope.org/namespaces/metal');
-        $this->addAttribute(new PHPTAL_NamespaceAttributeSurround('define-macro', 1));
-        $this->addAttribute(new PHPTAL_NamespaceAttributeReplace('use-macro', 9));
-        $this->addAttribute(new PHPTAL_NamespaceAttributeSurround('define-slot', 9));
-        $this->addAttribute(new PHPTAL_NamespaceAttributeSurround('fill-slot', 9));
-    }
+	public function __construct()
+	{
+		parent::__construct('metal', 'http://xml.zope.org/namespaces/metal');
+		$this->addAttribute(new PHPTAL_NamespaceAttributeSurround('define-macro', 1));
+		$this->addAttribute(new PHPTAL_NamespaceAttributeReplace('use-macro', 9));
+		$this->addAttribute(new PHPTAL_NamespaceAttributeSurround('define-slot', 9));
+		$this->addAttribute(new PHPTAL_NamespaceAttributeSurround('fill-slot', 9));
+	}
 }

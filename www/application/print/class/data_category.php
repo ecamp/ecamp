@@ -31,15 +31,15 @@
 		public $form_type;
 		
 		
-		function print_data_category_class( $data, $pid )
+		function print_data_category_class($data, $pid)
 		{
 			$this->pid			= $pid;
 			$this->id 			= $data['id'];
-			$this->camp_id 		= $data['camp_id'];
-			$this->name 		= $data['name'];
-			$this->short_name 	= $data['short_name'];
-			$this->color 		= $data['color'];
-			$this->form_type 	= $data['form_type'];
+			$this->camp_id = $data['camp_id'];
+			$this->name = $data['name'];
+			$this->short_name = $data['short_name'];
+			$this->color = $data['color'];
+			$this->form_type = $data['form_type'];
 		}
 		
 		

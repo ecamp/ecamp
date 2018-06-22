@@ -45,16 +45,15 @@
 					list = 'sex' AND 
 					user.id = '$_user->id'";
 	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
-	while($row = mysqli_fetch_assoc($result))
+	while ($row = mysqli_fetch_assoc($result))
 	{
-		$sex_content[] = array
-		(
+		$sex_content[] = array(
 			"value" 		=> $row['item_nr'],
 			"content"		=> $row['entry'],
 			"selected"		=> $row['selected']
 		);
 		
-		if( $row['selected'] ){	$sex_selected = $row['item_nr'];	}
+		if ($row['selected']) {	$sex_selected = $row['item_nr']; }
 	}
 
 	//  JS-Ausbildung
@@ -79,16 +78,15 @@
 					list = 'jsedu' AND 
 					user.id = '$_user->id'";
 	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
-	while($row = mysqli_fetch_assoc($result))
+	while ($row = mysqli_fetch_assoc($result))
 	{	
-		$jsedu_content[] = array
-		(
+		$jsedu_content[] = array(
 			"value"		=> $row['item_nr'],
 			"content"	=> $row['entry'],
 			"selected"	=> $row['selected']
 		);
 		
-		if( $row['selected'] )	{	$jsedu_selected = $row['item_nr'];	}
+		if ($row['selected']) {	$jsedu_selected = $row['item_nr']; }
 	}
 
 	//  PBS-Ausbildung
@@ -114,16 +112,15 @@
 					list = 'pbsedu' AND 
 					user.id = '$_user->id'";
 	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
-	while($row = mysqli_fetch_assoc($result))
+	while ($row = mysqli_fetch_assoc($result))
 	{	
-		$pbsedu_content[] = array
-		(
+		$pbsedu_content[] = array(
 			"value"		=> $row['item_nr'],
 			"content"	=> $row['entry'],
 			"selected"	=> $row['selected']
 		);
 		
-		if( $row['selected'] )	{	$pbsedu_selected = $row['item_nr'];	}
+		if ($row['selected']) {	$pbsedu_selected = $row['item_nr']; }
 	}
 	
 	$query = "SELECT * FROM user WHERE id = '$_user->id'";
@@ -134,25 +131,25 @@
 	$birthday->setDay2000($row['birthday']);
 
 	$profile = array(
-		"img_src" 	=> "index.php?app=user_profile&cmd=show_avatar&show_user_id=" . $_user->id,
-		"scoutname" => array(	"name" => "scoutname", 	"value" => $row['scoutname']),
-		"firstname" => array(	"name" => "firstname", 	"value" => $row['firstname']),
-		"surname" 	=> array(	"name" => "surname", 	"value" => $row['surname']),
-		"street" 	=> array(	"name" => "street", 	"value" => $row['street']),
-		"zipcode" 	=> array(	"name" => "zipcode", 	"value" => $row['zipcode']),
-		"city" 		=> array(	"name" => "city", 		"value" => $row['city']),
-		"homenr" 	=> array(	"name" => "homenr", 	"value" => $row['homenr']),
-		"mobilnr" 	=> array(	"name" => "mobilnr", 	"value" => $row['mobilnr']),
-		"birthday" 	=> array(	"name" => "birthday", 	"value" => $birthday->getString("d.m.Y")),
-		"ahv" 		=> array(	"name" => "ahv", 		"value" => $row['ahv']),
-		"jspersnr"	=> array(	"name" => "jspersnr",	"value" => $row['jspersnr']),
-		"sex"		=> array(	"name" => "sex",		"value"	=> $sex_content, 	"selected" => $sex_selected),
-		"jsedu"		=> array(	"name" => "jsedu",		"value" => $jsedu_content,	"selected" => $jsedu_selected),
-		"pbsedu"	=> array(	"name" => "pbsedu",		"value" => $pbsedu_content,	"selected" => $pbsedu_selected),
+		"img_src" 	=> "index.php?app=user_profile&cmd=show_avatar&show_user_id=".$_user->id,
+		"scoutname" => array("name" => "scoutname", "value" => $row['scoutname']),
+		"firstname" => array("name" => "firstname", "value" => $row['firstname']),
+		"surname" 	=> array("name" => "surname", "value" => $row['surname']),
+		"street" 	=> array("name" => "street", "value" => $row['street']),
+		"zipcode" 	=> array("name" => "zipcode", "value" => $row['zipcode']),
+		"city" 		=> array("name" => "city", "value" => $row['city']),
+		"homenr" 	=> array("name" => "homenr", "value" => $row['homenr']),
+		"mobilnr" 	=> array("name" => "mobilnr", "value" => $row['mobilnr']),
+		"birthday" 	=> array("name" => "birthday", "value" => $birthday->getString("d.m.Y")),
+		"ahv" 		=> array("name" => "ahv", "value" => $row['ahv']),
+		"jspersnr"	=> array("name" => "jspersnr", "value" => $row['jspersnr']),
+		"sex"		=> array("name" => "sex", "value"	=> $sex_content, "selected" => $sex_selected),
+		"jsedu"		=> array("name" => "jsedu", "value" => $jsedu_content, "selected" => $jsedu_selected),
+		"pbsedu"	=> array("name" => "pbsedu", "value" => $pbsedu_content, "selected" => $pbsedu_selected),
 		"pw_change"	=> "",
 		"avatar"	=> ""
 	);
 	
-	$_page->html->set( 'profile', $profile );
+	$_page->html->set('profile', $profile);
 	
 	//print_r($profile);

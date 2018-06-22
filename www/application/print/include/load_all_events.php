@@ -38,24 +38,24 @@
     				subcamp
     			WHERE
     				v.event_instance_id = event_instance.id AND
-    				event.camp_id = " . $_camp->id . " AND
+    				event.camp_id = " . $_camp->id." AND
     				event.category_id = category.id AND
     				event_instance.event_id = event.id AND
     				event_instance.day_id = day.id AND
     				day.subcamp_id = subcamp.id
     			ORDER BY date, starttime";
     
-	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
 	$events = array();
 	$c_date = new c_date();
 	
-	while( $row = mysqli_fetch_assoc( $result ) )
+	while ($row = mysqli_fetch_assoc($result))
 	{
-		$c_date->setDay2000( $row['date'] );
+		$c_date->setDay2000($row['date']);
 		
-		$events[ $row['date'] ]['day_str'] = $c_date->getString( 'd.m.Y' );
-		$events[ $row['date'] ]['events'][] = $row;
+		$events[$row['date']]['day_str'] = $c_date->getString('d.m.Y');
+		$events[$row['date']]['events'][] = $row;
 	}
 	
-	$_page->html->set( 'events', $events );
+	$_page->html->set('events', $events);

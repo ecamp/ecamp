@@ -65,6 +65,6 @@
 						)
 				);
 	
-	$_page->html->set( 'faqs', $faq );
+	$_page->html->set('faqs', $faq);
 	
 ?>

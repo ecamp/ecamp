@@ -18,16 +18,16 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	$event_id 	= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['event_id']);
-	$day_id 	= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['day_id']);
+	$event_id = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['event_id']);
+	$day_id = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['day_id']);
 	
-	$_camp->event( $event_id ) || die( "error" );
-	$_camp->day( $day_id ) || die( "error" );
+	$_camp->event($event_id) || die("error");
+	$_camp->day($day_id) || die("error");
 	
 	// Zugehörigkeit zum Lager überprüfen (Sicherheitsabfrage)
 	$query = "SELECT event.id, event.detail_id FROM event,day,subcamp WHERE event.id='$event_id' AND event.day_id=day.id AND day.subcamp_id=subcamp.id AND subcamp.camp_id='$camp[id]'";
 	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
-	if( mysqli_num_rows($result) == 0 )
+	if (mysqli_num_rows($result) == 0)
 	{
 		echo "error";
 		die();
@@ -45,5 +45,5 @@
 	$query = "DELETE FROM event WHERE id = '$event_id'";
 	mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
-	header( "Location: index.php?app=day&dayid=".$day_id );
+	header("Location: index.php?app=day&dayid=".$day_id);
 	die();

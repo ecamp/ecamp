@@ -61,39 +61,39 @@
  */
 abstract class PHPTAL_NamespaceAttribute
 {
-    /** Attribute name without the namespace: prefix */
-    private $local_name;
+	/** Attribute name without the namespace: prefix */
+	private $local_name;
 
-    /** [0 - 1000] */
-    private $_priority;
+	/** [0 - 1000] */
+	private $_priority;
 
-    /** PHPTAL_Namespace */
-    private $_namespace;
+	/** PHPTAL_Namespace */
+	private $_namespace;
 
-    /**
-     * @param string $name The attribute name
-     * @param int $priority Attribute execution priority
-     */
-    public function __construct($local_name, $priority)
-    {
-        $this->local_name = $local_name;
-        $this->_priority = $priority;
-    }
+	/**
+	 * @param string $name The attribute name
+	 * @param int $priority Attribute execution priority
+	 */
+	public function __construct($local_name, $priority)
+	{
+		$this->local_name = $local_name;
+		$this->_priority = $priority;
+	}
 
-    /**
-     * @return string
-     */
-    public function getLocalName()
-    {
-        return $this->local_name;
-    }
+	/**
+	 * @return string
+	 */
+	public function getLocalName()
+	{
+		return $this->local_name;
+	}
 
-    public function getPriority() { return $this->_priority; }
-    public function getNamespace() { return $this->_namespace; }
-    public function setNamespace(PHPTAL_Namespace $ns) { $this->_namespace = $ns; }
+	public function getPriority() { return $this->_priority; }
+	public function getNamespace() { return $this->_namespace; }
+	public function setNamespace(PHPTAL_Namespace $ns) { $this->_namespace = $ns; }
 
-    public function createAttributeHandler(PHPTAL_Dom_Element $tag, $expression)
-    {
-        return $this->_namespace->createAttributeHandler($this, $tag, $expression);
-    }
+	public function createAttributeHandler(PHPTAL_Dom_Element $tag, $expression)
+	{
+		return $this->_namespace->createAttributeHandler($this, $tag, $expression);
+	}
 }

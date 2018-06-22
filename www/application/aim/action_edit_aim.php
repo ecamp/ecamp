@@ -30,9 +30,9 @@
 	$edit  = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['edit']);
 
 	// Neues Ziel
-	if( $new == 1  )
+	if ($new == 1)
 	{
-		if( $pid == "" ) $pid = "NULL";
+		if ($pid == "") $pid = "NULL";
 		
 		$query = "INSERT INTO `course_aim` (`id` ,`pid` ,`camp_id` ,`aim` )
 					VALUES (NULL , $pid , $_camp->id, '$text' );";
@@ -41,21 +41,21 @@
 	}
 	
 	// Ziel löschen
-	else if( $del == 1 )
+	else if ($del == 1)
 	{
-		$_camp->course_aim( $id ) || die( "error" );
+		$_camp->course_aim($id) || die("error");
 		
 		$query = "DELETE FROM course_aim WHERE id='$id' AND camp_id='$_camp->id' LIMIT 1;";
 		mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	}
 	
 	// Ziel ändern
-	else if( $edit == 1 )
+	else if ($edit == 1)
 	{
-		$_camp->course_aim( $id ) || die( "error" );
+		$_camp->course_aim($id) || die("error");
 		
 		$query = "UPDATE course_aim SET aim='$text' WHERE id='$id' AND camp_id='$_camp->id' LIMIT 1;";
-		mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+		mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	}
 	
 	// Fehler
@@ -64,6 +64,6 @@
 		$error = true;
 	}
 	
-	$ans = array( "error" => $error, "text" => $text_js, "pid" => $pid, "new" => $new, "id" => $id );
+	$ans = array("error" => $error, "text" => $text_js, "pid" => $pid, "new" => $new, "id" => $id);
 	echo json_encode($ans);
 	die();

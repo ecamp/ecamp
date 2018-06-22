@@ -20,10 +20,10 @@
  */
 interface PHPTAL_Trigger
 {
-    const SKIPTAG = 1;
-    const PROCEED = 2;
+	const SKIPTAG = 1;
+	const PROCEED = 2;
 
-    public function start($id, $tpl);
+	public function start($id, $tpl);
 
-    public function end($id, $tpl);
+	public function end($id, $tpl);
 }

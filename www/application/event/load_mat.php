@@ -35,35 +35,35 @@
 						mat_event.mat_list_id IS NOT NULL
 					) AND
 					event_id = $event_id";
-	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
 	$mat_article_event = array();
 	
-	while( $row = mysqli_fetch_assoc( $result ) )
+	while ($row = mysqli_fetch_assoc($result))
 	{
-		if( $row[user_camp_id] )
+		if ($row[user_camp_id])
 		{
 			$query = "	SELECT user.scoutname
 						FROM user, user_camp
 						WHERE user.id = user_camp.user_id 
 						AND user_camp.id = " . $row['user_camp_id'];
-			$subresult = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
-			$resp_str = mysqli_result( $subresult,  0,  'scoutname' );
+			$subresult = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+			$resp_str = mysqli_result($subresult, 0, 'scoutname');
 		}
-		if( $row[mat_list_id] )
+		if ($row[mat_list_id])
 		{
 			$query = "	SELECT mat_list.name
 						FROM mat_list
 						WHERE mat_list.id = " . $row['mat_list_id'];
-			$subresult = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
-			$resp_str = mysqli_result( $subresult,  0,  'name' );
+			$subresult = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+			$resp_str = mysqli_result($subresult, 0, 'name');
 		}
 		
 		$row['list_name'] = $row['article_name'];
 		$row['resp_str'] = $resp_str;
 		$mat_article_event[] = $row;
 	}
-	$_page->html->set( 'mat_article_event_list', $mat_article_event );
+	$_page->html->set('mat_article_event_list', $mat_article_event);
 	
 	//print_r( $mat_article_event );
 	//die();
@@ -81,14 +81,14 @@
 					ISNULL( mat_event.user_camp_id ) AND
 					ISNULL( mat_event.mat_list_id ) AND
 					mat_event.event_id = $event_id";
-	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	$mat_stuff_stocked = array();
 	
-	while( $row = mysqli_fetch_assoc( $result ) )
+	while ($row = mysqli_fetch_assoc($result))
 	{
 		$mat_stuff_stocked[] = $row;
 	}
-	$_page->html->set( 'mat_stuff_stocked_list', $mat_stuff_stocked );
+	$_page->html->set('mat_stuff_stocked_list', $mat_stuff_stocked);
 
 	//	MAT-STUFF - NONSTOCKED:
 	// =========================

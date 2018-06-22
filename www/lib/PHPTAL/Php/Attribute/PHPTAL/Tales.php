@@ -19,27 +19,27 @@
  */
 class PHPTAL_Php_Attribute_PHPTAL_TALES extends PHPTAL_Php_Attribute
 {
-    public function before(PHPTAL_Php_CodeWriter $codewriter)
-    {
-        $mode = trim($this->expression);
-        $mode = strtolower($mode);
+	public function before(PHPTAL_Php_CodeWriter $codewriter)
+	{
+		$mode = trim($this->expression);
+		$mode = strtolower($mode);
 
-        if ($mode == '' || $mode == 'default')
-            $mode = 'tales';
+		if ($mode == '' || $mode == 'default')
+			$mode = 'tales';
 
-        if ($mode != 'php' && $mode != 'tales') {
-            throw new PHPTAL_TemplateException("Unsupported TALES mode '$mode'",
-                $this->phpelement->getSourceFile(), $this->phpelement->getSourceLine());
-        }
+		if ($mode != 'php' && $mode != 'tales') {
+			throw new PHPTAL_TemplateException("Unsupported TALES mode '$mode'",
+				$this->phpelement->getSourceFile(), $this->phpelement->getSourceLine());
+		}
 
-        $this->_oldMode = $codewriter->setTalesMode($mode);
-    }
+		$this->_oldMode = $codewriter->setTalesMode($mode);
+	}
 
-    public function after(PHPTAL_Php_CodeWriter $codewriter)
-    {
-        $codewriter->setTalesMode($this->_oldMode);
-    }
+	public function after(PHPTAL_Php_CodeWriter $codewriter)
+	{
+		$codewriter->setTalesMode($this->_oldMode);
+	}
 
-    private $_oldMode;
+	private $_oldMode;
 }
 

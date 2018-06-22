@@ -18,24 +18,24 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	$day_id = mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['day_id'] );
-	$notes = mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['notes'] );
-	$notes_js = $_REQUEST['notes'] ;
+	$day_id = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['day_id']);
+	$notes = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['notes']);
+	$notes_js = $_REQUEST['notes'];
 	
-	$_camp->day( $day_id ) || die( "error" );
+	$_camp->day($day_id) || die("error");
 	
 	$query = "	UPDATE day
 				SET `notes` = '$notes'
 				WHERE
 				id = $day_id";
-	mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+	mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
-	if( mysqli_error($GLOBALS["___mysqli_ston"]) )
-	{	$ans = array( "error" => true, "error_msg" => "" );	}
+	if (mysqli_error($GLOBALS["___mysqli_ston"]))
+	{	$ans = array("error" => true, "error_msg" => ""); }
 	else
-	{	$ans = array( "error" => false, "value" => $notes_js );	}
+	{	$ans = array("error" => false, "value" => $notes_js); }
 	
-	echo json_encode( $ans );
+	echo json_encode($ans);
 	
 	die();
 	

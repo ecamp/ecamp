@@ -23,7 +23,7 @@
 	#########################################################
 	
 	$c_date = new c_date;
-	$c_date->setUnix( time() );
+	$c_date->setUnix(time());
 
 	$dropdown = array();
 
@@ -44,38 +44,38 @@
 					user_camp.camp_id = camp.id AND
 					user_camp.user_id = $_user->id";
 	
-	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
-	while( $camp = mysqli_fetch_assoc( $result ) )
+	while ($camp = mysqli_fetch_assoc($result))
 	{
 		$subquery = "	SELECT	MAX( subcamp.start + subcamp.length - 1 ) as camp_end
 						FROM	subcamp
 						WHERE	subcamp.camp_id = " . $camp['id'];
-		$subresult = mysqli_query($GLOBALS["___mysqli_ston"],  $subquery );
-		$camp_end = mysqli_result( $subresult,  0 ,  'camp_end' );
+		$subresult = mysqli_query($GLOBALS["___mysqli_ston"], $subquery);
+		$camp_end = mysqli_result($subresult, 0, 'camp_end');
 		
 		
 		//$dropdown[$camp['groups_id']] = array();
-		$dropdown[$camp['groups_id']]['group_name'] = $camp['short_prefix'] . " " . $camp['groups_name'];
+		$dropdown[$camp['groups_id']]['group_name'] = $camp['short_prefix']." ".$camp['groups_name'];
 		//$dropdown[$camp['groups_id']]['camp_list']  = array();
 		
 		//$dropdown[$camp['groups_id']]['camp_list'][$camp['id']] = array();
 		$dropdown[$camp['groups_id']]['camp_list'][$camp['id']]['short_name'] = $camp['short_name'];
 		$dropdown[$camp['groups_id']]['camp_list'][$camp['id']]['id'] = $camp['id'];
 		
-		$dropdown[$camp['groups_id']]['camp_list'][$camp['id']]['past'] = ( $camp_end < $c_date->getValue() );
+		$dropdown[$camp['groups_id']]['camp_list'][$camp['id']]['past'] = ($camp_end < $c_date->getValue());
 		
 		
-		if( $camp['id'] == $_camp->id )
-		{	$dropdown[$camp['groups_id']]['camp_list'][$camp['id']]['selected'] = true;		}
+		if ($camp['id'] == $_camp->id)
+		{	$dropdown[$camp['groups_id']]['camp_list'][$camp['id']]['selected'] = true; }
 		else
-		{	$dropdown[$camp['groups_id']]['camp_list'][$camp['id']]['selected'] = false;	}
+		{	$dropdown[$camp['groups_id']]['camp_list'][$camp['id']]['selected'] = false; }
 		
 		
-		if( !$dropdown[$camp['groups_id']]['child_num'] )
-		{	$dropdown[$camp['groups_id']]['child_num'] = false;	}
+		if (!$dropdown[$camp['groups_id']]['child_num'])
+		{	$dropdown[$camp['groups_id']]['child_num'] = false; }
 		
-		$dropdown[$camp['groups_id']]['child_num'] = 	$dropdown[$camp['groups_id']]['child_num'] ||
+		$dropdown[$camp['groups_id']]['child_num'] = $dropdown[$camp['groups_id']]['child_num'] ||
 													!$dropdown[$camp['groups_id']]['camp_list'][$camp['id']]['past'] ||
 													$dropdown[$camp['groups_id']]['camp_list'][$camp['id']]['selected'];
 	}

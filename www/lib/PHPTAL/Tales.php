@@ -36,9 +36,9 @@ interface PHPTAL_Tales
  * @see PHPTAL_Php_TalesInternal::compileToPHPExpressions()
  * @return string
  */
-function phptal_tale($expression, $nothrow=false)
+function phptal_tale($expression, $nothrow = false)
 {
-    return PHPTAL_Php_TalesInternal::compileToPHPExpression($expression, $nothrow);
+	return PHPTAL_Php_TalesInternal::compileToPHPExpression($expression, $nothrow);
 }
 
 /**
@@ -51,8 +51,8 @@ function phptal_tale($expression, $nothrow=false)
  * @param bool $nothrow if true, invalid expression will return NULL (at run time) rather than throwing exception
  * @return string or array
  */
-function phptal_tales($expression, $nothrow=false)
+function phptal_tales($expression, $nothrow = false)
 {
-    return PHPTAL_Php_TalesInternal::compileToPHPExpressions($expression, $nothrow);
+	return PHPTAL_Php_TalesInternal::compileToPHPExpressions($expression, $nothrow);
 }
 

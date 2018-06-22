@@ -22,24 +22,24 @@
 	use Phelium\Component\reCAPTCHA;
 
 	include("./config/config.php");
-	include($lib_dir . "/mysql.php");
-	include($lib_dir . "/functions/error.php");
+	include($lib_dir."/mysql.php");
+	include($lib_dir."/functions/error.php");
 	require_once("./lib/PHPTAL.php");
 	db_connect();
 
 	$captcha = new reCAPTCHA($GLOBALS['captcha_pub'], $GLOBALS['captcha_prv']);
 
-	if( $_SESSION['skin'] == "" ) $_SESSION['skin'] = $GLOBALS['skin'];
+	if ($_SESSION['skin'] == "") $_SESSION['skin'] = $GLOBALS['skin'];
 	$html = new PHPTAL("public/skin/".$_SESSION['skin']."/register.tpl");
 	
 	$html->setEncoding('UTF-8');
 	
 	$html->set('SHOW_MSG', false);
 	
-	if( isset( $_REQUEST[ 'msg' ] ) )
+	if (isset($_REQUEST['msg']))
 	{
-		$html->set( 'SHOW_MSG', true );
-		$html->set( 'MSG', mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST[ 'msg' ] ) );
+		$html->set('SHOW_MSG', true);
+		$html->set('MSG', mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['msg']));
 	}
 
 	$html->set('captcha_script', $captcha->getScript());

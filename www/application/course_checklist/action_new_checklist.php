@@ -18,12 +18,12 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	if( $_camp->type>0 && $_camp->type<=4 ){
+	if ($_camp->type > 0 && $_camp->type <= 4) {
 		/* Verknüpfungen zur aktuellen Checkliste wechseln */
 		$query = "DELETE event_checklist.* FROM event_checklist INNER JOIN event ON event.id=event_checklist.event_id WHERE event.camp_id=".$_camp->id;
 		mysqli_query($GLOBALS["___mysqli_ston"], $query);
 		
-		$query = "UPDATE camp SET type=".($_camp->type+10)." WHERE id=".$_camp->id." LIMIT 1";
+		$query = "UPDATE camp SET type=".($_camp->type + 10)." WHERE id=".$_camp->id." LIMIT 1";
 		mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
 	}

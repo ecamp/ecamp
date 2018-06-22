@@ -21,19 +21,19 @@
  */
 class PHPTAL_DefaultKeyword implements Countable
 {
-    public function __toString()
-    {
-        return "''";
-    }
+	public function __toString()
+	{
+		return "''";
+	}
 
-    public function count()
-    {
-        return 1;
-    }
+	public function count()
+	{
+		return 1;
+	}
 
-    public function jsonSerialize()
-    {
-        return new stdClass;
-    }
+	public function jsonSerialize()
+	{
+		return new stdClass;
+	}
 }
 ?>

@@ -22,7 +22,7 @@
 	// write --> Ab Lagerleiter (level: 50)
 	if( $_user_camp->auth_level <= 50 )
 	{
-	    // Keine Berechtigung
+		// Keine Berechtigung
 		$ans = array( "error" => true, "msg" => "Keine Berechtigung!" );
 		echo json_encode( $ans );
 		die();
@@ -50,6 +50,6 @@
 	$query = "UPDATE job SET show_gp = 1 WHERE camp_id='$_camp->id' AND id='$job_id'";
 	mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
-	$ans = array( "error" => false, "job_id" => $job_id );
-	echo json_encode( $ans );
+	$ans = array("error" => false, "job_id" => $job_id);
+	echo json_encode($ans);
 	die();

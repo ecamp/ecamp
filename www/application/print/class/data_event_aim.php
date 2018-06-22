@@ -29,16 +29,16 @@
 		public $aim;
 		
 		
-		function print_data_event_aim_class( $data, $pid )
+		function print_data_event_aim_class($data, $pid)
 		{
 			$this->pid			= $pid;
 			$this->id 			= $data['id'];
-			$this->event_id		= $data['event_id'];
-			$this->aim 			= $data['aim'];
+			$this->event_id = $data['event_id'];
+			$this->aim = $data['aim'];
 			
-			$this->event 		= $pid->event[ $this->event_id ];
+			$this->event = $pid->event[$this->event_id];
 			
-			$this->event->add_event_aim( $this );
+			$this->event->add_event_aim($this);
 		}
 		
 		

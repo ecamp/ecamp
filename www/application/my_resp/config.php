@@ -21,7 +21,7 @@
 
 # Sichheitslevel der einzelnen Aktionen/Dateien
 # --> Kommandos/Files die nicht aufgeührt sind, können nicht aufgerufen werden
-$security_level = array( 'home' => 20 );
+$security_level = array('home' => 20);
 
 $css = array(
 				//"popup_menu.css" => "app",
@@ -30,7 +30,7 @@ $css = array(
 			);
 
 
-$js  = array(
+$js = array(
 				"mootools-core-1.4.js" 		=> "global",
 				"mootools-more-1.4.js" 		=> "global",
 				"dynamic_input.js" 	=> "global",
@@ -41,7 +41,7 @@ $js  = array(
 			);
 
 # Standardkommando
-if( $_page->cmd == "" ) {	$_page->cmd = "home";	}
+if ($_page->cmd == "") {	$_page->cmd = "home"; }
 
 
 ?>

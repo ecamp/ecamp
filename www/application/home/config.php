@@ -22,7 +22,7 @@
 # Sichheitslevel der einzelnen Aktionen/Dateien
 # --> Kommandos/Files die nicht aufgeührt sind, können nicht aufgerufen werden
 $security_level = array( 'home' => 10,
-                         'feedback' => 10,
+						 'feedback' => 10,
 						 'help' =>10,
 						 "take_feedback" => 10,
 						 "action_change_skin" => 100,
@@ -35,7 +35,7 @@ $css = array(
 				
 			);
 
-$js  = array(
+$js = array(
 				"mootools-core-1.4.js" 		=> "global",
 				"mootools-more-1.4.js" 		=> "global"
 				//"jsos.js"			=> "global",
@@ -46,7 +46,7 @@ $js  = array(
 			);
 
 # Standardkommando
-if( $_page->cmd == "" ) {	$_page->cmd = "home";	}
+if ($_page->cmd == "") {	$_page->cmd = "home"; }
 
 
 ?>

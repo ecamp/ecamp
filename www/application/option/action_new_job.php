@@ -27,16 +27,15 @@
 	// write --> Ab Lagerleiter (level: 50)
 	if( $_user_camp->auth_level < 50 || $job_name =="" )
 	{
-	    // Keine Berechtigung
+		// Keine Berechtigung
 		if( $_user_camp->auth_level < 50 )
 		{
-    		//$xml_replace[error] = 1;
+			//$xml_replace[error] = 1;
 			//$xml_replace['error-msg'] = "Keine Berechtigung";
 			$ans = array( "error" => true, "msg" => "Keine berechtigung!" );
 			echo json_encode( $ans );
 			die();
-		}
-		else
+		} else
 		{
 			//$xml_replace[error] = 2;
 			//$xml_replace['error-msg'] = "Bitte gib zuerst einen Job-Namen ein!";
@@ -61,6 +60,6 @@
 	mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	$id = ((is_null($___mysqli_res = mysqli_insert_id($GLOBALS["___mysqli_ston"]))) ? false : $___mysqli_res);
 	
-	$ans = array( "error" => false, "job_id" => $id, "job_name" => $job_name );
-	echo json_encode( $ans );
+	$ans = array("error" => false, "job_id" => $id, "job_name" => $job_name);
+	echo json_encode($ans);
 	die();

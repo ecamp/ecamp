@@ -19,41 +19,41 @@
  */
 
 	function thumbnail( $PicPathIn, $PicPathOut, $PicFilenameIn, $PicFilenameOut, $neueHoehe, $Quality )
-    {
-          // Bilddaten ermitteln
-          $size=getimagesize("$PicPathIn"."$PicFilenameIn");
-          $breite=$size[0];
-          $hoehe=$size[1];
+	{
+		  // Bilddaten ermitteln
+		  $size=getimagesize("$PicPathIn"."$PicFilenameIn");
+		  $breite=$size[0];
+		  $hoehe=$size[1];
 
-          $neueBreite = intval($breite*$neueHoehe/$hoehe);
+		  $neueBreite = intval($breite*$neueHoehe/$hoehe);
 
-          if($size[2]==1)
-          {
-                       // GIF
-                       $altesBild=ImageCreateFromGIF("$PicPathIn"."$PicFilenameIn");
-                       $neuesBild=imageCreateTrueColor($neueBreite,$neueHoehe);
-                       imageCopyResized($neuesBild,$altesBild,0,0,0,0,$neueBreite,$neueHoehe,$breite,$hoehe);
-                       imageJPEG($neuesBild,"$PicPathOut"."$PicFilenameOut",$Quality);
-          }
+		  if($size[2]==1)
+		  {
+					   // GIF
+					   $altesBild=ImageCreateFromGIF("$PicPathIn"."$PicFilenameIn");
+					   $neuesBild=imageCreateTrueColor($neueBreite,$neueHoehe);
+					   imageCopyResized($neuesBild,$altesBild,0,0,0,0,$neueBreite,$neueHoehe,$breite,$hoehe);
+					   imageJPEG($neuesBild,"$PicPathOut"."$PicFilenameOut",$Quality);
+		  }
 
-          if($size[2]==2)
-          {
-                       // JPG
-                       $altesBild=ImageCreateFromJPEG("$PicPathIn"."$PicFilenameIn");
-                       $neuesBild=imageCreateTrueColor($neueBreite,$neueHoehe);
-                       imageCopyResized($neuesBild,$altesBild,0,0,0,0,$neueBreite,$neueHoehe,$breite,$hoehe);
-                       ImageJPEG($neuesBild,"$PicPathOut"."$PicFilenameOut",$Quality);
-          }
+		  if($size[2]==2)
+		  {
+					   // JPG
+					   $altesBild=ImageCreateFromJPEG("$PicPathIn"."$PicFilenameIn");
+					   $neuesBild=imageCreateTrueColor($neueBreite,$neueHoehe);
+					   imageCopyResized($neuesBild,$altesBild,0,0,0,0,$neueBreite,$neueHoehe,$breite,$hoehe);
+					   ImageJPEG($neuesBild,"$PicPathOut"."$PicFilenameOut",$Quality);
+		  }
 
-          if($size[2]==3)
-          {
-                       // PNG
-                       $altesBild=ImageCreateFromPNG("$PicPathIn"."$PicFilenameIn");
-                       $neuesBild=imageCreateTrueColor($neueBreite,$neueHoehe);
-                       imageCopyResized($neuesBild,$altesBild,0,0,0,0,$neueBreite,$neueHoehe,$breite,$hoehe);
-                       ImageJPEG($neuesBild,"$PicPathOut"."$PicFilenameOut",$Quality);
-          }
-    }
+		  if($size[2]==3)
+		  {
+					   // PNG
+					   $altesBild=ImageCreateFromPNG("$PicPathIn"."$PicFilenameIn");
+					   $neuesBild=imageCreateTrueColor($neueBreite,$neueHoehe);
+					   imageCopyResized($neuesBild,$altesBild,0,0,0,0,$neueBreite,$neueHoehe,$breite,$hoehe);
+					   ImageJPEG($neuesBild,"$PicPathOut"."$PicFilenameOut",$Quality);
+		  }
+	}
 
 	$avatar = $_FILES['avatar'];
 	if( !$avatar )	{	header("Location: index.php?app=user_profile");	die();	}

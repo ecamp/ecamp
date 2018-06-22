@@ -31,21 +31,21 @@
 					event_document
 				WHERE
 					event_id = $event_id";
-	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
 	$documents = array();
-	while( $document = mysqli_fetch_assoc( $result ) )
+	while ($document = mysqli_fetch_assoc($result))
 	{
-		if( $file_type[$document['type']] )
-		{	$document['type_img_src'] = "public/global/img/" . $file_type[$document['type']];	}
+		if ($file_type[$document['type']])
+		{	$document['type_img_src'] = "public/global/img/".$file_type[$document['type']]; }
 		else
-		{	$document['type_img_src'] = "public/global/img/icon_unknown.png";	}
+		{	$document['type_img_src'] = "public/global/img/icon_unknown.png"; }
 		
-		$document['download_link'] = "index.php?app=event&cmd=file_download&file_id=" . $document['id'];
+		$document['download_link'] = "index.php?app=event&cmd=file_download&file_id=".$document['id'];
 		
 		$documents[] = $document;
 	}
 
-	$_page->html->set( 'documents', $documents );
+	$_page->html->set('documents', $documents);
 	
 	//print_r( $documents );

@@ -22,18 +22,18 @@
 
 	// Einladungen suchen
 	$query = "SELECT * FROM user_camp WHERE user_id='$_user->id' AND active=0";
-	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
-	$num = mysqli_num_rows( $result );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+	$num = mysqli_num_rows($result);
 	
-	if( $num > 0 )
+	if ($num > 0)
 	{
-		$_page->html->set( 'inventions', true );
-		$_page->html->set( 'num_inventions', $num );
+		$_page->html->set('inventions', true);
+		$_page->html->set('num_inventions', $num);
 	}
 	else
 	{
-		$_page->html->set( 'inventions', false );
-		$_page->html->set( 'num_inventions', 0 );
+		$_page->html->set('inventions', false);
+		$_page->html->set('num_inventions', 0);
 	}
 	
 	// Notizen zu den verantwortlichen Programmblöcken anzeigen
@@ -61,10 +61,10 @@
 	}
 	*/
 
-	$no_news = ( count( $_news->load() ) == 0 );
+	$no_news = (count($_news->load()) == 0);
 
-	$_page->html->set( 'notes', $notes );
-	$_page->html->set( 'no_notes', $no_notes );
+	$_page->html->set('notes', $notes);
+	$_page->html->set('no_notes', $no_notes);
 	
-	$_page->html->set( 'news', $_news->load() );
-	$_page->html->set( 'no_news', $no_news );
+	$_page->html->set('news', $_news->load());
+	$_page->html->set('no_news', $no_news);

@@ -20,7 +20,7 @@
 
 	$_page->html->set('main_macro', $GLOBALS['tpl_dir'].'/application/mail/home.tpl/home');
 
-	if(isset($_GET['mailtest'])){
+	if (isset($_GET['mailtest'])) {
 		$mailBody = <<<___MAILBODY
 <table width="100%">
     <tbody>
@@ -80,5 +80,5 @@
 </table>
 ___MAILBODY;
 
-		ecamp_send_mail($_GET['mailtest'],'Testmail von ecamp.pfadiluzern.ch',$mailBody);
+		ecamp_send_mail($_GET['mailtest'], 'Testmail von ecamp.pfadiluzern.ch', $mailBody);
 	}

@@ -20,12 +20,12 @@
  */
 class PHPTAL_Namespace_PHPTAL extends PHPTAL_Namespace_Builtin
 {
-    public function __construct()
-    {
-        parent::__construct('phptal', 'http://phptal.org/ns/phptal');
-        $this->addAttribute(new PHPTAL_NamespaceAttributeSurround('tales', -1));
-        $this->addAttribute(new PHPTAL_NamespaceAttributeSurround('debug', -2));
-        $this->addAttribute(new PHPTAL_NamespaceAttributeSurround('id', 7));
-        $this->addAttribute(new PHPTAL_NamespaceAttributeSurround('cache', -3));
-    }
+	public function __construct()
+	{
+		parent::__construct('phptal', 'http://phptal.org/ns/phptal');
+		$this->addAttribute(new PHPTAL_NamespaceAttributeSurround('tales', -1));
+		$this->addAttribute(new PHPTAL_NamespaceAttributeSurround('debug', -2));
+		$this->addAttribute(new PHPTAL_NamespaceAttributeSurround('id', 7));
+		$this->addAttribute(new PHPTAL_NamespaceAttributeSurround('cache', -3));
+	}
 }

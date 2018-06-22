@@ -28,12 +28,12 @@
   #        - Überprüfen, wie oft ein Login versucht wurde --> Kennwortrücksetzung anbieten
   #        - Validieren der User-Eingaben
   
-	include( "./config/config.php" );
-	include( $lib_dir . "/session.php" );
-	include( $lib_dir . "/functions/error.php" );
-	require_once( "./lib/PHPTAL.php" );
+	include("./config/config.php");
+	include($lib_dir."/session.php");
+	include($lib_dir."/functions/error.php");
+	require_once("./lib/PHPTAL.php");
 	
-	if( $_SESSION['skin'] == "" ) $_SESSION['skin'] = $GLOBALS['skin'];
+	if ($_SESSION['skin'] == "") $_SESSION['skin'] = $GLOBALS['skin'];
 	$html = new PHPTAL("public/skin/".$_SESSION['skin']."/login.tpl");
 	
 	$html->setEncoding('UTF-8');
@@ -49,7 +49,7 @@
 	
 	if($_POST['Form'] == "Login")
 	{
-	    include($lib_dir . "/mysql.php");
+		include($lib_dir . "/mysql.php");
 		db_connect();
 		
 		// Verhindern von injection!!!
@@ -74,21 +74,18 @@
 					
 					header("Location: index.php");                    
 					die();
-				}
-				else
+				} else
 				{
 					$html->set('SHOW_MSG', true);
 					$html->set('MSG', "Login ist fehlgeschlagen.");
 				}
-			}
-			else
+			} else
 			{
 				$html->set('SHOW_MSG', true);
 				$html->set('MSG', "	Du musst deinen Account zuerst aktivieren. 
 									<br /><br /><a href='resendacode.php'>Wie aktiviere ich meinen Account?</a>");
 			}
-		}
-		else
+		} else
 		{
 			$html->set('SHOW_MSG', true);
 			$html->set('MSG', "Login ist fehlgeschlagen.");
@@ -97,7 +94,7 @@
 
 	if( isset( $_COOKIE['autologin'] ) && $_COOKIE['autologin'] && isset( $_COOKIE['auth_key'] ) && is_numeric( $_COOKIE['user_id'] ) )
 	{
-	    include($lib_dir . "/mysql.php");
+		include($lib_dir . "/mysql.php");
 		db_connect();
 		
 		$user_id 	= $_COOKIE['user_id'];
@@ -112,8 +109,7 @@
 			
 			header( "Location: index.php" );
 			die();
-		}
-		else
+		} else
 		{
 			setcookie( 'autologin', false );
 			setcookie( 'user_id', '' );

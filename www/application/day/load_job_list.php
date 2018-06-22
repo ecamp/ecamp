@@ -34,10 +34,10 @@
 					dropdown.entry != 'Support' AND
 					user.id = user_camp.user_id AND
 					user_camp.camp_id = $_camp->id";
-	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
-	while( $user = mysqli_fetch_assoc( $result ) )
-	{	$job_list['users'][ $user['id'] ] = $user;	}
+	while ($user = mysqli_fetch_assoc($result))
+	{	$job_list['users'][$user['id']] = $user; }
 
 	$query = "	SELECT
 					job.id,
@@ -63,7 +63,7 @@
 					user_camp.id = job_day.user_camp_id 
 				WHERE
 					job.camp_id = $_camp->id";
-	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
-	while( $job = mysqli_fetch_assoc( $result ) )
-	{	$job_list['jobs'][ $job['id'] ] = $job;	}
+	while ($job = mysqli_fetch_assoc($result))
+	{	$job_list['jobs'][$job['id']] = $job; }

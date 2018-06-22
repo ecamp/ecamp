@@ -20,13 +20,13 @@
 
 	$select_content = "";
 	
-	if( $_camp->is_course )
+	if ($_camp->is_course)
 		$query = "SELECT * FROM dropdown WHERE list = 'function_course'";
 	else
 		$query = "SELECT * FROM dropdown WHERE list = 'function_camp'";
 		
 	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
-	while($option = mysqli_fetch_assoc($result))
-	{	$select_content .= gettemplate_app('add_camp_function', array("value" => $option['id'], "function" => $option['entry']));	}
+	while ($option = mysqli_fetch_assoc($result))
+	{	$select_content .= gettemplate_app('add_camp_function', array("value" => $option['id'], "function" => $option['entry'])); }
 
 	$index_content['main'] .= gettemplate_app('add_camp', array("function" => $select_content));

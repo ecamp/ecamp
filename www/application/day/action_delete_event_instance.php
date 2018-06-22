@@ -18,9 +18,9 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	$event_instance_id = mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['event_instance_id'] );
+	$event_instance_id = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['event_instance_id']);
 	
-	$_camp->event_instance( $event_instance_id ) || die( "error" );
+	$_camp->event_instance($event_instance_id) || die("error");
 
 	$query = "	SELECT
 					event_instance.event_id
@@ -28,32 +28,32 @@
 					event_instance
 				WHERE
 					event_instance.id = $event_instance_id";
-	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
-	$event_id = mysqli_result( $result,  0,  'event_id' );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+	$event_id = mysqli_result($result, 0, 'event_id');
 	
 	$query = "	DELETE FROM event_instance
 				WHERE event_instance.id = $event_instance_id";
-	mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+	mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
-	if( mysqli_error($GLOBALS["___mysqli_ston"]) )
+	if (mysqli_error($GLOBALS["___mysqli_ston"]))
 	{
-		$ans = array( "error" => true, "error_msg" => "Fehler!" );
-		echo json_encode( $ans );
+		$ans = array("error" => true, "error_msg" => "Fehler!");
+		echo json_encode($ans);
 		die();
 	}
 
 	$query = "	SELECT 	*
 				FROM 	event_instance
 				WHERE	event_instance.event_id = $event_id";
-	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
-	if( !mysqli_num_rows( $result ) )
+	if (!mysqli_num_rows($result))
 	{
 		$query = "	DELETE FROM event
 					WHERE event.id = $event_id";
-		mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+		mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	}
 	
-	$ans = array( "error" => false );
-	echo json_encode( $ans );
+	$ans = array("error" => false);
+	echo json_encode($ans);
 	die();

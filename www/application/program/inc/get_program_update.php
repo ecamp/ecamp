@@ -18,13 +18,13 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	function get_program_update( $time )
+	function get_program_update($time)
 	{
 		global $_camp;
 		global $_user;
 		
 		$data = array();
-		$time_str = date( 'Y-m-d H:i:s', $time );
+		$time_str = date('Y-m-d H:i:s', $time);
 
 		//	USER:
 		// =======
@@ -43,8 +43,8 @@
 						);";
 		$users = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 		
-		while( $user = mysqli_fetch_assoc( $users ) )
-		{	$data['users'][] = $user;	}
+		while ($user = mysqli_fetch_assoc($users))
+		{	$data['users'][] = $user; }
 		
 		//	CATEGORY:
 		// ===========
@@ -61,8 +61,8 @@
 						category.t_edited >= '$time_str' ;";
 		$categorys = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 		
-		while( $category = mysqli_fetch_assoc( $categorys ) )
-		{	$data['categorys'][] = $category;	}
+		while ($category = mysqli_fetch_assoc($categorys))
+		{	$data['categorys'][] = $category; }
 
 		//	SUBCAMP:
 		// ==========
@@ -86,8 +86,8 @@
 						t_edited >= '$time_str' ;";
 		$subcamps = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 		
-		while( $subcamp = mysqli_fetch_assoc( $subcamps ) )
-		{	$data['subcamps'][] = $subcamp;	}
+		while ($subcamp = mysqli_fetch_assoc($subcamps))
+		{	$data['subcamps'][] = $subcamp; }
 
 		//	DAY:
 		// ======
@@ -118,8 +118,8 @@
 						);";
 		$days = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 		
-		while( $day = mysqli_fetch_assoc( $days ) )
-		{	$data['days'][] = $day;	}
+		while ($day = mysqli_fetch_assoc($days))
+		{	$data['days'][] = $day; }
 
 		//	EVENT:
 		// ========
@@ -142,9 +142,9 @@
 							event.t_edited >= '$time_str' OR 
 							event_responsible.t_edited >= '$time_str'
 						)";
-		$events = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+		$events = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 		
-		while( $event = mysqli_fetch_assoc( $events ) )
+		while ($event = mysqli_fetch_assoc($events))
 		{
 			$event['users'] = array();
 			
@@ -154,10 +154,10 @@
 							event_responsible
 						WHERE
 							event_id = " . $event['id'];
-			$event_responsibles = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+			$event_responsibles = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 			
-			while( $event_responsible = mysqli_fetch_assoc( $event_responsibles ) )
-			{	$event['users'][] = $event_responsible['user_id'];	}
+			while ($event_responsible = mysqli_fetch_assoc($event_responsibles))
+			{	$event['users'][] = $event_responsible['user_id']; }
 			
 			$data['events'][] = $event;
 		}
@@ -184,18 +184,18 @@
 						);";
 		$event_instances = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 		
-		while( $event_instance = mysqli_fetch_assoc( $event_instances) )
-		{	$data['event_instances'][] = $event_instance;	}
+		while ($event_instance = mysqli_fetch_assoc($event_instances))
+		{	$data['event_instances'][] = $event_instance; }
 
 		//	DELETE-LOG:
 		// =============
-		$filename = "application/program/del_protocol/" . $_user->id . ".log";
-		touch( $filename );
+		$filename = "application/program/del_protocol/".$_user->id.".log";
+		touch($filename);
 		
-		$filecontent = file_get_contents( $filename );
-		$file = json_decode( trim( $filecontent ), true );
+		$filecontent = file_get_contents($filename);
+		$file = json_decode(trim($filecontent), true);
 		
-		unlink( $filename );
+		unlink($filename);
 		
 		$data['del'] = $file;
 		

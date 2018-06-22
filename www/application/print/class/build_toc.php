@@ -27,28 +27,28 @@
 		function print_build_toc()
 		{}
 		
-		function addTOC( $pdf )
+		function addTOC($pdf)
 		{
 			$this->page[] = $pdf->PageNo();
 		}
 		
-		function build( $pdf )
+		function build($pdf)
 		{
-			$pdf->SetFont( '', '', 10 );
+			$pdf->SetFont('', '', 10);
 			
-			if( count( $this->page ) )
+			if (count($this->page))
 			{
-				foreach( $this->page as $nr )
+				foreach ($this->page as $nr)
 				{
 					$tocsnr = $pdf->PageNo();
 					
-					$pdf->addPage( 'P', 'A4');
-					$pdf->setXY( 10, 20 );
-					$pdf->addToc( $nr + $this->countoffset );
+					$pdf->addPage('P', 'A4');
+					$pdf->setXY(10, 20);
+					$pdf->addToc($nr + $this->countoffset);
 					
 					$tocenr = $pdf->PageNO();
 					
-					$this->countoffset += ( $tocenr - $tocsnr );
+					$this->countoffset += ($tocenr - $tocsnr);
 				}
 			}
 		}

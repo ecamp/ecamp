@@ -20,7 +20,7 @@
 
 	$event_id = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['event_id']);
 	
-	$_camp->event( $event_id ) || die( "error" );
+	$_camp->event($event_id) || die("error");
 
 	$query = "UPDATE event SET in_edition_by = '', in_edition_time = NULL WHERE id = $event_id";
 	mysqli_query($GLOBALS["___mysqli_ston"], $query);
