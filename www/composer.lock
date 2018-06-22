@@ -1,23 +1,23 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e0847b30911f8833f4c0d3e992231181",
+    "content-hash": "228b1fd17a575ba1a58f52a9eaaa592b",
     "packages": [
         {
             "name": "phelium/recaptcha",
-            "version": "1.0.5",
+            "version": "1.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/shevabam/recaptcha.git",
-                "reference": "22b7d2406f6d5d129df434eaaeb37e717d3c76a2"
+                "reference": "e94090ee7237b5e4ddc34c6f26dad43d27816985"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/shevabam/recaptcha/zipball/22b7d2406f6d5d129df434eaaeb37e717d3c76a2",
-                "reference": "22b7d2406f6d5d129df434eaaeb37e717d3c76a2",
+                "url": "https://api.github.com/repos/shevabam/recaptcha/zipball/e94090ee7237b5e4ddc34c6f26dad43d27816985",
+                "reference": "e94090ee7237b5e4ddc34c6f26dad43d27816985",
                 "shasum": ""
             },
             "require": {
@@ -45,7 +45,7 @@
                 "google",
                 "recaptcha"
             ],
-            "time": "2018-02-05T19:29:27+00:00"
+            "time": "2018-05-13T13:22:28+00:00"
         },
         {
             "name": "phpmailer/phpmailer",
@@ -123,6 +123,54 @@
             ],
             "description": "PHPMailer is a full-featured email creation and transfer class for PHP",
             "time": "2017-11-04T09:26:05+00:00"
+        },
+        {
+            "name": "phptal/phptal",
+            "version": "1.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phptal/PHPTAL.git",
+                "reference": "68d3a01a34f6a439993baea7a7789c176b667e1a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phptal/PHPTAL/zipball/68d3a01a34f6a439993baea7a7789c176b667e1a",
+                "reference": "68d3a01a34f6a439993baea7a7789c176b667e1a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.1.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "PHPTAL": "classes/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-2.1+"
+            ],
+            "authors": [
+                {
+                    "name": "Laurent Bédubourg",
+                    "email": "lbedubourg@motion-twin.com",
+                    "homepage": "http://labe.me"
+                },
+                {
+                    "name": "Kornel Lesiński",
+                    "email": "kornel@geekhood.net",
+                    "homepage": "http://pornel.net/"
+                }
+            ],
+            "description": "PHPTAL is a templating engine for PHP5 that implements Zope Page Templates syntax",
+            "homepage": "http://phptal.org/",
+            "keywords": [
+                "phptal",
+                "template engine",
+                "zope"
+            ],
+            "time": "2017-08-29T10:44:25+00:00"
         }
     ],
     "packages-dev": [],

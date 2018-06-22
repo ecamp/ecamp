@@ -68,10 +68,6 @@
 	include($module_dir . "/auth/check_login.php");
   
     if($debug){echo $_user_camp->auth_level . '<br /><br />';}
-
-    #############################################################################
-    # Template-Engine einbinden
-    require_once("./lib/PHPTAL.php");
   
     if($_SESSION['skin'] == ""){$_SESSION['skin'] = $GLOBALS['skin'];}
   

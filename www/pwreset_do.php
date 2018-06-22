@@ -17,11 +17,12 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
+ 
+	require 'vendor/autoload.php';
 
 	include("./config/config.php");
 	include($lib_dir . "/mysql.php");
 	include($lib_dir . "/functions/error.php");
-	require_once("./lib/PHPTAL.php");
 	db_connect();
 
 	$user_id 	= mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST[ 'user_id' ] );

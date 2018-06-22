@@ -28,10 +28,11 @@
   #        - Überprüfen, wie oft ein Login versucht wurde --> Kennwortrücksetzung anbieten
   #        - Validieren der User-Eingaben
   
+  require 'vendor/autoload.php';
+  
 	include( "./config/config.php" );
 	include( $lib_dir . "/session.php" );
 	include( $lib_dir . "/functions/error.php" );
-	require_once( "./lib/PHPTAL.php" );
 	
 	if( $_SESSION['skin'] == "" ) $_SESSION['skin'] = $GLOBALS['skin'];
 	$html = new PHPTAL("public/skin/".$_SESSION['skin']."/login.tpl");

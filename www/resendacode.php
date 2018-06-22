@@ -18,12 +18,9 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+	require 'vendor/autoload.php';
+	
 	require_once( "./config/config.php" );
-	require_once( "./lib/PHPTAL.php" );
-	
-	
-
-	
 	
 	if( $_SESSION['skin'] == "" ) $_SESSION['skin'] = $GLOBALS['skin'];
 	$html = new PHPTAL("public/skin/".$_SESSION['skin']."/resendacode.tpl");

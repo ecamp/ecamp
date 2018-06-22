@@ -26,7 +26,7 @@
   # ToDo:  - 
   #
   	include("./config/config.php");
-	include("lib/mysql.php");
+	include("./lib/mysql.php");
 	include("./class.php");
 	db_connect();
 	
