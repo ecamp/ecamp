@@ -30,7 +30,7 @@
  */
 class PHPTAL_Php_Attribute_I18N_Data extends PHPTAL_Php_Attribute
 {
-    public function before(PHPTAL_Php_CodeWriter $codewriter){}
-    public function after(PHPTAL_Php_CodeWriter $codewriter){}
+	public function before(PHPTAL_Php_CodeWriter $codewriter){}
+	public function after(PHPTAL_Php_CodeWriter $codewriter){}
 }
 

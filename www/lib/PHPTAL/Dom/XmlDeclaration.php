@@ -21,9 +21,9 @@
  */
 class PHPTAL_Dom_XmlDeclaration extends PHPTAL_Dom_Node
 {
-    public function generateCode(PHPTAL_Php_CodeWriter $codewriter)
-    {
-        $codewriter->setXmlDeclaration($this->getValueEscaped());
-        $codewriter->doXmlDeclaration();
-    }
+	public function generateCode(PHPTAL_Php_CodeWriter $codewriter)
+	{
+		$codewriter->setXmlDeclaration($this->getValueEscaped());
+		$codewriter->doXmlDeclaration();
+	}
 }

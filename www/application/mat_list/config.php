@@ -26,8 +26,8 @@ $security_level = array(
 				'action_add_mat_list' => 50,
 				'action_change_mat_list' => 50,
 				'action_del_mat_list' => 50,
-			    'action_generate_xls' => 20,
-			    'action_change_organized' => 20
+				'action_generate_xls' => 20,
+				'action_change_organized' => 20
 				);
 
 $css = array(
@@ -35,7 +35,7 @@ $css = array(
 				"main.css" 					=> "app",
 			);
 
-$js  = array(
+$js = array(
 				"mootools-core-1.4.js" 		=> "global",
 				"mootools-more-1.4.js" 		=> "global",
 				"popup.js"					=> "global",
@@ -43,7 +43,7 @@ $js  = array(
 			);
 
 # Standardkommando
-if( $_page->cmd == "" ) {	$_page->cmd = "home";	}
+if ($_page->cmd == "") {	$_page->cmd = "home"; }
 
 
 ?>

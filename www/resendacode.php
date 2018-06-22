@@ -18,14 +18,14 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	require_once( "./config/config.php" );
-	require_once( "./lib/PHPTAL.php" );
+	require_once("./config/config.php");
+	require_once("./lib/PHPTAL.php");
 	
 	
 
 	
 	
-	if( $_SESSION['skin'] == "" ) $_SESSION['skin'] = $GLOBALS['skin'];
+	if ($_SESSION['skin'] == "") $_SESSION['skin'] = $GLOBALS['skin'];
 	$html = new PHPTAL("public/skin/".$_SESSION['skin']."/resendacode.tpl");
 	
 	$html->setEncoding('UTF-8');

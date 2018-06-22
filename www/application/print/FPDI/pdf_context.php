@@ -19,12 +19,12 @@
 
 class pdf_context {
 
-    /**
-     * Modi
-     *
-     * @var integer 0 = file | 1 = string
-     */
-    var $_mode = 0;
+	/**
+	 * Modi
+	 *
+	 * @var integer 0 = file | 1 = string
+	 */
+	var $_mode = 0;
     
 	var $file;
 	var $buffer;
@@ -36,9 +36,9 @@ class pdf_context {
 	// Constructor
 
 	function pdf_context(&$f) {
-		$this->file =& $f;
+		$this->file = & $f;
 		if (is_string($this->file))
-		    $this->_mode = 1;
+			$this->_mode = 1;
 		$this->reset();
 	}
 
@@ -47,19 +47,19 @@ class pdf_context {
 	// and reset the buffered data
 
 	function reset($pos = null, $l = 100) {
-	    if ($this->_mode == 0) {
-        	if (!is_null ($pos)) {
-    			fseek ($this->file, $pos);
-    		}
+		if ($this->_mode == 0) {
+			if (!is_null ($pos)) {
+				fseek ($this->file, $pos);
+			}
     
-    		$this->buffer = $l > 0 ? fread($this->file, $l) : '';
-    		$this->length = strlen($this->buffer);
-    		if ($this->length < $l)
-                $this->increase_length($l - $this->length);
-	    } else {
-	        $this->buffer = $this->file;
-	        $this->length = strlen($this->buffer);
-	    }
+			$this->buffer = $l > 0 ? fread($this->file, $l) : '';
+			$this->length = strlen($this->buffer);
+			if ($this->length < $l)
+				$this->increase_length($l - $this->length);
+		} else {
+			$this->buffer = $this->file;
+			$this->length = strlen($this->buffer);
+		}
 		$this->offset = 0;
 		$this->stack = array();
 	}
@@ -84,14 +84,14 @@ class pdf_context {
 		if ($this->_mode == 0 && feof($this->file)) {
 			return false;
 		} else if ($this->_mode == 0) {
-		    $totalLength = $this->length + $l;
-		    do {
-                $this->buffer .= fread($this->file, $totalLength-$this->length);
-            } while ((($this->length = strlen($this->buffer)) != $totalLength) && !feof($this->file));
+			$totalLength = $this->length + $l;
+			do {
+				$this->buffer .= fread($this->file, $totalLength-$this->length);
+			} while ((($this->length = strlen($this->buffer)) != $totalLength) && !feof($this->file));
 			
 			return true;
 		} else {
-	        return false;
+			return false;
 		}
 	}
 }

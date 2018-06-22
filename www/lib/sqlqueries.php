@@ -19,7 +19,7 @@
  */
 
 
-  function getQueryEventNr( $camp_id )
+  function getQueryEventNr($camp_id)
   {
 	$query = "
 

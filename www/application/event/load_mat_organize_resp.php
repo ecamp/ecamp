@@ -46,11 +46,11 @@
 				WHERE
 					user.id = user_camp.user_id AND
 					user_camp.camp_id = $_camp->id";
-	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
-	while( $u = mysqli_fetch_assoc( $result ) )
+	while ($u = mysqli_fetch_assoc($result))
 	{
-		$user = array( "tag" => "option", "value" => "user_" . $u['id'], "html" => htmlentities_utf8($u['scoutname']) );
+		$user = array("tag" => "option", "value" => "user_".$u['id'], "html" => htmlentities_utf8($u['scoutname']));
 		$users[] = $user;
 	}
 
@@ -60,15 +60,15 @@
 					mat_list
 				WHERE
 					mat_list.camp_id = $_camp->id";
-	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
-	while( $m = mysqli_fetch_assoc( $result ) )
+	while ($m = mysqli_fetch_assoc($result))
 	{
-		$mat_list = array( "tag" => "option", "value" => "mat_list_" . $m['id'], "html" => htmlentities_utf8($m['name']) );
+		$mat_list = array("tag" => "option", "value" => "mat_list_".$m['id'], "html" => htmlentities_utf8($m['name']));
 		$mat_lists[] = $mat_list;
 	}
 
-	$options[] = array( "tag" => "optgroup", "label" => "Leiter:", "options" => $users );
-	$options[] = array( "tag" => "optgroup", "label" => "Einkaufslisten:", "options" => $mat_lists );
+	$options[] = array("tag" => "optgroup", "label" => "Leiter:", "options" => $users);
+	$options[] = array("tag" => "optgroup", "label" => "Einkaufslisten:", "options" => $mat_lists);
 
-	$_js_env->add( 'mat_organize_resp', $options );	
+	$_js_env->add('mat_organize_resp', $options);	

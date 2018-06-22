@@ -25,11 +25,11 @@
 	$count = array();
 
 	$query = "	SELECT count(user.id) FROM user";
-	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
-	$count['user'] = mysqli_result( $result,  0 );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+	$count['user'] = mysqli_result($result, 0);
 
 	$query = "	SELECT count(camp.id) FROM camp";
-	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
-	$count['camp'] = mysqli_result( $result,  0 );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+	$count['camp'] = mysqli_result($result, 0);
 
-	$_page->html->set( 'count', $count );
+	$_page->html->set('count', $count);

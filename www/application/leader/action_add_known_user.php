@@ -28,10 +28,10 @@
 	
 	
 	
-	if( mysqli_num_rows($result) > 0)
+	if (mysqli_num_rows($result) > 0)
 	{	
-		$ans = array("error" => true, "msg" => "Diese Person arbeitet beim ausgewählten Lager bereits mit. Solle diese nicht der Fall sein, kontaktiere bitte den Support." );
-		echo json_encode( $ans );
+		$ans = array("error" => true, "msg" => "Diese Person arbeitet beim ausgewählten Lager bereits mit. Solle diese nicht der Fall sein, kontaktiere bitte den Support.");
+		echo json_encode($ans);
 		die();
 	}
 	
@@ -42,7 +42,7 @@
 	
 	
 	
-	$ans = array("error" => false, "msg" => "Die Person wurde dem Lager eingeladen. Sie muss die Einladung erst annehmen, bevor sie mitarbeiten kann." );
-	echo json_encode( $ans );
+	$ans = array("error" => false, "msg" => "Die Person wurde dem Lager eingeladen. Sie muss die Einladung erst annehmen, bevor sie mitarbeiten kann.");
+	echo json_encode($ans);
 	die();
 ?>

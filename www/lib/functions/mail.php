@@ -20,18 +20,18 @@
 
 	require 'vendor/autoload.php';
 
-	function ecamp_send_mail($to, $subject, $body){
+	function ecamp_send_mail($to, $subject, $body) {
 		$mail = new PHPMailer(false);
 		$mail->CharSet = 'UTF-8';
 		try {
 			//Server settings
-			$mail->SMTPDebug = 0;                                 // Enable verbose debug output
-			$mail->isSMTP();                                      // Set mailer to use SMTP
-			$mail->Host = $GLOBALS['smtp-config']['host'];        // Specify main and backup SMTP servers
-			$mail->SMTPAuth = true;                               // Enable SMTP authentication
-			$mail->Username = $GLOBALS['smtp-config']['username'];// SMTP username
-			$mail->Password = $GLOBALS['smtp-config']['password'];// SMTP password
-			$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+			$mail->SMTPDebug = 0; // Enable verbose debug output
+			$mail->isSMTP(); // Set mailer to use SMTP
+			$mail->Host = $GLOBALS['smtp-config']['host']; // Specify main and backup SMTP servers
+			$mail->SMTPAuth = true; // Enable SMTP authentication
+			$mail->Username = $GLOBALS['smtp-config']['username']; // SMTP username
+			$mail->Password = $GLOBALS['smtp-config']['password']; // SMTP password
+			$mail->SMTPSecure = 'tls'; // Enable TLS encryption, `ssl` also accepted
 			//Custom connection options
 			//Note that these settings are INSECURE
 			$mail->SMTPOptions = array(
@@ -42,14 +42,14 @@
 				),
 			);
 
-			$mail->Port = $GLOBALS['smtp-config']['port'];                                    // TCP port to connect to
+			$mail->Port = $GLOBALS['smtp-config']['port']; // TCP port to connect to
 
 			//Recipients
 			$mail->setFrom('ecamp@pfadiluzern.ch', 'eCamp');
-			$mail->addAddress($to);     // Add a recipient
+			$mail->addAddress($to); // Add a recipient
 
 			//Content
-			$mail->isHTML(true);                                  // Set email format to HTML
+			$mail->isHTML(true); // Set email format to HTML
 			$mail->Subject = $subject;
 			$mail->Body    = $body;
 			$mail->AltBody = $body;
@@ -57,6 +57,6 @@
 			$mail->send();
 		} catch (Exception $e) {
 			echo 'Message could not be sent.';
-			echo 'Mailer Error: ' . $mail->ErrorInfo;
+			echo 'Mailer Error: '.$mail->ErrorInfo;
 		}
 	}

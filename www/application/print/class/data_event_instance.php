@@ -37,37 +37,37 @@
 		
 		public $linker;
 		
-		function print_data_event_instance_class( $data, $pid )
+		function print_data_event_instance_class($data, $pid)
 		{
 			$this->pid			= $pid;
 			$this->id 			= $data['id'];
-			$this->event_id 	= $data['event_id'];
+			$this->event_id = $data['event_id'];
 			$this->day_id 		= $data['day_id'];
 			$this->length 		= $data['length'];
 			$this->dleft 		= $data['dleft'];
 			$this->width 		= $data['width'];
 			
-			$this->starttime 	= ( ( $data['starttime'] + 24*60 - $GLOBALS['time_shift'] ) % ( 24*60 ) ) + $GLOBALS['time_shift'];
-			$this->length 		= min( $this->length, 24*60 + $GLOBALS['time_shift'] - $this->starttime );
+			$this->starttime = (($data['starttime'] + 24 * 60 - $GLOBALS['time_shift']) % (24 * 60)) + $GLOBALS['time_shift'];
+			$this->length = min($this->length, 24 * 60 + $GLOBALS['time_shift'] - $this->starttime);
 			
 			
-			$this->event 		= $pid->event[ $this->event_id ];
-			$this->day			= $pid->day[ $this->day_id ];
+			$this->event = $pid->event[$this->event_id];
+			$this->day = $pid->day[$this->day_id];
 			
 			# somewhere we have a bug that allows event_instances that link to events and days of different camps
 			# this next line at least avoids crashing of the print functionality
-			if( !is_null($this->day) && !is_null($this->event) ){
-				$this->event->add_event_instance( $this );
-				$this->day->add_event_instance( $this );
+			if (!is_null($this->day) && !is_null($this->event)) {
+				$this->event->add_event_instance($this);
+				$this->day->add_event_instance($this);
 			}
 			
 			
 		}
 		
-		function get_linker( $pdf )
+		function get_linker($pdf)
 		{
-			if( ! $this->linker )
-			{	$this->linker = $pdf->AddLink();	}
+			if (!$this->linker)
+			{	$this->linker = $pdf->AddLink(); }
 			
 			return $this->linker;
 		}

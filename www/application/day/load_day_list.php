@@ -31,17 +31,17 @@
 					subcamp.camp_id = $_camp->id
 				ORDER BY
 					subcamp.start";
-	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
-	while( $subcamp = mysqli_fetch_assoc( $result ) )
+	while ($subcamp = mysqli_fetch_assoc($result))
 	{
 		$subcamp['end'] = $subcamp['start'] + $subcamp['length'];
 		
-		$subcamp['start_str'] = $date->setDay2000( $subcamp['start'] )->getString( 'd.m.Y' );
-		$subcamp['end_str'] = $date->setDay2000( $subcamp['end'] )->getString( 'd.m.Y' );
+		$subcamp['start_str'] = $date->setDay2000($subcamp['start'])->getString('d.m.Y');
+		$subcamp['end_str'] = $date->setDay2000($subcamp['end'])->getString('d.m.Y');
 		
-		$day_list[ $subcamp['id'] ]['subcamp'] = $subcamp;
-		$day_list[ $subcamp['id'] ]['days'] = array();
+		$day_list[$subcamp['id']]['subcamp'] = $subcamp;
+		$day_list[$subcamp['id']]['days'] = array();
 		
 		$query = "	SELECT
 						day.id,
@@ -50,21 +50,21 @@
 						day
 					WHERE
 						day.subcamp_id = " . $subcamp['id'];
-		$day_result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+		$day_result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 		
-		while( $day = mysqli_fetch_assoc( $day_result ) )
+		while ($day = mysqli_fetch_assoc($day_result))
 		{
-			if( ! is_numeric( $day_id ) )
-			{	$day_id = $day['id'];	}
+			if (!is_numeric($day_id))
+			{	$day_id = $day['id']; }
 			
 			$day['date'] = $subcamp['start'] + $day['day_offset'];
-			$day['date_str'] = $date->setDay2000( $day['date'] )->getString( 'd.m.Y' );
-			$day['day_str'] = strtr( $date->setDay2000( $day['date'] )->getString( 'l' ), $GLOBALS['en_to_de'] );
-			$day['link'] = "index.php?app=day&cmd=home&day_id=" . $day['id'];
+			$day['date_str'] = $date->setDay2000($day['date'])->getString('d.m.Y');
+			$day['day_str'] = strtr($date->setDay2000($day['date'])->getString('l'), $GLOBALS['en_to_de']);
+			$day['link'] = "index.php?app=day&cmd=home&day_id=".$day['id'];
 			
-			$day['bold'] = ( $day_id == $day['id'] ) ? true : false;
+			$day['bold'] = ($day_id == $day['id']) ? true : false;
 			
-			$day_list[ $subcamp['id'] ]['days'][$day['day_offset']] = $day;
+			$day_list[$subcamp['id']]['days'][$day['day_offset']] = $day;
 		}
-		ksort( $day_list[ $subcamp['id'] ]['days'] );
+		ksort($day_list[$subcamp['id']]['days']);
 	}

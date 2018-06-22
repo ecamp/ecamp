@@ -31,20 +31,20 @@
 				WHERE
 					event_comment.user_id = user.id AND
 					event_comment.event_id = $event_id";
-	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
 	$comments = array();
 	
-	while( $comment = mysqli_fetch_assoc( $result ) )
+	while ($comment = mysqli_fetch_assoc($result))
 	{
-		if( $comment['scoutname'] == "" )
-		{	$comment['display_name'] = $comment['firstname'] . " " . $comment['surname'];	}
+		if ($comment['scoutname'] == "")
+		{	$comment['display_name'] = $comment['firstname']." ".$comment['surname']; }
 		else
-		{	$comment['display_name'] = $comment['scoutname'];	}
+		{	$comment['display_name'] = $comment['scoutname']; }
 		
-		$comment['string_created'] = date( 'd.m.Y H:i', $comment['t_created'] );
+		$comment['string_created'] = date('d.m.Y H:i', $comment['t_created']);
 		
 		$comments[] = $comment;
 	}
 
-	$_page->html->set( 'comments', $comments );
+	$_page->html->set('comments', $comments);

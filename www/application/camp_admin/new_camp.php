@@ -25,30 +25,30 @@
 	$query = "	SELECT *
 				FROM dropdown
 				WHERE list = 'function_camp' AND value > 0";
-	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	$functions = array();
 
-	while( $function = mysqli_fetch_assoc( $result ) )
-	{	$functions[] = $function;	}
+	while ($function = mysqli_fetch_assoc($result))
+	{	$functions[] = $function; }
 	
 	$query = "	SELECT *
 				FROM dropdown
 				WHERE list = 'camptype'";
-	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	$camptypes = array();
 	
-	while( $camptype = mysqli_fetch_assoc( $result ) )
-	{	$camptypes[] = $camptype;	}
+	while ($camptype = mysqli_fetch_assoc($result))
+	{	$camptypes[] = $camptype; }
 
 	$query = "	SELECT *
 				FROM dropdown
 				WHERE list = 'jstype'";
-	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	$jstypes = array();
 	
-	while( $jstype = mysqli_fetch_assoc( $result ) )
-	{	$jstypes[] = $jstype;	}
+	while ($jstype = mysqli_fetch_assoc($result))
+	{	$jstypes[] = $jstype; }
 
-	$_page->html->set( 'functions', $functions );
-	$_page->html->set( 'camptypes', $camptypes );
-	$_page->html->set( 'jstypes', $jstypes );
+	$_page->html->set('functions', $functions);
+	$_page->html->set('camptypes', $camptypes);
+	$_page->html->set('jstypes', $jstypes);

@@ -21,12 +21,12 @@
 
 	class print_build_notes
 	{
-		function build( $pdf )
+		function build($pdf)
 		{
 			$pdf->AddPage('P', 'A4');
-			$pdf->SetXY( 20, 12 );
-			$pdf->SetFont('','B',20);
-			$pdf->Cell( 170, 20, 'Notizen', 0, 1, 'C' );
+			$pdf->SetXY(20, 12);
+			$pdf->SetFont('', 'B', 20);
+			$pdf->Cell(170, 20, 'Notizen', 0, 1, 'C');
 
 			$pdf->SetLineWidth(0.75);
 			$pdf->SetLineStyle(array('width' => 0.5, 'cap' => 'butt', 'dash' => 3));
@@ -48,7 +48,7 @@
 			$pdf->Line(15, 245, 195, 245);
 			$pdf->Line(15, 260, 195, 260);
 
-			$pdf->Bookmark( 'Notizen', 0, 0 );
+			$pdf->Bookmark('Notizen', 0, 0);
 		}
 	}
 

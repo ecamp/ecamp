@@ -68,32 +68,32 @@
  */
 class PHPTAL_Php_Attribute_TAL_Repeat extends PHPTAL_Php_Attribute
 {
-    private $var;
-    public function before(PHPTAL_Php_CodeWriter $codewriter)
-    {
-        $this->var = $codewriter->createTempVariable();
+	private $var;
+	public function before(PHPTAL_Php_CodeWriter $codewriter)
+	{
+		$this->var = $codewriter->createTempVariable();
 
-        // alias to repeats handler to avoid calling extra getters on each variable access
-        $codewriter->doSetVar($this->var, '$ctx->repeat');
+		// alias to repeats handler to avoid calling extra getters on each variable access
+		$codewriter->doSetVar($this->var, '$ctx->repeat');
 
-        list($varName, $expression) = $this->parseSetExpression($this->expression);
-        $code = $codewriter->evaluateExpression($expression);
+		list($varName, $expression) = $this->parseSetExpression($this->expression);
+		$code = $codewriter->evaluateExpression($expression);
 
-        // instantiate controller using expression
-        $codewriter->doSetVar( $this->var.'->'.$varName, 'new PHPTAL_RepeatController('.$code.')'."\n" );
+		// instantiate controller using expression
+		$codewriter->doSetVar( $this->var.'->'.$varName, 'new PHPTAL_RepeatController('.$code.')'."\n" );
 
-        $codewriter->pushContext();
+		$codewriter->pushContext();
 
-        // Lets loop the iterator with a foreach construct
-        $codewriter->doForeach('$ctx->'.$varName, $this->var.'->'.$varName);
-    }
+		// Lets loop the iterator with a foreach construct
+		$codewriter->doForeach('$ctx->'.$varName, $this->var.'->'.$varName);
+	}
 
-    public function after(PHPTAL_Php_CodeWriter $codewriter)
-    {
-        $codewriter->doEnd('foreach');
-        $codewriter->popContext();
+	public function after(PHPTAL_Php_CodeWriter $codewriter)
+	{
+		$codewriter->doEnd('foreach');
+		$codewriter->popContext();
 
-        $codewriter->recycleTempVariable($this->var);
-    }
+		$codewriter->recycleTempVariable($this->var);
+	}
 }
 

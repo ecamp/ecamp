@@ -23,13 +23,13 @@
 	$query = "	SELECT *
 				FROM event_document
 				WHERE id = " . $file_id;
-	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
-	$document = mysqli_fetch_assoc( $result );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+	$document = mysqli_fetch_assoc($result);
 
-	header( 'Content-Type: application/force-download' );
-	header( 'Content-Type: ' . $document['type'] );
-	header('Content-Length: ' . $document['size'] );
+	header('Content-Type: application/force-download');
+	header('Content-Type: '.$document['type']);
+	header('Content-Length: '.$document['size']);
 	header('Content-disposition: attachment; filename="'.$document['filename'].'"');
 	
-	echo implode( "", readfile( $document['name'] ) );
+	echo implode("", readfile($document['name']));
 	die();

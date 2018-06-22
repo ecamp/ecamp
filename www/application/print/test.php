@@ -34,7 +34,7 @@
 	$pdf->AddPage(); 
 	
 	// Bild einfügen (Position x = 0 / y = 0) 
-	$pdf->Image('http://map.search.ch/chmap.jpg?layer=sym,fg,copy&zd=2&w=1000&h=700&poi=verkehr,polizei,spital,apotheke,post,shop&base=Udligenswil', 30, 25, 150, 0, 'jpeg' ); 
+	$pdf->Image('http://map.search.ch/chmap.jpg?layer=sym,fg,copy&zd=2&w=1000&h=700&poi=verkehr,polizei,spital,apotheke,post,shop&base=Udligenswil', 30, 25, 150, 0, 'jpeg'); 
 	
 	$pdf->Output();
 	

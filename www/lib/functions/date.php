@@ -32,7 +32,7 @@
 
 class c_date
 {
-  var $m_days = 0;	// Anzahl vergangene Tage seit dem 1.1.2000  (1.1.2000 => 0)
+  var $m_days = 0; // Anzahl vergangene Tage seit dem 1.1.2000  (1.1.2000 => 0)
   
   # function setManual( $day, $month, $year ) 
   # function setUnix( $timestamp )  
@@ -61,7 +61,7 @@ class c_date
   // Datum mittels eines Unix-Timestamp setzen
   function setUnix( $timestamp )  
   {
-    $tmp = $timestamp -  gmmktime( 0,0,0,1,1,2000);
+	$tmp = $timestamp -  gmmktime( 0,0,0,1,1,2000);
 	$this->m_days = floor($tmp/60/60/24);
   	return $this;
   }             
@@ -92,7 +92,7 @@ class c_date
   // Montatstag zurückgeben
   function getDay()
   {
-     return gmdate( "j", $this->getUnix() );
+	 return gmdate( "j", $this->getUnix() );
   }	
   
   function getDayName()
@@ -135,7 +135,7 @@ class c_date
   // Monat zurückgeben
   function getMonth()
   {
-     return gmdate( "n", $this->getUnix() );
+	 return gmdate( "n", $this->getUnix() );
   }						  
   
   // Jahr zurückgeben 
@@ -162,15 +162,15 @@ class c_time
   // Uhrzeit manuell setzen
   function setManual( $hour, $min )
   {
-    $this->m_min = $hour*60 + $min;
-    return $this;
+	$this->m_min = $hour*60 + $min;
+	return $this;
   }
   
   // Uhrzeit mittels eines Unix-TImestamps setzen
   function setUnix( $timestamp )     
   {
   	$this->m_min = floor( $timestamp / 60) % 1440;
-    return $this;
+	return $this;
   }
   
   // Uhrzeit mittels eines Strings im Format 12:54/12.54/12 54/1254 setzen
@@ -180,28 +180,28 @@ class c_time
 	{	preg_match("/([0-9]{1,2})([0-9]{1,2})/", $string, $regs);	}
 	
 	$this->setManual( $regs[1], $regs[2] );
-    return $this;
+	return $this;
   }      
   
   function setValue($min)
   {
   	$this->m_min = $min;
-    return $this;
+	return $this;
   }
   
   
   // Unix-Offset für Zeit zurückgeben
   function getUnix()                 
   {
-  	return $this->m_min*60;
+  	return $this->m_min * 60;
   }
   
-  function getString( $format )
+  function getString($format)
   {
-  	return gmdate( $format, $this->getUnix() );
+  	return gmdate($format, $this->getUnix());
   }
   
-  function getValue(){ return $this->m_min; }
+  function getValue() { return $this->m_min; }
   
   function getMin()
   {
@@ -210,7 +210,7 @@ class c_time
   
   function getHour()
   {
-  	return floor( $this->m_min/60 );
+  	return floor($this->m_min / 60);
   }
 }
 
@@ -238,23 +238,23 @@ class c_datetime
   	$this->m_date = new c_date;
   }
   
-  function setManual( $day, $month, $year, $hour, $min )
+  function setManual($day, $month, $year, $hour, $min)
   {
-  	$this->m_date->setManual( $day, $month, $year );
-	$this->m_time->setManual( $hour, $min );
+  	$this->m_date->setManual($day, $month, $year);
+	$this->m_time->setManual($hour, $min);
   }
   
-  function setUnix( $timestamp )
+  function setUnix($timestamp)
   {
-  	$this->m_date->setUnix( $timestamp );
-	$this->m_time->setUnix( $timestamp );
+  	$this->m_date->setUnix($timestamp);
+	$this->m_time->setUnix($timestamp);
   }
   
-  function setString( $string ) // Interpretiert einen String im Format "1.11.2007 12:54"
+  function setString($string) // Interpretiert einen String im Format "1.11.2007 12:54"
   {
   	# Todo: String aufbrechen
-	$this->m_date->setString( $str1 );
-	$this->m_time->setString( $str2 );
+	$this->m_date->setString($str1);
+	$this->m_time->setString($str2);
   }
   
   function getUnix()
@@ -262,16 +262,16 @@ class c_datetime
   	return $this->m_date->getUnix() + $this->m_time->getUnix();
   }
   
-  function getString( $format )  // String im Format $format zurückgeben
+  function getString($format)  // String im Format $format zurückgeben
   {
-  	return gmdate( $format, $this->getUnix() );
+  	return gmdate($format, $this->getUnix());
   }
 
-  function getDay(){ $this->m_date->getDay(); }
-  function getMonth(){ $this->m_date->getMonth(); }
-  function getYear(){ $this->m_date->getYear(); }
-  function getHour(){ $this->m_time->getHour(); }
-  function getMin(){ $this->m_time->getMin(); }
+  function getDay() { $this->m_date->getDay(); }
+  function getMonth() { $this->m_date->getMonth(); }
+  function getYear() { $this->m_date->getYear(); }
+  function getHour() { $this->m_time->getHour(); }
+  function getMin() { $this->m_time->getMin(); }
   
   function getDayName()
   {

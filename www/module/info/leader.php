@@ -22,7 +22,7 @@
 <tr><td><img src='public/application/leader/img/yellow.png' /> Anfrage offen </td></tr>
 <tr><td><img src='public/application/leader/img/green.png' /> aktive Mitarbeit </td></tr>";
 	
-	$_page->html->set( 'info_box_content', $leader );
-	$_page->html->set( 'info_box_title', "Legende:" );
+	$_page->html->set('info_box_content', $leader);
+	$_page->html->set('info_box_title', "Legende:");
 
 ?>

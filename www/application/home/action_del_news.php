@@ -18,9 +18,9 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	$date = mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['date'] );
+	$date = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['date']);
 	
-	$_news->remove( $date );
+	$_news->remove($date);
 	
-	header( 'location: index.php?app=home' );
+	header('location: index.php?app=home');
 	die();

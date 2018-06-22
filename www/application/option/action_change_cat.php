@@ -18,35 +18,35 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	$cat_id     = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['cat_id']);
+	$cat_id = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['cat_id']);
 	
-	$color		= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['color']);
-	$form_type	= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['type']);
+	$color = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['color']);
+	$form_type = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['type']);
 	
-	$name		= trim($_REQUEST['name']);
+	$name = trim($_REQUEST['name']);
 	$short_name	= trim($_REQUEST['short']);
 	
 	$name_save  = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $name);
-	$short_name_save  = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $short_name);
+	$short_name_save = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $short_name);
 
-	$_camp->category( $cat_id ) || die( "error" );
+	$_camp->category($cat_id) || die("error");
 
-	if( $name=="" )
+	if ($name == "")
 	{
 		//$uri = "&msg_title=".urlencode("Kategorie ändern: Fehler")."&msg_text=".urlencode("Bitte gib einen Kategorie-Namen ein!");
 		//header( "Location: index.php?app=option".$uri );
 		
-		$ans = array( "error" => true, "msg" => "Bitte gib einen Kategorie-Namen ein!" );
-		echo json_encode( $ans );
+		$ans = array("error" => true, "msg" => "Bitte gib einen Kategorie-Namen ein!");
+		echo json_encode($ans);
 		die();
 	}
 	
-	if( $color == "" )
+	if ($color == "")
 		$color = "FFFFFF";
-	elseif( substr($color, 0, 1) == "#" )
-		$color = substr($color,1,strlen($color)-1);
+	elseif (substr($color, 0, 1) == "#")
+		$color = substr($color, 1, strlen($color) - 1);
 		
-	if( ! ctype_xdigit($color) )
+	if (!ctype_xdigit($color))
 			$color = "ffffff";
 		
 	$form_type = intval($form_type);
@@ -54,26 +54,26 @@
 	// Überprüfen, ob Kategorie gefunden
 	$query = "SELECT * FROM category WHERE camp_id='$_camp->id' AND id='$cat_id'";
 	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
-	if( mysqli_num_rows($result) == 0 )
+	if (mysqli_num_rows($result) == 0)
 	{
 		//$uri = "&msg_title=".urlencode("Kategorie ändern: Fehler")."&msg_text=".urlencode("Kategorie nicht gefunden!");
 		//header( "Location: index.php?app=option".$uri );
 		
-		$ans = array( "error" => true, "msg" => "Kategorie nicht gefunden" );
-		echo json_encode( $ans );
+		$ans = array("error" => true, "msg" => "Kategorie nicht gefunden");
+		echo json_encode($ans);
 		die();
 	}
 	
 	// Überprüfen, ob selbe Kategorie nicht schon vorhanden
 	$query = "SELECT * FROM category WHERE camp_id='$_camp->id' AND name='$name_save' AND NOT id='$cat_id'";
 	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
-	if( mysqli_num_rows($result) > 0 )
+	if (mysqli_num_rows($result) > 0)
 	{
 		//$uri = "&msg_title=".urlencode("Kategorie ändern: Fehler")."&msg_text=".urlencode("Eine Kategorie mit einem solchen Namen existiert bereits!");
 		//header( "Location: index.php?app=option".$uri );
 		
-		$ans = array( "error" => true, "msg" => "Eine Kategorie mit einem solchen Namen existiert bereits!" );
-		echo json_encode( $ans );
+		$ans = array("error" => true, "msg" => "Eine Kategorie mit einem solchen Namen existiert bereits!");
+		echo json_encode($ans);
 		die();
 	}
 	
@@ -82,8 +82,8 @@
 	mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	$last_camp_id = ((is_null($___mysqli_res = mysqli_insert_id($GLOBALS["___mysqli_ston"]))) ? false : $___mysqli_res);
 	
-    //header("Location: index.php?app=option");
+	//header("Location: index.php?app=option");
 	
-	$ans = array( "error" => false );
-	echo json_encode( $ans );
+	$ans = array("error" => false);
+	echo json_encode($ans);
 	die();

@@ -18,29 +18,29 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	include( 'inc/get_program_update.php');
+	include('inc/get_program_update.php');
 	
-	$event_instance_id	= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['event_instance_id']);
-	$time				= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['time']);
+	$event_instance_id = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['event_instance_id']);
+	$time = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['time']);
 	
-	$_camp->event_instance( $event_instance_id ) || die( "error" );
+	$_camp->event_instance($event_instance_id) || die("error");
 	
 	//***********************************************************************
 	$query = "	SELECT event_instance.event_id
 				FROM event_instance
 				WHERE event_instance.id = $event_instance_id";
-	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
-	$event_id = mysqli_result( $result,  0,  'event_id' );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+	$event_id = mysqli_result($result, 0, 'event_id');
 	
-	$_camp->event( $event_id ) || die( "error" );
+	$_camp->event($event_id) || die("error");
 	
-	$copy = array( "type" => "event_copy", "event" => $event_id, "event_instance" => $event_instance_id );
-	$copy = json_encode( $copy );
+	$copy = array("type" => "event_copy", "event" => $event_id, "event_instance" => $event_instance_id);
+	$copy = json_encode($copy);
 	
 	$query = "	UPDATE user
 				SET copyspace = '$copy'
 				WHERE user.id = $_user->id";
-	mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+	mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
 	//***********************************************************************
 	//***********************************************************************
@@ -125,7 +125,7 @@
 	
 	header("Content-type: application/json");
 	
-	$ans = get_program_update( $time );
-	echo json_encode( $ans );
+	$ans = get_program_update($time);
+	echo json_encode($ans);
 		
 	die();

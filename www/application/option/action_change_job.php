@@ -22,8 +22,8 @@
 	// write --> Ab Lagerleiter (level: 50)
 	if( $_user_camp->auth_level < 50 )
 	{
-	    // Keine Berechtigung
-    	$ans = array( "error" => true, "msg" => "Keine Berechtigung!" );
+		// Keine Berechtigung
+		$ans = array( "error" => true, "msg" => "Keine Berechtigung!" );
 		echo json_encode( $ans );
 		die();
 	}
@@ -47,7 +47,7 @@
 		// Job und Camp passen nicht zusammen
 		if( mysqli_num_rows( $result ) == 0)
 		{
-    		//$xml_replace[error] = 1;
+			//$xml_replace[error] = 1;
 			//$xml_replace['error-msg'] = "Lager-ID und Job-ID passen nicht zusammen!";
 			
 			$ans = array( "error" => true, "msg" => "Lager-ID und Job-ID passen nicht zusammen!" );
@@ -60,8 +60,8 @@
 			//$xml_replace[error] = 2;
 			//$xml_replace['error-msg'] = "Ein Job mit einem solchen Namen besteht bereits!";
 			
-			$ans = array( "error" => true, "msg" => "Ein Job mit einem solchen Namen besteht bereits!" );
-			echo json_decode( $ans );
+			$ans = array("error" => true, "msg" => "Ein Job mit einem solchen Namen besteht bereits!");
+			echo json_decode($ans);
 			die();
 		}
 	}
@@ -69,6 +69,6 @@
 	$query = "UPDATE job SET job_name = '$change_job_save' WHERE camp_id='$_camp->id' AND id='$job_change_id'";
 	mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
-	$ans = array( "error" => false, "job_id" => $job_change_id, "job_name" => htmlentities_utf8($change_job) );
-	echo json_encode( $ans );
+	$ans = array("error" => false, "job_id" => $job_change_id, "job_name" => htmlentities_utf8($change_job));
+	echo json_encode($ans);
 	die();

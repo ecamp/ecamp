@@ -38,30 +38,30 @@
  */
 class PHPTAL_Php_Attribute_METAL_DefineMacro extends PHPTAL_Php_Attribute
 {
-    public function before(PHPTAL_Php_CodeWriter $codewriter)
-    {
-        $macroname = strtr(trim($this->expression), '-', '_');
-        if (!preg_match('/^[a-z0-9_]+$/i', $macroname)) {
-            throw new PHPTAL_ParserException('Bad macro name "'.$macroname.'"',
-                $this->phpelement->getSourceFile(), $this->phpelement->getSourceLine());
-        }
+	public function before(PHPTAL_Php_CodeWriter $codewriter)
+	{
+		$macroname = strtr(trim($this->expression), '-', '_');
+		if (!preg_match('/^[a-z0-9_]+$/i', $macroname)) {
+			throw new PHPTAL_ParserException('Bad macro name "'.$macroname.'"',
+				$this->phpelement->getSourceFile(), $this->phpelement->getSourceLine());
+		}
 
-        if ($codewriter->functionExists($macroname)) {
-            throw new PHPTAL_TemplateException("Macro $macroname is defined twice",
-                $this->phpelement->getSourceFile(), $this->phpelement->getSourceLine());
-        }
+		if ($codewriter->functionExists($macroname)) {
+			throw new PHPTAL_TemplateException("Macro $macroname is defined twice",
+				$this->phpelement->getSourceFile(), $this->phpelement->getSourceLine());
+		}
 
-        $codewriter->doFunction($macroname, 'PHPTAL $_thistpl, PHPTAL $tpl');
-        $codewriter->doSetVar('$tpl', 'clone $tpl');
-        $codewriter->doSetVar('$ctx', '$tpl->getContext()');
-        $codewriter->doInitTranslator();
-        $codewriter->doXmlDeclaration(true);
-        $codewriter->doDoctype(true);
-    }
+		$codewriter->doFunction($macroname, 'PHPTAL $_thistpl, PHPTAL $tpl');
+		$codewriter->doSetVar('$tpl', 'clone $tpl');
+		$codewriter->doSetVar('$ctx', '$tpl->getContext()');
+		$codewriter->doInitTranslator();
+		$codewriter->doXmlDeclaration(true);
+		$codewriter->doDoctype(true);
+	}
 
-    public function after(PHPTAL_Php_CodeWriter $codewriter)
-    {
-        $codewriter->doEnd('function');
-    }
+	public function after(PHPTAL_Php_CodeWriter $codewriter)
+	{
+		$codewriter->doEnd('function');
+	}
 }
 

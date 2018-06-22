@@ -19,7 +19,7 @@
  */
 
 
-  function error_message( $msg )
+  function error_message($msg)
   {
   		echo $msg;
   		

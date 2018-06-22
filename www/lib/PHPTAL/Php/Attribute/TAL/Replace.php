@@ -34,84 +34,84 @@ class PHPTAL_Php_Attribute_TAL_Replace
 extends PHPTAL_Php_Attribute
 implements PHPTAL_Php_TalesChainReader
 {
-    public function before(PHPTAL_Php_CodeWriter $codewriter)
-    {
-        // tal:replace="" => do nothing and ignore node
-        if (trim($this->expression) == "") {
-            return;
-        }
+	public function before(PHPTAL_Php_CodeWriter $codewriter)
+	{
+		// tal:replace="" => do nothing and ignore node
+		if (trim($this->expression) == "") {
+			return;
+		}
 
-        $expression = $this->extractEchoType($this->expression);
-        $code = $codewriter->evaluateExpression($expression);
+		$expression = $this->extractEchoType($this->expression);
+		$code = $codewriter->evaluateExpression($expression);
 
-        // chained expression
-        if (is_array($code)) {
-            return $this->replaceByChainedExpression($codewriter, $code);
-        }
+		// chained expression
+		if (is_array($code)) {
+			return $this->replaceByChainedExpression($codewriter, $code);
+		}
 
-        // nothing do nothing
-        if ($code == PHPTAL_Php_TalesInternal::NOTHING_KEYWORD) {
-            return;
-        }
+		// nothing do nothing
+		if ($code == PHPTAL_Php_TalesInternal::NOTHING_KEYWORD) {
+			return;
+		}
 
-        // default generate default tag content
-        if ($code == PHPTAL_Php_TalesInternal::DEFAULT_KEYWORD) {
-            return $this->generateDefault($codewriter);
-        }
+		// default generate default tag content
+		if ($code == PHPTAL_Php_TalesInternal::DEFAULT_KEYWORD) {
+			return $this->generateDefault($codewriter);
+		}
 
-        // replace tag with result of expression
-        $this->doEchoAttribute($codewriter, $code);
-    }
+		// replace tag with result of expression
+		$this->doEchoAttribute($codewriter, $code);
+	}
 
-    public function after(PHPTAL_Php_CodeWriter $codewriter)
-    {
-    }
+	public function after(PHPTAL_Php_CodeWriter $codewriter)
+	{
+	}
 
-    /**
-     * support expressions like "foo | bar"
-     */
-    private function replaceByChainedExpression(PHPTAL_Php_CodeWriter $codewriter, $expArray)
-    {
-        $executor = new PHPTAL_Php_TalesChainExecutor(
-            $codewriter, $expArray, $this
-        );
-    }
+	/**
+	 * support expressions like "foo | bar"
+	 */
+	private function replaceByChainedExpression(PHPTAL_Php_CodeWriter $codewriter, $expArray)
+	{
+		$executor = new PHPTAL_Php_TalesChainExecutor(
+			$codewriter, $expArray, $this
+		);
+	}
 
-    public function talesChainNothingKeyword(PHPTAL_Php_TalesChainExecutor $executor)
-    {
-        $executor->continueChain();
-    }
+	public function talesChainNothingKeyword(PHPTAL_Php_TalesChainExecutor $executor)
+	{
+		$executor->continueChain();
+	}
 
-    public function talesChainDefaultKeyword(PHPTAL_Php_TalesChainExecutor $executor)
-    {
-        $executor->doElse();
-        $this->generateDefault($executor->getCodeWriter());
-        $executor->breakChain();
-    }
+	public function talesChainDefaultKeyword(PHPTAL_Php_TalesChainExecutor $executor)
+	{
+		$executor->doElse();
+		$this->generateDefault($executor->getCodeWriter());
+		$executor->breakChain();
+	}
 
-    public function talesChainPart(PHPTAL_Php_TalesChainExecutor $executor, $exp, $islast)
-    {
-        if (!$islast) {
-            $var = $executor->getCodeWriter()->createTempVariable();
-            $executor->doIf('!phptal_isempty('.$var.' = '.$exp.')');
-            $this->doEchoAttribute($executor->getCodeWriter(), $var);
-            $executor->getCodeWriter()->recycleTempVariable($var);
-        } else {
-            $executor->doElse();
-            $this->doEchoAttribute($executor->getCodeWriter(), $exp);
-        }
-    }
+	public function talesChainPart(PHPTAL_Php_TalesChainExecutor $executor, $exp, $islast)
+	{
+		if (!$islast) {
+			$var = $executor->getCodeWriter()->createTempVariable();
+			$executor->doIf('!phptal_isempty('.$var.' = '.$exp.')');
+			$this->doEchoAttribute($executor->getCodeWriter(), $var);
+			$executor->getCodeWriter()->recycleTempVariable($var);
+		} else {
+			$executor->doElse();
+			$this->doEchoAttribute($executor->getCodeWriter(), $exp);
+		}
+	}
 
-    /**
-     * don't replace - re-generate default content
-     */
-    private function generateDefault(PHPTAL_Php_CodeWriter $codewriter)
-    {
-        $this->phpelement->generateSurroundHead($codewriter);
-        $this->phpelement->generateHead($codewriter);
-        $this->phpelement->generateContent($codewriter);
-        $this->phpelement->generateFoot($codewriter);
-        $this->phpelement->generateSurroundFoot($codewriter);
-    }
+	/**
+	 * don't replace - re-generate default content
+	 */
+	private function generateDefault(PHPTAL_Php_CodeWriter $codewriter)
+	{
+		$this->phpelement->generateSurroundHead($codewriter);
+		$this->phpelement->generateHead($codewriter);
+		$this->phpelement->generateContent($codewriter);
+		$this->phpelement->generateFoot($codewriter);
+		$this->phpelement->generateSurroundFoot($codewriter);
+	}
 }
 

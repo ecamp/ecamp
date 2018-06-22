@@ -21,19 +21,19 @@
  */
 class PHPTAL_NothingKeyword implements PHPTAL_Keywords
 {
-    public function __toString()
-    {
-        return 'null';
-    }
+	public function __toString()
+	{
+		return 'null';
+	}
 
-    public function count()
-    {
-        return 0;
-    }
+	public function count()
+	{
+		return 0;
+	}
 
-    public function jsonSerialize()
-    {
-        return null;
-    }
+	public function jsonSerialize()
+	{
+		return null;
+	}
 }
 ?>

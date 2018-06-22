@@ -18,11 +18,11 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-		$article = mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['article'] );
-		$quantity = mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['quantity'] );
-		$event_id = mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['event_id'] );
+		$article = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['article']);
+		$quantity = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['quantity']);
+		$event_id = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['event_id']);
 		
-		$_camp->event( $event_id ) || die( "error" );
+		$_camp->event($event_id) || die("error");
 		
 		$query = "	SELECT
 						id
@@ -49,12 +49,12 @@
 					) as mat
 					WHERE
 						mat.name = '$article'";
-		$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+		$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 		
-		if( mysqli_num_rows( $result ) )
-		{	$id = mysqli_result( $result,  0,  'id' );	}
+		if (mysqli_num_rows($result))
+		{	$id = mysqli_result($result, 0, 'id'); }
 		else
-		{	$id = "NULL";	}
+		{	$id = "NULL"; }
 		
 		$query = "	SELECT
 						*
@@ -64,19 +64,19 @@
 						event_id = $event_id AND
 						mat_article_id = $id AND
 						article_name = '$article'";
-		$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+		$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 		
-		if( mysqli_num_rows($result) )
+		if (mysqli_num_rows($result))
 		{
-			$mode = mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['mode'] );
-			if( $mode == "concat" )
+			$mode = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['mode']);
+			if ($mode == "concat")
 			{}
-			elseif( $mode == "seperate" )
+			elseif ($mode == "seperate")
 			{}
-			elseif( !isset( $mode ) || $mode == "" )
+			elseif (!isset($mode) || $mode == "")
 			{
-				$ans = array( "ans" => "aks_concat_seperate" );
-				echo json_encode( $ans );
+				$ans = array("ans" => "aks_concat_seperate");
+				echo json_encode($ans);
 			}
 		}
 		else
@@ -96,11 +96,11 @@
 							'$article', 
 							$quantity
 						)";
-			mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+			mysqli_query($GLOBALS["___mysqli_ston"], $query);
 			
 			
-			$ans = array( "ans" => "saved" );
-			echo json_encode( $ans );
+			$ans = array("ans" => "saved");
+			echo json_encode($ans);
 		}
 
 	die();

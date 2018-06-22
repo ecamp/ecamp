@@ -32,11 +32,11 @@
 		'course_conclusion' => [
 			'title' => 'Kursabschluss',
 			'short' => 'TN-Liste, Kursbericht',
-			'date' => ( $ende + 3 * 7 ),
+			'date' => ($ende + 3 * 7),
 		],
 		'course_material' => [
 			'title' => 'J+S-Material/Landeskarten',
 			'short' => 'J+S-Material und Landeskarten bestellen.',
-			'date' => ( $start - 6 * 7 ),
+			'date' => ($start - 6 * 7),
 		],
 	];

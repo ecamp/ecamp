@@ -25,33 +25,33 @@
 	$query = "	SELECT *
 				FROM dropdown
 				WHERE list = 'function_course' AND value > 0";
-	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	$functions = array();
 
-	while( $function = mysqli_fetch_assoc( $result ) )
-	{	$functions[] = $function;	}
+	while ($function = mysqli_fetch_assoc($result))
+	{	$functions[] = $function; }
 
 	$query = "	SELECT *
 				FROM dropdown
 				WHERE list = 'coursetype' AND item_nr>=20 ORDER BY item_nr";
-	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	$coursetypes = array();
 	
-	while( $coursetype = mysqli_fetch_assoc( $result ) )
-	{	$coursetypes[] = $coursetype;	}
+	while ($coursetype = mysqli_fetch_assoc($result))
+	{	$coursetypes[] = $coursetype; }
 	
 	$query = "	SELECT *
 				FROM dropdown
 				WHERE list = 'jstype'";
-	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	$jstypes = array();
 	
-	while( $jstype = mysqli_fetch_assoc( $result ) )
-	{	$jstypes[] = $jstype;	}
+	while ($jstype = mysqli_fetch_assoc($result))
+	{	$jstypes[] = $jstype; }
 
 	//$_page->html->set('box_content', $GLOBALS[tpl_dir].'/application/camp_admin/new_camp.tpl/new_course');
 	//$_page->html->set('box_title', 'Neuen Kurs erstellen');
 	
-	$_page->html->set( 'functions', $functions );
-	$_page->html->set( 'coursetypes', $coursetypes );
-	$_page->html->set( 'jstypes', $jstypes );
+	$_page->html->set('functions', $functions);
+	$_page->html->set('coursetypes', $coursetypes);
+	$_page->html->set('jstypes', $jstypes);

@@ -46,25 +46,25 @@
  */
 class PHPTAL_Php_Attribute_TAL_OmitTag extends PHPTAL_Php_Attribute
 {
-    private $varname;
-    public function before(PHPTAL_Php_CodeWriter $codewriter)
-    {
-        if (trim($this->expression) == '') {
-            $this->phpelement->headFootDisabled = true;
-        } else {
+	private $varname;
+	public function before(PHPTAL_Php_CodeWriter $codewriter)
+	{
+		if (trim($this->expression) == '') {
+			$this->phpelement->headFootDisabled = true;
+		} else {
 
-            $this->varname = $codewriter->createTempVariable();
+			$this->varname = $codewriter->createTempVariable();
 
-            // print tag header/foot only if condition is false
-            $cond = $codewriter->evaluateExpression($this->expression);
-            $this->phpelement->headPrintCondition = '('.$this->varname.' = !phptal_unravel_closure('.$cond.'))';
-            $this->phpelement->footPrintCondition = $this->varname;
-        }
-    }
+			// print tag header/foot only if condition is false
+			$cond = $codewriter->evaluateExpression($this->expression);
+			$this->phpelement->headPrintCondition = '('.$this->varname.' = !phptal_unravel_closure('.$cond.'))';
+			$this->phpelement->footPrintCondition = $this->varname;
+		}
+	}
 
-    public function after(PHPTAL_Php_CodeWriter $codewriter)
-    {
-        if ($this->varname) $codewriter->recycleTempVariable($this->varname);
-    }
+	public function after(PHPTAL_Php_CodeWriter $codewriter)
+	{
+		if ($this->varname) $codewriter->recycleTempVariable($this->varname);
+	}
 }
 

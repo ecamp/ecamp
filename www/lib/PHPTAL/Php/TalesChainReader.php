@@ -19,7 +19,7 @@
  */
 interface PHPTAL_Php_TalesChainReader
 {
-    public function talesChainNothingKeyword(PHPTAL_Php_TalesChainExecutor $executor);
-    public function talesChainDefaultKeyword(PHPTAL_Php_TalesChainExecutor $executor);
-    public function talesChainPart(PHPTAL_Php_TalesChainExecutor $executor, $expression, $islast);
+	public function talesChainNothingKeyword(PHPTAL_Php_TalesChainExecutor $executor);
+	public function talesChainDefaultKeyword(PHPTAL_Php_TalesChainExecutor $executor);
+	public function talesChainPart(PHPTAL_Php_TalesChainExecutor $executor, $expression, $islast);
 }

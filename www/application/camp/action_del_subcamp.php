@@ -20,12 +20,12 @@
 
 	$subcamp_id = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['subcamp_id']);
 
-	$_camp->subcamp( $subcamp_id ) || die( "error" );
+	$_camp->subcamp($subcamp_id) || die("error");
 
 	// Überprüfen, ob noch eines vorhanden ist
 	$query = "SELECT * FROM subcamp WHERE camp_id = $_camp->id";
 	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
-	if( mysqli_num_rows($result) >= 2 )
+	if (mysqli_num_rows($result) >= 2)
 	{
 		$query = "	DELETE FROM 
 						subcamp 
@@ -43,13 +43,13 @@
 					LEFT JOIN event_instance 
 					ON event.id = event_instance.event_id
 					WHERE ISNULL( event_instance.id )";
-		$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+		$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 		
-		while( $row = mysqli_fetch_assoc( $result ) )
-		{	mysqli_query($GLOBALS["___mysqli_ston"],  "DELETE FROM event WHERE id = " . $row['id']	);	}
+		while ($row = mysqli_fetch_assoc($result))
+		{	mysqli_query($GLOBALS["___mysqli_ston"], "DELETE FROM event WHERE id = ".$row['id']); }
 		
 		
-		$ans = array( "error" => false );
+		$ans = array("error" => false);
 		echo json_encode($ans);
 		die();
 	}

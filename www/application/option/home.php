@@ -23,7 +23,7 @@
 	// Formular-Typen auslesen
 	$query = "SELECT * FROM dropdown WHERE list='form'";
 	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
-	while( $typ = mysqli_fetch_assoc($result) )
+	while ($typ = mysqli_fetch_assoc($result))
 	{
 		$form[$typ['value']] = $typ['entry'];
 	}
@@ -32,14 +32,14 @@
 	$query = "SELECT * FROM category WHERE camp_id = '$_camp->id'";
 	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	$category_list = array();
-	while($category = mysqli_fetch_assoc($result))
+	while ($category = mysqli_fetch_assoc($result))
 	{
-		if( $form[$category['form_type']] == "" )
+		if ($form[$category['form_type']] == "")
 			$this_typ = htmlspecialchars("<unbekannt>");
 		else
 			$this_typ = $form[$category['form_type']];
 			
-		if( ! ctype_xdigit($category['color']) )
+		if (!ctype_xdigit($category['color']))
 			$category['color'] = "ffffff";
 		
 		$category_list[] = array(
@@ -58,32 +58,32 @@
 	$job_list["slave"] = array();
 	
 	$query = "SELECT * FROM job WHERE camp_id = '$_camp->id'";
-	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
-	while( $job = mysqli_fetch_assoc($result) )
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+	while ($job = mysqli_fetch_assoc($result))
 	{
-		if( $job['show_gp'] )
-			$job_list["master"][] = array( "id" => $job['id'], "name" => $job['job_name'] );
+		if ($job['show_gp'])
+			$job_list["master"][] = array("id" => $job['id'], "name" => $job['job_name']);
 		else
-			$job_list["slave"][] = array( "id" => $job['id'], "name" => $job['job_name'] );
+			$job_list["slave"][] = array("id" => $job['id'], "name" => $job['job_name']);
 	}
 
 	$mat_lists = array();
 	
 	$query = "SELECT * FROM mat_list WHERE camp_id = $_camp->id";
-	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
-	while( $mat_list = mysqli_fetch_assoc( $result ) )
-	{	$mat_lists[] = $mat_list;	}
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+	while ($mat_list = mysqli_fetch_assoc($result))
+	{	$mat_lists[] = $mat_list; }
 	
 	$option = array(
-		"jobs" 			=> array( "title" => "Tagesjobs", "macro" => $GLOBALS['tpl_dir']."/application/option/jobs.tpl/jobs" ),
-		"category"		=> array( "title" => "Block - Kategorien", "macro" => $GLOBALS['tpl_dir']."/application/option/category.tpl/category" ),
-		"mat_list" 		=> array( "title" => "Einkaufslisten", "macro" => $GLOBALS['tpl_dir']."/application/option/mat_list.tpl/mat_list" ),
+		"jobs" 			=> array("title" => "Tagesjobs", "macro" => $GLOBALS['tpl_dir']."/application/option/jobs.tpl/jobs"),
+		"category"		=> array("title" => "Block - Kategorien", "macro" => $GLOBALS['tpl_dir']."/application/option/category.tpl/category"),
+		"mat_list" 		=> array("title" => "Einkaufslisten", "macro" => $GLOBALS['tpl_dir']."/application/option/mat_list.tpl/mat_list"),
 		"job_list"		=> $job_list,
 		"category_list" => $category_list,
 		"mat_lists"		=> $mat_lists
 	);
 	
-	$_page->html->set( 'option', $option );
+	$_page->html->set('option', $option);
 	
 	//print_r($option);
 	//die();

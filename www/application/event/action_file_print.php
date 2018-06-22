@@ -18,25 +18,25 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	$event_document_id 	= mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['event_document_id'] );
-	$print				= mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['print'] );
+	$event_document_id = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['event_document_id']);
+	$print = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['print']);
 	
-	if( $print == "on" )	{	$print = 1;	}
-	else					{	$print = 0;	}
+	if ($print == "on") {	$print = 1; }
+	else {	$print = 0; }
 	
 	$query = "	UPDATE event_document
 				SET `print` = '$print'
 				WHERE id = $event_document_id";
-	mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+	mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
-	if( mysqli_affected_rows($GLOBALS["___mysqli_ston"]) )
+	if (mysqli_affected_rows($GLOBALS["___mysqli_ston"]))
 	{
-		$ans = array( "error" => 0, "error_msg" => "", "print" => $print );
-		echo json_encode( $ans );
+		$ans = array("error" => 0, "error_msg" => "", "print" => $print);
+		echo json_encode($ans);
 	}
 	else
 	{
-		$ans = array( "error" => 1, "error_msg" => "FEHLER" );
-		echo json_encode( $ans );
+		$ans = array("error" => 1, "error_msg" => "FEHLER");
+		echo json_encode($ans);
 	}
 	die();

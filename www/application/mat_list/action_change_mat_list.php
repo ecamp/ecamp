@@ -18,20 +18,20 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	$mat_list_id = mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['mat_list_id'] );
-	$mat_list_name = mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['mat_list_name'] );
+	$mat_list_id = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['mat_list_id']);
+	$mat_list_name = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['mat_list_name']);
 	
-	$_camp->mat_list( $mat_list_id ) || die( "error" );
+	$_camp->mat_list($mat_list_id) || die("error");
 	
 	$query = "	UPDATE mat_list 
 				SET `name` = '$mat_list_name'
 				WHERE id = $mat_list_id";
-	mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+	mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
-	if( mysqli_error($GLOBALS["___mysqli_ston"]) )
-	{	$ans = array( "error" => true, "error_msg" => "Liste konne nicht unbenannt werden!" );	}
+	if (mysqli_error($GLOBALS["___mysqli_ston"]))
+	{	$ans = array("error" => true, "error_msg" => "Liste konne nicht unbenannt werden!"); }
 	else
-	{	$ans = array( "error" => false );	}
+	{	$ans = array("error" => false); }
 	
-	echo json_encode( $ans );
+	echo json_encode($ans);
 	die();

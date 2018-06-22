@@ -28,33 +28,33 @@
 	$query = "	SELECT camp.id, subcamp.start , subcamp.start + subcamp.length as end
 				FROM camp, subcamp
 				WHERE camp.id = subcamp.camp_id AND camp_id = " . $_camp->id;
-	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
-	while( $subcamp = mysqli_fetch_assoc( $result ) )
+	while ($subcamp = mysqli_fetch_assoc($result))
 	{
-		$date->setDay2000( $subcamp['end'] );
-		$end = $date->getString( 'd.m.Y' );
+		$date->setDay2000($subcamp['end']);
+		$end = $date->getString('d.m.Y');
 		
-		$date->setDay2000( $subcamp['start'] );
-		$start = $date->getString( 'd.m.Y' );
+		$date->setDay2000($subcamp['start']);
+		$start = $date->getString('d.m.Y');
 		
-		$todo_list[$date->getString('Ym')]['name'] = strtr( $date->getString("F Y"), $GLOBALS['en_to_de'] );
+		$todo_list[$date->getString('Ym')]['name'] = strtr($date->getString("F Y"), $GLOBALS['en_to_de']);
 		$todo_list[$date->getString('Ym')]['todos'][$date->getString('d')][] = array( 
 			"date" => $start,
 			"camptime" => true,
 			"entry" => false,
 			"today" => false,
-			"short" => $start . " - " . $end );
+			"short" => $start." - ".$end );
 			
-		ksort( $todo_list[$date->getString("Ym")]['todos'] );
+		ksort($todo_list[$date->getString("Ym")]['todos']);
 	}
 
 	//  TODAY:
 	// ========
 	
-	$todo_list[date("Ym")]['name'] = strtr( date("F Y"), $GLOBALS['en_to_de'] );
-	$todo_list[date("Ym")]['todos'][date("d")][] = array( "date" => strtr( date("D d. M"), $GLOBALS['en_to_de'] ), "camptime" => false, "entry" => false, "today" => true );
-	ksort( $todo_list[date("Ym")]['todos'] );
+	$todo_list[date("Ym")]['name'] = strtr(date("F Y"), $GLOBALS['en_to_de']);
+	$todo_list[date("Ym")]['todos'][date("d")][] = array("date" => strtr(date("D d. M"), $GLOBALS['en_to_de']), "camptime" => false, "entry" => false, "today" => true);
+	ksort($todo_list[date("Ym")]['todos']);
 
 	$query = "	SELECT
 					todo.*
@@ -66,30 +66,30 @@
 					todo.date";
 	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
-	while( $todo = mysqli_fetch_assoc($result) )
+	while ($todo = mysqli_fetch_assoc($result))
 	{
-		if( $date->getUnix() < time() )
+		if ($date->getUnix() < time())
 		{
-			$date->setDay2000( $todo['date'] );
+			$date->setDay2000($todo['date']);
 			
-			if( $date->getUnix() > time() )
+			if ($date->getUnix() > time())
 			{
 				//$todo_list[date("Ym")]['name'] = strtr( date("F Y"), $GLOBALS[en_to_de] );
 				//$todo_list[date("Ym")]['todos'][] = array( "date" => strtr( date("D d. M"), $GLOBALS[en_to_de] ), "camptime" => false, "entry" => false, "today" => true );
 			}
 		}
 		
-		$date->setDay2000( $todo['date'] );
+		$date->setDay2000($todo['date']);
 		
 		$todo['camptime'] = false;
 		$todo['today'] = false;
 		$todo['entry'] = true;
 		$todo['resp'] = array();
 		
-		$todo['date'] = strtr( $date->getString("D d. M"), $GLOBALS['en_to_de'] );
+		$todo['date'] = strtr($date->getString("D d. M"), $GLOBALS['en_to_de']);
 		$todo['date_value'] = $date->getString("d.m.Y");
 		
-		$todo['disabled'] = ( $todo['done'] ) ? 'disabled' : '';
+		$todo['disabled'] = ($todo['done']) ? 'disabled' : '';
 		
 		$subquery = "	SELECT
 							user.id,
@@ -122,30 +122,30 @@
 		$todo['resp_class'] = "";
 		
 		$subresult = mysqli_query($GLOBALS["___mysqli_ston"], $subquery);
-		while( $todo_user = mysqli_fetch_assoc($subresult) )
+		while ($todo_user = mysqli_fetch_assoc($subresult))
 		{
-			if( $todo_user['scoutname'] )
-			{	$todo['resp'][] = array( "id" => $todo_user['id'], "resp" => $todo_user['resp'], "class" => "resp_user", "name" => $todo_user['scoutname'] );	}
+			if ($todo_user['scoutname'])
+			{	$todo['resp'][] = array("id" => $todo_user['id'], "resp" => $todo_user['resp'], "class" => "resp_user", "name" => $todo_user['scoutname']); }
 			else
-			{	$todo['resp'][] = array( "id" => $todo_user['id'], "resp" => $todo_user['resp'], "class" => "resp_user", "name" => $todo_user['firstname'] . " " . $todo_user['surname'] );	}
+			{	$todo['resp'][] = array("id" => $todo_user['id'], "resp" => $todo_user['resp'], "class" => "resp_user", "name" => $todo_user['firstname']." ".$todo_user['surname']); }
 			
-			if( $todo_user['resp'] == 1 )
-			{	$todo['resp_class'] .= "user_" . $todo_user['id'] . " ";	}
+			if ($todo_user['resp'] == 1)
+			{	$todo['resp_class'] .= "user_".$todo_user['id']." "; }
 		}
 
-		$todo_list[$date->getString("Ym")]['name'] = strtr( $date->getString("F Y"), $GLOBALS['en_to_de'] );
+		$todo_list[$date->getString("Ym")]['name'] = strtr($date->getString("F Y"), $GLOBALS['en_to_de']);
 		$todo_list[$date->getString("Ym")]['todos'][$date->getString('d')][] = $todo;
 		
-		ksort( $todo_list[$date->getString("Ym")]['todos'] );
+		ksort($todo_list[$date->getString("Ym")]['todos']);
 	}
 	
-	if( $date->getUnix() < time() )
+	if ($date->getUnix() < time())
 	{
 		//$todo_list[date("Ym")]['name'] = strtr( date("F y"), $GLOBALS[en_to_de] );
 		//$todo_list[date("Ym")]['todos'][] = array( "date" => strtr( date("D d. M"), $GLOBALS[en_to_de] ), "camptime" => false, "entry" => false, "today" => true );
 	}
 	
-	ksort( $todo_list );
+	ksort($todo_list);
 	
 	$_page->html->set('todo_list', $todo_list);
 
@@ -167,14 +167,14 @@
 				ORDER BY
 					user.scoutname";
 	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
-	while( $user = mysqli_fetch_assoc($result) )
+	while ($user = mysqli_fetch_assoc($result))
 	{
-		if( $user['scoutname'] )
-		{	$user['name'] = $user['scoutname'];	}
+		if ($user['scoutname'])
+		{	$user['name'] = $user['scoutname']; }
 		else
-		{	$user['name'] = $user['firstname'] . " " . $user['surname'];	}
+		{	$user['name'] = $user['firstname']." ".$user['surname']; }
 		
 		$user_list[] = $user;
 	}
 	
-	$_page->html->set( 'user_list', $user_list );
+	$_page->html->set('user_list', $user_list);
