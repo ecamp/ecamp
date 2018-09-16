@@ -22,13 +22,13 @@
 	// Wandelt einen Binärstring in Hex um
 	function string2hex($str)
 	{
-		if (trim($str)!="")
+		if (trim($str) != "")
 		{
-			$hex="";
-			$length=strlen($str);
-			for ($i=0; $i<$length; $i++)
+			$hex = "";
+			$length = strlen($str);
+			for ($i = 0; $i < $length; $i++)
 			{
-				$hex.=str_pad(dechex(ord($str[$i])), 2, 0, STR_PAD_LEFT);
+				$hex .= str_pad(dechex(ord($str[$i])), 2, 0, STR_PAD_LEFT);
 			}
 			return "0x".$hex;
 		}
@@ -92,7 +92,7 @@ $tables = array(
 
 // Daten auslesen und SQL-Statements erstellen
 $sql = "";
-foreach( $tables as $table => $qry)
+foreach ($tables as $table => $qry)
 {	
 	// Zusatz-Infos zum Schema laden
 	$query = "SELECT column_name, data_type, column_type, is_nullable FROM information_schema.columns WHERE table_name='$table'";
@@ -110,48 +110,48 @@ foreach( $tables as $table => $qry)
 	$cols = "";
 	
 	// Alle Datensätze durchlaufen
-	while( $row = mysqli_fetch_assoc($result) )
+	while ($row = mysqli_fetch_assoc($result))
 	{
 		$row_i++;
 		$data .= "(";
 		
-		$i=0;
-		foreach( $row as $key => $value )
+		$i = 0;
+		foreach ($row as $key => $value)
 		{
 			$i++;
 			
 			// Spaltennamen zusammenfügen (nur beim ersten Datzsatz reicht)
-			if( $row_i == 1)
+			if ($row_i == 1)
 			{
 				$cols .= "`".$key."`";
-				if($i != count($row)) $cols .= ", ";	
+				if ($i != count($row)) $cols .= ", ";	
 			}
 			
 			// Daten ausgeben
-			if( $value == "" AND $column[$key]['is_nullable'] == "YES")
+			if ($value == "" AND $column[$key]['is_nullable'] == "YES")
 			{
 				$data .= "NULL";
 				// !!!etwas unsauber
 				// eigentlich müsste überprüft werden, ob der Datentyp numerisch ist
 				// denn bei einem varchar gibt es einen Unterschied zwischen NULL und Leerstring
 			}
-			else if( $column[$key]['data_type'] == "blob" )
+			else if ($column[$key]['data_type'] == "blob")
 			{
 				$data .= "'".string2hex($value)."'";
 			}
 			else
 				$data .= "'".mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $value)."'";
 				
-			if($i != count($row)) $data .= ", ";
+			if ($i != count($row)) $data .= ", ";
 		}
 		
 		$data .= ")";
-		if( $row_i != $row_num )
+		if ($row_i != $row_num)
 			$data .= ",\n";
 	}
 	
 	// SQL Statement
-	if( $row_num != 0 )
+	if ($row_num != 0)
 		$sql .= "INSERT INTO `$table` ($cols) VALUES\n$data;\n\n";
 }
 

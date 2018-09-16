@@ -23,24 +23,25 @@
 	include("./config/config.php");
 	include($lib_dir . "/mysql.php");
 	include($lib_dir . "/functions/error.php");
+
 	db_connect();
 
-	$user_id 	= mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST[ 'user_id' ] );
-	$login 		= mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST[ 'login' ] );
-	$acode		= mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST[ 'acode' ] );
+	$user_id = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['user_id']);
+	$login = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['login']);
+	$acode = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['acode']);
 	
-	$pw1 		= md5( $_REQUEST[ 'pw1' ] );
-	$pw2		= md5( $_REQUEST[ 'pw2' ] );
+	$pw1 = md5($_REQUEST['pw1']);
+	$pw2 = md5($_REQUEST['pw2']);
 
-	if( $pw1 != $pw2 )
-	{	header( "location: pwreset.php?user_id=$user_id&login=$login&acode=$acode&msg=Passwort unstimmig." );	die();	}
+	if ($pw1 != $pw2)
+	{	header("location: pwreset.php?user_id=$user_id&login=$login&acode=$acode&msg=Passwort unstimmig."); die(); }
 
 	$query = "	UPDATE user SET  `pw` =  '$pw1', `acode` =  '' WHERE  
 				id = $user_id AND mail = '$login' AND acode = '$acode'
 				LIMIT 1 ;";
-	mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+	mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
-	if( mysqli_affected_rows($GLOBALS["___mysqli_ston"]) )
-	{	header( "location: login.php?msg=Passwort wurde erfolgreich geändert!" );	die();	}
+	if (mysqli_affected_rows($GLOBALS["___mysqli_ston"]))
+	{	header("location: login.php?msg=Passwort wurde erfolgreich geändert!"); die(); }
 	else
-	{	header( "location: pwreset.php?user_id=$user_id&login=$login&acode=$acode&msg=Ein Fehler ist aufgetreten." );	die();	}
+	{	header("location: pwreset.php?user_id=$user_id&login=$login&acode=$acode&msg=Ein Fehler ist aufgetreten."); die(); }

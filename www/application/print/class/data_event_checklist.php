@@ -30,17 +30,17 @@
 		public $name;
 		
 		
-		function print_data_event_checklist_class( $data, $pid )
+		function print_data_event_checklist_class($data, $pid)
 		{
 			$this->pid			= $pid;
 			$this->id 			= $data['id'];
-			$this->event_id		= $data['event_id'];
+			$this->event_id = $data['event_id'];
 			$this->short		= $data['short'];
 			$this->name 		= $data['name'];
 			
-			$this->event 		= $pid->event[ $this->event_id ];
+			$this->event = $pid->event[$this->event_id];
 			
-			$this->event->add_event_checklist( $this );
+			$this->event->add_event_checklist($this);
 		}
 		
 		

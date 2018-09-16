@@ -43,22 +43,22 @@
 		
 		public $job_name;
 		
-		function print_data_camp_class( $data, $pid )
+		function print_data_camp_class($data, $pid)
 		{
 			$this->pid 			= $pid;
-			$this->id 			= $data['id'];
+			$this->id = $data['id'];
 			$this->name 		= $data['name'];
 			$this->short_name	= $data['short_name'];
 			$this->group_name	= $data['group_name'];
-			$this->slogan 		= $data['slogan'];
-			$this->type 		= $data['type'];
+			$this->slogan = $data['slogan'];
+			$this->type = $data['type'];
 			$this->is_course	= $data['is_course'];
 			$this->coursetype	= $data['coursetype'];
 			$this->ca_name 		= $data['ca_name'];
 			$this->ca_street 	= $data['ca_street'];
-			$this->ca_zipcode 	= $data['ca_zipcode'];
+			$this->ca_zipcode = $data['ca_zipcode'];
 			$this->ca_city 		= $data['ca_city'];
-			$this->ca_tel 		= $data['ca_tel'];
+			$this->ca_tel = $data['ca_tel'];
 			$this->ca_coor 		= $data['ca_coor'];
 			
 			$this->first_day	= $data['first_day'];

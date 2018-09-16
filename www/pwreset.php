@@ -21,35 +21,36 @@
 	require 'vendor/autoload.php';
  
 	include("./config/config.php");
-	include($lib_dir . "/mysql.php");
+  include($lib_dir . "/mysql.php");
 	include($lib_dir . "/functions/error.php");
+
 	db_connect();
 
-	$user_id 	= mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST[ 'user_id' ] );
-	$login 		= mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST[ 'login' ] );
-	$acode		= mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST[ 'acode' ] );
+	$user_id = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['user_id']);
+	$login = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['login']);
+	$acode		= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['acode']);
 
 	$query = "	SELECT user.id FROM user WHERE id = $user_id AND mail = '$login' AND acode = '$acode'";
-	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
-	if( mysqli_error($GLOBALS["___mysqli_ston"]) || !mysqli_num_rows( $result ) )
-	{	die("FEHLER; Support anfragen" ); }
+	if (mysqli_error($GLOBALS["___mysqli_ston"]) || !mysqli_num_rows($result))
+	{	die("FEHLER; Support anfragen"); }
 
-	if( $_SESSION['skin'] == "" ) $_SESSION['skin'] = $GLOBALS['skin'];
+	if ($_SESSION['skin'] == "") $_SESSION['skin'] = $GLOBALS['skin'];
 	$html = new PHPTAL("public/skin/".$_SESSION['skin']."/pwreset.tpl");
 	
 	$html->setEncoding('UTF-8');
 	
 	$html->set('SHOW_MSG', false);
 	
-	if( isset( $_REQUEST[ 'msg' ] ) )
+	if (isset($_REQUEST['msg']))
 	{
-		$html->set( 'SHOW_MSG', true );
-		$html->set( 'MSG', mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST[ 'msg' ] ) );
+		$html->set('SHOW_MSG', true);
+		$html->set('MSG', mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['msg']));
 	}
 
-	$html->set( 'user_id', $user_id );
-	$html->set( 'login', $login );
-	$html->set( 'acode', $acode );
+	$html->set('user_id', $user_id);
+	$html->set('login', $login);
+	$html->set('acode', $acode);
 
 	echo $html->execute();

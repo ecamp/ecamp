@@ -19,12 +19,12 @@
  */
 
 	
-	$filename = "application/program/del_protocol/" . $_user->id . ".log";
+	$filename = "application/program/del_protocol/".$_user->id.".log";
 	
-	if( $_page->app != "program" && $_page->app != "event" )
+	if ($_page->app != "program" && $_page->app != "event")
 	{
-		touch( 	$filename );
-		unlink( $filename );
+		touch($filename);
+		unlink($filename);
 	}
 	
 ?>

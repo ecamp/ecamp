@@ -43,13 +43,13 @@
 	$start = $c_start->getValue();
 	$length = $c_end->getValue() - $c_start->getValue() + 1;
 	
-	if($length <= 0 )
+	if ($length <= 0)
 	{
 		$ans = array("error" => true, "msg" => "Das Enddatum darf nicht vor dem Startdatum liegen!");
 		echo json_encode($ans);
 		die();
 	}
-	else if( $length > 40 )
+	else if ($length > 40)
 	{
 		$ans = array("error" => true, "msg" => "Die maximale Länge eines Lagerabschnitts beträgt 40 Tage. Verwende bitte mehrere Lagerabschnitt für überlange Lager!");
 		echo json_encode($ans);
@@ -58,9 +58,9 @@
 	
 	// Überschneidungen prüfen
 	$query = "SELECT * FROM `subcamp` WHERE camp_id=".$_camp->id." AND (`start` BETWEEN -10000 AND ".$c_end->getValue().") AND ((`start`+`length`-1) BETWEEN ".$c_start->getValue()." AND 32000)";
-	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
-	if( mysqli_num_rows( $result ) >= 1 )
+	if (mysqli_num_rows($result) >= 1)
 	{
 		$ans = array("error" => true, "msg" => "Der ausgewählte Zeitabschnitt überschneidet sich mit einem anderen Lagerabschnitt. Wähle einen freien Lagerabschnitt aus!");
 		echo json_encode($ans);
@@ -73,7 +73,7 @@
 	$last_subcamp_id = ((is_null($___mysqli_res = mysqli_insert_id($GLOBALS["___mysqli_ston"]))) ? false : $___mysqli_res);
 
 	// day: Datensätze einfügen
-	for( $i=0; $i < $length; $i++ )
+	for ($i = 0; $i < $length; $i++)
 	{
 		$query = "INSERT INTO day 	    ( subcamp_id, day_offset)
 				 VALUES 				( '$last_subcamp_id', '$i')";
@@ -87,6 +87,6 @@
 //	$start 	= date("d.m.Y",	$c_start->getUnix());
 //	$end	= date("d.m.Y", $c_end ->getUnix());
 	
-	$ans = array("error" => false );
+	$ans = array("error" => false);
 	echo json_encode($ans);
 	die();

@@ -21,85 +21,85 @@
  */
 abstract class PHPTAL_Dom_Node
 {
-    public $parentNode;
+	public $parentNode;
 
-    private $value_escaped, $source_file, $source_line, $encoding;
+	private $value_escaped, $source_file, $source_line, $encoding;
 
-    public function __construct($value_escaped, $encoding)
-    {
-        $this->value_escaped = $value_escaped;
-        $this->encoding = $encoding;
-    }
+	public function __construct($value_escaped, $encoding)
+	{
+		$this->value_escaped = $value_escaped;
+		$this->encoding = $encoding;
+	}
 
-    /**
-     * hint where this node is in source code
-     */
-    public function setSource($file, $line)
-    {
-        $this->source_file = $file;
-        $this->source_line = $line;
-    }
+	/**
+	 * hint where this node is in source code
+	 */
+	public function setSource($file, $line)
+	{
+		$this->source_file = $file;
+		$this->source_line = $line;
+	}
 
-    /**
-     * file from which this node comes from
-     */
-    public function getSourceFile()
-    {
-        return $this->source_file;
-    }
+	/**
+	 * file from which this node comes from
+	 */
+	public function getSourceFile()
+	{
+		return $this->source_file;
+	}
 
-    /**
-     * line on which this node was defined
-     */
-    public function getSourceLine()
-    {
-        return $this->source_line;
-    }
+	/**
+	 * line on which this node was defined
+	 */
+	public function getSourceLine()
+	{
+		return $this->source_line;
+	}
 
-    /**
-     * depends on node type. Value will be escaped according to context that node comes from.
-     */
-    function getValueEscaped()
-    {
-        return $this->value_escaped;
-    }
+	/**
+	 * depends on node type. Value will be escaped according to context that node comes from.
+	 */
+	function getValueEscaped()
+	{
+		return $this->value_escaped;
+	}
 
-    /**
-     * Set value of the node (type-dependent) to this exact string.
-     * String must be HTML-escaped and use node's encoding.
-     *
-     * @param string $value_escaped new content
-     */
-    function setValueEscaped($value_escaped)
-    {
-        $this->value_escaped = $value_escaped;
-    }
+	/**
+	 * Set value of the node (type-dependent) to this exact string.
+	 * String must be HTML-escaped and use node's encoding.
+	 *
+	 * @param string $value_escaped new content
+	 */
+	function setValueEscaped($value_escaped)
+	{
+		$this->value_escaped = $value_escaped;
+	}
 
 
-    /**
-     * get value as plain text. Depends on node type.
-     */
-    function getValue()
-    {
-        return html_entity_decode($this->getValueEscaped(), ENT_QUOTES, $this->encoding);
-    }
+	/**
+	 * get value as plain text. Depends on node type.
+	 */
+	function getValue()
+	{
+		return html_entity_decode($this->getValueEscaped(), ENT_QUOTES, $this->encoding);
+	}
 
-    /**
-     * encoding used by vaule of this node.
-     */
-    public function getEncoding()
-    {
-        return $this->encoding;
-    }
+	/**
+	 * encoding used by vaule of this node.
+	 */
+	public function getEncoding()
+	{
+		return $this->encoding;
+	}
 
-    /**
-     * use CodeWriter to compile this element to PHP code
-     */
-    public abstract function generateCode(PHPTAL_Php_CodeWriter $gen);
+	/**
+	 * use CodeWriter to compile this element to PHP code
+	 */
+	public abstract function generateCode(PHPTAL_Php_CodeWriter $gen);
 
-    function __toString()
-    {
-        return " “".$this->getValue()."” ";
-    }
+	function __toString()
+	{
+		return " “".$this->getValue()."” ";
+	}
 }
 

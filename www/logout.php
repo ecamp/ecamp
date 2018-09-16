@@ -40,7 +40,7 @@
 	$_SESSION = array();
 	session_unset();
   
-    # Cookie löchen  
+	# Cookie löchen  
 	setcookie(session_name(), '', time()-42000, '/');
 	setcookie('autologin', false, time()-42000, '/' );
 	setcookie('user_id', '', time()-42000, '/' );
@@ -51,8 +51,7 @@
 	
 	# zum Login weiterleiten
 	if(isset($_REQUEST['msg']))
-	{	header("Location: login.php?msg=".$_REQUEST['msg']);	}
-	else
+	{	header("Location: login.php?msg=".$_REQUEST['msg']);	} else
 	{	header("Location: login.php");	}
 ?>
 

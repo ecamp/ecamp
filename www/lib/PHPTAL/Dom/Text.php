@@ -22,10 +22,10 @@
  */
 class PHPTAL_Dom_Text extends PHPTAL_Dom_Node
 {
-    public function generateCode(PHPTAL_Php_CodeWriter $codewriter)
-    {
-        if ($this->getValueEscaped() !== '') {
-            $codewriter->pushHTML($codewriter->interpolateHTML($this->getValueEscaped()));
-        }
-    }
+	public function generateCode(PHPTAL_Php_CodeWriter $codewriter)
+	{
+		if ($this->getValueEscaped() !== '') {
+			$codewriter->pushHTML($codewriter->interpolateHTML($this->getValueEscaped()));
+		}
+	}
 }

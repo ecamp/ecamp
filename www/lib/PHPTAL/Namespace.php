@@ -21,50 +21,50 @@
  */
 abstract class PHPTAL_Namespace
 {
-    private $prefix, $namespace_uri;
-    protected $_attributes;
+	private $prefix, $namespace_uri;
+	protected $_attributes;
 
-    public function __construct($prefix, $namespace_uri)
-    {
-        if (!$namespace_uri || !$prefix) {
-            throw new PHPTAL_ConfigurationException("Can't create namespace with empty prefix or namespace URI");
-        }
+	public function __construct($prefix, $namespace_uri)
+	{
+		if (!$namespace_uri || !$prefix) {
+			throw new PHPTAL_ConfigurationException("Can't create namespace with empty prefix or namespace URI");
+		}
 
-        $this->_attributes = array();
-        $this->prefix = $prefix;
-        $this->namespace_uri = $namespace_uri;
-    }
+		$this->_attributes = array();
+		$this->prefix = $prefix;
+		$this->namespace_uri = $namespace_uri;
+	}
 
-    public function getPrefix()
-    {
-        return $this->prefix;
-    }
+	public function getPrefix()
+	{
+		return $this->prefix;
+	}
 
-    public function getNamespaceURI()
-    {
-        return $this->namespace_uri;
-    }
+	public function getNamespaceURI()
+	{
+		return $this->namespace_uri;
+	}
 
-    public function hasAttribute($attributeName)
-    {
-        return array_key_exists(strtolower($attributeName), $this->_attributes);
-    }
+	public function hasAttribute($attributeName)
+	{
+		return array_key_exists(strtolower($attributeName), $this->_attributes);
+	}
 
-    public function getAttribute($attributeName)
-    {
-        return $this->_attributes[strtolower($attributeName)];
-    }
+	public function getAttribute($attributeName)
+	{
+		return $this->_attributes[strtolower($attributeName)];
+	}
 
-    public function addAttribute(PHPTAL_NamespaceAttribute $attribute)
-    {
-        $attribute->setNamespace($this);
-        $this->_attributes[strtolower($attribute->getLocalName())] = $attribute;
-    }
+	public function addAttribute(PHPTAL_NamespaceAttribute $attribute)
+	{
+		$attribute->setNamespace($this);
+		$this->_attributes[strtolower($attribute->getLocalName())] = $attribute;
+	}
 
-    public function getAttributes()
-    {
-        return $this->_attributes;
-    }
+	public function getAttributes()
+	{
+		return $this->_attributes;
+	}
 
-    abstract public function createAttributeHandler(PHPTAL_NamespaceAttribute $att, PHPTAL_Dom_Element $tag, $expression);
+	abstract public function createAttributeHandler(PHPTAL_NamespaceAttribute $att, PHPTAL_Dom_Element $tag, $expression);
 }

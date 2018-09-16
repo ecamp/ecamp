@@ -18,31 +18,30 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	$event_id 	= mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['event_id'] );
-	$input_edit	= mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['input_edit'] );
+	$event_id = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['event_id']);
+	$input_edit = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['input_edit']);
 	$input_edit_js = $_REQUEST['input_edit'];
 	
-	$_camp->event( $event_id ) || die( "error" );
+	$_camp->event($event_id) || die("error");
 	
 	$query = "
 				UPDATE
 					event
 				SET
-					story = '" . $input_edit . "'
+					story = '" . $input_edit."'
 				WHERE
 					event.id = $event_id";
-	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
-	if( $result )
+	if ($result)
 	{
-		$ans = array( "saved" => true, "value" => $input_edit_js );
-		echo json_encode( $ans );
+		$ans = array("saved" => true, "value" => $input_edit_js);
+		echo json_encode($ans);
 		die();
-	}
-	else
+	} else
 	{
-		$ans = array( "saved" => false );
-		echo json_encode( $ans );
+		$ans = array("saved" => false);
+		echo json_encode($ans);
 		die();
 	}
 	

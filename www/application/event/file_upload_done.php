@@ -27,10 +27,10 @@
 	
 	$_page->html = new PHPTAL('template/application/event/file_upload_done.tpl');
 	
-	$event_id = mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['event_id'] );
-	$file_id = mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['file_id'] );
+	$event_id = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['event_id']);
+	$file_id = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['file_id']);
 	
-	$_camp->event( $event_id ) || die( "error" );
+	$_camp->event($event_id) || die("error");
 	
 	$query = "	SELECT 
 					*
@@ -38,19 +38,19 @@
 					event_document
 				WHERE
 					event_document.id = " . $file_id;
-	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
-	$file = mysqli_fetch_assoc( $result );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+	$file = mysqli_fetch_assoc($result);
 	
-	if( $file_type[$file['type']] )
-	{	$file['type_img_src'] = "public/global/img/" . $file_type[$file['type']];	}
+	if ($file_type[$file['type']])
+	{	$file['type_img_src'] = "public/global/img/".$file_type[$file['type']]; }
 	else
-	{	$file['type_img_src'] = "public/global/img/icon_unknown.png";	}
+	{	$file['type_img_src'] = "public/global/img/icon_unknown.png"; }
 	
-	$file['download_link'] = "index.php?app=event&cmd=file_download&file_id=" . $file['id'];
+	$file['download_link'] = "index.php?app=event&cmd=file_download&file_id=".$file['id'];
 	
-	$_page->html->set(	'file', $file );
-	$_page->html->set(	'event_id',  $event_id );
+	$_page->html->set('file', $file);
+	$_page->html->set('event_id', $event_id);
 	
-	$_js_env->add(	'file', 	$file );
+	$_js_env->add('file', $file);
 	//$_js_env->add(	'file_id', 	$file_id );
-	$_js_env->add(	'event_id', $event_id );
+	$_js_env->add('event_id', $event_id);

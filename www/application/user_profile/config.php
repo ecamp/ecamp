@@ -21,9 +21,9 @@
 
 # Sichheitslevel der einzelnen Aktionen/Dateien
 # --> Kommandos/Files die nicht aufgeührt sind, können nicht aufgerufen werden
-$security_level = array( 'home' => 10,
+$security_level = array('home' => 10,
 						 'delprofile' => 10,
-                       	 'action_save_change' => 10,
+					   	 'action_save_change' => 10,
 						 'action_save_change_pw' => 10,
 						 'action_save_change_avatar' => 10,
 						 'action_delete_avatar' => 10,
@@ -37,7 +37,7 @@ $css = array(
 				"content_template_fit.css" 	=> "global"
 			);
 
-$js  = array(
+$js = array(
 				"mootools-core-1.4.js" 		=> "global",
 				"mootools-more-1.4.js" 		=> "global",
 				"dynamic_input.js"			=> "global",
@@ -48,7 +48,7 @@ $js  = array(
 
 
 # Standardkommando
-if( $_page->cmd == "" ) {	$_page->cmd = "home";	}
+if ($_page->cmd == "") {	$_page->cmd = "home"; }
 
 
 

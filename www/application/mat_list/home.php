@@ -25,14 +25,14 @@
 				FROM user, user_camp, dropdown
 				WHERE 	user_camp.function_id = dropdown.id AND dropdown.entry != 'Support' AND
 						user.id = user_camp.user_id AND user_camp.camp_id = $_camp->id";
-	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
-	while( $u = mysqli_fetch_assoc( $result ) )
+	while ($u = mysqli_fetch_assoc($result))
 	{
-		if( $u['scoutname'] )	{	$u['display_name'] = $u['scoutname'];	}
-		else	{	$u['display_name'] = $u['firstname'] . " " . $u['surname'];	}
+		if ($u['scoutname']) {	$u['display_name'] = $u['scoutname']; }
+		else {	$u['display_name'] = $u['firstname']." ".$u['surname']; }
 		
-		$u['href'] = "index.php?app=mat_list&listtype=user&list=" . $u['user_camp_id'];
+		$u['href'] = "index.php?app=mat_list&listtype=user&list=".$u['user_camp_id'];
 		
 		$users[] = $u;
 	}
@@ -40,22 +40,22 @@
 	$query = "	SELECT mat_list.*
 				FROM mat_list
 				WHERE mat_list.camp_id = $_camp->id";
-	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
-	while( $m = mysqli_fetch_assoc( $result ) )
+	while ($m = mysqli_fetch_assoc($result))
 	{
-		$m['href'] = "index.php?app=mat_list&listtype=mat_list&list=" . $m['id'];
+		$m['href'] = "index.php?app=mat_list&listtype=mat_list&list=".$m['id'];
 		$mat_lists[] = $m;
 	}
 
-	if( isset( $_REQUEST['listtype'] ) && isset( $_REQUEST['list'] ) )
+	if (isset($_REQUEST['listtype']) && isset($_REQUEST['list']))
 	{
 		$selected = true;
 		$list_id = $_REQUEST['list'];
 
 		$list_entries = array();
 		
-		if( $_REQUEST['listtype'] == "user" )
+		if ($_REQUEST['listtype'] == "user")
 		{
 			$query = "	SELECT mat_event.*, event.name as event_name
 						FROM mat_event, event
@@ -66,16 +66,16 @@
 						ORDER BY
 							mat_event.event_id";
 			
-			$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+			$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 			
-			while( $list_entry = mysqli_fetch_assoc( $result ) )
+			while ($list_entry = mysqli_fetch_assoc($result))
 			{
 				$list_entries[] = $list_entry;
 			}
 		}
-		elseif( $_REQUEST['listtype'] == "mat_list" )
+		elseif ($_REQUEST['listtype'] == "mat_list")
 		{
-			$_camp->mat_list( $list_id ) || die( "error" );
+			$_camp->mat_list($list_id) || die("error");
 			
 			$query = "	SELECT mat_event.*, event.name as event_name
 						FROM mat_event, event
@@ -83,28 +83,28 @@
 							event.camp_id = $_camp->id AND
 							event.id = mat_event.event_id AND
 							mat_event.mat_list_id = $list_id";
-			$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+			$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 			
-			while( $list_entry = mysqli_fetch_assoc( $result ) )
+			while ($list_entry = mysqli_fetch_assoc($result))
 			{
 				$list_entries[] = $list_entry;
 			}
 		}
 	}
 	else
-	{	$selected = false;	}
+	{	$selected = false; }
 
 	$mat_list = array(
-		"select" 		=> array(	"title" => "Materiallisten",	"macro" => $GLOBALS['tpl_dir']."/application/mat_list/select.tpl/select" ),
-		"display" 		=> array(	"title" => "Materialliste",		"macro" => $GLOBALS['tpl_dir']."/application/mat_list/display.tpl/display" ),
+		"select" 		=> array("title" => "Materiallisten", "macro" => $GLOBALS['tpl_dir']."/application/mat_list/select.tpl/select"),
+		"display" 		=> array("title" => "Materialliste", "macro" => $GLOBALS['tpl_dir']."/application/mat_list/display.tpl/display"),
 		"users" 		=> $users,
 		"mat_lists"	=> $mat_lists,
 		"selected"		=> $selected,
 		"list_entries"	=> $list_entries,
-	    "listtype"    => $_REQUEST['listtype'],
+		"listtype"    => $_REQUEST['listtype'],
 		"list"        => $_REQUEST['list']
 	);
 	
-	$_page->html->set( 'mat_list', $mat_list );
+	$_page->html->set('mat_list', $mat_list);
 	
 	$_page->html->set('main_macro', $GLOBALS['tpl_dir'].'/application/mat_list/border.tpl/border');

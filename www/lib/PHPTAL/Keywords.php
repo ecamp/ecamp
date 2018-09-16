@@ -21,6 +21,6 @@
  */
 interface PHPTAL_Keywords extends Countable
 {
-    public function __toString();
+	public function __toString();
 }
 ?>

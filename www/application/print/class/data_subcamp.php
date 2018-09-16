@@ -34,39 +34,39 @@
 		public $day = array();
 		
 		
-		function print_data_subcamp_class( $data, $pid )
+		function print_data_subcamp_class($data, $pid)
 		{
 			$this->pid 			= $pid;
-			$this->id 			= $data['id'];
-			$this->camp_id		= $data['camp_id'];
+			$this->id = $data['id'];
+			$this->camp_id = $data['camp_id'];
 			$this->start		= $data['start'];
-			$this->length		= $data['length'];
+			$this->length = $data['length'];
 			
 			$c_date = new c_date();
 			
-			$this->ustart 	= $c_date->setDay2000( $this->start )->getUnix();
-			$this->uend		= $c_date->setDay2000( $this->start + $this->length )->getUnix();
+			$this->ustart = $c_date->setDay2000($this->start)->getUnix();
+			$this->uend = $c_date->setDay2000($this->start + $this->length)->getUnix();
 		}
 		
 		
-		function add_day( $day )
-		{	$this->day[ $day->id ] = $day;	}
+		function add_day($day)
+		{	$this->day[$day->id] = $day; }
 		
 		
-		function get_day_by_nr( $day_nr )
+		function get_day_by_nr($day_nr)
 		{
-			foreach( $this->day as $day )
+			foreach ($this->day as $day)
 			{
-				if( $day->day_offset + 1 == $day_nr )
-				{	return $day;	}
+				if ($day->day_offset + 1 == $day_nr)
+				{	return $day; }
 			}
 		}
 		
 		
-		function sort_day( $day1, $day2 )
+		function sort_day($day1, $day2)
 		{
-			if( $day1->day_nr > $day2->day_nr )	{	return 1;	}
-			else								{	return -1;	}
+			if ($day1->day_nr > $day2->day_nr) {	return 1; }
+			else {	return -1; }
 			
 			return 0;
 		}
@@ -74,7 +74,7 @@
 		
 		function get_sorted_day()
 		{
-			uasort( $this->day, array( "print_data_subcamp_class", "sort_day" ) );
+			uasort($this->day, array("print_data_subcamp_class", "sort_day"));
 			return $this->day;
 		}
 		

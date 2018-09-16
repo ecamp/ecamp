@@ -20,44 +20,44 @@
 	
 	// Input validieren & interpretieren
 	$move_to = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['subcamp_start']);
-    $subcamp_move_id = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['subcamp_id']);
+	$subcamp_move_id = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['subcamp_id']);
 	
 	$move_to = preg_match("/([0-9]{1,2})[\/\. -]+([0-9]{1,2})[\/\. -]+([0-9]{1,4})/", $move_to, $regs);
 	$move_to = gmmktime(0, 0, 0, $regs[2], $regs[1], $regs[3]);
 
-	$_camp->subcamp( $subcamp_move_id ) || die( "error" );
+	$_camp->subcamp($subcamp_move_id) || die("error");
 
 	// Subcamp suchen
 	$query = "SELECT * FROM subcamp WHERE id=$subcamp_move_id AND camp_id=$_camp->id";
-	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
-	$subcamp = mysqli_fetch_assoc( $result );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+	$subcamp = mysqli_fetch_assoc($result);
 	
-	if( !$subcamp )
+	if (!$subcamp)
 	{
 		//header( "Location: index.php?app=camp" );
-		$ans = array( "error" => true, "msg" => "Fehler" );
-		echo json_encode( $ans );
+		$ans = array("error" => true, "msg" => "Fehler");
+		echo json_encode($ans);
 		die();
 	}
 
 	// Überschneidungen prüfen
-	$start = new c_date(); $start->setUnix( $move_to );
-	$end   = new c_date(); $end->setDay2000( $start->getValue() + $subcamp['length'] - 1 );
+	$start = new c_date(); $start->setUnix($move_to);
+	$end   = new c_date(); $end->setDay2000($start->getValue() + $subcamp['length'] - 1);
 	
-	$query = "SELECT * FROM `subcamp` WHERE camp_id=".$_camp->id." AND NOT id=".$subcamp['id']." AND(`start` BETWEEN -10000 AND ".($start->getValue()+$subcamp['length']-1).") AND ((`start`+`length`-1) BETWEEN ".$start->getValue()." AND 32000)";
-	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+	$query = "SELECT * FROM `subcamp` WHERE camp_id=".$_camp->id." AND NOT id=".$subcamp['id']." AND(`start` BETWEEN -10000 AND ".($start->getValue() + $subcamp['length'] - 1).") AND ((`start`+`length`-1) BETWEEN ".$start->getValue()." AND 32000)";
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
-	if( mysqli_num_rows( $result ) >= 1 )
+	if (mysqli_num_rows($result) >= 1)
 	{	
-		$ans = array( "error" => true, "msg" => "Der ausgewählte Zeitabschnitt überschneidet sich mit einem anderen Lagerabschnitt. Wähle einen freien Lagerabschnitt aus!");
-		echo json_encode( $ans );
+		$ans = array("error" => true, "msg" => "Der ausgewählte Zeitabschnitt überschneidet sich mit einem anderen Lagerabschnitt. Wähle einen freien Lagerabschnitt aus!");
+		echo json_encode($ans);
 		die();
 	}
 
 	// Verschiebung durchführen
 	$query = "UPDATE subcamp SET start=".$start->getValue()." WHERE id=".$subcamp['id'];
-	mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+	mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
-	$ans = array( "error" => false, "subcamp_start" => $start->getString("d.m.Y"), "subcamp_end" => $end->getString("d.m.Y") );
-	echo json_encode( $ans );
+	$ans = array("error" => false, "subcamp_start" => $start->getString("d.m.Y"), "subcamp_end" => $end->getString("d.m.Y"));
+	echo json_encode($ans);
 	die();	

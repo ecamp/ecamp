@@ -30,18 +30,18 @@
 	$mobilnr	= $_REQUEST['mobilnr'];
 	$homenr		= $_REQUEST['homenr'];
 	
-	$ahv		= $_REQUEST['ahv'];
+	$ahv = $_REQUEST['ahv'];
 	$birthday	= $_REQUEST['birthday'];
-	$jsedu		= $_REQUEST['jsedu'];
-	$pbsedu		= $_REQUEST['pbsedu'];
+	$jsedu = $_REQUEST['jsedu'];
+	$pbsedu = $_REQUEST['pbsedu'];
 	$jspersnr	= $_REQUEST['jspersnr'];
-	$sex		= $_REQUEST['sex'];
+	$sex = $_REQUEST['sex'];
 	
 	$function	= $_REQUEST['function'];
 
 	$query = "SELECT * FROM user WHERE mail = '$mail'";
 	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
-	if(mysqli_num_rows($result) > 0)
+	if (mysqli_num_rows($result) > 0)
 	{	
 		header("Location: index.php?app=leader");
 		die();
@@ -64,7 +64,7 @@
 	$query = "SELECT * FROM user_camp WHERE user = '$user' AND camp = '$camp_id'";
 	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
-	if($mysql_num_rows == 0)
+	if ($mysql_num_rows == 0)
 	{
 		$query = "INSERT INTO user_camp 	(user ,camp ,function)
 								VALUES 		('$user', '$camp_id', '$function')";

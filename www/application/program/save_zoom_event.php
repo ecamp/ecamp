@@ -18,14 +18,14 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	include( 'inc/get_program_update.php');
+	include('inc/get_program_update.php');
 	
-	$event_instance_id	= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['event_instance_id']);
-	$length				= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['length']);
-	$width				= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['width']);
-	$time				= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['time']);
+	$event_instance_id = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['event_instance_id']);
+	$length = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['length']);
+	$width = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['width']);
+	$time = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['time']);
 	
-	$_camp->event_instance( $event_instance_id ) || die( "error" );
+	$_camp->event_instance($event_instance_id) || die("error");
 	
 	$query = "	UPDATE 
 					event_instance 
@@ -38,8 +38,8 @@
 	
 	header("Content-type: application/json");
 	
-	$ans = get_program_update( $time );
-	echo json_encode( $ans );
+	$ans = get_program_update($time);
+	echo json_encode($ans);
 	
 	die();
 	

@@ -29,12 +29,12 @@
 		public $name;
 		
 		
-		function print_data_mat_list( $data, $pid )
+		function print_data_mat_list($data, $pid)
 		{
-			$this->pid			= $pid;
-			$this->id			= $data['id'];
-			$this->camp_id 		= $data['camp_id'];
-			$this->name			= $data['name'];
+			$this->pid = $pid;
+			$this->id = $data['id'];
+			$this->camp_id = $data['camp_id'];
+			$this->name = $data['name'];
 			
 			$this->camp = $pid->camp;
 		}

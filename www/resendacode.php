@@ -19,10 +19,10 @@
  */
 
 	require 'vendor/autoload.php';
-	
+
 	require_once( "./config/config.php" );
 	
-	if( $_SESSION['skin'] == "" ) $_SESSION['skin'] = $GLOBALS['skin'];
+	if ($_SESSION['skin'] == "") $_SESSION['skin'] = $GLOBALS['skin'];
 	$html = new PHPTAL("public/skin/".$_SESSION['skin']."/resendacode.tpl");
 	
 	$html->setEncoding('UTF-8');

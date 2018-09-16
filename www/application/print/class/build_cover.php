@@ -23,24 +23,24 @@
 	{
 		public $data;
 		
-		function print_build_cover_class( $data )
-		{	$this->data = $data;	}
+		function print_build_cover_class($data)
+		{	$this->data = $data; }
 		
-		function build( $pdf )
+		function build($pdf)
 		{
 			$pdf->AddPage('P', 'A4');
 			
-			$pdf->SetXY( 20, 30 );
-			$pdf->SetFont('','B',20);
-			$pdf->Cell( 170, 20, $this->data->camp->group_name, 0, 1, 'C' );
+			$pdf->SetXY(20, 30);
+			$pdf->SetFont('', 'B', 20);
+			$pdf->Cell(170, 20, $this->data->camp->group_name, 0, 1, 'C');
 			
-			$pdf->SetXY( 20, 40 );
-			$pdf->SetFont('','B',30);
-			$pdf->Cell( 170, 40, $this->data->camp->name, 0, 1, 'C' );
+			$pdf->SetXY(20, 40);
+			$pdf->SetFont('', 'B', 30);
+			$pdf->Cell(170, 40, $this->data->camp->name, 0, 1, 'C');
 			
-			$pdf->SetXY( 20, 65 );
-			$pdf->SetFont('','B',40);
-			$pdf->Cell( 170, 40, $this->data->camp->slogan, 0, 1, 'C' );
+			$pdf->SetXY(20, 65);
+			$pdf->SetFont('', 'B', 40);
+			$pdf->Cell(170, 40, $this->data->camp->slogan, 0, 1, 'C');
 			
 			
 			//$url = 'http://map.search.ch/chmap.jpg?layer=sym,fg,copy&zd=2&w=1000&h=700&poi=verkehr,polizei,spital,apotheke,post,shop&base=';
@@ -48,7 +48,7 @@
 			
 			//$pdf->Image( $url, 20, 130, 170, 0, 'jpeg' );	
 			
-			$pdf->Bookmark( 'Titelblatt', 0, 0 );
+			$pdf->Bookmark('Titelblatt', 0, 0);
 		}
 	}
 	

@@ -58,31 +58,31 @@
 					event.id = event_instance.event_id
 				ORDER BY
 					event_instance.starttime, eventnr";
-	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
-	while( $event_instance = mysqli_fetch_assoc( $result ) )
+	while ($event_instance = mysqli_fetch_assoc($result))
 	{
-		$event_instance['event_date_str'] = $event_date->setDay2000( $event_instance['event_date'] )->getString( 'd.m.Y' );
-		$event_instance['starttime_str'] = $event_time->setValue( $event_instance['starttime'] )->getString( 'H:i' );
+		$event_instance['event_date_str'] = $event_date->setDay2000($event_instance['event_date'])->getString('d.m.Y');
+		$event_instance['starttime_str'] = $event_time->setValue($event_instance['starttime'])->getString('H:i');
 		$event_instance['endtime'] = $event_instance['starttime'] + $event_instance['length'];
-		$event_instance['endtime_str'] = $event_time->setValue( $event_instance['endtime'] )->getString( 'H:i' );
+		$event_instance['endtime_str'] = $event_time->setValue($event_instance['endtime'])->getString('H:i');
 		
-		if( $event_instance['length_str'] = $event_time->setValue( $event_instance['length'] )->getMin() )
-		{	$event_instance['length_str'] = $event_time->setValue( $event_instance['length'] )->getString( 'G\h i\m\i\n' );	}
+		if ($event_instance['length_str'] = $event_time->setValue($event_instance['length'])->getMin())
+		{	$event_instance['length_str'] = $event_time->setValue($event_instance['length'])->getString('G\h i\m\i\n'); }
 		else
-		{	$event_instance['length_str'] = $event_time->setValue( $event_instance['length'] )->getString( 'G\h' );	}
+		{	$event_instance['length_str'] = $event_time->setValue($event_instance['length'])->getString('G\h'); }
 		
-		if( $event_instance['short_name'] )
-		{	$event_instance['short_name_str'] = $event_instance['short_name'] . ":";	}
+		if ($event_instance['short_name'])
+		{	$event_instance['short_name_str'] = $event_instance['short_name'].":"; }
 		else
-		{	$event_instance['short_name_str'] = "";	}
+		{	$event_instance['short_name_str'] = ""; }
 		
-		$event_instance['color_str'] = "background-color: #" . $event_instance['color'];
+		$event_instance['color_str'] = "background-color: #".$event_instance['color'];
 		
-		if( $event_instance['form_type'] )	{	$event_instance['progress'] .= "%";	}
-		else								{	$event_instance['progress'] = "";	}
+		if ($event_instance['form_type']) {	$event_instance['progress'] .= "%"; }
+		else {	$event_instance['progress'] = ""; }
 		
-		$event_list[ $event_instance['id'] ] = $event_instance;
+		$event_list[$event_instance['id']] = $event_instance;
 	}
 	
 	//print_r( $event_list );

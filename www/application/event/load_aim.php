@@ -27,11 +27,11 @@
 				WHERE
 					course_aim.camp_id = $_camp->id AND
 					ISNULL( course_aim.pid )";	
-	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
-	if( !mysqli_error($GLOBALS["___mysqli_ston"]) && mysqli_num_rows( $result ) )
+	if (!mysqli_error($GLOBALS["___mysqli_ston"]) && mysqli_num_rows($result))
 	{
-		while( $aim_group = mysqli_fetch_assoc( $result ) )
+		while ($aim_group = mysqli_fetch_assoc($result))
 		{
 			$subquery = "	SELECT
 								course_aim.id,
@@ -49,18 +49,18 @@
 								event_aim.aim_id = course_aim.id
 							WHERE
 								course_aim.camp_id = $_camp->id AND
-								course_aim.pid = " . $aim_group['id'];
-			$subresult = mysqli_query($GLOBALS["___mysqli_ston"],  $subquery );
+								course_aim.pid = ".$aim_group['id'];
+			$subresult = mysqli_query($GLOBALS["___mysqli_ston"], $subquery);
 			
-			if( !mysqli_error($GLOBALS["___mysqli_ston"]) && mysqli_num_rows( $subresult ) )
+			if (!mysqli_error($GLOBALS["___mysqli_ston"]) && mysqli_num_rows($subresult))
 			{
-				while( $aim = mysqli_fetch_assoc( $subresult ) )
+				while ($aim = mysqli_fetch_assoc($subresult))
 				{				
-					$course_aim[ $aim_group['id'] ][ 'aim' ] = $aim_group['aim'];
-					$course_aim[ $aim_group['id'] ][ 'childs' ][] = $aim;
+					$course_aim[$aim_group['id']]['aim'] = $aim_group['aim'];
+					$course_aim[$aim_group['id']]['childs'][] = $aim;
 				}
 			}
 		}
 	}
 	
-	$_js_env->add( 'course_aim', $course_aim );
+	$_js_env->add('course_aim', $course_aim);

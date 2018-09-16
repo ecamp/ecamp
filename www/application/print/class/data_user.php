@@ -42,16 +42,16 @@
 		public $funct;
 		
 		
-		function print_data_user_class( $data, $pid )
+		function print_data_user_class($data, $pid)
 		{
-			$this->pid			= $pid;
-			$this->id			= $data['id'];
+			$this->pid = $pid;
+			$this->id = $data['id'];
 			$this->scoutname 	= $data['scoutname'];
 			$this->firstname 	= $data['firstname'];
 			$this->surname 		= $data['surname'];
 			$this->street 		= $data['street'];
 			$this->zipcode 		= $data['zipcode'];
-			$this->city 		= $data['city'];
+			$this->city = $data['city'];
 			$this->homenr 		= $data['homenr'];
 			$this->mobilnr 		= $data['mobilnr'];
 			$this->birthday 	= $data['birthday'];
@@ -59,15 +59,15 @@
 			$this->sex 			= $data['sex'];
 			$this->jspersnr 	= $data['jspersnr'];
 			$this->jsedu 		= $data['jsedu'];
-			$this->pbsedu 		= $data['pbsedu'];
+			$this->pbsedu = $data['pbsedu'];
 			$this->image 		= $data['image'];
 			$this->funct 		= $data['funct'];
 		}
 		
 		function get_name()
 		{
-			if( $this->scoutname )	{	return $this->scoutname;	}
-			else					{	return $this->firstname . " " . $this->surname;	}
+			if ($this->scoutname) {	return $this->scoutname; }
+			else {	return $this->firstname." ".$this->surname; }
 		}
 		
 	}

@@ -18,18 +18,17 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	$pid = mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['pid'] );
+	$pid = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['pid']);
 
 	$ans = array();
 	
-	if( $pid == 0 )
+	if ($pid == 0)
 	{
 		$query = "	SELECT *
 					FROM groups
 					WHERE ISNULL( pid ) AND active=1
 					ORDER BY name";
-	}
-	else
+	} else
 	{
 		$query = "	SELECT *
 					FROM groups
@@ -37,15 +36,15 @@
 					ORDER BY name";
 	}
 	
-	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
-	while( $g = mysqli_fetch_assoc( $result ) )
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+	while ($g = mysqli_fetch_assoc($result))
 	{
-		$g['text']  = $g['prefix'] . " " . $g['name'];
+		$g['text'] = $g['prefix']." ".$g['name'];
 		
 		$ans['values'][] = $g;
 	}
 	
-	$ans['num_values' ] = count( $ans['values'] );
+	$ans['num_values'] = count($ans['values']);
 	
-	echo json_encode( $ans );
+	echo json_encode($ans);
 	die();

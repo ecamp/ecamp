@@ -31,8 +31,8 @@
 		
 	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	$function_list = array();
-	while($row = mysqli_fetch_assoc($result))
-	{	$function_list[$row['id']] = $row['entry'];	}
+	while ($row = mysqli_fetch_assoc($result))
+	{	$function_list[$row['id']] = $row['entry']; }
 	
 	$active_camp_list = array();
 	$request_camp_list = array();
@@ -57,7 +57,7 @@
 				ORDER BY camp.id DESC";
 	
 	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
-	while($camp_detail = mysqli_fetch_assoc($result))
+	while ($camp_detail = mysqli_fetch_assoc($result))
 	{
 		$subquery = "SELECT 
 						MIN( subcamp.start ) AS start , 
@@ -80,29 +80,29 @@
 		
 		$c_start->setDay2000($camp_time['start']);
 		$c_end->setDay2000($camp_time['end']);
-		$c_today->setUnix( time() );
+		$c_today->setUnix(time());
 		
-		$camp_detail['past'] = ( $c_end->getValue() < $c_today->getValue() );
+		$camp_detail['past'] = ($c_end->getValue() < $c_today->getValue());
 		
 		$camp_detail['start'] = date("d.m.Y", $c_start->getUnix());
 		$camp_detail['end'] = date("d.m.Y", $c_end->getUnix());
 		
-		$camp_detail['creator'] = $camp_detail['scoutname_c'] . " / " . $camp_detail['firstname_c'] . " " . $camp_detail['surname_c'];
+		$camp_detail['creator'] = $camp_detail['scoutname_c']." / ".$camp_detail['firstname_c']." ".$camp_detail['surname_c'];
 		$camp_detail['function'] = $function_list[$camp_detail['function_id']];
 		
-		if( $camp_detail['creator_user_id'] == $_user->id )
-		{	$camp_detail['delete'] = true;	$camp_detail['exit'] = false;	}
+		if ($camp_detail['creator_user_id'] == $_user->id)
+		{	$camp_detail['delete'] = true; $camp_detail['exit'] = false; }
 		else
-		{	$camp_detail['delete'] = false;	$camp_detail['exit'] = true;	}
+		{	$camp_detail['delete'] = false; $camp_detail['exit'] = true; }
 		
-		$camp_detail['change_camp'] = "index.php?app=camp&cmd=action_change_camp&camp=" . $camp_detail['id'];
+		$camp_detail['change_camp'] = "index.php?app=camp&cmd=action_change_camp&camp=".$camp_detail['id'];
 		
 		$active_camp_list[] = $camp_detail;
 		$active_camp_sort[] = $camp_detail['sort'];
 	}
 	
-	if( is_array( $active_camp_sort ) )
-	{	array_multisort( $active_camp_sort, SORT_DESC, $active_camp_list );	}
+	if (is_array($active_camp_sort))
+	{	array_multisort($active_camp_sort, SORT_DESC, $active_camp_list); }
 
 	$query = 
 		"SELECT camp.*,
@@ -122,9 +122,9 @@
 	
 	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
-	$request_camp_show = ( mysqli_num_rows($result) > 0 );
+	$request_camp_show = (mysqli_num_rows($result) > 0);
 	
-	while($camp_detail = mysqli_fetch_assoc($result))
+	while ($camp_detail = mysqli_fetch_assoc($result))
 	{
 		$subquery = "SELECT 
 						MIN( subcamp.start ) AS start , 
@@ -149,10 +149,10 @@
 		$camp_detail['end'] = date("d.m.Y", $c_end->getUnix());
 		
 		$camp_detail['scout']  = $camp_detail['scout'];
-		$camp_detail['name']   =  $camp_detail['name'];
+		$camp_detail['name']   = $camp_detail['name'];
 		$camp_detail['slogan'] = $camp_detail['slogan'];
 		
-		if( $camp_detail['mail'] == "" )
+		if ($camp_detail['mail'] == "")
 			$camp_detail['from'] = "<unbekannt>";
 		else
 			$camp_detail['from'] = $camp_detail['scoutname']." / ".$camp_detail['firstname']." ".$camp_detail['surname'];
@@ -160,9 +160,9 @@
 		$request_camp_list[] = $camp_detail;
 	}
 
-	$show_list = ( $_REQUEST['show_list'] == 1 ) ? true : false;
+	$show_list = ($_REQUEST['show_list'] == 1) ? true : false;
 	
-	$_page->html->set('show_list', 			$show_list );
-	$_page->html->set('active_camp_list', 	$active_camp_list );
-	$_page->html->set('request_camp_list', 	$request_camp_list );
-	$_page->html->set('request_camp_show', 	$request_camp_show );
+	$_page->html->set('show_list', $show_list);
+	$_page->html->set('active_camp_list', $active_camp_list);
+	$_page->html->set('request_camp_list', $request_camp_list);
+	$_page->html->set('request_camp_show', $request_camp_show);

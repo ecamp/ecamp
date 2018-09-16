@@ -18,16 +18,16 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	$valid_fields = array("scoutname","firstname","surname","street","zipcode","city","homenr","mobilnr","birthday","ahv","sex","jspersnr","jsedu","pbsedu");
+	$valid_fields = array("scoutname", "firstname", "surname", "street", "zipcode", "city", "homenr", "mobilnr", "birthday", "ahv", "sex", "jspersnr", "jsedu", "pbsedu");
 	
 	$field = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['field']);
 	$value = $_REQUEST['value'];
 	$value_save = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $value);
 	
-	if( !in_array($field,$valid_fields) )
-	{	die();	}	
+	if (!in_array($field, $valid_fields))
+	{	die(); }	
 	
-	if($field == "birthday")
+	if ($field == "birthday")
 	{
 		$birthday = new c_date;
 		$birthday->setString($value_save);
@@ -38,12 +38,12 @@
 	$query = "UPDATE user SET $field = '$value_save' WHERE id = '$_user->id'";	
 	mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
-	if($field == "birthday")	{	$value_save = $birthday->getString("d.m.Y");	}
+	if ($field == "birthday") {	$value_save = $birthday->getString("d.m.Y"); }
 	
 	// XML-Response senden
 	header("Content-type: application/json");
 	
-	$ans_array= array("field" => $field, "value" => $value);
+	$ans_array = array("field" => $field, "value" => $value);
 	echo json_encode($ans_array);
 	die();
 	

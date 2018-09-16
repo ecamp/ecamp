@@ -47,47 +47,47 @@
 		public $event_aim = array();
 
 		
-		function print_data_event_class( $data, $pid )
+		function print_data_event_class($data, $pid)
 		{
 			$this->pid			= $pid;
 			$this->id 			= $data['id'];
-			$this->camp_id 		= $data['camp_id'];
-			$this->category_id 	= $data['category_id'];
+			$this->camp_id = $data['camp_id'];
+			$this->category_id = $data['category_id'];
 			$this->name 		= $data['name'];
 			$this->place 		= $data['place'];
 			$this->story 		= $data['story'];
 			$this->aim 			= $data['aim'];
 			$this->method 		= $data['method'];
 			$this->topics 		= $data['topics'];
-			$this->notes 		= $data['notes'];
-			$this->seco 		= $data['seco'];
+			$this->notes = $data['notes'];
+			$this->seco = $data['seco'];
 			$this->progress 	= $data['progress'];
 			
-			$this->category 	= $pid->category[ $this->category_id ];
+			$this->category 	= $pid->category[$this->category_id];
 			
 			
 		}
 		
-		function add_event_detail( $event_detail )
-		{	$this->event_detail[ $event_detail->id ] = $event_detail;	}
+		function add_event_detail($event_detail)
+		{	$this->event_detail[$event_detail->id] = $event_detail; }
 		
-		function add_event_instance( $event_instance )
-		{	$this->event_instance[ $event_instance->id ] = $event_instance;	}
+		function add_event_instance($event_instance)
+		{	$this->event_instance[$event_instance->id] = $event_instance; }
 		
-		function add_event_responsible( $event_responsible )
-		{	$this->event_responsible[ $event_responsible->id ] = $event_responsible;	}
+		function add_event_responsible($event_responsible)
+		{	$this->event_responsible[$event_responsible->id] = $event_responsible; }
 		
-		function add_mat_available( $mat )
-		{	$this->mat_available[ $mat->id ] = $mat;	}
+		function add_mat_available($mat)
+		{	$this->mat_available[$mat->id] = $mat; }
 		
-		function add_mat_organize( $mat )
-		{	$this->mat_organize[ $mat->id ] = $mat;		}
+		function add_mat_organize($mat)
+		{	$this->mat_organize[$mat->id] = $mat; }
 		
-		function add_event_checklist( $checklist )
-		{	$this->event_checklist[ $checklist->id ] = $checklist;	}
+		function add_event_checklist($checklist)
+		{	$this->event_checklist[$checklist->id] = $checklist; }
 		
-		function add_event_aim( $aim )
-		{	$this->event_aim[ $aim->id ] = $aim;	}
+		function add_event_aim($aim)
+		{	$this->event_aim[$aim->id] = $aim; }
 	}
 	
 ?>

@@ -21,7 +21,7 @@
   # TAG   zu    <!-- TAG -->    erweitern
   function add_tag( $replace )
   {
-    $return = array();
+	$return = array();
 	
 	foreach($replace as $key => $value)
 	{	$return["<!-- " . $key . " -->"] = $value;	}
@@ -41,8 +41,8 @@
 		$replace = add_tag ( $replace );
 		
 		$templatecontent = strtr(implode("", file($folder."/".$template.".".$endung)), $replace);
-     }
-     else
+	 }
+	 else
 	 {	error_message( "Template nicht gefunden: ".$folder."/".$template.".".$endung );	}
 		
 	 return $templatecontent;
@@ -61,12 +61,12 @@
   
   function gettemplate_app( $template, $replace=array(), $endung="tpl" )
   {
-      return gettemplate( $template, $replace, $endung, $GLOBALS['template_app_dir'] . "/" . $_page['app'] );
+	  return gettemplate( $template, $replace, $endung, $GLOBALS['template_app_dir'] . "/" . $_page['app'] );
   }
   
   function gettemplate_manual( $template, $folder, $replace=array(), $endung="tpl" )
   {
-      return gettemplate( $template, $replace, $endung, $folder );
+	  return gettemplate( $template, $replace, $endung, $folder );
   }
    
   

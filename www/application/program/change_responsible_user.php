@@ -18,50 +18,50 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	include( 'inc/get_program_update.php');
+	include('inc/get_program_update.php');
 	
-	$event_id	= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['event_id']);
+	$event_id = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['event_id']);
 	$resp_user	= $_REQUEST['resp_user'];
 	$user_pool	= $_REQUEST['user_pool'];
-	$time		= $_REQUEST['time'];
+	$time = $_REQUEST['time'];
 	
-	if( !is_array( $resp_user ) ){	$resp_user = array();	}
-	if( !is_array( $user_pool ) ){	$user_pool = array();	}
+	if (!is_array($resp_user)) {	$resp_user = array(); }
+	if (!is_array($user_pool)) {	$user_pool = array(); }
 	
-	$_camp->event( $event_id ) || die( "error" );
+	$_camp->event($event_id) || die("error");
 	
-	foreach($resp_user as $user)
+	foreach ($resp_user as $user)
 	{
-		$user = mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $user );
+		$user = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $user);
 		
 		$query = "SELECT id FROM event_responsible WHERE user_id = $user AND event_id = $event_id";
 		$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
-		if(mysqli_num_rows($result) == 0)
+		if (mysqli_num_rows($result) == 0)
 		{	
 			$query = "INSERT INTO event_responsible (user_id, event_id) VALUES ($user, $event_id)";
 			mysqli_query($GLOBALS["___mysqli_ston"], $query);
 			
 			$query = "SELECT * FROM event WHERE id = $event_id";
-			$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
-			$event = mysqli_fetch_assoc( $result );
+			$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+			$event = mysqli_fetch_assoc($result);
 			
 			$query = "SELECT active FROM user_camp WHERE camp_id = $_camp->id AND user_id = $user";
-			$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
-			$active = mysqli_result( $result,  0,  'active' );
+			$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+			$active = mysqli_result($result, 0, 'active');
 			
-			if( $user != $_user->id && $active )
+			if ($user != $_user->id && $active)
 			{
 				$_news->add2user( 
-					"Verantwortung für " . $event['name'],
-					"Dir wurde die Verantwortung für den Block '" . $event['name'] . "' zugeteilt.",
+					"Verantwortung für ".$event['name'],
+					"Dir wurde die Verantwortung für den Block '".$event['name']."' zugeteilt.",
 					time(), $user );
 			}
 		}
 	}
 	
-	foreach($user_pool as $user)
+	foreach ($user_pool as $user)
 	{
-		$user = mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $user );
+		$user = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $user);
 		
 		$query = "DELETE FROM event_responsible WHERE user_id = $user AND event_id = $event_id";
 		mysqli_query($GLOBALS["___mysqli_ston"], $query);
@@ -70,12 +70,12 @@
 	$query = "	UPDATE event 
 				SET t_edited = CURRENT_TIMESTAMP
 				WHERE id = $event_id";
-	mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+	mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
 	header("Content-type: application/json");
 	
-	$ans = get_program_update( $time );
-	echo json_encode( $ans );
+	$ans = get_program_update($time);
+	echo json_encode($ans);
 	
 	die();
 	

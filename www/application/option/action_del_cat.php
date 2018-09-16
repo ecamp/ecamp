@@ -18,18 +18,18 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	$cat_del_id 	= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['category_id']);
+	$cat_del_id = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['category_id']);
 	
-	$_camp->category( $cat_del_id ) || die( "error" );
+	$_camp->category($cat_del_id) || die("error");
 		//TESTEN OB NOCH BLÖCKE IN DIESER KATEGORIE SIND
 		$query = "SELECT id FROM event WHERE category_id='$cat_del_id'";
-		$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
-		$num_failure = mysqli_num_rows( $result );
+		$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+		$num_failure = mysqli_num_rows($result);
 	
-		if( $num_failure > 0 )
+		if ($num_failure > 0)
 		{
-			$ans = array( "error" => true, "msg" => "Diese Kategorie kann nicht gelöscht werden, da ihr $num_failure Programmblöcke zugeordnet sind. Bitte lösche erst diese Blöcke, oder weise ihnen eine andere Kategorie zu, und wiederhole dann den Löschvorgang." );
-			echo json_encode( $ans );
+			$ans = array("error" => true, "msg" => "Diese Kategorie kann nicht gelöscht werden, da ihr $num_failure Programmblöcke zugeordnet sind. Bitte lösche erst diese Blöcke, oder weise ihnen eine andere Kategorie zu, und wiederhole dann den Löschvorgang.");
+			echo json_encode($ans);
 			die();
 		}
 		
@@ -38,7 +38,7 @@
 		mysqli_query($GLOBALS["___mysqli_ston"], $query);
 		
 	//header("Location: index.php?app=option");
-	$ans = array( "error" => false );
-	echo json_encode( $ans );
+	$ans = array("error" => false);
+	echo json_encode($ans);
 	die();
 	

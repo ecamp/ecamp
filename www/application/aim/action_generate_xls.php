@@ -46,7 +46,7 @@
 			ORDER BY v.day_nr, v.event_nr";
 			//echo $query;
 			//die( $query );
-	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
 	//
 	$query = "SELECT d.entry FROM camp, dropdown d
@@ -69,11 +69,11 @@
   $worksheet->setInputEncoding ("UTF-8");
 	
   $format_content = & $workbook->addFormat(
-  	    array( "Size" => 8,
-	        "Align" => "left",
-	        "Border" => 1,
-	        "vAlign" => "top"
-        )
+  		array( "Size" => 8,
+			"Align" => "left",
+			"Border" => 1,
+			"vAlign" => "top"
+		)
   );
 	
 	$format_content_unboxed = & $workbook->addFormat(
@@ -85,7 +85,7 @@
 		)
 	);
 	
-	$format_header  = & $workbook->addFormat(
+	$format_header = & $workbook->addFormat(
 		array(
 			"Size" => 10,
 			"Bold" => 1,
@@ -95,7 +95,7 @@
 		)
 	);
 	
-	$format_title  = & $workbook->addFormat(
+	$format_title = & $workbook->addFormat(
 		array(
 			"Size" => 16,
 			"Bold" => 1,
@@ -116,33 +116,33 @@
 	//
 	$worksheet->setLandscape();
 	$worksheet->setMargins(0.5);
-	$worksheet->setMargins_TB (1);
+	$worksheet->setMargins_TB(1);
 	
 	$worksheet->hideGridlines();
 	
-	$worksheet->setHeader("&L&8".$_camp->short_name." &C &R&8 ".$course_type['entry'],"0.4");
-	$worksheet->setFooter("&C&8&P/&N","0.4"); 
+	$worksheet->setHeader("&L&8".$_camp->short_name." &C &R&8 ".$course_type['entry'], "0.4");
+	$worksheet->setFooter("&C&8&P/&N", "0.4"); 
 
 	// Column width
-	$worksheet->setColumn(0,0,22);
-	$worksheet->setColumn(1,1,16);
-	$worksheet->setColumn(2,4,32);
+	$worksheet->setColumn(0, 0, 22);
+	$worksheet->setColumn(1, 1, 16);
+	$worksheet->setColumn(2, 4, 32);
 	
 	// title
-	$worksheet->write(0, 0, "Blockübersicht",$format_title);
+	$worksheet->write(0, 0, "Blockübersicht", $format_title);
 	
 	// Header
 	$row = 2;
-	$worksheet->write($row, 0,"Die folgende Tabelle gibt eine Übersicht über die Ausbildungsblöcke. Dieses Dokument kann für die Kursanmeldung bei PBS verwendet werden.",$format_content_unboxed);
+	$worksheet->write($row, 0, "Die folgende Tabelle gibt eine Übersicht über die Ausbildungsblöcke. Dieses Dokument kann für die Kursanmeldung bei PBS verwendet werden.", $format_content_unboxed);
 	
-	$row++;$row++;
-	$worksheet->write($row, 0, "Bezeichnung\n(PBS-/J+S-Checkliste in [])",$format_header);
-	$worksheet->write($row, 1, "Datum und Zeit",$format_header);
-	$worksheet->write($row, 2, "behandelte Ausbildungsziele",$format_header);
-	$worksheet->write($row, 3, "Blockziele",$format_header);
-	$worksheet->write($row, 4, "Inhalte",$format_header);
+	$row++; $row++;
+	$worksheet->write($row, 0, "Bezeichnung\n(PBS-/J+S-Checkliste in [])", $format_header);
+	$worksheet->write($row, 1, "Datum und Zeit", $format_header);
+	$worksheet->write($row, 2, "behandelte Ausbildungsziele", $format_header);
+	$worksheet->write($row, 3, "Blockziele", $format_header);
+	$worksheet->write($row, 4, "Inhalte", $format_header);
 	
-	while( $this_event = mysqli_fetch_assoc($result) )
+	while ($this_event = mysqli_fetch_assoc($result))
 	{
 		$row++;
 		
@@ -158,14 +158,14 @@
 		  AND ec.event_id=$this_event[id]
 		ORDER BY cc.short_1, cc.short_2";
 		//echo $query;
-		$result2 = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+		$result2 = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 		
 		$checklist_str = "";
-		while( $this_checklist_item = mysqli_fetch_assoc($result2) )
+		while ($this_checklist_item = mysqli_fetch_assoc($result2))
 		{
-			$checklist_str = $checklist_str . $this_checklist_item['short'] . ", ";
+			$checklist_str = $checklist_str.$this_checklist_item['short'].", ";
 		}
-		$checklist_str = "[".substr($checklist_str,0,strlen($checklist_str)-2)."]";
+		$checklist_str = "[".substr($checklist_str, 0, strlen($checklist_str) - 2)."]";
 
 		// Ausbildungsziele
 		$query = "SELECT 
@@ -176,12 +176,12 @@
 		  AND ea.event_id=$this_event[id]
 		ORDER BY ea.id";
 		//echo $query;
-		$result2 = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+		$result2 = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 		
 		$aim_str = "";
-		while( $this_aim = mysqli_fetch_assoc($result2) )
+		while ($this_aim = mysqli_fetch_assoc($result2))
 		{
-			$aim_str = $aim_str . "- ".$this_aim['aim'] . "\n";
+			$aim_str = $aim_str."- ".$this_aim['aim']."\n";
 		}
 		
 		///////////////////////
@@ -201,7 +201,7 @@
 		$date = new c_date();
 		$date->setDay2000($this_event['day']);
 		
-		$this_date = $GLOBALS['en_to_de'][$date->getString("D")].", ".$date->getString("j.n.").", ".$start->getString("G:i")."-".$end->getString("G:i");//"Fr, 5.10., 17:15-18:00";
+		$this_date = $GLOBALS['en_to_de'][$date->getString("D")].", ".$date->getString("j.n.").", ".$start->getString("G:i")."-".$end->getString("G:i"); //"Fr, 5.10., 17:15-18:00";
 		$worksheet->write($row, 1, $this_date, $format_content);
 		//echo $this_date."   ";	
 		

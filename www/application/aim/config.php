@@ -34,7 +34,7 @@ $css = array(
 				"main.css" 					=> "app",
 			);
 
-$js  = array(
+$js = array(
 				"mootools-core-1.4.js" 		=> "global",
 				"mootools-more-1.4.js" 		=> "global",
 				"dynamic_input.js"	=> "global",
@@ -45,7 +45,7 @@ $js  = array(
 			);
 
 # Standardkommando
-if( $_page->cmd == "" ) {	$_page->cmd = "main";	}
+if ($_page->cmd == "") {	$_page->cmd = "main"; }
 
 
 ?>

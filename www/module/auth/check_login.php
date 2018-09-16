@@ -20,15 +20,14 @@
 
 	session_start();
 
-	if(	
+	if (	
 		!isset($_SESSION['user_id']) || $_SESSION['user_id'] == "" || 
 		!isset($_SESSION['user_ip']) || $_SESSION['user_ip'] != $_SERVER['REMOTE_ADDR']
 	)
 	{
 		header("Location: login.php");
 		die();
-	}
-	else
+	} else
 	{
 		$_user->id = $_SESSION['user_id'];
 		$_user->ip = $_SESSION['user_ip'];
@@ -45,10 +44,11 @@
 			if($_user->active == "1")
 			{	
 				// Namen richtig setzten
-				if( $_user->scoutname != "" ) 
-					$_user->display_name = $_user->scoutname;
-				else 
-					$_user->display_name = $_user->firstname . " " . $_user->surname;
+				if( $_user->scoutname != "" ) {
+									$_user->display_name = $_user->scoutname;
+				} else {
+									$_user->display_name = $_user->firstname . " " . $_user->surname;
+				}
 
 				// Berechtigungen auslesen
 				$_user_camp->auth_level = 10;
@@ -75,9 +75,9 @@
 						else
 						{
 							if( $_camp->is_course)
-							    $fnc = "function_course";
+								$fnc = "function_course";
 							else
-							    $fnc = "function_camp";
+								$fnc = "function_camp";
 							
 							$query = "	SELECT 
 											MAX(dropdown.value) as level 
@@ -90,21 +90,21 @@
 											camp.id=user_camp.camp_id AND 
 											user_camp.function_id=dropdown.id AND 
 											dropdown.list='".$fnc."' AND 
-											user_camp.user_id='" . $_user->id . "' 
-											AND camp.id='" . $_camp->id . "'";
+											user_camp.user_id='" . $_user->id."' 
+											AND camp.id='" . $_camp->id."'";
 							$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
-							if(mysqli_num_rows($result) > 0)
+							if (mysqli_num_rows($result) > 0)
 							{
 								$val = mysqli_fetch_assoc($result);
-								if( $val['level'] > $_user_camp->auth_level)
-								{	$_user_camp->auth_level = $val['level'];	}
+								if ($val['level'] > $_user_camp->auth_level)
+								{	$_user_camp->auth_level = $val['level']; }
 							}
 						}
 					}
 				}
 				
 				// Wenn möglich Admin setzen
-				if( $_user->admin == 1 ) $_user_camp->auth_level = 100;
+				if ($_user->admin == 1) $_user_camp->auth_level = 100;
 			}
 			else
 			{	

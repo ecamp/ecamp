@@ -21,13 +21,13 @@
  */
 class PHPTAL_Dom_DocumentType extends PHPTAL_Dom_Node
 {
-    public function generateCode(PHPTAL_Php_CodeWriter $codewriter)
-    {
-        if ($codewriter->getOutputMode() === PHPTAL::HTML5) {
-            $codewriter->setDocType('<!DOCTYPE html>');
-        } else {
-            $codewriter->setDocType($this->getValueEscaped());
-        }
-        $codewriter->doDoctype();
-    }
+	public function generateCode(PHPTAL_Php_CodeWriter $codewriter)
+	{
+		if ($codewriter->getOutputMode() === PHPTAL::HTML5) {
+			$codewriter->setDocType('<!DOCTYPE html>');
+		} else {
+			$codewriter->setDocType($this->getValueEscaped());
+		}
+		$codewriter->doDoctype();
+	}
 }

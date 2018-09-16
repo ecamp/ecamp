@@ -22,9 +22,9 @@
 	//$_page->html = new PHPTAL('template/global/main.tpl');
 	
 	$event_id = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['event_id']);
-	$_page->html->set( 'event_id', $event_id );
+	$_page->html->set('event_id', $event_id);
 	
-	$_camp->event( $event_id ) || die( "error" );
+	$_camp->event($event_id) || die("error");
 	
 //	NAME:
 // =======
@@ -41,7 +41,7 @@
 	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	$row = mysqli_fetch_assoc($result);
 	
-	$_page->html->set( 'name', $row['short_name'] . ": " . $row['name'] );
+	$_page->html->set('name', $row['short_name'].": ".$row['name']);
 	$event_place = $row['place'];
 	
 	//$data_left['name'] = gettemplate_app('dp_name', array(	"name" => $row['short_name'] . ": " . $row['name'] ) );
@@ -62,17 +62,17 @@
 	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
 	$users = array();
-	$dp_header = array( "users" => $users );
+	$dp_header = array("users" => $users);
 	
-	while($row = mysqli_fetch_assoc($result))
+	while ($row = mysqli_fetch_assoc($result))
 	{
-		if(!empty($row['scoutname']))
-		{	array_push( $dp_header['users'], $row['scoutname'] );	}
+		if (!empty($row['scoutname']))
+		{	array_push($dp_header['users'], $row['scoutname']); }
 		else
-		{	array_push( $dp_header['users'], $row['firstname'] . " " . $row['surname'] );	}
+		{	array_push($dp_header['users'], $row['firstname']." ".$row['surname']); }
 	}
 	
-	$dp_header['place'] =  array(
+	$dp_header['place'] = array(
 		"value" 	=> $event_place,
 		"event_id" 	=> $event_id,
 		"script"	=> "action_change_place"
@@ -90,13 +90,13 @@
 					event_instance.event_id = $event_id AND
 					event_instance.day_id = day.id AND
 					day.subcamp_id = subcamp.id";
-	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
-	$date 	= new c_date;
+	$date = new c_date;
 	$start 	= new c_time;
-	$end 	= new c_time;
+	$end = new c_time;
 	$dp_header['event_instance'] = array();
-	while($row = mysqli_fetch_assoc( $result ) )
+	while ($row = mysqli_fetch_assoc($result))
 	{
 		$date->setDay2000($row['startdate']);
 		$start->setValue($row['starttime']);
@@ -104,11 +104,11 @@
 		
 		$dp_header['event_instance'][] = array(
 			'startdate' => date("d.m.Y", $date->getUnix()),
-			'starttime' => $start->getString("H:i") . " - " . $end->getString("H:i")
+			'starttime' => $start->getString("H:i")." - ".$end->getString("H:i")
 		);
 	}
 	
-	$_page->html->set( 'dp_header', $dp_header );
+	$_page->html->set('dp_header', $dp_header);
 	
 //	HEAD:
 // =======
@@ -125,10 +125,10 @@
 					event.category_id = category.id AND
 					dropdown.list = 'form'";
 	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
-	while( $row = mysqli_fetch_assoc( $result ) )
-	{	$dp_head_show[ $row['form'] ] = $row['show_form'];	}
+	while ($row = mysqli_fetch_assoc($result))
+	{	$dp_head_show[$row['form']] = $row['show_form']; }
 	
-	$_page->html->set( 'dp_head_show', $dp_head_show );
+	$_page->html->set('dp_head_show', $dp_head_show);
 	
 	$query = "	SELECT
 					event.aim as aim,
@@ -159,7 +159,7 @@
 		"script"	=> "action_save_change_method",
 		"event_id"	=>	$event_id
 	);
-	$_page->html->set( 'dp_head', $dp_head );	
+	$_page->html->set('dp_head', $dp_head);	
 	
 	echo $_page->html->execute();
 	die();
@@ -178,10 +178,10 @@
 					event_detail.event_id = $event_id";
 	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
-	while($row = mysqli_fetch_assoc($result))
+	while ($row = mysqli_fetch_assoc($result))
 	{
-		foreach($row as $k => $v)
-		{	$row[$k] = htmlentities($v);	}
+		foreach ($row as $k => $v)
+		{	$row[$k] = htmlentities($v); }
 		
 		$row['time'] = gettemplate_app(
 			'input_text', array(
@@ -225,12 +225,12 @@
 						user_camp.user_id = user.id";
 		$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 		
-		while($row = mysqli_fetch_assoc($result))
+		while ($row = mysqli_fetch_assoc($result))
 		{
-			if( !empty($row['scoutname']) )
-			{	array_push($leader_list, "<option value='" . $row['id'] . "'>" . $row['scoutname'] . "</option>");	}
+			if (!empty($row['scoutname']))
+			{	array_push($leader_list, "<option value='".$row['id']."'>".$row['scoutname']."</option>"); }
 			else
-			{	array_push($leader_list, "<option value='" . $row['id'] . "'>" . $row['firstname'] . " " . $row['surname'] . "</option>");	}
+			{	array_push($leader_list, "<option value='".$row['id']."'>".$row['firstname']." ".$row['surname']."</option>"); }
 		}
 		
 	//	Buy:
@@ -245,10 +245,10 @@
 						mat_article_event.event_id = $event_id";
 		$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 		
-		while($row = mysqli_fetch_assoc($result))
+		while ($row = mysqli_fetch_assoc($result))
 		{
-			foreach($row as $k => $v)
-			{	$row[$k] = htmlentities($v);	}
+			foreach ($row as $k => $v)
+			{	$row[$k] = htmlentities($v); }
 			
 			$mat_lists['buy'] .= gettemplate_app('dp_mat_buy', $row);
 		}
@@ -266,10 +266,10 @@
 						mat_stuff.stocked = '1'";
 		$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 		
-		while($row = mysqli_fetch_assoc($result))
+		while ($row = mysqli_fetch_assoc($result))
 		{
-			foreach($row as $k => $v)
-			{	$row[$k] = htmlentities($v);	}
+			foreach ($row as $k => $v)
+			{	$row[$k] = htmlentities($v); }
 			
 			$mat_lists['stocked'] .= gettemplate_app('dp_mat_stocked', $row);
 		}
@@ -287,16 +287,16 @@
 						mat_stuff.stocked = '0'";
 		$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 		
-		while($row = mysqli_fetch_assoc($result))
+		while ($row = mysqli_fetch_assoc($result))
 		{
-			foreach($row as $k => $v)
-			{	$row[$k] = htmlentities($v);	}
+			foreach ($row as $k => $v)
+			{	$row[$k] = htmlentities($v); }
 			
 			$mat_lists['nonstocked'] .= gettemplate_app('dp_mat_nonstocked', $row);
 		}
 	
 	$mat_lists['event_id'] = $event_id;
-	$mat_lists['leader_list'] = implode( $leader_list );
+	$mat_lists['leader_list'] = implode($leader_list);
 	
 	$data_right['mat'] = gettemplate_app('dp_mat_main', $mat_lists);
 	
@@ -345,15 +345,15 @@
 					event_document.user_id = user.id";
 	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
-	while($row = mysqli_fetch_assoc($result))
+	while ($row = mysqli_fetch_assoc($result))
 	{
 		$row['scoutname'] = htmlentities($row['scoutname']);
 		$row['firstname'] = htmlentities($row['firstname']);
-		$row['surname'] 	= htmlentities($row['surname']);
-		$row['name'] 		= htmlentities($row['name']);
+		$row['surname'] = htmlentities($row['surname']);
+		$row['name'] = htmlentities($row['name']);
 		
-		if(!empty($row['scoutname']))	{	$row['user'] = $row['scoutname'];	}
-		else						{	$row['user'] = $row['firstname'] . " " . $row['surname'];	}
+		if (!empty($row['scoutname'])) {	$row['user'] = $row['scoutname']; }
+		else {	$row['user'] = $row['firstname']." ".$row['surname']; }
 		
 		array_push($file_list, gettemplate_app('dp_pdf_file', $row));
 	}
@@ -378,13 +378,13 @@
 					comment.user_id = user.id";
 	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
-	while($row = mysqli_fetch_assoc($result))
+	while ($row = mysqli_fetch_assoc($result))
 	{
-		foreach($row as $k => $v)
-		{	$row[$k] = htmlentities($v);	}
+		foreach ($row as $k => $v)
+		{	$row[$k] = htmlentities($v); }
 		
-		if(!empty($row['scoutname']))	{	$row['user'] = $row['scoutname'];	}
-		else						{	$row['user'] = $row['firstname'] . " " . $row['surname'];	}
+		if (!empty($row['scoutname'])) {	$row['user'] = $row['scoutname']; }
+		else {	$row['user'] = $row['firstname']." ".$row['surname']; }
 		
 		array_push($comment_list, gettemplate_app('dp_comment_entry', $row));
 	}
@@ -396,7 +396,7 @@
 	//$xml = gettemplate_main( "ajax_response", $replace ); 
 	
 	header("Content-type: application/html");
-    //echo $xml;
+	//echo $xml;
 	echo gettemplate_app('dp_main', array("left" => implode($data_left), "right" => implode($data_right) ) );
 	
 	die();

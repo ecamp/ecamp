@@ -36,25 +36,25 @@
 	{
 		public $_meta;
 		
-		function db( $config )
+		function db($config)
 		{
 			$this->_meta = new o();
 			$this->_meta->config = $config;
 			$this->_meta->loaden_table = array();
 		}
 		
-		function load_table( $table )
+		function load_table($table)
 		{
-			if( !array_key_exists( $table, $this->_meta->config ) )	{	return false;	}
+			if (!array_key_exists($table, $this->_meta->config)) {	return false; }
 			
-			if( !in_array( $table, $this->_meta->loaden_table ) )
+			if (!in_array($table, $this->_meta->loaden_table))
 			{
-				$this->$table = new db_table( $table, $this->_meta->config[$table], $this );
+				$this->$table = new db_table($table, $this->_meta->config[$table], $this);
 				
-				foreach( $this->_meta->loaden_table as $t )
+				foreach ($this->_meta->loaden_table as $t)
 				{
-					if( array_key_exists( $table, $this->$t->_meta->waiting_for_table ) )
-					{	$this->$t->waiting_table_is_loaden( $table );	}
+					if (array_key_exists($table, $this->$t->_meta->waiting_for_table))
+					{	$this->$t->waiting_table_is_loaden($table); }
 				}
 				
 				$this->_meta->loaden_table[] = $table;
@@ -67,72 +67,72 @@
 		public $_meta;
 		public $_data = array();
 		
-		function db_table( $table, $config, $db )
+		function db_table($table, $config, $db)
 		{
 			$this->_meta = new o();
 			$this->_meta->config = $config;
 			$this->_meta->db = $db;
 			$this->_meta->waiting_for_table = array();
 			
-			foreach( $this->_meta->config as $c => $t )
+			foreach ($this->_meta->config as $c => $t)
 			{
-				if( $t && !in_array( $t, $this->_meta->db->_meta->loaden_table ) )
-				{	$this->_meta->waiting_for_table[$t] = $c;	}
+				if ($t && !in_array($t, $this->_meta->db->_meta->loaden_table))
+				{	$this->_meta->waiting_for_table[$t] = $c; }
 			}
 			
 			global $_Q;
 			
 			$query = $_Q[$table];
 			
-			$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
-			if( mysqli_error($GLOBALS["___mysqli_ston"]) )	{	return false;	}
+			$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+			if (mysqli_error($GLOBALS["___mysqli_ston"])) {	return false; }
 
-			while( $row = mysqli_fetch_assoc( $result ) )
+			while ($row = mysqli_fetch_assoc($result))
 			{
 				$id = $row['id'];
-				$this->$id = new db_row( $row, $this->_meta->config, $this );
+				$this->$id = new db_row($row, $this->_meta->config, $this);
 				$this->_data[$id] = $this->$id;
 			}
 		}
 		
-		function waiting_table_is_loaden( $t )
+		function waiting_table_is_loaden($t)
 		{
 			$c = $this->_meta->waiting_for_table[$t];
 			
-			foreach( $this->_data as $r )
+			foreach ($this->_data as $r)
 			{
 				$t_id = $r->$c;
 				$r->$t = $this->_meta->db->$t->$t_id;
 			}
 			
 			$this->_meta->waiting_for_table[$t] = null;
-			$this->_meta->waiting_for_table = array_filter( $this->_meta->waiting_for_table );
+			$this->_meta->waiting_for_table = array_filter($this->_meta->waiting_for_table);
 		}
 		
-		function get_row( $id )
-		{	return $this->$id;	}
+		function get_row($id)
+		{	return $this->$id; }
 	}
 	
 	class db_row
 	{
 		public $_meta;
 		
-		function db_row( $row, $config, $db_table )
+		function db_row($row, $config, $db_table)
 		{
 			$this->_meta = new o();
 			$this->_meta->config = $config;
 			$this->_meta->db_table = $db_table;
 			
-			foreach( $row as $n => $c )
+			foreach ($row as $n => $c)
 			{
 				$this->$n = $c;
 				
 				$nn = $this->_meta->config[$n];
-				if( $nn && in_array( $nn, $this->_meta->db_table->_meta->db->_meta->loaden_table ) )
-				{	$this->$nn = $this->_meta->db_table->_meta->db->$nn;	}
+				if ($nn && in_array($nn, $this->_meta->db_table->_meta->db->_meta->loaden_table))
+				{	$this->$nn = $this->_meta->db_table->_meta->db->$nn; }
 			}
 		}
 		
-		function get_cell( $name )
-		{	return $this->$name;	}
+		function get_cell($name)
+		{	return $this->$name; }
 	}

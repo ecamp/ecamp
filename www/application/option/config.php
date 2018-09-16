@@ -54,7 +54,7 @@ $css = array(
 				//"color.css"					=> "module"
 			);
 
-$js  = array(
+$js = array(
 				"mootools-core-1.4.js" 		=> "global",
 				"mootools-more-1.4.js" 		=> "global",
 				"other.js"					=> "global",
@@ -71,7 +71,7 @@ $div = array(
 
 
 # Standardkommando
-if( $_page->cmd == "" ) $_page->cmd = "home";
+if ($_page->cmd == "") $_page->cmd = "home";
 
 
 ?>

@@ -19,15 +19,15 @@
  */
 
 	
-	$day_id  = mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST[ 'day_id' ] );
-	$job_id  = mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST[ 'job_id' ] );
-	$user_id = mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST[ 'user_id' ] );
+	$day_id  = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['day_id']);
+	$job_id  = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['job_id']);
+	$user_id = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['user_id']);
 	
-	$_camp->day( $day_id ) || die( "error" );
-	$_camp->job( $job_id ) || die( "error" );
+	$_camp->day($day_id) || die("error");
+	$_camp->job($job_id) || die("error");
 	
 	
-	if( $user_id )
+	if ($user_id)
 	{
 		$query = "	SELECT
 						user_camp.id
@@ -36,8 +36,8 @@
 					WHERE
 						user_camp.camp_id = $_camp->id AND
 						user_camp.user_id = $user_id";
-		$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
-		$user_camp_id = mysqli_result( $result,  0,  'id' );
+		$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+		$user_camp_id = mysqli_result($result, 0, 'id');
 		
 		$query = "	SELECT
 						job_day.id
@@ -46,9 +46,9 @@
 					WHERE
 						job_day.day_id = $day_id AND
 						job_day.job_id = $job_id";
-		$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+		$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 		
-		if( mysqli_num_rows( $result ) )
+		if (mysqli_num_rows($result))
 		{
 			$query = "	UPDATE
 							job_day
@@ -57,7 +57,7 @@
 						WHERE
 							job_day.day_id = $day_id AND
 							job_day.job_id = $job_id";
-			$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+			$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 		}
 		else
 		{
@@ -66,25 +66,23 @@
 						( `job_id`, `day_id`, `user_camp_id` )
 						VALUES
 						( $job_id, $day_id, $user_camp_id )";
-			$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+			$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 		}
-	}
-	else
+	} else
 	{
 		$query = "	DELETE FROM job_day WHERE job_id = $job_id AND day_id = $day_id";
-		mysqli_query($GLOBALS["___mysqli_ston"],  $query );
+		mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	}
 	
-	if( mysqli_error($GLOBALS["___mysqli_ston"]) )
+	if (mysqli_error($GLOBALS["___mysqli_ston"]))
 	{
-		$ans = array( "error" => true, "error_msg" => "Fehler aufgetreten" );
-		echo json_encode( $ans );
+		$ans = array("error" => true, "error_msg" => "Fehler aufgetreten");
+		echo json_encode($ans);
 		die();
-	}
-	else
+	} else
 	{
-		$ans = array( "error" => false, "value" => $user_id );
-		echo json_encode( $ans );
+		$ans = array("error" => false, "value" => $user_id);
+		echo json_encode($ans);
 		die();
 	}
 	

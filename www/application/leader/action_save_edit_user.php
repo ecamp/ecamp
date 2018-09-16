@@ -24,15 +24,15 @@
 	
 	$street		= $_REQUEST['street'];
 	$zipcode	= $_REQUEST['zipcode'];
-	$city		= $_REQUEST['city'];
+	$city = $_REQUEST['city'];
 	
 	$mobilnr	= $_REQUEST['mobilnr'];
 	$homenr		= $_REQUEST['homenr'];
 	
-	$ahv		= $_REQUEST['ahv'];
+	$ahv = $_REQUEST['ahv'];
 	$birthday	= $_REQUEST['birthday'];
-	$jsedu		= $_REQUEST['jsedu'];
-	$pbsedu		= $_REQUEST['pbsedu'];
+	$jsedu = $_REQUEST['jsedu'];
+	$pbsedu = $_REQUEST['pbsedu'];
 	$jspersnr	= $_REQUEST['jspersnr'];
 	$sex		= $_REQUEST['sex'];
 	

@@ -63,11 +63,11 @@ $css = array(
 				"d_program.css"				=> "app"
 			);
 
-$js  = array(
+$js = array(
 			);
 
 # Standardkommando
-if( $_page->cmd == "" ) {	$_page->cmd = "home";	}
+if ($_page->cmd == "") {	$_page->cmd = "home"; }
 
 
 ?>
