@@ -29,9 +29,14 @@
 		{	$camp_id = 0;	}
 
 		session_unset();
+
+		$ip = (!empty($_SERVER['HTTP_CF_CONNECTING_IP']))
+        		? (string) $_SERVER['HTTP_CF_CONNECTING_IP']
+        		: ((!empty($_SERVER['REMOTE_ADDR'])) ? (string) $_SERVER['REMOTE_ADDR'] : '');
+
 		
 		$_SESSION['user_id'] = $user_id;
-		$_SESSION['user_ip'] = $_SERVER['REMOTE_ADDR'];
+		$_SESSION['user_ip'] = $ip;
 		$_SESSION['camp_id'] = $camp_id;
 	}
 
