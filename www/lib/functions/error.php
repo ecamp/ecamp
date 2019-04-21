@@ -18,7 +18,6 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
   function error_message( $msg )
   {
   		echo $msg;
@@ -27,5 +26,4 @@
   		echo "<a href='javascript:history.back()'>Zurück</a>";
 		exit;
   }
-
 ?>

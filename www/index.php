@@ -154,11 +154,12 @@
   	    foreach($css as $css_file => $place)
 		{
 			if($place == "app")
-			{	$css_file = $public_app_dir . "/" . $_page->app . "/css/" . $css_file;	}
+			{$css_file = $public_app_dir . "/" . $_page->app . "/css/" . $css_file;}
 			elseif($place == "global")
-			{	$css_file = $public_global_dir . "/css/" . $css_file;	}
+			{$css_file = $public_global_dir . "/css/" . $css_file;}
 			elseif($place == "module")
-			{	$css_file = $public_module_dir . "/css/" . $css_file;	}
+			{$css_file = $public_module_dir . "/css/" . $css_file;}
+			elseif ($place == "web"){$css_file = $css_file;}
 
 			$includes['css'][] = $css_file;
 		}
@@ -175,9 +176,10 @@
 			if($place == "app")
 			{$js_file = $public_app_dir . "/" . $_page->app . "/js/" . $js_file;}
 			elseif($place == "global")
-			{	$js_file = $public_global_dir . "/js/" . $js_file;	}
+			{$js_file = $public_global_dir . "/js/" . $js_file;}
 			elseif($place == "module")
-			{	$js_file = $public_module_dir . "/js/" . $js_file;	}
+			{$js_file = $public_module_dir . "/js/" . $js_file;}
+			elseif ($place == "web"){$js_file == $js_file;}
 
 			$includes['js'][] = $js_file;
 		}

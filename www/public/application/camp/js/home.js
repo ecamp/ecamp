@@ -18,8 +18,7 @@
  */
 
 window.addEvent('load', function()
-{	
-	
+{
 	var args = new Hash({ "app": "camp", "cmd": "action_save_change" });
 	
 	new DI_TEXT( 'camp_group_name',	{ 'args': args.set('field', 'group_name'), 'min_level': 50 } );
@@ -33,24 +32,33 @@ window.addEvent('load', function()
 	city =	new DI_TEXT( 'camp_ca_city',	{ 'args': args.set('field', 'ca_city'), 'min_level': 50 } );
 	new DI_TEXT( 'camp_ca_tel',		{ 'args': args.set('field', 'ca_tel'), 'min_level': 50 } );
 
-	
 	coor = new DI_MULTIPLE([
 						{ "type": "text", "element": "camp_ca_coor1", "options": { 'buttons': false, 'min_level': 50 } },
 						{ "type": "text", "element": "camp_ca_coor2", "options": { 'buttons': false, 'min_level': 50 } },
 						{ "type": "text", "element": "camp_ca_coor3", "options": { 'buttons': false, 'min_level': 50 } },
 						{ "type": "text", "element": "camp_ca_coor4", "options": { 'buttons': true, 'min_level': 50 } }
 					], { 'single_save': true, 'args': args.set( 'field', 'ca_coor' ), 'min_level': 50 } );
-	
 
-	
-	var Map = new SearchChMap({ controls: "zoom", zoom: 2, circle:false, autoload: false });	
-	var poi = new SearchChPOI({ html:"Lagerplatz" });
-	Map.addPOI( poi );
+	// POIs to show on different zoom levels
+	var poiGroupsZoomedIn 	= "zug,haltestelle,bergbahn,feuerstelle,bad,spital,apotheke,berg,pass,wasserfall,tankstelle";
+	var poiGroupsZoomedOut 	= "zug,bergbahn,feuerstelle,bad,spital,apotheke,berg,pass,wasserfall,tankstelle";
+
+	var Map = new SearchChMap({
+		controls: "zoom,type",
+		zoom: 16,					// possible: 0.25,0.5,1,2,4,8,16,...,256
+		poigroups: poiGroupsZoomedIn
+	});
+
 	Map.disable("clickzoom");
-	
+
 	if( ! auth.access( 50 ) )
 	{	Map.disable("all");	}
-	
+
+	var poi = new SearchChPOI({
+		html: "Lagerplatz",
+		width: 30,
+		height: 30
+	});
 	
 	if( coor.list[0].show_input.get('value') )
 	{
@@ -58,9 +66,10 @@ window.addEvent('load', function()
 			 coor.list[1].show_input.get('value');
 		c2 = coor.list[2].show_input.get('value') +
 			 coor.list[3].show_input.get('value');
-		poi.set({ center: [ c1, c2 ] });
-		
-		Map.set({ center: [ c1, c2 ] });
+
+		poi.set({ center: [c1,c2] });
+		Map.addPOI(poi);
+		Map.set({ center: [c1,c2] });
 		Map.init();
 	}
 	else
@@ -71,59 +80,60 @@ window.addEvent('load', function()
 			Map.init();
 		}
 	}
-	
-	
-	Map.addEventListener( 'change', function(e)
+
+	Map.addEventListener( 'zoomend', function( e )
 	{
-		if( Map.get( 'center' ).capitalize() != city.show_input.get( 'value') ) 
+		if(Map.get( 'zoom' ) <= 4)
 		{
-			if( Map.get('center').capitalize() != Map.get('center') )
-			{
-				city.edit_input.set( 'value', Map.get('center').capitalize() );
-				city.save();
-			}
+			Map.set({ poigroups: poiGroupsZoomedIn });
+			Map.init();
+		} else if(Map.get( 'zoom' ) > 4 && Map.get( 'zoom' ) <= 16) {
+			Map.set({ poigroups: poiGroupsZoomedOut });
+			Map.init();
+		} else if(Map.get( 'zoom' ) > 16) {
+			Map.set({ poigroups: 'default' });
+			Map.init();
 		}
 	});
-	
-	
+
 	Map.addEventListener( 'mouseclick', function( e )
 	{
-		mx1 = (e.mx / 1000).floor();
-		mx2 = e.mx - mx1 * 1000;
-		
-		my1 = (e.my / 1000).floor();
-		my2 = e.my - my1 * 1000;
-		
-		$popup.popup_yes_no(
-			"Neue Lagerplatz-Koordinaten", 
-			"Sollen die neuen Lagerplatz-Koordinaten <br /> ( " + mx1 + "." + mx2 + " / " + my1 + "." + my2 + " ) gespeichert werden?",
-			function()
-			{
-				coor.list[0].edit_input.set( 'value', mx1 );
-				coor.list[1].edit_input.set( 'value', mx2 );
-				coor.list[2].edit_input.set( 'value', my1 );
-				coor.list[3].edit_input.set( 'value', my2 );
-				
-				poi.set({ center: [ e.mx, e.my ] });
-				Map.set({ center: [ e.mx, e.my ] });
+		console.log(e);
+		if(e.target._popup == null) {
+			mx1 = (e.mx / 1000).floor();
+			mx2 = e.mx - mx1 * 1000;
 
-				coor.save();
-				
-				$popup.hide_popup();
-			},
-			function(){	$popup.hide_popup();	}, 
-			"popup_yes_button"
-		);
-		
+			my1 = (e.my / 1000).floor();
+			my2 = e.my - my1 * 1000;
+
+			$popup.popup_yes_no(
+				"Neue Lagerplatz-Koordinaten",
+				"Sollen die neuen Lagerplatz-Koordinaten <br /> ( " + mx1 + "." + mx2 + " / " + my1 + "." + my2 + " ) gespeichert werden?",
+				function()
+				{
+					coor.list[0].edit_input.set( 'value', mx1 );
+					coor.list[1].edit_input.set( 'value', mx2 );
+					coor.list[2].edit_input.set( 'value', my1 );
+					coor.list[3].edit_input.set( 'value', my2 );
+
+					poi.set({ center: [ e.mx, e.my ] });
+					Map.set({ center: [ e.mx, e.my ], marker: false });
+
+					coor.save();
+
+					$popup.hide_popup();
+				},
+				function(){	$popup.hide_popup();	},
+				"popup_yes_button"
+			);
+		}
 	});
-	
-	
+
 	plz.addEventListener( 'change', function()
 	{
 		this.set( { center: plz.show_input.get('value') } );
 		this.init();
 	}.bind(Map));
-	
 	
 	$$('.camp_input').each( function(item)
 	{
@@ -175,11 +185,9 @@ window.addEvent('load', function()
 			}).send();
 		});
 	});
-	
-	
+
 	$('camp_show_map').addEvent( 'click', function()
 	{
-		
 		link = new Hash(
 		{
 			"layer":	"sym,fg,circle",
@@ -191,7 +199,7 @@ window.addEvent('load', function()
 						"," + 
 						$('camp_ca_coor3').get('value') + $('camp_ca_coor4').get('value')
 		});
-		url = "http://map.search.ch/chmap.jpg?" + link.toQueryString();
+		url = "https://map.search.ch/" + c1 + "," + c2 + "?" + link.toQueryString();
 		
 		window.open( url, "map" );
 	});
@@ -221,9 +229,7 @@ window.addEvent('load', function()
 			question = "M&ouml;chtest du den Lagerteil vom " + item.getElement('.date').get('html') + " wirklich l&ouml;schen? Alle enthaltenen Programmbl&ouml;cke werden unwiderruflich gel&ouml;scht!<br /><br />Datum: " + item.getElement('.date').get('html');
 			$popup.popup_yes_no("Teillager l&ouml;schen", question, yes_function, function(){}, "popup_no_button");
 		});
-		
-		
-		
+
 		item.getElements('td .change').addEvent('click', function()
 		{			
 			subcamp_start 	= item.getElement('.subcamp_start').get('value');
@@ -412,16 +418,17 @@ window.addEvent('load', function()
 					"cancel_button":	new Element('button').setStyles({'position': 'absolute', 'left': '190px', 'top': '105px', 'width': '85px'}).set('html', 'Abbrechen'),
 					"ok_button":		new Element('button').setStyles({'position': 'absolute', 'left': '290px', 'top': '105px', 'width': '85px'}).set('html', 'Erstellen')
 				};
+
 		events = {
 					"ok_button":		ok_button, 
 					"cancel_button":	function(){	$popup.hide_popup();	}
 				};
+
 		keyevents = {
 					"enter":	ok_button, 
 					"esc":		function(){	$popup.hide_popup();	}
 				};
-		
-		
+
 		$popup.popup_HTML("Neuer Lagerabschnitt:", content, events, keyevents, true, 400, 140);
 		
 		var blocked_days = new Hash( $_var_from_php.blocked_days );
@@ -429,5 +436,4 @@ window.addEvent('load', function()
 		
 		new Calendar({ 'subcamp_start': 'd.m.Y' , 'subcamp_end': 'd.m.Y'  }, { navigation: 2 , offset: 1, blocked: blocked_days  });
 	});
-	
 });

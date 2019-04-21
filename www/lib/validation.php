@@ -18,7 +18,6 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
   function secure_input_nr( $value )
   {
   	return $value;
@@ -28,8 +27,6 @@
   {
     return $value;
   }
-  
-  
 
   function txt2html( $textfield )
   {
@@ -154,7 +151,4 @@
 
           return $textfield;
   }
-
-
-
 ?>

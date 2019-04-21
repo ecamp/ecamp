@@ -68,6 +68,4 @@
   {
       return gettemplate( $template, $replace, $endung, $folder );
   }
-   
-  
 ?>
