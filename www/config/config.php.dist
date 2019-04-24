@@ -63,6 +63,11 @@
 		$GLOBALS['db']	    = "ecamp";
 		$GLOBALS['us'] 	    = "root";
 		$GLOBALS['pw'] 	    = "root";
+	}else{
+		$GLOBALS['host']    = "localhost";
+		$GLOBALS['db']	    = "ecamp";
+		$GLOBALS['us'] 	    = "root";
+		$GLOBALS['pw'] 	    = "root";
 	}
 	
 	
