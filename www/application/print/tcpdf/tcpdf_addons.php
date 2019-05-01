@@ -67,20 +67,20 @@
 			
 			public function Footer()
 			{
+				$w = $this->getPageWidth();
+				$fs = $this->getFontSize();
+				$this->SetFontSize( 8 );
+				// Position at 15 mm from bottom
+				$this->SetY(-10);
+				// Set font
+				$this->SetFont('helvetica', 'I', 8);
+				// Page number
+				$this->drawTextBox($this->getAliasNumPage().' / '.$this->getAliasNbPages(), $w - 20, 4, 'C', 'T', 0);
+				$this->SetFontSize( $fs );
+
 				return;
 			}
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-		    
+
 		    function drawTextBox($strText, $w, $h, $align='L', $valign='T', $border=1)
 			{
 			    $xi=$this->GetX();
@@ -232,7 +232,6 @@
 			    $this->x=$this->lMargin;
 			    return $nl;
 			}
-			
 		}
 	}
 ?>

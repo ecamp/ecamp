@@ -60,17 +60,7 @@
 		        $this->_out(sprintf('%.2f %.2f %.2f %.2f %.2f %.2f c ', $x1*$this->k, ($h-$y1)*$this->k, 
 		            $x2*$this->k, ($h-$y2)*$this->k, $x3*$this->k, ($h-$y3)*$this->k));
 		    }
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
+
 		    function drawTextBox($strText, $w, $h, $align='L', $valign='T', $border=1)
 			{
 			    $xi=$this->GetX();
@@ -220,18 +210,7 @@
 			    $this->x=$this->lMargin;
 			    return $nl;
 			}
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
+
 			var $extgstates = array();
 			
 			

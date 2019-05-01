@@ -39,9 +39,7 @@
 	
 	$print_data = new print_data_class( $_camp->id );	
 	$print_build = new print_build_class( $print_data );
-	
-	
-	
+
 	$pdf = new FPDI('P', 'mm', 'A4', true, 'UTF-8', false);
 	$pdf->SetAutoPageBreak(true);
 	
@@ -119,13 +117,9 @@
 		}
 	}
 	
-	
 	$print_build->toc->build( $pdf );
-	
-	
-	
+
 	$pdf->output( $_camp->short_name . ".pdf", 'I' );
 
-	
 	die();
 ?>
