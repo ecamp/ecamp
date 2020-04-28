@@ -23,10 +23,9 @@
 	db_connect();
 
 	$user_id 	= mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST[ 'user_id' ] );
-	$login 		= mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST[ 'login' ] );
 	$acode		= mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST[ 'acode' ] );
 
-	$query = "SELECT user.active, user.acode FROM user WHERE user.id = $user_id AND mail = '$login'";
+	$query = "SELECT user.active, user.acode FROM user WHERE user.id = $user_id";
 	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	
 	if( !mysqli_num_rows( $result ) )
