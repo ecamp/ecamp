@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html>
 <html>
 	<head>
 		<title>eCamp v2</title>
@@ -42,9 +42,7 @@
 				right: 4px;
 			}
         </style>
-        
-        	
-		<script type="text/javascript" language="javascript" src="./public/global/js/mootools1.2.js"></script>
+
 		<tal:block content="structure captcha_script" />
 	</head>
 	
