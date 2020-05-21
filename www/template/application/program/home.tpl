@@ -76,9 +76,7 @@
             </div>
         </div>
     </div>
-    
-    
-    
+
     <!--   Inhalt:   -->
     <!-- ########### -->
     
@@ -86,8 +84,7 @@
         <div id="g_program_div" style="position:absolute; top:0px; height:100%;left:0px; right:0px; overflow:auto;">
             <div id="g_program_scroll_div" class="scroll_div" tal:attributes="style program/show_width">
             <!-- Zeitlinien... -->
-                
-                
+
                 <!-- ############# -->
                 <div class="bgcolor_gp_bright" style="position:absolute; top:6.4%; 		left:0px; right:0px; height:4%;" align="center"></div>
                 <div class="bgcolor_gp_dark" 	style="position:absolute; top:10.3%;	left:0px; right:0px; height:4%;" align="center"></div>
@@ -113,10 +110,7 @@
                 <div class="bgcolor_gp_dark" 	style="position:absolute; top:88.3%; 	left:0px; right:0px; height:4%;" align="center"></div>
                 <div class="bgcolor_gp_bright" style="position:absolute; top:92.2%; 	left:0px; right:0px; height:4%;" align="center"></div>
                 <div class="bgcolor_gp_dark" 	style="position:absolute; top:96.1%; 	left:0px; right:0px; height:4%;" align="center"></div>
-                
-                
-                
-                
+
                 <!-- Tag - Kopf - Info -->
                 <!-- ################# -->
                 
@@ -141,15 +135,11 @@
                    		<div tal:attributes="class day/body_class" style="position:absolute; left:0px; right:0px; top:6.4%; height: 93.6%;"></div>  
                     </div>
                 </tal:block>
-                
-                
-                
-                
+
                 <div id="events" style="position:absolute; left:0px; right:0px; top:6.4%; bottom:0px;" >
                     
                     <!-- events -->
-                                
-                               
+
                 </div>
             </div>
         </div>
