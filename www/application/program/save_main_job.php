@@ -90,16 +90,8 @@
 		mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	}
 
-    header("Content-type: application/json");
-
-    if(mysqli_error($GLOBALS['___mysqli_ston'])){
-        $ans = array( "error" => true, "error_msg" => "Fehler aufgetreten" );
-        echo json_encode( $ans );
-        die();
-    }else{
-        $ans_array= array( "error" => false, "value" => $user_id );
-        echo json_encode($ans_array);
-        die();
-    }
-
-    die();
+	header("Content-type: application/json");
+	
+	$ans_array= array( "error" => false, "value" => $user_id );
+	echo json_encode($ans_array);
+	die();
