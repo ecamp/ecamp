@@ -93,7 +93,7 @@
     header("Content-type: application/json");
 
     if(mysqli_error($GLOBALS['___mysqli_ston'])){
-        $ans = array( "error" => true, "error_msg" => "Fehler aufgetreten" );
+        $ans = array( "error" => true, "error_msg" => "Fehler aufgetreten: " . mysqli_error($GLOBALS['___mysqli_ston']) );
         echo json_encode( $ans );
         die();
     }else{
