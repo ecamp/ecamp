@@ -36,6 +36,9 @@
 		
 		function SetPrintHeader( $set )
 		{	$this->PrintHeader = $set;	}
+
+		function SetPrintFooter( $set )
+		{	$this->PrintFooter = $set;	}
 		
 		function SetXY( $x = false, $y = false )
 		{	
@@ -57,7 +60,8 @@
 			$this->pdf->AddPage($orientation);
 			
 			if(!$this->PrintHeader)	{	return;	}
-			
+			if(!$this->PrintFooter)	{	return;	}
+
 			$fsize 	= $this->pdf->GetFontSize();
 			$fstyel	= $this->pdf->GetFontStyle();
 			$this->pdf->SetFontSize( '8' );
@@ -65,13 +69,12 @@
 			
 			//	Header:
 			// =========
-			
-				$this->pdf->Line(10, 18, 200, 18);
+			$this->pdf->Line(10, 18, 200, 18);
 			
 			//	Footer:
 			// =========
-				$this->pdf->Line(10, 280, 200, 280);
-			
+			$this->pdf->Line(10, 280, 200, 280);
+
 			
 			$this->pdf->SetFontSize( $fsize );
 			$this->pdf->SetFontStyle( $fstyle );
