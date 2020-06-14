@@ -38,6 +38,18 @@
     include("./config/config.php");
 
     #############################################################################
+    # Error-Logging aktivieren
+    $notifier = new Airbrake\Notifier(array(
+      'projectId' => 277277,
+      'projectKey' => 'a137555b192045f7399ea6f89db64edf'
+    ));
+
+    Airbrake\Instance::set($notifier);
+
+    $handler = new Airbrake\ErrorHandler($notifier);
+    $handler->register();
+
+    #############################################################################
     # Globale Variabeln $_camp, $_user, $_page, $_user_camp
     include("./class.php");
     $_camp = new camp; global $_camp;

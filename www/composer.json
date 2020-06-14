@@ -4,7 +4,8 @@
     "type": "project",
     "require": {
         "phpmailer/phpmailer": "5.2.*",
-        "phelium/recaptcha": "^1.0"
+        "phelium/recaptcha": "^1.0",
+        "airbrake/phpbrake": "^0.7.3"
     },
     "license": "AGPL"
 }
