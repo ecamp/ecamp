@@ -18,6 +18,9 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+	use PHPMailer\PHPMailer\PHPMailer;
+	use PHPMailer\PHPMailer\Exception;
+
 	require 'vendor/autoload.php';
 
 	function ecamp_send_mail($to, $subject, $body){
