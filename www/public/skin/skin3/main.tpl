@@ -24,12 +24,8 @@
 	    <script tal:condition="user/admin" type="text/javascript" language="javascript" src="public/module/js/admin.js"></script>
 	    <script type="text/javascript" language="javascript" src="public/module/js/info_box.js"></script>
     </head>
-    
-    
-        
+
     <body id="body" marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" class="bgcolor">
-	
-    
     	<!-- div_includes -->
     
     	<div class="body">
@@ -76,15 +72,7 @@
                 	<!-- info_display -->
                 </tal:block>
             </div>
-            
-            <!--
-            <div class="main_bottom_menu">
-            	<span metal:use-macro="./template/global/bottom_menu.tpl/bottom_menu" />
-            </div>
-            -->
         </div>
-    
-    
     </body>
     <script type="text/javascript">
       var _gaq = _gaq || [];

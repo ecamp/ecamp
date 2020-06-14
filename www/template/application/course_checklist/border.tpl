@@ -48,8 +48,6 @@
 				        </span>
 			        </div>
 				</td>
-				
-				
 				<td style="position:relative">
 					<div style="position:relative; width:100%;">
 				        <span metal:use-macro="${tpl_dir}/global/content_box_fit.tpl/slot">
@@ -64,22 +62,5 @@
 				</td>
 			</tr>
 		</table>
-		
-		<!--
-		<div style="width=100%; margin-bottom:20px;">
-	      	
-	        
-	    </div>
-	    
-    </div>
-    
-    
-    
-    <div style="position:relative; width:48%; float:left;">
-        
-    </div>
-    
-    
-    <div style="position:relative; width:48%; float:right;">-->
     </div>
 </span>

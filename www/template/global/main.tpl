@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html>
 <html>
 	<head>
 		<title>eCamp v2</title>
@@ -11,21 +11,12 @@
         <link rel="stylesheet" type="text/css" href="./public/global/css/color.css" />
     	
     	<link tal:repeat="css includes/css" rel="stylesheet" type="text/css" tal:attributes="href css" />
-        
-        
+
         <script tal:repeat="js includes/js" type="text/javascript" language="javascript" tal:attributes="src js"></script>
-	
     	<script tal:content="structure js_code" type="text/javascript" language="javascript"></script>
-    
-        
     </head>
-    
-    
-    
     <body id="body" marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" class="bgcolor_dark">
-    
     	<div class="body">
-            
             <div class="header bg_image">
                 <table width="100%" height="100%" cellpadding="0" cellspacing="0" style="padding-left:5px; padding-right:5px;" >
                     <tr valign="top" >
@@ -45,10 +36,6 @@
             <div class="main_info" align="center">
                 <!-- info_display -->
             </div>
-            
         </div>
-    
-    
     </body>
-    
 </html>
