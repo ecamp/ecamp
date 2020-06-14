@@ -7,7 +7,6 @@
     </div>
 </span>
 
-
 <span metal:define-macro="slot" tal:omit-tag="">
     <div class="content_border_fit bgcolor_content">
         <div class="content_box_head">

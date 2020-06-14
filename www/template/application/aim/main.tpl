@@ -66,7 +66,6 @@
      </table>
 </span>
 
-
 <!-- Leitziele -->
 <span metal:define-macro="level1" tal:omit-tag="" >
    <div style="margin-bottom:30px;"  tal:condition="php: user_camp.auth_level >= 40">  
@@ -94,7 +93,6 @@
     
   </div>
 </span>
-
 
 <!-- Ausbildungsziele -->
 <span metal:define-macro="level2" tal:omit-tag="" >
@@ -172,9 +170,9 @@
             <div tal:condition="aim2/hasNoChildren"><i>[keine verknüpften Programmblöcke]</i></div>
             
             <ul>
-            <div tal:repeat="event aim2/event" class="event">
-               <li><a href="#" onclick="$event.edit(${event/id});">${event/text}</a></li>
-            </div>
+                <div tal:repeat="event aim2/event" class="event">
+                   <li><a href="#" onclick="$event.edit(${event/id});">${event/text}</a></li>
+                </div>
             </ul>
         
         </div>

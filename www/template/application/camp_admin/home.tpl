@@ -1,7 +1,4 @@
 <span metal:define-macro="home" tal:omit-tag="">
-    
-    
-    
     <table width="100%" border="0">
 		<tr>
 			<td>

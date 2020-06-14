@@ -4,11 +4,8 @@
 		
         <link rel="stylesheet" type="text/css" href="./public/global/css/color.css" />
         <link rel="stylesheet" type="text/css" href="./public/global/css/global.css" />
-        
-        
-        
+
 		<style>
-			
 			table
 			{ 	font-size:13px;}	
 			font.title
@@ -34,8 +31,6 @@
 			}
 		</style>
 	</head>
-	
-	
 	<body marginheight="100" marginwidth="0" class="bgcolor_dark">
         <center>
         	<table tal:condition="SHOW_MSG" width="400" class="Login round_corner bgcolor_content" cellpadding="5px">
@@ -87,7 +82,5 @@
                 </tr>
             </table>
         </center>
-        
-        
 	</body>
 </html>
