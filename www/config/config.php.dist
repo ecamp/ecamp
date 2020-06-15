@@ -56,6 +56,9 @@
 	
 	$GLOBALS['feedback_mail']           = "ecamp@pfadiluzern.ch";
 	$GLOBALS['support_mail']            = "ecamp@pfadiluzern.ch";
+
+	$GLOBALS['airbrake_project_id'] = "";
+    $GLOBALS['airbrake_project_key'] = "";
 	
 	if( $_SERVER['HTTP_HOST'] == "localhost" )
 	{

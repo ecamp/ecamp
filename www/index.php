@@ -40,8 +40,8 @@
     #############################################################################
     # Error-Logging aktivieren
     $notifier = new Airbrake\Notifier(array(
-      'projectId' => 277277,
-      'projectKey' => 'a137555b192045f7399ea6f89db64edf'
+      'projectId' => $GLOBALS['airbrake_project_id'],
+      'projectKey' => $GLOBALS['airbrake_project_key'],
     ));
 
     Airbrake\Instance::set($notifier);
