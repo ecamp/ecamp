@@ -232,7 +232,7 @@ class c_datetime
   # function getHour()
   # function getMin()
   
-  function c_datetime()
+  function __construct()
   {
   	$this->m_time = new c_time;
   	$this->m_date = new c_date;

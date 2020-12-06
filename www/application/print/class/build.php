@@ -25,11 +25,9 @@
 	require_once( 'build_event.php' );
 	require_once( 'build_toc.php' );
 	require_once( 'build_notes.php' );
-	
-	
+
 	class print_build_class
 	{
-		
 		public $data;
 		
 		public $cover;
@@ -40,7 +38,7 @@
 		public $toc;
 		public $notes;
 		
-		function print_build_class( $data )
+		function __construct( $data )
 		{
 			$this->data 	= $data;
 			

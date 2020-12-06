@@ -42,7 +42,7 @@
 		public $funct;
 		
 		
-		function print_data_user_class( $data, $pid )
+		function __construct( $data, $pid )
 		{
 			$this->pid			= $pid;
 			$this->id			= $data['id'];

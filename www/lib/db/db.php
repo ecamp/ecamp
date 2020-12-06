@@ -17,18 +17,6 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
-
-	/*
-	$config = array(
-		"camp" => array(
-			"id" => NULL
-		),
-		"category" => array(
-			"id" => NULL,
-			"camp_id" => "camp"
-		)
-	);
-	*/
 	
 	class o {}
 
@@ -36,7 +24,7 @@
 	{
 		public $_meta;
 		
-		function db( $config )
+		function __construct( $config )
 		{
 			$this->_meta = new o();
 			$this->_meta->config = $config;
@@ -67,7 +55,7 @@
 		public $_meta;
 		public $_data = array();
 		
-		function db_table( $table, $config, $db )
+		function __construct( $table, $config, $db )
 		{
 			$this->_meta = new o();
 			$this->_meta->config = $config;
@@ -117,7 +105,7 @@
 	{
 		public $_meta;
 		
-		function db_row( $row, $config, $db_table )
+		function __construct( $row, $config, $db_table )
 		{
 			$this->_meta = new o();
 			$this->_meta->config = $config;

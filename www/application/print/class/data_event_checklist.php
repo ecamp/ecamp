@@ -18,10 +18,8 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	
 	class print_data_event_checklist_class
 	{
-		
 		public $pid;
 		public $id;
 		public $event_id;
@@ -29,8 +27,7 @@
 		public $short;
 		public $name;
 		
-		
-		function print_data_event_checklist_class( $data, $pid )
+		function __construct( $data, $pid )
 		{
 			$this->pid			= $pid;
 			$this->id 			= $data['id'];

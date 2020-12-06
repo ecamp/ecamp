@@ -17,11 +17,9 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 	
 	class print_data_event_class
 	{
-		
 		public $pid;
 		public $id;
 		public $camp_id;
@@ -46,8 +44,7 @@
 		public $event_checklist = array();
 		public $event_aim = array();
 
-		
-		function print_data_event_class( $data, $pid )
+		function __construct( $data, $pid )
 		{
 			$this->pid			= $pid;
 			$this->id 			= $data['id'];

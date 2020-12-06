@@ -17,19 +17,16 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 	
 	class print_data_event_aim_class
 	{
-		
 		public $pid;
 		public $id;
 		public $event_id;
 		public $event;
 		public $aim;
-		
-		
-		function print_data_event_aim_class( $data, $pid )
+
+		function __construct( $data, $pid )
 		{
 			$this->pid			= $pid;
 			$this->id 			= $data['id'];

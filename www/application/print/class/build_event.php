@@ -18,18 +18,15 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	
 	class print_build_event_class
 	{
 		public $data;
 		public $y;
 		
-		function print_build_event_class( $data )
+		function __construct( $data )
 		{
 			$this->data = $data;
 		}
-		
-		
 		
 		function build_h( $pdf, $event_instance )
 		{

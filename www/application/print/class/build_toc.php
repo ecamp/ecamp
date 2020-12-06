@@ -18,13 +18,12 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	
 	class print_build_toc
 	{
 		public $page = array();
 		public $countoffset = 1;
 		
-		function print_build_toc()
+		function __construct()
 		{}
 		
 		function addTOC( $pdf )

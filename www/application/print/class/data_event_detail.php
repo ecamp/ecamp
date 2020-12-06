@@ -20,7 +20,6 @@
 
 	class print_data_event_detail_class
 	{
-		
 		public $pid;
 		public $id;
 		public $event_id;
@@ -29,9 +28,8 @@
 		public $content;
 		public $resp;
 		public $sorting;
-		
-		
-		function print_data_event_detail_class( $data, $pid )
+
+		function __construct( $data, $pid )
 		{
 			$this->pid 		= $pid;
 			$this->id		= $data['id'];

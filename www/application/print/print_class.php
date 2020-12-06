@@ -25,7 +25,7 @@
 		var $y, $x;
 		var $PrintHeader;
 		
-    	function PRINT_CLASS(  )
+    	function __construct()
 		{	
 			$this->pdf = new FPDF_ADDONS();
 			$this->pdf->SetFont('arial', '', 10);

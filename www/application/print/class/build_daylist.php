@@ -18,14 +18,12 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	
 	class print_build_daylist_class
 	{
 		public $data;
 		public $y;
-		
-		
-		function print_build_daylist_class( $data )
+
+		function __construct( $data )
 		{
 			$this->data = $data;
 		}
