@@ -69,6 +69,7 @@
 				$this->pdf->Line(10, 18, 200, 18);
 			
 			//	Footer:
+			//	Footer:
 			// =========
 				$this->pdf->Line(10, 280, 200, 280);
 			
@@ -88,7 +89,7 @@
 			
 			if( $cbgc )	
 			{
-				$temp = split("/", $cbgc);
+				$temp = preg_split("/\//", $cbgc);
 				$this->pdf->SetFillColor( $temp[0], $temp[1], $temp[2] );
 				$cf = 'DF';
 			}
@@ -277,7 +278,7 @@
 			{
 				if( $col['bgc'] )
 				{
-					$color = split( "/", $col['bgc'] );	$this->pdf->SetFillColor( $color[0], $color[1], $color[2] );
+					$color = preg_split( "/\//", $col['bgc'] );	$this->pdf->SetFillColor( $color[0], $color[1], $color[2] );
 					$color = 1;
 				}
 				else	{	$color = 0;	}
