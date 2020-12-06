@@ -69,7 +69,7 @@ class fpdi_pdf_parser extends pdf_parser {
     function __construct($filename, &$fpdi) {
         $this->fpdi =& $fpdi;
 		
-        parent::pdf_parser($filename);
+        parent::__construct($filename);
 
         // resolve Pages-Dictonary
         $pages = $this->pdf_resolve_object($this->c, $this->root[1][1]['/Pages']);
