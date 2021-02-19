@@ -98,15 +98,20 @@
 		
 		function category_list( $pdf )
 		{
+			$needs_js_logo = $this->data->camp->is_course;
 			$cat_num = count( $this->data->category );
-			$rows = ( $cat_num > 5 ) ? 2 : 1;
+			$rows = ( $cat_num > 5 || $needs_js_logo ) ? 2 : 1;
 			
 			$row_num = floor( $cat_num / $rows ) + ( $cat_num % $rows );
 			$row = 1;
 			
 			foreach( array_chunk( $this->data->category, $row_num, true ) as $row_cats )
 			{
-				$row_width = ( ($this->pw - 20) - ( count( $row_cats ) - 1 ) ) / count( $row_cats );
+				$available_width = $this->pw - 20;
+				if ($needs_js_logo) {
+					$available_width = $available_width - 11;
+				}
+				$row_width = ( $available_width - ( count( $row_cats ) - 1 ) ) / count( $row_cats );
 				$col = 1;
 				
 				foreach( $row_cats as $cat )
@@ -129,6 +134,14 @@
 				}
 				
 				$row++;
+			}
+			
+			if ( $needs_js_logo ) {
+				$x = $this->pw - 20;
+				$y = $this->ph - 19;
+				$width = 10;
+				$height = 10;
+				$pdf->Image(__DIR__.'/logo_js.png', $x, $y, $width, $height);
 			}
 		}
 		
