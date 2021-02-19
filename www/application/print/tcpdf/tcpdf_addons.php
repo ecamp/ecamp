@@ -67,18 +67,18 @@
 			
 			public function Footer()
 			{
+				$w = $this->getPageWidth();
+				$fs = $this->getFontSize();
+				$this->SetFontSize(8);
+				// Position at 15 mm from bottom
+				$this->SetY(-10);
+				// Print Page-Number
+				$this->drawTextBox($this->getAliasNumPage().' / '.$this->getAliasNbPages(), $w - 20, 4, 'C', 'T', 0);
+				// Reset Fontsize
+				$this->SetFontSize( $fs );
+
 				return;
 			}
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
 			
 		    
 		    function drawTextBox($strText, $w, $h, $align='L', $valign='T', $border=1)
