@@ -1,0 +1,19 @@
+{
+    "name": "ecamp/ecamp",
+    "description": "An application to plan camps for scouting.",
+    "type": "project",
+    "config": {
+        "platform": {
+            "php": "7.1.33"
+        }
+    },
+    "require": {
+        "php": "~7.1.0",
+        "ext-gd": "*",
+        "phpmailer/phpmailer": "5.2.*",
+        "phelium/recaptcha": "^1.0",
+        "pear/ole": "v1.0.0RC7",
+        "pear/spreadsheet_excel_writer": "^0.9.7"
+    },
+    "license": "AGPL"
+}

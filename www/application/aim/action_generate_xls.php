@@ -18,7 +18,8 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	require_once $GLOBALS['pear_dir']."Spreadsheet/Excel/Writer.php";
+	require '../../../vendor/autoload.php';
+	use Spreadsheet_Excel_Writer;
 	
 	// load data
 	$query = "SELECT CONCAT('(',v.day_nr,'.' ,v.event_nr,') ', e.name) AS name, 

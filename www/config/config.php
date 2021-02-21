@@ -17,9 +17,9 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
+	
 
-
-	$GLOBALS['base_uri']				= "http://ecamp.pfadiluzern.ch/";
+	$GLOBALS['base_uri']				= $_ENV['BASE_URI'] ?? "http://ecamp.pfadiluzern.ch/";
 	
 	$GLOBALS['lib_dir'] 				= "./lib";
 	$GLOBALS['module_dir'] 			    = "./module";
@@ -35,13 +35,12 @@
 	
 	$GLOBALS['tpl_dir']                 = "../../../template";
 	
-	$GLOBALS['captcha_pub']             = "";
-	$GLOBALS['captcha_prv']             = "";
-	
+	$GLOBALS['captcha_pub'] = $_ENV['CAPTCHA_PUB'];
+	$GLOBALS['captcha_prv'] = $_ENV['CAPTCHA_PRV'];
 	
 	$GLOBALS['time_shift']              = 300; // Minuten;
 	$GLOBALS['news_num']                = 5;
-
+	
 	// Layout wählen
 	$GLOBALS['skin']                    = "skin3";
 	
@@ -51,46 +50,57 @@
 	// Seite mit HTML-Tidy parsen
 	$GLOBALS['parse_tidy']              = false;
 	
-	$GLOBALS['feedback_mail']           = "ecamp@pfadiluzern.ch";
-	$GLOBALS['support_mail']            = "ecamp@pfadiluzern.ch";
+	$GLOBALS['feedback_mail']           = $_ENV['FEEDBACK_MAIL'] ?? "ecamp@pfadiluzern.ch";
+	$GLOBALS['support_mail']            = $_ENV['SUPPORT_MAIL'] ?? "ecamp@pfadiluzern.ch";
 	
-	if( $_SERVER['HTTP_HOST'] == "localhost" )
-	{
-		$GLOBALS['host']    = "localhost";
-		$GLOBALS['db']	    = "ecamp";
-		$GLOBALS['us'] 	    = "root";
-		$GLOBALS['pw'] 	    = "root";
-	}
+	
+	$GLOBALS['host']    = $_ENV['DB_HOST'] ?? "localhost";
+	$GLOBALS['db']	    = $_ENV['DB_SCHEMA'] ?? "ecamp";
+	$GLOBALS['us'] 	    = $_ENV['DB_USER'] ?? "root";
+	$GLOBALS['pw'] 	    = $_ENV['DB_PASSWORD'] ?? "root";
 	
 	
 	$GLOBALS['en_to_de'] = array(
-		"Monday" 	=> "Montag",
-		"Tuesday"	=> "Dienstag",
-		"Wednesday"	=> "Mittwoch",
-		"Thursday"	=> "Donnerstag",
-		"Friday"	=> "Freitag",
-		"Saturday"	=> "Samstag",
-		"Sunday"	=> "Sonntag",
-		
-		"Mon"		=> "Mo",
-		"Tue"		=> "Di",
-		"Wed"		=> "Mi",
-		"Thu"		=> "Do",
-		"Fri"		=> "Fr",
-		"Sat"		=> "Sa",
-		"Sun"		=> "So",
-		
-		"January"	=> "Januar",
-		"February"	=> "Februar",
-		"March"		=> "März",
-		"April"		=> "April",
-		"May"		=> "Mai",
-		"June"		=> "Juni",
-		"July"		=> "Juli",
-		"August"	=> "August",
-		"September"	=> "September",
-		"November"	=> "November",
-		"December"	=> "Dezember"
+			"Monday" 	=> "Montag",
+			"Tuesday"	=> "Dienstag",
+			"Wednesday"	=> "Mittwoch",
+			"Thursday"	=> "Donnerstag",
+			"Friday"	=> "Freitag",
+			"Saturday"	=> "Samstag",
+			"Sunday"	=> "Sonntag",
+	
+			"Mon"		=> "Mo",
+			"Tue"		=> "Di",
+			"Wed"		=> "Mi",
+			"Thu"		=> "Do",
+			"Fri"		=> "Fr",
+			"Sat"		=> "Sa",
+			"Sun"		=> "So",
+	
+			"January"	=> "Januar",
+			"February"	=> "Februar",
+			"March"		=> "März",
+			"April"		=> "April",
+			"May"		=> "Mai",
+			"June"		=> "Juni",
+			"July"		=> "Juli",
+			"August"	=> "August",
+			"September"	=> "September",
+			"November"	=> "November",
+			"December"	=> "Dezember"
 	);
+	
+	
+	$GLOBALS['smtp-config'] = array(
+			'host' => $_ENV['SMTP_HOST'] ?? 'localhost',
+			'port' => $_ENV['SMTP_PORT'] ?? '465',
+			'auth' => $_ENV['SMTP_AUTH'] ?? true,
+			'username' => $_ENV['SMTP_USERNAME'] ,
+			'password' => $_ENV['SMTP_PASSWORD'] );
+	
+
+	// use config.local.php to override any neccessary config parameters
+	if(file_exists('./config.local.php'))	
+		include('./config.local.php');
 
 ?>

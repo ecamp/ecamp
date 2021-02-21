@@ -18,7 +18,7 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	require 'vendor/autoload.php';
+	require '../vendor/autoload.php';
 
 	function ecamp_send_mail($to, $subject, $body){
 		$mail = new PHPMailer(false);

@@ -1,3 +1,4 @@
-www/config/config.php
+www/config/config.local.php
 .idea/
-www/vendor
+.vscode
+vendor
