@@ -20,8 +20,8 @@
 
 	function db_connect()
 	{
-		($GLOBALS["___mysqli_ston"] = mysqli_connect($GLOBALS['host'],  $GLOBALS['us'],  $GLOBALS['pw'])) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
-		mysqli_select_db($GLOBALS["___mysqli_ston"], $GLOBALS['db']) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+		($GLOBALS["___mysqli_ston"] = mysqli_connect($GLOBALS['host'],  $GLOBALS['us'],  $GLOBALS['pw'], $GLOBALS['db'], $GLOBALS['db_port'])) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+		// mysqli_select_db($GLOBALS["___mysqli_ston"], $GLOBALS['db']) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
 		
 		mysqli_query($GLOBALS["___mysqli_ston"], "SET NAMES 'utf8'");
 		mysqli_query($GLOBALS["___mysqli_ston"], "SET CHARACTER SET 'utf8'");

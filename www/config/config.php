@@ -58,6 +58,7 @@
 	$GLOBALS['db']	    = $_ENV['DB_SCHEMA'] ?? "ecamp";
 	$GLOBALS['us'] 	    = $_ENV['DB_USER'] ?? "root";
 	$GLOBALS['pw'] 	    = $_ENV['DB_PASSWORD'] ?? "root";
+	$GLOBALS['db_port'] = $_ENV['DB_PORT'] ?? 3306;
 	
 	
 	$GLOBALS['en_to_de'] = array(
