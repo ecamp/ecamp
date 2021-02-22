@@ -20,14 +20,7 @@
 
 	session_start();
 
-	$ip = (!empty($_SERVER['HTTP_CF_CONNECTING_IP']))
-    		? (string) $_SERVER['HTTP_CF_CONNECTING_IP']
-    		: ((!empty($_SERVER['REMOTE_ADDR'])) ? (string) $_SERVER['REMOTE_ADDR'] : '');
-
-	if(	
-		!isset($_SESSION['user_id']) || $_SESSION['user_id'] == "" || 
-		!isset($_SESSION['user_ip']) || $_SESSION['user_ip'] != $ip
-	)
+	if(!isset($_SESSION['user_id']) || $_SESSION['user_id'] == "")
 	{
 		header("Location: login.php");
 		die();
@@ -35,7 +28,6 @@
 	else
 	{
 		$_user->id = $_SESSION['user_id'];
-		$_user->ip = $_SESSION['user_ip'];
 		$_camp->id = $_SESSION['camp_id'];
 
 		$query = "SELECT `id`, `mail`, `scoutname`, `firstname`, `surname`, `admin`, `active` FROM `user` WHERE `id` = '" . $_user->id . "'";
