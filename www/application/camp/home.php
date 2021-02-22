@@ -66,14 +66,14 @@
     // �berpr�fen, ob ein Lager gew�hlt wurde und Lagerdaten einlesen
     $query = "	SELECT 
     				camp.*,
-    				groups.name as groups_name,
-    				groups.short_prefix as groups_short_prefix
+    				`groups`.name as groups_name,
+    				`groups`.short_prefix as groups_short_prefix
     			FROM
     				camp
     			LEFT JOIN
-    				groups
+    				`groups`
     			ON
-    				camp.group_id = groups.id
+    				camp.group_id = `groups`.id
     			WHERE
     				camp.id = '$_camp->id'";
     

@@ -29,16 +29,16 @@
 
 	$query = "	SELECT
 					camp.*,
-					groups.id as groups_id,
-					groups.short_prefix,
-					groups.name as groups_name
+					`groups`.id as groups_id,
+					`groups`.short_prefix,
+					`groups`.name as groups_name
 				FROM
 					user_camp,
 					camp
 				LEFT JOIN
-					groups
+					`groups`
 				ON
-					groups.id = camp.group_id
+					`groups`.id = camp.group_id
 				WHERE
 					user_camp.active = 1 AND
 					user_camp.camp_id = camp.id AND

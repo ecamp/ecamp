@@ -25,14 +25,14 @@
 	if( $pid == 0 )
 	{
 		$query = "	SELECT *
-					FROM groups
+					FROM `groups`
 					WHERE ISNULL( pid ) AND active=1
 					ORDER BY name";
 	}
 	else
 	{
 		$query = "	SELECT *
-					FROM groups
+					FROM `groups`
 					WHERE pid = $pid AND active=1
 					ORDER BY name";
 	}
