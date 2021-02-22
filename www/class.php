@@ -129,7 +129,6 @@
 	class user
 	{
 		public $id;
-		public $ip;
 		public $mail;
 		public $scoutname;
 		public $firstname;
@@ -141,7 +140,6 @@
 		function load_data($data)
 		{
 			if( isset( $data['id'] ) )			{	$this->id = $data['id'];						}
-			if( isset( $data['ip'] ) )			{	$this->ip = $data['ip'];						}
 			if( isset( $data['mail'] ) )			{	$this->mail = $data['mail'];					}
 			if( isset( $data['scoutname'] ) )		{	$this->scoutname = $data['scoutname'];		}
 			if( isset( $data['firstname'] ) )		{	$this->firstname = $data['firstname'];		}
