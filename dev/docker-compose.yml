@@ -8,9 +8,9 @@ services:
     ports:
       - '80:80'
     volumes:
-      - ./:/app:delegated
+      - ../:/app:delegated
     working_dir: /app
-    entrypoint: ./docker-start.sh # run composer & apache
+    entrypoint: ./dev/docker-start.sh # run composer & apache
 
   db:
     image: mysql:8.0

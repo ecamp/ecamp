@@ -10,7 +10,7 @@
     "require": {
         "php": "~7.1.0",
         "ext-gd": "*",
-        "mbstring": "*",
+        "ext-mbstring": "*",
         "phpmailer/phpmailer": "^6.3.0",
         "phelium/recaptcha": "^1.0",
         "pear/ole": "v1.0.0RC7",
