@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "60a34db2297bfe94d55320881ff98822",
+    "content-hash": "2150ee59d1f853fbeb0452dfdc2ddc8c",
     "packages": [
         {
             "name": "pear/console_getopt",
@@ -424,7 +424,8 @@
     "prefer-lowest": false,
     "platform": {
         "php": "~7.1.0",
-        "ext-gd": "*"
+        "ext-gd": "*",
+        "ext-mbstring": "*"
     },
     "platform-dev": [],
     "platform-overrides": {
