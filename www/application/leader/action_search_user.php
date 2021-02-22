@@ -38,7 +38,7 @@
 	
 	$select_arg = implode(" + ", $select_arg);
 	
-	$query = "SELECT *, ($select_arg) AS rank  FROM user WHERE (" . implode(" OR ", $search_arg).") AND active='1' ORDER BY rank DESC LIMIT 10";
+    $query = "SELECT *, ($select_arg) AS `rank`  FROM user WHERE (" . implode(" OR ", $search_arg).") AND active='1' ORDER BY `rank` DESC LIMIT 10";
 	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
 	$found_users = array();

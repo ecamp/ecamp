@@ -73,7 +73,7 @@
 					user.scoutname,
 					user.firstname,
 					user.surname,
-					( $select_arg ) as rank
+					( $select_arg ) as `rank`
 				FROM 
 					camp,
 					user
@@ -83,7 +83,7 @@
 					( $search_arg )
 				
 				ORDER BY
-					rank desc";
+					`rank` desc";
 	
 	$_page->html->set( 'query', $query );
 
