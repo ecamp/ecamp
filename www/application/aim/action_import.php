@@ -28,11 +28,10 @@
 		eval ("\$sql = \"$sql\";");
 		$queries = explode(";",$sql);
 		
-		foreach( $queries as $query )
-		{
-			//echo $query."\n";
-			mysqli_query($GLOBALS["___mysqli_ston"], $query);
-			//echo mysql_error()."\n";
+        foreach ($queries as $query) {
+            if ($query !== '') {
+                mysqli_query($GLOBALS["___mysqli_ston"], $query);
+            }
 		}
 	}
 
