@@ -19,7 +19,7 @@
  */
 	
 
-	$GLOBALS['base_uri']				= $_ENV['BASE_URI'] ?? "http://ecamp.pfadiluzern.ch/";
+	$GLOBALS['base_uri']				= $_ENV['BASE_URI'] ?? "http://localhost/";
 	
 	$GLOBALS['lib_dir'] 				= "./lib";
 	$GLOBALS['module_dir'] 			    = "./module";

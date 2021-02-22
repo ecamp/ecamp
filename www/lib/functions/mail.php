@@ -17,8 +17,11 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
-
+	
 	require __DIR__ . '/../../../vendor/autoload.php';
+
+	use PHPMailer\PHPMailer\PHPMailer;
+	use PHPMailer\PHPMailer\Exception;
 
 	function ecamp_send_mail($to, $subject, $body){
 		$mail = new PHPMailer(false);
