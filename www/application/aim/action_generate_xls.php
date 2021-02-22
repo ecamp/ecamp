@@ -17,9 +17,6 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
-
-	require '../../../vendor/autoload.php';
-	use Spreadsheet_Excel_Writer;
 	
 	// load data
 	$query = "SELECT CONCAT('(',v.day_nr,'.' ,v.event_nr,') ', e.name) AS name, 

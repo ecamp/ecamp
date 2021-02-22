@@ -1,0 +1,39 @@
+version: "3"
+
+services:
+
+  web:
+    build: .
+    container_name: 'ecamp2-web'
+    ports:
+      - '80:80'
+    volumes:
+      - ./:/app:delegated
+    working_dir: /app
+    entrypoint: ./docker-start.sh # run composer & apache
+
+  db:
+    image: mysql:8.0
+    container_name: 'ecamp2-db'
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_DATABASE: ecamp2_dev
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_HOST: '%'
+      MYSQL_USER: ecamp2
+      MYSQL_PASSWORD: ecamp2
+    ports:
+      - '3306:3306'
+    volumes:
+      - db-data:/var/lib/mysql # persist data between shutdown
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: 'ecamp2-phpmyadmin'
+    ports:
+      - '8080:80'
+
+
+volumes:
+  db-data:
+

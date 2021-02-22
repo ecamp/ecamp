@@ -54,10 +54,10 @@
 	$GLOBALS['support_mail']            = $_ENV['SUPPORT_MAIL'] ?? "ecamp@pfadiluzern.ch";
 	
 	
-	$GLOBALS['host']    = $_ENV['DB_HOST'] ?? "localhost";
-	$GLOBALS['db']	    = $_ENV['DB_SCHEMA'] ?? "ecamp";
-	$GLOBALS['us'] 	    = $_ENV['DB_USER'] ?? "root";
-	$GLOBALS['pw'] 	    = $_ENV['DB_PASSWORD'] ?? "root";
+	$GLOBALS['host']    = $_ENV['DB_HOST'] ?? "db";
+	$GLOBALS['db']	    = $_ENV['DB_SCHEMA'] ?? "ecamp2_dev";
+	$GLOBALS['us'] 	    = $_ENV['DB_USER'] ?? "ecamp2";
+	$GLOBALS['pw'] 	    = $_ENV['DB_PASSWORD'] ?? "ecamp2";
 	$GLOBALS['db_port'] = $_ENV['DB_PORT'] ?? 3306;
 	
 	
@@ -101,7 +101,7 @@
 	
 
 	// use config.local.php to override any neccessary config parameters
-	if(file_exists('./config.local.php'))	
-		include('./config.local.php');
+	if(file_exists(__DIR__ . '/config.local.php'))	
+		include(__DIR__ . '/config.local.php');
 
 ?>

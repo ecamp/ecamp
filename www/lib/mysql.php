@@ -25,6 +25,12 @@
 		
 		mysqli_query($GLOBALS["___mysqli_ston"], "SET NAMES 'utf8'");
 		mysqli_query($GLOBALS["___mysqli_ston"], "SET CHARACTER SET 'utf8'");
+
+		# disable SQL Modes introduced with MySQL 5.7 and MySQL 8 (our queries are not compatible with these modes)
+		mysqli_query($GLOBALS["___mysqli_ston"], "SET SESSION sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));");
+		mysqli_query($GLOBALS["___mysqli_ston"], "SET SESSION sql_mode=(SELECT REPLACE(@@sql_mode,'STRICT_TRANS_TABLES',''));");
+		mysqli_query($GLOBALS["___mysqli_ston"], "SET SESSION sql_mode=(SELECT REPLACE(@@sql_mode,'TRICT_ALL_TABLES',''));");
+		
 	}
 
 	function mysqli_result($res,$row=0,$col=0){

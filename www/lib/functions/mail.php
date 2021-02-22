@@ -18,14 +18,14 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	require '../vendor/autoload.php';
+	require __DIR__ . '/../../../vendor/autoload.php';
 
 	function ecamp_send_mail($to, $subject, $body){
 		$mail = new PHPMailer(false);
 		$mail->CharSet = 'UTF-8';
 		try {
 			//Server settings
-			$mail->SMTPDebug = 3;                                 // Enable verbose debug output
+			$mail->SMTPDebug = 0;                                 // Enable verbose debug output
 			$mail->isSMTP();                                      // Set mailer to use SMTP
 			$mail->Host = $GLOBALS['smtp-config']['host'];        // Specify main and backup SMTP servers
 			$mail->SMTPAuth = true;                               // Enable SMTP authentication

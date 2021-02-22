@@ -18,9 +18,6 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	require '../../../vendor/autoload.php';
-	use Spreadsheet_Excel_Writer;
-
 	/* load mat_list */
 	$list_id = $_REQUEST['list'];
 	
