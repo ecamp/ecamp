@@ -3,3 +3,4 @@ www/config/config.local.php
 .vscode
 vendor
 www/webgrind
+www/phpinfo.php
