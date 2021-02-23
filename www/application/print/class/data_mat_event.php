@@ -18,10 +18,8 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	
 	class print_data_mat_event
 	{
-		
 		public $pid;
 		public $id;
 		public $event_id;
@@ -36,7 +34,7 @@
 		public $type;
 		public $resp;
 		
-		function print_data_mat_event( $data, $pid )
+		function __construct( $data, $pid )
 		{
 			$this->pid			= $pid;
 			$this->id			= $data['id'];

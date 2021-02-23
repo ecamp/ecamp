@@ -21,15 +21,13 @@
 	
 	class print_data_mat_list
 	{
-		
 		public $pid;
 		public $id;
 		public $camp_id;
 		public $camp;
 		public $name;
-		
-		
-		function print_data_mat_list( $data, $pid )
+
+		function __construct( $data, $pid )
 		{
 			$this->pid			= $pid;
 			$this->id			= $data['id'];

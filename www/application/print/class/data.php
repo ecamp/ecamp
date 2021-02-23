@@ -45,12 +45,8 @@
 		
 		public $mat_list = array();
 		public $mat_event = array();
-		/*
-		public $mat_article_event = array();
-		public $mat_stuff = array();
-		*/
 		
-		function print_data_class( $camp_id )
+		function __construct( $camp_id )
 		{
 			$this->camp_id = $camp_id;
 			$this->load_content();

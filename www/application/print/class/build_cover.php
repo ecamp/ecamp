@@ -18,13 +18,14 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	
 	class print_build_cover_class
 	{
 		public $data;
 		
-		function print_build_cover_class( $data )
-		{	$this->data = $data;	}
+		function __construct($data)
+		{
+		    $this->data = $data;
+		}
 		
 		function build( $pdf )
 		{
