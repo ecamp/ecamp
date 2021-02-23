@@ -2,3 +2,4 @@ www/config/config.local.php
 .idea/
 .vscode
 vendor
+www/webgrind

@@ -1,39 +1,39 @@
 version: "3"
 
 services:
-
   web:
     build: .
-    container_name: 'ecamp2-web'
+    container_name: "ecamp2-web"
     ports:
-      - '80:80'
+      - "80:80"
     volumes:
       - ../:/app:delegated
+    environment:
+      PHP_XDEBUG_ENABLED: 1
+      XDEBUG_CONFIG: "remote_enable=1 remote_host=host.docker.internal remote_port=9000 profiler_enable=0 profiler_enable_trigger=1 profiler_output_dir=/tmp"
     working_dir: /app
     entrypoint: ./dev/docker-start.sh # run composer & apache
 
   db:
     image: mysql:8.0
-    container_name: 'ecamp2-db'
+    container_name: "ecamp2-db"
     command: --default-authentication-plugin=mysql_native_password
     environment:
       MYSQL_DATABASE: ecamp2_dev
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_ROOT_HOST: '%'
+      MYSQL_ROOT_HOST: "%"
       MYSQL_USER: ecamp2
       MYSQL_PASSWORD: ecamp2
     ports:
-      - '3306:3306'
+      - "3306:3306"
     volumes:
       - db-data:/var/lib/mysql # persist data between shutdown
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
-    container_name: 'ecamp2-phpmyadmin'
+    container_name: "ecamp2-phpmyadmin"
     ports:
-      - '8080:80'
-
+      - "8080:80"
 
 volumes:
   db-data:
-
