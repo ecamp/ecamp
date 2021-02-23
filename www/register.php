@@ -24,7 +24,7 @@
 	include("./config/config.php");
 	include($lib_dir . "/mysql.php");
 	include($lib_dir . "/functions/error.php");
-	require_once("./lib/PHPTAL.php");
+	
 	db_connect();
 
 	$captcha = new reCAPTCHA($GLOBALS['captcha_pub'], $GLOBALS['captcha_prv']);

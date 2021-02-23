@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0e22be76e3db90e3794519fe125d1734",
+    "content-hash": "ee85120e74bd43404709d1cb945b839f",
     "packages": [
         {
             "name": "pear/console_getopt",
@@ -414,6 +414,61 @@
             "time": "2021-02-19T15:28:08+00:00"
         },
         {
+            "name": "phptal/phptal",
+            "version": "1.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phptal/PHPTAL.git",
+                "reference": "c02324a880ef83074876585215980bde4d4f9b6b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phptal/PHPTAL/zipball/c02324a880ef83074876585215980bde4d4f9b6b",
+                "reference": "c02324a880ef83074876585215980bde4d4f9b6b",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8.36"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "PHPTAL": "classes/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-2.1+"
+            ],
+            "authors": [
+                {
+                    "name": "Laurent Bédubourg",
+                    "email": "lbedubourg@motion-twin.com",
+                    "homepage": "http://labe.me"
+                },
+                {
+                    "name": "Kornel Lesiński",
+                    "email": "kornel@geekhood.net",
+                    "homepage": "http://pornel.net/"
+                }
+            ],
+            "description": "PHPTAL is a templating engine for PHP5 that implements Zope Page Templates syntax",
+            "homepage": "http://phptal.org/",
+            "keywords": [
+                "phptal",
+                "template engine",
+                "zope"
+            ],
+            "support": {
+                "issues": "https://github.com/phptal/PHPTAL/issues",
+                "source": "https://github.com/phptal/PHPTAL/tree/1.4.x"
+            },
+            "time": "2019-03-22T10:55:21+00:00"
+        },
+        {
             "name": "setasign/fpdi",
             "version": "v2.3.6",
             "source": {
@@ -561,13 +616,13 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": "~7.1.0",
+        "php": "~7.4.0",
         "ext-gd": "*",
         "ext-mbstring": "*"
     },
     "platform-dev": [],
     "platform-overrides": {
-        "php": "7.1.33"
+        "php": "7.4.15"
     },
     "plugin-api-version": "2.0.0"
 }

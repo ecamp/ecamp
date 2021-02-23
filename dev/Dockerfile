@@ -10,4 +10,4 @@ RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf
 RUN echo 'max_execution_time = 240' >> /usr/local/etc/php/conf.d/docker-php-maxexectime.ini;
 
 # display all errors
-RUN echo 'error_reporting = E_ALL' >> /usr/local/etc/php/conf.d/error-logging.ini
+RUN echo 'error_reporting = E_ALL & ~E_NOTICE' >> /usr/local/etc/php/conf.d/error-logging.ini

@@ -16,7 +16,8 @@
         "pear/ole": "v1.0.0RC7",
         "pear/spreadsheet_excel_writer": "^0.9.7",
         "tecnickcom/tcpdf": "6.3.*",
-        "setasign/fpdi": "^2.0"
+        "setasign/fpdi": "^2.0",
+        "phptal/phptal": "^1.4"
     },
     "license": "AGPL"
 }

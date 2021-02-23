@@ -19,7 +19,7 @@
  */
 	
 
-	$GLOBALS['base_uri']				= $_ENV['BASE_URI'] ?? "http://localhost/";
+	$GLOBALS['base_uri']				= getenv('BASE_URI') ?: "http://localhost/";
 	
 	$GLOBALS['lib_dir'] 				= "./lib";
 	$GLOBALS['module_dir'] 			    = "./module";
@@ -35,8 +35,8 @@
 	
 	$GLOBALS['tpl_dir']                 = "../../../template";
 	
-	$GLOBALS['captcha_pub'] = $_ENV['CAPTCHA_PUB'];
-	$GLOBALS['captcha_prv'] = $_ENV['CAPTCHA_PRV'];
+	$GLOBALS['captcha_pub'] = getenv('CAPTCHA_PUB') ?: '';
+	$GLOBALS['captcha_prv'] = getenv('CAPTCHA_PRV') ?: '';
 	
 	$GLOBALS['time_shift']              = 300; // Minuten;
 	$GLOBALS['news_num']                = 5;
@@ -50,15 +50,15 @@
 	// Seite mit HTML-Tidy parsen
 	$GLOBALS['parse_tidy']              = false;
 	
-	$GLOBALS['feedback_mail']           = $_ENV['FEEDBACK_MAIL'] ?? "ecamp@pfadiluzern.ch";
-	$GLOBALS['support_mail']            = $_ENV['SUPPORT_MAIL'] ?? "ecamp@pfadiluzern.ch";
+	$GLOBALS['feedback_mail']           = getenv('FEEDBACK_MAIL') ?: "ecamp@pfadiluzern.ch";
+	$GLOBALS['support_mail']            = getenv('SUPPORT_MAIL') ?: "ecamp@pfadiluzern.ch";
 	
 	
-	$GLOBALS['host']    = $_ENV['DB_HOST'] ?? "db";
-	$GLOBALS['db']	    = $_ENV['DB_SCHEMA'] ?? "ecamp2_dev";
-	$GLOBALS['us'] 	    = $_ENV['DB_USER'] ?? "ecamp2";
-	$GLOBALS['pw'] 	    = $_ENV['DB_PASSWORD'] ?? "ecamp2";
-	$GLOBALS['db_port'] = $_ENV['DB_PORT'] ?? 3306;
+	$GLOBALS['host']    = getenv('DB_HOST') ?: "db";
+	$GLOBALS['db']	    = getenv('DB_SCHEMA') ?: "ecamp2_dev";
+	$GLOBALS['us'] 	    = getenv('DB_USER') ?: "ecamp2";
+	$GLOBALS['pw'] 	    = getenv('DB_PASSWORD') ?: "ecamp2";
+	$GLOBALS['db_port'] = getenv('DB_PORT') ?: 3306;
 	
 	
 	$GLOBALS['en_to_de'] = array(
@@ -93,11 +93,11 @@
 	
 	
 	$GLOBALS['smtp-config'] = array(
-			'host' => $_ENV['SMTP_HOST'] ?? 'localhost',
-			'port' => $_ENV['SMTP_PORT'] ?? '465',
-			'auth' => $_ENV['SMTP_AUTH'] ?? true,
-			'username' => $_ENV['SMTP_USERNAME'] ,
-			'password' => $_ENV['SMTP_PASSWORD'] );
+			'host' => getenv('SMTP_HOST') ?: 'localhost',
+			'port' => getenv('SMTP_PORT') ?: '465',
+			'auth' => getenv('SMTP_AUTH') ?: true,
+			'username' => getenv('SMTP_USERNAME') ,
+			'password' => getenv('SMTP_PASSWORD') );
 	
 
 	// use config.local.php to override any neccessary config parameters

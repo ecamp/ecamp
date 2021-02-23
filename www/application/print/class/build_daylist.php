@@ -51,7 +51,7 @@
 		
 		function overview( $pdf )
 		{
-			$row_num = count( $data->subcamp ) + count( $data->day );
+			// $row_num = count( $this->data->subcamp ) + count( $this->data->day );
 			
 			foreach( $this->data->subcamp as $subcamp )
 			{

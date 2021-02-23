@@ -28,18 +28,20 @@
   #        - Überprüfen, wie oft ein Login versucht wurde --> Kennwortrücksetzung anbieten
   #        - Validieren der User-Eingaben
   
-	include( "./config/config.php" );
+	//Load composer's autoloader
+	require '../vendor/autoload.php';
+  
+  	include( "./config/config.php" );
 	include( $lib_dir . "/session.php" );
 	include( $lib_dir . "/functions/error.php" );
-	require_once( "./lib/PHPTAL.php" );
+
+	session_start();
 	
-	if( $_SESSION['skin'] == "" ) $_SESSION['skin'] = $GLOBALS['skin'];
+	if( !isset($_SESSION['skin']) || $_SESSION['skin'] == "" ) $_SESSION['skin'] = $GLOBALS['skin'];
 	$html = new PHPTAL("public/skin/".$_SESSION['skin']."/login.tpl");
 	
 	$html->setEncoding('UTF-8');
 	$html->set('SHOW_MSG', false);
-	
-	session_start();
 
 	if(isset( $_REQUEST['msg'] ) )
 	{
@@ -47,7 +49,7 @@
 		$html->set('MSG', $_REQUEST['msg']);
 	}
 	
-	if($_POST['Form'] == "Login")
+	if(isset($_POST['Form']) && $_POST['Form'] == "Login")
 	{
 	    include($lib_dir . "/mysql.php");
 		db_connect();
@@ -67,7 +69,7 @@
 				{				
 					$user_id = $row['id'];
 
-					if( $_REQUEST['autologin'] )
+					if( isset($_REQUEST['autologin']) && $_REQUEST['autologin'] )
 					{	autologin_setup( $user_id );	}
 					
 					session_setup( $user_id );

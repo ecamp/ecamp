@@ -26,8 +26,6 @@
     #
     # ToDo: -
     #
-  
-    if(get_magic_quotes_gpc()){die("SET MAGIC QUOTS OFF!!!!");}
 
 	#############################################################################
 	//Load composer's autoloader
@@ -71,8 +69,6 @@
 
     #############################################################################
     # Template-Engine einbinden
-    require_once("./lib/PHPTAL.php");
-  
     if($_SESSION['skin'] == ""){$_SESSION['skin'] = $GLOBALS['skin'];}
   
     $_page->html = new PHPTAL("public/skin/".$_SESSION['skin']."/main.tpl");
