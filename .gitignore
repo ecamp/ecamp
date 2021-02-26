@@ -1,6 +1,6 @@
-www/config/config.local.php
+src/config/config.local.php
 .idea/
 .vscode
 vendor
-www/webgrind
-www/phpinfo.php
+src/public/webgrind
+src/public/phpinfo.php
