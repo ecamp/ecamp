@@ -14,6 +14,13 @@
         <link rel="stylesheet" type="text/css" href="./public/skin/skin3/css/main.css" />
         <link rel="stylesheet" type="text/css" href="./public/skin/skin3/css/color.css" />
         <link rel="stylesheet" type="text/css" href="./public/skin/skin3/css/layout.css" />
+
+      <script
+        tal:condition="sentry_dsn_js"
+        src="https://browser.sentry-cdn.com/6.2.0/bundle.min.js"
+        integrity="sha384-PWBASVWyeEeNsEw6zDTEwryGvuiH1xuxnlu/n+GOI777vnfbqyYLzqCf+najQLoi"
+        crossorigin="anonymous"
+      ></script>
     	
 	    <script tal:content="structure js_code" type="text/javascript" language="javascript"></script>
     	
@@ -86,6 +93,14 @@
     
     
     </body>
+
+    <script tal:condition="sentry_dsn_js" type="text/javascript">
+      Sentry.init({
+        dsn: "${sentry_dsn_js}",
+        environment: "${sentry_environment}"
+      });
+    </script>
+
     <script type="text/javascript">
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-38013612-1']);
