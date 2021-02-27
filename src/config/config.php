@@ -38,6 +38,9 @@
     
     $GLOBALS['captcha_pub'] = getenv('CAPTCHA_PUB') ?: '';
     $GLOBALS['captcha_prv'] = getenv('CAPTCHA_PRV') ?: '';
+
+    # salt string used as $security_code in Zebra Session
+    $GLOBALS['session_salt'] = getenv('SESSION_SALT') ?: '';
     
     $GLOBALS['time_shift']              = 300; // Minuten;
     $GLOBALS['news_num']                = 5;

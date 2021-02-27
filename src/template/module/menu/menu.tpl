@@ -19,7 +19,6 @@
           <a  href="index.php?app=db&cmd=statistics">Statistik</a><br />
           <a  href="index.php?app=db&cmd=integrity">Integrit&auml;t</a><br />
           <a  href="index.php?app=support">Support</a><br />
-          <a  href="https://admin.hostpoint.ch/phpMyAdmin/?db=pfadiluz_ecamp2&server=164" target="_blank">phpMyAdmin</a><br />
         </div>
 	</span>
 	

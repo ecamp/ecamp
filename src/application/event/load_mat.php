@@ -41,7 +41,7 @@
 	
 	while( $row = mysqli_fetch_assoc( $result ) )
 	{
-		if( $row[user_camp_id] )
+		if( $row['user_camp_id'] )
 		{
 			$query = "	SELECT user.scoutname
 						FROM user, user_camp
@@ -50,7 +50,7 @@
 			$subresult = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 			$resp_str = mysqli_result( $subresult,  0,  'scoutname' );
 		}
-		if( $row[mat_list_id] )
+		if( $row['mat_list_id'] )
 		{
 			$query = "	SELECT mat_list.name
 						FROM mat_list

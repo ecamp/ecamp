@@ -23,36 +23,39 @@
   # Filename:     logout.php
   # Beschreibung: Üernimmt den Logout-Vorgang
   #
-  # ToDo:  - 
+  # ToDo:  -
   #
-  	include("../config/config.php");
-	include($GLOBALS['lib_dir'] . "/mysql.php");
-	include("../class.php");
-	db_connect();
-	
-	$_user 		= new user;
-	$_camp 		= new camp;
-	$_user_camp = new user_camp;
-	
-	include($GLOBALS['module_dir'] . "/auth/check_login.php");
-	
-	# Session-Variablen löchen
-	$_SESSION = array();
-	session_unset();
+    //Load composer's autoloader
+    require '../../vendor/autoload.php';
+    
+    include("../config/config.php");
+    include($GLOBALS['lib_dir'] . "/mysql.php");
+    include("../class.php");
+    db_connect();
+    
+    $_user 		= new user;
+    $_camp 		= new camp;
+    $_user_camp = new user_camp;
+    
+    include($GLOBALS['module_dir'] . "/auth/check_login.php");
+    
+    # Session-Variablen löchen
+    $_SESSION = array();
   
-    # Cookie löchen  
-	setcookie(session_name(), '', time()-42000, '/');
-	setcookie('autologin', false, time()-42000, '/' );
-	setcookie('user_id', '', time()-42000, '/' );
-	setcookie('auth_key', '', time()-42000, '/' );
-	
-	# Session-Daten löchen
-	session_destroy();
-	
-	# zum Login weiterleiten
-	if(isset($_REQUEST['msg']))
-	{	header("Location: login.php?msg=".$_REQUEST['msg']);	}
-	else
-	{	header("Location: login.php");	}
+    # Cookie löchen
+    setcookie('PHPSESSID', '', time()-42000, '/');
+    setcookie('autologin', false, time()-42000, '/');
+    setcookie('user_id', '', time()-42000, '/');
+    setcookie('auth_key', '', time()-42000, '/');
+    
+    # Session-Daten löchen
+    $GLOBALS['session']->stop();
+    
+    # zum Login weiterleiten
+    if (isset($_REQUEST['msg'])) {
+        header("Location: login.php?msg=".$_REQUEST['msg']);
+    } else {
+        header("Location: login.php");
+    }
 ?>
 
