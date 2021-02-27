@@ -81,9 +81,11 @@
 					camp.creator_user_id = user.id
 				AND
 					( $search_arg )
-				
+			
 				ORDER BY
-					`rank` desc";
+					`rank` desc
+					
+				LIMIT 100";
 	
 	$_page->html->set( 'query', $query );
 
