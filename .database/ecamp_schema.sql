@@ -833,6 +833,19 @@ CREATE TABLE `user_camp` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `session_data`
+--
+
+DROP TABLE IF EXISTS `session_data`;
+CREATE TABLE `session_data` (
+  `session_id` varchar(32) NOT NULL default '',
+  `hash` varchar(32) NOT NULL default '',
+  `session_data` blob NOT NULL,
+  `session_expire` int(11) NOT NULL default '0',
+  PRIMARY KEY  (`session_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
 -- Temporary table structure for view `v_all_days`
 --
 
