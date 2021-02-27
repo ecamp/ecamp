@@ -713,6 +713,21 @@ INSERT INTO `user_camp` (`id`, `user_id`, `camp_id`, `function_id`, `invitation_
 (6, 5, 2, 2, 1, 1, '2017-12-31 23:00:00'),
 (7, 3, 2, 3, 1, 1, '2017-12-31 23:00:00');
 
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `session_data`
+--
+
+CREATE TABLE `session_data` (
+  `session_id` varchar(32) NOT NULL default '',
+  `hash` varchar(32) NOT NULL default '',
+  `session_data` blob NOT NULL,
+  `session_expire` int(11) NOT NULL default '0',
+  PRIMARY KEY  (`session_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 -- --------------------------------------------------------
 
 --
