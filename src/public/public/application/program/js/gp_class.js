@@ -204,6 +204,8 @@ var $program = new Hash(
 	
 	run_update: function( update )
 	{
+		this.last_update_time = update.time;
+
 		if( update.users )
 		{
 			update.users.each(function( user )
@@ -254,9 +256,6 @@ var $program = new Hash(
 			update.days.each(function( day )
 			{	$program.day.get( day.id ).renummber_event_instances();	}.bind(this) );
 		}
-		
-		
-		this.last_update_time = update.time;
 		
 	}
 	
