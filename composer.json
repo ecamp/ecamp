@@ -17,7 +17,8 @@
         "pear/spreadsheet_excel_writer": "^0.9.7",
         "tecnickcom/tcpdf": "6.3.*",
         "setasign/fpdi": "^2.0",
-        "phptal/phptal": "^1.4"
+        "phptal/phptal": "^1.4",
+        "stefangabos/zebra_session": "^3.1"
     },
     "license": "AGPL"
 }

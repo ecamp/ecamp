@@ -18,64 +18,59 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	session_start();
+    $GLOBALS['session'] = new Zebra_Session($GLOBALS["___mysqli_ston"], $GLOBALS['session_salt']);
 
-	if(!isset($_SESSION['user_id']) || $_SESSION['user_id'] == "")
-	{
-		header("Location: login.php");
-		die();
-	}
-	else
-	{
-		$_user->id = $_SESSION['user_id'];
-		$_camp->id = $_SESSION['camp_id'];
+    if (!isset($_SESSION['user_id']) || $_SESSION['user_id'] == "") {
+        header("Location: login.php");
+        die();
+    } else {
+        $_user->id = $_SESSION['user_id'];
+        $_camp->id = $_SESSION['camp_id'];
 
-		$query = "SELECT `id`, `mail`, `scoutname`, `firstname`, `surname`, `admin`, `active` FROM `user` WHERE `id` = '" . $_user->id . "'";
+        $query = "SELECT `id`, `mail`, `scoutname`, `firstname`, `surname`, `admin`, `active` FROM `user` WHERE `id` = '" . $_user->id . "'";
 
-		$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
-		
-		if(mysqli_num_rows($result) > 0)
-		{
-			$_user->load_data( mysqli_fetch_assoc($result) );
-		
-			if($_user->active == "1")
-			{	
-				// Namen richtig setzten
-				if( $_user->scoutname != "" ) 
-					$_user->display_name = $_user->scoutname;
-				else 
-					$_user->display_name = $_user->firstname . " " . $_user->surname;
+        $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+        
+        if (mysqli_num_rows($result) > 0) {
+            $_user->load_data(mysqli_fetch_assoc($result));
+        
+            if ($_user->active == "1") {
+                // Namen richtig setzten
+                if ($_user->scoutname != "") {
+                    $_user->display_name = $_user->scoutname;
+                } else {
+                    $_user->display_name = $_user->firstname . " " . $_user->surname;
+                }
 
-				// Berechtigungen auslesen
-				$_user_camp->auth_level = 10;
-				if( $_camp->id > 0 )
-				{
-					$query = "SELECT id, function_id FROM user_camp WHERE user_id = $_user->id AND camp_id = $_camp->id";
-					$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
-					$_user_camp->load_data( mysqli_fetch_assoc( $result ) );
-					
-					# Besitzer überprüfen
-					$query = "	SELECT  `camp`.`id` , `is_course`, `type` ,  `creator_user_id` ,  `short_name` ,  `short_prefix` ,  `groups`.`name` 
+                // Berechtigungen auslesen
+                $_user_camp->auth_level = 10;
+                if ($_camp->id > 0) {
+                    $query = "SELECT id, function_id FROM user_camp WHERE user_id = $_user->id AND camp_id = $_camp->id";
+                    $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+                    $_user_camp->load_data(mysqli_fetch_assoc($result));
+                    
+                    # Besitzer überprüfen
+                    $query = "	SELECT  `camp`.`id` , `is_course`, `type` ,  `creator_user_id` ,  `short_name` ,  `short_prefix` ,  `groups`.`name` 
 								FROM  `camp` 
 								LEFT JOIN  `groups` ON  `groups`.`id` =  `camp`.`group_id` 
 								WHERE  `camp`.`id` ='" . $_camp->id . "'";
-					$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
-					if(mysqli_num_rows($result) > 0)
-					{
-						$_camp->load_data( mysqli_fetch_assoc($result) );
-						
-						if( $_camp->creator_user_id == $_user->id )
-						{	$_user_camp->auth_level = 60;	}
-					
-						# Sonst: Funktion überprüfen
-						else
-						{
-							if( $_camp->is_course)
-							    $fnc = "function_course";
-							else
-							    $fnc = "function_camp";
-							
-							$query = "	SELECT 
+                    $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+                    if (mysqli_num_rows($result) > 0) {
+                        $_camp->load_data(mysqli_fetch_assoc($result));
+                        
+                        if ($_camp->creator_user_id == $_user->id) {
+                            $_user_camp->auth_level = 60;
+                        }
+                    
+                        # Sonst: Funktion überprüfen
+                        else {
+                            if ($_camp->is_course) {
+                                $fnc = "function_course";
+                            } else {
+                                $fnc = "function_camp";
+                            }
+                            
+                            $query = "	SELECT 
 											MAX(dropdown.value) as level 
 										FROM 
 											camp, 
@@ -88,27 +83,25 @@
 											dropdown.list='".$fnc."' AND 
 											user_camp.user_id='" . $_user->id . "' 
 											AND camp.id='" . $_camp->id . "'";
-							$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
-							if(mysqli_num_rows($result) > 0)
-							{
-								$val = mysqli_fetch_assoc($result);
-								if( $val['level'] > $_user_camp->auth_level)
-								{	$_user_camp->auth_level = $val['level'];	}
-							}
-						}
-					}
-				}
-				
-				// Wenn möglich Admin setzen
-				if( $_user->admin == 1 ) $_user_camp->auth_level = 100;
-			}
-			else
-			{	
-				header("Location: login.php");	
-			}
-		}
-		else
-		{	
-			header("Location: login.php");	
-		}	
-	}
+                            $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+                            if (mysqli_num_rows($result) > 0) {
+                                $val = mysqli_fetch_assoc($result);
+                                if ($val['level'] > $_user_camp->auth_level) {
+                                    $_user_camp->auth_level = $val['level'];
+                                }
+                            }
+                        }
+                    }
+                }
+                
+                // Wenn möglich Admin setzen
+                if ($_user->admin == 1) {
+                    $_user_camp->auth_level = 100;
+                }
+            } else {
+                header("Location: login.php");
+            }
+        } else {
+            header("Location: login.php");
+        }
+    }
