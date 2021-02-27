@@ -19,7 +19,7 @@
 
  	var day_width = 150;
 	var time_shift = 300;
-	var update_time = 5000; //msec
+	var update_time = 10000; //msec
 
 	event_cm_struct = 
 	[
