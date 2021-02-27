@@ -18,7 +18,14 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+	require '../../vendor/autoload.php';
+
 	include("../config/config.php");
+
+	#############################################################################
+    # Register Error Handler
+	include_once($module_dir . "/error_handling.php");
+	
 	include($lib_dir . "/mysql.php");
 	include($lib_dir . "/functions/mail.php");
 	db_connect();

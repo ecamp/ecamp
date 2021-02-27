@@ -18,7 +18,8 @@
         "tecnickcom/tcpdf": "6.3.*",
         "setasign/fpdi": "^2.0",
         "phptal/phptal": "^1.4",
-        "stefangabos/zebra_session": "^3.1"
+        "stefangabos/zebra_session": "^3.1",
+        "sentry/sdk": "^3.1"
     },
     "license": "AGPL"
 }
