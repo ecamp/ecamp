@@ -190,7 +190,7 @@
 		{	return $this->check( "SELECT id FROM course_aim WHERE id = $id AND camp_id = $this->id" );	}
 		
 		function day( $id )
-		{	return $this->check( "SELECT day.id FROM day, subcamp WHERE day.id = $id AND day.subcamp_id = subcamp_id AND subcamp.camp_id = $this->id" );	}
+		{   return $this->check( "SELECT day.id FROM day, subcamp WHERE day.id = $id AND day.subcamp_id = subcamp.id AND subcamp.camp_id = $this->id" );	}
 		
 		function event( $id )
 		{	return $this->check( "SELECT id FROM event WHERE id = $id AND camp_id = $this->id" );	}
