@@ -22,6 +22,10 @@
 	require '../../vendor/autoload.php';
 
 	require_once( "../config/config.php" );
+
+	#############################################################################
+    # Register Error Handler
+	include_once($module_dir . "/error_handling.php");
 	
 	
 	if( $_SESSION['skin'] == "" ) $_SESSION['skin'] = $GLOBALS['skin'];

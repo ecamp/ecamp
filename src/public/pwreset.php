@@ -22,6 +22,11 @@
 	require '../../vendor/autoload.php';
 
 	include("../config/config.php");
+
+	#############################################################################
+    # Register Error Handler
+	include_once($module_dir . "/error_handling.php");
+	
 	include($lib_dir . "/mysql.php");
 	include($lib_dir . "/functions/error.php");
 	

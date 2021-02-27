@@ -36,6 +36,10 @@
     include("../config/config.php");
 
     #############################################################################
+    # Register Error Handler
+    include_once($module_dir . "/error_handling.php");
+
+    #############################################################################
     # Globale Variabeln $_camp, $_user, $_page, $_user_camp
     include("../class.php");
     $_camp = new camp; global $_camp;
@@ -204,6 +208,10 @@
     $_page->html->set("sys_dir", "../../.." );
     $_page->html->set("tpl_dir", $GLOBALS['tpl_dir'] );
     $_page->html->set("skin", $_SESSION['skin'] );
+
+    $_page->html->set("sentry_dsn_js", $GLOBALS['sentry_dsn_js'] );
+    $_page->html->set("sentry_environment", $GLOBALS['sentry_environment'] );
+
   
     if( $_REQUEST[ 'phptal' ] == 'debug' )
     {

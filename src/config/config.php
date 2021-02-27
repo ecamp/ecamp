@@ -41,6 +41,11 @@
 
     # salt string used as $security_code in Zebra Session
     $GLOBALS['session_salt'] = getenv('SESSION_SALT') ?: '';
+
+    # Sentry config for error handling
+    $GLOBALS['sentry_dsn_php'] = getenv('SENTRY_DSN_PHP') ?: null;
+    $GLOBALS['sentry_dsn_js'] = getenv('SENTRY_DSN_JS') ?: null;
+    $GLOBALS['sentry_environment'] = getenv('SENTRY_ENVIRONMENT') ?: "development";
     
     $GLOBALS['time_shift']              = 300; // Minuten;
     $GLOBALS['news_num']                = 5;
