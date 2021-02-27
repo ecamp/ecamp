@@ -36,6 +36,10 @@
     include("../config/config.php");
 
     #############################################################################
+    # Register Error Handler
+    include_once($module_dir . "/error_handling.php");
+
+    #############################################################################
     # Globale Variabeln $_camp, $_user, $_page, $_user_camp
     include("../class.php");
     $_camp = new camp; global $_camp;
