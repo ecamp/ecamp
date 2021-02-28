@@ -9,5 +9,8 @@ RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf
 # increase max execution time
 RUN echo 'max_execution_time = 240' >> /usr/local/etc/php/conf.d/docker-php-maxexectime.ini;
 
+# limit memory to 16MB (same as production value in .user.ini)
+RUN echo 'memory_limit = 16M' >> /usr/local/etc/php/conf.d/docker-php-memorylimit.ini;
+
 # display all errors
 RUN echo 'error_reporting = E_ALL & ~E_NOTICE' >> /usr/local/etc/php/conf.d/error-logging.ini

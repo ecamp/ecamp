@@ -18,6 +18,10 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 	
+	# increase memory limit for generating xls
+    # keep overall memor_limit low to allow for more FPM processes per server (high WEB_CONCURRENCY)
+	ini_set("memory_limit","64M");
+	
 	// load data
 	$query = "SELECT CONCAT('(',v.day_nr,'.' ,v.event_nr,') ', e.name) AS name, 
 				e.id AS id,
