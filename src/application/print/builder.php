@@ -28,7 +28,7 @@
 
     # increase memory limit for printing
     # keep overall memor_limit low to allow for more FPM processes per server (high WEB_CONCURRENCY)
-    ini_set("memory_limit","80M");
+    ini_set("memory_limit","64M");
 
     require_once('class/data.php');
     require_once('class/build.php');
