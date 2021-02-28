@@ -16,7 +16,7 @@ Urban Suppiger <smiley@pfadiluzern.ch>
 1. git clone https://github.com/ecamp/ecamp.git
 2. cd ecamp && cd dev
 3. docker-compose up
-4. Visit https://localhost:8080 to open PhpMyAdmin  
+4. Visit https://localhost:2002 to open PhpMyAdmin  
    login with user `ecamp2` and password `ecamp2`  
    import  `.database/ecamp_full_db.sql` into `ecamp2_dev` database
-5. Visit https://localhost. Happy developing! :smile:
+5. Visit https://localhost:2000. Happy developing! :smile:
