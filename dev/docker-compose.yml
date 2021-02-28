@@ -5,7 +5,7 @@ services:
     build: .
     container_name: "ecamp2-web"
     ports:
-      - "80:80"
+      - "2000:80"
     volumes:
       - ../:/app:delegated
     environment:
@@ -25,7 +25,7 @@ services:
       MYSQL_USER: ecamp2
       MYSQL_PASSWORD: ecamp2
     ports:
-      - "3306:3306"
+      - "2001:3306"
     volumes:
       - db-data:/var/lib/mysql # persist data between shutdown
 
@@ -33,7 +33,7 @@ services:
     image: phpmyadmin/phpmyadmin
     container_name: "ecamp2-phpmyadmin"
     ports:
-      - "8080:80"
+      - "2002:80"
 
 volumes:
   db-data:
