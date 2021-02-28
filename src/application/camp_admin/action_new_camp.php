@@ -96,14 +96,14 @@
 	// ToDo std. einfüllen
 	if( $is_course)
 	{
-		$todo_course = include "./config/todo_course.php";
+		$todo_course = include $GLOBALS['src_dir'] . "/config/todo_course.php";
 
 		foreach($todo_course as $todo){
 			$query = "INSERT INTO todo(camp_id, title, short, date) VALUES('$last_camp_id', '$todo[title]', '$todo[short]', '$todo[date]');";
 			mysqli_query($GLOBALS["___mysqli_ston"],  $query);
 		}
 	}else{
-		$todo_camp = include "./config/todo_camp.php";
+		$todo_camp = include $GLOBALS['src_dir'] . "/config/todo_camp.php";
 
 		foreach($todo_camp as $todo){
 			$query = "INSERT INTO todo(camp_id, title, short, date) VALUES('$last_camp_id', '$todo[title]', '$todo[short]', '$todo[date]');";

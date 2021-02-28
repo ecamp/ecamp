@@ -195,7 +195,9 @@
 		$filecontent = file_get_contents( $filename );
 		$file = json_decode( trim( $filecontent ), true );
 		
-		unlink( $filename );
+        if( file_exists($filename) ) {
+            unlink($filename);
+        }
 		
 		$data['del'] = $file;
 		

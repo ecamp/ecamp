@@ -111,4 +111,6 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
     </script>
+    
+    <script src="https://w5c2xsxdy97c.statuspage.io/embed/script.js"></script>
 </html>

@@ -21,6 +21,7 @@
 	$pid = mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $_REQUEST['pid'] );
 
 	$ans = array();
+	$ans['values'] = array();
 	
 	if( $pid == 0 )
 	{
