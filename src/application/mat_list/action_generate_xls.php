@@ -18,10 +18,6 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	# increase memory limit for generating xls
-    # keep overall memor_limit low to allow for more FPM processes per server (high WEB_CONCURRENCY)
-	ini_set("memory_limit","64M");
-	
 	/* load mat_list */
 	$list_id = $_REQUEST['list'];
 	
@@ -146,24 +142,24 @@
 	$worksheet->setColumn(2,4,32);
 	
 	// title
-	$worksheet->write(0, 0, utf8_decode($title),$format_title);
+	$worksheet->writeString(0, 0, utf8_decode($title),$format_title);
 	
 	// Header
 	$row = 2; $row++;
 	
-	$worksheet->write($row, 0, "Erledigt", $format_header);
-	$worksheet->write($row, 1, "Menge", $format_header);
-	$worksheet->write($row, 2, "Material", $format_header);
-	$worksheet->write($row, 3, utf8_decode("für Block"), $format_header);
+	$worksheet->writeString($row, 0, "Erledigt", $format_header);
+	$worksheet->writeString($row, 1, "Menge", $format_header);
+	$worksheet->writeString($row, 2, "Material", $format_header);
+	$worksheet->writeString($row, 3, utf8_decode("für Block"), $format_header);
 	
 	foreach( $list_entries as $item  )
 	{
 		$row++;
 		
-		$worksheet->write($row, 0,utf8_decode($item['organized'] ? "ok" : "" ), $format_content);
-		$worksheet->write($row, 1,utf8_decode($item['quantity']), $format_content);
-		$worksheet->write($row, 2,utf8_decode($item['article_name']), $format_content);
-		$worksheet->write($row, 3,utf8_decode($item['event_name']), $format_content);
+		$worksheet->writeString($row, 0,utf8_decode($item['organized'] ? "ok" : "" ), $format_content);
+		$worksheet->writeString($row, 1,utf8_decode($item['quantity']), $format_content);
+		$worksheet->writeString($row, 2,utf8_decode($item['article_name']), $format_content);
+		$worksheet->writeString($row, 3,utf8_decode($item['event_name']), $format_content);
 	}
 		
 	// Let's send the file

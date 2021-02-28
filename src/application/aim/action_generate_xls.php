@@ -18,10 +18,6 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 	
-	# increase memory limit for generating xls
-    # keep overall memor_limit low to allow for more FPM processes per server (high WEB_CONCURRENCY)
-	ini_set("memory_limit","64M");
-	
 	// load data
 	$query = "SELECT CONCAT('(',v.day_nr,'.' ,v.event_nr,') ', e.name) AS name, 
 				e.id AS id,
@@ -131,18 +127,18 @@
 	$worksheet->setColumn(2,4,32);
 	
 	// title
-	$worksheet->write(0, 0, "Blockübersicht",$format_title);
+	$worksheet->writeString(0, 0, "Blockübersicht",$format_title);
 	
 	// Header
 	$row = 2;
-	$worksheet->write($row, 0,"Die folgende Tabelle gibt eine Übersicht über die Ausbildungsblöcke. Dieses Dokument kann für die Kursanmeldung bei PBS verwendet werden.",$format_content_unboxed);
+	$worksheet->writeString($row, 0,"Die folgende Tabelle gibt eine Übersicht über die Ausbildungsblöcke. Dieses Dokument kann für die Kursanmeldung bei PBS verwendet werden.",$format_content_unboxed);
 	
 	$row++;$row++;
-	$worksheet->write($row, 0, "Bezeichnung\n(PBS-/J+S-Checkliste in [])",$format_header);
-	$worksheet->write($row, 1, "Datum und Zeit",$format_header);
-	$worksheet->write($row, 2, "behandelte Ausbildungsziele",$format_header);
-	$worksheet->write($row, 3, "Blockziele",$format_header);
-	$worksheet->write($row, 4, "Inhalte",$format_header);
+	$worksheet->writeString($row, 0, "Bezeichnung\n(PBS-/J+S-Checkliste in [])",$format_header);
+	$worksheet->writeString($row, 1, "Datum und Zeit",$format_header);
+	$worksheet->writeString($row, 2, "behandelte Ausbildungsziele",$format_header);
+	$worksheet->writeString($row, 3, "Blockziele",$format_header);
+	$worksheet->writeString($row, 4, "Inhalte",$format_header);
 	
 	while( $this_event = mysqli_fetch_assoc($result) )
 	{
@@ -190,7 +186,7 @@
 		// format output
 		///////////////////////
 		// name
-		$worksheet->write($row, 0, $this_event['name']." ".$checklist_str, $format_content);
+		$worksheet->writeString($row, 0, $this_event['name']." ".$checklist_str, $format_content);
 		//echo $this_event[name]." ".$checklist_str."   ";
 		
 		// date
@@ -204,19 +200,19 @@
 		$date->setDay2000($this_event['day']);
 		
 		$this_date = $GLOBALS['en_to_de'][$date->getString("D")].", ".$date->getString("j.n.").", ".$start->getString("G:i")."-".$end->getString("G:i");//"Fr, 5.10., 17:15-18:00";
-		$worksheet->write($row, 1, $this_date, $format_content);
+		$worksheet->writeString($row, 1, $this_date, $format_content);
 		//echo $this_date."   ";	
 		
 		// aim
-		$worksheet->write($row, 2, $aim_str, $format_content);
+		$worksheet->writeString($row, 2, $aim_str, $format_content);
 		//echo $aim_str."   ";
 		
 		// event-aim
-		$worksheet->write($row, 3, $this_event['aim'], $format_content);
+		$worksheet->writeString($row, 3, $this_event['aim'], $format_content);
 		//echo $this_event[aim]."   ";
 		
 		// topics
-		$worksheet->write($row, 4, $this_event['topics'], $format_content);
+		$worksheet->writeString($row, 4, $this_event['topics'], $format_content);
 		//echo $this_event[topics]."   ";
 		//echo "\n";
 	}
