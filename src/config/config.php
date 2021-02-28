@@ -21,9 +21,10 @@
 
     $GLOBALS['base_uri']				= getenv('BASE_URI') ?: "http://localhost/";
     
-    $GLOBALS['lib_dir'] 				= __DIR__ . "/../lib";
-    $GLOBALS['module_dir'] 			    = __DIR__ . "/../module";
-    $GLOBALS['app_dir'] 				= __DIR__ . "/../application";
+    $GLOBALS['lib_dir']         = __DIR__ . "/../lib";
+    $GLOBALS['module_dir'] 	= __DIR__ . "/../module";
+    $GLOBALS['app_dir'] 	= __DIR__ . "/../application";
+    $GLOBALS['src_dir']         = __DIR__ . "/..";     
     
     # routes injected into HTML to load static files
     $GLOBALS['public_app_dir']		    = "./public/application";

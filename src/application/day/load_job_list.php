@@ -36,6 +36,7 @@
 					user_camp.camp_id = $_camp->id";
 	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	
+	$job_list['users'] = array();
 	while( $user = mysqli_fetch_assoc( $result ) )
 	{	$job_list['users'][ $user['id'] ] = $user;	}
 
@@ -65,5 +66,6 @@
 					job.camp_id = $_camp->id";
 	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	
+	$job_list['jobs'] = array();
 	while( $job = mysqli_fetch_assoc( $result ) )
 	{	$job_list['jobs'][ $job['id'] ] = $job;	}
