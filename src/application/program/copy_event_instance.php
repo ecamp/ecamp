@@ -43,7 +43,7 @@
 		$move = $new_length;
 	}
 	else
-	{	$move = length;	}
+	{	$move = $length;	}
 	
 	$query = "	INSERT INTO
 					event_instance

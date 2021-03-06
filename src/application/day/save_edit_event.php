@@ -48,7 +48,8 @@
 					event,
 					event_instance
 				WHERE
-					event.id = event_instance.event_id";
+					event.id = event_instance.event_id AND
+					event_instance.id = $event_instance_id";
 	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
 	if( !mysqli_num_rows( $result ) ) 
 	{

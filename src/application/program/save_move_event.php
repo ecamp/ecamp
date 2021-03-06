@@ -26,7 +26,7 @@
 	$day_id				= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['day_id']);
 	$time				= mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_REQUEST['time']);
 	
-	$_camp->event_instance( $event_instance_id ) || die( "error" );
+	$_camp->event_instance( $event_instance_id ) || die( "error" );
 	$_camp->day( $day_id ) || die( "error" );
 
 	$query = "	SELECT day_id
