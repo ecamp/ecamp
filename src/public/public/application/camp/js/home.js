@@ -35,36 +35,43 @@ window.addEvent('load', function()
 
 	
 	coor = new DI_MULTIPLE([
-						{ "type": "text", "element": "camp_ca_coor1", "options": { 'buttons': false, 'min_level': 50 } },
-						{ "type": "text", "element": "camp_ca_coor2", "options": { 'buttons': false, 'min_level': 50 } },
-						{ "type": "text", "element": "camp_ca_coor3", "options": { 'buttons': false, 'min_level': 50 } },
-						{ "type": "text", "element": "camp_ca_coor4", "options": { 'buttons': true, 'min_level': 50 } }
-					], { 'single_save': true, 'args': args.set( 'field', 'ca_coor' ), 'min_level': 50 } );
-	
+		{ "type": "text", "element": "camp_ca_coor1", "options": { 'buttons': false, 'min_level': 50 } },
+		{ "type": "text", "element": "camp_ca_coor2", "options": { 'buttons': false, 'min_level': 50 } },
+		{ "type": "text", "element": "camp_ca_coor3", "options": { 'buttons': false, 'min_level': 50 } },
+		{ "type": "text", "element": "camp_ca_coor4", "options": { 'buttons': true, 'min_level': 50 } }
+	], { 'single_save': true, 'args': args.set( 'field', 'ca_coor' ), 'min_level': 50 } );
 
-	
-	var Map = new SearchChMap({ controls: "zoom", zoom: 2, circle:false, autoload: false });	
-	var poi = new SearchChPOI({ html:"Lagerplatz" });
-	Map.addPOI( poi );
+	// POIs to show
+	var poiGroups = "zug,haltestelle,bergbahn,feuerstelle,bad,spital,apotheke,berg,pass,wasserfall,tankstelle";
+
+	var Map = new SearchChMap({
+		controls: "zoom",
+		zoom: 32,
+		poigroups: poiGroups
+	});
+
 	Map.disable("clickzoom");
 	
 	if( ! auth.access( 50 ) )
 	{	Map.disable("all");	}
-	
-	
+
 	if( coor.list[0].show_input.get('value') )
 	{
 		c1 = coor.list[0].show_input.get('value') + 
 			 coor.list[1].show_input.get('value');
 		c2 = coor.list[2].show_input.get('value') +
 			 coor.list[3].show_input.get('value');
-		poi.set({ center: [ c1, c2 ] });
-		
-		Map.set({ center: [ c1, c2 ] });
+
+		var poi = new SearchChPOI({
+			html:"Lagerplatz",
+			width: 30,
+			height: 30
+		});
+		poi.set({ center: [c1,c2] });
+		Map.addPOI(poi);
+		Map.set({ center: [c1,c2] });
 		Map.init();
-	}
-	else
-	{
+	}else{
 		if( plz.show_input.get( 'value' ) )
 		{
 			Map.set( { center: plz.show_input.get('value') } );
