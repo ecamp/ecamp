@@ -95,6 +95,10 @@ window.addEvent('load', function()
 	
 	Map.addEventListener( 'mouseclick', function( e )
 	{
+		if(! auth.access(50)){
+			return;
+		}
+
 		mx1 = (e.mx / 1000).floor();
 		mx2 = e.mx - mx1 * 1000;
 		
