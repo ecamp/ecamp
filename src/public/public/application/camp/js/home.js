@@ -18,7 +18,7 @@
  */
 
 window.addEvent('load', function()
-{	
+{
 	
 	var args = new Hash({ "app": "camp", "cmd": "action_save_change" });
 	
@@ -33,7 +33,7 @@ window.addEvent('load', function()
 	city =	new DI_TEXT( 'camp_ca_city',	{ 'args': args.set('field', 'ca_city'), 'min_level': 50 } );
 	new DI_TEXT( 'camp_ca_tel',		{ 'args': args.set('field', 'ca_tel'), 'min_level': 50 } );
 
-	
+
 	coor = new DI_MULTIPLE([
 		{ "type": "text", "element": "camp_ca_coor1", "options": { 'buttons': false, 'min_level': 50 } },
 		{ "type": "text", "element": "camp_ca_coor2", "options": { 'buttons': false, 'min_level': 50 } },
@@ -62,15 +62,15 @@ window.addEvent('load', function()
 		c2 = coor.list[2].show_input.get('value') +
 			 coor.list[3].show_input.get('value');
 
+		Map.removePOI(poi)
+
 		var poi = new SearchChPOI({
 			html:"Lagerplatz",
-			width: 30,
-			height: 30
+			center: [c1,c2]
 		});
-		poi.set({ center: [c1,c2] });
+
 		Map.addPOI(poi);
 		Map.set({ center: [c1,c2] });
-		Map.init();
 	}else{
 		if( plz.show_input.get( 'value' ) )
 		{
@@ -110,12 +110,16 @@ window.addEvent('load', function()
 				coor.list[1].edit_input.set( 'value', mx2 );
 				coor.list[2].edit_input.set( 'value', my1 );
 				coor.list[3].edit_input.set( 'value', my2 );
-				
-				poi.set({ center: [ e.mx, e.my ] });
-				Map.set({ center: [ e.mx, e.my ] });
-
 				coor.save();
-				
+
+				var poi = new SearchChPOI({
+					html:"Lagerplatz",
+					center: [e.mx, e.my]
+				});
+
+				//Map.addPOI(poi);
+				//Map.set({ center: [c1,c2] });
+
 				$popup.hide_popup();
 			},
 			function(){	$popup.hide_popup();	}, 
