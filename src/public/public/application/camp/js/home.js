@@ -191,7 +191,7 @@ window.addEvent('load', function()
 						"," + 
 						$('camp_ca_coor3').get('value') + $('camp_ca_coor4').get('value')
 		});
-		url = "http://map.search.ch/chmap.jpg?" + link.toQueryString();
+		url = "https://map.search.ch/chmap.jpg?" + link.toQueryString();
 		
 		window.open( url, "map" );
 	});
