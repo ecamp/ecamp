@@ -19,7 +19,6 @@
 
 window.addEvent('load', function()
 {
-	
 	var args = new Hash({ "app": "camp", "cmd": "action_save_change" });
 	
 	new DI_TEXT( 'camp_group_name',	{ 'args': args.set('field', 'group_name'), 'min_level': 50 } );
@@ -50,11 +49,6 @@ window.addEvent('load', function()
 		poigroups: poiGroups
 	});
 
-	Map.disable("clickzoom");
-	
-	if( ! auth.access( 50 ) )
-	{	Map.disable("all");	}
-
 	if( coor.list[0].show_input.get('value') )
 	{
 		c1 = coor.list[0].show_input.get('value') + 
@@ -62,11 +56,9 @@ window.addEvent('load', function()
 		c2 = coor.list[2].show_input.get('value') +
 			 coor.list[3].show_input.get('value');
 
-		Map.removePOI(poi)
-
 		var poi = new SearchChPOI({
 			html:"Lagerplatz",
-			center: [c1,c2]
+			center: [c1, c2]
 		});
 
 		Map.addPOI(poi);
@@ -79,7 +71,6 @@ window.addEvent('load', function()
 		}
 	}
 	
-	
 	Map.addEventListener( 'change', function(e)
 	{
 		if( Map.get( 'center' ).capitalize() != city.show_input.get( 'value') ) 
@@ -91,8 +82,7 @@ window.addEvent('load', function()
 			}
 		}
 	});
-	
-	
+
 	Map.addEventListener( 'mouseclick', function( e )
 	{
 		mx1 = (e.mx / 1000).floor();
@@ -117,15 +107,14 @@ window.addEvent('load', function()
 					center: [e.mx, e.my]
 				});
 
-				//Map.addPOI(poi);
-				//Map.set({ center: [c1,c2] });
+				Map.addPOI(poi);
+				Map.set({ center: [e.mx, e.my] });
 
 				$popup.hide_popup();
 			},
 			function(){	$popup.hide_popup();	}, 
 			"popup_yes_button"
 		);
-		
 	});
 	
 	
