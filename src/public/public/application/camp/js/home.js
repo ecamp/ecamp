@@ -18,8 +18,7 @@
  */
 
 window.addEvent('load', function()
-{	
-	
+{
 	var args = new Hash({ "app": "camp", "cmd": "action_save_change" });
 	
 	new DI_TEXT( 'camp_group_name',	{ 'args': args.set('field', 'group_name'), 'min_level': 50 } );
@@ -33,45 +32,44 @@ window.addEvent('load', function()
 	city =	new DI_TEXT( 'camp_ca_city',	{ 'args': args.set('field', 'ca_city'), 'min_level': 50 } );
 	new DI_TEXT( 'camp_ca_tel',		{ 'args': args.set('field', 'ca_tel'), 'min_level': 50 } );
 
-	
-	coor = new DI_MULTIPLE([
-						{ "type": "text", "element": "camp_ca_coor1", "options": { 'buttons': false, 'min_level': 50 } },
-						{ "type": "text", "element": "camp_ca_coor2", "options": { 'buttons': false, 'min_level': 50 } },
-						{ "type": "text", "element": "camp_ca_coor3", "options": { 'buttons': false, 'min_level': 50 } },
-						{ "type": "text", "element": "camp_ca_coor4", "options": { 'buttons': true, 'min_level': 50 } }
-					], { 'single_save': true, 'args': args.set( 'field', 'ca_coor' ), 'min_level': 50 } );
-	
 
-	
-	var Map = new SearchChMap({ controls: "zoom", zoom: 2, circle:false, autoload: false });	
-	var poi = new SearchChPOI({ html:"Lagerplatz" });
-	Map.addPOI( poi );
-	Map.disable("clickzoom");
-	
-	if( ! auth.access( 50 ) )
-	{	Map.disable("all");	}
-	
-	
+	coor = new DI_MULTIPLE([
+		{ "type": "text", "element": "camp_ca_coor1", "options": { 'buttons': false, 'min_level': 50 } },
+		{ "type": "text", "element": "camp_ca_coor2", "options": { 'buttons': false, 'min_level': 50 } },
+		{ "type": "text", "element": "camp_ca_coor3", "options": { 'buttons': false, 'min_level': 50 } },
+		{ "type": "text", "element": "camp_ca_coor4", "options": { 'buttons': true, 'min_level': 50 } }
+	], { 'single_save': true, 'args': args.set( 'field', 'ca_coor' ), 'min_level': 50 } );
+
+	// POIs to show
+	var poiGroups = "zug,haltestelle,bergbahn,feuerstelle,bad,spital,apotheke,berg,pass,wasserfall,tankstelle";
+
+	var Map = new SearchChMap({
+		controls: "zoom",
+		zoom: 32,
+		poigroups: poiGroups
+	});
+
 	if( coor.list[0].show_input.get('value') )
 	{
 		c1 = coor.list[0].show_input.get('value') + 
 			 coor.list[1].show_input.get('value');
 		c2 = coor.list[2].show_input.get('value') +
 			 coor.list[3].show_input.get('value');
-		poi.set({ center: [ c1, c2 ] });
-		
-		Map.set({ center: [ c1, c2 ] });
-		Map.init();
-	}
-	else
-	{
+
+		var poi = new SearchChPOI({
+			html:"Lagerplatz",
+			center: [c1, c2]
+		});
+
+		Map.addPOI(poi);
+		Map.set({ center: [c1,c2] });
+	}else{
 		if( plz.show_input.get( 'value' ) )
 		{
 			Map.set( { center: plz.show_input.get('value') } );
 			Map.init();
 		}
 	}
-	
 	
 	Map.addEventListener( 'change', function(e)
 	{
@@ -84,10 +82,13 @@ window.addEvent('load', function()
 			}
 		}
 	});
-	
-	
+
 	Map.addEventListener( 'mouseclick', function( e )
 	{
+		if(! auth.access(50)){
+			return;
+		}
+
 		mx1 = (e.mx / 1000).floor();
 		mx2 = e.mx - mx1 * 1000;
 		
@@ -103,18 +104,21 @@ window.addEvent('load', function()
 				coor.list[1].edit_input.set( 'value', mx2 );
 				coor.list[2].edit_input.set( 'value', my1 );
 				coor.list[3].edit_input.set( 'value', my2 );
-				
-				poi.set({ center: [ e.mx, e.my ] });
-				Map.set({ center: [ e.mx, e.my ] });
-
 				coor.save();
-				
+
+				var poi = new SearchChPOI({
+					html:"Lagerplatz",
+					center: [e.mx, e.my]
+				});
+
+				Map.addPOI(poi);
+				Map.set({ center: [e.mx, e.my] });
+
 				$popup.hide_popup();
 			},
 			function(){	$popup.hide_popup();	}, 
 			"popup_yes_button"
 		);
-		
 	});
 	
 	
@@ -191,7 +195,7 @@ window.addEvent('load', function()
 						"," + 
 						$('camp_ca_coor3').get('value') + $('camp_ca_coor4').get('value')
 		});
-		url = "http://map.search.ch/chmap.jpg?" + link.toQueryString();
+		url = "https://map.search.ch/chmap.jpg?" + link.toQueryString();
 		
 		window.open( url, "map" );
 	});
