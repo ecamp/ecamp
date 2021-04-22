@@ -189,23 +189,16 @@
 
 		//	DELETE-LOG:
 		// =============
-		$filename = $GLOBALS['app_dir'] . "/program/del_protocol/" . $_user->id . ".log";
-		touch( $filename );
-		
-		$filecontent = file_get_contents( $filename );
-		$file = json_decode( trim( $filecontent ), true );
-		
-        if( file_exists($filename) ) {
-            unlink($filename);
-        }
-		
-		$data['del'] = $file;
+		$query = "SELECT type, id FROM del_protocol WHERE user_id = $_user->id";
+		$del_protocol_entries = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+
+		$data['del'] = mysqli_fetch_all( $del_protocol_entries, MYSQLI_ASSOC);
+
+		// remove all del protocol entries
+		$query = "DELETE FROM del_protocol WHERE user_id = $_user->id";
+		mysqli_query($GLOBALS["___mysqli_ston"], $query);
 		
 		$data['time'] = time();
 		
 		return $data;
 	}
-
-	//echo json_encode( get_program_update( 1111111111 ) );	
-	
-	//die();
