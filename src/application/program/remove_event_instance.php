@@ -37,10 +37,18 @@
 	}
 	$event_id = mysqli_result( $result,  0,  'event_id' );
 	
+	// remove event_instance
 	$query = "DELETE FROM event_instance WHERE id = $event_instance_id";
 	mysqli_query($GLOBALS["___mysqli_ston"], $query);
-	$log[] = array( "type" => "event_instance", "id" => $event_instance_id );
+
+	// write into user's delete protocol
+	$query = "	INSERT INTO `del_protocol` (`user_id`, `type`, `id`)  
+				SELECT user_id, 'event_instance', $event_instance_id
+				FROM user_camp
+				WHERE camp_id = $_camp->id";
+	mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	
+	// remove event if this was the last event_instance
 	$query = "SELECT COUNT(id) as count FROM event_instance WHERE event_id = $event_id";
 	$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	$count = mysqli_result( $result,  0,  'count' );
@@ -49,26 +57,12 @@
 	{
 		$query = "DELETE FROM event WHERE id = $event_id";
 		mysqli_query($GLOBALS["___mysqli_ston"], $query);
-		$log[] = array( "type" => "event", "id" => $event_id );
-	}
-	
-	$query = "	SELECT user_id
+
+		$query = "	INSERT INTO `del_protocol` (`user_id`, `type`, `id`) 
+				SELECT user_id, 'event', $event_id 
 				FROM user_camp
 				WHERE camp_id = $_camp->id";
-	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query );
-	while( $user = mysqli_fetch_assoc( $result ) )
-	{
-		$filename = $GLOBALS['app_dir'] . "/program/del_protocol/" . $user['user_id'] . ".log";
-		touch( $filename );
-		
-		$filecontent = file_get_contents( $filename );
-		$file = json_decode( trim( $filecontent ), true );
-		
-		if( !$file ){	$file = array();	}
-		$file = array_merge( $file, $log );
-		
-		$file = json_encode( $file );
-		file_put_contents( $filename, $file );
+		mysqli_query($GLOBALS["___mysqli_ston"], $query);
 	}
 	
 	header("Content-type: application/json");
