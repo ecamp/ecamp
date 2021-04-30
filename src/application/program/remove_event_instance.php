@@ -43,7 +43,7 @@
 
 	// write into user's delete protocol
 	$query = "	INSERT INTO `del_protocol` (`user_id`, `type`, `id`)  
-				SELECT user_id, 'event_instance', $event_instance_id
+				SELECT DISTINCT user_id, 'event_instance', $event_instance_id
 				FROM user_camp
 				WHERE camp_id = $_camp->id";
 	mysqli_query($GLOBALS["___mysqli_ston"], $query);
@@ -59,7 +59,7 @@
 		mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
 		$query = "	INSERT INTO `del_protocol` (`user_id`, `type`, `id`) 
-				SELECT user_id, 'event', $event_id 
+				SELECT DISTINCT user_id, 'event', $event_id 
 				FROM user_camp
 				WHERE camp_id = $_camp->id";
 		mysqli_query($GLOBALS["___mysqli_ston"], $query);
