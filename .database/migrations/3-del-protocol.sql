@@ -31,7 +31,8 @@ CREATE TABLE `del_protocol` (
   `user_id` mediumint UNSIGNED NOT NULL,
   `type` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `id` mediumint UNSIGNED NOT NULL,
-  `t_edited` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `t_edited` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`user_id`, `type`, `id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
