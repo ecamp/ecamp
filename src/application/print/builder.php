@@ -35,12 +35,12 @@
     require_once('class/build.php');
     require_once('include/fpdi_addons.php');
     
-    fwrite(STDOUT, $rid . ': dependencies loaded');
+    file_put_contents('php://stdout', $rid . ': dependencies loaded');
     
     $print_data = new print_data_class($_camp->id);
-    fwrite(STDOUT, $rid . ': print_data_class constructed');
+    file_put_contents('php://stdout', $rid . ': print_data_class constructed');
     $print_build = new print_build_class($print_data);
-    fwrite(STDOUT, $rid . ': print_build_class constructed');
+    file_put_contents('php://stdout', $rid . ': print_build_class constructed');
     
 
     $pdf = new Fpdi_Addons('P', 'mm', 'A4', true, 'UTF-8', false);
@@ -50,9 +50,9 @@
     $pdf->SetSubject('J&S - Programm');
     $pdf->SetTitle('J&S - Programm');
 
-    fwrite(STDOUT, $rid . ': before build items');
+    file_put_contents('php://stdout', $rid . ': before build items');
     foreach ($items as $nr => $item) {
-        fwrite(STDOUT, $rid . ': before build item: ' . $item);
+        file_put_contents('php://stdout', $rid . ': before build item: ' . $item);
         if ($item == "title") {
             $print_build->cover->build($pdf);
         }
@@ -117,18 +117,18 @@
             }
             //$pdf->setPageFormat( 'A4', 'P' );
         }
-        fwrite(STDOUT, $rid . ': after build item: ' . $item);
+        file_put_contents('php://stdout', $rid . ': after build item: ' . $item);
     }
 
-    fwrite(STDOUT, $rid . ': after build items');
+    file_put_contents('php://stdout', $rid . ': after build items');
     
     $print_build->toc->build($pdf);
     
     
     
-    fwrite(STDOUT, $rid . ': before pdf output');
+    file_put_contents('php://stdout', $rid . ': before pdf output');
     $pdf->output($_camp->short_name . ".pdf", 'I');
-    fwrite(STDOUT, $rid . ': after pdf output');
+    file_put_contents('php://stdout', $rid . ': after pdf output');
 
     
     die();
