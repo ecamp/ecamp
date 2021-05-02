@@ -17,8 +17,8 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
-    define(K_TCPDF_THROW_EXCEPTION_ERROR, true);
-    
+    define('K_TCPDF_THROW_EXCEPTION_ERROR', true);
+
     $rid = bin2hex(random_bytes(4));
 
     if (!isset($_REQUEST['item'])) {
@@ -131,7 +131,7 @@
     file_put_contents('php://stdout', $rid . ' / ' . microtime(true) . ': before pdf close' . PHP_EOL);
     $pdf->Close();
     file_put_contents('php://stdout', $rid . ' / ' . microtime(true) . ': before pdf output' . PHP_EOL);
-    $pdf->output($_camp->short_name . ".pdf", 'I');
+    $pdf->output($_camp->short_name . ".pdf", 'D');
     file_put_contents('php://stdout', $rid . ' / ' . microtime(true) . ': after pdf output' . PHP_EOL);
 
     
