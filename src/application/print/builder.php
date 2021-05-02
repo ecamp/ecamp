@@ -132,7 +132,11 @@
     file_put_contents('php://stdout', $rid . ' / ' . microtime(true) . ': before pdf close' . PHP_EOL);
     $pdf->Close();
     file_put_contents('php://stdout', $rid . ' / ' . microtime(true) . ': before pdf output' . PHP_EOL);
+    
+    ob_start();
     $pdf->output($_camp->short_name . ".pdf", 'D');
+    ob_end_flush();
+
     file_put_contents('php://stdout', $rid . ' / ' . microtime(true) . ': after pdf output' . PHP_EOL);
 
     
