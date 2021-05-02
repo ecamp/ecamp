@@ -18,7 +18,17 @@
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-    $GLOBALS['session'] = new Zebra_Session($GLOBALS["___mysqli_ston"], $GLOBALS['session_salt']);
+    $GLOBALS['session'] = new Zebra_Session($GLOBALS["___mysqli_ston"], 
+                                            $GLOBALS['session_salt'],
+                                            '',
+                                            true,
+                                            false,
+                                            '',
+                                            '',
+                                            'session_data',
+                                            30, // $lock_timeout: changed from default 60 to 30s
+                                            true,
+                                            false);
 
     if (!isset($_SESSION['user_id']) || $_SESSION['user_id'] == "") {
         header("Location: login.php");

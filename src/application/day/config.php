@@ -54,5 +54,8 @@ $js  = array(
 # Standardkommando
 if( $_page->cmd == "" ) $_page->cmd = "home";
 
+// write session data & release session lock
+// after this, changes to $_SESSION variables are not written to DB anymore
+session_write_close();
 
 ?>
