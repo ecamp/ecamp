@@ -137,6 +137,7 @@
         ob_start();
         $pdf->output($_camp->short_name . ".pdf", 'D');
         ob_end_flush();
+        flush();
     } catch (\Exception $e) {
         file_put_contents('php://stdout', $rid . ' / ' . microtime(true) . ': pdf output Exception: ' . $e->getMessage() . PHP_EOL);
     } finally {
