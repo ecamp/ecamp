@@ -17,6 +17,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
+    $rid = bin2hex(random_bytes(4));
 
     if (!isset($_REQUEST['item'])) {
         header("location: index.php?app=print");
@@ -28,15 +29,18 @@
 
     # increase memory limit for printing
     # keep overall memor_limit low to allow for more FPM processes per server (high WEB_CONCURRENCY)
-    ini_set("memory_limit","64M");
+    ini_set("memory_limit", "64M");
 
     require_once('class/data.php');
     require_once('class/build.php');
     require_once('include/fpdi_addons.php');
     
+    fwrite(STDOUT, $rid . ': dependencies loaded');
     
     $print_data = new print_data_class($_camp->id);
+    fwrite(STDOUT, $rid . ': print_data_class constructed');
     $print_build = new print_build_class($print_data);
+    fwrite(STDOUT, $rid . ': print_build_class constructed');
     
 
     $pdf = new Fpdi_Addons('P', 'mm', 'A4', true, 'UTF-8', false);
@@ -46,7 +50,9 @@
     $pdf->SetSubject('J&S - Programm');
     $pdf->SetTitle('J&S - Programm');
 
+    fwrite(STDOUT, $rid . ': before build items');
     foreach ($items as $nr => $item) {
+        fwrite(STDOUT, $rid . ': before build item: ' . $item);
         if ($item == "title") {
             $print_build->cover->build($pdf);
         }
@@ -111,14 +117,18 @@
             }
             //$pdf->setPageFormat( 'A4', 'P' );
         }
+        fwrite(STDOUT, $rid . ': after build item: ' . $item);
     }
-    
+
+    fwrite(STDOUT, $rid . ': after build items');
     
     $print_build->toc->build($pdf);
     
     
     
+    fwrite(STDOUT, $rid . ': before pdf output');
     $pdf->output($_camp->short_name . ".pdf", 'I');
+    fwrite(STDOUT, $rid . ': after pdf output');
 
     
     die();
