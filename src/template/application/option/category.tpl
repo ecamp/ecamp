@@ -37,7 +37,7 @@
             <tr><td>&nbsp;</td></tr>
             <tr>
                 <td align="right">
-                    <img src="img/busy_32.gif" id="new_category_wait" class="hidden" />
+                    <img src="public/global/img/wait.gif" id="new_category_wait" class="hidden" />
                     <input type="button"  value="Neue Kategorie" id="new_category" />
                 </td>
             </tr>
