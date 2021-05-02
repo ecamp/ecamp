@@ -31,7 +31,8 @@
 
     # increase memory limit for printing
     # keep overall memor_limit low to allow for more FPM processes per server (high WEB_CONCURRENCY)
-    ini_set("memory_limit", "64M");
+    ini_set("memory_limit", "512M");
+    ini_set("pcre.backtrack_limit", "10000000");
 
     require_once('class/data.php');
     require_once('class/build.php');
