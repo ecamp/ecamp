@@ -133,9 +133,15 @@
     $pdf->Close();
     file_put_contents('php://stdout', $rid . ' / ' . microtime(true) . ': before pdf output' . PHP_EOL);
     
-    ob_start();
-    $pdf->output($_camp->short_name . ".pdf", 'D');
-    ob_end_flush();
+    try {
+        ob_start();
+        $pdf->output($_camp->short_name . ".pdf", 'D');
+        ob_end_flush();
+    } catch (\Exception $e) {
+        file_put_contents('php://stdout', $rid . ' / ' . microtime(true) . ': pdf output Exception: ' . $e->getMessage() . PHP_EOL);
+    } finally {
+        file_put_contents('php://stdout', $rid . ' / ' . microtime(true) . ': pdf output finally' . PHP_EOL);
+    }
 
     file_put_contents('php://stdout', $rid . ' / ' . microtime(true) . ': after pdf output' . PHP_EOL);
 
