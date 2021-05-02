@@ -17,6 +17,8 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
+    define(K_TCPDF_THROW_EXCEPTION_ERROR, true);
+    
     $rid = bin2hex(random_bytes(4));
 
     if (!isset($_REQUEST['item'])) {
