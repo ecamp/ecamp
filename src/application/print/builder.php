@@ -17,6 +17,8 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
+    define(K_TCPDF_THROW_EXCEPTION_ERROR, true);
+    
     $rid = bin2hex(random_bytes(4));
 
     if (!isset($_REQUEST['item'])) {
@@ -35,12 +37,12 @@
     require_once('class/build.php');
     require_once('include/fpdi_addons.php');
     
-    file_put_contents('php://stdout', $rid . ': dependencies loaded');
+    file_put_contents('php://stdout', $rid . ' / ' . microtime(true) . ': dependencies loaded' . PHP_EOL);
     
     $print_data = new print_data_class($_camp->id);
-    file_put_contents('php://stdout', $rid . ': print_data_class constructed');
+    file_put_contents('php://stdout', $rid . ' / ' . microtime(true) . ': print_data_class constructed' . PHP_EOL);
     $print_build = new print_build_class($print_data);
-    file_put_contents('php://stdout', $rid . ': print_build_class constructed');
+    file_put_contents('php://stdout', $rid . ' / ' . microtime(true) . ': print_build_class constructed' . PHP_EOL);
     
 
     $pdf = new Fpdi_Addons('P', 'mm', 'A4', true, 'UTF-8', false);
@@ -50,9 +52,9 @@
     $pdf->SetSubject('J&S - Programm');
     $pdf->SetTitle('J&S - Programm');
 
-    file_put_contents('php://stdout', $rid . ': before build items');
+    file_put_contents('php://stdout', $rid . ' / ' . microtime(true) . ': before build items' . PHP_EOL);
     foreach ($items as $nr => $item) {
-        file_put_contents('php://stdout', $rid . ': before build item: ' . $item);
+        file_put_contents('php://stdout', $rid . ' / ' . microtime(true) . ': before build item: ' . $item . PHP_EOL);
         if ($item == "title") {
             $print_build->cover->build($pdf);
         }
@@ -117,18 +119,20 @@
             }
             //$pdf->setPageFormat( 'A4', 'P' );
         }
-        file_put_contents('php://stdout', $rid . ': after build item: ' . $item);
+        file_put_contents('php://stdout', $rid . ' / ' . microtime(true) . ': after build item: ' . $item . PHP_EOL);
     }
 
-    file_put_contents('php://stdout', $rid . ': after build items');
+    file_put_contents('php://stdout', $rid . ' / ' . microtime(true) . ': after build items' . PHP_EOL);
     
     $print_build->toc->build($pdf);
     
     
     
-    file_put_contents('php://stdout', $rid . ': before pdf output');
+    file_put_contents('php://stdout', $rid . ' / ' . microtime(true) . ': before pdf close' . PHP_EOL);
+    $pdf->Close();
+    file_put_contents('php://stdout', $rid . ' / ' . microtime(true) . ': before pdf output' . PHP_EOL);
     $pdf->output($_camp->short_name . ".pdf", 'I');
-    file_put_contents('php://stdout', $rid . ': after pdf output');
+    file_put_contents('php://stdout', $rid . ' / ' . microtime(true) . ': after pdf output' . PHP_EOL);
 
     
     die();
