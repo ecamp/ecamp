@@ -31,6 +31,8 @@
     # keep overall memor_limit low to allow for more FPM processes per server (high WEB_CONCURRENCY)
     ini_set("memory_limit", "512M");
     ini_set("pcre.backtrack_limit", "10000000");
+    @ini_set('zlib.output_compression', 0);
+    @ini_set('implicit_flush', 1);
 
     require_once('class/data.php');
     require_once('class/build.php');
@@ -120,6 +122,7 @@
     ob_start();
     $pdf->output($_camp->short_name . ".pdf", 'D');
     ob_end_flush();
+    ob_implicit_flush(1);
     flush();
     
     die();
