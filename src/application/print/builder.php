@@ -119,7 +119,7 @@
     
     $pdf->Close();
     
-    $_SERVER['HTTP_ACCEPT_ENCODING'] = 'gzip';
+    unset($_SERVER['HTTP_ACCEPT_ENCODING']);
 
     ob_start();
     $pdf->output($_camp->short_name . ".pdf", 'D');
