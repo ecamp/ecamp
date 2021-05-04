@@ -121,8 +121,9 @@
     
     // unset($_SERVER['HTTP_ACCEPT_ENCODING']);
 
+    $tmpFile = tempnam('/tmp', 'print');
     //ob_start();
-    $pdf->output($_camp->short_name . ".pdf", 'FI');
+    $pdf->output($tmpFile . ".pdf", 'FI');
     //ob_end_flush();
     //ob_implicit_flush(1);
     //flush();
