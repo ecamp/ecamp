@@ -121,9 +121,9 @@
     
     // unset($_SERVER['HTTP_ACCEPT_ENCODING']);
 
-    $tmpFile = tempnam('/tmp', 'print');
+    $tmpFile = tempnam('/workspace/src/public/pdf', 'print');
     //ob_start();
-    $pdf->output($tmpFile . ".pdf", 'FI');
+    $pdf->output($tmpFile, 'F');
     //ob_end_flush();
     //ob_implicit_flush(1);
     //flush();
