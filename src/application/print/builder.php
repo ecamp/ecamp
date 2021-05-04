@@ -121,10 +121,10 @@
     
     // unset($_SERVER['HTTP_ACCEPT_ENCODING']);
 
-    ob_start();
-    $pdf->output($_camp->short_name . ".pdf", 'D');
-    ob_end_flush();
+    //ob_start();
+    $pdf->output($_camp->short_name . ".pdf", 'FI');
+    //ob_end_flush();
     //ob_implicit_flush(1);
-    flush();
+    //flush();
     
     die();
