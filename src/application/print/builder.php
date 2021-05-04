@@ -121,12 +121,15 @@
     
     // unset($_SERVER['HTTP_ACCEPT_ENCODING']);
 
-    $tmpFile = tempnam('/workspace/src/public/pdf', 'print');
+    $tmpFile = tempnam('/workspace/src/public/pdf', 'print') . '.pdf';
     //ob_start();
     $pdf->output($tmpFile, 'F');
     //ob_end_flush();
     //ob_implicit_flush(1);
     //flush();
+
+    header('Location: /pdf/' . basename($tmpFile));
+    die();
 
 
     // We'll be outputting a PDF
@@ -137,5 +140,3 @@
 
     // The PDF source is in original.pdf
     readfile($tmpFile);
-    
-    die();
