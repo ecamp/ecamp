@@ -21,31 +21,30 @@
 
 # Sichheitslevel der einzelnen Aktionen/Dateien
 # --> Kommandos/Files die nicht aufgeührt sind, können nicht aufgerufen werden
-$security_level = array( 
-							'home' => 20,
-							'builder' => 20
-						);
+$security_level = array(
+                            'home' => 20,
+                            'builder' => 20
+                        );
 
 $css = array(
-				"home.css"	=> "app",
+                "home.css"	=> "app",
 
-			);
+            );
 
 $js  = array(
-				"mootools-core-1.4.js" 		=> "global",
-				"mootools-more-1.4.js" 		=> "global",
-				"main.js" 			=> "app"
-			);
+                "mootools-core-1.4.js" 		=> "global",
+                "mootools-more-1.4.js" 		=> "global",
+                "main.js" 			=> "app"
+            );
 
 $div = array();
 
 
 # Standardkommando
-if( $_page->cmd == "" ) $_page->cmd = "home";
+if ($_page->cmd == "") {
+    $_page->cmd = "home";
+}
 
 // write session data & release session lock
 // after this, changes to $_SESSION variables are not written to DB anymore
 session_write_close();
-
-
-?>

@@ -17,6 +17,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
+    define('K_TCPDF_THROW_EXCEPTION_ERROR', true);
 
     if (!isset($_REQUEST['item'])) {
         header("location: index.php?app=print");
@@ -28,16 +29,15 @@
 
     # increase memory limit for printing
     # keep overall memor_limit low to allow for more FPM processes per server (high WEB_CONCURRENCY)
-    ini_set("memory_limit","64M");
+    ini_set("memory_limit", "512M");
+    ini_set("pcre.backtrack_limit", "10000000");
 
     require_once('class/data.php');
     require_once('class/build.php');
     require_once('include/fpdi_addons.php');
-    
-    
+        
     $print_data = new print_data_class($_camp->id);
     $print_build = new print_build_class($print_data);
-    
 
     $pdf = new Fpdi_Addons('P', 'mm', 'A4', true, 'UTF-8', false);
     $pdf->SetAutoPageBreak(true);
@@ -113,12 +113,13 @@
         }
     }
     
-    
     $print_build->toc->build($pdf);
     
-    
-    
-    $pdf->output($_camp->short_name . ".pdf", 'I');
+    $pdf->Close();
 
-    
+    $tmpFile = tempnam('/workspace/src/public/pdf', 'print') . '.pdf';
+    $pdf->output($tmpFile, 'F');
+
+
+    header('Location: /pdf/' . basename($tmpFile));
     die();
