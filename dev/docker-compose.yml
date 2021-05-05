@@ -11,6 +11,10 @@ services:
     environment:
       PHP_XDEBUG_ENABLED: 1
       XDEBUG_CONFIG: "remote_enable=1 remote_host=host.docker.internal remote_port=9000 profiler_enable=0 profiler_enable_trigger=1 profiler_output_dir=/tmp"
+      S3_BUCKET: ${S3_BUCKET}
+      S3_KEY: ${S3_KEY}
+      S3_SECRET: ${S3_SECRET} 
+      S3_ENDPOINT: ${S3_ENDPOINT} 
     working_dir: /app
     entrypoint: ./dev/docker-start.sh # run composer & apache
 
