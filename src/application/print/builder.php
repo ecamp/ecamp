@@ -31,8 +31,6 @@
     # keep overall memor_limit low to allow for more FPM processes per server (high WEB_CONCURRENCY)
     ini_set("memory_limit", "512M");
     ini_set("pcre.backtrack_limit", "10000000");
-    //@ini_set('zlib.output_compression', 0);
-    //@ini_set('implicit_flush', 1);
 
     require_once('class/data.php');
     require_once('class/build.php');
@@ -118,25 +116,10 @@
     $print_build->toc->build($pdf);
     
     $pdf->Close();
-    
-    // unset($_SERVER['HTTP_ACCEPT_ENCODING']);
 
     $tmpFile = tempnam('/workspace/src/public/pdf', 'print') . '.pdf';
-    //ob_start();
     $pdf->output($tmpFile, 'F');
-    //ob_end_flush();
-    //ob_implicit_flush(1);
-    //flush();
+
 
     header('Location: /pdf/' . basename($tmpFile));
     die();
-
-
-    // We'll be outputting a PDF
-    header('Content-type: application/pdf');
-
-    // It will be called downloaded.pdf
-    header('Content-Disposition: attachment; filename="downloaded.pdf"');
-
-    // The PDF source is in original.pdf
-    readfile($tmpFile);
