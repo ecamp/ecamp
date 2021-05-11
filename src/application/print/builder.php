@@ -17,6 +17,10 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+use Aws\S3\S3Client;
+use Aws\S3\Exception\S3Exception;
+
     define('K_TCPDF_THROW_EXCEPTION_ERROR', true);
 
     if (!isset($_REQUEST['item'])) {
@@ -31,8 +35,6 @@
     # keep overall memor_limit low to allow for more FPM processes per server (high WEB_CONCURRENCY)
     ini_set("memory_limit", "512M");
     ini_set("pcre.backtrack_limit", "10000000");
-    //@ini_set('zlib.output_compression', 0);
-    //@ini_set('implicit_flush', 1);
 
     require_once('class/data.php');
     require_once('class/build.php');
@@ -115,28 +117,40 @@
         }
     }
     
-    $print_build->toc->build($pdf);
-    
+    $print_build->toc->build($pdf);    
     $pdf->Close();
-    
-    // unset($_SERVER['HTTP_ACCEPT_ENCODING']);
 
-    $tmpFile = tempnam('/workspace/src/public/pdf', 'print') . '.pdf';
-    //ob_start();
-    $pdf->output($tmpFile, 'F');
-    //ob_end_flush();
-    //ob_implicit_flush(1);
-    //flush();
+    // generate PDF and store as string
+    $pdfBody = $pdf->output('print.pdf', 'S');
 
-    header('Location: /pdf/' . basename($tmpFile));
+    // connect to S3 server
+    $s3 = new S3Client([
+        'version' => 'latest',
+        'region'  => 'us-east-1',
+        'endpoint' => getenv('S3_ENDPOINT'),
+        'credentials' => [
+                'key'    => getenv('S3_KEY'),
+                'secret' => getenv('S3_SECRET'),
+            ],
+        ]);
+
+    $bucket = getenv('S3_BUCKET')?: die('No "S3_BUCKET" config var in found in env!');
+
+    try {
+        // Upload data.
+        $result = $s3->putObject([
+            'Bucket' => $bucket,
+            'Key'    => 'ecamp2-pdf/'.bin2hex(random_bytes(10)).'.pdf', // generate random file name in folder 'ecamp2-pdf'
+            'Body'   => $pdfBody,
+            'ACL'    => 'public-read',
+            'ContentType' => 'application/pdf',
+
+        ]);
+
+    } catch (S3Exception $e) {
+        echo $e->getMessage() . PHP_EOL;
+        die();
+    }
+
+    header('Location: '.$result['ObjectURL']);
     die();
-
-
-    // We'll be outputting a PDF
-    header('Content-type: application/pdf');
-
-    // It will be called downloaded.pdf
-    header('Content-Disposition: attachment; filename="downloaded.pdf"');
-
-    // The PDF source is in original.pdf
-    readfile($tmpFile);
