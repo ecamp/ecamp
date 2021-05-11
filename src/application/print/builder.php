@@ -17,6 +17,10 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with eCamp.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+use Aws\S3\S3Client;
+use Aws\S3\Exception\S3Exception;
+
     define('K_TCPDF_THROW_EXCEPTION_ERROR', true);
 
     if (!isset($_REQUEST['item'])) {
@@ -113,13 +117,40 @@
         }
     }
     
-    $print_build->toc->build($pdf);
-    
+    $print_build->toc->build($pdf);    
     $pdf->Close();
 
-    $tmpFile = tempnam('/workspace/src/public/pdf', 'print') . '.pdf';
-    $pdf->output($tmpFile, 'F');
+    // generate PDF and store as string
+    $pdfBody = $pdf->output('print.pdf', 'S');
 
+    // connect to S3 server
+    $s3 = new S3Client([
+        'version' => 'latest',
+        'region'  => 'us-east-1',
+        'endpoint' => getenv('S3_ENDPOINT'),
+        'credentials' => [
+                'key'    => getenv('S3_KEY'),
+                'secret' => getenv('S3_SECRET'),
+            ],
+        ]);
 
-    header('Location: /pdf/' . basename($tmpFile));
+    $bucket = getenv('S3_BUCKET')?: die('No "S3_BUCKET" config var in found in env!');
+
+    try {
+        // Upload data.
+        $result = $s3->putObject([
+            'Bucket' => $bucket,
+            'Key'    => 'ecamp2-pdf/'.bin2hex(random_bytes(10)).'.pdf', // generate random file name in folder 'ecamp2-pdf'
+            'Body'   => $pdfBody,
+            'ACL'    => 'public-read',
+            'ContentType' => 'application/pdf',
+
+        ]);
+
+    } catch (S3Exception $e) {
+        echo $e->getMessage() . PHP_EOL;
+        die();
+    }
+
+    header('Location: '.$result['ObjectURL']);
     die();
