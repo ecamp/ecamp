@@ -26,7 +26,7 @@ Urban Suppiger <smiley@pfadiluzern.ch>
 ## Prerequisites
 - PHP
 - Mysql
-- composer with gd extension (on your machine)
+- composer with gd and mbstring extension
 - SMTP Server (send email)
 - Google reCAPTCHA Account (v2, I'm not a robot checkbox): https://www.google.com/recaptcha/admin/create
 
@@ -38,8 +38,9 @@ Urban Suppiger <smiley@pfadiluzern.ch>
 5. set the root of your website to src/public
 6. create a mysql database with a user
 7. import the file database/ecamp_full_db.sql into your database
-8. edit database settings in src/config/config.php: $GLOBALS['host'], $GLOBALS['db'], $GLOBALS['us'], $GLOBALS['pw'], $GLOBALS['db_port']
-9. edit mail settings in src/config/config.php: $GLOBALS['smtp-config']
-10. edit feedback and support mail settings in src/config/config.php: $GLOBALS['feedback_mail'], $GLOBALS['support_mail']
-11. edit site and secret key for recaptcha in src/config/config.php: $GLOBALS['captcha_pub'], $GLOBALS['captcha_prv']
-12. visit the webpage, register a new user
+8. check if there are migrations that are not included in the schema (in my case 2-indexes.sql and 3-del-protocol.sql)
+9. edit database settings in src/config/config.php: $GLOBALS['host'], $GLOBALS['db'], $GLOBALS['us'], $GLOBALS['pw'], $GLOBALS['db_port']
+10. edit mail settings in src/config/config.php: $GLOBALS['smtp-config']
+11. edit feedback and support mail settings in src/config/config.php: $GLOBALS['feedback_mail'], $GLOBALS['support_mail']
+12. edit site and secret key for recaptcha in src/config/config.php: $GLOBALS['captcha_pub'], $GLOBALS['captcha_prv']
+13. visit the webpage, register a new user
