@@ -1,14 +1,11 @@
 <span metal:define-macro="home" tal:omit-tag="">
 	<table width="100%" cellspacing="0" cellpadding="2">
 		<colgroup>
-			<col width="50%" />
-			<col width="50%" />
+			<col width="100%" />
 		</colgroup>
-		
 		<tr>
 			<td>
 				<span metal:use-macro="${tpl_dir}/global/content_box_fit.tpl/slot">
-		        
 		            <span metal:fill-slot="box_title" tal:omit-tag="">Willkommen bei eCamp2</span>
 		            <span metal:fill-slot="box_content" tal:omit-tag="">
 		                <span metal:use-macro="${tpl_dir}/application/home/welcome_msg.tpl/welcome" />
@@ -35,9 +32,6 @@
 		            </span>
 		        </span>
 			</td>
-		</tr>
-		<tr>
-			<td>&nbsp;</td>
 		</tr>
 	</table>
 </span>
