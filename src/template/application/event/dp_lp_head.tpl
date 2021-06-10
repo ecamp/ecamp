@@ -1,6 +1,6 @@
 <span metal:define-macro="dp_lp_head" tal:omit-tag="">
     <span metal:use-macro="dp_border.tpl/dp_border">
-    	<span metal:fill-slot="border_title" tal:omit-tag="">Ziel / Metode:</span>
+    	<span metal:fill-slot="border_title" tal:omit-tag="">Ziel / Methode:</span>
     	
     	<span metal:fill-slot="border_content" tal:omit-tag="">
 			<table width="100%" class="dp_head">
