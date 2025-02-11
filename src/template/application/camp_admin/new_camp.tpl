@@ -12,6 +12,20 @@
 	<h1 tal:condition="course" style="font-size:15px;">Neuen Kurs erstellen</h1>
 	
 	<center>
+		<div style="width:85%; background-color:#ed832d; padding: 20px; margin:20px">
+			<b>
+				<span style="font-size: 30px">
+					eCamp2 wird nur noch bis Ende 2025 betrieben.
+					<br />
+					<br />
+					Erstelle dein Lager bitte auf 
+					<br />
+					<a href="https://app.ecamp3.ch" style="font-size: 30px"> > eCamp3 < </a>
+				</span>
+			</b>
+		</div>
+	</center>
+	<center>
 		<div style="width:85%" align="left">
 			<b>
 				<span tal:condition="not: course">Ein Lager von:</span>
