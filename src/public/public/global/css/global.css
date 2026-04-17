@@ -21,3 +21,7 @@ a.img {
 	border:none;
 	text-decoration:none;
 }
+
+#add_new_camp {
+    display:none;
+}
