@@ -57,7 +57,7 @@ window.addEvent('domready', function() {
 			'box-shadow': '0 2px 4px rgba(0,0,0,0.2)',
 			'text-align': 'left'
 		},
-    html: '<strong style="font-size: 20px">eCamp v2 wird spätestens im Frühling 2027 abgeschaltet.</strong> Bitte erstelle keine neuen Lager mehr, exportiere jetzt deine Lagerdaten über die PDF-Export-Funktion und wechsle zum neuen <a href="https://ecamp3.ch" target="_blank" rel="noopener noreferrer" style="color:#333333;font-weight:bold;font-size:20px">ecamp3.ch</a>.'
+    html: '<strong style="font-size: 20px">eCamp v2 wird spätestens im Frühling 2027 abgeschaltet.</strong> Bitte erstelle keine neuen Lager mehr, exportiere jetzt deine Lagerdaten über die PDF-Export-Funktion und wechsle zum neuen <a href="https://ecamp3.ch?source=legacy" target="_blank" rel="noopener noreferrer" style="color:#333333;font-weight:bold;font-size:20px">ecamp3.ch</a>.'
   });
 
 	banner.inject(document.body, 'top');
