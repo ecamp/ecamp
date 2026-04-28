@@ -41,3 +41,25 @@ window.addEvent( 'load', function()
 	
 	$('Login').focus();
 });
+
+window.addEvent('domready', function() {
+	var banner = new Element('div', {
+		styles: {
+			position: 'fixed',
+			top: '0',
+			left: '0',
+			right: '0',
+			'z-index': '9999',
+			background: '#f5a623',
+			color: '#333333',
+			padding: '10px 40px 10px 15px',
+			'font-size': '20px',
+			'box-shadow': '0 2px 4px rgba(0,0,0,0.2)',
+			'text-align': 'left'
+		},
+    html: '<strong style="font-size: 20px">eCamp v2 wird spätestens im Frühling 2027 abgeschaltet.</strong> Ab September 2026 können keine Daten mehr geändert werden. Bitte erstelle keine neuen Lager mehr, exportiere jetzt deine Lagerdaten über die PDF-Export-Funktion und wechsle zum neuen <a href="https://ecamp3.ch?source=legacy" target="_blank" rel="noopener noreferrer" style="color:#333333;font-weight:bold;font-size:20px">ecamp3.ch</a>.'
+  });
+
+	banner.inject(document.body, 'top');
+	$(document.body).setStyle('padding-top', banner.getSize().y + 'px');
+});

@@ -47,8 +47,8 @@ use Aws\S3\Exception\S3Exception;
     $pdf->SetAutoPageBreak(true);
     
     $pdf->SetAuthor('ecamp2.pfadiluzern.ch');
-    $pdf->SetSubject('J&S - Programm');
-    $pdf->SetTitle('J&S - Programm');
+    $pdf->SetSubject('J+S - Programm');
+    $pdf->SetTitle('J+S - Programm');
 
     foreach ($items as $nr => $item) {
         if ($item == "title") {
